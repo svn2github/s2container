@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="Windows-31J"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container//EN"
+"http://www.seasar.org/dtd/components.dtd">
+<components>
+	<component name="hello" class="examples.dicon.HelloConstructorInjection">
+		<arg>"Hello World!"</arg>
+	</component>
+</components>

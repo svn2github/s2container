@@ -1,0 +1,10 @@
+<project>
+    <extend>./project.xml</extend>
+    <pomVersion>3</pomVersion>
+    <artifactId>s2-framework</artifactId>
+    <name>s2 framework</name>
+    <groupId>seasar</groupId>
+    <organization/>
+    <package>org.seasar.framework</package>
+    <properties/>
+</project>

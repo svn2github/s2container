@@ -1,0 +1,40 @@
+package test.org.seasar.framework.container.auto;
+
+import org.seasar.extension.unit.S2TestCase;
+import org.seasar.framework.container.AspectDef;
+import org.seasar.framework.container.ComponentDef;
+import org.seasar.framework.container.S2Container;
+
+/**
+ * @author higa
+ */
+public class InterceptorAutoRegisterTest extends S2TestCase {
+
+    private S2Container child;
+/*    
+    public void setUpRegistAll() throws Exception {
+        include("autoRegister.dicon");
+    }
+    
+    public void testRegistAll() throws Exception {
+        Foo foo = (Foo) child.getComponent(Foo.class);
+        assertNotNull("1", foo);
+        assertEquals("2", "Hello", foo.greet());
+    }
+*/    
+    public void setUpRegistAll2() throws Exception {
+        include("autoRegister2.dicon");
+    }
+    
+    public void testRegistAll2() throws Exception {
+        Bar bar = (Bar) child.getComponent("bar");
+        assertNotNull("1", bar);
+        assertEquals("2", "Hello", bar.greet());
+        ComponentDef cd = child.getComponentDef("bar2");
+        assertEquals("3", 1, cd.getAspectDefSize());
+        AspectDef aspectDef = cd.getAspectDef(0);
+        assertEquals("4", "greetingInterceptor2", aspectDef.getExpression());
+        bar = (Bar) child.getComponent("bar2");
+        assertEquals("5", "Hello", bar.greet());
+    }
+}
