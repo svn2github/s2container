@@ -18,22 +18,6 @@
 			</classpath>
 		</javac>
 	</target>
-	
-	<target name="backport175">
-			<taskdef
-				name="annotationc"
-			    classname="org.codehaus.backport175.compiler.task.AnnotationCTask"
-			    classpathref="project.class.path"
-			/>
-
-			<annotationc verbose="true" destdir="${build}">
-			    <src path="${src}" />
-			    <classpath path="${build}"/>
-			    <fileset dir="src">
-			    	<include name="**/*.java" />
-			    </fileset>
-			</annotationc>
-	</target>
 
 	<target name="copy" depends="compile">
 		<copy todir="${build}">
@@ -46,7 +30,7 @@
 		</copy>
 	</target>
 
-	<target name="dist" depends="compile,backport175,copy,cleans2jarfile">
+	<target name="dist" depends="compile,copy,cleans2jarfile">
 		<jar jarfile="${lib}/${frameworkjarfile}" basedir="${build}" includes="${frameworkpackage}, SSR*.properties, s2*.properties" />
 		<jar jarfile="${lib}/${extensionjarfile}" basedir="${build}" includes="${extensionpackage}" />
 	</target>

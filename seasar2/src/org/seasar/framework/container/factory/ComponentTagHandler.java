@@ -36,7 +36,7 @@ public class ComponentTagHandler extends TagHandler {
 	 * @see org.seasar.framework.xml.sax.handler.TagHandler#start(org.seasar.framework.xml.sax.handler.TagHandlerContext, org.xml.sax.Attributes)
 	 */
 	public void start(TagHandlerContext context, Attributes attributes) {
-        AnnotationHandler annoHandler = AnnotationHandlerFactory.getAnnotationHanlder();
+        AnnotationHandler annoHandler = AnnotationHandlerFactory.getAnnotationHandler();
 		String className = attributes.getValue("class");
 		Class componentClass = null;
 		if (className != null) {

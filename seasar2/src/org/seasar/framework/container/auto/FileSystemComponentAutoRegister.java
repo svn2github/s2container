@@ -57,7 +57,7 @@ public class FileSystemComponentAutoRegister extends AutoRegister {
     }
     
     protected void regist(ClassPattern classPattern, File packageDir, String packageName) {
-        AnnotationHandler annoHandler = AnnotationHandlerFactory.getAnnotationHanlder();
+        AnnotationHandler annoHandler = AnnotationHandlerFactory.getAnnotationHandler();
         File[] files = packageDir.listFiles();
         for (int i = 0; i < files.length; ++i) {
             File file = files[i];

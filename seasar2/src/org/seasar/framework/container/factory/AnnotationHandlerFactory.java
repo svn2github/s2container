@@ -42,7 +42,7 @@ public class AnnotationHandlerFactory {
     protected AnnotationHandlerFactory() {
     }
     
-    public static AnnotationHandler getAnnotationHanlder() {
+    public static AnnotationHandler getAnnotationHandler() {
         return annotationHandler;
     }
     

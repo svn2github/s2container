@@ -14,7 +14,7 @@ public class AnnotationHandlerFactoryTest extends TestCase {
 
     public void testGetAnnotationHandler() throws Exception {
         AnnotationHandler handler = AnnotationHandlerFactory
-                .getAnnotationHanlder();
+                .getAnnotationHandler();
         assertEquals("1", ConstantAnnotationHandler.class, handler.getClass());
     }
 }
