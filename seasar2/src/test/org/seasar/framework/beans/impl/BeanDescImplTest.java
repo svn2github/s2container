@@ -1,5 +1,6 @@
 package test.org.seasar.framework.beans.impl;
 
+import java.lang.reflect.Field;
 import java.math.BigDecimal;
 
 import org.seasar.framework.beans.BeanDesc;
@@ -15,7 +16,6 @@ import junit.framework.TestCase;
  */
 public class BeanDescImplTest extends TestCase {
 
-	public static final String HOGE = "hoge";
 	/**
 	 * Constructor for BeanDescFactory.
 	 * @param arg0
@@ -138,9 +138,12 @@ public class BeanDescImplTest extends TestCase {
 		assertEquals("1", new Integer(10), beanDesc.newInstance(args));
 	}
 	
-	public void testGetField() throws Exception {
-		BeanDesc beanDesc = new BeanDescImpl(getClass());
-		assertNotNull("1", beanDesc.getField("HOGE"));
+	public void testGetFields() throws Exception {
+		BeanDesc beanDesc = new BeanDescImpl(MyBean.class);
+		assertTrue("1", beanDesc.hasField("HOGE"));
+        Field field = beanDesc.getField("HOGE");
+        assertEquals("2", "hoge2", field.get(null));
+        assertTrue("3", beanDesc.hasField("aaa"));
 	}
 	
 	public void testGetMethodNames() throws Exception {
@@ -170,11 +173,21 @@ public class BeanDescImplTest extends TestCase {
 	protected void tearDown() throws Exception {
 		super.tearDown();
 	}
+    
+    public static interface MyInterface {
+        String HOGE = "hoge";
+    }
+    
+    public static interface MyInterface2 extends MyInterface {
+        String HOGE = "hoge2";
+    }
 
-	public static class MyBean {
+	public static class MyBean implements MyInterface2 {
+        
+        private String aaa;
 
 		public String getAaa() {
-			return null;
+			return aaa;
 		}
 
 		public String getBbb(Object a) {

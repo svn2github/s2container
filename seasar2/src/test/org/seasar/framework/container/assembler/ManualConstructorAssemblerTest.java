@@ -4,9 +4,9 @@ import junit.framework.TestCase;
 
 import org.seasar.framework.aop.interceptors.TraceInterceptor;
 import org.seasar.framework.container.ArgDef;
+import org.seasar.framework.container.ConstructorAssembler;
 import org.seasar.framework.container.IllegalConstructorRuntimeException;
 import org.seasar.framework.container.S2Container;
-import org.seasar.framework.container.assembler.ConstructorAssembler;
 import org.seasar.framework.container.assembler.ManualConstructorAssembler;
 import org.seasar.framework.container.impl.ArgDefImpl;
 import org.seasar.framework.container.impl.AspectDefImpl;

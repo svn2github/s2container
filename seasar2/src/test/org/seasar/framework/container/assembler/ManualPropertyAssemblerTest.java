@@ -4,10 +4,10 @@ import junit.framework.TestCase;
 
 import org.seasar.framework.beans.IllegalPropertyRuntimeException;
 import org.seasar.framework.beans.PropertyNotFoundRuntimeException;
+import org.seasar.framework.container.PropertyAssembler;
 import org.seasar.framework.container.PropertyDef;
 import org.seasar.framework.container.S2Container;
 import org.seasar.framework.container.assembler.ManualPropertyAssembler;
-import org.seasar.framework.container.assembler.PropertyAssembler;
 import org.seasar.framework.container.impl.ComponentDefImpl;
 import org.seasar.framework.container.impl.PropertyDefImpl;
 import org.seasar.framework.container.impl.S2ContainerImpl;

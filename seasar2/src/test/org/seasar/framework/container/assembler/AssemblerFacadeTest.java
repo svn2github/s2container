@@ -4,12 +4,13 @@ import junit.framework.TestCase;
 
 import org.seasar.framework.container.ArgDef;
 import org.seasar.framework.container.ComponentDef;
-import org.seasar.framework.container.ContainerConstants;
+import org.seasar.framework.container.ConstructorAssembler;
+import org.seasar.framework.container.PropertyAssembler;
 import org.seasar.framework.container.PropertyDef;
-import org.seasar.framework.container.assembler.AssemblerFactory;
+import org.seasar.framework.container.assembler.AssemblerFacade;
+import org.seasar.framework.container.assembler.AutoBindingDefFactory;
 import org.seasar.framework.container.assembler.AutoConstructorAssembler;
 import org.seasar.framework.container.assembler.AutoPropertyAssembler;
-import org.seasar.framework.container.assembler.ConstructorAssembler;
 import org.seasar.framework.container.assembler.DefaultConstructorAssembler;
 import org.seasar.framework.container.assembler.DefaultDestroyMethodAssembler;
 import org.seasar.framework.container.assembler.DefaultInitMethodAssembler;
@@ -17,7 +18,6 @@ import org.seasar.framework.container.assembler.DefaultPropertyAssembler;
 import org.seasar.framework.container.assembler.ManualConstructorAssembler;
 import org.seasar.framework.container.assembler.ManualPropertyAssembler;
 import org.seasar.framework.container.assembler.MethodAssembler;
-import org.seasar.framework.container.assembler.PropertyAssembler;
 import org.seasar.framework.container.impl.ArgDefImpl;
 import org.seasar.framework.container.impl.ComponentDefImpl;
 import org.seasar.framework.container.impl.PropertyDefImpl;
@@ -25,111 +25,111 @@ import org.seasar.framework.container.impl.PropertyDefImpl;
 /**
  * @author koichik
  */
-public class AssemblerFactoryTest extends TestCase {
-    public AssemblerFactoryTest(String name) {
+public class AssemblerFacadeTest extends TestCase {
+    public AssemblerFacadeTest(String name) {
         super(name);
     }
 
     public void testAutoBindingAuto() throws Exception {
         ComponentDef cd = new ComponentDefImpl();
-        cd.setAutoBindingMode(ContainerConstants.AUTO_BINDING_AUTO);
+        cd.setAutoBindingDef(AutoBindingDefFactory.AUTO);
 
-        ConstructorAssembler ca = AssemblerFactory.createConstructorAssembler(cd);
+        ConstructorAssembler ca = AssemblerFacade.createConstructorAssembler(cd);
         assertTrue("1", ca instanceof AutoConstructorAssembler);
 
-        PropertyAssembler pa = AssemblerFactory.createPropertyAssembler(cd);
+        PropertyAssembler pa = AssemblerFacade.createPropertyAssembler(cd);
         assertTrue("2", pa instanceof AutoPropertyAssembler);
 
-        MethodAssembler ia = AssemblerFactory.createInitMethodAssembler(cd);
+        MethodAssembler ia = AssemblerFacade.createInitMethodAssembler(cd);
         assertTrue("3", ia instanceof DefaultInitMethodAssembler);
 
-        MethodAssembler da = AssemblerFactory.createDestroyMethodAssembler(cd);
+        MethodAssembler da = AssemblerFacade.createDestroyMethodAssembler(cd);
         assertTrue("4", da instanceof DefaultDestroyMethodAssembler);
     }
 
     public void testAutoBindingProperty() throws Exception {
         ComponentDef cd = new ComponentDefImpl();
-        cd.setAutoBindingMode(ContainerConstants.AUTO_BINDING_PROPERTY);
+        cd.setAutoBindingDef(AutoBindingDefFactory.PROPERTY);
 
-        ConstructorAssembler ca = AssemblerFactory.createConstructorAssembler(cd);
+        ConstructorAssembler ca = AssemblerFacade.createConstructorAssembler(cd);
         assertTrue("1", ca instanceof DefaultConstructorAssembler);
 
-        PropertyAssembler pa = AssemblerFactory.createPropertyAssembler(cd);
+        PropertyAssembler pa = AssemblerFacade.createPropertyAssembler(cd);
         assertTrue("2", pa instanceof AutoPropertyAssembler);
 
-        MethodAssembler ia = AssemblerFactory.createInitMethodAssembler(cd);
+        MethodAssembler ia = AssemblerFacade.createInitMethodAssembler(cd);
         assertTrue("3", ia instanceof DefaultInitMethodAssembler);
 
-        MethodAssembler da = AssemblerFactory.createDestroyMethodAssembler(cd);
+        MethodAssembler da = AssemblerFacade.createDestroyMethodAssembler(cd);
         assertTrue("4", da instanceof DefaultDestroyMethodAssembler);
     }
 
     public void testAutoBindingConstructor() throws Exception {
         ComponentDef cd = new ComponentDefImpl();
-        cd.setAutoBindingMode(ContainerConstants.AUTO_BINDING_CONSTRUCTOR);
+        cd.setAutoBindingDef(AutoBindingDefFactory.CONSTRUCTOR);
 
-        ConstructorAssembler ca = AssemblerFactory.createConstructorAssembler(cd);
+        ConstructorAssembler ca = AssemblerFacade.createConstructorAssembler(cd);
         assertTrue("1", ca instanceof AutoConstructorAssembler);
 
-        PropertyAssembler pa = AssemblerFactory.createPropertyAssembler(cd);
+        PropertyAssembler pa = AssemblerFacade.createPropertyAssembler(cd);
         assertTrue("2", pa instanceof DefaultPropertyAssembler);
 
-        MethodAssembler ia = AssemblerFactory.createInitMethodAssembler(cd);
+        MethodAssembler ia = AssemblerFacade.createInitMethodAssembler(cd);
         assertTrue("3", ia instanceof DefaultInitMethodAssembler);
 
-        MethodAssembler da = AssemblerFactory.createDestroyMethodAssembler(cd);
+        MethodAssembler da = AssemblerFacade.createDestroyMethodAssembler(cd);
         assertTrue("4", da instanceof DefaultDestroyMethodAssembler);
     }
 
     public void testAutoBindingNone() throws Exception {
         ComponentDef cd = new ComponentDefImpl();
-        cd.setAutoBindingMode(ContainerConstants.AUTO_BINDING_NONE);
+        cd.setAutoBindingDef(AutoBindingDefFactory.NONE);
 
-        ConstructorAssembler ca = AssemblerFactory.createConstructorAssembler(cd);
+        ConstructorAssembler ca = AssemblerFacade.createConstructorAssembler(cd);
         assertTrue("1", ca instanceof DefaultConstructorAssembler);
 
-        PropertyAssembler pa = AssemblerFactory.createPropertyAssembler(cd);
+        PropertyAssembler pa = AssemblerFacade.createPropertyAssembler(cd);
         assertTrue("2", pa instanceof DefaultPropertyAssembler);
 
-        MethodAssembler ia = AssemblerFactory.createInitMethodAssembler(cd);
+        MethodAssembler ia = AssemblerFacade.createInitMethodAssembler(cd);
         assertTrue("3", ia instanceof DefaultInitMethodAssembler);
 
-        MethodAssembler da = AssemblerFactory.createDestroyMethodAssembler(cd);
+        MethodAssembler da = AssemblerFacade.createDestroyMethodAssembler(cd);
         assertTrue("4", da instanceof DefaultDestroyMethodAssembler);
     }
 
     public void testConstructor() throws Exception {
         ComponentDef cd = new ComponentDefImpl();
-        cd.setAutoBindingMode(ContainerConstants.AUTO_BINDING_CONSTRUCTOR);
+        cd.setAutoBindingDef(AutoBindingDefFactory.CONSTRUCTOR);
         cd.addArgDef(new ArgDefImpl(""));
-        ConstructorAssembler ca = AssemblerFactory.createConstructorAssembler(cd);
+        ConstructorAssembler ca = AssemblerFacade.createConstructorAssembler(cd);
         assertTrue("1", ca instanceof ManualConstructorAssembler);
 
         cd = new ComponentDefImpl();
-        cd.setAutoBindingMode(ContainerConstants.AUTO_BINDING_CONSTRUCTOR);
+        cd.setAutoBindingDef(AutoBindingDefFactory.CONSTRUCTOR);
         ArgDef ad = new ArgDefImpl();
         ad.setExpression("''");
         cd.addArgDef(ad);
-        ca = AssemblerFactory.createConstructorAssembler(cd);
+        ca = AssemblerFacade.createConstructorAssembler(cd);
         assertTrue("1", ca instanceof ManualConstructorAssembler);
     }
 
     public void testProperty() throws Exception {
         ComponentDef cd = new ComponentDefImpl();
-        cd.setAutoBindingMode(ContainerConstants.AUTO_BINDING_PROPERTY);
+        cd.setAutoBindingDef(AutoBindingDefFactory.PROPERTY);
         PropertyDef pd = new PropertyDefImpl("foo", "");
         cd.addPropertyDef(pd);
-        PropertyAssembler pa = AssemblerFactory.createPropertyAssembler(cd);
+        PropertyAssembler pa = AssemblerFacade.createPropertyAssembler(cd);
         assertTrue("1", pa instanceof AutoPropertyAssembler);
 
         cd = new ComponentDefImpl();
-        cd.setAutoBindingMode(ContainerConstants.AUTO_BINDING_NONE);
-        pa = AssemblerFactory.createPropertyAssembler(cd);
+        cd.setAutoBindingDef(AutoBindingDefFactory.NONE);
+        pa = AssemblerFacade.createPropertyAssembler(cd);
         assertTrue("2", pa instanceof DefaultPropertyAssembler);
 
         pd = new PropertyDefImpl("foo", "");
         cd.addPropertyDef(pd);
-        pa = AssemblerFactory.createPropertyAssembler(cd);
+        pa = AssemblerFacade.createPropertyAssembler(cd);
         assertTrue("1", pa instanceof ManualPropertyAssembler);
     }
 }
