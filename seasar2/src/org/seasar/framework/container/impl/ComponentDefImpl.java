@@ -18,6 +18,7 @@ package org.seasar.framework.container.impl;
 import org.seasar.framework.beans.PropertyNotFoundRuntimeException;
 import org.seasar.framework.container.ArgDef;
 import org.seasar.framework.container.AspectDef;
+import org.seasar.framework.container.AutoBindingDef;
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.ContainerConstants;
 import org.seasar.framework.container.DestroyMethodDef;
@@ -25,12 +26,12 @@ import org.seasar.framework.container.InitMethodDef;
 import org.seasar.framework.container.MetaDef;
 import org.seasar.framework.container.PropertyDef;
 import org.seasar.framework.container.S2Container;
+import org.seasar.framework.container.assembler.AutoBindingDefFactory;
 import org.seasar.framework.container.deployer.ComponentDeployer;
 import org.seasar.framework.container.deployer.ComponentDeployerFactory;
 import org.seasar.framework.container.util.AopProxyUtil;
 import org.seasar.framework.container.util.ArgDefSupport;
 import org.seasar.framework.container.util.AspectDefSupport;
-import org.seasar.framework.container.util.AutoBindingUtil;
 import org.seasar.framework.container.util.DestroyMethodDefSupport;
 import org.seasar.framework.container.util.InitMethodDefSupport;
 import org.seasar.framework.container.util.InstanceModeUtil;
@@ -67,7 +68,7 @@ public class ComponentDefImpl implements ComponentDef, ContainerConstants {
 
 	private String instanceMode_ = INSTANCE_SINGLETON;
 
-	private String autoBindingMode_ = AUTO_BINDING_AUTO;
+	private AutoBindingDef autoBindingDef_ = AutoBindingDefFactory.AUTO;
 
 	private ComponentDeployer componentDeployer_;
 
@@ -243,25 +244,17 @@ public class ComponentDefImpl implements ComponentDef, ContainerConstants {
 	}
 
 	/**
-	 * @see org.seasar.framework.container.ComponentDef#getAutoBindingMode()
+	 * @see org.seasar.framework.container.ComponentDef#getAutoBindingDef()
 	 */
-	public String getAutoBindingMode() {
-		return autoBindingMode_;
+	public AutoBindingDef getAutoBindingDef() {
+		return autoBindingDef_;
 	}
 
 	/**
-	 * @see org.seasar.framework.container.ComponentDef#setAutoBindingMode(java.lang.String)
+	 * @see org.seasar.framework.container.ComponentDef#setAutoBindingDef(org.seasar.framework.container.AutoBindingDef)
 	 */
-	public void setAutoBindingMode(String autoBindingMode) {
-		if (AutoBindingUtil.isAuto(autoBindingMode)
-				|| AutoBindingUtil.isConstructor(autoBindingMode)
-				|| AutoBindingUtil.isProperty(autoBindingMode)
-				|| AutoBindingUtil.isNone(autoBindingMode)) {
-
-			autoBindingMode_ = autoBindingMode;
-		} else {
-			throw new IllegalArgumentException(autoBindingMode);
-		}
+	public void setAutoBindingDef(AutoBindingDef autoBindingDef) {
+		autoBindingDef_ = autoBindingDef;
 	}
 
 	/**

@@ -18,6 +18,7 @@ package org.seasar.framework.container.factory;
 import org.seasar.framework.container.ArgDef;
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.S2Container;
+import org.seasar.framework.container.assembler.AutoBindingDefFactory;
 import org.seasar.framework.container.impl.ComponentDefImpl;
 import org.seasar.framework.container.util.InstanceModeUtil;
 import org.seasar.framework.util.ClassUtil;
@@ -56,9 +57,10 @@ public class ComponentTagHandler extends TagHandler {
 		if (instanceMode != null) {
 			componentDef.setInstanceMode(instanceMode);
 		}
-		String autoBindingMode = attributes.getValue("autoBinding");
-		if (autoBindingMode != null) {
-			componentDef.setAutoBindingMode(autoBindingMode);
+		String autoBindingName = attributes.getValue("autoBinding");
+		if (autoBindingName != null) {
+			componentDef.setAutoBindingDef(
+                    AutoBindingDefFactory.getAutoBindingDef(autoBindingName));
 		}
 		context.push(componentDef);
 	}

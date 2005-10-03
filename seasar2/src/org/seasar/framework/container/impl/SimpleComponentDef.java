@@ -17,6 +17,7 @@ package org.seasar.framework.container.impl;
 
 import org.seasar.framework.container.ArgDef;
 import org.seasar.framework.container.AspectDef;
+import org.seasar.framework.container.AutoBindingDef;
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.DestroyMethodDef;
 import org.seasar.framework.container.InitMethodDef;
@@ -301,17 +302,14 @@ public class SimpleComponentDef implements ComponentDef {
 	}
 
 	/**
-	 * @see org.seasar.framework.container.ComponentDef#getAutoBindingMode()
+	 * @see org.seasar.framework.container.ComponentDef#getAutoBindingDef()
 	 */
-	public String getAutoBindingMode() {
-		throw new UnsupportedOperationException("getAutoBindingMode");
+	public AutoBindingDef getAutoBindingDef() {
+		throw new UnsupportedOperationException("getAutoBindingDef");
 	}
 
-	/**
-	 * @see org.seasar.framework.container.ComponentDef#setAutoBindingMode(java.lang.String)
-	 */
-	public void setAutoBindingMode(String autoBindingMode) {
-		throw new UnsupportedOperationException("setAutoBindingMode");
+	public void setAutoBindingDef(AutoBindingDef autoBindingDef) {
+		throw new UnsupportedOperationException("setAutoBindingDef");
 	}
 
 	/**

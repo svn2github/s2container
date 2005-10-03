@@ -24,10 +24,6 @@ import org.seasar.framework.container.util.InstanceModeUtil;
 public class ComponentDeployerFactory {
     private static Provider provider_ = new DefaultProvider();
 
-    public static void main(String[] args) {
-        junit.textui.TestRunner.run(ComponentDeployerFactory.class);
-    }
-
     public static Provider getProvider() {
         return provider_;
     }
