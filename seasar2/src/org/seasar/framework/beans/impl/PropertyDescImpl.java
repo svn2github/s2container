@@ -33,14 +33,18 @@ import org.seasar.framework.util.SqlDateConversionUtil;
 import org.seasar.framework.util.TimeConversionUtil;
 import org.seasar.framework.util.TimestampConversionUtil;
 
+/**
+ * @author higa
+ *
+ */
 public final class PropertyDescImpl implements PropertyDesc {
 
-	private String propertyName_;
-	private Class propertyType_;
-	private Method readMethod_;
-	private Method writeMethod_;
-	private BeanDesc beanDesc_;
-	private Constructor stringConstructor_;
+	private String propertyName;
+	private Class propertyType;
+	private Method readMethod;
+	private Method writeMethod;
+	private BeanDesc beanDesc;
+	private Constructor stringConstructor;
 	
 	public PropertyDescImpl(String propertyName, Class propertyType,
 			Method readMethod, Method writeMethod, BeanDesc beanDesc) {
@@ -51,130 +55,129 @@ public final class PropertyDescImpl implements PropertyDesc {
 		if (propertyType == null) {
 			throw new EmptyRuntimeException("propertyType");
 		}
-		
-		propertyName_ = propertyName;
-		propertyType_ = propertyType;
-		readMethod_ = readMethod;
-		writeMethod_ = writeMethod;
-		beanDesc_ = beanDesc;
+		this.propertyName = propertyName;
+		this.propertyType = propertyType;
+		this.readMethod = readMethod;
+		this.writeMethod = writeMethod;
+		this.beanDesc = beanDesc;
 		setupStringConstructor();
 	}
 	
 	private void setupStringConstructor() {
-		Constructor[] cons = propertyType_.getConstructors();
+		Constructor[] cons = propertyType.getConstructors();
 		for (int i = 0; i < cons.length; ++i) {
 			Constructor con = cons[i];
 			if (con.getParameterTypes().length == 1 && con.getParameterTypes()[0].equals(String.class)) {
-				stringConstructor_ = con;
+				stringConstructor = con;
 				break;
 			}
 		}
 	}
 	
 	public final String getPropertyName() {
-		return propertyName_;
+		return propertyName;
 	}
 
 	public final Class getPropertyType() {
-		return propertyType_;
+		return propertyType;
 	}
 	
 	public final Method getReadMethod() {
-		return readMethod_;
+		return readMethod;
 	}
 	
 	public final void setReadMethod(Method readMethod) {
-		readMethod_ = readMethod;
+		this.readMethod = readMethod;
 	}
 	
 	public final boolean hasReadMethod() {
-		return readMethod_ != null;
+		return readMethod != null;
 	}
 	
 	public final Method getWriteMethod() {
-		return writeMethod_;
+		return writeMethod;
 	}
 	
 	public final void setWriteMethod(Method writeMethod) {
-		writeMethod_ = writeMethod;
+		this.writeMethod = writeMethod;
 	}
 	
 	public final boolean hasWriteMethod() {
-		return writeMethod_ != null;
+		return writeMethod != null;
 	}
 	
 	public final Object getValue(Object target) {
-		return MethodUtil.invoke(readMethod_, target, null);
+		return MethodUtil.invoke(readMethod, target, null);
 	}
 	
 	public final void setValue(Object target, Object value) {
 		try {
-			MethodUtil.invoke(writeMethod_, target, new Object[]{
+			MethodUtil.invoke(writeMethod, target, new Object[]{
 				convertIfNeed(value)});
 		} catch (Throwable t) {
 			throw new IllegalPropertyRuntimeException(
-					beanDesc_.getBeanClass(), propertyName_, t);
+					beanDesc.getBeanClass(), propertyName, t);
 		}
 	}
 	
 	public final BeanDesc getBeanDesc() {
-		return beanDesc_;
+		return beanDesc;
 	}
 	
 	public final String toString() {
 		StringBuffer buf = new StringBuffer();
 		buf.append("propertyName=");
-		buf.append(propertyName_);
+		buf.append(propertyName);
 		buf.append(",propertyType=");
-		buf.append(propertyType_.getName());
+		buf.append(propertyType.getName());
 		buf.append(",readMethod=");
-		buf.append(readMethod_ != null ?readMethod_.getName() : "null");
+		buf.append(readMethod != null ?readMethod.getName() : "null");
 		buf.append(",writeMethod=");
-		buf.append(writeMethod_ != null ?writeMethod_.getName() : "null");
+		buf.append(writeMethod != null ?writeMethod.getName() : "null");
 		return buf.toString();
 	}
 	
 	public Object convertIfNeed(Object arg) {
-		if (propertyType_.isPrimitive()) {
+		if (propertyType.isPrimitive()) {
 			return convertPrimitiveWrapper(arg);
-		} else if (Number.class.isAssignableFrom(propertyType_)) {
+		} else if (Number.class.isAssignableFrom(propertyType)) {
 			return convertNumber(arg);
-		} else if (java.util.Date.class.isAssignableFrom(propertyType_)) {
+		} else if (java.util.Date.class.isAssignableFrom(propertyType)) {
 			return convertDate(arg);
-		} else if (Boolean.class.isAssignableFrom(propertyType_)) {
+		} else if (Boolean.class.isAssignableFrom(propertyType)) {
 			return BooleanConversionUtil.toBoolean(arg);
-		} else if (arg instanceof String && !String.class.equals(propertyType_)) {
+		} else if (arg instanceof String && !String.class.equals(propertyType)) {
 			return convertWithStringConstructor(arg);
 		}
 		return arg;
 	}
 
 	private Object convertPrimitiveWrapper(Object arg) {
-		return NumberConversionUtil.convertPrimitiveWrapper(propertyType_, arg);
+		return NumberConversionUtil.convertPrimitiveWrapper(propertyType, arg);
 	}
 	
 	private Object convertNumber(Object arg) {
-		return NumberConversionUtil.convertNumber(propertyType_, arg);
+		return NumberConversionUtil.convertNumber(propertyType, arg);
 	}
 	
 	private Object convertDate(Object arg) {
-		if (propertyType_ == java.util.Date.class) {
+		if (propertyType == java.util.Date.class) {
 			return DateConversionUtil.toDate(arg);
-		} else if (propertyType_ == Timestamp.class) {
+		} else if (propertyType == Timestamp.class) {
 			return TimestampConversionUtil.toTimestamp(arg);
-		} else if (propertyType_ == java.sql.Date.class) {
+		} else if (propertyType == java.sql.Date.class) {
 			return SqlDateConversionUtil.toDate(arg);
-		} else if (propertyType_ == Time.class) {
+		} else if (propertyType == Time.class) {
 			return TimeConversionUtil.toTime(arg);
 		}
 		return arg;
 	}
 	
 	private Object convertWithStringConstructor(Object arg) {
-		if (stringConstructor_ == null || arg == null) {
+		if (stringConstructor == null || arg == null) {
 			return arg;
 		}
-		return ConstructorUtil.newInstance(stringConstructor_, new Object[]{arg});
+		return ConstructorUtil.newInstance(stringConstructor, new Object[]{arg});
 	}
 	
 	

@@ -28,16 +28,16 @@ import org.seasar.framework.beans.impl.BeanDescImpl;
  */
 public final class BeanDescFactory {
 
-	private static Map beanDescCache_ = Collections.synchronizedMap(new HashMap());
+	private static Map beanDescCache = Collections.synchronizedMap(new HashMap());
 
 	private BeanDescFactory() {
 	}
 
 	public static BeanDesc getBeanDesc(Class clazz) {
-		BeanDesc beanDesc = (BeanDesc) beanDescCache_.get(clazz);
+		BeanDesc beanDesc = (BeanDesc) beanDescCache.get(clazz);
 		if (beanDesc == null) {
 			beanDesc = new BeanDescImpl(clazz);
-			beanDescCache_.put(clazz, beanDesc);
+			beanDescCache.put(clazz, beanDesc);
 		}
 		return beanDesc;
 	}

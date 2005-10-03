@@ -18,7 +18,6 @@ package org.seasar.framework.beans.impl;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -54,12 +53,12 @@ import org.seasar.framework.util.StringUtil;
 public final class BeanDescImpl implements BeanDesc {
 
 	private static final Object[] EMPTY_ARGS = new Object[0];
-	private Class beanClass_;
-	private Constructor[] constructors_;
-	private CaseInsensitiveMap propertyDescCache_ = new CaseInsensitiveMap();
-	private Map methodsCache_ = new HashMap();
-	private Map fieldCache_ = new CaseInsensitiveMap();
-	private transient Set invalidPropertyNames_ = new HashSet(); 
+	private Class beanClass;
+	private Constructor[] constructors;
+	private CaseInsensitiveMap propertyDescCache = new CaseInsensitiveMap();
+	private Map methodsCache = new HashMap();
+	private Map fieldCache = new CaseInsensitiveMap();
+	private transient Set invalidPropertyNames = new HashSet(); 
 
 	/**
 	 * 
@@ -68,22 +67,22 @@ public final class BeanDescImpl implements BeanDesc {
 		if (beanClass == null) {
 			throw new EmptyRuntimeException("beanClass");
 		}
-		beanClass_ = beanClass;
-		constructors_ = beanClass.getConstructors();
+		this.beanClass = beanClass;
+		constructors = beanClass.getConstructors();
 		setupPropertyDescs();
 		setupMethods();
-		setupField();
+		setupFields();
 	}
 
 	/**
 	 * @see org.seasar.framework.beans.BeanDesc#getBeanClass()
 	 */
 	public Class getBeanClass() {
-		return beanClass_;
+		return beanClass;
 	}
 
 	public boolean hasPropertyDesc(String propertyName) {
-		return propertyDescCache_.get(propertyName) != null;
+		return propertyDescCache.get(propertyName) != null;
 	}
 
 	/**
@@ -92,46 +91,46 @@ public final class BeanDescImpl implements BeanDesc {
 	public PropertyDesc getPropertyDesc(String propertyName)
 		throws PropertyNotFoundRuntimeException {
 
-		PropertyDesc pd = (PropertyDesc) propertyDescCache_.get(propertyName);
+		PropertyDesc pd = (PropertyDesc) propertyDescCache.get(propertyName);
 		if (pd == null) {
 			throw new PropertyNotFoundRuntimeException(
-				beanClass_, propertyName);
+				beanClass, propertyName);
 		}
 		return pd;
 	}
 	
 	private PropertyDesc getPropertyDesc0(String propertyName) {
-		return (PropertyDesc) propertyDescCache_.get(propertyName);
+		return (PropertyDesc) propertyDescCache.get(propertyName);
 	}
 
 	/**
 	 * @see org.seasar.framework.beans.BeanDesc#getPropertyDesc(int)
 	 */
 	public PropertyDesc getPropertyDesc(int index) {
-		return (PropertyDesc) propertyDescCache_.get(index);
+		return (PropertyDesc) propertyDescCache.get(index);
 	}
 
 	/**
 	 * @see org.seasar.framework.beans.BeanDesc#getPropertyDescSize()
 	 */
 	public int getPropertyDescSize() {
-		return propertyDescCache_.size();
+		return propertyDescCache.size();
 	}
 	
 	/**
 	 * @see org.seasar.framework.beans.BeanDesc#hasField(java.lang.String)
 	 */
 	public boolean hasField(String fieldName) {
-		return fieldCache_.get(fieldName) != null;
+		return fieldCache.get(fieldName) != null;
 	}
 	
 	/**
 	 * @see org.seasar.framework.beans.BeanDesc#getField(java.lang.String)
 	 */
 	public Field getField(String fieldName) {
-		Field field = (Field) fieldCache_.get(fieldName);
+		Field field = (Field) fieldCache.get(fieldName);
 		if (field == null) {
-			throw new FieldNotFoundRuntimeException(beanClass_, fieldName);
+			throw new FieldNotFoundRuntimeException(beanClass, fieldName);
 		}
 		return field;
 	}
@@ -179,7 +178,7 @@ public final class BeanDescImpl implements BeanDesc {
 		if (constructor != null) {
 			return constructor;
 		}
-		throw new ConstructorNotFoundRuntimeException(beanClass_, args);
+		throw new ConstructorNotFoundRuntimeException(beanClass, args);
 	}
 	
 	/**
@@ -188,9 +187,9 @@ public final class BeanDescImpl implements BeanDesc {
 	public Method[] getMethods(String methodName)
 		throws MethodNotFoundRuntimeException {
 
-		Method[] methods = (Method[]) methodsCache_.get(methodName);
+		Method[] methods = (Method[]) methodsCache.get(methodName);
 		if (methods == null) {
-			throw new MethodNotFoundRuntimeException(beanClass_, methodName, null);
+			throw new MethodNotFoundRuntimeException(beanClass, methodName, null);
 		}
 		return methods;
 	}
@@ -199,16 +198,16 @@ public final class BeanDescImpl implements BeanDesc {
 	 * @see org.seasar.framework.beans.BeanDesc#hasMethod(java.lang.String)
 	 */
 	public boolean hasMethod(String methodName) {
-		return methodsCache_.get(methodName) != null;
+		return methodsCache.get(methodName) != null;
 	}
 	
 	public String[] getMethodNames() {
-		return (String[]) methodsCache_.keySet().toArray(new String[methodsCache_.size()]);
+		return (String[]) methodsCache.keySet().toArray(new String[methodsCache.size()]);
 	}
 	
 	private Constructor findSuitableConstructor(Object[] args) {
-		outerLoop : for (int i = 0; i < constructors_.length; ++i) {
-			Class[] paramTypes = constructors_[i].getParameterTypes();
+		outerLoop : for (int i = 0; i < constructors.length; ++i) {
+			Class[] paramTypes = constructors[i].getParameterTypes();
 			if (paramTypes.length != args.length) {
 				continue;
 			}
@@ -221,14 +220,14 @@ public final class BeanDescImpl implements BeanDesc {
 				}
 				continue outerLoop;
 			}
-			return constructors_[i];
+			return constructors[i];
 		}
 		return null;
 	}
 	
 	private Constructor findSuitableConstructorAdjustNumber(Object[] args) {
-		outerLoop : for (int i = 0; i < constructors_.length; ++i) {
-			Class[] paramTypes = constructors_[i].getParameterTypes();
+		outerLoop : for (int i = 0; i < constructors.length; ++i) {
+			Class[] paramTypes = constructors[i].getParameterTypes();
 			if (paramTypes.length != args.length) {
 				continue;
 			}
@@ -242,7 +241,7 @@ public final class BeanDescImpl implements BeanDesc {
 				}
 				continue outerLoop;
 			}
-			return constructors_[i];
+			return constructors[i];
 		}
 		return null;
 	}
@@ -291,7 +290,7 @@ public final class BeanDescImpl implements BeanDesc {
 	}
 
 	private void setupPropertyDescs() {
-		Method[] methods = beanClass_.getMethods();
+		Method[] methods = beanClass.getMethods();
 		for (int i = 0; i < methods.length; i++) {
 			Method m = methods[i];
 			String methodName = m.getName();
@@ -321,10 +320,10 @@ public final class BeanDescImpl implements BeanDesc {
 				setupWriteMethod(m, propertyName);
 			}
 		}
-		for (Iterator i = invalidPropertyNames_.iterator(); i.hasNext(); ) {
-			propertyDescCache_.remove(i.next());
+		for (Iterator i = invalidPropertyNames.iterator(); i.hasNext(); ) {
+			propertyDescCache.remove(i.next());
 		}
-		invalidPropertyNames_.clear();
+		invalidPropertyNames.clear();
 	}
 
 	private static String decapitalizePropertyName(String name) {
@@ -348,7 +347,7 @@ public final class BeanDescImpl implements BeanDesc {
 		if (propertyDesc == null) {
 			throw new EmptyRuntimeException("propertyDesc");
 		}
-		propertyDescCache_.put(propertyDesc.getPropertyName(), propertyDesc);
+		propertyDescCache.put(propertyDesc.getPropertyName(), propertyDesc);
 	}
 
 	private void setupReadMethod(Method readMethod, String propertyName) {
@@ -356,7 +355,7 @@ public final class BeanDescImpl implements BeanDesc {
 		PropertyDesc propDesc = getPropertyDesc0(propertyName);
 		if (propDesc != null) {
 			if (!propDesc.getPropertyType().equals(propertyType)) {
-				invalidPropertyNames_.add(propertyName);
+				invalidPropertyNames.add(propertyName);
 			} else {
 				propDesc.setReadMethod(readMethod);
 			}
@@ -377,7 +376,7 @@ public final class BeanDescImpl implements BeanDesc {
 		PropertyDesc propDesc = getPropertyDesc0(propertyName);
 		if (propDesc != null) {
 			if (!propDesc.getPropertyType().equals(propertyType)) {
-				invalidPropertyNames_.add(propertyName);
+				invalidPropertyNames.add(propertyName);
 			} else {
 				propDesc.setWriteMethod(writeMethod);
 			}
@@ -408,7 +407,7 @@ public final class BeanDescImpl implements BeanDesc {
 		if (method != null) {
 			return method;
 		}
-		throw new MethodNotFoundRuntimeException(beanClass_, methodName, args);
+		throw new MethodNotFoundRuntimeException(beanClass, methodName, args);
 	}
 	
 	private Method findSuitableMethod(Method[] methods, Object[] args) {
@@ -456,7 +455,7 @@ public final class BeanDescImpl implements BeanDesc {
 
 	private void setupMethods() {
 		ArrayMap methodListMap = new ArrayMap();
-		Method[] methods = beanClass_.getMethods();
+		Method[] methods = beanClass.getMethods();
 		for (int i = 0; i < methods.length; i++) {
 			List list = (List) methodListMap.get(methods[i].getName());
 			if (list == null) {
@@ -467,13 +466,13 @@ public final class BeanDescImpl implements BeanDesc {
 		}
 		for (int i = 0; i < methodListMap.size(); ++i) {
 			List methodList = (List) methodListMap.get(i);
-			methodsCache_.put(
+			methodsCache.put(
 				methodListMap.getKey(i),
 				methodList.toArray(new Method[methodList.size()]));
 		}
 	}
-/*    
-    private void setupField() throws Throwable {
+/*
+    private void setupField() {
         for (Class clazz = beanClass_; clazz != Object.class
                 && clazz != null; clazz = clazz.getSuperclass()) {
 
@@ -481,16 +480,56 @@ public final class BeanDescImpl implements BeanDesc {
             for (int i = 0; i < fields.length; ++i) {
                 Field field = fields[i];
                 String fname = field.getName();
-                if (Modifier.isStatic(field.getModifiers()) &&
-                        !fieldCache_.containsKey(fname)) {
-                    
+                if (!fieldCache_.containsKey(fname)) {
                     fieldCache_.put(fname, field);
                 }
             }
         }
     }
-*/
-	
+*/    
+    private void setupFields() {
+        setupFields(beanClass);
+    }
+    
+    private void setupFields(Class targetClass) {
+        if (targetClass.isInterface()) {
+            setupFieldsByInterface(targetClass);
+        } else {
+            setupFieldsByClass(targetClass);
+        }
+    }
+    
+    private void setupFieldsByInterface(Class interfaceClass) {  
+        addFields(interfaceClass);
+        Class[] interfaces = interfaceClass.getInterfaces();
+        for (int i = 0; i < interfaces.length; ++i) {
+            setupFieldsByInterface(interfaces[i]);
+        }
+    }
+    
+    private void addFields(Class clazz) {
+        Field[] fields = clazz.getDeclaredFields();
+        for (int i = 0; i < fields.length; ++i) {
+            Field field = fields[i];
+            String fname = field.getName();
+            if (!fieldCache.containsKey(fname)) {
+                fieldCache.put(fname, field);
+            }
+        }
+    }
+    
+    private void setupFieldsByClass(Class targetClass) {
+        addFields(targetClass);
+        Class[] interfaces = targetClass.getInterfaces();
+        for (int i = 0; i < interfaces.length; ++i) {
+            setupFieldsByInterface(interfaces[i]);
+        }
+        Class superClass = targetClass.getSuperclass();
+        if (superClass != Object.class && superClass != null) {
+            setupFieldsByClass(superClass);
+        }
+    }
+/*	
 	private void setupField() {
 		Field[] fields = beanClass_.getFields();
 		for (int i = 0; i < fields.length; i++) {
@@ -499,4 +538,5 @@ public final class BeanDescImpl implements BeanDesc {
 			}
 		}
 	}
+*/
 }
