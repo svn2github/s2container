@@ -7,6 +7,7 @@ import org.seasar.framework.beans.factory.BeanDescFactory;
 import org.seasar.framework.container.AspectDef;
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.PropertyDef;
+import org.seasar.framework.container.assembler.AutoBindingDefFactory;
 import org.seasar.framework.container.factory.ConstantAnnotationHandler;
 
 /**
@@ -21,7 +22,7 @@ public class ConstantAnnotationHandlerTest extends S2TestCase {
         ComponentDef cd = handler.createComponentDef(Hoge2.class);
         assertEquals("2", "aaa", cd.getComponentName());
         assertEquals("3", "prototype", cd.getInstanceMode());
-        assertEquals("4", "property", cd.getAutoBindingMode());
+        assertEquals("4", AutoBindingDefFactory.PROPERTY, cd.getAutoBindingDef());
         try {
             handler.createComponentDef(Hoge3.class);
             fail("5");

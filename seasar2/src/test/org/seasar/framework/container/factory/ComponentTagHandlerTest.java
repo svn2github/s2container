@@ -10,8 +10,8 @@ import junit.framework.TestCase;
 
 import org.seasar.extension.mock.servlet.MockServletContextImpl;
 import org.seasar.framework.container.ComponentDef;
-import org.seasar.framework.container.ContainerConstants;
 import org.seasar.framework.container.S2Container;
+import org.seasar.framework.container.assembler.AutoBindingDefFactory;
 import org.seasar.framework.container.factory.S2ContainerFactory;
 
 /**
@@ -44,8 +44,8 @@ public class ComponentTagHandlerTest extends TestCase {
 			container.getComponentDef("ddd");
 		assertEquals(
 			"5",
-			ContainerConstants.AUTO_BINDING_NONE,
-			cd.getAutoBindingMode());
+            AutoBindingDefFactory.NONE,
+			cd.getAutoBindingDef());
 		Map map = new HashMap();
 		container.injectDependency(map, "eee");
 		assertEquals("6", "111", map.get("aaa"));

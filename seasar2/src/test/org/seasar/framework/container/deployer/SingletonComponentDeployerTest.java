@@ -8,6 +8,7 @@ import junit.framework.TestCase;
 import org.seasar.framework.container.DestroyMethodDef;
 import org.seasar.framework.container.InitMethodDef;
 import org.seasar.framework.container.S2Container;
+import org.seasar.framework.container.assembler.AutoBindingDefFactory;
 import org.seasar.framework.container.deployer.ComponentDeployer;
 import org.seasar.framework.container.deployer.SingletonComponentDeployer;
 import org.seasar.framework.container.impl.ArgDefImpl;
@@ -159,7 +160,7 @@ public class SingletonComponentDeployerTest extends TestCase {
 		ComponentDefImpl cd = new ComponentDefImpl(A.class);
 		container.register(cd);
 		container.register(B.class);
-		cd.setAutoBindingMode("constructor");
+		cd.setAutoBindingDef(AutoBindingDefFactory.CONSTRUCTOR);
 		ComponentDeployer deployer = new SingletonComponentDeployer(cd);
 		A a = (A) deployer.deploy();
 		assertEquals("1", "B", a.getHogeName());
@@ -170,7 +171,7 @@ public class SingletonComponentDeployerTest extends TestCase {
 		ComponentDefImpl cd = new ComponentDefImpl(A2.class);
 		container.register(cd);
 		container.register(B.class);
-		cd.setAutoBindingMode("property");
+		cd.setAutoBindingDef(AutoBindingDefFactory.PROPERTY);
 		ComponentDeployer deployer = new SingletonComponentDeployer(cd);
 		A2 a2 = (A2) deployer.deploy();
 		assertEquals("1", "B", a2.getHogeName());
@@ -181,7 +182,7 @@ public class SingletonComponentDeployerTest extends TestCase {
 		ComponentDefImpl cd = new ComponentDefImpl(BigDecimal.class);
 		cd.addArgDef(new ArgDefImpl("123"));
 		container.register(cd);
-		cd.setAutoBindingMode("none");
+		cd.setAutoBindingDef(AutoBindingDefFactory.NONE);
 		ComponentDeployer deployer = new SingletonComponentDeployer(cd);
 		assertEquals("1", new BigDecimal(123), deployer.deploy());
 	}
@@ -191,7 +192,7 @@ public class SingletonComponentDeployerTest extends TestCase {
 		ComponentDefImpl cd = new ComponentDefImpl(A2.class);
 		cd.addPropertyDef(new PropertyDefImpl("hoge", new B()));
 		container.register(cd);
-		cd.setAutoBindingMode("none");
+		cd.setAutoBindingDef(AutoBindingDefFactory.NONE);
 		ComponentDeployer deployer = new SingletonComponentDeployer(cd);
 		A2 a2 = (A2) deployer.deploy();
 		assertEquals("1", "B", a2.getHogeName());
@@ -201,7 +202,7 @@ public class SingletonComponentDeployerTest extends TestCase {
 		S2Container container = new S2ContainerImpl();
 		ComponentDefImpl cd = new ComponentDefImpl(String.class);
 		container.register(cd);
-		cd.setAutoBindingMode("none");
+		cd.setAutoBindingDef(AutoBindingDefFactory.NONE);
 		ComponentDeployer deployer = new SingletonComponentDeployer(cd);
 		assertEquals("1", "", deployer.deploy());
 	}
