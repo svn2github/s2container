@@ -15,33 +15,25 @@
  */
 package org.seasar.framework.container;
 
+import org.seasar.framework.exception.SRuntimeException;
+
 /**
  * @author higa
  *
  */
-public interface ContainerConstants {
+public class AutoBindingNotFoundRuntimeException extends SRuntimeException {
 
-	public String INSTANCE_SINGLETON = "singleton";
+	private String autoBindingName;
 	
-	public String INSTANCE_PROTOTYPE = "prototype";
+	/**
+	 * @param autoBindingName
+	 */
+	public AutoBindingNotFoundRuntimeException(String autoBindingName) {
+		super("ESSR0077", new Object[] { autoBindingName});
+		this.autoBindingName = autoBindingName;
+	}
 	
-	public String INSTANCE_REQUEST = "request";
-	
-	public String INSTANCE_SESSION = "session";
-	
-	public String INSTANCE_OUTER = "outer";
-	
-	public char NS_SEP = '.';
-	
-	public String CONTAINER_NAME = "container";
-	
-	public String REQUEST_NAME = "request";
-	
-	public String RESPONSE_NAME = "response";
-	
-	public String SESSION_NAME = "session";
-	
-	public String SERVLET_CONTEXT_NAME = "servletContext";
-	
-	public String COMPONENT_DEF_NAME = "componentDef";
+	public String getAutoBindingName() {
+		return autoBindingName;
+	}
 }

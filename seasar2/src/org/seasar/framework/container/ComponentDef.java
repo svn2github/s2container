@@ -45,9 +45,9 @@ public interface ComponentDef
 
 	public Class getConcreteClass();
 
-	public String getAutoBindingMode();
+	public AutoBindingDef getAutoBindingDef();
 
-	public void setAutoBindingMode(String mode);
+	public void setAutoBindingDef(AutoBindingDef autoBindingDef);
 
 	public String getInstanceMode();
 
