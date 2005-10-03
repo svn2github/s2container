@@ -15,27 +15,29 @@
  */
 package org.seasar.framework.container.assembler;
 
-import java.lang.reflect.Constructor;
-
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.ConstructorAssembler;
-import org.seasar.framework.util.ClassUtil;
-import org.seasar.framework.util.ConstructorUtil;
+import org.seasar.framework.container.PropertyAssembler;
+
 
 /**
  * @author higa
- *  
+ *
  */
-public abstract class AbstractConstructorAssembler extends AbstractAssembler
-		implements ConstructorAssembler {
+public class AutoBindingNoneDef extends AbstractAutoBindingDef {
 
-	public AbstractConstructorAssembler(ComponentDef componentDef) {
-		super(componentDef);
-	}
-
-	protected Object assembleDefault() {
-		Class clazz = getComponentDef().getConcreteClass();
-		Constructor constructor = ClassUtil.getConstructor(clazz, null);
-		return ConstructorUtil.newInstance(constructor, null);
-	}
+    protected AutoBindingNoneDef(String name) {
+        super(name);
+    }
+    
+    protected ConstructorAssembler doCreateConstructorAssembler(ComponentDef componentDef) {
+        return AssemblerFactory.createDefaultConstructorAssembler(componentDef);
+    }
+    
+    public PropertyAssembler createPropertyAssembler(ComponentDef componentDef) {
+        if (componentDef.getPropertyDefSize() > 0) {
+            return AssemblerFactory.createManualPropertyAssembler(componentDef);
+        }
+        return AssemblerFactory.createDefaultPropertyAssembler(componentDef);
+    }
 }

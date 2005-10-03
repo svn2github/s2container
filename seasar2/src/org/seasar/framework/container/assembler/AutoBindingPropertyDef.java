@@ -15,15 +15,26 @@
  */
 package org.seasar.framework.container.assembler;
 
-import org.seasar.framework.container.IllegalConstructorRuntimeException;
+import org.seasar.framework.container.ComponentDef;
+import org.seasar.framework.container.ConstructorAssembler;
+import org.seasar.framework.container.PropertyAssembler;
+
 
 /**
  * @author higa
  *
  */
-public interface ConstructorAssembler {
+public class AutoBindingPropertyDef extends AbstractAutoBindingDef {
 
-	public Object assemble()
-		throws
-			IllegalConstructorRuntimeException;
+    protected AutoBindingPropertyDef(String name) {
+        super(name);
+    }
+    
+    protected ConstructorAssembler doCreateConstructorAssembler(ComponentDef componentDef) {
+        return AssemblerFactory.createDefaultConstructorAssembler(componentDef);
+    }
+    
+    public PropertyAssembler createPropertyAssembler(ComponentDef componentDef) {
+        return AssemblerFactory.createAutoPropertyAssembler(componentDef);
+    }
 }
