@@ -4,6 +4,7 @@ import junit.framework.TestCase;
 
 import org.seasar.framework.container.ArgDef;
 import org.seasar.framework.container.S2Container;
+import org.seasar.framework.container.deployer.InstanceDefFactory;
 import org.seasar.framework.container.impl.ArgDefImpl;
 import org.seasar.framework.container.impl.ComponentDefImpl;
 import org.seasar.framework.container.impl.S2ContainerImpl;
@@ -13,18 +14,6 @@ import org.seasar.framework.container.impl.S2ContainerImpl;
  *
  */
 public class ArgDefImplTest extends TestCase {
-
-	/**
-	 * Constructor for InvocationImplTest.
-	 * @param arg0
-	 */
-	public ArgDefImplTest(String arg0) {
-		super(arg0);
-	}
-
-	public static void main(String[] args) {
-		junit.textui.TestRunner.run(ArgDefImplTest.class);
-	}
 
 	public void testSetExpression() throws Exception {
 		S2Container container = new S2ContainerImpl();
@@ -56,9 +45,9 @@ public class ArgDefImplTest extends TestCase {
 	public void testPrototype() throws Exception {
 		S2Container container = new S2ContainerImpl();
 		ComponentDefImpl cd = new ComponentDefImpl(StrHolderImpl.class, "foo");
-		cd.setInstanceMode("prototype");
+		cd.setInstanceDef(InstanceDefFactory.PROTOTYPE);
 		ComponentDefImpl cd2 = new ComponentDefImpl(StrFacadeImpl.class);
-		cd2.setInstanceMode("prototype");
+		cd2.setInstanceDef(InstanceDefFactory.PROTOTYPE);
 		ArgDef ad = new ArgDefImpl();
 		ad.setExpression("foo");
 		cd2.addArgDef(ad);

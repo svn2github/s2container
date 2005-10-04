@@ -20,21 +20,21 @@ import org.seasar.framework.container.ArgDef;
 import org.seasar.framework.container.AspectDef;
 import org.seasar.framework.container.AutoBindingDef;
 import org.seasar.framework.container.ComponentDef;
+import org.seasar.framework.container.ComponentDeployer;
 import org.seasar.framework.container.ContainerConstants;
 import org.seasar.framework.container.DestroyMethodDef;
 import org.seasar.framework.container.InitMethodDef;
+import org.seasar.framework.container.InstanceDef;
 import org.seasar.framework.container.MetaDef;
 import org.seasar.framework.container.PropertyDef;
 import org.seasar.framework.container.S2Container;
 import org.seasar.framework.container.assembler.AutoBindingDefFactory;
-import org.seasar.framework.container.deployer.ComponentDeployer;
-import org.seasar.framework.container.deployer.ComponentDeployerFactory;
+import org.seasar.framework.container.deployer.InstanceDefFactory;
 import org.seasar.framework.container.util.AopProxyUtil;
 import org.seasar.framework.container.util.ArgDefSupport;
 import org.seasar.framework.container.util.AspectDefSupport;
 import org.seasar.framework.container.util.DestroyMethodDefSupport;
 import org.seasar.framework.container.util.InitMethodDefSupport;
-import org.seasar.framework.container.util.InstanceModeUtil;
 import org.seasar.framework.container.util.MetaDefSupport;
 import org.seasar.framework.container.util.PropertyDefSupport;
 
@@ -66,7 +66,7 @@ public class ComponentDefImpl implements ComponentDef, ContainerConstants {
 	
 	private MetaDefSupport metaDefSupport_ = new MetaDefSupport();
 
-	private String instanceMode_ = INSTANCE_SINGLETON;
+	private InstanceDef instanceDef_ = InstanceDefFactory.SINGLETON;
 
 	private AutoBindingDef autoBindingDef_ = AutoBindingDefFactory.AUTO;
 
@@ -220,27 +220,18 @@ public class ComponentDefImpl implements ComponentDef, ContainerConstants {
 		return aspectDefSupport_.getAspectDefSize();
 	}
 
-	/**
-	 * @see org.seasar.framework.container.ComponentDef#getInstanceMode()
+	/*
+	 * @see org.seasar.framework.container.ComponentDef#getInstanceDef()
 	 */
-	public String getInstanceMode() {
-		return instanceMode_;
+	public InstanceDef getInstanceDef() {
+		return instanceDef_;
 	}
 
-	/**
-	 * @see org.seasar.framework.container.ComponentDef#setInstanceMode(java.lang.String)
+	/*
+	 * @see org.seasar.framework.container.ComponentDef#setInstanceDef(org.seasar.framework.container.InstanceDef)
 	 */
-	public void setInstanceMode(String instanceMode) {
-		if (InstanceModeUtil.isSingleton(instanceMode)
-				|| InstanceModeUtil.isPrototype(instanceMode)
-				|| InstanceModeUtil.isRequest(instanceMode)
-				|| InstanceModeUtil.isSession(instanceMode)
-				|| InstanceModeUtil.isOuter(instanceMode)) {
-
-			instanceMode_ = instanceMode;
-		} else {
-			throw new IllegalArgumentException(instanceMode);
-		}
+	public void setInstanceDef(InstanceDef instanceDef) {
+		instanceDef_ = instanceDef;
 	}
 
 	/**
@@ -375,7 +366,7 @@ public class ComponentDefImpl implements ComponentDef, ContainerConstants {
 
 	private synchronized ComponentDeployer getComponentDeployer() {
 		if (componentDeployer_ == null) {
-			componentDeployer_ = ComponentDeployerFactory.create(this);
+			componentDeployer_ = instanceDef_.createComponentDeployer(this);
 		}
 		return componentDeployer_;
 	}

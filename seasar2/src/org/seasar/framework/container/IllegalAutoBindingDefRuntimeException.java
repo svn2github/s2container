@@ -21,14 +21,14 @@ import org.seasar.framework.exception.SRuntimeException;
  * @author higa
  *
  */
-public class AutoBindingNotFoundRuntimeException extends SRuntimeException {
+public class IllegalAutoBindingDefRuntimeException extends SRuntimeException {
 
 	private String autoBindingName;
 	
 	/**
 	 * @param autoBindingName
 	 */
-	public AutoBindingNotFoundRuntimeException(String autoBindingName) {
+	public IllegalAutoBindingDefRuntimeException(String autoBindingName) {
 		super("ESSR0077", new Object[] { autoBindingName});
 		this.autoBindingName = autoBindingName;
 	}

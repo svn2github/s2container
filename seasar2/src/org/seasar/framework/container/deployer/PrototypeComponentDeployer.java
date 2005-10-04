@@ -31,7 +31,7 @@ public class PrototypeComponentDeployer extends AbstractComponentDeployer {
 	}
 
 	/**
-	 * @see org.seasar.framework.container.deployer.ComponentDeployer#deploy()
+	 * @see org.seasar.framework.container.ComponentDeployer#deploy()
 	 */
 	public Object deploy() {
 		Object component = getConstructorAssembler().assemble();
@@ -45,13 +45,13 @@ public class PrototypeComponentDeployer extends AbstractComponentDeployer {
 	}
 	
 	/**
-	 * @see org.seasar.framework.container.deployer.ComponentDeployer#init()
+	 * @see org.seasar.framework.container.ComponentDeployer#init()
 	 */
 	public void init() {
 	}
 	
 	/**
-	 * @see org.seasar.framework.container.deployer.ComponentDeployer#destroy()
+	 * @see org.seasar.framework.container.ComponentDeployer#destroy()
 	 */
 	public void destroy() {
 	}

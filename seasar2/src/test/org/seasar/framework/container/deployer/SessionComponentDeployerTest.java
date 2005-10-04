@@ -6,8 +6,8 @@ import junit.framework.TestCase;
 
 import org.seasar.extension.mock.servlet.MockServletContextImpl;
 import org.seasar.framework.container.ComponentDef;
+import org.seasar.framework.container.ComponentDeployer;
 import org.seasar.framework.container.S2Container;
-import org.seasar.framework.container.deployer.ComponentDeployer;
 import org.seasar.framework.container.deployer.SessionComponentDeployer;
 import org.seasar.framework.container.impl.ComponentDefImpl;
 import org.seasar.framework.container.impl.S2ContainerImpl;

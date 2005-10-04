@@ -25,6 +25,7 @@ import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.PropertyDef;
 import org.seasar.framework.container.S2Container;
 import org.seasar.framework.container.assembler.AutoBindingDefFactory;
+import org.seasar.framework.container.deployer.InstanceDefFactory;
 import org.seasar.framework.container.impl.ComponentDefImpl;
 import org.seasar.framework.container.impl.PropertyDefImpl;
 import org.seasar.framework.exception.EmptyRuntimeException;
@@ -48,7 +49,8 @@ public class ConstantAnnotationHandler extends AbstractAnnotationHandler {
             if (NAME.equalsIgnoreCase(key)) {
                 componentDef.setComponentName(value);
             } else if (INSTANCE.equalsIgnoreCase(key)) {
-                componentDef.setInstanceMode(value);
+                componentDef.setInstanceDef(
+                        InstanceDefFactory.getInstanceDef(value));
             } else if (AUTO_BINDING.equalsIgnoreCase(key)) {
                 componentDef.setAutoBindingDef(
                         AutoBindingDefFactory.getAutoBindingDef(value));

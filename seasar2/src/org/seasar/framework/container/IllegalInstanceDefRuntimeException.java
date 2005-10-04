@@ -15,23 +15,25 @@
  */
 package org.seasar.framework.container;
 
+import org.seasar.framework.exception.SRuntimeException;
+
 /**
  * @author higa
  *
  */
-public interface ContainerConstants {
+public class IllegalInstanceDefRuntimeException extends SRuntimeException {
+
+	private String instanceName;
 	
-	public char NS_SEP = '.';
+	/**
+	 * @param instanceName
+	 */
+	public IllegalInstanceDefRuntimeException(String instanceName) {
+		super("ESSR0078", new Object[] { instanceName});
+		this.instanceName = instanceName;
+	}
 	
-	public String CONTAINER_NAME = "container";
-	
-	public String REQUEST_NAME = "request";
-	
-	public String RESPONSE_NAME = "response";
-	
-	public String SESSION_NAME = "session";
-	
-	public String SERVLET_CONTEXT_NAME = "servletContext";
-	
-	public String COMPONENT_DEF_NAME = "componentDef";
+	public String getInstanceName() {
+		return instanceName;
+	}
 }

@@ -15,6 +15,7 @@
  */
 package org.seasar.framework.container;
 
+
 /**
  * @author higa
  *
@@ -32,4 +33,6 @@ public interface InstanceDef {
     String OUTER_NAME = "outer";
     
     String getName();
+    
+    ComponentDeployer createComponentDeployer(ComponentDef componentDef);
 }

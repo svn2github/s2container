@@ -10,11 +10,11 @@ import java.util.Properties;
 import junit.framework.TestCase;
 
 import org.seasar.framework.container.ComponentDef;
+import org.seasar.framework.container.ComponentDeployer;
 import org.seasar.framework.container.PropertyAssembler;
 import org.seasar.framework.container.S2Container;
 import org.seasar.framework.container.assembler.AssemblerFactory;
 import org.seasar.framework.container.assembler.ManualOnlyPropertyAssembler;
-import org.seasar.framework.container.deployer.ComponentDeployer;
 import org.seasar.framework.container.deployer.ComponentDeployerFactory;
 import org.seasar.framework.container.deployer.SingletonComponentDeployer;
 import org.seasar.framework.container.factory.AbstractS2ContainerBuilder;
@@ -192,14 +192,14 @@ public class S2ContainerFactoryTest extends TestCase {
         }
     }
 
-    public static class AlwaysSingletonDeployerFactory extends
+    public static class PrototypeToSingletonDeployerFactory extends
             ComponentDeployerFactory.DefaultProvider {
-        public ComponentDeployer createComponentDeployer(ComponentDef cd) {
+        public ComponentDeployer createPrototypeComponentDeployer(ComponentDef cd) {
             return new SingletonComponentDeployer(cd);
         }
     }
 
-    public static class AlwaysManualAssemblerFactory extends AssemblerFactory.DefaultProvider {
+    public static class AutoToManualOnlyAssemblerFactory extends AssemblerFactory.DefaultProvider {
         public PropertyAssembler createAutoPropertyAssembler(ComponentDef cd) {
             return new ManualOnlyPropertyAssembler(cd);
         }

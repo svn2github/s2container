@@ -35,7 +35,7 @@ public class SingletonComponentDeployer extends AbstractComponentDeployer {
 	}
 
 	/**
-	 * @see org.seasar.framework.container.deployer.ComponentDeployer#deploy()
+	 * @see org.seasar.framework.container.ComponentDeployer#deploy()
 	 */
 	public synchronized Object deploy() {
 		if (component_ == null) {
@@ -64,14 +64,14 @@ public class SingletonComponentDeployer extends AbstractComponentDeployer {
 	}
 	
 	/**
-	 * @see org.seasar.framework.container.deployer.ComponentDeployer#init()
+	 * @see org.seasar.framework.container.ComponentDeployer#init()
 	 */
 	public void init() {
 		deploy();
 	}
 	
 	/**
-	 * @see org.seasar.framework.container.deployer.ComponentDeployer#destroy()
+	 * @see org.seasar.framework.container.ComponentDeployer#destroy()
 	 */
 	public void destroy() {
 		if (component_ == null) {

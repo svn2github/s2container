@@ -17,6 +17,7 @@ package org.seasar.framework.container.deployer;
 
 import org.seasar.framework.container.AutoBindingDef;
 import org.seasar.framework.container.ComponentDef;
+import org.seasar.framework.container.ComponentDeployer;
 import org.seasar.framework.container.ConstructorAssembler;
 import org.seasar.framework.container.MethodAssembler;
 import org.seasar.framework.container.PropertyAssembler;

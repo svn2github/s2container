@@ -19,8 +19,8 @@ import org.seasar.framework.container.ArgDef;
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.S2Container;
 import org.seasar.framework.container.assembler.AutoBindingDefFactory;
+import org.seasar.framework.container.deployer.InstanceDefFactory;
 import org.seasar.framework.container.impl.ComponentDefImpl;
-import org.seasar.framework.container.util.InstanceModeUtil;
 import org.seasar.framework.util.ClassUtil;
 import org.seasar.framework.util.StringUtil;
 import org.seasar.framework.xml.TagHandler;
@@ -55,7 +55,8 @@ public class ComponentTagHandler extends TagHandler {
         }
 		String instanceMode = attributes.getValue("instance");
 		if (instanceMode != null) {
-			componentDef.setInstanceMode(instanceMode);
+			componentDef.setInstanceDef(
+                    InstanceDefFactory.getInstanceDef(instanceMode));
 		}
 		String autoBindingName = attributes.getValue("autoBinding");
 		if (autoBindingName != null) {
@@ -80,7 +81,7 @@ public class ComponentTagHandler extends TagHandler {
 			}
 		}
 		if (componentDef.getComponentClass() == null
-			&& !InstanceModeUtil.isOuter(componentDef.getInstanceMode())
+			&& InstanceDefFactory.OUTER.equals(componentDef.getInstanceDef())
 			&& expression == null) {
 			throw new TagAttributeNotDefinedRuntimeException(
 				"component",

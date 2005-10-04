@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.seasar.framework.container.AutoBindingDef;
-import org.seasar.framework.container.AutoBindingNotFoundRuntimeException;
+import org.seasar.framework.container.IllegalAutoBindingDefRuntimeException;
 
 public class AutoBindingDefFactory {
 
@@ -53,7 +53,7 @@ public class AutoBindingDefFactory {
     
     public static AutoBindingDef getAutoBindingDef(String name) {
         if (!autoBindingDefs.containsKey(name)) {
-            throw new AutoBindingNotFoundRuntimeException(name);
+            throw new IllegalAutoBindingDefRuntimeException(name);
         }
         return (AutoBindingDef) autoBindingDefs.get(name);
     }

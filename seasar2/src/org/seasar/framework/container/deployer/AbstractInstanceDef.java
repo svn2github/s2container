@@ -13,15 +13,15 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.framework.container.assembler;
+package org.seasar.framework.container.deployer;
 
-import org.seasar.framework.container.AutoBindingDef;
+import org.seasar.framework.container.InstanceDef;
 
-public abstract class AbstractAutoBindingDef implements AutoBindingDef {
+public abstract class AbstractInstanceDef implements InstanceDef {
 
     private String name;
     
-    protected AbstractAutoBindingDef(String name) {
+    protected AbstractInstanceDef(String name) {
         this.name = name;
     }
     
@@ -33,10 +33,10 @@ public abstract class AbstractAutoBindingDef implements AutoBindingDef {
         if (o == this) {
             return true;
         }
-        if (!(o instanceof AutoBindingDef)) {
+        if (!(o instanceof InstanceDef)) {
             return false;
         }
-        AutoBindingDef other = (AutoBindingDef) o;
+        InstanceDef other = (InstanceDef) o;
         return name == null ? other.getName() == null : name.equals(other.getName());
     }
     

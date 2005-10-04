@@ -49,9 +49,9 @@ public interface ComponentDef
 
 	public void setAutoBindingDef(AutoBindingDef autoBindingDef);
 
-	public String getInstanceMode();
+	public InstanceDef getInstanceDef();
 
-	public void setInstanceMode(String mode);
+	public void setInstanceDef(InstanceDef instanceDef);
 	
 	public String getExpression();
 

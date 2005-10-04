@@ -20,6 +20,7 @@ import org.seasar.framework.container.InitMethodDef;
 import org.seasar.framework.container.PropertyDef;
 import org.seasar.framework.container.S2Container;
 import org.seasar.framework.container.TooManyRegistrationRuntimeException;
+import org.seasar.framework.container.deployer.InstanceDefFactory;
 import org.seasar.framework.container.impl.ArgDefImpl;
 import org.seasar.framework.container.impl.ComponentDefImpl;
 import org.seasar.framework.container.impl.DestroyMethodDefImpl;
@@ -207,7 +208,7 @@ public class S2ContainerImplTest extends TestCase {
 	public void testInjectDependency() throws Exception {
 		S2Container container = new S2ContainerImpl();
 		ComponentDef componentDef = new ComponentDefImpl(HashMap.class, "hoge");
-		componentDef.setInstanceMode("outer");
+		componentDef.setInstanceDef(InstanceDefFactory.OUTER);
 		InitMethodDef md = new InitMethodDefImpl("put");
 		md.addArgDef(new ArgDefImpl("aaa"));
 		md.addArgDef(new ArgDefImpl("111"));

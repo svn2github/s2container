@@ -6,9 +6,9 @@ import java.util.Map;
 import junit.framework.TestCase;
 
 import org.seasar.framework.container.ClassUnmatchRuntimeException;
+import org.seasar.framework.container.ComponentDeployer;
 import org.seasar.framework.container.InitMethodDef;
 import org.seasar.framework.container.S2Container;
-import org.seasar.framework.container.deployer.ComponentDeployer;
 import org.seasar.framework.container.deployer.OuterComponentDeployer;
 import org.seasar.framework.container.impl.ArgDefImpl;
 import org.seasar.framework.container.impl.ComponentDefImpl;

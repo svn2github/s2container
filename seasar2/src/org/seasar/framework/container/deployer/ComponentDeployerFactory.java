@@ -16,7 +16,7 @@
 package org.seasar.framework.container.deployer;
 
 import org.seasar.framework.container.ComponentDef;
-import org.seasar.framework.container.util.InstanceModeUtil;
+import org.seasar.framework.container.ComponentDeployer;
 
 /**
  * @author higa
@@ -32,58 +32,62 @@ public class ComponentDeployerFactory {
         provider_ = provider;
     }
 
-    public static ComponentDeployer create(final ComponentDef cd) {
-        return getProvider().createComponentDeployer(cd);
+    public static ComponentDeployer createSingletonComponentDeployer(final ComponentDef cd) {
+        return getProvider().createSingletonComponentDeployer(cd);
+    }
+    
+    public static ComponentDeployer createPrototypeComponentDeployer(final ComponentDef cd) {
+        return getProvider().createPrototypeComponentDeployer(cd);
+    }
+    
+    public static ComponentDeployer createSessionComponentDeployer(final ComponentDef cd) {
+        return getProvider().createSessionComponentDeployer(cd);
+    }
+    
+    public static ComponentDeployer createRequestComponentDeployer(final ComponentDef cd) {
+        return getProvider().createRequestComponentDeployer(cd);
+    }
+    
+    public static ComponentDeployer createOuterComponentDeployer(final ComponentDef cd) {
+        return getProvider().createOuterComponentDeployer(cd);
     }
 
     public interface Provider {
-        ComponentDeployer createComponentDeployer(ComponentDef cd);
+        
+        ComponentDeployer createSingletonComponentDeployer(ComponentDef cd);
+        
+        ComponentDeployer createPrototypeComponentDeployer(ComponentDef cd);
+        
+        ComponentDeployer createSessionComponentDeployer(ComponentDef cd);
+        
+        ComponentDeployer createRequestComponentDeployer(ComponentDef cd);
+        
+        ComponentDeployer createOuterComponentDeployer(ComponentDef cd);
     }
 
     public static class DefaultProvider implements Provider {
-        public ComponentDeployer createComponentDeployer(final ComponentDef cd) {
-            final String instanceMode = cd.getInstanceMode();
-            if (InstanceModeUtil.isSingleton(instanceMode)) {
-                return createSingletonComponentDeployer(cd);
-            }
-            else if (InstanceModeUtil.isPrototype(instanceMode)) {
-                return createPrototypeComponentDeployer(cd);
-            }
-            else if (InstanceModeUtil.isRequest(instanceMode)) {
-                return createRequestComponentDeployer(cd);
-            }
-            else if (InstanceModeUtil.isSession(instanceMode)) {
-                return createSessionComponentDeployer(cd);
-            }
-            else if (InstanceModeUtil.isOuter(instanceMode)) {
-                return createOuterComponentDeployer(cd);
-            }
-            else {
-                return createDefaultComponentDeployer(cd);
-            }
-        }
 
-        protected ComponentDeployer createSingletonComponentDeployer(final ComponentDef cd) {
+        public ComponentDeployer createSingletonComponentDeployer(final ComponentDef cd) {
             return new SingletonComponentDeployer(cd);
         }
 
-        protected ComponentDeployer createPrototypeComponentDeployer(final ComponentDef cd) {
+        public ComponentDeployer createPrototypeComponentDeployer(final ComponentDef cd) {
             return new PrototypeComponentDeployer(cd);
         }
 
-        protected ComponentDeployer createRequestComponentDeployer(final ComponentDef cd) {
+        public ComponentDeployer createRequestComponentDeployer(final ComponentDef cd) {
             return new RequestComponentDeployer(cd);
         }
 
-        protected ComponentDeployer createSessionComponentDeployer(final ComponentDef cd) {
+        public ComponentDeployer createSessionComponentDeployer(final ComponentDef cd) {
             return new SessionComponentDeployer(cd);
         }
 
-        protected ComponentDeployer createOuterComponentDeployer(final ComponentDef cd) {
+        public ComponentDeployer createOuterComponentDeployer(final ComponentDef cd) {
             return new OuterComponentDeployer(cd);
         }
 
-        protected ComponentDeployer createDefaultComponentDeployer(final ComponentDef cd) {
+        public ComponentDeployer createDefaultComponentDeployer(final ComponentDef cd) {
             return createOuterComponentDeployer(cd);
         }
     }

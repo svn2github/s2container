@@ -7,6 +7,7 @@ import junit.framework.TestCase;
 
 import org.seasar.framework.aop.interceptors.PrototypeDelegateInterceptor;
 import org.seasar.framework.container.S2Container;
+import org.seasar.framework.container.deployer.InstanceDefFactory;
 import org.seasar.framework.container.impl.ComponentDefImpl;
 import org.seasar.framework.container.impl.S2ContainerImpl;
 
@@ -36,7 +37,7 @@ public class PrototypeDelegateInterceptorTest extends TestCase {
         containerImpl.register(singleton);
 
         ComponentDefImpl prototype = new ComponentDefImpl(Target.class, "prototype");
-        prototype.setInstanceMode("prototype");
+        prototype.setInstanceDef(InstanceDefFactory.PROTOTYPE);
         containerImpl.register(prototype);
 
         containerImpl.init();
