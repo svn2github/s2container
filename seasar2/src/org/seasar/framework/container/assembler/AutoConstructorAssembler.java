@@ -13,12 +13,11 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.framework.container.binding;
+package org.seasar.framework.container.assembler;
 
 import java.lang.reflect.Constructor;
 
 import org.seasar.framework.container.ComponentDef;
-import org.seasar.framework.container.IllegalConstructorRuntimeException;
 import org.seasar.framework.container.util.AutoBindingUtil;
 import org.seasar.framework.util.ConstructorUtil;
 
@@ -36,7 +35,7 @@ public class AutoConstructorAssembler
 		super(componentDef);
 	}
 
-	public Object assemble() throws IllegalConstructorRuntimeException {
+	protected Object doAssemble() {
 		Constructor constructor = getSuitableConstructor();
 		if (constructor == null) {
 			return assembleDefault();
@@ -45,7 +44,7 @@ public class AutoConstructorAssembler
 		return ConstructorUtil.newInstance(constructor, args);
 	}
 
-	private Constructor getSuitableConstructor() {
+	protected Constructor getSuitableConstructor() {
 		int argSize = -1;
 		Constructor constructor = null;
 		Constructor[] constructors =

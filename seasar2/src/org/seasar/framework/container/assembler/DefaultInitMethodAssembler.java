@@ -13,7 +13,7 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.framework.container.binding;
+package org.seasar.framework.container.assembler;
 
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.container.ComponentDef;
@@ -24,12 +24,12 @@ import org.seasar.framework.container.MethodDef;
  * @author higa
  *
  */
-public class DefaultDestroyMethodAssembler extends AbstractMethodAssembler {
+public class DefaultInitMethodAssembler extends AbstractMethodAssembler {
 
 	/**
 	 * @param componentDef
 	 */
-	public DefaultDestroyMethodAssembler(ComponentDef componentDef) {
+	public DefaultInitMethodAssembler(ComponentDef componentDef) {
 		super(componentDef);
 	}
 
@@ -37,9 +37,9 @@ public class DefaultDestroyMethodAssembler extends AbstractMethodAssembler {
 		throws IllegalMethodRuntimeException {
 
 		BeanDesc beanDesc = getBeanDesc(component);
-		int size = getComponentDef().getDestroyMethodDefSize();
+		int size = getComponentDef().getInitMethodDefSize();
 		for (int i = 0; i < size; ++i) {
-			MethodDef methodDef = getComponentDef().getDestroyMethodDef(i);
+			MethodDef methodDef = getComponentDef().getInitMethodDef(i);
 			invoke(beanDesc, component, methodDef);
 		}
 	}

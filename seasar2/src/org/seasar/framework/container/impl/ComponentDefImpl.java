@@ -26,7 +26,7 @@ import org.seasar.framework.container.InitMethodDef;
 import org.seasar.framework.container.MetaDef;
 import org.seasar.framework.container.PropertyDef;
 import org.seasar.framework.container.S2Container;
-import org.seasar.framework.container.binding.AutoBindingDefFactory;
+import org.seasar.framework.container.assembler.AutoBindingDefFactory;
 import org.seasar.framework.container.deployer.ComponentDeployer;
 import org.seasar.framework.container.deployer.ComponentDeployerFactory;
 import org.seasar.framework.container.util.AopProxyUtil;

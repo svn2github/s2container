@@ -12,8 +12,8 @@ import junit.framework.TestCase;
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.PropertyAssembler;
 import org.seasar.framework.container.S2Container;
-import org.seasar.framework.container.binding.AssemblerFactory;
-import org.seasar.framework.container.binding.ManualPropertyAssembler;
+import org.seasar.framework.container.assembler.AssemblerFactory;
+import org.seasar.framework.container.assembler.ManualOnlyPropertyAssembler;
 import org.seasar.framework.container.deployer.ComponentDeployer;
 import org.seasar.framework.container.deployer.ComponentDeployerFactory;
 import org.seasar.framework.container.deployer.SingletonComponentDeployer;
@@ -201,7 +201,7 @@ public class S2ContainerFactoryTest extends TestCase {
 
     public static class AlwaysManualAssemblerFactory extends AssemblerFactory.DefaultProvider {
         public PropertyAssembler createAutoPropertyAssembler(ComponentDef cd) {
-            return new ManualPropertyAssembler(cd);
+            return new ManualOnlyPropertyAssembler(cd);
         }
     }
 

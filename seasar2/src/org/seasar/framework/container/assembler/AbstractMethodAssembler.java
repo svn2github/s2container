@@ -13,7 +13,7 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.framework.container.binding;
+package org.seasar.framework.container.assembler;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
@@ -23,6 +23,7 @@ import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.ComponentNotFoundRuntimeException;
 import org.seasar.framework.container.IllegalMethodRuntimeException;
+import org.seasar.framework.container.MethodAssembler;
 import org.seasar.framework.container.MethodDef;
 import org.seasar.framework.container.util.AutoBindingUtil;
 import org.seasar.framework.util.MethodUtil;

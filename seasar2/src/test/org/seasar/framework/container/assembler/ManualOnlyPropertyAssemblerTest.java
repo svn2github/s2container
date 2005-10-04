@@ -7,7 +7,7 @@ import org.seasar.framework.beans.PropertyNotFoundRuntimeException;
 import org.seasar.framework.container.PropertyAssembler;
 import org.seasar.framework.container.PropertyDef;
 import org.seasar.framework.container.S2Container;
-import org.seasar.framework.container.binding.ManualPropertyAssembler;
+import org.seasar.framework.container.assembler.ManualOnlyPropertyAssembler;
 import org.seasar.framework.container.impl.ComponentDefImpl;
 import org.seasar.framework.container.impl.PropertyDefImpl;
 import org.seasar.framework.container.impl.S2ContainerImpl;
@@ -16,14 +16,14 @@ import org.seasar.framework.container.impl.S2ContainerImpl;
  * @author higa
  *
  */
-public class ManualPropertyAssemblerTest extends TestCase {
+public class ManualOnlyPropertyAssemblerTest extends TestCase {
 
-	public ManualPropertyAssemblerTest(String arg0) {
+	public ManualOnlyPropertyAssemblerTest(String arg0) {
 		super(arg0);
 	}
 
 	public static void main(String[] args) {
-		junit.textui.TestRunner.run(ManualPropertyAssemblerTest.class);
+		junit.textui.TestRunner.run(ManualOnlyPropertyAssemblerTest.class);
 	}
 
 	public void testAssemble() throws Exception {
@@ -32,7 +32,7 @@ public class ManualPropertyAssemblerTest extends TestCase {
 		PropertyDef pd = new PropertyDefImpl("hoge", new B());
 		cd.addPropertyDef(pd);
 		container.register(cd);
-		PropertyAssembler assembler = new ManualPropertyAssembler(cd);
+		PropertyAssembler assembler = new ManualOnlyPropertyAssembler(cd);
 		A a = new A();
 		assembler.assemble(a);
 		assertEquals("1", "B", a.getHogeName());
@@ -45,7 +45,7 @@ public class ManualPropertyAssemblerTest extends TestCase {
 		pd.setExpression("b");
 		cd.addPropertyDef(pd);
 		container.register(cd);
-		PropertyAssembler assembler = new ManualPropertyAssembler(cd);
+		PropertyAssembler assembler = new ManualOnlyPropertyAssembler(cd);
 		A a = new A();
 		try {
 			assembler.assemble(a);
@@ -61,7 +61,7 @@ public class ManualPropertyAssemblerTest extends TestCase {
 		PropertyDef pd = new PropertyDefImpl("abc", "111");
 		cd.addPropertyDef(pd);
 		container.register(cd);
-		PropertyAssembler assembler = new ManualPropertyAssembler(cd);
+		PropertyAssembler assembler = new ManualOnlyPropertyAssembler(cd);
 		A a = new A();
 		try {
 			assembler.assemble(a);
@@ -77,7 +77,7 @@ public class ManualPropertyAssemblerTest extends TestCase {
 		PropertyDef pd = new PropertyDefImpl("aaa", "abc");
 		cd.addPropertyDef(pd);
 		container.register(cd);
-		PropertyAssembler assembler = new ManualPropertyAssembler(cd);
+		PropertyAssembler assembler = new ManualOnlyPropertyAssembler(cd);
 		B b = new B();
 		try {
 			assembler.assemble(b);

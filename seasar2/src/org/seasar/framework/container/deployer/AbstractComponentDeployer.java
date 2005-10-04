@@ -15,11 +15,12 @@
  */
 package org.seasar.framework.container.deployer;
 
+import org.seasar.framework.container.AutoBindingDef;
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.ConstructorAssembler;
+import org.seasar.framework.container.MethodAssembler;
 import org.seasar.framework.container.PropertyAssembler;
-import org.seasar.framework.container.binding.AssemblerFacade;
-import org.seasar.framework.container.binding.MethodAssembler;
+import org.seasar.framework.container.assembler.AssemblerFactory;
 
 /**
  * @author higa
@@ -58,9 +59,10 @@ public abstract class AbstractComponentDeployer implements ComponentDeployer {
 	}
 
 	protected void setupAssembler() {
-		constructorAssembler_ = AssemblerFacade.createConstructorAssembler(componentDef_);
-		propertyAssembler_ = AssemblerFacade.createPropertyAssembler(componentDef_);
-		initMethodAssembler_ = AssemblerFacade.createInitMethodAssembler(componentDef_);
-		destroyMethodAssembler_ = AssemblerFacade.createDestroyMethodAssembler(componentDef_);
+        AutoBindingDef autoBindingDef = componentDef_.getAutoBindingDef();
+		constructorAssembler_ = autoBindingDef.createConstructorAssembler(componentDef_);
+		propertyAssembler_ = autoBindingDef.createPropertyAssembler(componentDef_);
+		initMethodAssembler_ = AssemblerFactory.createInitMethodAssembler(componentDef_);
+		destroyMethodAssembler_ = AssemblerFactory.createDestroyMethodAssembler(componentDef_);
 	}
 }

@@ -18,7 +18,7 @@ package org.seasar.framework.container.factory;
 import org.seasar.framework.container.ArgDef;
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.S2Container;
-import org.seasar.framework.container.binding.AutoBindingDefFactory;
+import org.seasar.framework.container.assembler.AutoBindingDefFactory;
 import org.seasar.framework.container.impl.ComponentDefImpl;
 import org.seasar.framework.container.util.InstanceModeUtil;
 import org.seasar.framework.util.ClassUtil;

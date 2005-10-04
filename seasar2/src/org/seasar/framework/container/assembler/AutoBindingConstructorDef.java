@@ -13,7 +13,7 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.framework.container.binding;
+package org.seasar.framework.container.assembler;
 
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.ConstructorAssembler;
@@ -30,14 +30,11 @@ public class AutoBindingConstructorDef extends AbstractAutoBindingDef {
         super(name);
     }
     
-    protected ConstructorAssembler doCreateConstructorAssembler(ComponentDef componentDef) {
+    public ConstructorAssembler createConstructorAssembler(ComponentDef componentDef) {
         return AssemblerFactory.createAutoConstructorAssembler(componentDef);
     }
     
     public PropertyAssembler createPropertyAssembler(ComponentDef componentDef) {
-        if (componentDef.getPropertyDefSize() > 0) {
-            return AssemblerFactory.createManualPropertyAssembler(componentDef);
-        }
-        return AssemblerFactory.createDefaultPropertyAssembler(componentDef);
+        return AssemblerFactory.createManualOnlyPropertyAssembler(componentDef);
     }
 }

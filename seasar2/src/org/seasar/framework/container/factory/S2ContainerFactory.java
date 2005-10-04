@@ -20,7 +20,7 @@ import java.util.Set;
 
 import org.seasar.framework.container.ExtensionNotFoundRuntimeException;
 import org.seasar.framework.container.S2Container;
-import org.seasar.framework.container.binding.AssemblerFactory;
+import org.seasar.framework.container.assembler.AssemblerFactory;
 import org.seasar.framework.container.deployer.ComponentDeployerFactory;
 import org.seasar.framework.container.impl.S2ContainerBehavior;
 import org.seasar.framework.util.ResourceUtil;

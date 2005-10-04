@@ -6,11 +6,12 @@ import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.seasar.framework.aop.S2MethodInvocation;
 import org.seasar.framework.aop.interceptors.TraceInterceptor;
+import org.seasar.framework.container.ClassUnmatchRuntimeException;
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.ConstructorAssembler;
 import org.seasar.framework.container.ContainerConstants;
 import org.seasar.framework.container.S2Container;
-import org.seasar.framework.container.binding.AutoConstructorAssembler;
+import org.seasar.framework.container.assembler.AutoConstructorAssembler;
 import org.seasar.framework.container.impl.AspectDefImpl;
 import org.seasar.framework.container.impl.ComponentDefImpl;
 import org.seasar.framework.container.impl.S2ContainerImpl;
@@ -103,6 +104,34 @@ public class AutoConstructorAssemblerTest extends TestCase {
 		assertEquals("1", "hoge", hoge.getName());
 		assertSame("2", cd, interceptor.getComponentDef());
 	}
+    
+    public void testAssembleExpression() throws Exception {
+        S2Container container = new S2ContainerImpl();
+        ComponentDefImpl cd = new ComponentDefImpl(Object.class, "obj");
+        container.register(cd);
+        ComponentDefImpl cd2 = new ComponentDefImpl();
+        cd2.setExpression("obj.hashCode()");
+        container.register(cd2);
+        AutoConstructorAssembler assembler =
+            new AutoConstructorAssembler(cd2);
+        Integer myInt = (Integer) assembler.assemble();
+        assertNotNull("1", myInt);
+    }
+    
+    public void testAssembleForClassUnmatch() throws Exception {
+        S2Container container = new S2ContainerImpl();
+        ComponentDefImpl cd = new ComponentDefImpl(Object.class, "obj");
+        cd.setExpression("null");
+        container.register(cd);
+        AutoConstructorAssembler assembler =
+            new AutoConstructorAssembler(cd);
+        try {
+            assembler.assemble();
+            fail("1");
+        } catch (ClassUnmatchRuntimeException ex) {
+            System.out.println(ex);
+        }
+    }
 
 	/*
 	 * @see TestCase#setUp()

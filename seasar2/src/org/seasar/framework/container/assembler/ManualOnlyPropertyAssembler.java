@@ -13,35 +13,35 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.framework.container.binding;
+package org.seasar.framework.container.assembler;
 
 import org.seasar.framework.beans.BeanDesc;
+import org.seasar.framework.beans.PropertyDesc;
 import org.seasar.framework.container.ComponentDef;
-import org.seasar.framework.container.IllegalMethodRuntimeException;
-import org.seasar.framework.container.MethodDef;
+import org.seasar.framework.container.PropertyDef;
 
 /**
  * @author higa
  *
  */
-public class DefaultInitMethodAssembler extends AbstractMethodAssembler {
+public class ManualOnlyPropertyAssembler extends AbstractPropertyAssembler {
 
 	/**
 	 * @param componentDef
 	 */
-	public DefaultInitMethodAssembler(ComponentDef componentDef) {
+	public ManualOnlyPropertyAssembler(ComponentDef componentDef) {
 		super(componentDef);
 	}
 
-	public void assemble(Object component)
-		throws IllegalMethodRuntimeException {
-
+	public void assemble(Object component) {
 		BeanDesc beanDesc = getBeanDesc(component);
-		int size = getComponentDef().getInitMethodDefSize();
+		int size = getComponentDef().getPropertyDefSize();
 		for (int i = 0; i < size; ++i) {
-			MethodDef methodDef = getComponentDef().getInitMethodDef(i);
-			invoke(beanDesc, component, methodDef);
+			PropertyDef propDef = getComponentDef().getPropertyDef(i);
+			Object value = getValue(propDef, component);
+			PropertyDesc propDesc =
+				beanDesc.getPropertyDesc(propDef.getPropertyName());
+			setValue(propDesc, component, value);
 		}
 	}
-
 }

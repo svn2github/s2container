@@ -13,24 +13,19 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.framework.container.binding;
+package org.seasar.framework.container.assembler;
 
-import org.seasar.framework.container.ComponentDef;
+import org.seasar.framework.container.AutoBindingDef;
 
-/**
- * @author higa
- *
- */
-public class DefaultPropertyAssembler extends AbstractPropertyAssembler {
+public abstract class AbstractAutoBindingDef implements AutoBindingDef {
 
-	/**
-	 * @param componentDef
-	 */
-	public DefaultPropertyAssembler(ComponentDef componentDef) {
-		super(componentDef);
-	}
-
-	public void assemble(Object component) {
-	}
-
+    private String name;
+    
+    protected AbstractAutoBindingDef(String name) {
+        this.name = name;
+    }
+    
+    public String getName() {
+        return name;
+    }
 }

@@ -13,10 +13,11 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.framework.container.binding;
+package org.seasar.framework.container.assembler;
 
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.ConstructorAssembler;
+import org.seasar.framework.container.MethodAssembler;
 import org.seasar.framework.container.PropertyAssembler;
 
 /**
@@ -46,29 +47,16 @@ public class AssemblerFactory {
         return getProvider().createAutoConstructorAssembler(cd);
     }
 
-    public static ConstructorAssembler createManualConstructorAssembler(final ComponentDef cd) {
-        return getProvider().createManualConstructorAssembler(cd);
-    }
-
-    public static ConstructorAssembler createExpressionConstructorAssembler(
-            final ComponentDef cd) {
-        return getProvider().createExpressionConstructorAssembler(cd);
-    }
-
-    public static ConstructorAssembler createDefaultConstructorAssembler(final ComponentDef cd) {
-        return getProvider().createDefaultConstructorAssembler(cd);
+    public static ConstructorAssembler createDefaultConstructorConstructorAssembler(final ComponentDef cd) {
+        return getProvider().createDefaultConstructorConstructorAssembler(cd);
     }
 
     public static PropertyAssembler createAutoPropertyAssembler(final ComponentDef cd) {
         return getProvider().createAutoPropertyAssembler(cd);
     }
 
-    public static PropertyAssembler createManualPropertyAssembler(final ComponentDef cd) {
-        return getProvider().createManualPropertyAssembler(cd);
-    }
-
-    public static PropertyAssembler createDefaultPropertyAssembler(final ComponentDef cd) {
-        return getProvider().createDefaultPropertyAssembler(cd);
+    public static PropertyAssembler createManualOnlyPropertyAssembler(final ComponentDef cd) {
+        return getProvider().createManualOnlyPropertyAssembler(cd);
     }
 
     public interface Provider {
@@ -79,17 +67,11 @@ public class AssemblerFactory {
 
         ConstructorAssembler createAutoConstructorAssembler(ComponentDef cd);
 
-        ConstructorAssembler createManualConstructorAssembler(ComponentDef cd);
-
-        ConstructorAssembler createExpressionConstructorAssembler(ComponentDef cd);
-
-        ConstructorAssembler createDefaultConstructorAssembler(ComponentDef cd);
+        ConstructorAssembler createDefaultConstructorConstructorAssembler(ComponentDef cd);
         
         PropertyAssembler createAutoPropertyAssembler(ComponentDef cd);
 
-        PropertyAssembler createManualPropertyAssembler(ComponentDef cd);
-
-        PropertyAssembler createDefaultPropertyAssembler(ComponentDef cd);
+        PropertyAssembler createManualOnlyPropertyAssembler(ComponentDef cd);
     }
 
     public static class DefaultProvider implements Provider {
@@ -106,29 +88,16 @@ public class AssemblerFactory {
             return new AutoConstructorAssembler(cd);
         }
 
-        public ConstructorAssembler createManualConstructorAssembler(final ComponentDef cd) {
-            return new ManualConstructorAssembler(cd);
-        }
-
-        public ConstructorAssembler createExpressionConstructorAssembler(
-                final ComponentDef cd) {
-            return new ExpressionConstructorAssembler(cd);
-        }
-
-        public ConstructorAssembler createDefaultConstructorAssembler(final ComponentDef cd) {
-            return new DefaultConstructorAssembler(cd);
+        public ConstructorAssembler createDefaultConstructorConstructorAssembler(final ComponentDef cd) {
+            return new DefaultConstructorConstructorAssembler(cd);
         }
 
         public PropertyAssembler createAutoPropertyAssembler(final ComponentDef cd) {
             return new AutoPropertyAssembler(cd);
         }
 
-        public PropertyAssembler createManualPropertyAssembler(final ComponentDef cd) {
-            return new ManualPropertyAssembler(cd);
-        }
-
-        public PropertyAssembler createDefaultPropertyAssembler(final ComponentDef cd) {
-            return new DefaultPropertyAssembler(cd);
+        public PropertyAssembler createManualOnlyPropertyAssembler(final ComponentDef cd) {
+            return new ManualOnlyPropertyAssembler(cd);
         }
     }
 }
