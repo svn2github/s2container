@@ -7,7 +7,7 @@ import org.seasar.framework.container.ArgDef;
 import org.seasar.framework.container.ConstructorAssembler;
 import org.seasar.framework.container.IllegalConstructorRuntimeException;
 import org.seasar.framework.container.S2Container;
-import org.seasar.framework.container.assembler.ManualConstructorAssembler;
+import org.seasar.framework.container.binding.ManualConstructorAssembler;
 import org.seasar.framework.container.impl.ArgDefImpl;
 import org.seasar.framework.container.impl.AspectDefImpl;
 import org.seasar.framework.container.impl.ComponentDefImpl;

@@ -8,7 +8,7 @@ import junit.framework.TestCase;
 import org.seasar.framework.aop.interceptors.TraceInterceptor;
 import org.seasar.framework.container.ConstructorAssembler;
 import org.seasar.framework.container.S2Container;
-import org.seasar.framework.container.assembler.DefaultConstructorAssembler;
+import org.seasar.framework.container.binding.DefaultConstructorAssembler;
 import org.seasar.framework.container.impl.AspectDefImpl;
 import org.seasar.framework.container.impl.ComponentDefImpl;
 import org.seasar.framework.container.impl.S2ContainerImpl;

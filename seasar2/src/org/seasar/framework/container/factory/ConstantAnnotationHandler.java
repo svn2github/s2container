@@ -24,7 +24,7 @@ import org.seasar.framework.container.AspectDef;
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.PropertyDef;
 import org.seasar.framework.container.S2Container;
-import org.seasar.framework.container.assembler.AutoBindingDefFactory;
+import org.seasar.framework.container.binding.AutoBindingDefFactory;
 import org.seasar.framework.container.impl.ComponentDefImpl;
 import org.seasar.framework.container.impl.PropertyDefImpl;
 import org.seasar.framework.exception.EmptyRuntimeException;

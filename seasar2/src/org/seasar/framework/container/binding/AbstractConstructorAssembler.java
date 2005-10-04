@@ -13,24 +13,29 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.framework.container.assembler;
+package org.seasar.framework.container.binding;
+
+import java.lang.reflect.Constructor;
 
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.ConstructorAssembler;
-import org.seasar.framework.container.PropertyAssembler;
+import org.seasar.framework.util.ClassUtil;
+import org.seasar.framework.util.ConstructorUtil;
 
+/**
+ * @author higa
+ *  
+ */
+public abstract class AbstractConstructorAssembler extends AbstractAssembler
+		implements ConstructorAssembler {
 
-public class AutoBindingAutoDef extends AbstractAutoBindingDef {
+	public AbstractConstructorAssembler(ComponentDef componentDef) {
+		super(componentDef);
+	}
 
-    protected AutoBindingAutoDef(String name) {
-        super(name);
-    }
-    
-    protected ConstructorAssembler doCreateConstructorAssembler(ComponentDef componentDef) {
-        return AssemblerFactory.createAutoConstructorAssembler(componentDef);
-    }
-    
-    public PropertyAssembler createPropertyAssembler(ComponentDef componentDef) {
-        return AssemblerFactory.createAutoPropertyAssembler(componentDef);
-    }
+	protected Object assembleDefault() {
+		Class clazz = getComponentDef().getConcreteClass();
+		Constructor constructor = ClassUtil.getConstructor(clazz, null);
+		return ConstructorUtil.newInstance(constructor, null);
+	}
 }

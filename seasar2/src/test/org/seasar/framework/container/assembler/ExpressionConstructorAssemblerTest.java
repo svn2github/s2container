@@ -4,7 +4,7 @@ import junit.framework.TestCase;
 
 import org.seasar.framework.container.ClassUnmatchRuntimeException;
 import org.seasar.framework.container.S2Container;
-import org.seasar.framework.container.assembler.ExpressionConstructorAssembler;
+import org.seasar.framework.container.binding.ExpressionConstructorAssembler;
 import org.seasar.framework.container.impl.ComponentDefImpl;
 import org.seasar.framework.container.impl.S2ContainerImpl;
 

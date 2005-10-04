@@ -10,7 +10,7 @@ import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.ConstructorAssembler;
 import org.seasar.framework.container.ContainerConstants;
 import org.seasar.framework.container.S2Container;
-import org.seasar.framework.container.assembler.AutoConstructorAssembler;
+import org.seasar.framework.container.binding.AutoConstructorAssembler;
 import org.seasar.framework.container.impl.AspectDefImpl;
 import org.seasar.framework.container.impl.ComponentDefImpl;
 import org.seasar.framework.container.impl.S2ContainerImpl;

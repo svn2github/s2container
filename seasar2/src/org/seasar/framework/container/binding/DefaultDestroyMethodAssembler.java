@@ -13,26 +13,35 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.framework.container.assembler;
+package org.seasar.framework.container.binding;
 
-import org.seasar.framework.beans.ConstructorNotFoundRuntimeException;
+import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.container.ComponentDef;
+import org.seasar.framework.container.IllegalMethodRuntimeException;
+import org.seasar.framework.container.MethodDef;
 
 /**
  * @author higa
  *
  */
-public class DefaultConstructorAssembler
-	extends AbstractConstructorAssembler {
+public class DefaultDestroyMethodAssembler extends AbstractMethodAssembler {
 
 	/**
 	 * @param componentDef
 	 */
-	public DefaultConstructorAssembler(ComponentDef componentDef) {
+	public DefaultDestroyMethodAssembler(ComponentDef componentDef) {
 		super(componentDef);
 	}
 
-	public Object assemble() throws ConstructorNotFoundRuntimeException {
-		return assembleDefault();
+	public void assemble(Object component)
+		throws IllegalMethodRuntimeException {
+
+		BeanDesc beanDesc = getBeanDesc(component);
+		int size = getComponentDef().getDestroyMethodDefSize();
+		for (int i = 0; i < size; ++i) {
+			MethodDef methodDef = getComponentDef().getDestroyMethodDef(i);
+			invoke(beanDesc, component, methodDef);
+		}
 	}
+
 }

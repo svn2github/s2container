@@ -6,7 +6,7 @@ import junit.framework.TestCase;
 
 import org.seasar.framework.container.PropertyAssembler;
 import org.seasar.framework.container.S2Container;
-import org.seasar.framework.container.assembler.AutoPropertyAssembler;
+import org.seasar.framework.container.binding.AutoPropertyAssembler;
 import org.seasar.framework.container.impl.ComponentDefImpl;
 import org.seasar.framework.container.impl.PropertyDefImpl;
 import org.seasar.framework.container.impl.S2ContainerImpl;

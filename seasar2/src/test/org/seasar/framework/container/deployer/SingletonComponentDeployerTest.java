@@ -8,7 +8,7 @@ import junit.framework.TestCase;
 import org.seasar.framework.container.DestroyMethodDef;
 import org.seasar.framework.container.InitMethodDef;
 import org.seasar.framework.container.S2Container;
-import org.seasar.framework.container.assembler.AutoBindingDefFactory;
+import org.seasar.framework.container.binding.AutoBindingDefFactory;
 import org.seasar.framework.container.deployer.ComponentDeployer;
 import org.seasar.framework.container.deployer.SingletonComponentDeployer;
 import org.seasar.framework.container.impl.ArgDefImpl;

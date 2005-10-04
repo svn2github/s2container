@@ -18,8 +18,8 @@ package org.seasar.framework.container.deployer;
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.ConstructorAssembler;
 import org.seasar.framework.container.PropertyAssembler;
-import org.seasar.framework.container.assembler.AssemblerFacade;
-import org.seasar.framework.container.assembler.MethodAssembler;
+import org.seasar.framework.container.binding.AssemblerFacade;
+import org.seasar.framework.container.binding.MethodAssembler;
 
 /**
  * @author higa
