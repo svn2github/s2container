@@ -23,5 +23,7 @@ public interface PropertyDef extends ArgDef {
 
 	public String getPropertyName();
     
-    public boolean isNoInject();
+    public BindingTypeDef getBindingTypeDef();
+    
+    public void setBindingTypeDef(BindingTypeDef bindingTypeDef);
 }

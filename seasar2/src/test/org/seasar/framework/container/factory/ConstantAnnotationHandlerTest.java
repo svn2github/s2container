@@ -8,6 +8,7 @@ import org.seasar.framework.container.AspectDef;
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.PropertyDef;
 import org.seasar.framework.container.assembler.AutoBindingDefFactory;
+import org.seasar.framework.container.assembler.BindingTypeDefFactory;
 import org.seasar.framework.container.deployer.InstanceDefFactory;
 import org.seasar.framework.container.factory.ConstantAnnotationHandler;
 
@@ -35,19 +36,20 @@ public class ConstantAnnotationHandlerTest extends S2TestCase {
     public void testCreatePropertyDef() throws Exception {
         BeanDesc beanDesc = BeanDescFactory.getBeanDesc(Hoge.class);
         PropertyDesc propDesc = beanDesc.getPropertyDesc("aaa");
-        assertNull("1", handler.createPropertyDef(getContainer(), beanDesc,
+        assertNull("1", handler.createPropertyDef(beanDesc,
                 propDesc));
 
         beanDesc = BeanDescFactory.getBeanDesc(Hoge2.class);
         propDesc = beanDesc.getPropertyDesc("aaa");
-        PropertyDef propDef = handler.createPropertyDef(getContainer(),
+        PropertyDef propDef = handler.createPropertyDef(
                 beanDesc, propDesc);
         assertEquals("2", "aaa", propDef.getPropertyName());
         assertEquals("3", "aaa2", propDef.getExpression());
 
         propDesc = beanDesc.getPropertyDesc("bbb");
-        propDef = handler.createPropertyDef(getContainer(), beanDesc, propDesc);
-        assertEquals("4", true, propDef.isNoInject());
+        propDef = handler.createPropertyDef(beanDesc, propDesc);
+        assertEquals("4", BindingTypeDefFactory.NONE,
+                propDef.getBindingTypeDef());
     }
     
     public void setUpAppendAspect() {
@@ -73,9 +75,9 @@ public class ConstantAnnotationHandlerTest extends S2TestCase {
     public static class Hoge2 {
         public static final String COMPONENT = "name = aaa, instance = prototype, autoBinding = property";
 
-        public static final String aaa_INJECT = "aaa2";
+        public static final String aaa_BINDING = "value=aaa2";
 
-        public static final boolean bbb_No_INJECT = true;
+        public static final String bbb_BINDING = "bindingType=none";
 
         public void setAaa(String aaa) {
         }

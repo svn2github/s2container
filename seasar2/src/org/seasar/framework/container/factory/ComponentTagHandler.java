@@ -81,7 +81,7 @@ public class ComponentTagHandler extends TagHandler {
 			}
 		}
 		if (componentDef.getComponentClass() == null
-			&& InstanceDefFactory.OUTER.equals(componentDef.getInstanceDef())
+			&& !InstanceDefFactory.OUTER.equals(componentDef.getInstanceDef())
 			&& expression == null) {
 			throw new TagAttributeNotDefinedRuntimeException(
 				"component",

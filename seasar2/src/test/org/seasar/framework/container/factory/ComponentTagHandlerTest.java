@@ -22,13 +22,6 @@ public class ComponentTagHandlerTest extends TestCase {
 
 	private static final String PATH =
 		"test/org/seasar/framework/container/factory/ComponentTagHandlerTest.dicon";
-	public ComponentTagHandlerTest(String arg0) {
-		super(arg0);
-	}
-
-	public static void main(String[] args) {
-		junit.textui.TestRunner.run(ComponentTagHandlerTest.class);
-	}
 
 	public void testComponent() throws Exception {
 		S2Container container = S2ContainerFactory.create(PATH);

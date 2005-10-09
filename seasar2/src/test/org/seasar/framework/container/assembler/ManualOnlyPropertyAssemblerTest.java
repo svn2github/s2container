@@ -29,9 +29,12 @@ public class ManualOnlyPropertyAssemblerTest extends TestCase {
 	public void testAssemble() throws Exception {
 		S2Container container = new S2ContainerImpl();
 		ComponentDefImpl cd = new ComponentDefImpl(A.class);
-		PropertyDef pd = new PropertyDefImpl("hoge", new B());
+        ComponentDefImpl cd2 = new ComponentDefImpl(B.class, "hoge");
+		PropertyDef pd = new PropertyDefImpl("hoge");
+        pd.setExpression("hoge");
 		cd.addPropertyDef(pd);
 		container.register(cd);
+        container.register(cd2);
 		PropertyAssembler assembler = new ManualOnlyPropertyAssembler(cd);
 		A a = new A();
 		assembler.assemble(a);

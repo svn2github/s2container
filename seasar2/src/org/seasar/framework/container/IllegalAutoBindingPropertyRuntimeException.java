@@ -15,24 +15,31 @@
  */
 package org.seasar.framework.container;
 
+import org.seasar.framework.exception.SRuntimeException;
+
 /**
  * @author higa
  *
  */
-public interface ArgDef extends MetaDefAware {
-	
-	public Object getValue();
-	
-	public S2Container getContainer();
-	
-	public void setContainer(S2Container container);
-	
-	public String getExpression();
+public class IllegalAutoBindingPropertyRuntimeException extends SRuntimeException {
 
-	public void setExpression(String str);
+	private Class componentClass;
     
-    public boolean isValueGettable();
+    private String propertyName;
 	
-	public void setChildComponentDef(ComponentDef componentDef);
+	public IllegalAutoBindingPropertyRuntimeException(
+            Class componentClass, String propertyName) {
+		super("ESSR0080", new Object[] {
+                componentClass.getName(), propertyName});
+        this.componentClass = componentClass;
+		this.propertyName = propertyName;
+	}
+	
+    public Class getComponentClass() {
+        return componentClass;
+    }
 
+	public String getPropertyName() {
+		return propertyName;
+	}
 }

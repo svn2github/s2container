@@ -15,32 +15,31 @@
  */
 package org.seasar.framework.container.assembler;
 
-import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.PropertyDesc;
 import org.seasar.framework.container.ComponentDef;
-import org.seasar.framework.container.PropertyDef;
+import org.seasar.framework.container.util.BindingUtil;
+import org.seasar.framework.log.Logger;
 
 /**
  * @author higa
- *
+ * 
  */
-public class ManualOnlyPropertyAssembler extends AbstractPropertyAssembler {
+public class BindingTypeShouldDef extends AbstractBindingTypeDef {
 
-	/**
-	 * @param componentDef
-	 */
-	public ManualOnlyPropertyAssembler(ComponentDef componentDef) {
-		super(componentDef);
-	}
+    private static Logger logger_ = Logger
+            .getLogger(BindingTypeShouldDef.class);
 
-	public void assemble(Object component) {
-		BeanDesc beanDesc = getBeanDesc(component);
-		int size = getComponentDef().getPropertyDefSize();
-		for (int i = 0; i < size; ++i) {
-			PropertyDef propDef = getComponentDef().getPropertyDef(i);
-            PropertyDesc propDesc =
-                beanDesc.getPropertyDesc(propDef.getPropertyName());
-            BindingTypeDefFactory.NONE.bind(getComponentDef(), propDef, propDesc, component);
-		}
-	}
+    protected BindingTypeShouldDef(String name) {
+        super(name);
+    }
+
+    protected void doBind(ComponentDef componentDef, PropertyDesc propertyDesc,
+            Object component) {
+
+        if (!bindAuto(componentDef, propertyDesc, component) && BindingUtil.isAutoBindable(propertyDesc.getPropertyType())) {
+            logger_.log("WSSR0008", new Object[] {
+                    BindingUtil.getComponentClass(componentDef, component)
+                            .getName(), propertyDesc.getPropertyName() });
+        }
+    }
 }

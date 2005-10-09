@@ -84,6 +84,7 @@ public class FileSystemComponentAutoRegister extends AutoRegister {
                 }
                 annoHandler.appendDI(cd);
                 getContainer().register(cd);
+                cd.init();
             }
         }
     }

@@ -6,9 +6,9 @@ package test.org.seasar.framework.container.autoregister;
 public class Foo implements Greeting {
 
     public static final String COMPONENT =
-        "name=foo, instance=prototype, autoBinding=constructor";
+        "name=foo, instance=prototype, autoBinding=property";
     
-    public static final String foo2_INJECT = "foo2";
+    public static final String foo2_BINDING = null;
     
     private Foo2 foo2;
     

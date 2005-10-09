@@ -15,18 +15,28 @@
  */
 package org.seasar.framework.container.assembler;
 
+import org.seasar.framework.beans.PropertyDesc;
 import org.seasar.framework.container.ComponentDef;
-import org.seasar.framework.container.PropertyAssembler;
+import org.seasar.framework.container.IllegalAutoBindingPropertyRuntimeException;
+import org.seasar.framework.container.util.BindingUtil;
 
 /**
  * @author higa
- *
+ * 
  */
-public abstract class AbstractPropertyAssembler
-	extends AbstractAssembler
-	implements PropertyAssembler {
+public class BindingTypeMustDef extends AbstractBindingTypeDef {
 
-	public AbstractPropertyAssembler(ComponentDef componentDef) {
-		super(componentDef);
-	}
+    protected BindingTypeMustDef(String name) {
+        super(name);
+    }
+
+    protected void doBind(ComponentDef componentDef, PropertyDesc propertyDesc,
+            Object component) {
+
+        if (!bindAuto(componentDef, propertyDesc, component)) {
+            throw new IllegalAutoBindingPropertyRuntimeException(BindingUtil
+                    .getComponentClass(componentDef, component), propertyDesc
+                    .getPropertyName());
+        }
+    }
 }

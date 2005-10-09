@@ -13,20 +13,27 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.framework.container.assembler;
+package org.seasar.framework.container;
 
-import org.seasar.framework.container.ComponentDef;
-import org.seasar.framework.container.PropertyAssembler;
+import org.seasar.framework.exception.SRuntimeException;
 
 /**
  * @author higa
  *
  */
-public abstract class AbstractPropertyAssembler
-	extends AbstractAssembler
-	implements PropertyAssembler {
+public class IllegalBindingTypeDefRuntimeException extends SRuntimeException {
 
-	public AbstractPropertyAssembler(ComponentDef componentDef) {
-		super(componentDef);
+	private String bindingTypeName;
+	
+	/**
+	 * @param bindingTypeName
+	 */
+	public IllegalBindingTypeDefRuntimeException(String bindingTypeName) {
+		super("ESSR0079", new Object[] { bindingTypeName});
+		this.bindingTypeName = bindingTypeName;
+	}
+	
+	public String getBindingTypeName() {
+		return bindingTypeName;
 	}
 }

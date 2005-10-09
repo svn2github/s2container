@@ -15,18 +15,22 @@
  */
 package org.seasar.framework.container.assembler;
 
+import org.seasar.framework.beans.PropertyDesc;
 import org.seasar.framework.container.ComponentDef;
-import org.seasar.framework.container.PropertyAssembler;
 
 /**
  * @author higa
- *
+ * 
  */
-public abstract class AbstractPropertyAssembler
-	extends AbstractAssembler
-	implements PropertyAssembler {
+public class BindingTypeMayDef extends AbstractBindingTypeDef {
 
-	public AbstractPropertyAssembler(ComponentDef componentDef) {
-		super(componentDef);
-	}
+    protected BindingTypeMayDef(String name) {
+        super(name);
+    }
+
+    protected void doBind(ComponentDef componentDef, PropertyDesc propertyDesc,
+            Object component) {
+
+        bindAuto(componentDef, propertyDesc, component);
+    }
 }

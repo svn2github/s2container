@@ -23,11 +23,9 @@ import org.seasar.framework.beans.factory.BeanDescFactory;
 import org.seasar.framework.container.AspectDef;
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.PropertyDef;
-import org.seasar.framework.container.S2Container;
 import org.seasar.framework.container.assembler.AutoBindingDefFactory;
 import org.seasar.framework.container.deployer.InstanceDefFactory;
 import org.seasar.framework.container.impl.ComponentDefImpl;
-import org.seasar.framework.container.impl.PropertyDefImpl;
 import org.seasar.framework.exception.EmptyRuntimeException;
 import org.seasar.framework.util.FieldUtil;
 import org.seasar.framework.util.StringUtil;
@@ -61,29 +59,30 @@ public class ConstantAnnotationHandler extends AbstractAnnotationHandler {
         return componentDef;
     }
 
-    public PropertyDef createPropertyDef(S2Container container,
-            BeanDesc beanDesc, PropertyDesc propertyDesc) {
-
-        String fieldName = propertyDesc.getPropertyName() + INJECT_SUFFIX;
-        if (beanDesc.hasField(fieldName)) {
-            Field field = beanDesc.getField(fieldName);
-            String value = (String) FieldUtil.get(field, null);
-            if (value == null) {
-                return null;
-            }
-            PropertyDef pd = new PropertyDefImpl(propertyDesc.getPropertyName());
-            pd.setExpression(value);
-            return pd;
+    public PropertyDef createPropertyDef(BeanDesc beanDesc, PropertyDesc propertyDesc) {
+        String propName = propertyDesc.getPropertyName();
+        String fieldName = propName + BINDING_SUFFIX;
+        if (!beanDesc.hasField(fieldName)) {
+            return null;
         }
-        fieldName = propertyDesc.getPropertyName() + NO_INJECT_SUFFIX;
-        if (beanDesc.hasField(fieldName)) {
-            Field field = beanDesc.getField(fieldName);
-            Boolean value = (Boolean) FieldUtil.get(field, null);
-            if (Boolean.TRUE.equals(value)) {
-                return new PropertyDefImpl(propertyDesc.getPropertyName(), true);
+        String bindingStr = (String) beanDesc.getFieldValue(fieldName, null);
+        String bindingTypeName = null;
+        String expression = null;
+        if (bindingStr != null) {
+            String[] array = StringUtil.split(bindingStr, "=, ");
+            for (int i = 0; i < array.length; i += 2) {
+                String key = array[i].trim();
+                String value = array[i + 1].trim();
+                if (BINDING_TYPE.equalsIgnoreCase(key)) {
+                    bindingTypeName = value;
+                } else if (VALUE.equalsIgnoreCase(key)) {
+                    expression = value;
+                } else {
+                    throw new IllegalArgumentException(bindingStr);
+                }
             }
         }
-        return null;
+        return createPropertyDef(propName, bindingTypeName, expression);
     }
 
     public void appendAspect(ComponentDef componentDef) {

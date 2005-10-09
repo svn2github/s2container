@@ -13,20 +13,25 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.framework.container.assembler;
+package org.seasar.framework.container;
 
-import org.seasar.framework.container.ComponentDef;
-import org.seasar.framework.container.PropertyAssembler;
+import org.seasar.framework.beans.PropertyDesc;
 
 /**
  * @author higa
  *
  */
-public abstract class AbstractPropertyAssembler
-	extends AbstractAssembler
-	implements PropertyAssembler {
+public interface BindingTypeDef {
 
-	public AbstractPropertyAssembler(ComponentDef componentDef) {
-		super(componentDef);
-	}
+    String MUST_NAME = "must";
+    
+    String SHOULD_NAME = "should";
+    
+    String MAY_NAME = "may";
+    
+    String NONE_NAME = "none";
+    
+    String getName();
+    
+    void bind(ComponentDef componentDef, PropertyDef propertyDef, PropertyDesc propertyDesc, Object component);
 }

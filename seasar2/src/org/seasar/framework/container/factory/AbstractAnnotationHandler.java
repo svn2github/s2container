@@ -18,9 +18,13 @@ package org.seasar.framework.container.factory;
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.PropertyDesc;
 import org.seasar.framework.beans.factory.BeanDescFactory;
+import org.seasar.framework.container.BindingTypeDef;
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.PropertyDef;
+import org.seasar.framework.container.assembler.BindingTypeDefFactory;
+import org.seasar.framework.container.impl.PropertyDefImpl;
 import org.seasar.framework.util.ClassUtil;
+import org.seasar.framework.util.StringUtil;
 
 public abstract class AbstractAnnotationHandler implements AnnotationHandler {
 
@@ -32,9 +36,11 @@ public abstract class AbstractAnnotationHandler implements AnnotationHandler {
 
     protected static final String AUTO_BINDING = "autoBinding";
 
-    protected static final String INJECT_SUFFIX = "_INJECT";
+    protected static final String BINDING_SUFFIX = "_BINDING";
+    
+    protected static final String BINDING_TYPE = "bindingType";
 
-    protected static final String NO_INJECT_SUFFIX = "_NO_INJECT";
+    protected static final String VALUE = "value";
     
     protected static final String ASPECT = "ASPECT";
     
@@ -63,12 +69,24 @@ public abstract class AbstractAnnotationHandler implements AnnotationHandler {
             if (!pd.hasWriteMethod()) {
                 continue;
             }
-            PropertyDef propDef = createPropertyDef(componentDef.getContainer(), beanDesc, pd);
+            PropertyDef propDef = createPropertyDef(beanDesc, pd);
             if (propDef == null) {
                 continue;
             }
             componentDef.addPropertyDef(propDef);
         }
         appendAspect(componentDef);
+    }
+
+    protected PropertyDef createPropertyDef(String propertyName, String bindingTypeName, String expression) {
+        PropertyDef propertyDef = new PropertyDefImpl(propertyName);
+        if (!StringUtil.isEmpty(bindingTypeName)) {
+            BindingTypeDef bindingTypeDef = BindingTypeDefFactory.getBindingTypeDef(bindingTypeName);
+            propertyDef.setBindingTypeDef(bindingTypeDef);
+        }
+        if (!StringUtil.isEmpty(expression)) {
+            propertyDef.setExpression(expression);
+        }
+        return propertyDef;
     }
 }

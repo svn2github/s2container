@@ -58,6 +58,10 @@ public class ArgDefImpl implements ArgDef {
 	public final void setValue(Object value) {
 		value_ = value;
 	}
+    
+    public boolean isValueGettable() {
+        return value_ != null || childComponentDef_ != null || exp_ != null;
+    }
 	
 	/**
 	 * @see org.seasar.framework.container.ArgDef#getContainer()

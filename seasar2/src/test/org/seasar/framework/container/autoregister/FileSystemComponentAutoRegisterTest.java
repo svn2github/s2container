@@ -20,7 +20,7 @@ public class FileSystemComponentAutoRegisterTest extends S2TestCase {
         Foo2 foo2 = (Foo2) child.getComponent(Foo2.class);
         assertNotNull("2", foo2);
         assertNotNull("3", child.getComponent(Foo3.class));
-        assertSame("4", foo.getFoo2(), foo2);
+        assertSame("4", foo2, foo.getFoo2());
         assertNotNull("5", child.getComponent("foo3"));
         assertFalse("6", child.hasComponentDef(Foo4Impl.class));
     }

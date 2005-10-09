@@ -13,29 +13,23 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.framework.container.util;
+package org.seasar.framework.container.assembler;
 
-import org.seasar.framework.container.ContainerConstants;
+import org.seasar.framework.beans.PropertyDesc;
+import org.seasar.framework.container.ComponentDef;
 
 /**
  * @author higa
- *
+ * 
  */
-public final class AutoBindingUtil implements ContainerConstants {
+public class BindingTypeNoneDef extends AbstractBindingTypeDef {
 
-	private AutoBindingUtil() {
-	}
+    protected BindingTypeNoneDef(String name) {
+        super(name);
+    }
 
-	public static final boolean isSuitable(Class clazz) {
-		return clazz.isInterface();
-	}
+    protected void doBind(ComponentDef componentDef, PropertyDesc propertyDesc,
+            Object component) {
 
-	public static final boolean isSuitable(Class[] classes) {
-		for (int i = 0; i < classes.length; ++i) {
-			if (!isSuitable(classes[i])) {
-				return false;
-			}
-		}
-		return true;
-	}
+    }
 }

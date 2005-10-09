@@ -19,7 +19,6 @@ import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.PropertyDesc;
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.PropertyDef;
-import org.seasar.framework.container.S2Container;
 
 public interface AnnotationHandler {
 
@@ -35,5 +34,5 @@ public interface AnnotationHandler {
     
     public void appendAspect(ComponentDef componentDef);
     
-    public PropertyDef createPropertyDef(S2Container container, BeanDesc beanDesc, PropertyDesc propertyDesc);
+    public PropertyDef createPropertyDef(BeanDesc beanDesc, PropertyDesc propertyDesc);
 }

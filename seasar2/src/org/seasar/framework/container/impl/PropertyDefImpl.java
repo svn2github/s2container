@@ -15,7 +15,9 @@
  */
 package org.seasar.framework.container.impl;
 
+import org.seasar.framework.container.BindingTypeDef;
 import org.seasar.framework.container.PropertyDef;
+import org.seasar.framework.container.assembler.BindingTypeDefFactory;
 
 /**
  * @author higa
@@ -25,30 +27,32 @@ public class PropertyDefImpl extends ArgDefImpl implements PropertyDef {
 
 	private String propertyName_;
     
-    private boolean noInject_ = false;;
+    private BindingTypeDef bindingTypeDef_ = BindingTypeDefFactory.SHOULD;
 	
 	public PropertyDefImpl(String propertyName) {
-		this(propertyName, false);
+		this(propertyName, null);
 	}
-    
-    public PropertyDefImpl(String propertyName, boolean noInject) {
-        propertyName_ = propertyName;
-        noInject_ = noInject;
-    }
 		
 	public PropertyDefImpl(String propertyName, Object value) {
 		super(value);
 		propertyName_ = propertyName;
 	}
 
-	/**
+	/*
 	 * @see org.seasar.framework.container.PropertyDef#getPropertyName()
 	 */
 	public String getPropertyName() {
 		return propertyName_;
 	}
     
-    public boolean isNoInject() {
-        return noInject_;
+    /*
+     * @see org.seasar.framework.container.PropertyDef#getBindingTypeDef()
+     */
+    public BindingTypeDef getBindingTypeDef() {
+        return bindingTypeDef_;
+    }
+    
+    public void setBindingTypeDef(BindingTypeDef bindingTypeDef) {
+        bindingTypeDef_ = bindingTypeDef;
     }
 }

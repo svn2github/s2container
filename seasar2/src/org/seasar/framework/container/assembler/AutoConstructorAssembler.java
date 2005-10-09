@@ -18,7 +18,7 @@ package org.seasar.framework.container.assembler;
 import java.lang.reflect.Constructor;
 
 import org.seasar.framework.container.ComponentDef;
-import org.seasar.framework.container.util.AutoBindingUtil;
+import org.seasar.framework.container.util.BindingUtil;
 import org.seasar.framework.util.ConstructorUtil;
 
 /**
@@ -55,7 +55,7 @@ public class AutoConstructorAssembler
 				return null;
 			}
 			if (tempArgSize > argSize
-				&& AutoBindingUtil.isSuitable(
+				&& BindingUtil.isAutoBindable(
 					constructors[i].getParameterTypes())) {
 				constructor = constructors[i];
 				argSize = tempArgSize;

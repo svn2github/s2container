@@ -25,7 +25,7 @@ import org.seasar.framework.container.ComponentNotFoundRuntimeException;
 import org.seasar.framework.container.IllegalMethodRuntimeException;
 import org.seasar.framework.container.MethodAssembler;
 import org.seasar.framework.container.MethodDef;
-import org.seasar.framework.container.util.AutoBindingUtil;
+import org.seasar.framework.container.util.BindingUtil;
 import org.seasar.framework.util.MethodUtil;
 import org.seasar.framework.util.OgnlUtil;
 
@@ -87,7 +87,7 @@ public abstract class AbstractMethodAssembler extends AbstractAssembler
         for (int i = 0; i < methods.length; ++i) {
             int tempArgSize = methods[i].getParameterTypes().length;
             if (tempArgSize > argSize
-                    && AutoBindingUtil.isSuitable(methods[i]
+                    && BindingUtil.isAutoBindable(methods[i]
                             .getParameterTypes())) {
                 method = methods[i];
                 argSize = tempArgSize;

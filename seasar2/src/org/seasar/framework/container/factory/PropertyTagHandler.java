@@ -15,8 +15,10 @@
  */
 package org.seasar.framework.container.factory;
 
+import org.seasar.framework.container.BindingTypeDef;
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.PropertyDef;
+import org.seasar.framework.container.assembler.BindingTypeDefFactory;
 import org.seasar.framework.container.impl.PropertyDefImpl;
 import org.seasar.framework.util.StringUtil;
 import org.seasar.framework.xml.TagHandler;
@@ -39,7 +41,13 @@ public class PropertyTagHandler extends TagHandler {
 				"property",
 				"name");
 		}
-		context.push(createPropertyDef(name));
+        PropertyDef pd = createPropertyDef(name);
+        String bindingTypeName = attributes.getValue("bindingType");
+        if (bindingTypeName != null) {
+            BindingTypeDef bindingTypeDef = BindingTypeDefFactory.getBindingTypeDef(bindingTypeName);
+            pd.setBindingTypeDef(bindingTypeDef);
+        }
+		context.push(pd);
 	}
 
 	/**

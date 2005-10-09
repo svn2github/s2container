@@ -16,9 +16,9 @@
 package org.seasar.framework.container.assembler;
 
 import org.seasar.framework.beans.BeanDesc;
-import org.seasar.framework.beans.factory.BeanDescFactory;
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.ComponentNotFoundRuntimeException;
+import org.seasar.framework.container.util.BindingUtil;
 import org.seasar.framework.log.Logger;
 
 /**
@@ -38,23 +38,13 @@ public abstract class AbstractAssembler {
 	protected final ComponentDef getComponentDef() {
 		return componentDef_;
 	}
-
-	protected final BeanDesc getBeanDesc() {
-		return BeanDescFactory.getBeanDesc(
-			getComponentDef().getComponentClass());
+	
+	protected BeanDesc getBeanDesc(Object component) {
+		return BindingUtil.getBeanDesc(getComponentDef(), component);
 	}
 	
-	protected final BeanDesc getBeanDesc(Object component) {
-		return BeanDescFactory.getBeanDesc(
-			getComponentClass(component));
-	}
-	
-	protected final Class getComponentClass(Object component) {
-		Class clazz = componentDef_.getComponentClass();
-		if (clazz != null) {
-			return clazz;
-		}
-		return component.getClass();
+	protected Class getComponentClass(Object component) {
+		return BindingUtil.getComponentClass(getComponentDef(), component);
 	}
 	
 	protected Object[] getArgs(Class[] argTypes) {
