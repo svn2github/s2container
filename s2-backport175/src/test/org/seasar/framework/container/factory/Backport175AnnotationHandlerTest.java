@@ -7,6 +7,7 @@ import org.seasar.framework.beans.factory.BeanDescFactory;
 import org.seasar.framework.container.AspectDef;
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.PropertyDef;
+import org.seasar.framework.container.assembler.BindingTypeDefFactory;
 import org.seasar.framework.container.factory.Backport175AnnotationHandler;
 
 import test.org.seasar.framework.container.factory.ConstantAnnotationHandlerTest.Hoge;
@@ -22,47 +23,42 @@ public class Backport175AnnotationHandlerTest extends S2TestCase {
         assertNotNull("1", handler.createComponentDef(Hoge.class));
         ComponentDef cd = handler.createComponentDef(Hoge2.class);
         assertEquals("2", "aaa", cd.getComponentName());
-        assertEquals("3", "prototype", cd.getInstanceMode());
-        assertEquals("4", "property", cd.getAutoBindingMode());
+        assertEquals("3", "prototype", cd.getInstanceDef().getName());
+        assertEquals("4", "property", cd.getAutoBindingDef().getName());
     }
     
     public void testCreatePropertyDef() throws Exception {
         BeanDesc beanDesc = BeanDescFactory.getBeanDesc(Hoge.class);
         PropertyDesc propDesc = beanDesc.getPropertyDesc("aaa");
-        assertNull("1", handler.createPropertyDef(getContainer(), beanDesc, propDesc));
+        assertNull("1", handler.createPropertyDef(beanDesc, propDesc));
 
         beanDesc = BeanDescFactory.getBeanDesc(Hoge2.class);
         propDesc = beanDesc.getPropertyDesc("aaa");
-        PropertyDef propDef = handler.createPropertyDef(getContainer(), beanDesc, propDesc);
+        PropertyDef propDef = handler.createPropertyDef(beanDesc, propDesc);
         assertEquals("2", "aaa", propDef.getPropertyName());
         assertEquals("3", "aaa2", propDef.getExpression());
         
         propDesc = beanDesc.getPropertyDesc("bbb");
-        propDef = handler.createPropertyDef(getContainer(), beanDesc, propDesc);
-        assertEquals("4", true, propDef.isNoInject());
-        
-        register(String.class, "ccc");
-        propDesc = beanDesc.getPropertyDesc("ccc");
-        propDef = handler.createPropertyDef(getContainer(), beanDesc, propDesc);
-        assertEquals("5", "ccc", propDef.getExpression());
+        propDef = handler.createPropertyDef(beanDesc, propDesc);
+        assertEquals("4", BindingTypeDefFactory.NONE.getName(), propDef.getBindingTypeDef().getName());
     }
     
     public void testCreatePropertyDefForConstantAnnotation() throws Exception {
         BeanDesc beanDesc = BeanDescFactory.getBeanDesc(Hoge.class);
         PropertyDesc propDesc = beanDesc.getPropertyDesc("aaa");
-        assertNull("1", handler.createPropertyDef(getContainer(), beanDesc,
+        assertNull("1", handler.createPropertyDef(beanDesc,
                 propDesc));
 
         beanDesc = BeanDescFactory.getBeanDesc(Hoge3.class);
         propDesc = beanDesc.getPropertyDesc("aaa");
-        PropertyDef propDef = handler.createPropertyDef(getContainer(),
+        PropertyDef propDef = handler.createPropertyDef(
                 beanDesc, propDesc);
         assertEquals("2", "aaa", propDef.getPropertyName());
         assertEquals("3", "aaa2", propDef.getExpression());
 
         propDesc = beanDesc.getPropertyDesc("bbb");
-        propDef = handler.createPropertyDef(getContainer(), beanDesc, propDesc);
-        assertEquals("4", true, propDef.isNoInject());
+        propDef = handler.createPropertyDef(beanDesc, propDesc);
+        assertEquals("4", BindingTypeDefFactory.NONE.getName(), propDef.getBindingTypeDef().getName());
     }
 
     public void testAppendAspect() throws Exception {

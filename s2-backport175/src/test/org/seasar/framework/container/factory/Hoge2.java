@@ -10,21 +10,21 @@ public class Hoge2 {
     
     /**
      * @param aaa
-     * @org.seasar.framework.container.annotation.Inject("aaa2")
+     * @org.seasar.framework.container.annotation.Binding(value="aaa2")
      */
     public void setAaa(String aaa) {
     }
     
     /**
      * @param bbb
-     * @org.seasar.framework.container.annotation.NoInject
+     * @org.seasar.framework.container.annotation.Binding(bindingType="none")
      */
     public void setBbb(String bbb) {
     }
     
     /**
      * @param ccc
-     * @org.seasar.framework.container.annotation.Inject
+     * @org.seasar.framework.container.annotation.Binding
      */
     public void setCcc(String ccc) {
     }

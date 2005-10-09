@@ -19,5 +19,15 @@ package org.seasar.framework.container.annotation;
  * @author higa
  *
  */
-public interface NoInject {
+public interface Binding {
+
+    /**
+     * @org.codehaus.backport175.DefaultValue ("")
+     */
+    String value();
+    
+    /**
+     * @org.codehaus.backport175.DefaultValue ("should")
+     */
+    String bindingType();
 }

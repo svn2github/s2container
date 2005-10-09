@@ -23,18 +23,16 @@ import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.PropertyDesc;
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.PropertyDef;
-import org.seasar.framework.container.S2Container;
 import org.seasar.framework.container.annotation.Aspect;
+import org.seasar.framework.container.annotation.Binding;
 import org.seasar.framework.container.annotation.Component;
-import org.seasar.framework.container.annotation.Inject;
-import org.seasar.framework.container.annotation.NoInject;
+import org.seasar.framework.container.assembler.AutoBindingDefFactory;
+import org.seasar.framework.container.deployer.InstanceDefFactory;
 import org.seasar.framework.container.impl.ComponentDefImpl;
-import org.seasar.framework.container.impl.PropertyDefImpl;
-import org.seasar.framework.util.StringUtil;
 
 /**
  * @author higa
- *
+ * 
  */
 public class Backport175AnnotationHandler extends ConstantAnnotationHandler {
 
@@ -47,49 +45,37 @@ public class Backport175AnnotationHandler extends ConstantAnnotationHandler {
         Component component = (Component) annotation;
         String name = component.name();
         ComponentDef componentDef = new ComponentDefImpl(componentClass, name);
-        String instanceMode = component.instance();
-        if (instanceMode != null) {
-            componentDef.setInstanceMode(instanceMode);
+        String instanceName = component.instance();
+        if (instanceName != null) {
+            componentDef.setInstanceDef(InstanceDefFactory
+                    .getInstanceDef(instanceName));
         }
-        String autoBindingMode = component.autoBinding();
-        if (autoBindingMode != null) {
-            componentDef.setAutoBindingMode(autoBindingMode);
+        String autoBindingName = component.autoBinding();
+        if (autoBindingName != null) {
+            componentDef.setAutoBindingDef(AutoBindingDefFactory
+                    .getAutoBindingDef(autoBindingName));
         }
         return componentDef;
     }
 
-    public PropertyDef createPropertyDef(S2Container container,
-            BeanDesc beanDesc, PropertyDesc propertyDesc) {
+    public PropertyDef createPropertyDef(BeanDesc beanDesc,
+            PropertyDesc propertyDesc) {
 
         if (!propertyDesc.hasWriteMethod()) {
-            return super.createPropertyDef(container, beanDesc, propertyDesc);
+            return super.createPropertyDef(beanDesc, propertyDesc);
         }
         Method method = propertyDesc.getWriteMethod();
-        Inject inject = (Inject) Annotations
-                .getAnnotation(Inject.class, method);
         String propName = propertyDesc.getPropertyName();
-        if (inject != null) {
-            String value = inject.value();
-            if (StringUtil.isEmpty(value)) {
-                if (container.hasComponentDef(propName)) {
-                    value = propName;
-                } else {
-                    return null;
-                }
-            }
-            PropertyDef pd = new PropertyDefImpl(propName);
-            pd.setExpression(value);
-            return pd;
-        } else {
-            NoInject noInject = (NoInject) Annotations.getAnnotation(
-                    NoInject.class, method);
-            if (noInject != null) {
-                return new PropertyDefImpl(propName, true);
-            }
+        Binding binding = (Binding) Annotations.getAnnotation(Binding.class,
+                method);
+        if (binding != null) {
+            String bindingTypeName = binding.bindingType();
+            String expression = binding.value();
+            return createPropertyDef(propName, bindingTypeName, expression);
         }
-        return super.createPropertyDef(container, beanDesc, propertyDesc);
+        return super.createPropertyDef(beanDesc, propertyDesc);
     }
-    
+
     public void appendAspect(ComponentDef componentDef) {
         Class componentClass = componentDef.getComponentClass();
         Annotation annotation = Annotations.getAnnotation(Aspect.class,
