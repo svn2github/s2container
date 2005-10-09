@@ -6,9 +6,9 @@ public class Hoge3 {
     
     public static final String ASPECT = "interceptor=aop.traceInterceptor, pointcut=setAaa";
 
-    public static final String aaa_INJECT = "aaa2";
+    public static final String aaa_BINDING = "value=aaa2";
 
-    public static final boolean bbb_No_INJECT = true;
+    public static final String bbb_BINDING = "bindingType=none";
 
     public void setAaa(String aaa) {
     }

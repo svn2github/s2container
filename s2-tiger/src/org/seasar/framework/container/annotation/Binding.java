@@ -26,7 +26,9 @@ import java.lang.annotation.Target;
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-public @interface Inject {
+public @interface Binding {
     
     String value() default "";
+    
+    BindingType bindingType() default BindingType.SHOULD;
 }

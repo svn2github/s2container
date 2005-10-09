@@ -21,16 +21,14 @@ import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.PropertyDesc;
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.PropertyDef;
-import org.seasar.framework.container.S2Container;
 import org.seasar.framework.container.annotation.Aspect;
 import org.seasar.framework.container.annotation.AutoBindingType;
+import org.seasar.framework.container.annotation.Binding;
 import org.seasar.framework.container.annotation.Component;
-import org.seasar.framework.container.annotation.Inject;
 import org.seasar.framework.container.annotation.InstanceType;
-import org.seasar.framework.container.annotation.NoInject;
+import org.seasar.framework.container.assembler.AutoBindingDefFactory;
+import org.seasar.framework.container.deployer.InstanceDefFactory;
 import org.seasar.framework.container.impl.ComponentDefImpl;
-import org.seasar.framework.container.impl.PropertyDefImpl;
-import org.seasar.framework.util.StringUtil;
 
 /**
  * @author higa
@@ -39,7 +37,8 @@ import org.seasar.framework.util.StringUtil;
 public class TigerAnnotationHandler extends ConstantAnnotationHandler {
 
     public ComponentDef createComponentDef(Class componentClass) {
-        Component component = componentClass.<Component>getAnnotation(Component.class);
+        Class<?> clazz = componentClass;
+        Component component = clazz.getAnnotation(Component.class);
         if (component == null) {
             return super.createComponentDef(componentClass);
         }
@@ -47,48 +46,37 @@ public class TigerAnnotationHandler extends ConstantAnnotationHandler {
         ComponentDef componentDef = new ComponentDefImpl(componentClass, name);
         InstanceType instanceType = component.instance();
         if (instanceType != null) {
-            componentDef.setInstanceMode(instanceType.getInstanceMode());
+            componentDef.setInstanceDef(
+                    InstanceDefFactory.getInstanceDef(instanceType.getName()));
         }
         AutoBindingType autoBindingType = component.autoBinding();
         if (autoBindingType != null) {
-            componentDef.setAutoBindingMode(autoBindingType.getAutoBindingMode());
+            componentDef.setAutoBindingDef(
+                    AutoBindingDefFactory.getAutoBindingDef(autoBindingType.getName()));
         }
         return componentDef;
     }
 
-    public PropertyDef createPropertyDef(S2Container container,
+    public PropertyDef createPropertyDef(
             BeanDesc beanDesc, PropertyDesc propertyDesc) {
 
         if (!propertyDesc.hasWriteMethod()) {
-            return super.createPropertyDef(container, beanDesc, propertyDesc);
+            return super.createPropertyDef(beanDesc, propertyDesc);
         }
         Method method = propertyDesc.getWriteMethod();
-        Inject inject = method.getAnnotation(Inject.class);
+        Binding binding = method.getAnnotation(Binding.class);
         String propName = propertyDesc.getPropertyName();
-        if (inject != null) {
-            String value = inject.value();
-            if (StringUtil.isEmpty(value)) {
-                if (container.hasComponentDef(propName)) {
-                    value = propName;
-                } else {
-                    return null;
-                }
-            }
-            PropertyDef pd = new PropertyDefImpl(propName);
-            pd.setExpression(value);
-            return pd;
-        } else {
-            NoInject noInject = method.getAnnotation(NoInject.class);
-            if (noInject != null) {
-                return new PropertyDefImpl(propName, true);
-            }
+        if (binding != null) {
+            String bindingTypeName = binding.bindingType().getName();
+            String expression = binding.value();
+            return createPropertyDef(propName, bindingTypeName, expression);
         }
-        return super.createPropertyDef(container, beanDesc, propertyDesc);
+        return super.createPropertyDef(beanDesc, propertyDesc);
     }
     
     public void appendAspect(ComponentDef componentDef) {
-        Class componentClass = componentDef.getComponentClass();
-        Aspect aspect = componentClass.<Aspect>getAnnotation(Aspect.class);
+        Class<?> clazz = componentDef.getComponentClass();
+        Aspect aspect = clazz.getAnnotation(Aspect.class);
         if (aspect == null) {
             super.appendAspect(componentDef);
             return;

@@ -27,7 +27,7 @@ public enum InstanceType {
     REQUEST,
     OUTER;
     
-    public String getInstanceMode() {
+    public String getName() {
         return toString().toLowerCase();
     }
 }

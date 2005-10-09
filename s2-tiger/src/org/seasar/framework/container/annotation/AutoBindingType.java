@@ -26,7 +26,7 @@ public enum AutoBindingType {
     PROPERTY,
     NONE;
     
-    public String getAutoBindingMode() {
+    public String getName() {
         return toString().toLowerCase();
     }
 }
