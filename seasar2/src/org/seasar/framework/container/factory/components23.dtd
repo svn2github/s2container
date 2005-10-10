@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-<!DOCTYPE components PUBLIC "-//SEASAR2.3//DTD S2Container//EN" 
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.3//EN" 
 	"http://www.seasar.org/dtd/components23.dtd">
 -->
 <!ELEMENT components (

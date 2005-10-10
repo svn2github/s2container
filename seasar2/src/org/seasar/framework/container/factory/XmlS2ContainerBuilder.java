@@ -34,7 +34,7 @@ import org.seasar.framework.xml.TagHandlerContext;
 public class XmlS2ContainerBuilder extends AbstractS2ContainerBuilder {
     public static final String PUBLIC_ID = "-//SEASAR//DTD S2Container//EN";
     public static final String PUBLIC_ID21 = "-//SEASAR2.1//DTD S2Container//EN";
-    public static final String PUBLIC_ID23 = "-//SEASAR2.3//DTD S2Container//EN";
+    public static final String PUBLIC_ID23 = "-//SEASAR//DTD S2Container 2.3//EN";
     public static final String DTD_PATH = "org/seasar/framework/container/factory/components.dtd";
     public static final String DTD_PATH21 = "org/seasar/framework/container/factory/components21.dtd";
     public static final String DTD_PATH23 = "org/seasar/framework/container/factory/components23.dtd";
