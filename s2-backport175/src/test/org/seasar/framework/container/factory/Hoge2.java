@@ -3,7 +3,9 @@ package test.org.seasar.framework.container.factory;
 /**
  * @author higa
  * @org.seasar.framework.container.annotation.Component(
- *  name = "aaa", instance = "prototype", autoBinding = "property")
+ *      name = "aaa",
+ *      instance = "prototype",
+ *      autoBinding = "property")
  *
  */
 public class Hoge2 {    
