@@ -17,8 +17,8 @@
 		</initMethod>
 		<initMethod name="registAll"></initMethod>
 	</component>
-	<component class="org.seasar.framework.container.autoregister.InterceptorAutoRegister">
-		<property name="interceptor">"greetingInterceptor"</property>
+	<component class="org.seasar.framework.container.autoregister.AspectAutoRegister">
+		<property name="interceptor">greetingInterceptor</property>
 		<initMethod name="addClassPattern">
 			<arg>"test.org.seasar.framework.container.autoregister"</arg>
 			<arg>"Foo.*"</arg>

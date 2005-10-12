@@ -21,7 +21,7 @@ public class DefaultAutoNaming implements AutoNaming {
 
     private static final String IMPL = "Impl";
 
-    public String defineName(String shortClassName) {
+    public String defineName(String packageName, String shortClassName) {
         if (shortClassName.endsWith(IMPL)) {
             shortClassName = shortClassName.substring(0, shortClassName
                     .length()

@@ -2,8 +2,8 @@
 <!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN" 
 	"http://www.seasar.org/dtd/components21.dtd">
 <components namespace="child" >
-	<component class="org.seasar.framework.container.autoregister.InterceptorAutoRegister">
-		<property name="interceptor">"greetingInterceptor"</property>
+	<component class="org.seasar.framework.container.autoregister.AspectAutoRegister">
+		<property name="interceptor">greetingInterceptor</property>
 		<property name="pointcut">"greet"</property>
 		<initMethod name="addClassPattern">
 			<arg>"test.org.seasar.framework.container.autoregister"</arg>

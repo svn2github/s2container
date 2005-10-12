@@ -15,6 +15,7 @@
  */
 package org.seasar.framework.container.factory;
 
+import org.aopalliance.intercept.MethodInterceptor;
 import org.seasar.framework.aop.Pointcut;
 import org.seasar.framework.aop.impl.PointcutImpl;
 import org.seasar.framework.container.AspectDef;
@@ -27,15 +28,24 @@ public class AspectDefFactory {
     }
     
     public static AspectDef createAspectDef(String interceptorName, String pointcutStr) {
-        AspectDef aspectDef = null;
-        if (pointcutStr != null) {
-            String[] methodNames = StringUtil.split(pointcutStr, ", ");
-            Pointcut pointcut = new PointcutImpl(methodNames);
-            aspectDef = new AspectDefImpl(pointcut);
-        } else {
-            aspectDef = new AspectDefImpl();
-        }
+        Pointcut pointcut = createPointcut(pointcutStr);
+        AspectDef aspectDef = new AspectDefImpl(pointcut);
         aspectDef.setExpression(interceptorName);
         return aspectDef;
+    }
+    
+    public static AspectDef createAspectDef(MethodInterceptor interceptor, String pointcutStr) {
+        Pointcut pointcut = createPointcut(pointcutStr);
+        AspectDef aspectDef = new AspectDefImpl(pointcut);
+        aspectDef.setValue(interceptor);
+        return aspectDef;
+    }
+    
+    public static Pointcut createPointcut(String pointcutStr) {
+        if (pointcutStr != null) {
+            String[] methodNames = StringUtil.split(pointcutStr, ", \n");
+            return new PointcutImpl(methodNames);
+        }
+        return null;
     }
 }

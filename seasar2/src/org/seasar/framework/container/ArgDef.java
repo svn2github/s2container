@@ -22,6 +22,8 @@ package org.seasar.framework.container;
 public interface ArgDef extends MetaDefAware {
 	
 	public Object getValue();
+    
+    public void setValue(Object value);
 	
 	public S2Container getContainer();
 	

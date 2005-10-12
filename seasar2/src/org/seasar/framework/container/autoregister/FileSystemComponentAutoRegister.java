@@ -77,14 +77,13 @@ public class FileSystemComponentAutoRegister extends AutoRegister {
                 String className = packageName == null ? shortClassName : packageName + "." + shortClassName; 
                 ComponentDef cd = annoHandler.createComponentDef(className);
                 if (cd.getComponentName() == null && autoNaming != null) {
-                    cd.setComponentName(autoNaming.defineName(shortClassName));
+                    cd.setComponentName(autoNaming.defineName(packageName, shortClassName));
                 }
                 if (hasComponentDef(cd.getComponentName())) {
                     continue;
                 }
                 annoHandler.appendDI(cd);
                 getContainer().register(cd);
-                cd.init();
             }
         }
     }

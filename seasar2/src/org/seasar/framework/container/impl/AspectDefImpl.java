@@ -44,6 +44,14 @@ public class AspectDefImpl extends ArgDefImpl implements AspectDef {
 		setValue(interceptor);
 		pointcut_ = pointcut;
 	}
+    
+    public Pointcut getPointcut() {
+        return pointcut_;
+    }
+
+    public void setPointcut(Pointcut pointcut) {
+        pointcut_ = pointcut;
+    }
 
 	/**
 	 * @see org.seasar.framework.container.AspectDef#getAspect()

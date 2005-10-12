@@ -17,5 +17,5 @@ package org.seasar.framework.container.autoregister;
 
 public interface AutoNaming {
 
-    String defineName(String shortClassName);
+    String defineName(String packageName, String shortClassName);
 }

@@ -1,8 +1,9 @@
 package examples.di.impl;
 
 import examples.di.Greeting;
+import examples.di.GreetingClient;
 
-public class GreetingClientImpl {
+public class GreetingClientImpl implements GreetingClient {
 
     private Greeting greeting;
 

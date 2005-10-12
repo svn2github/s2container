@@ -15,6 +15,7 @@
  */
 package org.seasar.framework.container.autoregister;
 
+import org.aopalliance.intercept.MethodInterceptor;
 import org.seasar.framework.container.AspectDef;
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.S2Container;
@@ -24,13 +25,13 @@ import org.seasar.framework.container.factory.AspectDefFactory;
  * @author higa
  *
  */
-public class InterceptorAutoRegister extends AutoRegister {
+public class AspectAutoRegister extends AutoRegister {
 
-    private String interceptor;
+    private MethodInterceptor interceptor;
     
     private String pointcut;
     
-    public void setInterceptor(String interceptor) {
+    public void setInterceptor(MethodInterceptor interceptor) {
         this.interceptor = interceptor;
     }
     

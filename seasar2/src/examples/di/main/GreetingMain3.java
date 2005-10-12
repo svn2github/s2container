@@ -5,10 +5,10 @@ import org.seasar.framework.container.factory.S2ContainerFactory;
 
 import examples.di.GreetingClient;
 
-public class GreetingMain2 {
+public class GreetingMain3 {
 
     private static final String PATH =
-        "examples/di/dicon/GreetingMain2.dicon";
+        "examples/di/dicon/GreetingMain3.dicon";
  
     public static void main(String[] args) {
         S2Container container =

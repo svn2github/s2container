@@ -6,10 +6,6 @@
 		<include name="*" />
 		<exclude name="s2*" />
 	</fileset>
-	
-	<path id="project.class.path">
-	    <pathelement path="lib/backport175-1.0.jar" />
-	</path>
 
 	<target name="compile">
 		<javac srcdir="${src}" destdir="${build}" debug="on">
@@ -103,7 +99,6 @@
 
 	<target name="setup" depends="dist">
 		<mkdir dir="${setupdir}" />
-		<mkdir dir="${docdestdir}" />
 		<delete>
 			<fileset dir="${setupdir}" />
 		</delete>
@@ -114,13 +109,6 @@
 				<exclude name="${lib}/classes12.zip" />
 				<exclude name="target" />
 				<exclude name="target/**" />
-			</fileset>
-		</copy>
-		<copy todir="${docdestdir}">
-			<fileset dir="${docsrcdir}">
-				<exclude name="**/.svn/**" />
-				<exclude name="eclipse" />
-				<exclude name="eclipse/**" />
 			</fileset>
 		</copy>
 		<delete dir="${setupdir}build"/>

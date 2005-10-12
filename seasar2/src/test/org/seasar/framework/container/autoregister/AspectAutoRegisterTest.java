@@ -8,20 +8,10 @@ import org.seasar.framework.container.S2Container;
 /**
  * @author higa
  */
-public class InterceptorAutoRegisterTest extends S2TestCase {
+public class AspectAutoRegisterTest extends S2TestCase {
 
     private S2Container child;
-/*    
-    public void setUpRegistAll() throws Exception {
-        include("autoRegister.dicon");
-    }
-    
-    public void testRegistAll() throws Exception {
-        Foo foo = (Foo) child.getComponent(Foo.class);
-        assertNotNull("1", foo);
-        assertEquals("2", "Hello", foo.greet());
-    }
-*/    
+  
     public void setUpRegistAll2() throws Exception {
         include("autoRegister2.dicon");
     }

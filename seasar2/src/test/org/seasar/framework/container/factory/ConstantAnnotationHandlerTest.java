@@ -65,7 +65,8 @@ public class ConstantAnnotationHandlerTest extends S2TestCase {
 
     public static class Hoge {
         
-        public static final String ASPECT = "interceptor=aop.traceInterceptor, pointcut=getAaa";
+        public static final String ASPECT =
+            "interceptor=aop.traceInterceptor, pointcut=getAaa\ngetBbb";
 
         public String getAaa() {
             return null;
@@ -78,11 +79,16 @@ public class ConstantAnnotationHandlerTest extends S2TestCase {
         public static final String aaa_BINDING = "value=aaa2";
 
         public static final String bbb_BINDING = "bindingType=none";
+        
+        public static final String ccc_BINDING = null;
 
         public void setAaa(String aaa) {
         }
 
         public void setBbb(String bbb) {
+        }
+        
+        public void setCcc(String ccc) {
         }
     }
 

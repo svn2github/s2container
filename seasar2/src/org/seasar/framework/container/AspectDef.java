@@ -16,6 +16,7 @@
 package org.seasar.framework.container;
 
 import org.seasar.framework.aop.Aspect;
+import org.seasar.framework.aop.Pointcut;
 
 /**
  * @author higa
@@ -23,5 +24,9 @@ import org.seasar.framework.aop.Aspect;
  */
 public interface AspectDef extends ArgDef {
 
-	public Aspect getAspect();
+    Pointcut getPointcut();
+    
+    void setPointcut(Pointcut pointcut);
+    
+	Aspect getAspect();
 }
