@@ -10,7 +10,7 @@ import org.seasar.framework.container.annotation.InstanceType;
         autoBinding=AutoBindingType.PROPERTY)
 public class Hoge2 {    
     
-    @Binding("aaa2")
+    @Binding(value="aaa2")
     public void setAaa(String aaa) {
     }
     
@@ -18,10 +18,6 @@ public class Hoge2 {
     public void setBbb(String bbb) {
     }
     
-    /**
-     * @param ccc
-     * @org.seasar.framework.container.annotations.Inject
-     */
     @Binding
     public void setCcc(String ccc) {
     }

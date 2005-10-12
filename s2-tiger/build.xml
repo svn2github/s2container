@@ -1,0 +1,66 @@
+<project name="s2-tiger" default="setup" basedir=".">
+
+	<property name="ver" value="RC1" />
+	<property name="src" value="src" />
+	<property name="build" value="build" />
+	<property name="lib" value="lib" />
+	<property name="jarfile" value="s2-tiger-${ver}.jar" />
+	<property name="releasezipfile" value="../setup2/S2Tiger-${ver}.zip" />
+	<property name="mydir" value="s2-tiger/" />
+	<property name="setupdir" value="../setup2/${mydir}" />
+	<property name="package" value="org/seasar/framework/" />
+
+	<fileset id="classpath" dir="${lib}">
+		<include name="*" />
+		<exclude name="s2*" />
+	</fileset>
+	
+	<target name="compile">
+		<javac srcdir="${src}" destdir="${build}" debug="on">
+			<classpath>
+				<fileset refid="classpath" />
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="copy" depends="compile">
+		<copy todir="${build}">
+			<fileset dir="${src}">
+				<include name="**/*.properties" />
+				<include name="**/*.xml" />
+				<include name="**/*.dtd" />
+				<exclude name="build.xml" />
+			</fileset>
+		</copy>
+	</target>
+	
+	<target name="cleans2jarfile">
+		<delete>
+			<fileset dir="${lib}" defaultexcludes="no">
+				<include name="s2*.jar" />
+			</fileset>
+		</delete>
+	</target>
+	
+	<target name="dist" depends="compile,copy,cleans2jarfile">
+			<jar jarfile="${lib}/${jarfile}" basedir="${build}" includes="${package}"/>
+	</target>
+	
+	<target name="setup" depends="dist">
+		<delete includeemptydirs="true">
+			<fileset dir="${setupdir}" />
+		</delete>
+		<copy todir="${setupdir}">
+			<fileset dir=".">
+				<exclude name="**/CVS/**" />
+				<exclude name="build.xml*" />
+				<exclude name="${build}/**" />
+			</fileset>
+		</copy>
+		<delete dir="${setupdir}build"/>
+		<mkdir dir="${setupdir}build"/>
+		<zip zipfile="${releasezipfile}" basedir="../setup2" includes="${mydir}"/>
+	</target>
+
+</project>
+
