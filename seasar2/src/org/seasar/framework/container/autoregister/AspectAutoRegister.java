@@ -25,7 +25,7 @@ import org.seasar.framework.container.factory.AspectDefFactory;
  * @author higa
  *
  */
-public class AspectAutoRegister extends AutoRegister {
+public class AspectAutoRegister extends AbstractAutoRegister {
 
     private MethodInterceptor interceptor;
     
@@ -67,7 +67,7 @@ public class AspectAutoRegister extends AutoRegister {
             if (isIgnore(packageName, shortClassName)) {
                 continue;
             }
-            if (cp.isApplied(shortClassName)) {
+            if (cp.isAppliedShortClassName(shortClassName)) {
                 registInterceptor(componentDef);
                 return;
             }

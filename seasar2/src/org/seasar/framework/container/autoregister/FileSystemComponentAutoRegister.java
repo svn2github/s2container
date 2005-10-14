@@ -17,9 +17,6 @@ package org.seasar.framework.container.autoregister;
 
 import java.io.File;
 
-import org.seasar.framework.container.ComponentDef;
-import org.seasar.framework.container.factory.AnnotationHandler;
-import org.seasar.framework.container.factory.AnnotationHandlerFactory;
 import org.seasar.framework.util.ResourceUtil;
 import org.seasar.framework.util.StringUtil;
 
@@ -27,20 +24,12 @@ import org.seasar.framework.util.StringUtil;
  * @author higa
  *
  */
-public class FileSystemComponentAutoRegister extends AutoRegister {
-
-    private static final String CLASS_SUFFIX = ".class";
+public class FileSystemComponentAutoRegister extends AbstractComponentAutoRegister {
 
     private String fileNameOfRoot = "app.dicon";
-    
-    private AutoNaming autoNaming;
-    
+        
     public void setFileNameOfRoot(String fileNameOfRoot) {
         this.fileNameOfRoot = fileNameOfRoot;
-    }
-    
-    public void setAutoNaming(AutoNaming autoNaming) {
-        this.autoNaming = autoNaming;
     }
 
     public void registAll() {
@@ -57,7 +46,6 @@ public class FileSystemComponentAutoRegister extends AutoRegister {
     }
     
     protected void regist(ClassPattern classPattern, File packageDir, String packageName) {
-        AnnotationHandler annoHandler = AnnotationHandlerFactory.getAnnotationHandler();
         File[] files = packageDir.listFiles();
         for (int i = 0; i < files.length; ++i) {
             File file = files[i];
@@ -73,17 +61,8 @@ public class FileSystemComponentAutoRegister extends AutoRegister {
             if (isIgnore(packageName, shortClassName)) {
                 continue;
             }
-            if (classPattern.isApplied(shortClassName)) {
-                String className = packageName == null ? shortClassName : packageName + "." + shortClassName; 
-                ComponentDef cd = annoHandler.createComponentDef(className);
-                if (cd.getComponentName() == null && autoNaming != null) {
-                    cd.setComponentName(autoNaming.defineName(packageName, shortClassName));
-                }
-                if (hasComponentDef(cd.getComponentName())) {
-                    continue;
-                }
-                annoHandler.appendDI(cd);
-                getContainer().register(cd);
+            if (classPattern.isAppliedShortClassName(shortClassName)) {
+                regist(packageName, shortClassName);
             }
         }
     }

@@ -25,7 +25,7 @@ import org.seasar.framework.container.S2Container;
  * @author higa
  *
  */
-public class AutoRegister {
+public abstract class AbstractAutoRegister {
 
     private S2Container container;
     
@@ -68,6 +68,8 @@ public class AutoRegister {
     public void addIgnoreClassPattern(ClassPattern classPattern) {
         ignoreClassPatterns.add(classPattern);
     }
+    
+    public abstract void registAll();
 
     protected boolean hasComponentDef(String name) {
         return findComponentDef(name) != null;
@@ -93,10 +95,10 @@ public class AutoRegister {
         }
         for (int i = 0; i < ignoreClassPatterns.size(); ++i) {
             ClassPattern cp = (ClassPattern) ignoreClassPatterns.get(i);
-            if (!cp.isSamePackageName(packageName)) {
+            if (!cp.isAppliedPackageName(packageName)) {
                 continue;
             }
-            if (cp.isApplied(shortClassName)) {
+            if (cp.isAppliedShortClassName(shortClassName)) {
                 return true;
             }
         }

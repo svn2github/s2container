@@ -54,7 +54,7 @@ public class ClassPattern {
         }
     }
     
-    public boolean isApplied(String shortClassName) {
+    public boolean isAppliedShortClassName(String shortClassName) {
         if (shortClassNamePatterns == null) {
             return true;
         }
@@ -66,8 +66,8 @@ public class ClassPattern {
         return false;
     }
     
-    public boolean isSamePackageName(String pName) {
+    public boolean isAppliedPackageName(String pName) {
         return pName == null ? packageName == null :
-            pName.equals(packageName);
+            pName.startsWith(packageName);
     }
 }
