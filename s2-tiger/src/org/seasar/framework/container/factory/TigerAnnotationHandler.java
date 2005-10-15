@@ -20,6 +20,7 @@ import java.lang.reflect.Method;
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.PropertyDesc;
 import org.seasar.framework.container.ComponentDef;
+import org.seasar.framework.container.InstanceDef;
 import org.seasar.framework.container.PropertyDef;
 import org.seasar.framework.container.annotation.Aspect;
 import org.seasar.framework.container.annotation.AutoBindingType;
@@ -28,7 +29,6 @@ import org.seasar.framework.container.annotation.Component;
 import org.seasar.framework.container.annotation.InstanceType;
 import org.seasar.framework.container.assembler.AutoBindingDefFactory;
 import org.seasar.framework.container.deployer.InstanceDefFactory;
-import org.seasar.framework.container.impl.ComponentDefImpl;
 
 /**
  * @author higa
@@ -36,14 +36,14 @@ import org.seasar.framework.container.impl.ComponentDefImpl;
  */
 public class TigerAnnotationHandler extends ConstantAnnotationHandler {
 
-    public ComponentDef createComponentDef(Class componentClass) {
+    public ComponentDef createComponentDef(Class componentClass, InstanceDef instanceDef) {
         Class<?> clazz = componentClass;
         Component component = clazz.getAnnotation(Component.class);
         if (component == null) {
-            return super.createComponentDef(componentClass);
+            return super.createComponentDef(componentClass, instanceDef);
         }
-        String name = component.name();
-        ComponentDef componentDef = new ComponentDefImpl(componentClass, name);
+        ComponentDef componentDef = createComponentDefInternal(componentClass, instanceDef);
+        componentDef.setComponentName(component.name());
         InstanceType instanceType = component.instance();
         if (instanceType != null) {
             componentDef.setInstanceDef(
@@ -77,12 +77,20 @@ public class TigerAnnotationHandler extends ConstantAnnotationHandler {
     public void appendAspect(ComponentDef componentDef) {
         Class<?> clazz = componentDef.getComponentClass();
         Aspect aspect = clazz.getAnnotation(Aspect.class);
-        if (aspect == null) {
-            super.appendAspect(componentDef);
-            return;
+        if (aspect != null) {
+            String interceptor = aspect.interceptor();
+            String pointcut = aspect.pointcut();
+            appendAspect(componentDef, interceptor, pointcut);
         }
-        String interceptor = aspect.interceptor();
-        String pointcut = aspect.pointcut();
-        appendAspect(componentDef, interceptor, pointcut);
+        Method[] methods = clazz.getMethods();
+        for (Method method : methods) {
+            Aspect mAspect = method.getAnnotation(Aspect.class);
+            if (mAspect != null) {
+                String interceptor = mAspect.interceptor();
+                String pointcut = method.getName();
+                appendAspect(componentDef, interceptor, pointcut);
+            }
+        }
+        super.appendAspect(componentDef);
     }
 }

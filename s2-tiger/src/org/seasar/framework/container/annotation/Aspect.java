@@ -25,10 +25,10 @@ import java.lang.annotation.Target;
  *
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE)
+@Target({ElementType.TYPE, ElementType.METHOD})
 public @interface Aspect {
 
     String interceptor();
     
-    String pointcut();
+    String pointcut() default "";
 }
