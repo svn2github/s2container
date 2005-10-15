@@ -16,14 +16,14 @@ public class ClassPatternTest extends TestCase {
     
     public void testAppliedForNormalPattern() throws Exception {
         ClassPattern cp = new ClassPattern();
-        cp.setShortClassName(".*Impl");
+        cp.setShortClassNames(".*Impl");
         assertTrue("1", cp.isAppliedShortClassName("HogeImpl"));
         assertFalse("2", cp.isAppliedShortClassName("Hoge"));
     }
     
     public void testAppliedForMulti() throws Exception {
         ClassPattern cp = new ClassPattern();
-        cp.setShortClassName("Hoge, HogeImpl");
+        cp.setShortClassNames("Hoge, HogeImpl");
         assertTrue("1", cp.isAppliedShortClassName("HogeImpl"));
         assertTrue("2", cp.isAppliedShortClassName("Hoge"));
         assertFalse("3", cp.isAppliedShortClassName("Hoge2"));

@@ -32,9 +32,9 @@ public class ClassPattern {
     public ClassPattern() {
     }
     
-    public ClassPattern(String packageName, String shortClassName) {
+    public ClassPattern(String packageName, String shortClassNames) {
         setPackageName(packageName);
-        setShortClassName(shortClassName);
+        setShortClassNames(shortClassNames);
     }
     
     public String getPackageName() {
@@ -45,8 +45,8 @@ public class ClassPattern {
         this.packageName = packageName;
     }
     
-    public void setShortClassName(String shortClassName) {
-        String[] classNames = StringUtil.split(shortClassName, ",");
+    public void setShortClassNames(String shortClassNames) {
+        String[] classNames = StringUtil.split(shortClassNames, ",");
         shortClassNamePatterns = new Pattern[classNames.length];
         for (int i = 0; i < classNames.length; ++i) {
             String s = classNames[i].trim();

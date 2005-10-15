@@ -50,9 +50,9 @@ public abstract class AbstractAutoRegister {
     }
     
     public void addClassPattern(String packageName,
-            String shortClassName) {
+            String shortClassNames) {
         
-        addClassPattern(new ClassPattern(packageName, shortClassName));
+        addClassPattern(new ClassPattern(packageName, shortClassNames));
     }
     
     public void addClassPattern(ClassPattern classPattern) {
@@ -60,9 +60,9 @@ public abstract class AbstractAutoRegister {
     }
     
     public void addIgnoreClassPattern(String packageName,
-            String shortClassName) {
+            String shortClassNames) {
         
-        addIgnoreClassPattern(new ClassPattern(packageName, shortClassName));
+        addIgnoreClassPattern(new ClassPattern(packageName, shortClassNames));
     }
     
     public void addIgnoreClassPattern(ClassPattern classPattern) {

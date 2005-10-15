@@ -6,7 +6,10 @@
 		<property name="autoNaming">
 			<component class="org.seasar.framework.container.autoregister.DefaultAutoNaming"/>
 		</property>
-		<property name="jarFileNames">"junit-3.8.1.jar"</property>
+		<property name="classInJar">
+			@junit.framework.TestSuite@class
+		</property>
+		<property name="jarFileNames">"junit.*"</property>
 		<initMethod name="addClassPattern">
 			<arg>"junit.framework"</arg>
 			<arg>"TestSuite"</arg>
