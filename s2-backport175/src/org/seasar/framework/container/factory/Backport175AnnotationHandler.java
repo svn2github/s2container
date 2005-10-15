@@ -22,13 +22,13 @@ import org.codehaus.backport175.reader.Annotations;
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.PropertyDesc;
 import org.seasar.framework.container.ComponentDef;
+import org.seasar.framework.container.InstanceDef;
 import org.seasar.framework.container.PropertyDef;
 import org.seasar.framework.container.annotation.Aspect;
 import org.seasar.framework.container.annotation.Binding;
 import org.seasar.framework.container.annotation.Component;
 import org.seasar.framework.container.assembler.AutoBindingDefFactory;
 import org.seasar.framework.container.deployer.InstanceDefFactory;
-import org.seasar.framework.container.impl.ComponentDefImpl;
 
 /**
  * @author higa
@@ -36,15 +36,17 @@ import org.seasar.framework.container.impl.ComponentDefImpl;
  */
 public class Backport175AnnotationHandler extends ConstantAnnotationHandler {
 
-    public ComponentDef createComponentDef(Class componentClass) {
+    public ComponentDef createComponentDef(Class componentClass,
+            InstanceDef instanceDef) {
         Annotation annotation = Annotations.getAnnotation(Component.class,
                 componentClass);
         if (annotation == null) {
-            return super.createComponentDef(componentClass);
+            return super.createComponentDef(componentClass, instanceDef);
         }
         Component component = (Component) annotation;
-        String name = component.name();
-        ComponentDef componentDef = new ComponentDefImpl(componentClass, name);
+        ComponentDef componentDef = createComponentDefInternal(componentClass,
+                instanceDef);
+        componentDef.setComponentName(component.name());
         String instanceName = component.instance();
         if (instanceName != null) {
             componentDef.setInstanceDef(InstanceDefFactory
@@ -78,15 +80,24 @@ public class Backport175AnnotationHandler extends ConstantAnnotationHandler {
 
     public void appendAspect(ComponentDef componentDef) {
         Class componentClass = componentDef.getComponentClass();
-        Annotation annotation = Annotations.getAnnotation(Aspect.class,
+        Aspect aspect = (Aspect) Annotations.getAnnotation(Aspect.class,
                 componentClass);
-        if (annotation == null) {
-            super.appendAspect(componentDef);
-            return;
+        if (aspect != null) {
+            String interceptor = aspect.interceptor();
+            String pointcut = aspect.pointcut();
+            appendAspect(componentDef, interceptor, pointcut);
         }
-        Aspect aspect = (Aspect) annotation;
-        String interceptor = aspect.interceptor();
-        String pointcut = aspect.pointcut();
-        appendAspect(componentDef, interceptor, pointcut);
+        Method[] methods = componentClass.getMethods();
+        for (int i = 0; i < methods.length; ++i) {
+            Aspect mAspect = (Aspect) Annotations.getAnnotation(Aspect.class,
+                    methods[i]);
+            if (mAspect != null) {
+                String interceptor = mAspect.interceptor();
+                String pointcut = methods[i].getName();
+                appendAspect(componentDef, interceptor, pointcut);
+            }
+        }
+        super.appendAspect(componentDef);
+
     }
 }

@@ -6,8 +6,10 @@ import org.seasar.framework.beans.PropertyDesc;
 import org.seasar.framework.beans.factory.BeanDescFactory;
 import org.seasar.framework.container.AspectDef;
 import org.seasar.framework.container.ComponentDef;
+import org.seasar.framework.container.InstanceDef;
 import org.seasar.framework.container.PropertyDef;
 import org.seasar.framework.container.assembler.BindingTypeDefFactory;
+import org.seasar.framework.container.deployer.InstanceDefFactory;
 import org.seasar.framework.container.factory.Backport175AnnotationHandler;
 
 import test.org.seasar.framework.container.factory.ConstantAnnotationHandlerTest.Hoge;
@@ -20,11 +22,13 @@ public class Backport175AnnotationHandlerTest extends S2TestCase {
     private Backport175AnnotationHandler handler = new Backport175AnnotationHandler();
     
     public void testCreateComponentDef() throws Exception {
-        assertNotNull("1", handler.createComponentDef(Hoge.class));
-        ComponentDef cd = handler.createComponentDef(Hoge2.class);
+        assertNotNull("1", handler.createComponentDef(Hoge.class, null));
+        ComponentDef cd = handler.createComponentDef(Hoge2.class, null);
         assertEquals("2", "aaa", cd.getComponentName());
         assertEquals("3", "prototype", cd.getInstanceDef().getName());
         assertEquals("4", "property", cd.getAutoBindingDef().getName());
+        ComponentDef cd2 = handler.createComponentDef(Hoge.class, InstanceDefFactory.REQUEST);
+        assertEquals("5", InstanceDef.REQUEST_NAME, cd2.getInstanceDef().getName());
     }
     
     public void testCreatePropertyDef() throws Exception {
@@ -62,14 +66,21 @@ public class Backport175AnnotationHandlerTest extends S2TestCase {
     }
 
     public void testAppendAspect() throws Exception {
-        ComponentDef cd = handler.createComponentDefWithDI(Hoge.class);
+        ComponentDef cd = handler.createComponentDefWithDI(Hoge.class, null);
+        assertEquals("1", 1, cd.getAspectDefSize());
+        AspectDef aspectDef = cd.getAspectDef(0);
+        assertEquals("2", "aop.traceInterceptor", aspectDef.getExpression());
+    }
+    
+    public void testAppendAspectForMethod() throws Exception {
+        ComponentDef cd = handler.createComponentDefWithDI(Hoge4.class, null);
         assertEquals("1", 1, cd.getAspectDefSize());
         AspectDef aspectDef = cd.getAspectDef(0);
         assertEquals("2", "aop.traceInterceptor", aspectDef.getExpression());
     }
     
     public void testAppendAspectForConstantAnnotation() throws Exception {
-        ComponentDef cd = handler.createComponentDefWithDI(Hoge3.class);
+        ComponentDef cd = handler.createComponentDefWithDI(Hoge3.class, null);
         assertEquals("1", 1, cd.getAspectDefSize());
         AspectDef aspectDef = cd.getAspectDef(0);
         assertEquals("2", "aop.traceInterceptor", aspectDef.getExpression());
