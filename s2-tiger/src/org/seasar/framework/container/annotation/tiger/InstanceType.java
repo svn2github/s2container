@@ -13,24 +13,21 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.framework.container.annotation;
-
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+package org.seasar.framework.container.annotation.tiger;
 
 /**
  * @author higa
  *
  */
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE)
-public @interface Component {
-
-    String name();
+public enum InstanceType {
     
-    InstanceType instance() default InstanceType.SINGLETON;
+    SINGLETON,
+    PROTOTYPE,
+    SESSION,
+    REQUEST,
+    OUTER;
     
-    AutoBindingType autoBinding() default AutoBindingType.AUTO;
+    public String getName() {
+        return toString().toLowerCase();
+    }
 }

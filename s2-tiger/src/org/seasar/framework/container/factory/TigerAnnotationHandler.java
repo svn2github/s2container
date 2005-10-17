@@ -22,11 +22,11 @@ import org.seasar.framework.beans.PropertyDesc;
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.InstanceDef;
 import org.seasar.framework.container.PropertyDef;
-import org.seasar.framework.container.annotation.Aspect;
-import org.seasar.framework.container.annotation.AutoBindingType;
-import org.seasar.framework.container.annotation.Binding;
-import org.seasar.framework.container.annotation.Component;
-import org.seasar.framework.container.annotation.InstanceType;
+import org.seasar.framework.container.annotation.tiger.Aspect;
+import org.seasar.framework.container.annotation.tiger.AutoBindingType;
+import org.seasar.framework.container.annotation.tiger.Binding;
+import org.seasar.framework.container.annotation.tiger.Component;
+import org.seasar.framework.container.annotation.tiger.InstanceType;
 import org.seasar.framework.container.assembler.AutoBindingDefFactory;
 import org.seasar.framework.container.deployer.InstanceDefFactory;
 
@@ -69,7 +69,7 @@ public class TigerAnnotationHandler extends ConstantAnnotationHandler {
         if (binding != null) {
             String bindingTypeName = binding.bindingType().getName();
             String expression = binding.value();
-            return createPropertyDef(propName, bindingTypeName, expression);
+            return createPropertyDef(propName, expression, bindingTypeName);
         }
         return super.createPropertyDef(beanDesc, propertyDesc);
     }
@@ -78,7 +78,7 @@ public class TigerAnnotationHandler extends ConstantAnnotationHandler {
         Class<?> clazz = componentDef.getComponentClass();
         Aspect aspect = clazz.getAnnotation(Aspect.class);
         if (aspect != null) {
-            String interceptor = aspect.interceptor();
+            String interceptor = aspect.value();
             String pointcut = aspect.pointcut();
             appendAspect(componentDef, interceptor, pointcut);
         }
@@ -86,7 +86,7 @@ public class TigerAnnotationHandler extends ConstantAnnotationHandler {
         for (Method method : methods) {
             Aspect mAspect = method.getAnnotation(Aspect.class);
             if (mAspect != null) {
-                String interceptor = mAspect.interceptor();
+                String interceptor = mAspect.value();
                 String pointcut = method.getName();
                 appendAspect(componentDef, interceptor, pointcut);
             }

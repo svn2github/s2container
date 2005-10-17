@@ -1,16 +1,16 @@
 package test.org.seasar.framework.container.factory;
 
-import org.seasar.framework.container.annotation.AutoBindingType;
-import org.seasar.framework.container.annotation.Binding;
-import org.seasar.framework.container.annotation.BindingType;
-import org.seasar.framework.container.annotation.Component;
-import org.seasar.framework.container.annotation.InstanceType;
+import org.seasar.framework.container.annotation.tiger.AutoBindingType;
+import org.seasar.framework.container.annotation.tiger.Binding;
+import org.seasar.framework.container.annotation.tiger.BindingType;
+import org.seasar.framework.container.annotation.tiger.Component;
+import org.seasar.framework.container.annotation.tiger.InstanceType;
 
 @Component(name="aaa", instance=InstanceType.PROTOTYPE,
         autoBinding=AutoBindingType.PROPERTY)
 public class Hoge2 {    
     
-    @Binding(value="aaa2")
+    @Binding("aaa2")
     public void setAaa(String aaa) {
     }
     

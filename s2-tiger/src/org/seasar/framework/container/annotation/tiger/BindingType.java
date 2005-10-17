@@ -13,22 +13,20 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.framework.container.annotation;
-
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+package org.seasar.framework.container.annotation.tiger;
 
 /**
  * @author higa
  *
  */
-@Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.TYPE, ElementType.METHOD})
-public @interface Aspect {
-
-    String interceptor();
+public enum BindingType {
     
-    String pointcut() default "";
+    MUST,
+    SHOULD,
+    MAY,
+    NONE;
+    
+    public String getName() {
+        return toString().toLowerCase();
+    }
 }
