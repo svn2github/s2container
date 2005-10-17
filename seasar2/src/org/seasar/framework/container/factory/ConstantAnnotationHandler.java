@@ -22,25 +22,25 @@ import org.seasar.framework.beans.PropertyDesc;
 import org.seasar.framework.beans.factory.BeanDescFactory;
 import org.seasar.framework.container.AspectDef;
 import org.seasar.framework.container.ComponentDef;
+import org.seasar.framework.container.InstanceDef;
 import org.seasar.framework.container.PropertyDef;
 import org.seasar.framework.container.assembler.AutoBindingDefFactory;
 import org.seasar.framework.container.deployer.InstanceDefFactory;
-import org.seasar.framework.container.impl.ComponentDefImpl;
 import org.seasar.framework.exception.EmptyRuntimeException;
 import org.seasar.framework.util.FieldUtil;
 import org.seasar.framework.util.StringUtil;
 
 public class ConstantAnnotationHandler extends AbstractAnnotationHandler {
 
-    public ComponentDef createComponentDef(Class componentClass) {
+    public ComponentDef createComponentDef(Class componentClass, InstanceDef instanceDef) {
         BeanDesc beanDesc = BeanDescFactory.getBeanDesc(componentClass);
         if (!beanDesc.hasField(COMPONENT)) {
-            return new ComponentDefImpl(componentClass);
+            return createComponentDefInternal(componentClass, instanceDef);
         }
         Field field = beanDesc.getField(COMPONENT);
         String componentStr = (String) FieldUtil.get(field, null);
         String[] array = StringUtil.split(componentStr, "=, ");
-        ComponentDef componentDef = new ComponentDefImpl(componentClass);
+        ComponentDef componentDef = createComponentDefInternal(componentClass, instanceDef);
         for (int i = 0; i < array.length; i += 2) {
             String key = array[i].trim();
             String value = array[i + 1].trim();
@@ -70,19 +70,23 @@ public class ConstantAnnotationHandler extends AbstractAnnotationHandler {
         String expression = null;
         if (bindingStr != null) {
             String[] array = StringUtil.split(bindingStr, "=, ");
-            for (int i = 0; i < array.length; i += 2) {
-                String key = array[i].trim();
-                String value = array[i + 1].trim();
-                if (BINDING_TYPE.equalsIgnoreCase(key)) {
-                    bindingTypeName = value;
-                } else if (VALUE.equalsIgnoreCase(key)) {
-                    expression = value;
-                } else {
-                    throw new IllegalArgumentException(bindingStr);
+            if (array.length == 1) {
+                expression = array[0];
+            } else {
+                for (int i = 0; i < array.length; i += 2) {
+                    String key = array[i].trim();
+                    String value = array[i + 1].trim();
+                    if (BINDING_TYPE.equalsIgnoreCase(key)) {
+                        bindingTypeName = value;
+                    } else if (VALUE.equalsIgnoreCase(key)) {
+                        expression = value;
+                    } else {
+                        throw new IllegalArgumentException(bindingStr);
+                    }
                 }
             }
         }
-        return createPropertyDef(propName, bindingTypeName, expression);
+        return createPropertyDef(propName, expression, bindingTypeName);
     }
 
     public void appendAspect(ComponentDef componentDef) {
@@ -95,15 +99,19 @@ public class ConstantAnnotationHandler extends AbstractAnnotationHandler {
         String[] array = StringUtil.split(aspectStr, "=, ");
         String interceptor = null;
         String pointcut = null;
-        for (int i = 0; i < array.length; i += 2) {
-            String key = array[i].trim();
-            String value = array[i + 1].trim();
-            if (INTERCEPTOR.equalsIgnoreCase(key)) {
-                interceptor = value;
-            } else if (POINTCUT.equalsIgnoreCase(key)) {
-                pointcut = value;
-            } else {
-                throw new IllegalArgumentException(aspectStr);
+        if (array.length == 1) {
+            interceptor = array[0];
+        } else {
+            for (int i = 0; i < array.length; i += 2) {
+                String key = array[i].trim();
+                String value = array[i + 1].trim();
+                if (VALUE.equalsIgnoreCase(key)) {
+                    interceptor = value;
+                } else if (POINTCUT.equalsIgnoreCase(key)) {
+                    pointcut = value;
+                } else {
+                    throw new IllegalArgumentException(aspectStr);
+                }
             }
         }
         appendAspect(componentDef, interceptor, pointcut);

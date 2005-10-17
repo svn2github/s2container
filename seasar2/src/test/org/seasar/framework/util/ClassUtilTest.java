@@ -14,18 +14,6 @@ public class ClassUtilTest extends TestCase {
 
 	public static final String HOGE = "hoge";
 
-	/**
-	 * Constructor for ClassUtilTest.
-	 * @param arg0
-	 */
-	public ClassUtilTest(String arg0) {
-		super(arg0);
-	}
-
-	public static void main(String[] args) {
-		junit.textui.TestRunner.run(ClassUtilTest.class);
-	}
-
 	public void testGetPrimitiveClass() {
 		assertEquals(
 			"1",
@@ -125,4 +113,9 @@ public class ClassUtilTest extends TestCase {
 	    assertEquals("3", "int[]", ClassUtil.getSimpleClassName(int[].class));
 	    assertEquals("4", "java.lang.String[][]", ClassUtil.getSimpleClassName(String[][].class));
 	}
+    
+    public void testConcatName() {
+        assertEquals("1", "aaa.bbb", ClassUtil.concatName("aaa", "bbb"));
+        assertEquals("2", "bbb", ClassUtil.concatName(null, "bbb"));
+    }
 }

@@ -17,6 +17,7 @@ package org.seasar.framework.container.autoregister;
 
 import java.io.File;
 
+import org.seasar.framework.util.ClassUtil;
 import org.seasar.framework.util.ResourceUtil;
 import org.seasar.framework.util.StringUtil;
 
@@ -26,7 +27,7 @@ import org.seasar.framework.util.StringUtil;
  */
 public class FileSystemComponentAutoRegister extends AbstractComponentAutoRegister {
 
-    private String fileNameOfRoot = "app.dicon";
+    private String fileNameOfRoot = "j2ee.dicon";
         
     public void setFileNameOfRoot(String fileNameOfRoot) {
         this.fileNameOfRoot = fileNameOfRoot;
@@ -51,7 +52,7 @@ public class FileSystemComponentAutoRegister extends AbstractComponentAutoRegist
             File file = files[i];
             String fileName = file.getName();
             if (file.isDirectory()) {
-                regist(classPattern, file, packageName == null ? fileName : packageName + "." + fileName);
+                regist(classPattern, file, ClassUtil.concatName(packageName, fileName));
                 continue;
             }
             if (!fileName.endsWith(CLASS_SUFFIX)) {

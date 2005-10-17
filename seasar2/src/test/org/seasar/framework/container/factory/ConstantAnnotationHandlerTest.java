@@ -20,14 +20,16 @@ public class ConstantAnnotationHandlerTest extends S2TestCase {
     private ConstantAnnotationHandler handler = new ConstantAnnotationHandler();
 
     public void testCreateComponentDef() throws Exception {
-        assertNotNull("1", handler.createComponentDef(Hoge.class));
-        ComponentDef cd = handler.createComponentDef(Hoge2.class);
+        assertNotNull("1", handler.createComponentDef(Hoge.class, null));
+        ComponentDef cd = handler.createComponentDef(Hoge2.class, null);
         assertEquals("2", "aaa", cd.getComponentName());
         assertEquals("3", InstanceDefFactory.PROTOTYPE, cd.getInstanceDef());
         assertEquals("4", AutoBindingDefFactory.PROPERTY, cd.getAutoBindingDef());
+        ComponentDef cd2 = handler.createComponentDef(Hoge.class, InstanceDefFactory.REQUEST);
+        assertEquals("5", InstanceDefFactory.REQUEST, cd2.getInstanceDef());
         try {
-            handler.createComponentDef(Hoge3.class);
-            fail("5");
+            handler.createComponentDef(Hoge3.class, null);
+            fail("6");
         } catch (IllegalArgumentException ex) {
             System.out.println(ex.getMessage());
         }
@@ -57,7 +59,14 @@ public class ConstantAnnotationHandlerTest extends S2TestCase {
     }
 
     public void testAppendAspect() throws Exception {
-        ComponentDef cd = handler.createComponentDefWithDI(Hoge.class);
+        ComponentDef cd = handler.createComponentDefWithDI(Hoge.class, null);
+        assertEquals("1", 1, cd.getAspectDefSize());
+        AspectDef aspectDef = cd.getAspectDef(0);
+        assertEquals("2", "aop.traceInterceptor", aspectDef.getExpression());
+    }
+    
+    public void testAppendAspect2() throws Exception {
+        ComponentDef cd = handler.createComponentDefWithDI(Hoge2.class, null);
         assertEquals("1", 1, cd.getAspectDefSize());
         AspectDef aspectDef = cd.getAspectDef(0);
         assertEquals("2", "aop.traceInterceptor", aspectDef.getExpression());
@@ -66,7 +75,7 @@ public class ConstantAnnotationHandlerTest extends S2TestCase {
     public static class Hoge {
         
         public static final String ASPECT =
-            "interceptor=aop.traceInterceptor, pointcut=getAaa\ngetBbb";
+            "value=aop.traceInterceptor, pointcut=getAaa\ngetBbb";
 
         public String getAaa() {
             return null;
@@ -74,9 +83,13 @@ public class ConstantAnnotationHandlerTest extends S2TestCase {
     }
 
     public static class Hoge2 {
+        
+        public static final String ASPECT =
+            "aop.traceInterceptor";
+        
         public static final String COMPONENT = "name = aaa, instance = prototype, autoBinding = property";
 
-        public static final String aaa_BINDING = "value=aaa2";
+        public static final String aaa_BINDING = "aaa2";
 
         public static final String bbb_BINDING = "bindingType=none";
         

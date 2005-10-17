@@ -16,8 +16,10 @@
 package org.seasar.framework.container.autoregister;
 
 import org.seasar.framework.container.ComponentDef;
+import org.seasar.framework.container.InstanceDef;
 import org.seasar.framework.container.factory.AnnotationHandler;
 import org.seasar.framework.container.factory.AnnotationHandlerFactory;
+import org.seasar.framework.util.ClassUtil;
 
 
 /**
@@ -28,7 +30,11 @@ public abstract class AbstractComponentAutoRegister extends AbstractAutoRegister
 
     protected static final String CLASS_SUFFIX = ".class";
     
-    private AutoNaming autoNaming;
+    private AutoNaming autoNaming = new DefaultAutoNaming();
+    
+    public static final String instanceDef_BINDING = "bindingType=may";
+    
+    private InstanceDef instanceDef;
     
     public AutoNaming getAutoNaming() {
         return autoNaming;
@@ -37,19 +43,24 @@ public abstract class AbstractComponentAutoRegister extends AbstractAutoRegister
     public void setAutoNaming(AutoNaming autoNaming) {
         this.autoNaming = autoNaming;
     }
+    
+    public InstanceDef getInstanceDef() {
+        return instanceDef;
+    }
+
+    public void setInstanceDef(InstanceDef instanceDef) {
+        this.instanceDef = instanceDef;
+    }
 
     protected void regist(final String packageName, final String shortClassName) {
         final AnnotationHandler annoHandler = AnnotationHandlerFactory
                 .getAnnotationHandler();
-        final String className = packageName == null ? shortClassName : packageName + "."
-                + shortClassName;
-        final ComponentDef cd = annoHandler.createComponentDef(className);
+        final String className = ClassUtil.concatName(packageName, shortClassName);
+        final ComponentDef cd = annoHandler.createComponentDef(className, instanceDef);
         if (cd.getComponentName() == null && autoNaming != null) {
             cd.setComponentName(autoNaming.defineName(packageName, shortClassName));
         }
-        if (!hasComponentDef(cd.getComponentName())) {
-            annoHandler.appendDI(cd);
-            getContainer().register(cd);
-        }
+        annoHandler.appendDI(cd);
+        getContainer().register(cd);
     }
 }

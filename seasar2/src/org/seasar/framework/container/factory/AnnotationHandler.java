@@ -18,17 +18,18 @@ package org.seasar.framework.container.factory;
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.PropertyDesc;
 import org.seasar.framework.container.ComponentDef;
+import org.seasar.framework.container.InstanceDef;
 import org.seasar.framework.container.PropertyDef;
 
 public interface AnnotationHandler {
 
-    public ComponentDef createComponentDef(String className);
+    public ComponentDef createComponentDef(String className, InstanceDef instanceDef);
 
-    public ComponentDef createComponentDef(Class componentClass);
+    public ComponentDef createComponentDef(Class componentClass, InstanceDef instanceDef);
         
-    public ComponentDef createComponentDefWithDI(String className);
+    public ComponentDef createComponentDefWithDI(String className, InstanceDef instanceDef);
 
-    public ComponentDef createComponentDefWithDI(Class componentClass);
+    public ComponentDef createComponentDefWithDI(Class componentClass, InstanceDef instanceDef);
     
     public void appendDI(ComponentDef componentDef);
     

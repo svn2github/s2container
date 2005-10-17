@@ -42,7 +42,7 @@ public class AspectDefFactory {
     }
     
     public static Pointcut createPointcut(String pointcutStr) {
-        if (pointcutStr != null) {
+        if (!StringUtil.isEmpty(pointcutStr)) {
             String[] methodNames = StringUtil.split(pointcutStr, ", \n");
             return new PointcutImpl(methodNames);
         }

@@ -182,4 +182,8 @@ public final class ClassUtil {
         }
         return clazz.getName();
     }
+    
+    public static String concatName(String s1, String s2) {
+        return s1 != null ? s1 + '.' + s2 : s2;
+    }
 }

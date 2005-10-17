@@ -46,7 +46,7 @@ public class ComponentTagHandler extends TagHandler {
 		String name = attributes.getValue("name");
 		ComponentDef componentDef = null;
         if (componentClass != null) {
-            componentDef = annoHandler.createComponentDefWithDI(componentClass);
+            componentDef = annoHandler.createComponentDefWithDI(componentClass, null);
             if (name != null) {
                 componentDef.setComponentName(name);
             }

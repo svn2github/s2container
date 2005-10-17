@@ -15,13 +15,27 @@
  */
 package org.seasar.framework.container.autoregister;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.seasar.framework.util.ClassUtil;
 import org.seasar.framework.util.StringUtil;
 
 public class DefaultAutoNaming implements AutoNaming {
 
     private static final String IMPL = "Impl";
+    
+    private Map customizedNames = new HashMap();
+    
+    public void setCustomizedName(String fqcn, String name) {
+        customizedNames.put(fqcn, name);
+    }
 
     public String defineName(String packageName, String shortClassName) {
+        String fqcn = ClassUtil.concatName(packageName, shortClassName);
+        if (customizedNames.containsKey(fqcn)) {
+            return (String) customizedNames.get(fqcn);
+        }
         if (shortClassName.endsWith(IMPL)) {
             shortClassName = shortClassName.substring(0, shortClassName
                     .length()

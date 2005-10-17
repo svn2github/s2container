@@ -20,8 +20,10 @@ import org.seasar.framework.beans.PropertyDesc;
 import org.seasar.framework.beans.factory.BeanDescFactory;
 import org.seasar.framework.container.BindingTypeDef;
 import org.seasar.framework.container.ComponentDef;
+import org.seasar.framework.container.InstanceDef;
 import org.seasar.framework.container.PropertyDef;
 import org.seasar.framework.container.assembler.BindingTypeDefFactory;
+import org.seasar.framework.container.impl.ComponentDefImpl;
 import org.seasar.framework.container.impl.PropertyDefImpl;
 import org.seasar.framework.util.ClassUtil;
 import org.seasar.framework.util.StringUtil;
@@ -48,16 +50,16 @@ public abstract class AbstractAnnotationHandler implements AnnotationHandler {
     
     protected static final String POINTCUT = "pointcut";
 
-    public ComponentDef createComponentDef(String className) {
-        return createComponentDef(ClassUtil.forName(className));
+    public ComponentDef createComponentDef(String className, InstanceDef instanceDef) {
+        return createComponentDef(ClassUtil.forName(className), instanceDef);
     }
 
-    public ComponentDef createComponentDefWithDI(String className) {
-        return createComponentDefWithDI(ClassUtil.forName(className));
+    public ComponentDef createComponentDefWithDI(String className, InstanceDef instanceDef) {
+        return createComponentDefWithDI(ClassUtil.forName(className), instanceDef);
     }
     
-    public ComponentDef createComponentDefWithDI(Class componentClass) {
-        ComponentDef componentDef = createComponentDef(componentClass);
+    public ComponentDef createComponentDefWithDI(Class componentClass, InstanceDef instanceDef) {
+        ComponentDef componentDef = createComponentDef(componentClass, instanceDef);
         appendDI(componentDef);
         return componentDef;
     }
@@ -77,8 +79,16 @@ public abstract class AbstractAnnotationHandler implements AnnotationHandler {
         }
         appendAspect(componentDef);
     }
+    
+    protected ComponentDef createComponentDefInternal(Class componentClass, InstanceDef instanceDef) {
+        ComponentDef componentDef = new ComponentDefImpl(componentClass);
+        if (instanceDef != null) {
+            componentDef.setInstanceDef(instanceDef);
+        }
+        return componentDef;
+    }
 
-    protected PropertyDef createPropertyDef(String propertyName, String bindingTypeName, String expression) {
+    protected PropertyDef createPropertyDef(String propertyName, String expression, String bindingTypeName) {
         PropertyDef propertyDef = new PropertyDefImpl(propertyName);
         if (!StringUtil.isEmpty(bindingTypeName)) {
             BindingTypeDef bindingTypeDef = BindingTypeDefFactory.getBindingTypeDef(bindingTypeName);
