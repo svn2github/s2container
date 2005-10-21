@@ -68,8 +68,9 @@
 		<ant:copy todir="${docdestdir}">
 			<ant:fileset dir="${docsrcdir}">
 				<ant:exclude name="**/.svn/**" />
-				<ant:exclude name="eclipse" />
-				<ant:exclude name="eclipse/**" />
+				<ant:exclude name="download" />
+				<ant:exclude name="download/**" />
+				<ant:exclude name=".project" />
 			</ant:fileset>
 		</ant:copy>
 		<ant:delete dir="${setupdir}build"/>

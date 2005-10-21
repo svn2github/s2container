@@ -111,6 +111,14 @@
 				<exclude name="target/**" />
 			</fileset>
 		</copy>
+		<copy todir="${docdestdir}">
+			<fileset dir="${docsrcdir}">
+				<exclude name="**/.svn/**" />
+				<exclude name="download" />
+				<exclude name="download/**" />
+				<exclude name=".project" />
+			</fileset>
+		</copy>
 		<delete dir="${setupdir}build"/>
 		<mkdir dir="${setupdir}build"/>
 		<zip zipfile="${releasejarfile}" basedir="../setup2" includes="seasar2/"/>
