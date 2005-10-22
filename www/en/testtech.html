@@ -177,7 +177,7 @@ Furthermore, these methods insert data after deleting in reverse order of Excel 
               </DD></DL><!--  Test using a Database  -->
             <H3><A name=s2unitexcel>Creating an Excel File</A></H3>
             <P>Verification Excel file is created as follows. Excel file is usually created in the same directory as the test class file.</P><IMG
-            alt="" src="../images/testtech01.gif">
+            alt="" src="../ja/images/testtech01.gif">
             <DL>
               <DT style="TEXT-INDENT: 1em">1. Sheet name
               <DD>Table name
@@ -495,13 +495,13 @@ public class Db2Excel {
 }
 </PRE>
             <P><B>Result</B></P>
-            <P>Check whether if the content of file ../src/test/examples/unit/getEmployeePrepare.xls is like those below:</P><IMG alt="" src="../images/testtech02.gif">
+            <P>Check whether if the content of file ../src/test/examples/unit/getEmployeePrepare.xls is like those below:</P><IMG alt="" src="../ja/images/testtech02.gif">
             <P></P><IMG alt=""
-            src="../images/testtech03.gif">
+            src="../ja/images/testtech03.gif">
             <P>Inquiry of employee number 9900 should return a result that is a result of a join of employee number 9900 row from an EMP table and department number 99 from DEPT table. Thus, enter EMPNO as 9900 and DEPTNO as 99 in Excel's emp sheet and DEPTNO as 99 in the dept sheet. Save the Excel document to a file.</P><IMG
-            alt="" src="../images/testtech04.gif">
+            alt="" src="../ja/images/testtech04.gif">
             <P></P><IMG alt=""
-            src="../images/testtech05.gif"><BR />
+            src="../ja/images/testtech05.gif"><BR />
             <B>2.Create an Excel sheet with verification data to compare test results</B>
             <P>Create data to verify the result. This data may be manually created but it can also be generated using steps similar to generate test data. Followings are files necessary to generate verification data:</P>
             <UL>
@@ -526,8 +526,8 @@ public class Db2Excel {
 </PRE>
             <P>Execute Db2Excel.java file created earlier.</P>
             <P><B>Results</B></P>
-            <P>Verify that content of ../src/test/examples/unit/getEmployeeResult.xls file are like those below:</P><IMG alt="" src="../images/testtech06.gif">
-            <P>This example assumes a query on EMP table on employee number 9900 will return a result that is a join of employee number 9900 in EMP table and department number 99 in DEPT table. Thus, enter 9900 as EMPNO in a Excel's emp sheet and 99 as DEPTNO.</P><IMG alt="" src="../images/testtech07.gif"><BR />
+            <P>Verify that content of ../src/test/examples/unit/getEmployeeResult.xls file are like those below:</P><IMG alt="" src="../ja/images/testtech06.gif">
+            <P>This example assumes a query on EMP table on employee number 9900 will return a result that is a join of employee number 9900 in EMP table and department number 99 in DEPT table. Thus, enter 9900 as EMPNO in a Excel's emp sheet and 99 as DEPTNO.</P><IMG alt="" src="../ja/images/testtech07.gif"><BR />
             <B>3.Creating Test Classes to Conduct a Test</B>
             <P>After creating Excel sheet containing data for EMP table and DEPT table and another Excel sheet containing test verification data, test class to actually call Dao and do data verification should be created.</P>
             <P><B>Creating a Test Class</B></P>

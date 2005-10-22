@@ -586,14 +586,16 @@ foo
 Exception in thread &quot;main&quot; org.seasar.framework.exception.SRuntimeException:
   [ESSR0007]argument should not be null or empty
         at examples.aop.throwsinterceptor.HandleThrowableInterceptor.handleThrowable(
-             HandleThrowableInterceptor.java:12)
+            HandleThrowableInterceptor.java:12)
         at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
         at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
-        at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+        at sun.reflect.DelegatingMethodAccessorImpl.invoke(
+            DelegatingMethodAccessorImpl.java:25)
         at java.lang.reflect.Method.invoke(Method.java:585)
-        at org.seasar.framework.aop.interceptors.ThrowsInterceptor.invoke(ThrowsInterceptor.java:54)
-        at examples.aop.throwsinterceptor.Checker$$EnhancedByS2AOP$$16672d6$$MethodInvocation$$check0.
-             proceed(MethodInvocationClassGenerator.java)
+        at org.seasar.framework.aop.interceptors.ThrowsInterceptor.invoke(
+            ThrowsInterceptor.java:54)
+        at examples.aop.throwsinterceptor.Checker$$EnhancedByS2AOP$$16672d6$$
+            MethodInvocation$$check0.proceed(MethodInvocationClassGenerator.java)
         at examples.aop.throwsinterceptor.Checker$$EnhancedByS2AOP$$16672d6.check(
              Checker$$EnhancedByS2AOP$$16672d6.java)
         at examples.aop.throwsinterceptor.AopCheckerClient.main(AopCheckerClient.java:13)
@@ -667,7 +669,8 @@ public class Substance implements IBase {
 &lt;components&gt;
     &lt;component class=&quot;sample.aop.delegateinterceptor.Dummy&quot;&gt;
         &lt;aspect&gt;
-            &lt;component class=&quot;org.seasar.framework.aop.interceptors.DelegateInterceptor&quot;&gt;
+            &lt;component
+              class=&quot;org.seasar.framework.aop.interceptors.DelegateInterceptor&quot;&gt;
                 &lt;initMethod name=&quot;setTarget&quot;&gt;
                     &lt;arg&gt;new sample.aop.delegateinterceptor.Substance()&lt;/arg&gt;
                 &lt;/initMethod&gt;
@@ -777,7 +780,8 @@ public class Substance implements IBase {
 &lt;components&gt;
     &lt;component class=&quot;sample.aop.delegateinterceptor.Dummy&quot;&gt;
         &lt;aspect&gt;
-            &lt;component class=&quot;org.seasar.framework.aop.interceptors.PrototypeDelegateInterceptor&quot;&gt;
+            &lt;component
+              class=&quot;org.seasar.framework.aop.interceptors.PrototypeDelegateInterceptor&quot;&gt;
                 &lt;property name=&quot;targetName&quot;&gt;&quot;target&quot;&lt;/property&gt;
             &lt;/component&gt;
         &lt;/aspect&gt;
@@ -807,7 +811,8 @@ import org.seasar.framework.container.S2Container;
 import org.seasar.framework.container.factory.S2ContainerFactory;
 
 public class AopDelegateClient {
-    private static String PATH = &quot;examples/aop/prototypedelegateinterceptor/PrototypeDelegate.dicon&quot;;
+    private static String PATH =
+        &quot;examples/aop/prototypedelegateinterceptor/PrototypeDelegate.dicon&quot;;
     public static void main( String[] args ){
         S2Container container = S2ContainerFactory.create(PATH);
         IBase base = (IBase) container.getComponent(Dummy.class);
@@ -1122,7 +1127,8 @@ public class HeavyProcess {
 &lt;!DOCTYPE components PUBLIC &quot;-//SEASAR//DTD S2Container//EN&quot;
 &quot;http://www.seasar.org/dtd/components.dtd&quot;&gt;
 &lt;components&gt;
-    &lt;component name=&quot;measurement&quot; class=&quot;examples.aop.originalinterceptor.MeasurementInterceptor&quot;/&gt;
+    &lt;component name=&quot;measurement&quot;
+      class=&quot;examples.aop.originalinterceptor.MeasurementInterceptor&quot;/&gt;
     &lt;component class=&quot;examples.aop.originalinterceptor.HeavyProcess&quot;&gt;
         &lt;aspect pointcut=&quot;heavy&quot;&gt;
                measurement
