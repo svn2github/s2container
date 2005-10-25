@@ -13,21 +13,18 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.framework.container.annotation;
+package org.seasar.framework.container.annotation.backport175;
 
 /**
  * @author higa
  *
  */
-public interface Binding {
+public interface Aspect {
 
-    /**
-     * @org.codehaus.backport175.DefaultValue ("")
-     */
     String value();
     
     /**
-     * @org.codehaus.backport175.DefaultValue ("should")
+     * @org.codehaus.backport175.DefaultValue ("")
      */
-    String bindingType();
+    String pointcut();
 }

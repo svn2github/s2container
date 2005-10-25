@@ -24,9 +24,9 @@ import org.seasar.framework.beans.PropertyDesc;
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.InstanceDef;
 import org.seasar.framework.container.PropertyDef;
-import org.seasar.framework.container.annotation.Aspect;
-import org.seasar.framework.container.annotation.Binding;
-import org.seasar.framework.container.annotation.Component;
+import org.seasar.framework.container.annotation.backport175.Aspect;
+import org.seasar.framework.container.annotation.backport175.Binding;
+import org.seasar.framework.container.annotation.backport175.Component;
 import org.seasar.framework.container.assembler.AutoBindingDefFactory;
 import org.seasar.framework.container.deployer.InstanceDefFactory;
 
@@ -73,7 +73,7 @@ public class Backport175AnnotationHandler extends ConstantAnnotationHandler {
         if (binding != null) {
             String bindingTypeName = binding.bindingType();
             String expression = binding.value();
-            return createPropertyDef(propName, bindingTypeName, expression);
+            return createPropertyDef(propName, expression, bindingTypeName);
         }
         return super.createPropertyDef(beanDesc, propertyDesc);
     }
@@ -83,7 +83,7 @@ public class Backport175AnnotationHandler extends ConstantAnnotationHandler {
         Aspect aspect = (Aspect) Annotations.getAnnotation(Aspect.class,
                 componentClass);
         if (aspect != null) {
-            String interceptor = aspect.interceptor();
+            String interceptor = aspect.value();
             String pointcut = aspect.pointcut();
             appendAspect(componentDef, interceptor, pointcut);
         }
@@ -92,7 +92,7 @@ public class Backport175AnnotationHandler extends ConstantAnnotationHandler {
             Aspect mAspect = (Aspect) Annotations.getAnnotation(Aspect.class,
                     methods[i]);
             if (mAspect != null) {
-                String interceptor = mAspect.interceptor();
+                String interceptor = mAspect.value();
                 String pointcut = methods[i].getName();
                 appendAspect(componentDef, interceptor, pointcut);
             }

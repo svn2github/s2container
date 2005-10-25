@@ -1,6 +1,6 @@
 <project name="s2-backport175" default="setup" basedir=".">
 
-	<property name="ver" value="RC1" />
+	<property name="ver" value="RC2" />
 	<property name="src" value="src" />
 	<property name="build" value="build" />
 	<property name="lib" value="lib" />
