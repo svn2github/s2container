@@ -79,7 +79,7 @@ import org.seasar.framework.util.StringUtil;
  * @author higa
  * @see junit.framework.TestCase
  */
-public class S2TestCase extends TestCase {
+public abstract class S2TestCase extends TestCase {
 
 	private static final String DATASOURCE_NAME = "j2ee"
 			+ ContainerConstants.NS_SEP + "dataSource";
