@@ -5,6 +5,7 @@ import junit.framework.TestCase;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.seasar.framework.aop.impl.PointcutImpl;
+import org.seasar.framework.util.ClassUtil;
 
 /**
  * @author higa
@@ -53,10 +54,19 @@ public class PointcutImplTest extends TestCase {
 
 	public void testRegex() throws Exception {
 		PointcutImpl pointcut = new PointcutImpl(new String[] { "greeting.*" });
-		assertEquals("1", true, pointcut.isApplied("greeting"));
-		assertEquals("2", true, pointcut.isApplied("greeting2"));
-		assertEquals("3", false, pointcut.isApplied("testRegex"));
+		assertTrue("1", pointcut.isApplied(ClassUtil.getMethod(Hello2Impl2.class, "greeting", null)));
+		assertTrue("2", pointcut.isApplied(ClassUtil.getMethod(Hello2Impl2.class, "greeting2", null)));
+        assertTrue("3", pointcut.isApplied(ClassUtil.getMethod(Hello2Impl2.class, "greeting2", new Class[] {String.class})));
+		assertFalse("4", pointcut.isApplied(ClassUtil.getMethod(Hello2Impl2.class, "without", null)));
 	}
+
+    public void testMethod() throws Exception {
+        PointcutImpl pointcut = new PointcutImpl(ClassUtil.getMethod(Hello2Impl2.class, "greeting2", null));
+        assertFalse("1", pointcut.isApplied(ClassUtil.getMethod(Hello2Impl2.class, "greeting", null)));
+        assertTrue("2", pointcut.isApplied(ClassUtil.getMethod(Hello2Impl2.class, "greeting2", null)));
+        assertFalse("3", pointcut.isApplied(ClassUtil.getMethod(Hello2Impl2.class, "greeting2", new Class[] {String.class})));
+        assertFalse("4", pointcut.isApplied(ClassUtil.getMethod(Hello2Impl2.class, "without", null)));
+    }
 
 	/*
 	 * @see TestCase#setUp()
@@ -109,5 +119,13 @@ public class PointcutImplTest extends TestCase {
 		public String greeting2() {
 			return "Hello2";
 		}
+        
+        public String greeting2(String s) {
+            return s;
+        }
+        
+        public String without() {
+            return "Without";
+        }
 	}
 }

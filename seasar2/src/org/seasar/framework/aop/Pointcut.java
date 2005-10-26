@@ -15,11 +15,13 @@
  */
 package org.seasar.framework.aop;
 
+import java.lang.reflect.Method;
+
 /**
  * @author higa
  *
  */
 public interface Pointcut {
 	
-	public boolean isApplied(String methodName);
+	public boolean isApplied(Method method);
 }

@@ -33,6 +33,7 @@ public final class PointcutImpl implements Pointcut, Serializable {
 	static final long serialVersionUID = 0L;
 	private String[] methodNames_;
 	private Pattern[] patterns_;
+    private Method method_;
 
 	public PointcutImpl(Class targetClass)
 		throws EmptyRuntimeException {
@@ -52,8 +53,17 @@ public final class PointcutImpl implements Pointcut, Serializable {
 		setMethodNames(methodNames);
 	}
 
-	public boolean isApplied(String methodName) {
-		for (int i = 0; i < patterns_.length; ++i) {
+    public PointcutImpl(Method method) {
+        method_ = method;
+    }
+
+    public boolean isApplied(Method method) {
+        if (method_ != null) {
+            return method_.equals(method);
+        }
+
+        String methodName = method.getName();
+        for (int i = 0; i < patterns_.length; ++i) {
 			if (patterns_[i].matcher(methodName).matches()) {
 				return true;
 			}
