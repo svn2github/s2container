@@ -16,6 +16,7 @@
 package org.seasar.framework.container.factory;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.PropertyDesc;
@@ -119,6 +120,16 @@ public class ConstantAnnotationHandler extends AbstractAnnotationHandler {
     
     protected void appendAspect(ComponentDef componentDef,
             String interceptor, String pointcut) {
+        
+        if (interceptor == null) {
+            throw new EmptyRuntimeException("interceptor");
+        }
+        AspectDef aspectDef = AspectDefFactory.createAspectDef(interceptor, pointcut);
+        componentDef.addAspectDef(aspectDef);
+    }
+    
+    protected void appendAspect(ComponentDef componentDef,
+            String interceptor, Method pointcut) {
         
         if (interceptor == null) {
             throw new EmptyRuntimeException("interceptor");
