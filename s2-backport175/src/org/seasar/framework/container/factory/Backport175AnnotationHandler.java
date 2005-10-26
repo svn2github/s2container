@@ -93,8 +93,7 @@ public class Backport175AnnotationHandler extends ConstantAnnotationHandler {
                     methods[i]);
             if (mAspect != null) {
                 String interceptor = mAspect.value();
-                String pointcut = methods[i].getName();
-                appendAspect(componentDef, interceptor, pointcut);
+                appendAspect(componentDef, interceptor, methods[i]);
             }
         }
         super.appendAspect(componentDef);
