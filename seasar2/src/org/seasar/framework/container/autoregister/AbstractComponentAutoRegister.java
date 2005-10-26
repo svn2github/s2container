@@ -20,13 +20,14 @@ import org.seasar.framework.container.InstanceDef;
 import org.seasar.framework.container.factory.AnnotationHandler;
 import org.seasar.framework.container.factory.AnnotationHandlerFactory;
 import org.seasar.framework.util.ClassUtil;
+import org.seasar.framework.util.ClassTraversal.ClassHandler;
 
 
 /**
  * @author higa
  *
  */
-public abstract class AbstractComponentAutoRegister extends AbstractAutoRegister {
+public abstract class AbstractComponentAutoRegister extends AbstractAutoRegister implements ClassHandler {
 
     protected static final String CLASS_SUFFIX = ".class";
     
@@ -50,6 +51,19 @@ public abstract class AbstractComponentAutoRegister extends AbstractAutoRegister
 
     public void setInstanceDef(InstanceDef instanceDef) {
         this.instanceDef = instanceDef;
+    }
+
+    public void processClass(final String packageName, final String shortClassName) {
+        if (isIgnore(packageName, shortClassName)) {
+            return;
+        }
+    
+        for (int i = 0; i < getClassPatternSize(); ++i) {
+            final ClassPattern cp = getClassPattern(i);
+            if (cp.isAppliedPackageName(packageName) && cp.isAppliedShortClassName(shortClassName)) {
+                regist(packageName, shortClassName);
+            }
+        }
     }
 
     protected void regist(final String packageName, final String shortClassName) {

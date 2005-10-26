@@ -27,21 +27,21 @@ import org.seasar.framework.util.ResourceUtil;
  */
 public class JarComponentAutoRegister extends AbstractJarComponentAutoRegister {
     
-    private Class classInJar = MethodInterceptor.class;
+    private Class referenceClass = MethodInterceptor.class;
 
     public JarComponentAutoRegister() {
     }
     
-    public Class getClassInJar() {
-        return classInJar;
+    public Class getReferenceClass() {
+        return referenceClass;
     }
     
-    public void setClassInJar(Class classInJar) {
-        this.classInJar = classInJar;
+    public void setReferenceClass(Class referenceClass) {
+        this.referenceClass = referenceClass;
     }
 
     protected void setupBaseDir() {
-        String path = ResourceUtil.getResourcePath(classInJar);
+        String path = ResourceUtil.getResourcePath(referenceClass);
         URL url = ResourceUtil.getResource(path);
         String s = ResourceUtil.toExternalForm(url);
         int pos = s.lastIndexOf('!');

@@ -16,36 +16,24 @@
 package org.seasar.framework.util;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.jar.JarFile;
-import java.util.zip.ZipEntry;
-
-import org.seasar.framework.exception.IORuntimeException;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 /**
- * @author higa
- *
+ * 
+ * @author koichik
  */
-public class JarFileUtil {
+public class FileUtil {
 
-	private JarFileUtil() {
-	}
-
-    public static JarFile create(final File file) {
-        try {
-            return new JarFile(file);
-        }
-        catch (final IOException e) {
-            throw new IORuntimeException(e);
-        }
+    private FileUtil() {
     }
 
-    public static InputStream getInputStream(JarFile file, ZipEntry entry) {
-		try {
-			return file.getInputStream(entry);
-		} catch (IOException e) {
-			throw new IORuntimeException(e);
-		}
-	}
+    public static File create(final URL url) {
+        try {
+            return new File(url.toURI());
+        }
+        catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
