@@ -15,16 +15,27 @@
  */
 package org.seasar.framework.container.autoregister;
 
-
 import org.seasar.framework.util.ClassUtil;
 
-public class DefaultAutoNaming extends AbstractAutoNaming {
+/**
+ * 
+ * @author koichik
+ */
+public class QualifiedAutoNaming extends AbstractAutoNaming {
 
-    public String modifyName(String packageName, String shortClassName) {
-        String fqcn = ClassUtil.concatName(packageName, shortClassName);
-        if (customizedNames.containsKey(fqcn)) {
-            return (String) customizedNames.get(fqcn);
+    public QualifiedAutoNaming() {
+        addIgnoreClassSuffix(IMPL);
+    }
+
+    public String modifyName(final String packageName, final String shortClassName) {
+        return replace(ClassUtil.concatName(packageName, shortClassName));
+    }
+
+    public void addIgnorePackagePrefix(final String packagePrefix) {
+        String regex = "^" + packagePrefix.replace(".", "\\.");
+        if (!regex.endsWith(".")) {
+            regex += "\\.";
         }
-        return replace(shortClassName);
+        addReplaceRule(regex, "");
     }
 }

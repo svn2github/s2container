@@ -15,5 +15,6 @@ public class DefaultAutoNamingTest extends TestCase {
         assertEquals("1", "foo", naming.defineName(null, "Foo"));
         assertEquals("2", "foo4", naming.defineName(null, "Foo4Impl"));
         assertEquals("3", "aaaFoo", naming.defineName("aaa", "Foo"));
+        assertEquals("3", "foo", naming.defineName("bbb", "FooBean"));
     }
 }

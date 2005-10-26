@@ -124,6 +124,15 @@ public final class StringUtil {
 		return new String(chars);
 	}
 
+    public static String capitalize(String name) {
+        if (isEmpty(name)) {
+            return name;
+        }
+        char chars[] = name.toCharArray();
+        chars[0] = Character.toUpperCase(chars[0]);
+        return new String(chars);
+    }
+
 	public static boolean startsWith(String text, String fragment) {
 		if (text == null || fragment == null) {
 			return false;
