@@ -87,8 +87,7 @@ public class TigerAnnotationHandler extends ConstantAnnotationHandler {
             Aspect mAspect = method.getAnnotation(Aspect.class);
             if (mAspect != null) {
                 String interceptor = mAspect.value();
-                String pointcut = method.getName();
-                appendAspect(componentDef, interceptor, pointcut);
+                appendAspect(componentDef, interceptor, method);
             }
         }
         super.appendAspect(componentDef);

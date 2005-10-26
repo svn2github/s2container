@@ -74,6 +74,8 @@ public class TigerAnnotationHandlerTest extends S2TestCase {
         assertEquals("1", 1, cd.getAspectDefSize());
         AspectDef aspectDef = cd.getAspectDef(0);
         assertEquals("2", "aop.traceInterceptor", aspectDef.getExpression());
+        assertTrue("3", aspectDef.getPointcut().isApplied(Hoge4.class.getMethod("getAaa")));
+        assertFalse("4", aspectDef.getPointcut().isApplied(Hoge4.class.getMethod("getAaa", new Class[] {String.class})));
     }
 
     public void testAppendAspectForConstantAnnotation() throws Exception {
