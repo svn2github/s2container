@@ -22,6 +22,8 @@ package org.seasar.framework.exception;
  */
 public final class IllegalAccessRuntimeException extends SRuntimeException {
 
+    private static final long serialVersionUID = -3649900343028907465L;
+
 	private Class targetClass_;
 
 	public IllegalAccessRuntimeException(

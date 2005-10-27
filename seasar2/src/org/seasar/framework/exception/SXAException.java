@@ -25,6 +25,8 @@ import org.seasar.framework.message.MessageFormatter;
  */
 public class SXAException extends XAException {
 
+    private static final long serialVersionUID = 9069430381428399030L;
+
 	private String messageCode_;
 	private Object[] messageArgs_;
 	

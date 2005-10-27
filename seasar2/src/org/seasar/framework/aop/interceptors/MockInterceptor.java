@@ -26,6 +26,8 @@ import org.aopalliance.intercept.MethodInvocation;
  */
 public class MockInterceptor extends AbstractInterceptor {
 
+    private static final long serialVersionUID = 6438214603532050462L;
+
 	private Map returnValueMap_ = new HashMap();
 
 	private Map throwableMap_ = new HashMap();

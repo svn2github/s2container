@@ -461,6 +461,8 @@ public class ArrayMap
 
 	private static class Entry implements Map.Entry, Externalizable {
 
+        private static final long serialVersionUID = -6625980241350717177L;
+
 		transient int hashCode_;
 		transient Object key_;
 		transient Object value_;

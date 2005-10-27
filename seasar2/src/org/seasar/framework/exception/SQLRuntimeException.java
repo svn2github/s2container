@@ -23,6 +23,8 @@ import java.sql.SQLException;
  */
 public final class SQLRuntimeException extends SRuntimeException {
 
+    private static final long serialVersionUID = 2533513110369526191L;
+
 	public SQLRuntimeException(SQLException cause) {
 		super("ESSR0071", new Object[] { cause }, cause);
 	}

@@ -19,7 +19,6 @@ import org.seasar.extension.unit.S2TestCase;
  */
 public class AbstractTxInterceptorTest extends S2TestCase {
     private static final String PATH = "AbstractTxInterceptorTest.dicon";
-    private TxBean txBean_;
     private ExceptionBean exBean_;
     private TransactionManager tm_;
     private TestInterceptor testTx_;

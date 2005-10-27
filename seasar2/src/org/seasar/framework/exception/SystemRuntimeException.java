@@ -24,6 +24,8 @@ import javax.transaction.SystemException;
  */
 public final class SystemRuntimeException extends SRuntimeException {
 
+    private static final long serialVersionUID = 7215695745074415461L;
+
 	public SystemRuntimeException(SystemException cause) {
 		super("ESSR0061", new Object[]{cause}, cause);
 	}

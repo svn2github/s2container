@@ -122,6 +122,8 @@ public class ThrowsInterceptorTest extends TestCase {
 	
 	public class MyThrowsInterceptor extends ThrowsInterceptor {
 		
+        private static final long serialVersionUID = 850322067660303954L;
+
 		public String handleThrowable(Exception ex, MethodInvocation invocation) {
 			return ex.getClass().getName();
 		}
@@ -129,6 +131,8 @@ public class ThrowsInterceptorTest extends TestCase {
 	
 	public class MyThrowsInterceptor2 extends ThrowsInterceptor {
 		
+        private static final long serialVersionUID = -2523692002595965341L;
+
 		public String handleThrowable(Exception ex, MethodInvocation invocation)
 			throws Throwable {
 
@@ -139,6 +143,8 @@ public class ThrowsInterceptorTest extends TestCase {
 	
 	public class MyThrowsInterceptor3 extends ThrowsInterceptor {
 		
+        private static final long serialVersionUID = -5725852748409700279L;
+
 		public String handleThrowable(Exception ex, MethodInvocation invocation)
 			throws Throwable {
 
@@ -147,5 +153,6 @@ public class ThrowsInterceptorTest extends TestCase {
 	}
 	
 	public class MyThrowsInterceptor4 extends ThrowsInterceptor {
+        private static final long serialVersionUID = 2583097886643107941L;
 	}
 }

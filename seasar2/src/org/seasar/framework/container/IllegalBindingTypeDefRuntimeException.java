@@ -23,6 +23,8 @@ import org.seasar.framework.exception.SRuntimeException;
  */
 public class IllegalBindingTypeDefRuntimeException extends SRuntimeException {
 
+    private static final long serialVersionUID = 9557906947127294L;
+
 	private String bindingTypeName;
 	
 	/**

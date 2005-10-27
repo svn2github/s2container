@@ -25,6 +25,8 @@ import org.seasar.framework.message.MessageFormatter;
  */
 public class SSystemException extends SystemException {
 
+    private static final long serialVersionUID = -404340896339687907L;
+
 	private String messageCode_;
 	private Object[] args_;
 	

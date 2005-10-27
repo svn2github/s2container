@@ -23,6 +23,8 @@ import org.seasar.framework.exception.SRuntimeException;
  */
 public final class EmptyRuntimeException extends SRuntimeException {
 
+    private static final long serialVersionUID = 4625805280526951642L;
+
 	private String targetName_;
 	/**
 	 * @param targetName

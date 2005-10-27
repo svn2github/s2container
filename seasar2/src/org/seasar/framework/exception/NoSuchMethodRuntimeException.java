@@ -23,6 +23,8 @@ import org.seasar.framework.util.MethodUtil;
  */
 public class NoSuchMethodRuntimeException extends SRuntimeException {
 
+    private static final long serialVersionUID = -5673845060079098617L;
+
 	private Class targetClass_;
 	private String methodName_;
 	private Class[] argTypes_;

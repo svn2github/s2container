@@ -24,6 +24,8 @@ import org.seasar.framework.exception.SRuntimeException;
 public class IllegalMethodRuntimeException
 	extends SRuntimeException {
 
+    private static final long serialVersionUID = -9114586009590848186L;
+
 	private Class componentClass_;
 	private String methodName_;
 

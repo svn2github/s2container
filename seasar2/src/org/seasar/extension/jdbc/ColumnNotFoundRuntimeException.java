@@ -23,6 +23,8 @@ import org.seasar.framework.exception.SRuntimeException;
  */
 public final class ColumnNotFoundRuntimeException extends SRuntimeException {
 
+    private static final long serialVersionUID = -5447029001596658262L;
+
 	private String tableName_;
 	private String columnName_;
 	

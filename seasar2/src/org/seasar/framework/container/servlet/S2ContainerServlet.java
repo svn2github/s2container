@@ -29,6 +29,7 @@ import org.seasar.framework.util.StringUtil;
 
 public class S2ContainerServlet extends HttpServlet {
 
+    private static final long serialVersionUID = 407266935204779128L;
 	public static final String CONFIG_PATH_KEY = "configPath";
 	public static final String DEBUG_KEY = "debug";
 	public static final String COMMAND = "command";

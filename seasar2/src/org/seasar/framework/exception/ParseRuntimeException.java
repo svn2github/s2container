@@ -24,6 +24,8 @@ import java.text.ParseException;
  */
 public final class ParseRuntimeException extends SRuntimeException {
 
+    private static final long serialVersionUID = -5237329676597387063L;
+
 	public ParseRuntimeException(ParseException cause) {
 		super("ESSR0050", new Object[]{cause}, cause);
 	}

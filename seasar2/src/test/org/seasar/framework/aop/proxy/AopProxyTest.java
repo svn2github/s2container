@@ -189,6 +189,8 @@ public class AopProxyTest extends TestCase {
 	
 	public static class HelloImpl implements Hello {
 		
+        private static final long serialVersionUID = -6888891433122734807L;
+
 		private String str_;
 		
 		public HelloImpl(String str) {
@@ -202,6 +204,8 @@ public class AopProxyTest extends TestCase {
 	
 	public static class Hello2Impl implements Hello {
 		
+        private static final long serialVersionUID = -7275896388662514561L;
+
 		public String greeting() {
 			return "Hello2";
 		}
@@ -209,6 +213,8 @@ public class AopProxyTest extends TestCase {
 	
 	public static class HelloImpl3 implements Hello {
 		
+        private static final long serialVersionUID = 5992242320294594184L;
+
 		public final String greeting() {
 			return "hoge";
 		}

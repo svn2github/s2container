@@ -23,6 +23,8 @@ import org.seasar.framework.exception.SRuntimeException;
  */
 public class IllegalInstanceDefRuntimeException extends SRuntimeException {
 
+    private static final long serialVersionUID = -3505265879782048528L;
+
 	private String instanceName;
 	
 	/**

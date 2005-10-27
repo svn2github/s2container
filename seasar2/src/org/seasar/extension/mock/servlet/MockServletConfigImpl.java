@@ -26,6 +26,8 @@ import org.seasar.framework.util.EnumerationAdapter;
 
 public class MockServletConfigImpl implements MockServletConfig, Serializable {
 
+    private static final long serialVersionUID = 5515573574823840162L;
+
 	private String servletName_;
 
 	private ServletContext servletContext_;

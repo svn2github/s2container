@@ -22,6 +22,8 @@ package org.seasar.framework.exception;
  */
 public class ClassNotFoundRuntimeException extends SRuntimeException {
 
+    private static final long serialVersionUID = -9022468864937761059L;
+
 	/**
 	 * @param messageCode
 	 */

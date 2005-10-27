@@ -32,6 +32,8 @@ import org.seasar.framework.util.MethodUtil;
  */
 public class DelegateInterceptor extends AbstractInterceptor {
 
+    private static final long serialVersionUID = 3613140488663554089L;
+
 	private Object target_;
 	private BeanDesc beanDesc_;
 	private Map methodNameMap_ = new HashMap();

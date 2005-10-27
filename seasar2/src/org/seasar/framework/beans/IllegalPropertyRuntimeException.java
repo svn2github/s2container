@@ -24,6 +24,8 @@ import org.seasar.framework.exception.SRuntimeException;
 public class IllegalPropertyRuntimeException
 	extends SRuntimeException {
 
+    private static final long serialVersionUID = 3584516316082904020L;
+
 	private Class componentClass_;
 	private String propertyName_;
 

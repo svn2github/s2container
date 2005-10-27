@@ -23,6 +23,8 @@ public class SaxHandlerTest extends TestCase {
 
 	public void testStart() throws Exception {
 		rule_.addTagHandler("/tag1", new TagHandler() {
+            private static final long serialVersionUID = -4675761325253965494L;
+
 			public void start(TagHandlerContext ctx, Attributes attributes) {
 				ctx.push(attributes.getValue("attr1"));
 			}
@@ -38,6 +40,8 @@ public class SaxHandlerTest extends TestCase {
 	public void testAppendBody() throws Exception {
 		final StringBuffer buf = new StringBuffer();
 		rule_.addTagHandler("/tag1", new TagHandler() {
+            private static final long serialVersionUID = -4847079118886382658L;
+
 			public void appendBody(TagHandlerContext ctx, String body) {
 				buf.append("[" + body + "]");
 			}
@@ -52,6 +56,8 @@ public class SaxHandlerTest extends TestCase {
 	public void testAppendBody2() throws Exception {
 		final StringBuffer buf = new StringBuffer();
 		rule_.addTagHandler("tag1", new TagHandler() {
+            private static final long serialVersionUID = -8151502830088127159L;
+
 			public void appendBody(TagHandlerContext ctx, String body) {
 				buf.append("[" + body + "]");
 			}
@@ -66,6 +72,8 @@ public class SaxHandlerTest extends TestCase {
 	public void testAppendBody3() throws Exception {
 		final StringBuffer buf = new StringBuffer();
 		rule_.addTagHandler("/tag1/tag3/tag4", new TagHandler() {
+            private static final long serialVersionUID = 7554102451258851145L;
+
 			public void appendBody(TagHandlerContext ctx, String body) {
 				buf.append("[" + body + "]");
 			}
@@ -79,6 +87,8 @@ public class SaxHandlerTest extends TestCase {
 
 	public void testEnd() throws Exception {
 		rule_.addTagHandler("/tag1/tag2", new TagHandler() {
+            private static final long serialVersionUID = -549136729563029588L;
+
 			public void end(TagHandlerContext ctx, String body) {
 				ctx.push(body);
 			}
@@ -91,6 +101,8 @@ public class SaxHandlerTest extends TestCase {
 
 	public void testException() throws Exception {
 		rule_.addTagHandler("/tag1/tag3", new TagHandler() {
+            private static final long serialVersionUID = -7435868325103101164L;
+
 			public void start(TagHandlerContext ctx, Attributes attributes) {
 				throw new RuntimeException("testException");
 			}
@@ -107,6 +119,8 @@ public class SaxHandlerTest extends TestCase {
 
 	public void testTagMatching() throws Exception {
 		TagHandler eh = new TagHandler() {
+            private static final long serialVersionUID = 313427123032197039L;
+
 			public void start(TagHandlerContext ctx, Attributes attributes) {
 				System.out.println(ctx.getDetailPath());
 			}

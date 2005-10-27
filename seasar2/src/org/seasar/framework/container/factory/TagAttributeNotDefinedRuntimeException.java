@@ -23,6 +23,8 @@ import org.seasar.framework.exception.SRuntimeException;
  */
 public final class TagAttributeNotDefinedRuntimeException extends SRuntimeException {
 
+    private static final long serialVersionUID = -1635401319074240988L;
+
 	private String tagName_;
 	private String attributeName_;
 	

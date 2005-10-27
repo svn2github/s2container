@@ -25,6 +25,8 @@ import org.seasar.framework.message.MessageFormatter;
  */
 public class SRollbackException extends RollbackException {
 
+    private static final long serialVersionUID = 2987454536669276359L;
+
 	private String messageCode_;
 	private Object[] args_;
 	

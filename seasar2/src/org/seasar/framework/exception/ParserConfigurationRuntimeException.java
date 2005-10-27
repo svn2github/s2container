@@ -25,6 +25,8 @@ import javax.xml.parsers.ParserConfigurationException;
 public final class ParserConfigurationRuntimeException
 	extends SRuntimeException {
 
+    private static final long serialVersionUID = -4610465906028959083L;
+
 	public ParserConfigurationRuntimeException(ParserConfigurationException cause) {
 		super("ESSR0053", new Object[] { cause }, cause);
 	}

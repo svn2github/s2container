@@ -23,6 +23,8 @@ import org.seasar.framework.exception.SRuntimeException;
  */
 public class IllegalAutoBindingDefRuntimeException extends SRuntimeException {
 
+    private static final long serialVersionUID = 3640106715772309404L;
+
 	private String autoBindingName;
 	
 	/**

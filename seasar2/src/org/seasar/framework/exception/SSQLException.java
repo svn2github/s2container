@@ -25,6 +25,8 @@ import org.seasar.framework.message.MessageFormatter;
  */
 public class SSQLException extends SQLException {
 
+    private static final long serialVersionUID = 4098267431221202677L;
+
 	private String messageCode_;
 	private Object[] args_;
 	

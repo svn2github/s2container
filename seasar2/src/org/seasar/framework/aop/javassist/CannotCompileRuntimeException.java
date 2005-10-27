@@ -23,6 +23,8 @@ import org.seasar.framework.exception.SRuntimeException;
  * @author koichik
  */
 public class CannotCompileRuntimeException extends SRuntimeException {
+    private static final long serialVersionUID = 1329201462786753994L;
+
     /**
      * @param cause
      */

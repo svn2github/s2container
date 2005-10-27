@@ -23,6 +23,8 @@ import org.seasar.framework.exception.SRuntimeException;
  */
 public class IllegalAutoBindingPropertyRuntimeException extends SRuntimeException {
 
+    private static final long serialVersionUID = -8464366695114050369L;
+
 	private Class componentClass;
     
     private String propertyName;

@@ -24,6 +24,8 @@ import org.seasar.framework.exception.SRuntimeException;
  * @author koichik
  */
 public class CircularIncludeRuntimeException extends SRuntimeException {
+    private static final long serialVersionUID = -8674493688526055877L;
+
     protected String path_;
     protected Set paths_;
 

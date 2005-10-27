@@ -21,6 +21,8 @@ import org.seasar.framework.message.MessageFormatter;
  * @author koichik
  */
 public class SIllegalArgumentException extends IllegalArgumentException {
+    private static final long serialVersionUID = -3701473506893554853L;
+
     private String messageCode_;
     private Object[] args_;
 

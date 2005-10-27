@@ -26,6 +26,8 @@ import org.seasar.framework.util.EnumerationAdapter;
 
 public class MockHttpSessionImpl implements MockHttpSession, Serializable {
 
+    private static final long serialVersionUID = 2182279632419560836L;
+
 	private final long creationTime_ = System.currentTimeMillis();
 
 	private long lastAccessedTime_ = creationTime_;

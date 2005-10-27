@@ -6,6 +6,8 @@ import org.seasar.framework.exception.SRuntimeException;
 
 public class HandleThrowableInterceptor extends ThrowsInterceptor {
 	
+    private static final long serialVersionUID = 7210875523467761009L;
+
 	public void handleThrowable(NullPointerException t,
 			MethodInvocation invocation) throws Throwable {
 

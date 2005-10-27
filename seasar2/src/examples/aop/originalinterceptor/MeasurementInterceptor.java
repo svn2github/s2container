@@ -4,6 +4,8 @@ import org.aopalliance.intercept.MethodInvocation;
 import org.seasar.framework.aop.interceptors.AbstractInterceptor;
 
 public class MeasurementInterceptor extends AbstractInterceptor {
+    private static final long serialVersionUID = -7570371617884305963L;
+
 	public Object invoke(MethodInvocation invocation) throws Throwable {
 		long start = 0;
 		long end = 0;

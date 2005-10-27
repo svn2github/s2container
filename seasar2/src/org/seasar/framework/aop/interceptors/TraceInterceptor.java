@@ -24,6 +24,8 @@ import org.seasar.framework.log.Logger;
  */
 public class TraceInterceptor extends AbstractInterceptor {
 
+    private static final long serialVersionUID = -8142348754572405060L;
+
 	private static Logger logger_ = Logger.getLogger(TraceInterceptor.class);
 	
 	public Object invoke(MethodInvocation invocation) throws Throwable {

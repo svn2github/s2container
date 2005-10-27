@@ -31,6 +31,8 @@ import org.xml.sax.Attributes;
  */
 public class PropertyTagHandler extends TagHandler {
 
+    private static final long serialVersionUID = -8153752681379626269L;
+
 	/**
 	 * @see org.seasar.framework.xml.sax.handler.TagHandler#start(org.seasar.framework.xml.sax.handler.TagHandlerContext, org.xml.sax.Attributes)
 	 */

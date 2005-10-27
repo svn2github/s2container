@@ -25,6 +25,8 @@ import org.seasar.framework.message.MessageFormatter;
  */
 public class SNotSupportedException extends NotSupportedException {
 
+    private static final long serialVersionUID = 2417177201914177474L;
+
 	private String messageCode_;
 	private Object[] args_;
 	

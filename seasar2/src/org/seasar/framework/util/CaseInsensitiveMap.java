@@ -20,6 +20,8 @@ import java.util.Map;
 
 public final class CaseInsensitiveMap extends ArrayMap {
 
+    private static final long serialVersionUID = -8729643434998175410L;
+
 	public CaseInsensitiveMap() {
 		super();
 	}

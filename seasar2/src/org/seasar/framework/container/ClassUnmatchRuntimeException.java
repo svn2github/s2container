@@ -23,6 +23,8 @@ import org.seasar.framework.exception.SRuntimeException;
  */
 public class ClassUnmatchRuntimeException extends SRuntimeException {
 
+    private static final long serialVersionUID = 1967770604202235241L;
+
 	private Class componentClass_;
 	private Class realComponentClass_;
 	

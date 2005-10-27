@@ -24,6 +24,8 @@ import org.seasar.framework.util.MethodUtil;
  */
 public class NoSuchConstructorRuntimeException extends SRuntimeException {
 
+    private static final long serialVersionUID = 8688818589925114466L;
+
 	private Class targetClass_;
 	private Class[] argTypes_;
 

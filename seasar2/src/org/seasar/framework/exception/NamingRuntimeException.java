@@ -23,6 +23,8 @@ import javax.naming.NamingException;
  */
 public final class NamingRuntimeException extends SRuntimeException {
 
+    private static final long serialVersionUID = -3176447530746274091L;
+
 	public NamingRuntimeException(NamingException cause) {
 		super("ESSR0066", new Object[] { cause }, cause);
 	}

@@ -23,6 +23,8 @@ import org.aopalliance.intercept.MethodInvocation;
  */
 public class SyncInterceptor extends AbstractInterceptor {
 
+    private static final long serialVersionUID = -6155192342720910279L;
+
 	/**
 	 * @see org.aopalliance.intercept.MethodInterceptor#invoke(org.aopalliance.intercept.MethodInvocation)
 	 */

@@ -21,6 +21,8 @@ package org.seasar.framework.exception;
  */
 public class NoSuchFieldRuntimeException extends SRuntimeException {
 
+    private static final long serialVersionUID = 6609175673610180338L;
+
 	private Class targetClass_;
 	private String fieldName_;
 

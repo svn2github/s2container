@@ -27,6 +27,8 @@ import org.seasar.framework.util.ArrayUtil;
  */
 public class InterceptorChain extends AbstractInterceptor {
     
+    private static final long serialVersionUID = 1983914340945607081L;
+
 	private MethodInterceptor[] interceptors = new MethodInterceptor[0];
 
     public void add(MethodInterceptor interceptor) {

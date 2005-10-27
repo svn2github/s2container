@@ -24,6 +24,8 @@ import org.seasar.framework.exception.SRuntimeException;
 public class PropertyNotFoundRuntimeException
 	extends SRuntimeException {
 
+    private static final long serialVersionUID = -5177019197796206774L;
+
 	private Class targetClass_;
 	private String propertyName_;
 

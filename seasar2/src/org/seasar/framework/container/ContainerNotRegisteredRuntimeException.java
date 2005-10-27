@@ -23,6 +23,8 @@ import org.seasar.framework.exception.SRuntimeException;
  */
 public class ContainerNotRegisteredRuntimeException extends SRuntimeException {
 
+    private static final long serialVersionUID = 6752085937214047111L;
+
 	private String path_;
 	
 	public ContainerNotRegisteredRuntimeException(String path) {

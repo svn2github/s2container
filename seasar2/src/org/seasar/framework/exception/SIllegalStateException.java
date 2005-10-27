@@ -23,6 +23,8 @@ import org.seasar.framework.message.MessageFormatter;
  */
 public class SIllegalStateException extends IllegalStateException {
 
+    private static final long serialVersionUID = 7321239007471022687L;
+
 	private String messageCode_;
 	private Object[] args_;
 

@@ -23,6 +23,8 @@ import org.seasar.framework.message.MessageFormatter;
  */
 public class SRuntimeException extends RuntimeException {
 
+    private static final long serialVersionUID = -4452607868694297329L;
+
 	private String messageCode_;
 	private Object[] args_;
 	private String message_;

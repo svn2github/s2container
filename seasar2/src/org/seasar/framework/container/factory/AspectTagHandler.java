@@ -31,6 +31,8 @@ import org.xml.sax.Attributes;
  */
 public class AspectTagHandler extends TagHandler {
 
+    private static final long serialVersionUID = 5619707344253136193L;
+
 	/**
 	 * @see org.seasar.framework.xml.sax.handler.TagHandler#start(org.seasar.framework.xml.sax.handler.TagHandlerContext, org.xml.sax.Attributes)
 	 */

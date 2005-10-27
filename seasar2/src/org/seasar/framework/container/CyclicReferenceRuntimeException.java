@@ -23,6 +23,8 @@ import org.seasar.framework.exception.SRuntimeException;
  */
 public class CyclicReferenceRuntimeException extends SRuntimeException {
 
+    private static final long serialVersionUID = -5993824919440261214L;
+
 	private Class componentClass_;
 	
 	/**

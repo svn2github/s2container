@@ -134,12 +134,16 @@ public class AspectWeaverTest extends TestCase {
     }
 
     public static class ReturnBigDecimalInterceptor extends AbstractInterceptor {
+        private static final long serialVersionUID = -3444509695408031219L;
+
         public Object invoke(MethodInvocation arg0) throws Throwable {
             return new BigDecimal("100");
         }
     }
 
     public static class ReturnNullInterceptor extends AbstractInterceptor {
+        private static final long serialVersionUID = 4724885819473955866L;
+
         public Object invoke(MethodInvocation arg0) throws Throwable {
             return null;
         }

@@ -31,6 +31,8 @@ import org.seasar.framework.util.MethodUtil;
  * @author koichik
  */
 public class PrototypeDelegateInterceptor extends AbstractInterceptor {
+    private static final long serialVersionUID = -6138917007687873314L;
+
     private S2Container container;
     private String targetName;
     private BeanDesc beanDesc;

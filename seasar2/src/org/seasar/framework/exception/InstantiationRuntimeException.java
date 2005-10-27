@@ -22,6 +22,8 @@ package org.seasar.framework.exception;
  */
 public class InstantiationRuntimeException extends SRuntimeException {
 
+    private static final long serialVersionUID = 5220902071756706607L;
+
 	private Class targetClass_;
 
 	public InstantiationRuntimeException(

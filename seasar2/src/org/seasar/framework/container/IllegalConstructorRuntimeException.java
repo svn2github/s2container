@@ -24,6 +24,8 @@ import org.seasar.framework.exception.SRuntimeException;
 public class IllegalConstructorRuntimeException
 	extends SRuntimeException {
 
+    private static final long serialVersionUID = 1454032979718620824L;
+
 	private Class componentClass_;
 
 	public IllegalConstructorRuntimeException(

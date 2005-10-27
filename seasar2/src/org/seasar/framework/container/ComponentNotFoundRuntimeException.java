@@ -23,6 +23,8 @@ import org.seasar.framework.exception.SRuntimeException;
  */
 public class ComponentNotFoundRuntimeException extends SRuntimeException {
 
+    private static final long serialVersionUID = 7584682915737273760L;
+
 	private Object componentKey_;
 	
 	/**

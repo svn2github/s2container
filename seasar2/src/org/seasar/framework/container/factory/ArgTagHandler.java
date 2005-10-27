@@ -29,6 +29,8 @@ import org.xml.sax.Attributes;
  */
 public class ArgTagHandler extends TagHandler {
 
+    private static final long serialVersionUID = -6210356712008358336L;
+
 	/**
 	 * @see org.seasar.framework.xml.sax.handler.TagHandler#start(org.seasar.framework.xml.sax.handler.TagHandlerContext, org.xml.sax.Attributes)
 	 */

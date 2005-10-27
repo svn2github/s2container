@@ -25,6 +25,8 @@ import org.seasar.framework.message.MessageFormatter;
  */
 public class SIOException extends IOException {
 
+    private static final long serialVersionUID = -1337051265518112537L;
+
 	private String messageCode_;
 	private Object[] args_;
 

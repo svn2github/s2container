@@ -50,6 +50,8 @@ public class InterceptorChainTest extends S2TestCase {
 
 	public static class CountInterceptor extends AbstractInterceptor {
 		
+        private static final long serialVersionUID = 4339376526738638703L;
+
 		private int id_;
 		private Counter counter_;
 		

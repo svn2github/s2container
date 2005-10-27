@@ -41,6 +41,8 @@ import org.seasar.framework.util.StringUtil;
  */
 public class MockServletContextImpl implements MockServletContext, Serializable {
 
+    private static final long serialVersionUID = -5626752218858278823L;
+
 	public static final int MAJOR_VERSION = 2;
 
 	public static final int MINOR_VERSION = 4;

@@ -23,6 +23,8 @@ import org.seasar.framework.exception.SRuntimeException;
  */
 public class ConstructorNotFoundRuntimeException extends SRuntimeException {
 
+    private static final long serialVersionUID = 8584662068396978822L;
+
 	private Class targetClass_;
 	private Object[] methodArgs_;
 

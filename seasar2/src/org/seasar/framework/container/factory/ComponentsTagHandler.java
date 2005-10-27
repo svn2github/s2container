@@ -28,6 +28,8 @@ import org.xml.sax.Attributes;
  *
  */
 public class ComponentsTagHandler extends TagHandler {
+    private static final long serialVersionUID = 3182865184697069169L;
+
 	protected Class containerImplClass_ = S2ContainerImpl.class;
 	
 	public Class getContainerImplClass() {

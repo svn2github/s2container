@@ -27,6 +27,8 @@ import org.xml.sax.Attributes;
  */
 public class DestroyMethodTagHandler extends MethodTagHandler {
 
+    private static final long serialVersionUID = 3083124978566352071L;
+
 	/**
 	 * @see org.seasar.framework.xml.sax.handler.TagHandler#start(org.seasar.framework.xml.sax.handler.TagHandlerContext, org.xml.sax.Attributes)
 	 */

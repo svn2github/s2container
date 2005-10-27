@@ -24,6 +24,8 @@ import org.seasar.framework.exception.SRuntimeException;
 public class FieldNotFoundRuntimeException
 	extends SRuntimeException {
 
+    private static final long serialVersionUID = -2715036865146285893L;
+
 	private Class targetClass_;
 	private String fieldName_;
 
