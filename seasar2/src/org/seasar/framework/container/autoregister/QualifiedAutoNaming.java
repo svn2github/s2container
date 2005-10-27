@@ -23,19 +23,15 @@ import org.seasar.framework.util.ClassUtil;
  */
 public class QualifiedAutoNaming extends AbstractAutoNaming {
 
-    public QualifiedAutoNaming() {
-        addIgnoreClassSuffix(IMPL);
-    }
-
-    public String modifyName(final String packageName, final String shortClassName) {
-        return replace(ClassUtil.concatName(packageName, shortClassName));
-    }
-
     public void addIgnorePackagePrefix(final String packagePrefix) {
         String regex = "^" + packagePrefix.replace(".", "\\.");
         if (!regex.endsWith(".")) {
             regex += "\\.";
         }
         addReplaceRule(regex, "");
+    }
+
+    protected String makeDefineName(final String packageName, final String shortClassName) {
+        return applyRule(ClassUtil.concatName(packageName, shortClassName));
     }
 }

@@ -15,16 +15,9 @@
  */
 package org.seasar.framework.container.autoregister;
 
-
-import org.seasar.framework.util.ClassUtil;
-
 public class DefaultAutoNaming extends AbstractAutoNaming {
 
-    public String modifyName(String packageName, String shortClassName) {
-        String fqcn = ClassUtil.concatName(packageName, shortClassName);
-        if (customizedNames.containsKey(fqcn)) {
-            return (String) customizedNames.get(fqcn);
-        }
-        return replace(shortClassName);
+    protected String makeDefineName(final String packageName, final String shortClassName) {
+        return applyRule(shortClassName);
     }
 }

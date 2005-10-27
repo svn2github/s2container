@@ -44,6 +44,10 @@ public abstract class AbstractAutoNaming implements AutoNaming {
         addIgnoreClassSuffix(BEAN);
     }
 
+    public void setCustomizedName(final String fqcn, final String name) {
+        customizedNames.put(fqcn, name);
+    }
+
     public void addIgnoreClassSuffix(final String classSuffix) {
         addReplaceRule(classSuffix + "$", "");
     }
@@ -62,16 +66,23 @@ public abstract class AbstractAutoNaming implements AutoNaming {
     }
 
     public String defineName(final String packageName, final String shortClassName) {
-        String fqcn = ClassUtil.concatName(packageName, shortClassName);
-        if (customizedNames.containsKey(fqcn)) {
-            return (String) customizedNames.get(fqcn);
+        final String customizedName = getCustomizedName(packageName, shortClassName);
+        if (customizedName != null) {
+            return customizedName;
         }
-        return modifyName(packageName, shortClassName);
+        return makeDefineName(packageName, shortClassName);
     }
 
-    protected abstract String modifyName(String packageName, String shortClassName);
+    protected String getCustomizedName(final String packageName,
+            final String shortClassName) {
+        final String fqn = ClassUtil.concatName(packageName, shortClassName);
+        return (String) customizedNames.get(fqn);
+    }
 
-    protected String replace(String name) {
+    protected abstract String makeDefineName(final String packageName,
+            final String shortClassName);
+
+    protected String applyRule(String name) {
         for (Iterator it = replaceRules.entrySet().iterator(); it.hasNext();) {
             final Entry entry = (Entry) it.next();
             final Pattern pattern = (Pattern) entry.getKey();
@@ -86,17 +97,12 @@ public abstract class AbstractAutoNaming implements AutoNaming {
         return name;
     }
 
-    protected String normalize(final String packageName) {
-        final String[] names = packageName.split("\\.");
-        final StringBuffer buf = new StringBuffer(packageName.length());
+    protected String normalize(final String name) {
+        final String[] names = name.split("\\.");
+        final StringBuffer buf = new StringBuffer(name.length());
         for (int i = 0; i < names.length; ++i) {
             buf.append(StringUtil.capitalize(names[i]));
         }
         return new String(buf);
     }
-
-    public void setCustomizedName(String fqcn, String name) {
-        customizedNames.put(fqcn, name);
-    }
-
 }
