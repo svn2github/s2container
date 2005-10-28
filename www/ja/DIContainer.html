@@ -1088,7 +1088,7 @@ END java.util.Date#getTime() : 0
 <td>自動登録したいクラスパターンを登録します。最初の引数は､コンポーネントのパッケージ名です。子供のパッケージも再帰的に検索します。2番目の引数は､クラス名です。正規表現が使えます。「,」区切りで複数記述することもできます。</td>
 </tr>
 <tr>
-<td><code>addIgnoreClassPatten</code></td>
+<td><code>addIgnoreClassPattern</code></td>
 <td>自動登録したくないクラスパターンを登録します。最初の引数は､コンポーネントのパッケージ名です。子供のパッケージも再帰的に検索します。2番目の引数は､クラス名です。正規表現が使えます。「,」区切りで複数記述することもできます。</td>
 </tr>
 </table>
@@ -1227,7 +1227,7 @@ END java.util.Date#getTime() : 0
 <td>自動登録したいクラスパターンを登録します。最初の引数は､コンポーネントのパッケージ名です。子供のパッケージも再帰的に検索します。2番目の引数は､クラス名です。正規表現が使えます。「,」区切りで複数記述することもできます。</td>
 </tr>
 <tr>
-<td><code>addIgnoreClassPatten</code></td>
+<td><code>addIgnoreClassPattern</code></td>
 <td>自動登録したくないクラスパターンを登録します。最初の引数は､コンポーネントのパッケージ名です。子供のパッケージも再帰的に検索します。2番目の引数は､クラス名です。正規表現が使えます。「,」区切りで複数記述することもできます。</td>
 </tr>
 </table>
@@ -1373,7 +1373,7 @@ Tiger風アノテーション(JSR-175)を使うことのできる
 <a href="http://backport175.codehaus.org/">backport175</a>アノテーション、public static finalな定数を利用する定数アノテーションを用意しています。 </p>
 
 <h3><a name="ComponentAnnotation">Componentアノテーション</a></h3>
-<p><a href="#componentTag">componentタグ</a>のかわりに使えるが、Componentアノテーションです。</p>
+<p><a href="#componentTag">componentタグ</a>のかわりに使えるのが、Componentアノテーションです。</p>
 <p>Tigerアノテーションは以下のようになります。</p>
 <pre>
 @Component(name="xxx", instance=InstanceType.PROTOTYPE,
@@ -1401,7 +1401,7 @@ public static final String COMPONENT =
 </pre>
 
 <h3><a name="BindingAnnotation">Bindingアノテーション</a></h3>
-<p><a href="#propertyTag">propertyタグ</a>のかわりに使えるが、Bindingアノテーションです。</p>
+<p><a href="#propertyTag">propertyタグ</a>のかわりに使えるのが、Bindingアノテーションです。</p>
 <p>Tigerアノテーションは以下のようになります。</p>
 <pre>
 @Binding("aaa2")
@@ -1465,7 +1465,7 @@ public void setCcc(String ccc) {
 </pre>
 
 <h3><a name="AspectAnnotation">Aspectアノテーション</a></h3>
-<p><a href="aop.html#aspectTag">aspectタグ</a>のかわりに使えるが、Aspectアノテーションです。aspectタグと異なり､複数定義することはできないので､
+<p><a href="aop.html#aspectTag">aspectタグ</a>のかわりに使えるのが、Aspectアノテーションです。aspectタグと異なり､複数定義することはできないので､
 複数のインターセプタを適用したい場合は､<a href="aop.html#InterceptorChain">InterceptorChain</a>を使ってください。ポイントカットを指定したいときは､pointcut属性を指定します。クラスに対するアノテーションの場合､pointcutを指定しないときは､そのクラスが実装しているすべてのインターフェースのメソッドが対象になります。</p>
 <p>Tigerアノテーションは以下のようになります。</p>
 <pre>
