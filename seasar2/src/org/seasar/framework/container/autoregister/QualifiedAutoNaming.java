@@ -16,6 +16,7 @@
 package org.seasar.framework.container.autoregister;
 
 import org.seasar.framework.util.ClassUtil;
+import org.seasar.framework.util.StringUtil;
 
 /**
  * 
@@ -24,7 +25,7 @@ import org.seasar.framework.util.ClassUtil;
 public class QualifiedAutoNaming extends AbstractAutoNaming {
 
     public void addIgnorePackagePrefix(final String packagePrefix) {
-        String regex = "^" + packagePrefix.replace(".", "\\.");
+        String regex = "^" + StringUtil.replace(packagePrefix, ".", "\\.");
         if (!regex.endsWith(".")) {
             regex += "\\.";
         }

@@ -24,7 +24,6 @@ import java.util.Map;
 import java.util.jar.JarFile;
 
 import org.seasar.framework.util.ClassTraversal;
-import org.seasar.framework.util.FileUtil;
 import org.seasar.framework.util.JarFileUtil;
 import org.seasar.framework.util.ResourceUtil;
 import org.seasar.framework.util.ClassTraversal.ClassHandler;
@@ -74,7 +73,7 @@ public class ComponentAutoRegister extends AbstractComponentAutoRegister impleme
 
         protected File getRootDir(final Class referenceClass, final URL url) {
             final String[] names = referenceClass.getName().split("\\.");
-            File path = FileUtil.create(url);
+            File path = ResourceUtil.getFile(url);
             for (int i = 0; i < names.length; ++i) {
                 path = path.getParentFile();
             }
