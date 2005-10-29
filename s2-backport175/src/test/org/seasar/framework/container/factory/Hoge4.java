@@ -10,4 +10,8 @@ public class Hoge4 {
     public String getAaa() {
         return null;
     }
+
+    public String getAaa(String aaa) {
+        return aaa;
+    }
 }
