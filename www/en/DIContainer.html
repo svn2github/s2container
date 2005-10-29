@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <!-- don't edit start -->
 <head><title>Seasar - DI Container with AOP - </title><meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
@@ -1023,12 +1023,11 @@ END java.util.Date#getTime() : 0
 <a href="#AnnotationReference">アノテーション</a>を使って細かく制御することも可能です。
 さらに、コンポーネントの登録も自動化してしまおうというのが、コンポーネントの自動登録機能です。
 コンポーネントの自動登録には､ファイルシステム上のclassファイルを検索するFileSystemComponentAutoRegisterコンポーネントやjarファイルの中を検索するJarComponentAutoRegisterを利用します。</p>
-
 <h5><a name="FileSystemComponentAutoRegister">org.seasar.framework.container.autoregister.FileSystemComponentAutoRegister</a></h5>
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
-<th width="96">プロパティ</th>
-<th width="167">説明</th>
+<th>プロパティ</th>
+<th>説明</th>
 </tr>
 <tr>
 <td><code>fileNameOfRoot</code></td>
@@ -1036,7 +1035,9 @@ END java.util.Date#getTime() : 0
 </tr>
 <tr>
 <td><code>instanceDef</code></td>
-<td>自動登録されるコンポーネントに適用するInstanceDefを指定します。XMLで指定する場合､@org.seasar.framework.container.deployer.InstanceDefFactory@REQUESTのように指定します。</td>
+<td>自動登録されるコンポーネントに適用するInstanceDefを指定します。XMLで指定する場合､<br>
+<code>@org.seasar.framework.container.deployer.InstanceDefFactory@REQUEST</code><br>
+のように指定します。</td>
 </tr>
 <tr>
 <td><code>autoNaming</code></td>
@@ -1046,8 +1047,8 @@ END java.util.Date#getTime() : 0
 <br />
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
-<th width="96">メソッド</th>
-<th width="167">説明</th>
+<th>メソッド</th>
+<th>説明</th>
 </tr>
 <tr>
 <td><code>addClassPattern</code></td>
@@ -1058,12 +1059,11 @@ END java.util.Date#getTime() : 0
 <td>自動登録したくないクラスパターンを登録します。最初の引数は､コンポーネントのパッケージ名です。子供のパッケージも再帰的に検索します。2番目の引数は､クラス名です。正規表現が使えます。「,」区切りで複数記述することもできます。</td>
 </tr>
 </table>
-
 <h5><a name="JarComponentAutoRegister">org.seasar.framework.container.autoregister.JarComponentAutoRegister</a></h5>
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
-<th width="96">プロパティ</th>
-<th width="167">説明</th>
+<th>プロパティ</th>
+<th>説明</th>
 </tr>
 <tr>
 <td><code>jarFileNames</code></td>
@@ -1085,8 +1085,8 @@ END java.util.Date#getTime() : 0
 <br />
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
-<th width="96">メソッド</th>
-<th width="167">説明</th>
+<th>メソッド</th>
+<th>説明</th>
 </tr>
 <tr>
 <td><code>addClassPattern</code></td>
@@ -1097,24 +1097,186 @@ END java.util.Date#getTime() : 0
 <td>自動登録したくないクラスパターンを登録します。最初の引数は､コンポーネントのパッケージ名です。子供のパッケージも再帰的に検索します。2番目の引数は､クラス名です。正規表現が使えます。「,」区切りで複数記述することもできます。</td>
 </tr>
 </table>
-<br />
+<h5><a name="JarComponentAutoRegister">org.seasar.framework.container.autoregister.JarComponentAutoRegister</a></h5>
+<table border="1">
 
+<tr bgcolor="#d1f3f4" align="center">
+<th>プロパティ</th>
+<th>説明</th>
+</tr>
+<tr>
+<td><code>jarFileNames</code></td>
+<td>対象のjarファイル名を指定します。正規表現も使えます。ただし､拡張子は含まれません。複数指定する場合は､「,」で区切ります。例えば､myapp.*, yourapp.*のようになります。</td>
+</tr>
+<tr>
+<td><code>referenceClass</code></td>
+<td>このプロパティで指定されたクラスが存在するjarファイルの親ディレクトリをベースのディレクトリ(例えば、WEB-INF/lib)とみなします。デフォルトは、org.aopalliance.intercept.MethodInterceptor.classになります。</td>
+</tr>
+<tr>
+<td><code>instanceDef</code></td>
+<td>自動登録されるコンポーネントに適用するInstanceDefを指定します。XMLで指定する場合､<br>
+<code>@org.seasar.framework.container.deployer.InstanceDefFactory@REQUEST</code><br>
+のように指定します。</td>
+</tr>
+<tr>
+<td><code>autoNaming</code></td>
+<td>クラス名からコンポーネント名を自動的に決定するコンポーネント。org.seasar.framework.container.autoregister.AutoNamingインターフェースを実装している必要があります。デフォルトは､org.seasar.framework.container.autoregister.DefaultAutoNamingクラスのインスタンスになります。</td>
+</tr>
+
+</table>
+<br />
+<table border="1">
+
+<tr bgcolor="#d1f3f4" align="center">
+<th>メソッド</th>
+<th>説明</th>
+</tr>
+<tr>
+<td><code>addClassPattern</code></td>
+<td>自動登録したいクラスパターンを登録します。最初の引数は､コンポーネントのパッケージ名です。子供のパッケージも再帰的に検索します。2番目の引数は､クラス名です。正規表現が使えます。「,」区切りで複数記述することもできます。</td>
+</tr>
+<tr>
+<td><code>addIgnoreClassPattern</code></td>
+<td>自動登録したくないクラスパターンを登録します。最初の引数は､コンポーネントのパッケージ名です。子供のパッケージも再帰的に検索します。2番目の引数は､クラス名です。正規表現が使えます。「,」区切りで複数記述することもできます。</td>
+</tr>
+
+</table>
+<h5><a name="aComponentAutoRegister">org.seasar.framework.container.autoregister.ComponentAutoRegister</a></h5>
+<table border="1">
+
+<tr bgcolor="#d1f3f4" align="center">
+<th>プロパティ</th>
+<th>説明</th>
+</tr>
+<tr>
+<td><code>instanceDef</code></td>
+<td>自動登録されるコンポーネントに適用するInstanceDefを指定します。XMLで指定する場合､@org.seasar.framework.container.deployer.InstanceDefFactory@REQUESTのように指定します。</td>
+</tr>
+<tr>
+<td><code>autoNaming</code></td>
+<td>クラス名からコンポーネント名を自動的に決定するコンポーネント。org.seasar.framework.container.autoregister.AutoNamingインターフェースを実装している必要があります。デフォルトは､org.seasar.framework.container.autoregister.DefaultAutoNamingクラスのインスタンスになります。</td>
+</tr>
+
+</table>
+<br />
+<table border="1">
+
+<tr bgcolor="#d1f3f4" align="center">
+<th>メソッド</th>
+<th>説明</th>
+</tr>
+<tr>
+<td><code>addReferenceClass</code></td>
+<td>このプロパティで指定されたクラスが存在するディレクトリまたはJarファイルを基点としてクラスを検索します。</td>
+</tr>
+<tr>
+<td><code>addClassPattern</code></td>
+<td>自動登録したいクラスパターンを登録します。最初の引数は､コンポーネントのパッケージ名です。子供のパッケージも再帰的に検索します。2番目の引数は､クラス名です。正規表現が使えます。「,」区切りで複数記述することもできます。</td>
+</tr>
+<tr>
+<td><code>addIgnoreClassPatten</code></td>
+<td>自動登録したくないクラスパターンを登録します。最初の引数は､コンポーネントのパッケージ名です。子供のパッケージも再帰的に検索します。2番目の引数は､クラス名です。正規表現が使えます。「,」区切りで複数記述することもできます。</td>
+</tr>
+
+</table>
+<br />
+<p>コンポーネントの名前はAutoNamingにより制御します．クラス名をコンポーネント名とするDefaultAutoNamingと、パッケージで修飾された名前をコンポーネント名とするAualifiedAutoNamingがあります．</p>
 <h5>org.seasar.framework.container.autoregister.DefaultAutoNaming</h5>
-<p>クラスの完全修飾名からパッケージ部分を除き、最後がImplで終わっていたら削除し､
+<p>クラスの完全修飾名からパッケージ部分を除き、最後がImplまたはBeanで終わっていたら削除し､
 先頭を小文字にした名前をコンポーネントの名前に設定します。
 例えば､aaa.HogeImplクラスの場合､コンポーネント名は､hogeになります。</p>
 <table border="1">
+
+
 <tr bgcolor="#d1f3f4" align="center">
-<th width="96">メソッド</th>
-<th width="167">説明</th>
+<th>プロパティ</th>
+<th>説明</th>
+</tr>
+<tr>
+<td><code>decapitalize</code></td>
+<td>コンポーネント名の先頭を小文字にする場合はtrueを指定します。デフォルトはtrueです。</td>
+</tr>
+
+
+</table>
+<br>
+<table border="1">
+
+<tr bgcolor="#d1f3f4" align="center">
+<th>メソッド</th>
+<th>説明</th>
 </tr>
 <tr>
 <td><code>setCustomizedName</code></td>
 <td>デフォルトのルールに従わないクラスを登録します。最初の引数は､クラスの完全修飾名です。
 2番目の引数は､コンポーネント名です。</td>
 </tr>
-</table>
+<tr>
+<td><code>addIgnoreClassSuffix</code></td>
+<td>クラス名の末尾から削除する部分を指定します。デフォルトでImplおよびBeanが登録されています。</td>
+</tr>
+<tr>
+<td><code>addReplaceRule</code></td>
+<td>正規表現による置換ルールを追加します。最初の引数は正規表現です。2番目の引数は置換文字列です。</td>
+</tr>
+<tr>
+<td><code>clearReplaceRule</code></td>
+<td>setCustomizedName、addIgnoreClassSuffix、addReplaceRuleで登録した変換規則をクリアします。デフォルトで登録されているImplおよびBeanもクリアされます。</td>
+</tr>
 
+</table>
+<h5>org.seasar.framework.container.autoregister.QualifiedAutoNaming</h5>
+<p>パッケージ名またはその一部で修飾されたクラス名をコンポーネントの名前に設定します。
+クラスの完全修飾名から最後がImplまたはBeanで終わっていたら削除し､
+先頭を小文字、ピリオドの直後を大文字にした名前をコンポーネントの名前に設定します。<br>
+パッケージの先頭部分から不要な部分を削除することができます。<br>
+例えば､aaa.bbb.ccc.ddd.HogeImplクラスの場合で､先頭のaaa.bbbを削除するように指定した場合のコンポーネント名は､cccDddHogeになります。</p>
+<table border="1">
+
+
+
+<tr bgcolor="#d1f3f4" align="center">
+<th>プロパティ</th>
+<th>説明</th>
+</tr>
+<tr>
+<td><code>decapitalize</code></td>
+<td>コンポーネント名の先頭を小文字にする場合はtrueを指定します。デフォルトはtrueです。</td>
+</tr>
+
+
+
+</table>
+<br>
+<table border="1">
+
+<tr bgcolor="#d1f3f4" align="center">
+<th>メソッド</th>
+<th>説明</th>
+</tr>
+<tr>
+<td><code>setCustomizedName</code></td>
+<td>デフォルトのルールに従わないクラスを登録します。最初の引数は､クラスの完全修飾名です。
+2番目の引数は､コンポーネント名です。</td>
+</tr>
+<tr>
+<td><code>addIgnorePackagePrefix</code></td>
+<td>パッケージ名の先頭から削除する部分を指定します。</td>
+</tr>
+<tr>
+<td><code>addIgnoreClassSuffix</code></td>
+<td>クラス名の末尾から削除する部分を指定します。デフォルトでImplおよびBeanが登録されています。</td>
+</tr>
+<tr>
+<td><code>addReplaceRule</code></td>
+<td>正規表現による置換ルールを追加します。最初の引数は正規表現です。2番目の引数は置換文字列です。</td>
+</tr>
+<tr>
+<td><code>clearReplaceRule</code></td>
+<td>setCustomizedName、addIgnorePackagePrefix、addIgnoreClassSuffix、addReplaceRuleで登録した変換規則をクリアします。デフォルトで登録されているImplおよびBeanもクリアされます。</td>
+</tr>
+
+</table>
 <br />
 <h5>例</h5>
 <pre>&lt;component<br>  class=&quot;org.seasar.framework.container.autoregister.FileSystemComponentAutoRegister&quot;&gt;<br>    &lt;property name=&quot;autoNaming&quot;&gt;<br>	    &lt;component class=&quot;org.seasar.framework.container.autoregister.DefaultAutoNaming&quot;&gt;
@@ -1124,6 +1286,9 @@ END java.util.Date#getTime() : 0
 <pre>&lt;component class=&quot;org.seasar.framework.container.autoregister.JarComponentAutoRegister&quot;&gt;<br>    &lt;property name=&quot;classInJar&quot;&gt;<br>        @junit.framework.TestSuite@class<br>    &lt;/property&gt;<br>    &lt;property name=&quot;jarFileNames&quot;&gt;&quot;junit.*&quot;&lt;/property&gt;<br>    &lt;initMethod name=&quot;addClassPattern&quot;&gt;<br>        &lt;arg&gt;&quot;junit.framework&quot;&lt;/arg&gt;<br>        &lt;arg&gt;&quot;TestSuite&quot;&lt;/arg&gt;<br>    &lt;/initMethod&gt;<br>    &lt;initMethod name=&quot;registAll&quot;&gt;&lt;/initMethod&gt;<br>&lt;/component&gt;
 
 </pre>
+<pre>&lt;component class=&quot;org.seasar.framework.container.autoregister.ComponentAutoRegister&quot;&gt;<br>    &lt;property name=&quot;referenceClass&quot;&gt;<br>        @aaa.bbb.ccc.ddd.HogeImpl@class<br>    &lt;/property&gt;<br><br>    &lt;initMethod name=&quot;addClassPattern&quot;&gt;<br>        &lt;arg&gt;&quot;aaa.bbb&quot;&lt;/arg&gt;<br>        &lt;arg&gt;&quot;.*Impl&quot;&lt;/arg&gt;<br>    &lt;/initMethod&gt;<br>    &lt;initMethod name=&quot;registAll&quot;&gt;&lt;/initMethod&gt;<br>&lt;/component&gt;
+
+</pre>
 
 <h3><a name="AspectAutoRegister">アスペクトの自動登録</a></h3>
 <p><a href="#ComponentAutoRegister">コンポーネントの自動登録</a>により、コンポーネントの登録は自動化できます。
@@ -1131,8 +1296,8 @@ END java.util.Date#getTime() : 0
 <h5>org.seasar.framework.container.autoregister.AspectAutoRegister</h5>
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
-<th width="96">プロパティ</th>
-<th width="167">説明</th>
+<th>プロパティ</th>
+<th>説明</th>
 </tr>
 <tr>
 <td><code>interceptor</code></td>
@@ -1146,8 +1311,8 @@ END java.util.Date#getTime() : 0
 <br />
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
-<th width="96">メソッド</th>
-<th width="167">説明</th>
+<th>メソッド</th>
+<th>説明</th>
 </tr>
 <tr>
 <td><code>addClassPattern</code></td>
