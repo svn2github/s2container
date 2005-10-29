@@ -32,7 +32,7 @@
 　　　　　　　　</ul>
               </li>
 
-              <li><a href="#S2ContainerReference">S2Containerリファレンス</a>
+              <li><a href="#S2ContainerReference">S2Container reference</a>
                 <ul>
                   <li><a href="#CreateFile">作成すべきファイル</a></li>
                   <li><a href="#S2ContainerDefinition">S2Containerの定義</a></li>
@@ -88,38 +88,38 @@
 				  <li><a href="#AspectAnnotation">Aspectアノテーション</a></li>
 				</ul>
 			  </li>
-              <li><a href="DIContainerExercise.html">DIContainerエクササイズ</a></li>
+              <li>DIContainerエクササイズ</li>
             </ul>
 
 
-<h2><a name="QuickStart">クイックスタート</a></h2>
-            <p>S2Containerは、Dependency Injection（以降DIと略します）をおこなう軽量コンテナです。DIとは、インターフェースと実装を分離してコンポーネント同士がインターフェースのみで会話するようにしようという考え方です。</p>
+<h2><a name="Quickstart">Quickstart</a></h2>
+<p>S2Container is a light weight container for Dependency Injection (DI) operations. DI is an idea to separate the interface and implementation, to communicate with each other through the interface.</p>
 
-<h3><a name="FirstStep">最初の一歩</a></h3>
-<p>早速試してみましょう。登場自分物は次のようになります。</p>
+<h3><a name="FirstStep">First Step</a></h3>
+<p>Let us give this a try. The following objects will be used.</p>
 <ul>
-<li>あいさつクラス
+<li>Greeting Class
 <ul>
-<li>あいさつ用の文字列を返す。</li>
+<li>Returns a greeting string.</li>
 </ul>
 </li>
 
-<li>あいさつクライアントクラス
+<li>Greeting Client Class
 <ul>
-<li>あいさつクラスから取得したあいさつ（文字列）をコンソールに出力する。</li>
+<li>Outputs string obtained from the greeting class to console.</li>
 </ul>
 </li>
 
-<li>あいさつメインクラス
+<li>Greeting Main Class
 <ul>
-<li>起動用のクラス。あいさつクラスとあいさつクライアントクラスの組み立ても行う｡
+<li>Startup Class. Also assembles greeting and greeting client class.
 </li>
 </ul>
 </li>
 
 </ul>
 <h5>Greeting.java</h5>
-<p>あいさつのためのインターフェースです。機能を提供する側はインターフェースを用意します</p>
+<p>Greeting Interface.</p>
 <pre>
 package examples.di;
 
@@ -130,7 +130,7 @@ public interface Greeting {
 </pre>
 
 <h5>GreetingImpl.java</h5>
-<p>あいさつの実装です。</p>
+<p>Implementation of the greeting.</p>
 <pre>
 package examples.di.impl;
 
@@ -145,7 +145,7 @@ public class GreetingImpl implements Greeting {
 </pre>
 
 <h5>GreetingClient.java</h5>
-<p>あいさつを利用するクライアントのインターフェースです。</p>
+<p>Client interface to use the greeting.</p>
 <pre>
 package examples.di;
 
@@ -156,7 +156,7 @@ public interface GreetingClient {
 </pre>
 
 <h5>GreetingClientImpl.java</h5>
-<p>あいさつを利用するクライアントの実装です。GreetingImpl（実装）を直接利用するのではなく､Greeting（インターフェース）を通じて機能を利用するようにします。</p>
+<p>Client implementation to use greeting. Instead of using Greeting Implementation (GreetingImpl) directly, the interface (Greeting) will be used. </p>
 <pre>
 package examples.di.impl;
 
@@ -177,7 +177,7 @@ public class GreetingClientImpl implements GreetingClient {
 }
 </pre>
 
-<p>機能を提供する側と利用する側の準備ができました。実行してみましょう。</p>
+<p>Both function provider and user is prepared. Let us try running this. </p>
 <h5>GreetingMain.java</h5>
 <pre>
 package examples.di.main;
@@ -196,45 +196,51 @@ public class GreetingMain {
     }
 }
 </pre>
-<p>実行結果は下記のようになります。</p>
+<p>The result will be as follows.</p>
 <pre>
 Hello World!
 </pre>
-
-<p>このように機能の利用者(GreetingClientImpl)は､インターフェース(Greeting)経由で機能を利用するようにし､具体的な実装オブジェクトは、
-実行時に第三者(この場合はGreetingMain)が提供するというのが、DIの基本的な考え方になります。</p>
-<p>でも、GeetingMainのように設定内容をソースに直接書いてしまうと、設定に変更が起きるたびに
-ソースコードを修正する必要が出てきます。それを避けるために､登場するのがDIContainerです。
-設定内容を外出しの設定ファイルにして、DIContainerがその設定ファイルを読み込んでオブジェクトの組み立てを行うのです。</p>
-<p>それでは、先程の設定内容を設定ファイルに書き出してみましょう。S2Containerでは、拡張子がdiconのXMLファイルで指定することになります。</p>
+<p>As shown here, the function user (GreetingClientImpl) uses the function through the interface (Greeting),
+a third party (GreetingMain, in this case) provides the implementation object at runtime.
+That is the basic style of DI </p>
+<p>However, if one writes configurations into the source as GreetingMain,
+the source code must be altered to reflect any changes.
+DIContainer is used to avoid this.
+DIContainer assembles objects by reading external configuration files.</p>
+<p>We will write the configuration information into the configuration file.
+That extension is &quot;.dicon&quot; in S2Container.</p>
 
 <h5>GreetingMain2.dicon</h5>
 <pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;<br>&lt;!DOCTYPE components PUBLIC<br>    &quot;-//SEASAR//DTD S2Container 2.3//EN&quot;<br>    &quot;http://www.seasar.org/dtd/components23.dtd&quot;&gt;<br>&lt;components&gt;<br>    &lt;component name=&quot;greeting&quot;<br>        class=&quot;examples.di.impl.GreetingImpl&quot;/&gt;<br>    &lt;component name=&quot;greetingClient&quot;<br>        class=&quot;examples.di.impl.GreetingClientImpl&quot;&gt;<br>        &lt;property name=&quot;greeting&quot;&gt;greeting&lt;/property&gt;<br>    &lt;/component&gt;<br>&lt;/components&gt;
-
 </pre>
 
-<p>詳しくは、<a href="#DefReference">S2Containerタグリファレンス</a>を参照してください。まず、ポイントを説明します。</p>
+<p>Look at <a href="#DefReference">S2Container Tag Reference</a> for details.
+We will first describe the main points.</p>
 
 <pre>&lt;component name=&quot;greeting&quot;<br>    class=&quot;examples.di.impl.GreetingImpl&quot;/&gt;
 </pre>
-<p>でコンポーネントを定義しています。これは、下記のJavaのコードに相当します。</p>
+<p>We define component as above. This is equivalent to the following Java code.</p>
 
 <pre>
 Greeting greeting = new GreetingImpl();
 </pre>
 
-<p>conponentタグのname属性で変数名を指定し､class属性でクラス名を指定します。次は､greetingClientの設定です。</p>
+<p>We define  a component name using the name property in the component tag, and a class name using the class property.
+Next, we configure greetingClient.</p>
 
 <pre>&lt;component name=&quot;greetingClient&quot;<br>    class=&quot;examples.di.impl.GreetingClientImpl&quot;&gt;<br>    &lt;property name=&quot;greeting&quot;&gt;greeting&lt;/property&gt;<br>&lt;/component&gt;
 </pre>
 
-<p>propertyタグが新しく出てきました。name属性でプロパティ名を指定し､ボディで設定したいコンポーネント名を指定します。これは、下記のJavaのコードに相当します。コンポーネント名は、「&quot;」で囲まないことに注意してください。「&quot;」で囲むと文字列とみなされてしまいます。</p>
+<p>We define a property name using the name property in the property tag,
+and specify the component name in the body. This is equivalent to the following Java code.
+Take care not to surround the component name in double quotation marks,
+as this will cause the contents to be interpreted as a string.</p>
 
 <pre>GreetingClientImpl greetingClient = new GreetingClientImpl();
 greetingClient.setGreeting(greeting);
 </pre>
 
-<p>S2Containerを利用する起動クラスは次のようになります。</p>
+<p>The startup class using S2Container will be as follows.</p>
 <h5>GreetingMain2.java</h5>
 <pre>
 package examples.di.main;
@@ -258,20 +264,21 @@ public class GreetingMain2 {
     }
 }</pre>
 
-<p>S2Containerは、S2ContainerFactory#create(String path)を使って作成します。詳しくは､
-<a href="#S2ContainerCreation">S2Containerの作成</a>を参照してください。</p>
-<p>S2Containerを作成したら､コンポーネント名を指定して､S2Container#getComponent(String componentName)を呼び出します。
-詳しくは､<a href="#getComponent">コンポーネントの取得</a>を参照してください。</p>
-<p>実行結果は先程と同様に下記のようになります。</p>
+<p>S2Container is created using S2ContainerFactor#create(String Path).
+Read <a href="#S2ContainerCreation">Creating S2Container</a> for details.</p>
+
+<p>The component(greetingClient) is acquired using S2Container#getComponent(String componentName).
+Please reference <a href="#getComponent">Acquiring Components</a> for details.</p>
+
+<p>As before, the result will be as follows.</p>
 <pre>
 Hello World!
 </pre>
 
-<p>DIとセットでよく用いられる技術にAOPがあります。AOPとは、ログ出力だとか複数のクラスに分散するロジックを
-モジュール化して、元のソースを修正することなく適用する技術です。それでは、既に作成済みの
-GreetingImpl、GreetingClinetImplのソースを修正することなく､ログ（トレース）を出力させて見ましょう。
-AOPを適用した設定ファイルは､次のようになります。
-</p>
+<p>AOP is often used with DI.
+AOP is a technique to modularize the functions like logging that are spread over many classes.
+We will now output a log (trace) from GreetingImpl, and GreetingClientImpl without altering the existing source code.
+The configuration file with AOP will be as follows.</p>
 
 <h5>GreetingMain3.dicon</h5>
 <pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;<br>&lt;!DOCTYPE components PUBLIC<br>    &quot;-//SEASAR//DTD S2Container 2.3//EN&quot;<br>    &quot;http://www.seasar.org/dtd/components23.dtd&quot;&gt;<br>&lt;components&gt;<br>    &lt;include path=&quot;aop.dicon&quot;/&gt;<br>    &lt;component name=&quot;greeting&quot;<br>        class=&quot;examples.di.impl.GreetingImpl&quot;&gt;<br>        &lt;aspect&gt;aop.traceInterceptor&lt;/aspect&gt;<br>    &lt;/component&gt;<br>    &lt;component name=&quot;greetingClient&quot;<br>        class=&quot;examples.di.impl.GreetingClientImpl&quot;&gt;<br>        &lt;property name=&quot;greeting&quot;&gt;greeting&lt;/property&gt;<br>        &lt;aspect&gt;aop.traceInterceptor&lt;/aspect&gt;<br>    &lt;/component&gt;<br>&lt;/components&gt;
