@@ -278,7 +278,7 @@ AOPを適用した設定ファイルは､次のようになります。
 </pre>
 
 <p>Seasar2では、良く使われるAOPのモジュールがaop.diconの中にあらかじめ定義されています。
-次のようにして、includeタグでaop.diconを読み込みます。
+次のようにして、includeタグを使います。
 詳しくは､<a href="#Include">S2Container定義の分割とインクルード</a>を参照してください。</p>
 <pre>&lt;include path=&quot;aop.dicon&quot;/&gt;
 </pre>
@@ -353,13 +353,12 @@ S2Containerが自動的に処理してくれるということです。</p>
 <p>実は､先程のAOPの例でも「Convention over Configuration」が適用されています。
 AOPでは通常､AOPのモジュールをどこ（例えばどのメソッド）に適用するのかということを
 pointcutで指定するのですが､<a href="aop.html">S2AOP</a>の場合､
-「インターフェースを使って仕様と実装を分離する」という<b>推奨されている規約</b>が守られていれば､
+「インターフェースを使う」という<b>推奨されている規約</b>が守られていれば､
 pointcutを指定しなくても､自動的にインターフェースで定義されているすべてのメソッドに適用するという機能が用意されています。
 そのため、先程の例では、pointcutを指定する必要が無かったのです。</p>
 <p>「Convention over Configuration」によって、DIやAOPの設定は､簡略化できますが､
 扱うコンポーネントの数が増えると、コンポーネントの登録もかなり大変な作業になってきます。
 このコンポーネントの登録も自動化してしまうのが<a href="#ComponentAutoRegister">コンポーネントの自動登録</a>機能です。
-その機能はFileSystemComponentAutoRegisterコンポーネントによって提供されます。
 先程のGreetingImpl、GreetingClientImplの登録を自動化する設定は次のようになります。</p>
 
 <pre>&lt;component<br>  class=&quot;org.seasar.framework.container.autoregister.FileSystemComponentAutoRegister&quot;&gt;<br>    &lt;initMethod name=&quot;addClassPattern&quot;&gt;<br>        &lt;arg&gt;&quot;examples.di.impl&quot;&lt;/arg&gt;<br>        &lt;arg&gt;&quot;.*Impl&quot;&lt;/arg&gt;<br>    &lt;/initMethod&gt;<br>    &lt;initMethod name=&quot;registAll&quot;/&gt;<br>&lt;/component&gt;</pre>
@@ -370,11 +369,10 @@ S2Containerに自動登録します。initMethodタグについては､<a href="#MethodInjection"
 <p>addClassPatternメソッドの最初の引数は､自動登録したいコンポーネントのパッケージ名です。
 子供のパッケージも再帰的に検索します。2番目の引数は､クラス名です。正規表現が使えます。「,」区切りで複数記述することもできます。</p>
 
-<p>コンポーネントの自動登録は､一度設定を書いてしまえば､後からコンポーネントが増えても､設定を追加する必要が無いので､
+<p>コンポーネントの自動登録によって､後からコンポーネントを追加しても､設定を追加する必要がなくなるので､
 手間を大幅に削減できるようになります。</p>
 
 <p>コンポーネントの登録が自動化できるようになると、次は､アスペクトの登録を自動化したくなることでしょう。
-その機能を提供するのが、AspectAutoRegisterコンポーネントになります。
 先程のGreetingImpl、GreetingClientImpへのアスペクトの登録を自動化する設定は次のようになります。</p>
 
 <pre>&lt;include path=&quot;aop.dicon&quot;/&gt;
@@ -383,8 +381,7 @@ S2Containerに自動登録します。initMethodタグについては､<a href="#MethodInjection"
 </pre>
 
 <p>interceptorプロパティでAOPのモジュール名を指定します。addClassPatternメソッドは、コンポーネントの自動登録と同様なので､
-特に説明は必要ないでしょう。注意点は､コンポーネントの自動登録と組み合わせる場合は､
-コンポーネントの自動登録の設定よりも後に、AspectAutoRegisterの設定を記述する必要があるということです。
+特に説明は必要ないでしょう。
 コンポーネントの自動登録とアスペクトの自動登録を組み合わせた例は次のようになります。</p>
 
 <h5>GreetingMain4.dicon</h5>
@@ -396,8 +393,8 @@ S2Containerに自動登録します。initMethodタグについては､<a href="#MethodInjection"
     &lt;component<br>      class=&quot;org.seasar.framework.container.autoregister.AspectAutoRegister&quot;&gt;<br>        &lt;property name=&quot;interceptor&quot;&gt;aop.traceInterceptor&lt;/property&gt;<br>        &lt;initMethod name=&quot;addClassPattern&quot;&gt;<br>            &lt;arg&gt;&quot;examples.di.impl&quot;&lt;/arg&gt;<br>            &lt;arg&gt;&quot;.*Impl&quot;&lt;/arg&gt;<br>        &lt;/initMethod&gt;<br>        &lt;initMethod name=&quot;registAll&quot;/&gt;<br>    &lt;/component&gt;<br>&lt;/components&gt;
 </pre>
 
-<p>それではGreetingMain4を実行してみます。GreetingMain3との違いは､設定ファイルのパスとS2Containerのinitメソッド､destroyメソッドを呼び出している部分です。
-自動登録を使う場合は､必ず､initメソッドを呼び出す必要があります。</p>
+<p>それではGreetingMain4を実行してみます。
+自動登録を使う場合は､S2Container#init()とS2Container#destroy()を呼び出す必要があります。</p>
 
 <h5>GreetingMain4.java</h5>
 <pre>
@@ -437,9 +434,8 @@ Hello World!
 DEBUG 2005-10-12 16:00:08,103 [main] END examples.di.impl.GreetingClientImpl#execute() : null
 </pre>
 
-<p>たいていの場合､自動登録と自動バインディングの仕組みでうまくいくでしょう。</p>
-<p>自動登録したくないコンポーネントがある場合には､FileSystemComponentAutoRegisterコンポーネント、
-AspectAutoRegisterコンポーネントに用意されているaddIgnoreClassPatternメソッドで、
+<p>たいていの場合､自動登録と自動バインディングの仕組みでうまくいくでしょう。
+自動登録したくないコンポーネントがある場合には､自動登録コンポーネントに用意されているaddIgnoreClassPatternメソッドで、
 自動登録の対象外にすることができます。</p>
 <p>自動バインディングしたくないプロパティがある場合は､<a href="#BindingAnnotation">Bindingアノテーション</a>を使い､
 設定ファイルを使わずに、細かい調整をすることもできます。</p>
@@ -1234,7 +1230,9 @@ END java.util.Date#getTime() : 0
 
 <h3><a name="AspectAutoRegister">アスペクトの自動登録</a></h3>
 <p><a href="#ComponentAutoRegister">コンポーネントの自動登録</a>により、コンポーネントの登録は自動化できます。
-さらに、アスペクトの登録も自動化してしまおうというのが、アスペクトの自動登録機能です。アスペクトの自動登録には､AspectAutoRegisterコンポーネントを利用します。</p>
+さらに、アスペクトの登録も自動化してしまおうというのが、アスペクトの自動登録機能です。
+コンポーネントの自動登録と組み合わせる場合は､
+コンポーネントの自動登録の設定よりも後に、アスペクトの自動登録の設定を記述する必要があります。</p>
 <h5>org.seasar.framework.container.autoregister.AspectAutoRegister</h5>
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">

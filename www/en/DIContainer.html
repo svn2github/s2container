@@ -284,18 +284,21 @@ The configuration file with AOP will be as follows.</p>
 <pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;<br>&lt;!DOCTYPE components PUBLIC<br>    &quot;-//SEASAR//DTD S2Container 2.3//EN&quot;<br>    &quot;http://www.seasar.org/dtd/components23.dtd&quot;&gt;<br>&lt;components&gt;<br>    &lt;include path=&quot;aop.dicon&quot;/&gt;<br>    &lt;component name=&quot;greeting&quot;<br>        class=&quot;examples.di.impl.GreetingImpl&quot;&gt;<br>        &lt;aspect&gt;aop.traceInterceptor&lt;/aspect&gt;<br>    &lt;/component&gt;<br>    &lt;component name=&quot;greetingClient&quot;<br>        class=&quot;examples.di.impl.GreetingClientImpl&quot;&gt;<br>        &lt;property name=&quot;greeting&quot;&gt;greeting&lt;/property&gt;<br>        &lt;aspect&gt;aop.traceInterceptor&lt;/aspect&gt;<br>    &lt;/component&gt;<br>&lt;/components&gt;
 </pre>
 
-<p>Seasar2では、良く使われるAOPのモジュールがaop.diconの中にあらかじめ定義されています。
-次のようにして、includeタグでaop.diconを読み込みます。
-詳しくは､<a href="#Include">S2Container定義の分割とインクルード</a>を参照してください。</p>
+<p>Seasar2 contains commonly used AOP modules predefined within aop.dicon.
+We use the include tag as follows.
+Please reference <a href="#Include">S2Container Definition division and include</a> for details.</p>
+
 <pre>&lt;include path=&quot;aop.dicon&quot;/&gt;
 </pre>
 
-<p>コンポーネントにAOPを適用するには､<a href="#componentTag">componentタグ</a>の子タグの
-<a href="#aspectTag">aspectタグ</a>のボディにAOPのモジュール名を指定します。aop.traceInterceptorがAOPのモジュール名になります。</p>
+<p>We define <a href="#aspectTag">the aspect tag</a> to apply AOP to a component, and specify the AOP module name in the body.
+We will be using aop.traceInterceptor as the AOP module name.</p>
+
 <pre>&lt;aspect&gt;aop.traceInterceptor&lt;/aspect&gt;
 </pre>
 
-<p>AOPの設定は以上です。それではGreetingMain3を実行してみます。GreetingMain2との違いは､設定ファイルのパスだけです。</p>
+<p>This concludes the configuration of AOP. We will now try running GreetingMain3.
+The only difference from GreetingMain2 is the path of the configuration file.</p>
 
 <h5>GreetingMain3.java</h5>
 <pre>
@@ -321,7 +324,8 @@ public class GreetingMain3 {
 }
 </pre>
 
-<p>実行結果は、下記のようになります。元のソースコードを修正していないのに、ログが出力されていることが分かります。</p>
+<p>The results will be as follows. We see the log output with no alteration to the original source code.</p>
+
 <pre>
 DEBUG 2005-10-11 21:01:49,655 [main] BEGIN examples.di.impl.GreetingClientImpl#execute()
 DEBUG 2005-10-11 21:01:49,665 [main] BEGIN examples.di.impl.GreetingImpl#greet()
@@ -330,69 +334,71 @@ Hello World!
 DEBUG 2005-10-11 21:01:49,675 [main] END examples.di.impl.GreetingClientImpl#execute() : null
 </pre>
 
-<p>これで、S2Containerの基本的な使い方をマスターすることができました。</p>
+<p>We have now mastered the basic use of S2Container.</p>
 
-<h3><a name="NextStep">次の一歩</a></h3>
-<p>でも、なんだか設定ファイルを書くのって面倒ですよね。
-S2Containerでは、できるだけ設定ファイルの記述量を減らすために、次のコンセプトが実現されています。</p>
+<h3><a name="NextStep">Next Step</a></h3>
+<p>Writing the configuration file is still annoying, isn’t it?
+S2Container also possesses the following concepts to minimize the amount of writing in configuration files.</p>
+
 <ul>
 <li><a name="CoC">Convention over Configuration</a></li>
 </ul>
 
-<p>これは適切な規約を決め､その規約を守っていれば､設定なしでも動くようにするというものです。
-例えば､先程の設定ファイルで、下記のように明示的にプロパティを指定している部分がありました。</p>
+<p>This implements a number of practical conventions,
+so that a program will run with no configuration as long as it follows these rules.
+For example, the configuration file from earlier explicitly defines the property tag as follows.</p>
 
 <pre>&lt;component name=&quot;greetingClient&quot;<br>    class=&quot;examples.di.impl.GreetingClientImpl&quot;&gt;<br>    &lt;property name=&quot;greeting&quot;&gt;greeting&lt;/property&gt;<br>&lt;/component&gt;
 </pre>
 
-<p>S2Containerには、プロパティの型がインターフェースの場合､
-プロパティの型を実装したのコンポーネントがコンテナに登録されていれば、
-特に設定をしなくても自動的にDIするという機能があります。
-これは、「プロパティの型をインターフェースで定義する」というDIで<b>推奨されている規約</b>を守れば､
-S2Containerが自動的に処理してくれるということです。</p>
-<p>規約というとめんどくさいと思われがちですが､「推奨されていて、かつ守ると開発が楽になる」なら、
-規約に準拠しようというモチベーションが生まれます。そこがポイントなのです。</p>
+<p>As long as the property type is interface and there is a component impementing interface in the container,
+S2Container has a function to automatically DI.
+This means S2Container will automatically process components as long as
+they follow the DI convention of defining property type by interface.</p>
 
-<p>上記の設定は､次のように簡略化することができます。</p>
+<p>"Convention" may sound annoying, but they are not only recommended but also making development easier.</p>
+
+<p>We can simplify the configuration from above as follows.</p>
 <pre>&lt;component name=&quot;greetingClient&quot;<br>    class=&quot;examples.di.impl.GreetingClientImpl&quot;&gt;<br>&lt;/component&gt;
 </pre>
 
-<p>実は､先程のAOPの例でも「Convention over Configuration」が適用されています。
-AOPでは通常､AOPのモジュールをどこ（例えばどのメソッド）に適用するのかということを
-pointcutで指定するのですが､<a href="aop.html">S2AOP</a>の場合､
-「インターフェースを使って仕様と実装を分離する」という<b>推奨されている規約</b>が守られていれば､
-pointcutを指定しなくても､自動的にインターフェースで定義されているすべてのメソッドに適用するという機能が用意されています。
-そのため、先程の例では、pointcutを指定する必要が無かったのです。</p>
-<p>「Convention over Configuration」によって、DIやAOPの設定は､簡略化できますが､
-扱うコンポーネントの数が増えると、コンポーネントの登録もかなり大変な作業になってきます。
-このコンポーネントの登録も自動化してしまうのが<a href="#ComponentAutoRegister">コンポーネントの自動登録</a>機能です。
-その機能はFileSystemComponentAutoRegisterコンポーネントによって提供されます。
-先程のGreetingImpl、GreetingClientImplの登録を自動化する設定は次のようになります。</p>
+<p>Actually, “Convention over Configuration” is used in the AOP example from earlier.
+Normally, where (or which method) the AOP module is applied is defined in pointcut.
+All methods defined by interface have the AOP module applied without the use of pointcut in <a href="aop.html">S2AOP</a>
+as long as they follow the convention of using interface.
+This is how there was no need to define a module in pointcut in the earlier example.</p>
+
+<p>Using “Convention over Configuration” will simplify the configuration of DI and AOP.
+However, component registration itself becomes a burden as the number of components increase.
+The automation of this component registration is <a href="#ComponentAutoRegister">Component auto-registration</a> functionality.
+The registration of GreetingImpl, GreetingClientImpl from earlier is automated as follows.</p>
 
 <pre>&lt;component<br>  class=&quot;org.seasar.framework.container.autoregister.FileSystemComponentAutoRegister&quot;&gt;<br>    &lt;initMethod name=&quot;addClassPattern&quot;&gt;<br>        &lt;arg&gt;&quot;examples.di.impl&quot;&lt;/arg&gt;<br>        &lt;arg&gt;&quot;.*Impl&quot;&lt;/arg&gt;<br>    &lt;/initMethod&gt;<br>    &lt;initMethod name=&quot;registAll&quot;/&gt;<br>&lt;/component&gt;</pre>
 
-<p>FileSystemComponentAutoRegisterコンポーネントは、
-addClassPatternメソッドで指定されたクラスをファイルシステムから探して､
-S2Containerに自動登録します。initMethodタグについては､<a href="#MethodInjection">メソッド・インジェクション</a>を参照してください。</p>
-<p>addClassPatternメソッドの最初の引数は､自動登録したいコンポーネントのパッケージ名です。
-子供のパッケージも再帰的に検索します。2番目の引数は､クラス名です。正規表現が使えます。「,」区切りで複数記述することもできます。</p>
+<p>This FileSystemComponentAutoRegister component searches classes defined in addClassPattern from the file system
+and auto-registers them in S2Container.
+Please refer to <a href="#MethodInjection">Method Injection</a> for details on the initMethod tag.</p>
 
-<p>コンポーネントの自動登録は､一度設定を書いてしまえば､後からコンポーネントが増えても､設定を追加する必要が無いので､
-手間を大幅に削減できるようになります。</p>
+<p>The first argument of addClassPattern method is the package name of the component to be auto-registered.
+Child packages are also recursively searched.
+The second argument is the class name, which may be a regular expression. 
+Multiple definitions are separated by commas.</p>
 
-<p>コンポーネントの登録が自動化できるようになると、次は､アスペクトの登録を自動化したくなることでしょう。
-その機能を提供するのが、AspectAutoRegisterコンポーネントになります。
-先程のGreetingImpl、GreetingClientImpへのアスペクトの登録を自動化する設定は次のようになります。</p>
+<p>Auto-registration of components decreases the overall amount of work,
+as the programmer is not required to configure anything for new components.</p>
+
+<p>As we automate the registration of components,
+next focus is the automation of aspect registration.
+The configuration of <a href="#AspectAutoRegister">Aspect auto-registration</a> for GreetingImpl and GreetingClientImp is as follows.</p>
 
 <pre>&lt;include path=&quot;aop.dicon&quot;/&gt;
 ...
 &lt;component<br>  class=&quot;org.seasar.framework.container.autoregister.AspectAutoRegister&quot;&gt;<br>    &lt;property name=&quot;interceptor&quot;&gt;aop.traceInterceptor&lt;/property&gt;<br>    &lt;initMethod name=&quot;addClassPattern&quot;&gt;<br>        &lt;arg&gt;&quot;examples.di.impl&quot;&lt;/arg&gt;<br>        &lt;arg&gt;&quot;.*Impl&quot;&lt;/arg&gt;<br>    &lt;/initMethod&gt;<br>    &lt;initMethod name=&quot;registAll&quot;/&gt;<br>&lt;/component&gt;
 </pre>
 
-<p>interceptorプロパティでAOPのモジュール名を指定します。addClassPatternメソッドは、コンポーネントの自動登録と同様なので､
-特に説明は必要ないでしょう。注意点は､コンポーネントの自動登録と組み合わせる場合は､
-コンポーネントの自動登録の設定よりも後に、AspectAutoRegisterの設定を記述する必要があるということです。
-コンポーネントの自動登録とアスペクトの自動登録を組み合わせた例は次のようになります。</p>
+<p>We specify the AOP module name in the interceptor property.
+We will skip the explanation of the addClassPattern method, as it is identical to the component auto-registration.
+The combination of component and aspect auto-registration looks like the following.</p>
 
 <h5>GreetingMain4.dicon</h5>
 <pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;<br>&lt;!DOCTYPE components PUBLIC &quot;-//SEASAR//DTD S2Container 2.3//EN&quot; <br>	&quot;http://www.seasar.org/dtd/components23.dtd&quot;&gt;
@@ -403,8 +409,8 @@ S2Containerに自動登録します。initMethodタグについては､<a href="#MethodInjection"
     &lt;component<br>      class=&quot;org.seasar.framework.container.autoregister.AspectAutoRegister&quot;&gt;<br>        &lt;property name=&quot;interceptor&quot;&gt;aop.traceInterceptor&lt;/property&gt;<br>        &lt;initMethod name=&quot;addClassPattern&quot;&gt;<br>            &lt;arg&gt;&quot;examples.di.impl&quot;&lt;/arg&gt;<br>            &lt;arg&gt;&quot;.*Impl&quot;&lt;/arg&gt;<br>        &lt;/initMethod&gt;<br>        &lt;initMethod name=&quot;registAll&quot;/&gt;<br>    &lt;/component&gt;<br>&lt;/components&gt;
 </pre>
 
-<p>それではGreetingMain4を実行してみます。GreetingMain3との違いは､設定ファイルのパスとS2Containerのinitメソッド､destroyメソッドを呼び出している部分です。
-自動登録を使う場合は､必ず､initメソッドを呼び出す必要があります。</p>
+<p>We will now run GreetingMain4.
+We must invoke S2Container#init() and S2Container#destroy() in the case of using auto-registration.</p>
 
 <h5>GreetingMain4.java</h5>
 <pre>
@@ -435,7 +441,7 @@ public class GreetingMain4 {
 }
 </pre>
 
-<p>実行結果は、GreetingMain3と同様に下記のようになります。</p>
+<p>The result will be identical to GreetingMain3 as follows.</p>
 <pre>
 DEBUG 2005-10-12 16:00:08,093 [main] BEGIN examples.di.impl.GreetingClientImpl#execute()
 DEBUG 2005-10-12 16:00:08,103 [main] BEGIN examples.di.impl.GreetingImpl#greet()
@@ -444,13 +450,13 @@ Hello World!
 DEBUG 2005-10-12 16:00:08,103 [main] END examples.di.impl.GreetingClientImpl#execute() : null
 </pre>
 
-<p>たいていの場合､自動登録と自動バインディングの仕組みでうまくいくでしょう。</p>
-<p>自動登録したくないコンポーネントがある場合には､FileSystemComponentAutoRegisterコンポーネント、
-AspectAutoRegisterコンポーネントに用意されているaddIgnoreClassPatternメソッドで、
-自動登録の対象外にすることができます。</p>
-<p>自動バインディングしたくないプロパティがある場合は､<a href="#BindingAnnotation">Bindingアノテーション</a>を使い､
-設定ファイルを使わずに、細かい調整をすることもできます。</p>
-<p>これで、S2Containerの高度な使い方をマスターすることができました。後は､必要に応じてマニュアルを参照すると良いでしょう。</p>
+<p>Auto-registration and Auto-binding will work well in most cases.
+Components can be excluded from auto-registration using the addIgnoreClassPattern method.</p>
+
+<p><a href="#BindingAnnotation">Binding Annotation</a> can be used to fine tune configuration settings
+without using configuration files for properties excluded from auto-binding.</p>
+
+<p>We have now mastered advanced use of S2Container. Please reference the manual as needed.</p>
 
 
 <h2><a name="S2ContainerReference">S2Containerリファレンス</a></h2>
