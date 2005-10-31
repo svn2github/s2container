@@ -186,4 +186,8 @@ public final class ClassUtil {
     public static String concatName(String s1, String s2) {
         return s1 != null ? s1 + '.' + s2 : s2;
     }
+    
+    public static String getResourcePath(Class clazz) {
+        return StringUtil.replace(clazz.getName(), ".", "/") + ".class";
+    }
 }

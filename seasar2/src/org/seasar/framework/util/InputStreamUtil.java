@@ -15,6 +15,7 @@
  */
 package org.seasar.framework.util;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -22,18 +23,39 @@ import org.seasar.framework.exception.IORuntimeException;
 
 /**
  * @author higa
- *  
+ * 
  */
 public final class InputStreamUtil {
 
-	private InputStreamUtil() {
-	}
+    private InputStreamUtil() {
+    }
 
-	public static void close(InputStream is) {
-		try {
-			is.close();
-		} catch (IOException e) {
-			throw new IORuntimeException(e);
-		}
-	}
+    public static void close(InputStream is) {
+        try {
+            is.close();
+        } catch (IOException e) {
+            throw new IORuntimeException(e);
+        }
+    }
+
+    public static final byte[] getBytes(InputStream is) {
+        byte[] bytes = null;
+        byte[] buf = new byte[8192];
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            int n = 0;
+            while ((n = is.read(buf, 0, buf.length)) != -1) {
+                baos.write(buf, 0, n);
+            }
+            bytes = baos.toByteArray();
+        } catch (IOException e) {
+            throw new IORuntimeException(e);
+        } finally {
+            if (is != null) {
+                close(is);
+            }
+        }
+        return bytes;
+    }
+
 }

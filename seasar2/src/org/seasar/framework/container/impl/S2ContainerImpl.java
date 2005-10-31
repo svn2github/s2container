@@ -59,6 +59,7 @@ public class S2ContainerImpl implements S2Container, ContainerConstants {
 	private ServletContext servletContext_;
 	private MetaDefSupport metaDefSupport_ = new MetaDefSupport(this);
 	private boolean inited_ = false;
+    private boolean hotswapMode_ = false;
 
 	static {
 		OgnlRuntime.setPropertyAccessor(S2Container.class,
@@ -499,6 +500,14 @@ public class S2ContainerImpl implements S2Container, ContainerConstants {
 	public int getMetaDefSize() {
 		return metaDefSupport_.getMetaDefSize();
 	}
+    
+    public boolean isHotswapMode() {
+        return hotswapMode_;
+    }
+    
+    public void setHotswapMode(boolean hotswapMode) {
+        hotswapMode_ = hotswapMode;
+    }
 
 	private static Class[] getAssignableClasses(Class componentClass) {
 		Set classes = new HashSet();

@@ -15,6 +15,8 @@
  */
 package org.seasar.framework.container;
 
+import org.seasar.framework.hotswap.Hotswap;
+
 /**
  * @author higa
  *
@@ -60,4 +62,6 @@ public interface ComponentDef
 	public void init();
 
 	public void destroy();
+    
+    public Hotswap getHotswap();
 }

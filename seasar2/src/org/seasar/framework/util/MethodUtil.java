@@ -25,77 +25,94 @@ import org.seasar.framework.exception.InvocationTargetRuntimeException;
 
 /**
  * @author higa
- *
+ * 
  */
 public final class MethodUtil {
 
-	/**
-	 * 
-	 */
-	private MethodUtil() {
-	}
+    /**
+     * 
+     */
+    private MethodUtil() {
+    }
 
-	public static Object invoke(Method method, Object target, Object[] args)
-		throws InstantiationRuntimeException, IllegalAccessRuntimeException {
+    public static Object invoke(Method method, Object target, Object[] args)
+            throws InstantiationRuntimeException, IllegalAccessRuntimeException {
 
-		try {
-			return method.invoke(target, args);
-		} catch (InvocationTargetException ex) {
-			Throwable t = ex.getCause();
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException) t;
-			}
-			if (t instanceof Error) {
-				throw (Error) t;
-			}
-			throw new InvocationTargetRuntimeException(
-				method.getDeclaringClass(),
-				ex);
-		} catch (IllegalAccessException ex) {
-			throw new IllegalAccessRuntimeException(
-				method.getDeclaringClass(),
-				ex);
-		}
-	}
-	
-	public static boolean isAbstract(Method method) {
-		int mod = method.getModifiers();
-		return Modifier.isAbstract(mod);
-	}
+        try {
+            return method.invoke(target, args);
+        } catch (InvocationTargetException ex) {
+            Throwable t = ex.getCause();
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            }
+            if (t instanceof Error) {
+                throw (Error) t;
+            }
+            throw new InvocationTargetRuntimeException(method
+                    .getDeclaringClass(), ex);
+        } catch (IllegalAccessException ex) {
+            throw new IllegalAccessRuntimeException(method.getDeclaringClass(),
+                    ex);
+        }
+    }
 
-	public static String getSignature(String methodName, Class[] argTypes) {
-		StringBuffer buf = new StringBuffer(100);
-		buf.append(methodName);
-		buf.append("(");
-		if (argTypes != null) {
-			for (int i = 0; i < argTypes.length; ++i) {
-				if (i > 0) {
-					buf.append(", ");
-				}
-				buf.append(argTypes[i].getName());
-			}
-		}
-		buf.append(")");
-		return buf.toString();
-	}
+    public static boolean isAbstract(Method method) {
+        int mod = method.getModifiers();
+        return Modifier.isAbstract(mod);
+    }
 
-	public static String getSignature(String methodName, Object[] methodArgs) {
-		StringBuffer buf = new StringBuffer(100);
-		buf.append(methodName);
-		buf.append("(");
-		if (methodArgs != null) {
-			for (int i = 0; i < methodArgs.length; ++i) {
-				if (i > 0) {
-					buf.append(", ");
-				}
-				if (methodArgs[i] != null) {
-					buf.append(methodArgs[i].getClass().getName());
-				} else {
-					buf.append("null"); 
-				}
-			}
-		}
-		buf.append(")");
-		return buf.toString();
-	}
+    public static String getSignature(String methodName, Class[] argTypes) {
+        StringBuffer buf = new StringBuffer(100);
+        buf.append(methodName);
+        buf.append("(");
+        if (argTypes != null) {
+            for (int i = 0; i < argTypes.length; ++i) {
+                if (i > 0) {
+                    buf.append(", ");
+                }
+                buf.append(argTypes[i].getName());
+            }
+        }
+        buf.append(")");
+        return buf.toString();
+    }
+
+    public static String getSignature(String methodName, Object[] methodArgs) {
+        StringBuffer buf = new StringBuffer(100);
+        buf.append(methodName);
+        buf.append("(");
+        if (methodArgs != null) {
+            for (int i = 0; i < methodArgs.length; ++i) {
+                if (i > 0) {
+                    buf.append(", ");
+                }
+                if (methodArgs[i] != null) {
+                    buf.append(methodArgs[i].getClass().getName());
+                } else {
+                    buf.append("null");
+                }
+            }
+        }
+        buf.append(")");
+        return buf.toString();
+    }
+
+    public static boolean isEqualsMethod(Method method) {
+        return method != null && method.getName().equals("equals")
+                && method.getReturnType() == boolean.class
+                && method.getParameterTypes().length == 1
+                && method.getParameterTypes()[0] == Object.class;
+    }
+
+    public static boolean isHashCodeMethod(Method method) {
+        return method != null && method.getName().equals("hashCode")
+                && method.getReturnType() == int.class
+                && method.getParameterTypes().length == 0;
+    }
+    
+    public static boolean isToStringMethod(Method method) {
+        return method != null && method.getName().equals("toString")
+                && method.getReturnType() == String.class
+                && method.getParameterTypes().length == 0;
+    }
 }

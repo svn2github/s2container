@@ -1,6 +1,7 @@
 package test.org.seasar.framework.container.deployer;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.HashMap;
 
 import junit.framework.TestCase;
@@ -23,18 +24,6 @@ import org.seasar.framework.container.impl.S2ContainerImpl;
  *
  */
 public class SingletonComponentDeployerTest extends TestCase {
-
-	/**
-	 * Constructor for InvocationImplTest.
-	 * @param arg0
-	 */
-	public SingletonComponentDeployerTest(String arg0) {
-		super(arg0);
-	}
-
-	public static void main(String[] args) {
-		junit.textui.TestRunner.run(SingletonComponentDeployerTest.class);
-	}
 
 	public void testDeployAutoAutoConstructor() throws Exception {
 		S2Container container = new S2ContainerImpl();
@@ -233,6 +222,22 @@ public class SingletonComponentDeployerTest extends TestCase {
 			System.out.println(ex);
 		}
 	}
+    
+    public void testDeployHotswap() throws Exception {
+        S2Container container = new S2ContainerImpl();
+        container.setHotswapMode(true);
+        ComponentDefImpl cd = new ComponentDefImpl(FooImpl.class);
+        container.register(cd);
+        container.init();
+        ComponentDeployer deployer = cd.getComponentDeployer();
+        Foo foo = (Foo) deployer.deploy();
+        Foo foo2 = (Foo) deployer.deploy();
+        assertSame("1", foo, foo2);
+        Thread.sleep(500);
+        cd.getHotswap().getFile().setLastModified(new Date().getTime());
+        foo2 = (Foo) deployer.deploy();
+        assertSame("2", foo, foo2);
+    }
 
 	/*
 	 * @see TestCase#setUp()
@@ -251,6 +256,13 @@ public class SingletonComponentDeployerTest extends TestCase {
 	public interface Foo {
 		public String getHogeName();
 	}
+    
+    public static class FooImpl implements Foo {
+        
+        public String getHogeName() {
+            return "hoge";
+        }
+    }
 
 	public static class A {
 

@@ -17,67 +17,120 @@ package org.seasar.framework.container.deployer;
 
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.CyclicReferenceRuntimeException;
+import org.seasar.framework.hotswap.Hotswap;
+import org.seasar.framework.hotswap.HotswapProxy;
+import org.seasar.framework.hotswap.HotswapTargetFactory;
 
 /**
  * @author higa
- *
+ * 
  */
-public class SingletonComponentDeployer extends AbstractComponentDeployer {
+public class SingletonComponentDeployer extends AbstractComponentDeployer
+    implements HotswapTargetFactory {
 
-	private Object component_;
-	private boolean instantiating_ = false;
+    private Object component_;
+    
+    private Object hotswapTarget_;
+    
+    private Hotswap hotswap_;
 
-	/**
-	 * @param componentDef
-	 */
-	public SingletonComponentDeployer(ComponentDef componentDef) {
-		super(componentDef);
-	}
+    private boolean instantiating_ = false;
 
-	/**
-	 * @see org.seasar.framework.container.ComponentDeployer#deploy()
-	 */
-	public synchronized Object deploy() {
-		if (component_ == null) {
-			assemble();
-		}
-		return component_;
-	}
-	
-	public void injectDependency(Object component) {
-		throw new UnsupportedOperationException("injectDependency");
-	}
+    /**
+     * @param componentDef
+     */
+    public SingletonComponentDeployer(ComponentDef componentDef) {
+        super(componentDef);
+    }
 
-	private void assemble() {
-		if (instantiating_) {
-			throw new CyclicReferenceRuntimeException(
-				getComponentDef().getComponentClass());
-		}
-		instantiating_ = true;
-		try {
-			component_ = getConstructorAssembler().assemble();
-		} finally {
-			instantiating_ = false;
-		}
-		getPropertyAssembler().assemble(component_);
-		getInitMethodAssembler().assemble(component_);
-	}
-	
-	/**
-	 * @see org.seasar.framework.container.ComponentDeployer#init()
-	 */
-	public void init() {
-		deploy();
-	}
-	
-	/**
-	 * @see org.seasar.framework.container.ComponentDeployer#destroy()
-	 */
-	public void destroy() {
-		if (component_ == null) {
-			return;
-		}
-		getDestroyMethodAssembler().assemble(component_);
-		component_ = null;
-	}
+    /**
+     * @see org.seasar.framework.container.ComponentDeployer#deploy()
+     */
+    public synchronized Object deploy() {
+        if (component_ == null) {
+            assemble();
+        }
+        return component_;
+    }
+
+    public void injectDependency(Object component) {
+        throw new UnsupportedOperationException("injectDependency");
+    }
+
+    private void assemble() {
+        if (instantiating_) {
+            throw new CyclicReferenceRuntimeException(getComponentDef()
+                    .getComponentClass());
+        }
+        instantiating_ = true;
+        try {
+            Object o = getConstructorAssembler().assemble();
+            if (hotswap_ != null) {
+                hotswapTarget_ = o;
+                if (component_ == null) {
+                    component_ = HotswapProxy.create(getComponentDef()
+                            .getComponentClass(), this, Thread.currentThread().getContextClassLoader());
+                }
+            } else {
+                component_ = o;
+            }
+        } finally {
+            instantiating_ = false;
+        }
+        getPropertyAssembler().assemble(getTarget());
+        getInitMethodAssembler().assemble(getTarget());
+    }
+    
+    protected Object getTarget() {
+        return hotswapTarget_ != null ? hotswapTarget_ : component_;
+    }
+
+    /**
+     * @see org.seasar.framework.container.ComponentDeployer#init()
+     */
+    public void init() {
+        hotswap_ = getComponentDef().getHotswap();
+        if (hotswap_ != null && !isAppliedHotswap()) {
+            hotswap_ = null;
+        }
+        deploy();
+    }
+    
+    protected boolean isAppliedHotswap() {
+        Class clazz = getComponentDef().getComponentClass();
+        if (clazz == null) {
+            return false;
+        }
+        Class[] itfs = clazz.getInterfaces();
+        if (itfs == null) {
+            return false;
+        }
+        for (int i = 0; i < itfs.length; ++i) {
+            if (itfs[i].getMethods().length > 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @see org.seasar.framework.container.ComponentDeployer#destroy()
+     */
+    public void destroy() {
+        if (component_ == null) {
+            return;
+        }
+        getDestroyMethodAssembler().assemble(getTarget());
+        component_ = null;
+        hotswapTarget_ = null;
+    }
+
+    public synchronized Object updateTarget() {
+        if (hotswap_.isModified()) {
+            assemble();
+        }
+        return hotswapTarget_;
+    }
+    
+    
 }

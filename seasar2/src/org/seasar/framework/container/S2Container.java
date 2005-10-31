@@ -108,4 +108,8 @@ public interface S2Container extends MetaDefAware {
 	public ServletContext getServletContext();
 	
 	public void setServletContext(ServletContext servletContext);
+    
+    public boolean isHotswapMode();
+    
+    public void setHotswapMode(boolean hotswapMode);
 }

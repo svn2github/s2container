@@ -118,4 +118,8 @@ public class ClassUtilTest extends TestCase {
         assertEquals("1", "aaa.bbb", ClassUtil.concatName("aaa", "bbb"));
         assertEquals("2", "bbb", ClassUtil.concatName(null, "bbb"));
     }
+    
+    public void testGetResourcePath() {
+        assertEquals("1", "test/org/seasar/framework/util/ClassUtilTest.class", ClassUtil.getResourcePath(getClass()));
+    }
 }
