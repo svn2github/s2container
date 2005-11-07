@@ -1,0 +1,208 @@
+Seasar 変更履歴
+
+2.2.10
+-------------------------------------------------------------------------------
+org.seasar.extension.dbcp.impl パッケージ
+* maxPoolSize プロパティに 0 が設定された場合はコネクションをプールしないように ConnectionPoolImpl クラスを修正しました．
+* トランザクションが終了後にフリーコネクションを待機しているスレッドへの notify() が漏れていたのを修正しました (thanks for KUDO Kazuki)．
+
+org.seasar.extension.unit
+* DataTable 同士の assert で失敗したときに，テーブル名称を表示するように S2TestCase を修正しました (thanks for NAKAMURA Toshihiro)．
+* DataRow を比較するところで，assert に失敗するカラムがあっても全てのカラムを比較するように S2TestCase を修正しました (thanks for NAKAMURA Toshihiro)．
+* S2TestCase で test() というメソッドが存在する場合に setUp() や tearDown() が2度呼ばれていた問題を修正しました (thanks for NAKAMURA Toshihiro)．
+
+org.seasar.framework.aop.javassist パッケージ
+* AspectWeaver クラスおよび EnhancedClassGenerator クラスにおいて，Class#getPackage() が null を返す場合に NullPointerException が発生していた問題を修正しました．
+
+org.seasar.framework.container パッケージ
+* S2Container インタフェースに findComponents(), findComponentDefs() メソッドを追加しました．
+* TooManyComponentRegistrationDef インタフェースを追加しました．
+* TooManyRuntimeRegistrationException クラスを ComponentDef を保持するように修正しました．
+
+org.seasar.framework.container.assembler パッケージ
+* AssemblerFactory クラスを追加しました．
+* AutoConstructorAssembler, DefaultConstructorAssembler, ExpressionConstructorAssembler, ManualConstructorAssembler クラスの final 修飾子を削除しました．
+
+org.seasar.framework.container.deployer パッケージ
+* シングルトンのコンポーネントのコンストラクタが例外を返した場合に SingletonComponentDeployer が CyclicReferenceRuntimeException をスローする問題を修正しました (thanks for FUKUZAWA Susumu)．
+* AssemblerFactory を使用するように AbstractComponentDeployer クラスを修正しました．
+* インスタンス生成部分をカスタマイズできるように ComponentDeployerFactory クラスを修正しました．
+
+org.seasar.framework.container.factory パッケージ
+* AspectTagHandler, ComponentsTagHandler, ComponentTagHandler, DestroyTagHandler, InitMethodTagHandler, MetaTagHandler, PropertyTagHandler クラスの中で行っているインスタンス生成をメソッドとして切り出しました．
+* AbstractS2ContainerBuilder クラスを追加し，XmlS2ContainerBuilder クラスはその派生クラスとなるように修正しました．
+* CircularIncludeRuntimeException 例外を追加しました．
+* PathResolver インタフェース，SimplePathResolver クラスを追加しました．
+* ResourceResolver インタフェース，ClassPathResourceResolver クラスを追加しました．
+* コンテナおよびその生成をカスタマイズできるように S2ContainerFactory クラスを修正しました．
+
+org.seasar.framework.container.impl パッケージ
+* S2ContainerBehavior クラスを追加しました．
+* TooManyRegistrationComponentDef クラスを TooManyRegistrationComponentDefImpl にリネームしました．
+* S2ContainerBehavior クラスを使用するように S2ContainerImpl クラスを修正しました．
+
+
+2.2.9
+-------------------------------------------------------------------------------
+lib フォルダ
+* jta.jar を jta-1_0_1B-classes.zip をリネームしたものに置換しました．
+
+org.seasar.extension.dbcp パッケージ
+* ConnectionWrapper インタフェースの init() メソッドを init(boolean) に変更しました．この引数はこのコネクションが JTA トランザクションに参加している (enlistResource されている) 場合に true が指定されます．
+
+org.seasar.extension.dbcp.impl パッケージ
+* JTA トランザクションが開始される前に ConnectionPoolImpl からチェックアウトされた ConnectionWrapperImpl (activePool に保持される) が JTA トランザクション中に close() を呼ばれた場合 (txActivePool から取り除こうとするが存在しない) に freePool に戻されない問題を修正しました．
+* JTA トランザクション中に setAutoCommit(true)，commit()，rollback()，setSavePoint()が呼び出された場合に SQLException をスローするように修正しました．
+
+org.seasar.extension.jta パッケージ
+org.seasar.extension.jta.xa パッケージ
+* 複数の XAResouce がトランザクションに参加している場合の 2PC における prepare フェーズで，途中の XAResouce が例外をスローした場合に後続の XAResource がロールバックされない問題を修正しました．
+* 複数の XAResouce がトランザクションに参加している場合の 2PC における prepare フェーズで，最後の XAResouce に対しては prepare を行わず onePhase コミットを行う Last resource commit optimization を実装しました．prepare せずに onePhase コミットするリソースは Transaction に最初に enlist されたリソースになります．
+
+
+2.2.8
+-------------------------------------------------------------------------------
+org.seasar.extension.dbcp パッケージ
+* ConnectionWrapper インタフェースに cleanup() メソッドを追加しました．このメソッドは ConnectionPool が ConnectionWrapper をプールに戻す際に呼び出します．
+
+org.seasar.extension.dbcp.impl パッケージ
+* JTAトランザクションが開始されていない場合にコネクション取得の可否を指定する allowLocalTx プロパティを追加しました．allowLocalTx が false の場合，JTA トランザクションを開始せずにコネクションを取得しようとすると IllegalStateException がスローされます．allowLocalTx のデフォルト値は true です．
+* コネクションをプールにチェックインする際に ConnectionWrapper の cleanup() メソッドを呼び出すように ConnectionPoolImpl クラスを修正しました．
+* close() が呼び出された際に論理コネクションクローズのログが出力されるように ConnectionWrapperImpl を修正しました．
+* ConnectionWrapperImpl に cleanup() メソッドを追加しました．このメソッドが呼び出されると内部状態をクローズに設定します (_close を true にする)．
+
+org.seasar.extension.tx パッケージ
+* NotSupportedInterceptor を追加しました．
+* 例外発生時にトランザクションをコミットまたはロールバックすることを指定できるように AbstractTxInterceptor，RequiredInterceptor，RequiredNewInterceptor を修正しました．
+
+org.seasar.extension.unit パッケージ
+* S2TestCase にデフォルトコンストラクタを追加しました．
+
+org.seasar.exception パッケージ
+* SSQLException にコンストラクタを追加しました．
+* SIllegasArgumentException を追加しました．
+
+src フォルダ
+* j2ee.dicon の ConnectionPoolImpl の定義に allowLocalTx の設定を追加しました．設定値は true で従来と同じ動きをします．
+* EJBのコンテナ管理トランザクション (CMT) と互換のトランザクション・インターセプタを提供する ejbtx.dicon を追加しました．
+
+
+2.2.7
+-------------------------------------------------------------------------------
+org.seasar.extension.dbcp.impl パッケージ
+* ConnectionPoolImpl クラスで NullPointerExcpetion が発生する問題を修正しました．
+
+org.seasar.framework.aop.javassist パッケージ
+* プリミティブ型のメソッドに適用した MethodInterceptor が null を返した場合に NullPointerException が発生しないように EnhancedClassGenerator クラスを修正しました．
+
+
+2.2.6
+-------------------------------------------------------------------------------
+org.seasar.extension.jdbc パッケージ
+* PropertyType インタフェースに setColumnName() メソッドを追加しました．
+
+org.seasar.extension.jdbc.impl パッケージ
+* PropertyTypeImpl クラスに setColumnName() メソッドを追加しました．
+
+
+2.2.5
+-------------------------------------------------------------------------------
+org.seasar.extension.jta パッケージ
+* ロールバック時に Synchronization#beforeCompletion() メソッドを呼び出さないように TransactionImpl クラスを修正しました．
+
+org.seasar.framework.aop.javassist パッケージ
+* Javassist の CtClass#toClasss() を使わないように AbstractGenerator() クラスを修正しました．
+* java.* および シールされたパッケージ以外のクラスをエンハンスする際にクラス名にプレフィックスを付けないように AspectWeaver クラスを修正しました．
+* java.* および シールされたパッケージの可視性がデフォルト (パッケージスコープ) のコンストラクタをオーバーライドしないように EnhancedClassGenerator クラスを修正しました．
+
+
+
+2.2.4
+-------------------------------------------------------------------------------
+org.seasar.extension.dataset.impl パッケージ
+* 数値を文字列として書き出すように XlsWriter クラスを修正しました．
+
+org.seasar.extension.dataset.states パッケージ
+* insert 文でテーブル名の後にブランクをつけるように CreatedState を修正しました．
+
+org.seasar.extension.mock.servlet パッケージ
+* MockServletContextImpl クラスのgetResourcePaths(String) メソッドを実装しました．
+
+org.seasar.framework.container.factory パッケージ
+* S2ContainerFactory に ClassLoader を渡せるメソッドを追加しました。
+
+
+
+2.2.3
+-------------------------------------------------------------------------------
+org.seasar.framework.util パッケージ
+* DatabaseMetaDataUtil クラスをケースセンシティブなのにケースセンシティブじゃないよというJDBC Driverに対応するように修正しました．
+* DateConversionUtil クラスでロケールを指定できるように修正しました．
+
+
+
+2.2.2
+-------------------------------------------------------------------------------
+org.seasar.framework.aop.interceptors パッケージ
+* PrototypeDelegateInterceptor クラスを追加しました．
+
+test.org.seasar.framework.aop.interceptors パッケージ
+* PrototypeDelegateInterceptorTest クラスを追加しました．
+* InterceptorsAllTests クラスが PrototypeDelegateInterceptorTest クラスを含めるように修正しました．
+
+examples.aop.prototypedelegateinterceptor パッケージ
+* PrototypeDelegateInterceptor クラスを使ったサンプルを追加しました．
+
+
+
+2.2.1
+-------------------------------------------------------------------------------
+org.seasar.framework.aop.javassist パッケージ
+* MethodInvocationClassGenerator クラスの fromObject()・toObject() メソッドを AbstractGenerator クラスに移動し，数値型のプリミティブ型を変換する際には対応するラッパー型にキャストするのではなく，java.lang.Number 型にキャストするコードを生成するように修正しました．
+* 戻り値型への変換を行うように EnhancedClassGenerator クラスの createTargetMethodSource() メソッドを修正しました．
+
+org.seasar.framework.beans.impl パッケージ
+* NumberConversionUtil クラスを使うように PropertyDescImpl クラスを修正しました．任意の Number 型からプリミティブ型へ変換することが出来るようになりました．
+
+org.seasar.framework.util パッケージ
+* NumberConversionUtil クラスを追加しました．
+
+
+
+2.2.0
+-------------------------------------------------------------------------------
+org.seasar.framework.aop パッケージ
+* S2MethodInvocation インタフェースを追加しました．
+
+org.seasar.framework.aop.impl パッケージ
+* MethodInvocationImpl クラスを【削除】しました．
+* NestedMethodInvocation クラスを追加しました．
+
+org.seasar.framework.aop.interceptors パッケージ
+* S2MethodInvocation インタフェースを使うように AbstractInterceptor クラスを修正しました．
+* NextedMethodInvocation クラスを使うように InterceptorChain クラスを修正しました．
+
+org.seasar.framework.aop.javassist パッケージ
+* Javassist を利用する AspectWeaver クラス他を追加しました．
+
+org.seasar.framework.aop.proxy パッケージ
+* AspectWeaver クラスを使うように AopProxy クラスを修正しました．
+* AopProxy クラスに generateClass() メソッドを追加しました．
+
+org.seasar.framework.container パッケージ
+* ComponentDef インタフェースに getConcreteClass() メソッドを追加しました．このメソッドは，コンポーネントをインスタンス化するためのクラスを返します．
+
+org.seasar.framework.container.assembler パッケージ
+* ComponentDef#getConcreteClass() から取得したクラスを使ってコンポーネントをインスタンス化するように AbstractConstructorAssember・AutoConstructorAssembler・ManualConstructorAssember クラスを修正しました．
+
+org.seasar.framework.container.impl パッケージ
+* ComponentDefImpl クラスに getConcreteClass() メソッドを追加しました．このメソッドは，コンポーネント定義にアスペクトが設定されていなければコンポーネント定義に設定されたクラス (getComponentClass() と同じ) を，アスペクトが設定されていればエンハンスされたクラスを返します．
+* SimpleComponentDef クラスに getConcreteClass() メソッドを追加しました．このメソッドは，常にコンポーネント定義に設定されたクラス (getComponentClass() メソッドの戻り値) を返します．
+
+org.seasar.framework.container.util パッケージ
+* AopProxyUtil クラスを追加しました．
+
+org.seasar.framework.util パッケージ
+* ByteConverterUtil クラスを追加しました．
+* ClassUtil クラスに getWrapperClass(Class)・getWrapperClassIfPrimitive(Class) メソッドを追加しました．これらのメソッドは，プリミティブ型に対応するラッパー型を返します．
+* ClassUtil クラスに getSimpleClassName(Class) メソッドを追加しました．このメソッドは，引数の型が配列の場合に，java.lang.Object[] のような名前を返します (J2SE 5.0 の Class#getSimpleName() 相当)．
