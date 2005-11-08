@@ -11,8 +11,6 @@ import org.seasar.framework.container.PropertyDef;
 import org.seasar.framework.container.assembler.BindingTypeDefFactory;
 import org.seasar.framework.container.deployer.InstanceDefFactory;
 import org.seasar.framework.container.factory.Backport175AnnotationHandler;
-import org.seasar.framework.container.factory.ConstantAnnotationHandlerTest.Hoge;
-
 
 /**
  * @author higa
