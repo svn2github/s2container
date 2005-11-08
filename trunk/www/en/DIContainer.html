@@ -1188,7 +1188,7 @@ END java.util.Date#getTime() : 0
 </table>
 <br />
 <p>コンポーネントの名前はAutoNamingにより制御します．クラス名をコンポーネント名とするDefaultAutoNamingと、パッケージで修飾された名前をコンポーネント名とするAualifiedAutoNamingがあります．</p>
-<h5>org.seasar.framework.container.autoregister.DefaultAutoNaming</h5>
+<h5><a name="DefaultAutoNaming">org.seasar.framework.container.autoregister.DefaultAutoNaming</a></h5>
 <p>クラスの完全修飾名からパッケージ部分を除き、最後がImplまたはBeanで終わっていたら削除し､
 先頭を小文字にした名前をコンポーネントの名前に設定します。
 例えば､aaa.HogeImplクラスの場合､コンポーネント名は､hogeになります。</p>
@@ -1232,7 +1232,7 @@ END java.util.Date#getTime() : 0
 </tr>
 
 </table>
-<h5>org.seasar.framework.container.autoregister.QualifiedAutoNaming</h5>
+<h5><a name="QualifiedAutoNaming">org.seasar.framework.container.autoregister.QualifiedAutoNaming</a></h5>
 <p>パッケージ名またはその一部で修飾されたクラス名をコンポーネントの名前に設定します。
 クラスの完全修飾名から最後がImplまたはBeanで終わっていたら削除し､
 先頭を小文字、ピリオドの直後を大文字にした名前をコンポーネントの名前に設定します。<br>
