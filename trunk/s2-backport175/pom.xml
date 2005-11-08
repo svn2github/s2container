@@ -12,6 +12,66 @@
   <description></description>
   <url>http://s2container.seasar.org/</url>
   <inceptionYear>2005</inceptionYear>
+  <build>
+    <defaultGoal>validate</defaultGoal>
+    <plugins>
+      <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>annotationc</id>
+            <phase>compile</phase>
+            <configuration>
+              <tasks>
+                <path id="backport175.class.path">
+                  <path refid="maven.dependency.classpath"/>
+                </path>
+                <taskdef
+                  name="annotationc" 
+                  classname="org.codehaus.backport175.compiler.task.AnnotationCTask"
+                  classpathref="backport175.class.path"
+                />
+                <annotationc
+                  verbose="${annotationc.verbose}"
+                >
+                  <src path="${basedir}/src/main/java"/>
+                  <classpath path="${basedir}/target/classes"/>
+                </annotationc>
+              </tasks>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>test-annotationc</id>
+            <phase>test-compile</phase>
+            <configuration>
+              <tasks>
+                <path id="backport175.class.path">
+                  <path refid="maven.dependency.classpath"/>
+                </path>
+                <taskdef
+                  name="annotationc" 
+                  classname="org.codehaus.backport175.compiler.task.AnnotationCTask"
+                  classpathref="backport175.class.path"
+                />
+                <annotationc
+                  verbose="${annotationc.verbose}"
+                >
+                  <src path="${basedir}/src/test/java"/>
+                  <classpath path="${basedir}/target/test-classes"/>
+                </annotationc>
+              </tasks>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
   <repositories>
     <repository>
       <id>maven.seasar.org</id>
@@ -48,4 +108,7 @@
       <url>scp://www.seasar.org/home/groups/maven/public_html/maven2/</url>
     </repository>
   </distributionManagement>
+  <properties>
+    <annotationc.verbose>false</annotationc.verbose>
+  </properties>
 </project>
