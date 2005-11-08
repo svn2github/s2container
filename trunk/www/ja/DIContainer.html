@@ -3,9 +3,11 @@
 <!-- don't edit start -->
 <head>
 <title>Seasar - DI Container with AOP - </title>
-<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<meta http-equiv="Content-Type" content="text/html; charset=MS932C">
 <meta http-equiv="Content-Style-Type" content="text/css">
-<link href="seasar_b.css" type="text/css" rel="stylesheet" media="screen"><link href="seasar_p.css" type="text/css" rel="stylesheet" media="print"><script src="seasar_b.js" type="text/JavaScript" language="JavaScript"></script>
+<link href="seasar_b.css" type="text/css" rel="stylesheet" media="screen">
+<link href="seasar_p.css" type="text/css" rel="stylesheet" media="print">
+<script src="seasar_b.js" type="text/JavaScript" language="JavaScript"></script>
 </head><body onload="preload('ja')"><table width="100%" border="0" cellspacing="0" cellpadding="0" align="left"><tr>
 <td align="left" valign="top" width="780"><table width="780" border="0" cellspacing="0" cellpadding="0" class="white">
 <tr><td colspan="7"><img height="5" width="780" src="images/top01_b.gif" alt=""></td></tr>
@@ -26,9 +28,9 @@
 <!-- document start -->
             <ul>
               <li><a href="#Quickstart">クイックスタート</a>
-			 　<ul>
-				<li><a href="#FirstStep">最初の一歩</a>
-				<li><a href="#NextStep">次の一歩</a>
+             　<ul>
+                <li><a href="#FirstStep">最初の一歩</a>
+                <li><a href="#NextStep">次の一歩</a>
 　　　　　　　　</ul>
               </li>
 
@@ -59,10 +61,11 @@
                   <li><a href="#S2ContainerServlet">S2ContainerServlet</a></li>
                   <li><a href="#app.dicon">app.diconの役割</a></li>
                   <li><a href="#Aop">AOPの適用</a></li>
-				  <li><a href="#Meta">メタデータ</a></li>
-				  <li><a href="#Request">Requestの自動バインディング</a></li>
-				  <li><a href="#ComponentAutoRegister">コンポーネントの自動登録</a></li>
-				  <li><a href="#AspectAutoRegister">アスペクトの自動登録</a></li>
+                  <li><a href="#Meta">メタデータ</a></li>
+                  <li><a href="#Request">Requestの自動バインディング</a></li>
+                  <li><a href="#ComponentAutoRegister">コンポーネントの自動登録</a></li>
+                  <li><a href="#AspectAutoRegister">アスペクトの自動登録</a></li>
+                  <li><a href="#Hotswap">Hotswap</a></li>
                 </ul>
               </li>
               <li><a href="#DefReference">S2Containerタグリファレンス</a>
@@ -73,7 +76,7 @@
                   <li><a href="#componentTag">componentタグ</a></li>
                   <li><a href="#argTag">argタグ</a></li>
                   <li><a href="#propertyTag">propertyタグ</a></li>
-				  <li><a href="#metaTag">metaタグ</a></li>
+                  <li><a href="#metaTag">metaタグ</a></li>
                   <li><a href="#initMethodTag">initMethodタグ</a></li>
                   <li><a href="#destroyMethodTag">destroyMethodタグ</a></li>
                   <li><a href="#aspectTag">aspectタグ</a></li>
@@ -81,13 +84,13 @@
                   <li><a href="#ognlExpr">OGNL式</a></li>
                 </ul>
               </li>
-			  <li><a href="#AnnotationReference">S2Containerアノテーションリファレンス</a>
+              <li><a href="#AnnotationReference">S2Containerアノテーションリファレンス</a>
                 <ul>
                   <li><a href="#ComponentAnnotation">Componentアノテーション</a></li>
-				  <li><a href="#BindingAnnotation">Bindingアノテーション</a></li>
-				  <li><a href="#AspectAnnotation">Aspectアノテーション</a></li>
-				</ul>
-			  </li>
+                  <li><a href="#BindingAnnotation">Bindingアノテーション</a></li>
+                  <li><a href="#AspectAnnotation">Aspectアノテーション</a></li>
+                </ul>
+              </li>
               <li><a href="DIContainerExercise.html">DIContainerエクササイズ</a></li>
             </ul>
 
@@ -385,7 +388,7 @@ S2Containerに自動登録します。initMethodタグについては､<a href="#MethodInjection"
 コンポーネントの自動登録とアスペクトの自動登録を組み合わせた例は次のようになります。</p>
 
 <h5>GreetingMain4.dicon</h5>
-<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;<br>&lt;!DOCTYPE components PUBLIC &quot;-//SEASAR//DTD S2Container 2.3//EN&quot; <br>	&quot;http://www.seasar.org/dtd/components23.dtd&quot;&gt;
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;<br>&lt;!DOCTYPE components PUBLIC &quot;-//SEASAR//DTD S2Container 2.3//EN&quot; <br>    &quot;http://www.seasar.org/dtd/components23.dtd&quot;&gt;
 &lt;components&gt;<br>    &lt;include path=&quot;aop.dicon&quot;/&gt;
 
     &lt;component<br>      class=&quot;org.seasar.framework.container.autoregister.FileSystemComponentAutoRegister&quot;&gt;<br>        &lt;initMethod name=&quot;addClassPattern&quot;&gt;<br>            &lt;arg&gt;&quot;examples.di.impl&quot;&lt;/arg&gt;<br>            &lt;arg&gt;&quot;.*Impl&quot;&lt;/arg&gt;<br>        &lt;/initMethod&gt;<br>        &lt;initMethod name=&quot;registAll&quot;/&gt;<br>    &lt;/component&gt;
@@ -843,10 +846,9 @@ Hello Bbb!
 <p>プロパティの自動バインディングのルールは次のようになります。</p>
 <ul>
 <li>プロパティが明示的に指定されている場合は、それに従い、自動バインディングは適用されません。</li>
-<li>上記に該当しない場合､プロパティの型がインターフェースでないなら､自動バインディグの対象外になります。</li>
-<li>上記に該当しない場合､プロパティ名と同一のコンポーネントがコンテナに登録されていれば、
+<li>上記に該当しない場合､プロパティ名と同一のコンポーネントがコンテナに登録されてプロパティに代入可能なら、
 そのコンポーネントが適用されます。</li>
-<li>上記に該当しない場合､プロパティの型を実装したコンポーネントがコンテナに登録されていれば、
+<li>上記に該当しない場合､プロパティの型がインターフェースでプロパティの型を実装したコンポーネントがコンテナに登録されていれば、
 そのコンポーネントが適用されます。</li>
 <li>上記に該当しない場合､自動バインディングは適用されません。</li>
 </ul>
@@ -921,7 +923,7 @@ Hello Bbb!
             <p>configPathでメインとなるS2Container定義のパスを指定します。定義ファイルはWEB-INF/classesにおきます。S2ContainerServletは、他のサーブレットよりもはやく起動されるようにload-on-startupタグを調整してください。S2ContainerServletが起動した後は、次のメソッドでS2Containerのインスタンスを取得することができます。</p>
             <p>- org.seasar.framework.container.factory.SingletonS2ContainerFactory#getContainer()</p>
             <p>また、S2Containerのライフサイクルは、S2ContainerServletと連動します。debugパラメータをtrueにすると、次のようにして、稼動中にS2Containerを再起動できます。xxxはWebアプリケーションのコンテキスト名です。</p>
-			<pre>http://localhost:8080/xxx/s2servlet?command=restart
+            <pre>http://localhost:8080/xxx/s2servlet?command=restart
             </pre>
             <p>S2ContainerServletを使っている場合、ServletContextをservletContextという名前のコンポーネントとしてアクセスできるようになります。</p>
 
@@ -1019,10 +1021,6 @@ END java.util.Date#getTime() : 0
 <tr bgcolor="#d1f3f4" align="center">
 <th>プロパティ</th>
 <th>説明</th>
-</tr>
-<tr>
-<td><code>fileNameOfRoot</code></td>
-<td>このプロパティで指定されたファイルが存在するディレクトリをクラスパスのルート(例えば、WEB-INF/classes)とみなします。デフォルトは、<code>j2ee.dicon</code>になります。</td>
 </tr>
 <tr>
 <td><code>instanceDef</code></td>
@@ -1216,7 +1214,7 @@ END java.util.Date#getTime() : 0
 </table>
 <br />
 <h5>例</h5>
-<pre>&lt;component<br>  class=&quot;org.seasar.framework.container.autoregister.FileSystemComponentAutoRegister&quot;&gt;<br>    &lt;property name=&quot;autoNaming&quot;&gt;<br>	    &lt;component class=&quot;org.seasar.framework.container.autoregister.DefaultAutoNaming&quot;&gt;
+<pre>&lt;component<br>  class=&quot;org.seasar.framework.container.autoregister.FileSystemComponentAutoRegister&quot;&gt;<br>    &lt;property name=&quot;autoNaming&quot;&gt;<br>        &lt;component class=&quot;org.seasar.framework.container.autoregister.DefaultAutoNaming&quot;&gt;
             &lt;initMethod name=&quot;setCustomizedName&quot;&gt;<br>                &lt;arg&gt;&quot;examples.di.impl.HogeImpl&quot;&lt;/arg&gt;<br>                &lt;arg&gt;&quot;hoge2&quot;&lt;/arg&gt;<br>            &lt;/initMethod&gt;
         &lt;/component&gt;<br>    &lt;/property&gt;<br>    &lt;initMethod name=&quot;addClassPattern&quot;&gt;<br>        &lt;arg&gt;&quot;examples.di.impl&quot;&lt;/arg&gt;<br>        &lt;arg&gt;&quot;.*Impl&quot;&lt;/arg&gt;<br>    &lt;/initMethod&gt;<br>    &lt;initMethod name=&quot;registAll&quot;/&gt;<br>&lt;/component&gt;</pre>
 
@@ -1270,6 +1268,103 @@ END java.util.Date#getTime() : 0
 &lt;component<br>  class=&quot;org.seasar.framework.container.autoregister.AspectAutoRegister&quot;&gt;<br>    &lt;property name=&quot;interceptor&quot;&gt;aop.traceInterceptor&lt;/property&gt;<br>    &lt;initMethod name=&quot;addClassPattern&quot;&gt;<br>        &lt;arg&gt;&quot;examples.di.impl&quot;&lt;/arg&gt;<br>        &lt;arg&gt;&quot;.*Impl&quot;&lt;/arg&gt;<br>    &lt;/initMethod&gt;<br>    &lt;initMethod name=&quot;registAll&quot;/&gt;<br>&lt;/component&gt;
 </pre>
 
+<h3><a name="Hotswap">Hotswap</a></h3>
+<p>従来、ソースコードを書き換えてコンパイルした場合､コンパイル後の機能を試すためには､
+アプリケーション(正確にはClassLoader)を再起動する必要がありました。
+アプリケーションサーバ上で､アプリケーションを再起動するのは､非常に時間がかかるものです。
+「かったるい」と思っていた方も多くいることでしょう。</p>
+<p>Seasar2では、アプリケーションを稼動させたまま､クラスファイルを置き換えて、
+即座に試すことのできる<b>Hotswap</b>機能を実現しています。
+これであの「イライラ」からも解放されます。余分な待ち時間が無いので生産性を向上させることもできます。それでは、試してみましょう。</p>
+<h4>Greeting.java</h4>
+<pre>
+package examples.hotswap;
+
+public interface Greeting {
+
+    String greet();
+}
+</pre>
+<h4>GreetingImpl.java</h4>
+<pre>
+package examples.hotswap.impl;
+
+import examples.hotswap.Greeting;
+
+public class GreetingImpl implements Greeting {
+
+    public String greet() {
+        return "Hello";
+    }
+}
+</pre>
+<h4>hotswap.dicon</h4>
+<pre>&lt;components&gt;<br>    &lt;component class=&quot;examples.hotswap.impl.GreetingImpl&quot;/&gt;<br>&lt;/components&gt;
+</pre>
+<p>ここまでは､特に変わったところはありません。ポイントはこれからです。
+s2container.diconを使って、hotswapモードに切り替えます。</p>
+<h4>s2container.dicon</h4>
+<pre>&lt;components&gt;<br>    &lt;component<br>      class=&quot;org.seasar.framework.container.factory.S2ContainerFactory$DefaultProvider&quot;&gt;<br>        &lt;property name=&quot;hotswapMode&quot;&gt;true&lt;/property&gt;<br>    &lt;/component&gt;<br>&lt;/components&gt;<br></pre>
+<p>s2container.diconはクラスパスの通っているルートのディレクトリに置いておけば､自動で認識されます。
+S2ContainerFactory#configure()を使って明示的に指定することもできます。</p>
+<h4>GreetingMain.dicon</h4>
+<pre>
+package examples.hotswap.main;
+
+import org.seasar.framework.container.S2Container;
+import org.seasar.framework.container.factory.S2ContainerFactory;
+
+import examples.hotswap.Greeting;
+
+public class GreetingMain {
+
+    private static final String CONFIGURE_PATH =
+        "examples/hotswap/dicon/s2container.dicon";
+
+    private static final String PATH =
+        "examples/hotswap/dicon/hotswap.dicon";
+
+    public static void main(String[] args) throws Exception {
+        S2ContainerFactory.configure(CONFIGURE_PATH);
+        S2Container container = S2ContainerFactory.create(PATH);
+        System.out.println("hotswapMode:" + container.isHotswapMode());
+        container.init();
+        try {
+            Greeting greeting = (Greeting) container
+                    .getComponent(Greeting.class);
+            System.out.println(greeting.greet());
+            System.out.println("Let's modify GreetingImpl, then press ENTER.");
+            System.in.read();
+            System.out.println("after modify");
+            System.out.println(greeting.greet());
+        } finally {
+            container.destroy();
+        }
+    }
+}
+</pre>
+<p>hotswapを使うためには､S2Container#init()を呼び出す必要があります。
+実行すると"Hello"と表示された後に､プログラムが停止するので､
+GreetingImpl#greet()が"Hello2"を返すように修正してコンパイルします。
+その後､コンソールにフォーカスを当ててENTERキーを押してください。
+同じインスタンスなのにかかわらず、classファイルが入れ替わっていることがわかります。
+これは、<a href="#InstanceMode">インスタンスモード</a>がsingletonの場合の例ですが､
+<a href="#InstanceMode">インスタンスモード</a>がprototypeの場合は､S2Container#getComponent()のタイミングでクラスが入れ替わります。</p>
+<h4>実行結果</h4>
+<pre>
+hotswapMode:true
+Hello
+Let's modify GreetingImpl, then press ENTER.
+
+after modify
+Hello2
+</pre>
+<p>hotswapを使うためには､コンポーネントがインターフェースを提供し､
+コンポーネントの利用者側は､インターフェース経由でコンポーネントを利用する必要があります。
+<a href="#InstanceMode">インスタンスモード</a>がrequest、sessionの場合は､
+そのコンポーネントが他のコンポーネントから参照されていない場合には､
+インターフェースなしでもhotswapを利用することができます。
+</p>
 
 <h2><a name="DefReference">S2Containerタグリファレンス</a></h2>
 
@@ -1336,13 +1431,13 @@ END java.util.Date#getTime() : 0
             <h3><a name="propertyTag">propertyタグ(任意)</a></h3>
             <p><a href="#componentTag">componentタグ</a>の子タグとして使います。プロパティとして設定される実際の値は、ボディで、<a href="#ognlExpr">OGNL式</a>を使うか、子タグで、<a href="#componentTag">componentタグ</a>を使います。</p>
 
-			<h4><a name="propertyTag.nameAttr">name属性(必須)</a></h4>
+            <h4><a name="propertyTag.nameAttr">name属性(必須)</a></h4>
             <p>プロパティ名を指定します。</p>
 
-			<h4><a name="propertyTag.bindingTypeAttr">bindingType属性(任意)</a></h4>
+            <h4><a name="propertyTag.bindingTypeAttr">bindingType属性(任意)</a></h4>
             <p>プロパティごとに自動バインディングを細かく制御できます。must、should(デフォルト)、may、noneを指定することができます。詳しくは、<a href="#AutoBindingMode">自動バインディング</a>を参照してください。</p>
 
-			<h3><a name="metaTag">metaタグ(任意)</a></h3>
+            <h3><a name="metaTag">metaタグ(任意)</a></h3>
             <p><a href="#componentsTag">componentsタグ</a>、<a href="#componentTag">componentタグ</a>、<a href="#argTag">argタグ</a>、<a href="#propertyTag">propertyタグ</a>の子タグとして使います。メタデータの値は、ボディで、<a href="#ognlExpr">OGNL式</a>を使うか、子タグで、<a href="#componentTag">componentタグ</a>を使います。</p>
 
 <h4><a name="propertyTag.nameAttr">name属性(任意)</a></h4>
