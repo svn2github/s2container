@@ -15,8 +15,11 @@
 <td><a href="http://www.seasar.org/en/index.html"><img src="images/menu01_b_en.gif" height="30" width="78" border="0" alt="" id="menu01" onmouseover="swap(1)" onmouseout="restore(1)"></a></td>
 <td><a href="http://www.seasar.org/en/projects.html"><img src="images/menu02_b_en.gif" height="30" width="101" border="0" alt="" id="menu02" onmouseover="swap(2)" onmouseout="restore(2)"></a></td>
 <td><a href="http://www.seasar.org/en/products.html"><img src="images/menu06_b_en.gif" height="30" width="110" border="0" alt="" id="menu06" onmouseover="swap(6)" onmouseout="restore(6)"></a></td>
+<td><a href="http://www.seasar.org/en/documents.html"><img src="images/menu04_b_en.gif" height="30" width="109" border="0" alt="" id="menu04" onmouseover="swap(4)" onmouseout="restore(4)"></a></td>
 <td><a href="http://www.seasar.org/en/resources.html"><img src="images/menu05_b_en.gif" height="30" width="113" border="0" alt="" id="menu05" onmouseover="swap(5)" onmouseout="restore(5)"></a></td>
+<!--
 <td><img src="images/menu07_b_en.gif" height="30" width="109" border="0" alt=""  id="menu07" onmouseover="swap(7)" onmouseout="restore(7)"></td>
+//-->
 <td><img height="30" width="34" src="images/menu06.gif" alt=""></td></tr><tr>
 
 <td colspan="6"><img height="19" width="545" src="images/spacer.gif" alt=""></td></tr></table>
@@ -206,7 +209,7 @@ prototype.</p>
     method name explicitly to support different method names, use
     "DelegateInterceptor#addMethodNameMap(String methodName, String
     targetMethodName)". Suppose you want to let the method bar() be delegated
-    to foo.bar2(), then your code might be like this: "DelegateInterceptor#setTarget(foo)，DelegateInterceptor#addMethodNameMap(&quot;bar&quot;, &quot;bar2&quot;)". Please read <a href="#DelegateInterceptorSample">DelegateInterceptor</a> for further information.</p>
+    to foo.bar2(), then your code might be like this: "DelegateInterceptor#setTarget(foo)，DelegateInterceptor#addMethodNameMap(&quot;bar&quot;, &quot;bar2&quot;)". Please read <a href="#DelegateInterceptorSample">DelegateInterceptor</a> for further information.</p>
 <h5>Pay attention</h5>
 <p>A component assigned to a target property will be get through the
 container while its initialization processes are going on. As a result, the
@@ -224,7 +227,7 @@ use PrototypeDelegateInterceptor described below.
     name is assigned to the targetName property of
     PrototypeDelegateInterceptor. If you want to set a method name explicitly
     to support different method names, use
-    "PrototypeDelegateInterceptor#setTarget(foo)，
+    "PrototypeDelegateInterceptor#setTarget(foo)，
     PrototypeDelegateInterceptor#addMethodNameMap(&quot;bar&quot;, &quot;bar2&quot;)". Please read <a
 href="#PrototypeDelegateInterceptorSample">PrototypeDelegateInterceptor</a>
     for further information.</p>
@@ -558,7 +561,7 @@ hoge
     <p>(2) This ThrowsInterceptor example shows you how to replace the type
  of exeception with another Interceptor. Modify HandleThrowableInterceptor
  defined above.</p>
- 　 <b>How to make Interceptor to throw a new exception</b>
+ 　 <b>How to make Interceptor to throw a new exception</b>
     <p>Suppose org.seasar.framework.exception.SRuntimeException will be thrown
     when the first argument of handleThrowable(Throwable, MethodInvocation)
     method is NullPointerException, then you need to modify
