@@ -65,6 +65,7 @@
 				  <li><a href="#Request">Requestの自動バインディング</a></li>
 				  <li><a href="#ComponentAutoRegister">コンポーネントの自動登録</a></li>
 				  <li><a href="#AspectAutoRegister">アスペクトの自動登録</a></li>
+				  <li><a href="#Hotswap">Hotswap</a></li>
                 </ul>
               </li>
               <li><a href="#DefReference">S2Containerタグリファレンス</a>
@@ -114,7 +115,7 @@
 
 <li>Greeting Main Class
 <ul>
-<li>Startup Class. Also assembles greeting and greeting client class.
+<li>Startup Class. Also constructs greeting and greeting client class.
 </li>
 </ul>
 </li>
@@ -208,7 +209,7 @@ That is the basic style of DI </p>
 <p>However, if one writes configurations into the source as GreetingMain,
 the source code must be altered to reflect any changes.
 DIContainer is used to avoid this.
-DIContainer assembles objects by reading external configuration files.</p>
+DIContainer constructs objects by reading external configuration files.</p>
 <p>We will write the configuration information into the configuration file.
 That extension is &quot;.dicon&quot; in S2Container.</p>
 
@@ -458,18 +459,21 @@ Components can be excluded from auto-registration using the addIgnoreClassPatter
 <p><a href="#BindingAnnotation">Binding Annotation</a> can be used to fine tune configuration settings
 without using configuration files for properties excluded from auto-binding.</p>
 
+<p><a href="#Hotswap">Hotswap</a> can be used to retry immediately without restarting application
+so that development is more efficient.</p>
+
 <p>We have now mastered advanced use of S2Container. Please reference the manual as needed.</p>
 
 
-<h2><a name="S2ContainerReference">S2Containerリファレンス</a></h2>
+<h2><a name="S2ContainerReference">S2Container Reference</a></h2>
 
-<h3><a name="CreateFile"><b>作成すべきファイル</b></a></h3>
-<p>S2Containerを使用するためには、定義ファイルを作成する必要があります。
-定義ファイルは、コンポーネントを組み立てるための設計書のようなものです。
-形式はXMLで、拡張子は、diconです。</p>
+<h3><a name="CreateFile">Files to be Created</a></h3>
+<p>A definition file must be created in order to use S2Container.
+A definition file is a XML file with a .dicon extension,
+and serves as a blueprint for component creation.</p>
 
-            <h3><a name="S2ContainerDefinition"><b>S2Containerの定義</b></a></h3>
-            <p>S2Containerの定義は、次のようになります。</p>
+<h3><a name="S2ContainerDefinition">S2Container Definition</a></h3>
+<p>The definition of S2Container is as follows.</p>
 
 <pre>
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
@@ -485,8 +489,11 @@ without using configuration files for properties excluded from auto-binding.</p>
 &lt;/components&gt;
 </pre>
 
-            <p>DOCTYPEは省略できません。diconファイルを作成する場合は、上記のサンプルをコピー＆ペーストしてください。ルートは<a href="#componentsTag">componentsタグ</a>です。コンポーネントごとに、<a href="#componentTag">componentタグ</a>を定義していきます。componentタグのclass属性でコンポーネントのクラスの完全限定名を指定します。name属性には、コンポーネント名を指定します。詳細は、<a href="#DefReference">S2Container定義タグリファレンス</a>を参照してください。</p>
-
+<p>DOCTYPE may not be abbreviated.
+The above sample should be copied verbatim when creating a dicon file.
+The root is the <a href="#componentsTag">components tag</a>.
+We will define the component tag for every <a href="#componentTag">component tag</a>.
+Please refer to the <a href="#DefReference">S2Container Definition Tag Reference</a> for additional details.</p>
 
 <pre>
 &lt;components&gt;
@@ -494,72 +501,88 @@ without using configuration files for properties excluded from auto-binding.</p>
 &lt;/components&gt;
 </pre>
 
-
-            <h3><a name="S2ContainerCreation">S2Containerの生成</a></h3>
-<p>S2Containerを生成する方法は二通りあります。</p>
+<h3><a name="S2ContainerCreation">S2Container Creation</a></h3>
+<p>There are two methods of creating S2Container.</p>
 <ul>
-<li>SingletonS2ContainerFactoryを使用する。
-<li>S2ContainerFactoryを使用する。
+<li>Use SingletonS2ContainerFactory</li>
+<li>Use S2ContainerFactory</li>
 </ul>
-<h4><a name="SingletonS2ContainerFactory">SingletonS2ContainerFactoryを使用する</a></h4>
-<p>SingletonS2ContainerFactoryを使用する場合は、次のメソッドを使用します。</p>
-            <p>- org.seasar.framework.container.factory.SingletonS2ContainerFactory#init()</p>
-<p>
-定義ファイルはCLASSPATHで指定されているディレクトリにあるapp.diconが使われます。 </p>
-<p>作成したS2Containerは、どこからでも次のメソッドで取得することができます。</p>
+<h4><a name="SingletonS2ContainerFactory">Using SingletonS2ContainerFactory</a></h4>
+<p>We will use the following method when utilizing SingletonS2ContainerFactory.</p>
+<p>- org.seasar.framework.container.factory.SingletonS2ContainerFactory#init()</p>
+<p>app.dicon located in the directory as defined in CLASSPATH is used.</p>
+<p>The created S2Container can be obtained by the following method from any location.</p>
 <p>- org.seasar.framework.container.factory.SingletonS2ContainerFactory#getContainer()</p>
 <pre>SingletonS2ContainerFactory.init();
 ...
 S2Container container = SingletonS2ContainerFactory.getContainer();</pre>
-<p>定義ファイルのパスを指定する場合はinit()を呼び出す前に次のメソッドを使用します。</p>
-<p>- org.seasar.framework.container.factory.SingletonS2ContainerFactory#setConfigPath(String
-Path)</p>
-<p>引数pathはCLASSPATHで指定されているディレクトリをルートとする定義ファイルの絶対パスです。例えば、WEB-INF/classes/aaa.dicon
-の場合は aaa.dicon に、WEB-INF/classes/aaa/bbb/ccc.dicon の場合は aaa/bbb/ccc.dicon
-になります。セパレータは、WindowsでもUnixでも/です。</p>
+<p>Use the following method before calling init() if specifying a path to the definition file.</p>
+<p>- org.seasar.framework.container.factory.SingletonS2ContainerFactory#setConfigPath(String Path)</p>
+<p>The arguments path is an absolute path of the definition file referencing the directory defined in CLASSPATH as root.
+For example, WEB-INF/classes/aaa.dicon is aaa.dicon.  WEB-INF/classes/aaa/bbb/ccc.dicon becomes aaa/bbb/ccc.dicon.
+The separator is “/” in both Windows and UNIX systems.</p>
 <pre>private static final String PATH = &quot;aaa/bbb/ccc.dicon&quot;;
 ...
 SingletonS2ContainerFactory.setConfigPath(PATH);
 SingletonS2ContainerFactory.init();
 ...
 S2Container container = SingletonS2ContainerFactory.getContainer();</pre>
-<h4><a name="S2ContainerFactory">S2ContainerFactoryを使用する</a></h4>
-<p>S2ContainerFactoryを使用する場合は、次のメソッドを使用します。</p>
+<h4><a name="S2ContainerFactory">Using S2ContainerFactory</a></h4>
+<p>We will use the following method when utilizing S2ContainerFactory.</p>
 <p>- org.seasar.framework.container.factory.S2ContainerFactory#create(String path)</p>
-<p>S2Containerを生成した後に次のメソッドを呼び出します。</p>
+<p>We will call the following method after creating S2Container.</p>
 <p>- org.seasar.framework.container.S2Container#init()</p>
 <pre>private static final String PATH = &quot;aaa/bbb/ccc.dicon&quot;;
 ...
 S2Container container = S2ContainerFactory.create(PATH);
 container.init();</pre>
-<p>この方法で取得したコンテナのインスタンスは、アプリケーションで管理する必要があります。</p>
-<h3><a name="getComponent">コンポーネントの取得</a></h3>
-            <p>S2Containerからコンポーネントを取り出すには、次のメソッドを使用します。</p>
-            <p>- org.seasar.framework.container.S2Container#getComponent(Object componentKey)</p>
-            引数には、コンポーネントのクラスもしくはコンポーネント名を指定できます。詳しくは、<a href="#componentTag">componentタグ</a>を参照してください。コンポーネントのクラスを指定する場合、コンポーネント instanceof クラスがtrueを返すクラスなら指定することができます。しかし、S2Containerの中に指定したクラスを実装しているコンポーネントが複数ある場合、S2Containerは、どのコンポーネントを返せばよいのか判断できないため、TooManyRegistrationRuntimeExceptionが発生します。実装コンポーネントがユニークに決まるクラスを指定してください。コンポーネント名で取得することもできます。その場合も、同一の名前をもつコンポーネントが複数登録されている場合、TooManyRegistrationRuntimeExceptionが発生します。コンポーネント名指定の場合、スペルミスをする可能性もあるので、できるだけクラス指定のほうが良いでしょう。<br/><br/>
+<p>An instance of the container obtained using this method must be managed by an application.</p>
 
-            <p>例） クラスを指定してコンポーネントを取得する場合</p>
+<h3><a name="getComponent">Acquiring Components</a></h3>
+<p>To extract a component from S2Container, we use the following method.</p>
+<p>- org.seasar.framework.container.S2Container#getComponent(Object componentKey)</p>
+
+<p></p>
+<p>A component name or component class can be specified as an argument. 
+Please refer to <a href="#componentTag">component tag</a> for details.
+When specifying a component class, the class must return true for the component class instanceof class. 
+If there are multiple components that implement the specified class,
+S2Container will fail to identify the target component and throw TooManyRegistrationRuntimeException.
+Please specify a class that will uniquely identify an implemented component, or acquire using the component name.
+If there are multiple components with identical names registered, S2Container will throw TooManyRegistrationRuntimeException as well.</p>
+
+<h4>Example: When acquiring a component by class</h4>
 <pre>
 S2Container container = S2ContainerFactory.create(PATH);
 Hoge hoge = (Hoge) container.getComponent(Hoge.class);
 </pre>
 
-            <p>例） コンポーネント名を指定してコンポーネントを取得する場合</p>
+<h4>Example: When acquiring a component by name</h4>
 <pre>
 S2Container container = S2ContainerFactory.create(PATH);
 Hoge hoge = (Hoge) container.getComponent("hoge");
 </pre>
 
-            <h3><a name="DIType">Dependency Injectionのタイプ</a></h3>
-            <p>Dependency Injectionには、コンポーネントの構成に必要な値をコンストラクタで設定する(Constructor Injection)のか、セッター・メソッドで設定する(Setter Injection)のか、初期化メソッドで設定する(Method Injection)のかで、タイプが分かれます。Method InjectionはS2Containerのオリジナルです。S2Containerはすべてのタイプとそのハイブリッド型もサポートします。</p>
+<h3><a name="DIType">Dependency Injection Type</a></h3>
+<p>
+Dependency Injection has three different types, Constructor Injection, Setter Injection, and Method Injection.
+Constructor Injection configures by the constructor,
+Setter Injection configures by the setter method,
+and Method Injection is configured by the initialization method.
+Method injection is specific to S2Container.
+S2Container supports all types and its hybrids.</p>
 
-            <h3><a name="ConstructorInjection"><b>コンストラクタ・インジェクション</b></a></h3>
-            <p>コンストラクタ・インジェクションとは、任意のコンストラクタの引数にDIを行います。<br/>
-S2Containerの定義ファイルには、次の内容を記述します。</p>
-         <ul>
-            <li><b>コンポーネントの指定</b><br/>コンポーネントは、componentタグで組み立てます。class属性でクラス名を指定します。<br/>name属性でコンポーネントに名前を付けることもできます。</li>
-            <li><b>コンストラクタの引数の指定</b><br/>コンポーネントのコンストラクタの引数は、componentタグの子タグであるargタグを使って指定します。<br/>文字列の場合は、ダブルコーテーション(")で囲みます。</li>
-         </ul>
+<h3><a name="ConstructorInjection">Constructor Injection</a></h3>
+<p>Constructor Injection applies DI to the constructor arguments.
+The following contents are written into the S2Container definition file.</p>
+<ul>
+<li><b>Specifying component</b><br/>
+The component is constructed using the component tag. The class name is specified using the class property.
+The name property can be used to give the component a name.</li>
+<li><b>Specifying constructor argument</b><br/>
+The arguments of the constructor are specified in the arg sub-tag of the component tag.
+Strings are to be surrounded by double quotation marks (&quot;).</li>
+</ul>
 
 <pre>
 &lt;components&gt;
@@ -1037,10 +1060,6 @@ END java.util.Date#getTime() : 0
 <th>説明</th>
 </tr>
 <tr>
-<td><code>fileNameOfRoot</code></td>
-<td>このプロパティで指定されたファイルが存在するディレクトリをクラスパスのルート(例えば、WEB-INF/classes)とみなします。デフォルトは、j2ee.diconになります。</td>
-</tr>
-<tr>
 <td><code>instanceDef</code></td>
 <td>自動登録されるコンポーネントに適用するInstanceDefを指定します。XMLで指定する場合､<br>
 <code>@org.seasar.framework.container.deployer.InstanceDefFactory@REQUEST</code><br>
@@ -1336,6 +1355,104 @@ END java.util.Date#getTime() : 0
 ...
 &lt;component<br>  class=&quot;org.seasar.framework.container.autoregister.AspectAutoRegister&quot;&gt;<br>    &lt;property name=&quot;interceptor&quot;&gt;aop.traceInterceptor&lt;/property&gt;<br>    &lt;initMethod name=&quot;addClassPattern&quot;&gt;<br>        &lt;arg&gt;&quot;examples.di.impl&quot;&lt;/arg&gt;<br>        &lt;arg&gt;&quot;.*Impl&quot;&lt;/arg&gt;<br>    &lt;/initMethod&gt;<br>    &lt;initMethod name=&quot;registAll&quot;/&gt;<br>&lt;/component&gt;
 </pre>
+
+<h3><a name="Hotswap">Hotswap</a></h3>
+<p>従来、ソースコードを書き換えてコンパイルした場合､コンパイル後の機能を試すためには､
+アプリケーション(正確にはClassLoader)を再起動する必要がありました。
+アプリケーションサーバ上で､アプリケーションを再起動するのは､非常に時間がかかるものです。
+「かったるい」と思っていた方も多くいることでしょう。</p>
+<p>Seasar2では、アプリケーションを稼動させたまま､クラスファイルを置き換えて、
+即座に試すことのできる<b>Hotswap</b>機能を実現しています。
+これであの「イライラ」からも解放されます。余分な待ち時間が無いので生産性を向上させることもできます。それでは、試してみましょう。</p>
+<h4>Greeting.java</h4>
+<pre>
+package examples.hotswap;
+
+public interface Greeting {
+
+    String greet();
+}
+</pre>
+<h4>GreetingImpl.java</h4>
+<pre>
+package examples.hotswap.impl;
+
+import examples.hotswap.Greeting;
+
+public class GreetingImpl implements Greeting {
+
+    public String greet() {
+        return "Hello";
+    }
+}
+</pre>
+<h4>hotswap.dicon</h4>
+<pre>&lt;components&gt;<br>    &lt;component class=&quot;examples.hotswap.impl.GreetingImpl&quot;/&gt;<br>&lt;/components&gt;
+</pre>
+<p>ここまでは､特に変わったところはありません。ポイントはこれからです。
+s2container.diconを使って、hotswapモードに切り替えます。</p>
+<h4>s2container.dicon</h4>
+<pre>&lt;components&gt;<br>    &lt;component<br>      class=&quot;org.seasar.framework.container.factory.S2ContainerFactory$DefaultProvider&quot;&gt;<br>        &lt;property name=&quot;hotswapMode&quot;&gt;true&lt;/property&gt;<br>    &lt;/component&gt;<br>&lt;/components&gt;<br></pre>
+<p>s2container.diconはクラスパスの通っているルートのディレクトリに置いておけば､自動で認識されます。
+S2ContainerFactory#configure()を使って明示的に指定することもできます。</p>
+<h4>GreetingMain.dicon</h4>
+<pre>
+package examples.hotswap.main;
+
+import org.seasar.framework.container.S2Container;
+import org.seasar.framework.container.factory.S2ContainerFactory;
+
+import examples.hotswap.Greeting;
+
+public class GreetingMain {
+
+    private static final String CONFIGURE_PATH =
+        "examples/hotswap/dicon/s2container.dicon";
+
+    private static final String PATH =
+        "examples/hotswap/dicon/hotswap.dicon";
+
+    public static void main(String[] args) throws Exception {
+        S2ContainerFactory.configure(CONFIGURE_PATH);
+        S2Container container = S2ContainerFactory.create(PATH);
+        System.out.println("hotswapMode:" + container.isHotswapMode());
+        container.init();
+        try {
+            Greeting greeting = (Greeting) container
+                    .getComponent(Greeting.class);
+            System.out.println(greeting.greet());
+            System.out.println("Let's modify GreetingImpl, then press ENTER.");
+            System.in.read();
+            System.out.println("after modify");
+            System.out.println(greeting.greet());
+        } finally {
+            container.destroy();
+        }
+    }
+}
+</pre>
+<p>hotswapを使うためには､S2Container#init()を呼び出す必要があります。
+実行すると"Hello"と表示された後に､プログラムが停止するので､
+GreetingImpl#greet()が"Hello2"を返すように修正してコンパイルします。
+その後､コンソールにフォーカスを当ててENTERキーを押してください。
+同じインスタンスなのにかかわらず、classファイルが入れ替わっていることがわかります。
+これは、<a href="#InstanceMode">インスタンスモード</a>がsingletonの場合の例ですが､
+<a href="#InstanceMode">インスタンスモード</a>がprototypeの場合は､S2Container#getComponent()のタイミングでクラスが入れ替わります。</p>
+<h4>実行結果</h4>
+<pre>
+hotswapMode:true
+Hello
+Let's modify GreetingImpl, then press ENTER.
+
+after modify
+Hello2
+</pre>
+<p>hotswapを使うためには､コンポーネントがインターフェースを提供し､
+コンポーネントの利用者側は､インターフェース経由でコンポーネントを利用する必要があります。
+<a href="#InstanceMode">インスタンスモード</a>がrequest、sessionの場合は､
+そのコンポーネントが他のコンポーネントから参照されていない場合には､
+インターフェースなしでもhotswapを利用することができます。
+</p>
 
 
 <h2><a name="DefReference">S2Containerタグリファレンス</a></h2>

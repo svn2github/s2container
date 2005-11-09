@@ -442,6 +442,9 @@ DEBUG 2005-10-12 16:00:08,103 [main] END examples.di.impl.GreetingClientImpl#exe
 自動登録の対象外にすることができます。</p>
 <p>自動バインディングしたくないプロパティがある場合は､<a href="#BindingAnnotation">Bindingアノテーション</a>を使い､
 設定ファイルを使わずに、細かい調整をすることもできます。</p>
+<p><a href="#Hotswap">Hotswap</a>を使えば､アプリケーションの稼動中にクラスファイルを書き換えて､
+直ぐにその結果を試すことができます。いちいち、アプリケーションを再起動しなくてもよくなるので､
+開発効率を大きく向上させることができます。</p>
 <p>これで、S2Containerの高度な使い方をマスターすることができました。後は､必要に応じてマニュアルを参照すると良いでしょう。</p>
 
 
@@ -538,7 +541,7 @@ Hoge hoge = (Hoge) container.getComponent("hoge");
             <p>Dependency Injectionには、コンポーネントの構成に必要な値をコンストラクタで設定する(Constructor Injection)のか、セッター・メソッドで設定する(Setter Injection)のか、初期化メソッドで設定する(Method Injection)のかで、タイプが分かれます。Method InjectionはS2Containerのオリジナルです。S2Containerはすべてのタイプとそのハイブリッド型もサポートします。</p>
 
             <h3><a name="ConstructorInjection"><b>コンストラクタ・インジェクション</b></a></h3>
-            <p>コンストラクタ・インジェクションとは、任意のコンストラクタの引数にDIを行います。<br/>
+            <p>コンストラクタの引数にDIを行うのが、コンストラクタ・インジェクションです。<br/>
 S2Containerの定義ファイルには、次の内容を記述します。</p>
          <ul>
             <li><b>コンポーネントの指定</b><br/>コンポーネントは、componentタグで組み立てます。class属性でクラス名を指定します。<br/>name属性でコンポーネントに名前を付けることもできます。</li>
