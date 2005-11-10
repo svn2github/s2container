@@ -19,24 +19,15 @@
         <artifactId>maven-antrun-plugin</artifactId>
         <executions>
           <execution>
-            <id>annotationc</id>
+            <id>main-annotationc</id>
             <phase>compile</phase>
             <configuration>
               <tasks>
-                <path id="backport175.class.path">
-                  <path refid="maven.dependency.classpath"/>
-                </path>
-                <taskdef
-                  name="annotationc" 
-                  classname="org.codehaus.backport175.compiler.task.AnnotationCTask"
-                  classpathref="backport175.class.path"
+                <ant
+                  antfile="build-annotationc.xml"
+                  target="main-annotationc"
+                  inheritRefs="true"
                 />
-                <annotationc
-                  verbose="${annotationc.verbose}"
-                >
-                  <src path="${basedir}/src/main/java"/>
-                  <classpath path="${basedir}/target/classes"/>
-                </annotationc>
               </tasks>
             </configuration>
             <goals>
@@ -48,20 +39,11 @@
             <phase>test-compile</phase>
             <configuration>
               <tasks>
-                <path id="backport175.class.path">
-                  <path refid="maven.dependency.classpath"/>
-                </path>
-                <taskdef
-                  name="annotationc" 
-                  classname="org.codehaus.backport175.compiler.task.AnnotationCTask"
-                  classpathref="backport175.class.path"
+                <ant
+                  antfile="build-annotationc.xml"
+                  target="test-annotationc"
+                  inheritRefs="true"
                 />
-                <annotationc
-                  verbose="${annotationc.verbose}"
-                >
-                  <src path="${basedir}/src/test/java"/>
-                  <classpath path="${basedir}/target/test-classes"/>
-                </annotationc>
               </tasks>
             </configuration>
             <goals>
