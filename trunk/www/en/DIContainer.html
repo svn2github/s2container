@@ -1308,15 +1308,50 @@ END java.util.Date#getTime() : 0
 </table>
 <br />
 <h5>例</h5>
-<pre>&lt;component<br>  class=&quot;org.seasar.framework.container.autoregister.FileSystemComponentAutoRegister&quot;&gt;<br>    &lt;property name=&quot;autoNaming&quot;&gt;<br>	    &lt;component class=&quot;org.seasar.framework.container.autoregister.DefaultAutoNaming&quot;&gt;
-            &lt;initMethod name=&quot;setCustomizedName&quot;&gt;<br>                &lt;arg&gt;&quot;examples.di.impl.HogeImpl&quot;&lt;/arg&gt;<br>                &lt;arg&gt;&quot;hoge2&quot;&lt;/arg&gt;<br>            &lt;/initMethod&gt;
-        &lt;/component&gt;<br>    &lt;/property&gt;<br>    &lt;initMethod name=&quot;addClassPattern&quot;&gt;<br>        &lt;arg&gt;&quot;examples.di.impl&quot;&lt;/arg&gt;<br>        &lt;arg&gt;&quot;.*Impl&quot;&lt;/arg&gt;<br>    &lt;/initMethod&gt;<br>    &lt;initMethod name=&quot;registAll&quot;/&gt;<br>&lt;/component&gt;</pre>
-
-<pre>&lt;component class=&quot;org.seasar.framework.container.autoregister.JarComponentAutoRegister&quot;&gt;<br>    &lt;property name=&quot;classInJar&quot;&gt;<br>        @junit.framework.TestSuite@class<br>    &lt;/property&gt;<br>    &lt;property name=&quot;jarFileNames&quot;&gt;&quot;junit.*&quot;&lt;/property&gt;<br>    &lt;initMethod name=&quot;addClassPattern&quot;&gt;<br>        &lt;arg&gt;&quot;junit.framework&quot;&lt;/arg&gt;<br>        &lt;arg&gt;&quot;TestSuite&quot;&lt;/arg&gt;<br>    &lt;/initMethod&gt;<br>    &lt;initMethod name=&quot;registAll&quot;&gt;&lt;/initMethod&gt;<br>&lt;/component&gt;
-
+<pre>
+&lt;component
+  class=&quot;org.seasar.framework.container.autoregister.FileSystemComponentAutoRegister&quot;&gt;
+    &lt;property name=&quot;autoNaming&quot;&gt;
+        &lt;component class=&quot;org.seasar.framework.container.autoregister.DefaultAutoNaming&quot;&gt;
+            &lt;initMethod name=&quot;setCustomizedName&quot;&gt;
+                &lt;arg&gt;&quot;examples.di.impl.HogeImpl&quot;&lt;/arg&gt;
+                &lt;arg&gt;&quot;hoge2&quot;&lt;/arg&gt;
+            &lt;/initMethod&gt;
+        &lt;/component&gt;
+    &lt;/property&gt;
+    &lt;initMethod name=&quot;addClassPattern&quot;&gt;
+        &lt;arg&gt;&quot;examples.di.impl&quot;&lt;/arg&gt;
+        &lt;arg&gt;&quot;.*Impl&quot;&lt;/arg&gt;
+    &lt;/initMethod&gt;
+    &lt;initMethod name=&quot;registAll&quot;/&gt;
+&lt;/component&gt;
 </pre>
-<pre>&lt;component class=&quot;org.seasar.framework.container.autoregister.ComponentAutoRegister&quot;&gt;<br>    &lt;property name=&quot;referenceClass&quot;&gt;<br>        @aaa.bbb.ccc.ddd.HogeImpl@class<br>    &lt;/property&gt;<br><br>    &lt;initMethod name=&quot;addClassPattern&quot;&gt;<br>        &lt;arg&gt;&quot;aaa.bbb&quot;&lt;/arg&gt;<br>        &lt;arg&gt;&quot;.*Impl&quot;&lt;/arg&gt;<br>    &lt;/initMethod&gt;<br>    &lt;initMethod name=&quot;registAll&quot;&gt;&lt;/initMethod&gt;<br>&lt;/component&gt;
 
+<pre>
+&lt;component class=&quot;org.seasar.framework.container.autoregister.JarComponentAutoRegister&quot;&gt;
+    &lt;property name=&quot;referenceClass&quot;&gt;
+        @junit.framework.TestSuite@class
+    &lt;/property&gt;
+    &lt;property name=&quot;jarFileNames&quot;&gt;&quot;junit.*&quot;&lt;/property&gt;
+    &lt;initMethod name=&quot;addClassPattern&quot;&gt;
+        &lt;arg&gt;&quot;junit.framework&quot;&lt;/arg&gt;
+        &lt;arg&gt;&quot;TestSuite&quot;&lt;/arg&gt;
+    &lt;/initMethod&gt;
+    &lt;initMethod name=&quot;registAll&quot;&gt;&lt;/initMethod&gt;
+&lt;/component&gt;
+</pre>
+
+<pre>
+&lt;component class=&quot;org.seasar.framework.container.autoregister.ComponentAutoRegister&quot;&gt;
+    &lt;initMethod name=&quot;addReferenceClass&quot;&gt;
+        &lt;arg&gt;@aaa.bbb.ccc.ddd.HogeImpl@class&lt;/arg&gt;
+    &lt;/initMethod&gt;
+    &lt;initMethod name=&quot;addClassPattern&quot;&gt;
+        &lt;arg&gt;&quot;aaa.bbb&quot;&lt;/arg&gt;
+        &lt;arg&gt;&quot;.*Impl&quot;&lt;/arg&gt;
+    &lt;/initMethod&gt;
+    &lt;initMethod name=&quot;registAll&quot;&gt;&lt;/initMethod&gt;
+&lt;/component&gt;
 </pre>
 
 <h3><a name="AspectAutoRegister">アスペクトの自動登録</a></h3>
