@@ -364,7 +364,7 @@ pointcut‚ğw’è‚µ‚È‚­‚Ä‚à¤©“®“I‚ÉƒCƒ“ƒ^[ƒtƒF[ƒX‚Å’è‹`‚³‚ê‚Ä‚¢‚é‚·‚×‚Ä‚Ìƒƒ\ƒbƒ
 ‚±‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì“o˜^‚à©“®‰»‚µ‚Ä‚µ‚Ü‚¤‚Ì‚ª<a href="#ComponentAutoRegister">ƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì©“®“o˜^</a>‹@”\‚Å‚·B
 æ’ö‚ÌGreetingImplAGreetingClientImpl‚Ì“o˜^‚ğ©“®‰»‚·‚éİ’è‚ÍŸ‚Ì‚æ‚¤‚É‚È‚è‚Ü‚·B</p>
 
-<pre>&lt;component<br>  class=&quot;org.seasar.framework.container.autoregister.FileSystemComponentAutoRegister&quot;&gt;<br>    &lt;initMethod name=&quot;addClassPattern&quot;&gt;<br>        &lt;arg&gt;&quot;examples.di.impl&quot;&lt;/arg&gt;<br>        &lt;arg&gt;&quot;.*Impl&quot;&lt;/arg&gt;<br>    &lt;/initMethod&gt;<br>    &lt;initMethod name=&quot;registAll&quot;/&gt;<br>&lt;/component&gt;</pre>
+<pre>&lt;component<br>  class=&quot;org.seasar.framework.container.autoregister.FileSystemComponentAutoRegister&quot;&gt;<br>    &lt;initMethod name=&quot;addClassPattern&quot;&gt;<br>        &lt;arg&gt;&quot;examples.di.impl&quot;&lt;/arg&gt;<br>        &lt;arg&gt;&quot;.*Impl&quot;&lt;/arg&gt;<br>    &lt;/initMethod&gt;<br>    &lt;initMethod name=&quot;registerAll&quot;/&gt;<br>&lt;/component&gt;</pre>
 
 <p>FileSystemComponentAutoRegisterƒRƒ“ƒ|[ƒlƒ“ƒg‚ÍA
 addClassPatternƒƒ\ƒbƒh‚Åw’è‚³‚ê‚½ƒNƒ‰ƒX‚ğƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚©‚ç’T‚µ‚Ä¤
@@ -380,7 +380,7 @@ S2Container‚É©“®“o˜^‚µ‚Ü‚·BinitMethodƒ^ƒO‚É‚Â‚¢‚Ä‚Í¤<a href="#MethodInjection"
 
 <pre>&lt;include path=&quot;aop.dicon&quot;/&gt;
 ...
-&lt;component<br>  class=&quot;org.seasar.framework.container.autoregister.AspectAutoRegister&quot;&gt;<br>    &lt;property name=&quot;interceptor&quot;&gt;aop.traceInterceptor&lt;/property&gt;<br>    &lt;initMethod name=&quot;addClassPattern&quot;&gt;<br>        &lt;arg&gt;&quot;examples.di.impl&quot;&lt;/arg&gt;<br>        &lt;arg&gt;&quot;.*Impl&quot;&lt;/arg&gt;<br>    &lt;/initMethod&gt;<br>    &lt;initMethod name=&quot;registAll&quot;/&gt;<br>&lt;/component&gt;
+&lt;component<br>  class=&quot;org.seasar.framework.container.autoregister.AspectAutoRegister&quot;&gt;<br>    &lt;property name=&quot;interceptor&quot;&gt;aop.traceInterceptor&lt;/property&gt;<br>    &lt;initMethod name=&quot;addClassPattern&quot;&gt;<br>        &lt;arg&gt;&quot;examples.di.impl&quot;&lt;/arg&gt;<br>        &lt;arg&gt;&quot;.*Impl&quot;&lt;/arg&gt;<br>    &lt;/initMethod&gt;<br>    &lt;initMethod name=&quot;registerAll&quot;/&gt;<br>&lt;/component&gt;
 </pre>
 
 <p>interceptorƒvƒƒpƒeƒB‚ÅAOP‚Ìƒ‚ƒWƒ…[ƒ‹–¼‚ğw’è‚µ‚Ü‚·BaddClassPatternƒƒ\ƒbƒh‚ÍAƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì©“®“o˜^‚Æ“¯—l‚È‚Ì‚Å¤
@@ -391,9 +391,9 @@ S2Container‚É©“®“o˜^‚µ‚Ü‚·BinitMethodƒ^ƒO‚É‚Â‚¢‚Ä‚Í¤<a href="#MethodInjection"
 <pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;<br>&lt;!DOCTYPE components PUBLIC &quot;-//SEASAR//DTD S2Container 2.3//EN&quot; <br>    &quot;http://www.seasar.org/dtd/components23.dtd&quot;&gt;
 &lt;components&gt;<br>    &lt;include path=&quot;aop.dicon&quot;/&gt;
 
-    &lt;component<br>      class=&quot;org.seasar.framework.container.autoregister.FileSystemComponentAutoRegister&quot;&gt;<br>        &lt;initMethod name=&quot;addClassPattern&quot;&gt;<br>            &lt;arg&gt;&quot;examples.di.impl&quot;&lt;/arg&gt;<br>            &lt;arg&gt;&quot;.*Impl&quot;&lt;/arg&gt;<br>        &lt;/initMethod&gt;<br>        &lt;initMethod name=&quot;registAll&quot;/&gt;<br>    &lt;/component&gt;
+    &lt;component<br>      class=&quot;org.seasar.framework.container.autoregister.FileSystemComponentAutoRegister&quot;&gt;<br>        &lt;initMethod name=&quot;addClassPattern&quot;&gt;<br>            &lt;arg&gt;&quot;examples.di.impl&quot;&lt;/arg&gt;<br>            &lt;arg&gt;&quot;.*Impl&quot;&lt;/arg&gt;<br>        &lt;/initMethod&gt;<br>        &lt;initMethod name=&quot;registerAll&quot;/&gt;<br>    &lt;/component&gt;
 
-    &lt;component<br>      class=&quot;org.seasar.framework.container.autoregister.AspectAutoRegister&quot;&gt;<br>        &lt;property name=&quot;interceptor&quot;&gt;aop.traceInterceptor&lt;/property&gt;<br>        &lt;initMethod name=&quot;addClassPattern&quot;&gt;<br>            &lt;arg&gt;&quot;examples.di.impl&quot;&lt;/arg&gt;<br>            &lt;arg&gt;&quot;.*Impl&quot;&lt;/arg&gt;<br>        &lt;/initMethod&gt;<br>        &lt;initMethod name=&quot;registAll&quot;/&gt;<br>    &lt;/component&gt;<br>&lt;/components&gt;
+    &lt;component<br>      class=&quot;org.seasar.framework.container.autoregister.AspectAutoRegister&quot;&gt;<br>        &lt;property name=&quot;interceptor&quot;&gt;aop.traceInterceptor&lt;/property&gt;<br>        &lt;initMethod name=&quot;addClassPattern&quot;&gt;<br>            &lt;arg&gt;&quot;examples.di.impl&quot;&lt;/arg&gt;<br>            &lt;arg&gt;&quot;.*Impl&quot;&lt;/arg&gt;<br>        &lt;/initMethod&gt;<br>        &lt;initMethod name=&quot;registerAll&quot;/&gt;<br>    &lt;/component&gt;<br>&lt;/components&gt;
 </pre>
 
 <p>‚»‚ê‚Å‚ÍGreetingMain4‚ğÀs‚µ‚Ä‚İ‚Ü‚·B
@@ -1232,7 +1232,7 @@ END java.util.Date#getTime() : 0
         &lt;arg&gt;&quot;examples.di.impl&quot;&lt;/arg&gt;
         &lt;arg&gt;&quot;.*Impl&quot;&lt;/arg&gt;
     &lt;/initMethod&gt;
-    &lt;initMethod name=&quot;registAll&quot;/&gt;
+    &lt;initMethod name=&quot;registerAll&quot;/&gt;
 &lt;/component&gt;
 </pre>
 
@@ -1246,7 +1246,7 @@ END java.util.Date#getTime() : 0
         &lt;arg&gt;&quot;junit.framework&quot;&lt;/arg&gt;
         &lt;arg&gt;&quot;TestSuite&quot;&lt;/arg&gt;
     &lt;/initMethod&gt;
-    &lt;initMethod name=&quot;registAll&quot;&gt;&lt;/initMethod&gt;
+    &lt;initMethod name=&quot;registerAll&quot;&gt;&lt;/initMethod&gt;
 &lt;/component&gt;
 </pre>
 
@@ -1259,7 +1259,7 @@ END java.util.Date#getTime() : 0
         &lt;arg&gt;&quot;aaa.bbb&quot;&lt;/arg&gt;
         &lt;arg&gt;&quot;.*Impl&quot;&lt;/arg&gt;
     &lt;/initMethod&gt;
-    &lt;initMethod name=&quot;registAll&quot;&gt;&lt;/initMethod&gt;
+    &lt;initMethod name=&quot;registerAll&quot;&gt;&lt;/initMethod&gt;
 &lt;/component&gt;
 </pre>
 
@@ -1302,7 +1302,7 @@ END java.util.Date#getTime() : 0
 <h5>—á</h5>
 <pre>&lt;include path=&quot;aop.dicon&quot;/&gt;
 ...
-&lt;component<br>  class=&quot;org.seasar.framework.container.autoregister.AspectAutoRegister&quot;&gt;<br>    &lt;property name=&quot;interceptor&quot;&gt;aop.traceInterceptor&lt;/property&gt;<br>    &lt;initMethod name=&quot;addClassPattern&quot;&gt;<br>        &lt;arg&gt;&quot;examples.di.impl&quot;&lt;/arg&gt;<br>        &lt;arg&gt;&quot;.*Impl&quot;&lt;/arg&gt;<br>    &lt;/initMethod&gt;<br>    &lt;initMethod name=&quot;registAll&quot;/&gt;<br>&lt;/component&gt;
+&lt;component<br>  class=&quot;org.seasar.framework.container.autoregister.AspectAutoRegister&quot;&gt;<br>    &lt;property name=&quot;interceptor&quot;&gt;aop.traceInterceptor&lt;/property&gt;<br>    &lt;initMethod name=&quot;addClassPattern&quot;&gt;<br>        &lt;arg&gt;&quot;examples.di.impl&quot;&lt;/arg&gt;<br>        &lt;arg&gt;&quot;.*Impl&quot;&lt;/arg&gt;<br>    &lt;/initMethod&gt;<br>    &lt;initMethod name=&quot;registerAll&quot;/&gt;<br>&lt;/component&gt;
 </pre>
 
 <h3><a name="Hotswap">Hotswap</a></h3>
