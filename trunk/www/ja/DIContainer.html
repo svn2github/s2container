@@ -1305,6 +1305,31 @@ END java.util.Date#getTime() : 0
 &lt;component<br>  class=&quot;org.seasar.framework.container.autoregister.AspectAutoRegister&quot;&gt;<br>    &lt;property name=&quot;interceptor&quot;&gt;aop.traceInterceptor&lt;/property&gt;<br>    &lt;initMethod name=&quot;addClassPattern&quot;&gt;<br>        &lt;arg&gt;&quot;examples.di.impl&quot;&lt;/arg&gt;<br>        &lt;arg&gt;&quot;.*Impl&quot;&lt;/arg&gt;<br>    &lt;/initMethod&gt;<br>    &lt;initMethod name=&quot;registerAll&quot;/&gt;<br>&lt;/component&gt;
 </pre>
 
+<h5><a name="InterfaceAspectAutoRegister">org.seasar.framework.container.autoregister.InterfaceAspectAutoRegister</a></h5>
+<table border="1">
+<tr bgcolor="#d1f3f4" align="center">
+<th>プロパティ</th>
+<th>説明</th>
+</tr>
+<tr>
+<td><code>interceptor</code></td>
+<td>インターセプタを指定します。複数のインターセプタを指定したい場合は､<a href="aop.html#InterceptorChain">InterceptorChain</a>を使ってください。</td>
+</tr>
+<tr>
+<td><code>targetInterface</code></td>
+<td> 指定したインターフェースを実装しているコンポーネントに対して､アスペクトを適用します。 </td>
+</tr>
+</table>
+<br />
+
+<br />
+<h5>例</h5>
+<pre>&lt;include path=&quot;aop.dicon&quot;/&gt;
+...
+&lt;component<br>  class=&quot;org.seasar.framework.container.autoregister.InterfaceAspectAutoRegister&quot;&gt;<br>    &lt;property name=&quot;interceptor&quot;&gt;aop.traceInterceptor&lt;/property&gt;
+    &lt;property name=&quot;targetInterface&quot;&gt;@examples.Greeing@class&lt;/property&gt;<br>    &lt;initMethod name=&quot;registerAll&quot;/&gt;<br>&lt;/component&gt;
+</pre>
+
 <h3><a name="Hotswap">Hotswap</a></h3>
 <p>従来、ソースコードを書き換えてコンパイルした場合､コンパイル後の機能を試すためには､
 アプリケーション(正確にはClassLoader)を再起動する必要がありました。
