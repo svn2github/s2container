@@ -12,4 +12,10 @@ public class Hoge {
     public String getAaa() {
         return null;
     }
+
+    /**
+     * @org.seasar.framework.container.annotation.backport175.InitMethod
+     */
+    public void init() {
+    }
 }
