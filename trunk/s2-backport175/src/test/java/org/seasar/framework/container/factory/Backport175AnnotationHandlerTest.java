@@ -1,22 +1,23 @@
 package org.seasar.framework.container.factory;
 
-import org.seasar.extension.unit.S2TestCase;
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.PropertyDesc;
 import org.seasar.framework.beans.factory.BeanDescFactory;
 import org.seasar.framework.container.AspectDef;
 import org.seasar.framework.container.ComponentDef;
+import org.seasar.framework.container.IllegalInitMethodAnnotationRuntimeException;
 import org.seasar.framework.container.InitMethodDef;
 import org.seasar.framework.container.InstanceDef;
 import org.seasar.framework.container.PropertyDef;
 import org.seasar.framework.container.assembler.BindingTypeDefFactory;
 import org.seasar.framework.container.deployer.InstanceDefFactory;
-import org.seasar.framework.container.factory.Backport175AnnotationHandler;
+import org.seasar.framework.unit.S2FrameworkTestCase;
+import org.seasar.framework.util.ResourceUtil;
 
 /**
  * @author higa
  */
-public class Backport175AnnotationHandlerTest extends S2TestCase {
+public class Backport175AnnotationHandlerTest extends S2FrameworkTestCase {
 
     private Backport175AnnotationHandler handler = new Backport175AnnotationHandler();
     
@@ -65,14 +66,16 @@ public class Backport175AnnotationHandlerTest extends S2TestCase {
     }
 
     public void testAppendAspect() throws Exception {
-        ComponentDef cd = handler.createComponentDefWithDI(Hoge.class, null);
+        ComponentDef cd = handler.createComponentDef(Hoge.class, null);
+        handler.appendAspect(cd);
         assertEquals("1", 1, cd.getAspectDefSize());
         AspectDef aspectDef = cd.getAspectDef(0);
         assertEquals("2", "aop.traceInterceptor", aspectDef.getExpression());
     }
     
     public void testAppendAspectForMethod() throws Exception {
-        ComponentDef cd = handler.createComponentDefWithDI(Hoge4.class, null);
+        ComponentDef cd = handler.createComponentDef(Hoge4.class, null);
+        handler.appendAspect(cd);
         assertEquals("1", 1, cd.getAspectDefSize());
         AspectDef aspectDef = cd.getAspectDef(0);
         assertEquals("2", "aop.traceInterceptor", aspectDef.getExpression());
@@ -81,23 +84,46 @@ public class Backport175AnnotationHandlerTest extends S2TestCase {
     }
     
     public void testAppendAspectForConstantAnnotation() throws Exception {
-        ComponentDef cd = handler.createComponentDefWithDI(Hoge3.class, null);
+        ComponentDef cd = handler.createComponentDef(Hoge3.class, null);
+        handler.appendAspect(cd);
         assertEquals("1", 1, cd.getAspectDefSize());
         AspectDef aspectDef = cd.getAspectDef(0);
         assertEquals("2", "aop.traceInterceptor", aspectDef.getExpression());
     }
 
     public void testAppendInitMethod() throws Exception {
-        ComponentDef cd = handler.createComponentDefWithDI(Hoge.class, null);
+        ComponentDef cd = handler.createComponentDef(Hoge.class, null);
+        handler.appendInitMethod(cd);
         assertEquals("1", 1, cd.getInitMethodDefSize());
         InitMethodDef initMethodDef = cd.getInitMethodDef(0);
         assertEquals("2", "init", initMethodDef.getMethodName());
     }
 
     public void testAppendInitMethodForConstantAnnotation() throws Exception {
-        ComponentDef cd = handler.createComponentDefWithDI(Hoge3.class, null);
+        ComponentDef cd = handler.createComponentDef(Hoge3.class, null);
+        handler.appendInitMethod(cd);
         assertEquals("1", 1, cd.getInitMethodDefSize());
         InitMethodDef initMethodDef = cd.getInitMethodDef(0);
         assertEquals("2", "init", initMethodDef.getMethodName());
+    }
+    
+    public void setUpAppendInitMethodForDicon() throws Exception {
+        System.out.println(ResourceUtil.getResourceAsFile(getClass().getName().replace('.', '/') + ".dicon"));
+        include("Backport175AnnotationHandlerTest.dicon");
+    }
+    
+    public void testAppendInitMethodForDicon() throws Exception {
+        ComponentDef cd = getComponentDef(Hoge5.class);
+        assertEquals("1", 1, cd.getInitMethodDefSize());
+    }
+    
+    public void testAppendInitMethodForException() throws Exception {
+        ComponentDef cd = handler.createComponentDef(Hoge6.class, null);
+        try {
+            handler.appendInitMethod(cd);
+            fail("1");
+        } catch (IllegalInitMethodAnnotationRuntimeException ex) {
+            System.out.println(ex);
+        }
     }
 }

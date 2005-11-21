@@ -22,6 +22,7 @@ import org.codehaus.backport175.reader.Annotations;
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.PropertyDesc;
 import org.seasar.framework.container.ComponentDef;
+import org.seasar.framework.container.IllegalInitMethodAnnotationRuntimeException;
 import org.seasar.framework.container.InstanceDef;
 import org.seasar.framework.container.PropertyDef;
 import org.seasar.framework.container.annotation.backport175.Aspect;
@@ -101,16 +102,25 @@ public class Backport175AnnotationHandler extends ConstantAnnotationHandler {
     }
 
     public void appendInitMethod(ComponentDef componentDef) {
-        Class clazz = componentDef.getComponentClass();
-        Method[] methods = clazz.getMethods();
+        Class componentClass = componentDef.getComponentClass();
+        if (componentClass == null) {
+            return;
+        }
+        Method[] methods = componentClass.getMethods();
         for (int i = 0; i < methods.length; ++i) {
             Method method = methods[i];
-            InitMethod initMethod = (InitMethod) Annotations.getAnnotation(InitMethod.class, method);
-            if (initMethod != null) {
-                if (method.getParameterTypes().length == 0) {
-                    appendInitMethod(componentDef, method.getName());
-                }
+            InitMethod initMethod = (InitMethod) Annotations.getAnnotation(
+                    InitMethod.class, method);
+            if (initMethod == null) {
+                continue;
             }
+            if (method.getParameterTypes().length != 0) {
+                throw new IllegalInitMethodAnnotationRuntimeException(componentClass, method.getName());
+            }
+            if (!isInitMethodRegisterable(componentDef, method.getName())) {
+                continue;
+            }
+            appendInitMethod(componentDef, method.getName());
         }
         super.appendInitMethod(componentDef);
     }
