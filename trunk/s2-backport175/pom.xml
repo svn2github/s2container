@@ -35,7 +35,7 @@
             <configuration>
               <tasks>
                 <ant
-                  antfile="build-annotationc.xml"
+                  antfile="build-backport175.xml"
                   target="main-annotationc"
                   inheritRefs="true"
                 />
@@ -51,7 +51,7 @@
             <configuration>
               <tasks>
                 <ant
-                  antfile="build-annotationc.xml"
+                  antfile="build-backport175.xml"
                   target="test-annotationc"
                   inheritRefs="true"
                 />
