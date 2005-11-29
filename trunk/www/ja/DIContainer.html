@@ -561,7 +561,7 @@ S2Containerの定義ファイルには、次の内容を記述します。</p>
             <p>セッター･インジェクションとは、任意のプロパティにセッターメソッドを使用してDIを行います。<br/>
 S2Containerの定義ファイルには、次の内容を記述します。</p>
          <ul>
-            <li><b>コンポーネントの指定</b><br/>コンポーネントの指定は、コンストラクタ・インジェクションと同様です。<br/>name属性でコンポーネントに名前を付けることもできます。</li>
+            <li><b>コンポーネントの指定</b><br/>コンポーネントの指定は、コンストラクタ・インジェクションと同様です。</li>
             <li><b>プロパティの指定</b><br/>コンポーネントのプロパティは、componentタグの子タグであるpropertyタグを使って指定します。<br/>name属性でプロパティ名を指定します。</li>
          </ul>
 
@@ -577,14 +577,17 @@ S2Containerの定義ファイルには、次の内容を記述します。</p>
 <p>メソッド・インジェクションとは、任意のメソッドを呼び出して、DIを行います。<br/>
 S2Containerの定義ファイルには、次の内容を記述します。</p>
          <ul>
-            <li><b>コンポーネントの指定</b><br/>コンポーネントの指定は、コンストラクタ・インジェクションと同様です。<br/>name属性でコンポーネントに名前を付けることもできます。</li>
-            <li><b>初期化メソッドの指定</b><br/>initMethodタグを使って、コンポーネントの任意のメソッドを呼び出します。name属性で、メソッド名を指定します。引数は、argタグを子タグに使います。name属性を省略して、ボディで、<a href="#ognlExpr">OGNL式</a>を使うこともできます。その際、コンポーネント自身は#selfで表します。</li>
+            <li><b>コンポーネントの指定</b><br/>コンポーネントの指定は、コンストラクタ・インジェクションと同様です。</li>
+         <li><b>初期化メソッドの指定</b><br/>initMethodタグを使って、コンポーネントの任意のメソッドを呼び出します。name属性で、メソッド名を指定します。
+			argタグで引数を指定することや、name属性を省略して、ボディで、<a href="#ognlExpr">OGNL式</a>を使うこともできます。</li>
          </ul>
 
 <pre>
 &lt;components&gt;
     &lt;component name=&quot;...&quot; class=&quot;...&quot;&gt;
-          &lt;initMethod&gt;...&lt;/initMethod&gt;
+        &lt;initMethod name=&quot;...&quot;&gt;
+            &lt;arg&gt;...&lt;/arg&gt;
+        &lt;/initMethod&gt;
     &lt;/component&gt;
 &lt;/components&gt;
 </pre>
@@ -597,7 +600,7 @@ S2Containerの定義ファイルには、次の内容を記述します。</p>
 &lt;/components&gt;
 </pre>
 
-            <p><a href="#includeTag">includeタグ</a>のpath属性で取り込みたいS2Container定義ファイルのパスを指定します。詳しくは、<a href="#includeTag">includeタグ</a>を参照してください。<br/>コンポーネントの検索順は、先ず自分自身に登録されているコンポーネントを探して、見つからない場合は、includeされている順に子供のS2Containerに登録されているコンポーネントを検索し、最初に見つかったコンポーネントが返されます。<br/>次のような場合は、Foo(自身のコンポーネント)→aaa(子供のS2Container)→bbb(子供のS2Container)の順に検索します。</p>
+            <p><a href="#includeTag">includeタグ</a>のpath属性で取り込みたいS2Container定義ファイルのパスを指定します。詳しくは、<a href="#includeTag">includeタグ</a>を参照してください。<br/>コンポーネントの検索順は、先ず自分自身に登録されているコンポーネントを探して、見つからない場合は、includeされている順に子供のS2Containerに登録されているコンポーネントを検索し、最初に見つかったコンポーネントが返されます。</p>
 
 <pre>
 &lt;components&gt;
@@ -606,119 +609,6 @@ S2Containerの定義ファイルには、次の内容を記述します。</p>
     &lt;component class=&quot;example.container.Foo&quot; /&gt;
 &lt;/components&gt;
 </pre>
-
-            <p>自動で<a href="#ConstructorInjection">コンストラクタ・インジェクション</a>や<a href="#SetterInjection">セッター・インジェクション</a>を行う場合、S2Containerはインクルード先のコンポーネントを自動インジェクションすることができます。自動でDependency Injectionを行う場合の条件は<a href="#AutoBindingMode">自動バインディング</a>を参照してください。<br/>次のようにセッター･インジェクションでプロパティに指定するコンポーネントがインクルード先のaaa.diconとbbb.diconに登録されている場合、各HelloClientでは、どちらのコンポーネントが使用されるかをみてましょう。</p>
-
-            <h5>root.dicon</h5>
-<pre>
-&lt;components&gt;
-    &lt;include path=&quot;examples/dicon/include/aaa.dicon&quot;/&gt;
-    &lt;include path=&quot;examples/dicon/include/bbb.dicon&quot;/&gt;
-    &lt;component name=&quot;root&quot; class=&quot;examples.dicon.include.RootHelloClient&quot;/&gt;
-&lt;/components&gt;
-</pre>
-
-            <h5>aaa.dicon</h5>
-<pre>
-&lt;components&gt;
-    &lt;component class=&quot;examples.dicon.include.HelloImpl&quot;&gt;
-        &lt;property name=&quot;Message&quot;&gt;&quot;Hello Aaa!&quot;&lt;/property&gt;
-    &lt;/component&gt;
-
-    &lt;component name=&quot;aaa&quot; class=&quot;examples.dicon.include.AaaHelloClient&quot;/&gt;
-&lt;/components&gt;
-</pre>
-
-            <h5>bbb.dicon</h5>
-<pre>
-&lt;components&gt;
-    &lt;component class=&quot;examples.dicon.include.HelloImpl&quot;&gt;
-        &lt;property name=&quot;Message&quot;&gt;&quot;Hello Bbb!&quot;&lt;/property&gt;
-    &lt;/component&gt;
-
-    &lt;component name=&quot;bbb&quot; class=&quot;examples.dicon.include.BbbHelloClient&quot;/&gt;
-&lt;/components&gt;
-</pre>
-
-            <p>各コンポーネントの内容は、次のようになります。</p>
-
-<pre>
-package examples.dicon.include;
-
-public interface HelloClient {
-    public void showMessage();
-}
-</pre>
-
-<pre>
-package examples.dicon.include;
-
-public class RootHelloClient implements HelloClient {
-
-    private Hello hello_;
-
-    public void setHello(Hello hello) {
-        hello_ = hello;
-    }
-
-    public Hello getHello() {
-        return hello_;
-    }
-
-    public void showMessage() {
-        System.out.println(getHello().getMessage());
-    }
-}
-</pre>
-
-            <p>AaaHelloClientとBbbHelloClientはRootHelloClient同様の実装です。</p>
-
-<pre>
-package examples.dicon.include;
-
-public interface Hello {
-    public void setMessage(String helloMessage);
-    public String getMessage();
-}
-</pre>
-
-<pre>
-package examples.dicon.include;
-
-public class HelloImpl implements Hello {
-    private String helloMessage_;
-
-    public void setMessage(String helloMessage) {
-        helloMessage_ = helloMessage;
-    }
-
-    public String getMessage() {
-        return helloMessage_;
-    }
-}
-</pre>
-
-           <p>HelloImplはMessageプロパティを定義しているだけです。各HelloClientのshowMessage()を呼び出した場合の実行結果は次のようになります。</p>
-
-           <h5>RootHelloClientの実行結果</h5>
-<pre>
-Hello Aaa!
-</pre>
-           <p>まず、S2Containerはroot.diconにHelloImplが登録されているかを検索します。root.diconにはないので、次にインクルード先のaaa.diconを検索します。aaa.diconにはHelloImplが登録されているので、そのコンポーネントを使用します。</p>
-
-           <h5>AaaHelloClientの実行結果</h5>
-<pre>
-Hello Aaa!
-</pre>
-
-           <p>AaaHelloClientは、aaa.diconに登録されているコンポーネントを使用します。自動でインジェクションを行う場合、子供のS2Containerは親のS2Containerのコンポーネントを使用することはできません。例えば、root.diconにHelloImplを登録していてもAaaHelloClientには自動インジェクションされないということです。</p>
-
-           <h5>BbbHelloClientの実行結果</h5>
-<pre>
-Hello Bbb!
-</pre>
-
-           <p>AaaHelloClientと同様にBbbHelloClientもbbb.diconに登録されているコンポーネントを使用します。</p>
 
             <h3><a name="Namespace">名前空間</a></h3>
             <p>コンポーネントの定義を分割した場合に、複数のコンポーネント定義間で名前が衝突しないように、<a href="#componentsTag">componentsタグ</a>のnamespace属性で名前空間を指定することができます。</p>
@@ -755,13 +645,12 @@ Hello Bbb!
 &lt;/components&gt;
 </pre>
 
-            <p>同一のコンポーネント定義内では、名前空間なしで参照できます。他のS2Container定義のコンポーネントを参照する場合は、名前空間.をコンポーネント名の頭につけます。foo.aaaとbar.aaaは同じ名前がついていますが、名前空間が異なっているので、違うコンポーネントとして認識されます。慣習として、定義ファイルの名前は、名前空間.diconにすることを推奨します。</p>
+            <p>同一のコンポーネント定義内では、名前空間なしで参照できます。他のS2Container定義のコンポーネントを参照する場合は、名前空間.をコンポーネント名の頭につけます。foo.aaaとbar.aaaは同じ名前がついていますが、名前空間が異なっているので、違うコンポーネントとして認識されます。</p>
 
 
 <h3><a name="InstanceMode">インスタンス管理</a></h3>
-            <p>S2Containerで、コンポーネントのインスタンスをどのように管理するのかを指定するのが、<a href="#componentTag">componentタグ</a>のinstance属性です。デフォルトはsingletonで、これは、S2Container.getComponent()によって返されるコンポーネントは常に同じだという意味です。S2Container.getComponent()を呼び出すたびに、新たに作成されたコンポーネントを返して欲しい場合は、instance属性にprototypeを指定します。リクエスト(HttpServletRequest)ごとにコンポーネントを管理したい場合は、instance属性にrequestを指定します。セッション(HttpSession)ごとにコンポーネントを管理したい場合は、instance属性にsessionを指定します。</p>
-            <p>プレゼンテーションのフレームワークと組み合わせるときに、プレゼンテーションフレームワークが作成したインスタンスに対して、S2Containerで管理されているコンポーネントをセットしたい場合があります。そのようなS2Container外のコンポーネントに対して<a href="http://www.kakutani.com/trans/fowler/injection.html">Dependency Injection</a>したいときには、次のメソッドを使用します。<br/><br/>- org.seasar.framework.container.S2Container#injectDependency(Object outerComponent)<br/>- org.seasar.framework.container.S2Container#injectDependency(Object outerComponent, Class componentClass)<br/>- org.seasar.framework.container.S2Container#injectDependency(Object outerComponent, String componentName)</p>
-            第一引数には、外部のコンポーネントを指定します。第二引数には、外部コンポーネントのクラス、またはコンポーネント名を指定します。<br/>そのとき、S2Container定義では、instance属性にouterを指定します。
+<p>S2Containerで、コンポーネントのインスタンスをどのように管理するのかを指定するのが、<a href="#componentTag">componentタグ</a>のinstance属性です。</p>
+            
 
 <table width="744" border="1">
   <tr bgcolor="#d1f3f4" align="center">
@@ -819,7 +708,7 @@ Hello Bbb!
 <tr>
 <td>auto(default)</td>
 <td>
-コンストラクタの自動バインディング､プロパティの自動バインディングが適用されます。
+コンストラクタとプロパティの自動バインディングが適用されます。
 </td>
 </tr>
 <tr>
