@@ -39,27 +39,27 @@
 
               <li><a href="#S2ContainerReference">S2Container reference</a>
                 <ul>
-                  <li><a href="#CreateFile">作成すべきファイル</a></li>
-                  <li><a href="#S2ContainerDefinition">S2Containerの定義</a></li>
-                  <li><a href="#S2ContainerCreation">S2Containerの生成</a>
+                  <li><a href="#CreateFile">Files to be Created</a></li>
+                  <li><a href="#S2ContainerDefinition">S2Container Definition</a></li>
+                  <li><a href="#S2ContainerCreation">S2Container Creation</a>
 <ul>
-<li><a href="#SingletonS2ContainerFactory">SingletonS2ContainerFactoryを使用する</a>
-<li><a href="#S2ContainerFactory">S2ContainerFactoryを使用する</a>
+<li><a href="#SingletonS2ContainerFactory">Using SingletonS2ContainerFactory</a>
+<li><a href="#S2ContainerFactory">Using S2ContainerFactory</a>
 </ul>
 </li>
-                  <li><a href="#getComponent">コンポーネントの取得</a></li>
-                  <li><a href="#DIType">Dependency Injectionのタイプ</a>
+                  <li><a href="#getComponent">Acquiring Components</a></li>
+                  <li><a href="#DIType">Dependency Injection Type</a>
                     <ul>
-                      <li type="circle"><a href="#ConstructorInjection">コンストラクタ・インジェクション</a></li>
-                      <li type="circle"><a href="#SetterInjection">セッター・インジェクション</a></li>
-                      <li type="circle"><a href="#MethodInjection">メソッド・インジェクション</a></li>
+                      <li type="circle"><a href="#ConstructorInjection">Constructor Injection</a></li>
+                      <li type="circle"><a href="#SetterInjection">Setter Injection</a></li>
+                      <li type="circle"><a href="#MethodInjection">Method Injection</a></li>
                     </ul>
                   </li>
-                  <li><a href="#Include">S2Container定義の分割とインクルード</a></li>
-                  <li><a href="#Namespace">名前空間</a></li>
-                  <li><a href="#InstanceMode">インスタンス管理</a></li>
-                  <li><a href="#Lifecycle">ライフサイクル</a></li>
-                  <li><a href="#AutoBindingMode">自動バインディング</a></li>
+                  <li><a href="#Include">S2Container Definition division and include</a></li>
+                  <li><a href="#Namespace">Namespace</a></li>
+                  <li><a href="#InstanceMode">Instance Management</a></li>
+                  <li><a href="#Lifecycle">Lifecycle</a></li>
+                  <li><a href="#AutoBindingMode">Automatic Binding</a></li>
                   <li><a href="#UseS2Container">コンポーネントでS2Containerを利用する</a></li>
                   <li><a href="#S2ContainerServlet">S2ContainerServlet</a></li>
                   <li><a href="#app.dicon">app.diconの役割</a></li>
@@ -790,53 +790,65 @@ Automatic binding of constructor and property is applied.
 </table>
 
 <br />
-<p>コンストラクタの自動バインディングのルールは次のようになります。</p>
+<p>Constructor auto-binding rules are as follows.</p>
 <ul>
-<li>コンストラクタの引数が明示的に指定されている場合は、それに従い、自動バインディングは適用されません。</li>
-<li>上記に該当しない場合、引数のないデフォルトコンストラクタが定義されているなら、そのコンストラクタを使い、自動バインディングは適用されません。</li>
-<li>上記に該当しない場合、コンストラクタの引数の数が1以上で、
-引数の型がすべてインターフェースのコンストラクタで最も引数の数が多いコンストラクタを使います。そして、
-引数の型を実装したコンポーネントをコンテナから取得して適用します。</li>
-<li>上記に該当しない場合､自動バインディングは適用されません。</li>
+<li>When constructor arguments are 
+
+
+explicitly
+
+specified, auto-binding is not applied.</li>
+<li>When above conditions are not true and a default constructor is specified with no arguments,
+that constructor is used with no auto-binding.</li>
+<li>When above conditions are not met, the constructor with the largest number of 'interface' type arguments is used.
+In addition, components with implemented argument type are acquired from the container and applied.</li>
+<li>When above conditions are not met, auto-binding is not applied.</li>
 </ul>
 
-<p>プロパティの自動バインディングのルールは次のようになります。</p>
+<p>Property auto-binding rules are as follows.</p>
 <ul>
-<li>プロパティが明示的に指定されている場合は、それに従い、自動バインディングは適用されません。</li>
-<li>上記に該当しない場合､プロパティ名と同一のコンポーネントがコンテナに登録されてプロパティに代入可能なら、
-そのコンポーネントが適用されます。</li>
-<li>上記に該当しない場合､プロパティの型がインターフェースでプロパティの型を実装したコンポーネントがコンテナに登録されていれば、
-そのコンポーネントが適用されます。</li>
-<li>上記に該当しない場合､自動バインディングは適用されません。</li>
+<li>When property is explicitly selected, auto-binding is not applied.</li>
+<li>When above conditions are not met,
+if a component with an identical name to the property name is registered in container,
+this component will be used.</li>
+<li>When above conditions are not met,
+if a component that has implemented 'interface' type property is registered in container,
+this component will be used.</li>
+<li>When above conditions are not met, auto-binding is not applied.</li>
 </ul>
-<p>propertyタグのbindingType属性で、プロパティごとに細かく制御することもできます。</p>
+<p>The bindingType property of the property tag can be used to more finely control each property.</p>
 <table width="744" border="1">
 <tr bgcolor="#d1f3f4" align="center">
 <th width="104" scope="col">bindingType</th>
-<th width="624" scope="col">説明</th>
+<th width="624" scope="col">Description</th>
 </tr>
 <tr>
 <td>must</td>
-<td>自動バインディングが適用されない場合､例外が発生します。
+<td>An exception is throwed when auto-binding is not applied.
 </td>
 </tr>
 <tr>
 <td>should(default)</td>
-<td>自動バインディングが適用されない場合､警告を通知します。</td>
+<td>A warning is returned when auto-binding is not applied.</td>
 </tr>
 <tr>
 <td>may</td>
-<td>自動バインディングが適用されない場合､何もおきません。</td>
+<td>No response is returned when auto-binding is not applied.</td>
 </tr>
 <tr>
 <td>none</td>
-<td>autoBinding属性が、auto、propertyの場合でも､自動バインディングは適用されません。</td>
+<td>Auto-binding is not applied even if the autoBinding property is set to auto or property.</td>
 </tr>
 </table>
 <br/>
 
-            <h3><a name="UseS2Container">コンポーネントでS2Containerを利用する</a></h3>
-            <p>コンポーネントはS2Containerに依存しないことが望ましいのですが、コンポーネントによっては、S2Containerのメソッドを呼び出したい場合もあるでしょう。S2Container自身もcontainerという名前で、登録されているので、arg,propertyタグのボディでcontainerを指定することで、コンテナのインスタンスを取得できます。また、S2Container型のsetterメソッドを定義しておいて自動バインディングで設定することもできます。arg,propertyタグでcontainerを指定する場合は、次のようになります。</p>
+<h3><a name="UseS2Container">Using S2Container in Components.</a></h3>
+<p>It is preferable that components are not dependent on S2Container.
+However, there are certain components that would want to call the S2Container method.
+S2Container itself is registered by the name of container.
+Using this, an instance of the container can be acquired by specifying container in the body of arg and property tags.
+It can also be configured using auto-binding by defining the setter method of the S2Container type.
+Specifying container using arg and property tags looks like the following.</p>
 
 <pre>
 &lt;components&gt;
@@ -850,11 +862,12 @@ Automatic binding of constructor and property is applied.
 &lt;/components&gt;
 </pre>
 
-
-            <h3><a name="S2ContainerServlet">S2ContainerServlet</a></h3>
-            <p>これまでは、Javaアプリケーションで、明示的にS2Containerを作成していましたが、Webアプリケーションの場合、誰がS2Containerを作成するのでしょうか。その目的のために次のクラスが用意されています。</p>
-            <p>- org.seasar.framework.container.servlet#S2ContainerServlet</p>
-            S2ContainerServletを使うためには、web.xmlに次の項目を記述します。<br/>src/org/seasar/framework/container/servlet/web.xmlに記述例もあります。
+<h3><a name="S2ContainerServlet">S2ContainerServlet</a></h3>
+<p>We have explicitly created S2Container using Java applications so far.
+But in the case of web applications, who will create S2Container?
+The following class is prepared for this reason.</p>
+<ul><li>org.seasar.framework.container.servlet#S2ContainerServlet</li></ul>
+<p>The following is entered in web.xml in order to use S2ContainerServlet.</p>
 
 <pre>
 &lt;servlet&gt;
@@ -876,8 +889,7 @@ Automatic binding of constructor and property is applied.
     &lt;url-pattern&gt;/s2servlet&lt;/url-pattern&gt;
 &lt;/servlet-mapping&gt;
 </pre>
-
-            <p>configPathでメインとなるS2Container定義のパスを指定します。定義ファイルはWEB-INF/classesにおきます。S2ContainerServletは、他のサーブレットよりもはやく起動されるようにload-on-startupタグを調整してください。S2ContainerServletが起動した後は、次のメソッドでS2Containerのインスタンスを取得することができます。</p>
+<p>configPathでメインとなるS2Container定義のパスを指定します。定義ファイルはWEB-INF/classesにおきます。S2ContainerServletは、他のサーブレットよりもはやく起動されるようにload-on-startupタグを調整してください。S2ContainerServletが起動した後は、次のメソッドでS2Containerのインスタンスを取得することができます。</p>
             <p>- org.seasar.framework.container.factory.SingletonS2ContainerFactory#getContainer()</p>
             <p>また、S2Containerのライフサイクルは、S2ContainerServletと連動します。debugパラメータをtrueにすると、次のようにして、稼動中にS2Containerを再起動できます。xxxはWebアプリケーションのコンテキスト名です。</p>
 			<pre>http://localhost:8080/xxx/s2servlet?command=restart
