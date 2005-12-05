@@ -872,35 +872,24 @@ END java.util.Date#getTime() : 0
 
 <h3><a name="Meta">メタデータ</a></h3>
 
-<p>components、component、arg、propertyタグにメタデータ<a href="aop.html"></a>を指定することもできます。metaタグはメタデータを指定したいタグの子タグに指定します。例えば、componentsタグにメタデータを指定したい場合次のようにします。</p>
+<p>components、component、arg、propertyタグにメタデータを指定することもできます。metaタグはメタデータを指定したいタグの子タグに指定します。例えば、componentsタグにメタデータを指定したい場合次のようにします。</p>
 
 <pre>&lt;components&gt;
     &lt;meta name=&quot;aaa&quot;&gt;111&lt;/meta&gt;
 &lt;/components&gt;
 </pre>
-<p>components、component、arg、propertyタグに指定したメタデータの情報は、S2Container、ComponentDef、ArgDef、PropertyDefで定義されている次のメソッドで取得することが出来ます。</p>
-<ul>
-<li>public int getMetaDefSize()</li>
-<li>public MetaDef getMetaDef(int index)</li>
-<li>public MetaDef getMetaDef(String name)</li>
-<li>public MetaDef[] getMetaDefs(String name)</li>
-</ul>
-
 
 <h3><a name="request">リクエストの自動バインディング</a></h3>
 <p>コンポーネントに対して、HttpServletRequestを自動的にバインディングすることが出来ます。そのためには、コンポーネントに、setRequest(HttpServletRequest request)のメソッドを定義します。そうすると、S2Containerが自動的にリクエストを設定します。また、次のようにFilterをweb.xmlに定義する必要があります。</p>
-<pre>&lt;web-app&gt;
-<br>    &lt;filter&gt;<br>        &lt;filter-name&gt;s2filter&lt;/filter-name&gt;<br>        &lt;filter-class&gt;org.seasar.framework.container.filter.S2ContainerFilter&lt;/filter-class&gt;<br>    &lt;/filter&gt;<br>    <br>    &lt;filter-mapping&gt;<br>        &lt;filter-name&gt;s2filter&lt;/filter-name&gt;<br>        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;<br>    &lt;/filter-mapping&gt;<br>&lt;/web-app&gt;
+<pre>&lt;web-app&gt;<br>    &lt;filter&gt;<br>        &lt;filter-name&gt;s2filter&lt;/filter-name&gt;<br>        &lt;filter-class&gt;org.seasar.framework.container.filter.S2ContainerFilter&lt;/filter-class&gt;<br>    &lt;/filter&gt;<br>    <br>    &lt;filter-mapping&gt;<br>        &lt;filter-name&gt;s2filter&lt;/filter-name&gt;<br>        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;<br>    &lt;/filter-mapping&gt;<br>&lt;/web-app&gt;
 </pre>
 <p>同様にHttpServletResponse、HttpSessionもsetterメソッドを定義するだけで、自動バインディングすることが出来ます。また、S2ContainerFilterを使うと、HttpServletRequest、HttpServletResponse、HttpSessionをそれぞれrequest、response、sessionという名前のコンポーネントとしてアクセスできるようになります。</p>
 
 <h3><a name="ComponentAutoRegister">コンポーネントの自動登録</a></h3>
 <p><a href="#AutoBindingMode">自動バインディング</a>により、DIの設定はほぼ自動化できます。
 <a href="#AnnotationReference">アノテーション</a>を使って細かく制御することも可能です。
-さらに、コンポーネントの登録も自動化してしまおうというのが、コンポーネントの自動登録機能です。
-コンポーネントの自動登録には､ファイルシステム上のclassファイルを検索するFileSystemComponentAutoRegisterコンポーネントやjarファイルの中を検索するJarComponentAutoRegisterを利用します。
-開発環境ではファイルシステム、本番環境ではJarファイルを使用する場合には、ComponentAutoRegisterを利用します。
-</p>
+さらに、コンポーネントの登録も自動化してしまおうというのが、コンポーネントの自動登録機能です。</p>
+
 <h5><a name="FileSystemComponentAutoRegister">org.seasar.framework.container.autoregister.FileSystemComponentAutoRegister</a></h5>
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
@@ -1008,7 +997,7 @@ END java.util.Date#getTime() : 0
 </tr>
 </table>
 <br />
-<p>コンポーネントの名前はAutoNamingにより制御します．クラス名をコンポーネント名とするDefaultAutoNamingと、パッケージで修飾された名前をコンポーネント名とするQualifiedAutoNamingがあります．</p>
+<p>コンポーネントの名前はAutoNamingにより制御します。</p>
 <h5><a name="DefaultAutoNaming">org.seasar.framework.container.autoregister.DefaultAutoNaming</a></h5>
 <p>クラスの完全修飾名からパッケージ部分を除き、最後がImplまたはBeanで終わっていたら削除し､
 先頭を小文字にした名前をコンポーネントの名前に設定します。

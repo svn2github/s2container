@@ -904,8 +904,9 @@ In this example, xxx is the web application's context name.</p>
 <p>Name the root S2Container definition file "app.dicon" as convention.
 It is recommended that the file be stored in WEB-INF/classes.</p>
 
-<h3><a name="Aop">AOPの適用</a></h3>
-<p>コンポーネントに<a href="aop.html">AOP</a>を適用することもできます。例えば、ArrayListに<a href="aop.html#TraceInterceptor">TraceInterceptor</a>を適用したい場合次のようにします。</p>
+<h3><a name="Aop">Use of AOP</a></h3>
+<p>We can apply <a href="aop.html">AOP</a> to components.
+For example, we do the following if we want to apply <a href="aop.html#TraceInterceptor">TraceInterceptor</a> to ArrayList.</p>
 
 <pre>
 &lt;components&gt;
@@ -921,7 +922,12 @@ It is recommended that the file be stored in WEB-INF/classes.</p>
 &lt;/components&gt;
 </pre>
 
-<p>aspectタグのボディで<a href="aop.html#Advice">Interceptor</a>の名前を指定します。pointcut属性にカンマ区切りで対象となるメソッド名を指定することができます。pointcut属性を指定しない場合は、コンポーネントが実装しているインターフェースのすべてのメソッドが対象になります。メソッド名には正規表現(JDK1.4のregex)も使えます。この定義を使うサンプルは次のようになります。</p>
+<p>We specify the name of <a href="aop.html#Advice">Interceptor</a> in the body of the aspect tag.
+We can specify target method names in the pointcut property.
+Multiple entries can be entered separated by commas.
+When pointcut is not specified, all interfaces implemented methods in the component are targeted.
+A regular expression(JDK1.4 regex) can be used for method name.
+A sample use of this definition is as follows.</p>
 
 <pre>
 private static final String PATH =
@@ -935,7 +941,7 @@ date.hashCode();
 date.toString();
 </pre>
 
-            <p>実行結果は次のようになります。</p>
+<p>The results will be the following.</p>
 
 <pre>
 BEGIN java.util.ArrayList#size()
@@ -951,163 +957,140 @@ END java.util.Date#getTime() : 0
 </pre>
 
 
-<h3><a name="Meta">メタデータ</a></h3>
+<h3><a name="Meta">Metadata</a></h3>
 
-<p>components、component、arg、propertyタグにメタデータ<a href="aop.html"></a>を指定することもできます。metaタグはメタデータを指定したいタグの子タグに指定します。例えば、componentsタグにメタデータを指定したい場合次のようにします。</p>
+<p>Metadata can be defined in the components, component, arg, and property tags.
+The meta tag is used as a child tag in the parent tag where the metadata is to be set.
+Adding metadata to a components tag will look like the following example.</p>
 
 <pre>&lt;components&gt;
     &lt;meta name=&quot;aaa&quot;&gt;111&lt;/meta&gt;
 &lt;/components&gt;
 </pre>
-<p>components、component、arg、propertyタグに指定したメタデータの情報は、S2Container、ComponentDef、ArgDef、PropertyDefで定義されている次のメソッドで取得することが出来ます。</p>
-<ul>
-<li>public int getMetaDefSize()</li>
-<li>public MetaDef getMetaDef(int index)</li>
-<li>public MetaDef getMetaDef(String name)</li>
-<li>public MetaDef[] getMetaDefs(String name)</li>
-</ul>
 
-
-<h3><a name="request">リクエストの自動バインディング</a></h3>
-<p>コンポーネントに対して、HttpServletRequestを自動的にバインディングすることが出来ます。そのためには、コンポーネントに、setRequest(HttpServletRequest request)のメソッドを定義します。そうすると、S2Containerが自動的にリクエストを設定します。また、次のようにFilterをweb.xmlに定義する必要があります。</p>
-<pre>&lt;web-app&gt;
-<br>    &lt;filter&gt;<br>        &lt;filter-name&gt;s2filter&lt;/filter-name&gt;<br>        &lt;filter-class&gt;org.seasar.framework.container.filter.S2ContainerFilter&lt;/filter-class&gt;<br>    &lt;/filter&gt;<br>    <br>    &lt;filter-mapping&gt;<br>        &lt;filter-name&gt;s2filter&lt;/filter-name&gt;<br>        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;<br>    &lt;/filter-mapping&gt;<br>&lt;/web-app&gt;
+<h3><a name="request">Auto-binding of Requests</a></h3>
+<p>HttpServletRequest can be automatically bound to a component.
+For this, setRequest (HttpServletRequest request) method is defined within the component.
+S2Container will then automatically configure a request.
+Also, the following Filter must be defined in web.xml.</p>
+<pre>&lt;web-app&gt;<br>    &lt;filter&gt;<br>        &lt;filter-name&gt;s2filter&lt;/filter-name&gt;<br>        &lt;filter-class&gt;org.seasar.framework.container.filter.S2ContainerFilter&lt;/filter-class&gt;<br>    &lt;/filter&gt;<br>    <br>    &lt;filter-mapping&gt;<br>        &lt;filter-name&gt;s2filter&lt;/filter-name&gt;<br>        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;<br>    &lt;/filter-mapping&gt;<br>&lt;/web-app&gt;
 </pre>
-<p>同様にHttpServletResponse、HttpSessionもsetterメソッドを定義するだけで、自動バインディングすることが出来ます。また、S2ContainerFilterを使うと、HttpServletRequest、HttpServletResponse、HttpSessionをそれぞれrequest、response、sessionという名前のコンポーネントとしてアクセスできるようになります。</p>
 
-<h3><a name="ComponentAutoRegister">コンポーネントの自動登録</a></h3>
-<p><a href="#AutoBindingMode">自動バインディング</a>により、DIの設定はほぼ自動化できます。
-<a href="#AnnotationReference">アノテーション</a>を使って細かく制御することも可能です。
-さらに、コンポーネントの登録も自動化してしまおうというのが、コンポーネントの自動登録機能です。
-コンポーネントの自動登録には､ファイルシステム上のclassファイルを検索するFileSystemComponentAutoRegisterコンポーネントやjarファイルの中を検索するJarComponentAutoRegisterを利用します。</p>
+<p>In this manner, HttpServletResponse and HttpSession can be automatically bound by defining the setter method.
+Also, HttpServletRequest, HttpServletResponse, HttpSession can be accessed as components respectively named request, response, session by using S2ContainerFilter.</p>
+
+<h3><a name="ComponentAutoRegister">Component Auto-registration</a></h3>
+<p>DI configuration can be mostly automated using <a href="#AutoBindingMode">autobinding</a>.
+Fine control can be exerted using <a href="#AnnotationReference">annotation</a>.
+Taking this a step further is component auto-registration.</p>
+
 <h5><a name="FileSystemComponentAutoRegister">org.seasar.framework.container.autoregister.FileSystemComponentAutoRegister</a></h5>
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
-<th>プロパティ</th>
-<th>説明</th>
+<th>property</th>
+<th>Description</th>
 </tr>
 <tr>
 <td><code>instanceDef</code></td>
-<td>自動登録されるコンポーネントに適用するInstanceDefを指定します。XMLで指定する場合､<br>
-<code>@org.seasar.framework.container.deployer.InstanceDefFactory@REQUEST</code><br>
-のように指定します。</td>
+<td>A sample use of XML is as follows.<br>
+<code>@org.seasar.framework.container.deployer.InstanceDefFactory@REQUEST</code></td>
 </tr>
 <tr>
 <td><code>autoNaming</code></td>
-<td>クラス名からコンポーネント名を自動的に決定するコンポーネント。org.seasar.framework.container.autoregister.AutoNamingインターフェースを実装している必要があります。デフォルトは､org.seasar.framework.container.autoregister.DefaultAutoNamingクラスのインスタンスになります。</td>
+<td>Component to automatically name components from class name.
+Requires implementation of org.seasar.framework.container.autoregister.AutoNaming interface.</td>
 </tr>
 </table>
 <br />
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
-<th>メソッド</th>
-<th>説明</th>
+<th>method</th>
+<th>Description</th>
 </tr>
 <tr>
 <td><code>addClassPattern</code></td>
-<td>自動登録したいクラスパターンを登録します。最初の引数は､コンポーネントのパッケージ名です。子供のパッケージも再帰的に検索します。2番目の引数は､クラス名です。正規表現が使えます。「,」区切りで複数記述することもできます。</td>
-</tr>
-<tr>
-<td><code>addIgnoreClassPatten</code></td>
-<td>自動登録したくないクラスパターンを登録します。最初の引数は､コンポーネントのパッケージ名です。子供のパッケージも再帰的に検索します。2番目の引数は､クラス名です。正規表現が使えます。「,」区切りで複数記述することもできます。</td>
-</tr>
-</table>
-<h5><a name="JarComponentAutoRegister">org.seasar.framework.container.autoregister.JarComponentAutoRegister</a></h5>
-<table border="1">
-<tr bgcolor="#d1f3f4" align="center">
-<th>プロパティ</th>
-<th>説明</th>
-</tr>
-<tr>
-<td><code>jarFileNames</code></td>
-<td>対象のjarファイル名を指定します。正規表現も使えます。ただし､拡張子は含まれません。複数指定する場合は､「,」で区切ります。例えば､myapp.*, yourapp.*のようになります。</td>
-</tr>
-<tr>
-<td><code>classInJar</code></td>
-<td>このプロパティで指定されたクラスが存在するjarファイルの親ディレクトリをベースのディレクトリ(例えば、WEB-INF/lib)とみなします。デフォルトは、org.aopalliance.intercept.MethodInterceptor.classになります。</td>
-</tr>
-<tr>
-<td><code>instanceDef</code></td>
-<td>自動登録されるコンポーネントに適用するInstanceDefを指定します。XMLで指定する場合､@org.seasar.framework.container.deployer.InstanceDefFactory@REQUESTのように指定します。</td>
-</tr>
-<tr>
-<td><code>autoNaming</code></td>
-<td>クラス名からコンポーネント名を自動的に決定するコンポーネント。org.seasar.framework.container.autoregister.AutoNamingインターフェースを実装している必要があります。デフォルトは､org.seasar.framework.container.autoregister.DefaultAutoNamingクラスのインスタンスになります。</td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr bgcolor="#d1f3f4" align="center">
-<th>メソッド</th>
-<th>説明</th>
-</tr>
-<tr>
-<td><code>addClassPattern</code></td>
-<td>自動登録したいクラスパターンを登録します。最初の引数は､コンポーネントのパッケージ名です。子供のパッケージも再帰的に検索します。2番目の引数は､クラス名です。正規表現が使えます。「,」区切りで複数記述することもできます。</td>
-</tr>
-<tr>
-<td><code>addIgnoreClassPatten</code></td>
-<td>自動登録したくないクラスパターンを登録します。最初の引数は､コンポーネントのパッケージ名です。子供のパッケージも再帰的に検索します。2番目の引数は､クラス名です。正規表現が使えます。「,」区切りで複数記述することもできます。</td>
-</tr>
-</table>
-<h5><a name="JarComponentAutoRegister">org.seasar.framework.container.autoregister.JarComponentAutoRegister</a></h5>
-<table border="1">
-
-<tr bgcolor="#d1f3f4" align="center">
-<th>プロパティ</th>
-<th>説明</th>
-</tr>
-<tr>
-<td><code>jarFileNames</code></td>
-<td>対象のjarファイル名を指定します。正規表現も使えます。ただし､拡張子は含まれません。複数指定する場合は､「,」で区切ります。例えば､myapp.*, yourapp.*のようになります。</td>
-</tr>
-<tr>
-<td><code>referenceClass</code></td>
-<td>このプロパティで指定されたクラスが存在するjarファイルの親ディレクトリをベースのディレクトリ(例えば、WEB-INF/lib)とみなします。デフォルトは、org.aopalliance.intercept.MethodInterceptor.classになります。</td>
-</tr>
-<tr>
-<td><code>instanceDef</code></td>
-<td>自動登録されるコンポーネントに適用するInstanceDefを指定します。XMLで指定する場合､<br>
-<code>@org.seasar.framework.container.deployer.InstanceDefFactory@REQUEST</code><br>
-のように指定します。</td>
-</tr>
-<tr>
-<td><code>autoNaming</code></td>
-<td>クラス名からコンポーネント名を自動的に決定するコンポーネント。org.seasar.framework.container.autoregister.AutoNamingインターフェースを実装している必要があります。デフォルトは､org.seasar.framework.container.autoregister.DefaultAutoNamingクラスのインスタンスになります。</td>
-</tr>
-
-</table>
-<br />
-<table border="1">
-
-<tr bgcolor="#d1f3f4" align="center">
-<th>メソッド</th>
-<th>説明</th>
-</tr>
-<tr>
-<td><code>addClassPattern</code></td>
-<td>自動登録したいクラスパターンを登録します。最初の引数は､コンポーネントのパッケージ名です。子供のパッケージも再帰的に検索します。2番目の引数は､クラス名です。正規表現が使えます。「,」区切りで複数記述することもできます。</td>
+<td>A class pattern to be auto-registered is registered.
+The first argument is the component package name.
+Child packages are searched recursively.
+The second argument is class name.
+One may use regular expressions, and multiple entries can be separated by commas.</td>
 </tr>
 <tr>
 <td><code>addIgnoreClassPattern</code></td>
-<td>自動登録したくないクラスパターンを登録します。最初の引数は､コンポーネントのパッケージ名です。子供のパッケージも再帰的に検索します。2番目の引数は､クラス名です。正規表現が使えます。「,」区切りで複数記述することもできます。</td>
+<td>Class patterns to be ignored by auto-registration are registered.
+The first argument is the component package name.
+Child packages are searched recursively.
+The second argument is class name.
+One may use regular expressions, and multiple entries can be separated by commas.</td>
 </tr>
-
 </table>
+<h5><a name="JarComponentAutoRegister">org.seasar.framework.container.autoregister.JarComponentAutoRegister</a></h5>
+<table border="1">
+<tr bgcolor="#d1f3f4" align="center">
+<th>property</th>
+<th>Description</th>
+</tr>
+<tr>
+<td><code>jarFileNames</code></td>
+<td>Target jar file names excluded extension are registered.
+One may use regular expressions, and multiple entries can be separated by commas.</td>
+</tr>
+<tr>
+<td><code>referenceClass</code></td>
+<td>Class in jar is entered.
+Default value is @org.aopalliance.intercept.MethodInterceptor@class.</td>
+</tr>
+<tr>
+<td><code>instanceDef</code></td>
+<td>A sample use of XML is as follows.<br>
+<code>@org.seasar.framework.container.deployer.InstanceDefFactory@REQUEST</code></td>
+</tr>
+<tr>
+<td><code>autoNaming</code></td>
+<td>Component to automatically name components from class name.
+Requires implementation of org.seasar.framework.container.autoregister.AutoNaming interface.</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr bgcolor="#d1f3f4" align="center">
+<th>method</th>
+<th>説明</th>
+</tr>
+<tr>
+<td><code>addClassPattern</code></td>
+<td>A class pattern to be auto-registered is registered.
+The first argument is the component package name.
+Child packages are searched recursively.
+The second argument is class name.
+One may use regular expressions, and multiple entries can be separated by commas.</td>
+</tr>
+<tr>
+<td><code>addIgnoreClassPattern</code></td>
+<td>Class patterns to be ignored by auto-registration are registered.
+The first argument is the component package name.
+Child packages are searched recursively.
+The second argument is class name.
+One may use regular expressions, and multiple entries can be separated by commas.</td>
+</tr>
+</table>
+
 <h5><a name="aComponentAutoRegister">org.seasar.framework.container.autoregister.ComponentAutoRegister</a></h5>
 <table border="1">
 
 <tr bgcolor="#d1f3f4" align="center">
-<th>プロパティ</th>
-<th>説明</th>
+<th>property</th>
+<th>Description</th>
 </tr>
 <tr>
 <td><code>instanceDef</code></td>
-<td>自動登録されるコンポーネントに適用するInstanceDefを指定します。XMLで指定する場合､@org.seasar.framework.container.deployer.InstanceDefFactory@REQUESTのように指定します。</td>
+<td>A sample use of XML is as follows.<br>
+<code>@org.seasar.framework.container.deployer.InstanceDefFactory@REQUEST</code></td>
 </tr>
 <tr>
 <td><code>autoNaming</code></td>
-<td>クラス名からコンポーネント名を自動的に決定するコンポーネント。org.seasar.framework.container.autoregister.AutoNamingインターフェースを実装している必要があります。デフォルトは､org.seasar.framework.container.autoregister.DefaultAutoNamingクラスのインスタンスになります。</td>
+<td>Component to automatically name components from class name.
+Requires implementation of org.seasar.framework.container.autoregister.AutoNaming interface.</td>
 </tr>
 
 </table>
@@ -1115,39 +1098,42 @@ END java.util.Date#getTime() : 0
 <table border="1">
 
 <tr bgcolor="#d1f3f4" align="center">
-<th>メソッド</th>
-<th>説明</th>
+<th>method</th>
+<th>Description</th>
 </tr>
 <tr>
 <td><code>addReferenceClass</code></td>
-<td>このプロパティで指定されたクラスが存在するディレクトリまたはJarファイルを基点としてクラスを検索します。</td>
+<td>Classes in jars are added.</td>
 </tr>
 <tr>
 <td><code>addClassPattern</code></td>
-<td>自動登録したいクラスパターンを登録します。最初の引数は､コンポーネントのパッケージ名です。子供のパッケージも再帰的に検索します。2番目の引数は､クラス名です。正規表現が使えます。「,」区切りで複数記述することもできます。</td>
+<td>A class pattern to be auto-registered is registered.
+The first argument is the component package name.
+Child packages are searched recursively.
+The second argument is class name.
+One may use regular expressions, and multiple entries can be separated by commas.</td>
 </tr>
 <tr>
-<td><code>addIgnoreClassPatten</code></td>
-<td>自動登録したくないクラスパターンを登録します。最初の引数は､コンポーネントのパッケージ名です。子供のパッケージも再帰的に検索します。2番目の引数は､クラス名です。正規表現が使えます。「,」区切りで複数記述することもできます。</td>
+<td><code>addIgnoreClassPattern</code></td>
+<td>Class patterns to be ignored by auto-registration are registered.
+The first argument is the component package name.
+Child packages are searched recursively.
+The second argument is class name.
+One may use regular expressions, and multiple entries can be separated by commas.</td>
 </tr>
 
 </table>
 <br />
-<p>コンポーネントの名前はAutoNamingにより制御します．クラス名をコンポーネント名とするDefaultAutoNamingと、パッケージで修飾された名前をコンポーネント名とするQualifiedAutoNamingがあります．</p>
+<p>AutoNaming automatially names components.</p>
 <h5><a name="DefaultAutoNaming">org.seasar.framework.container.autoregister.DefaultAutoNaming</a></h5>
-<p>クラスの完全修飾名からパッケージ部分を除き、最後がImplまたはBeanで終わっていたら削除し､
-先頭を小文字にした名前をコンポーネントの名前に設定します。
-例えば､aaa.HogeImplクラスの場合､コンポーネント名は､hogeになります。</p>
 <table border="1">
-
-
 <tr bgcolor="#d1f3f4" align="center">
-<th>プロパティ</th>
-<th>説明</th>
+<th>property</th>
+<th>Description</th>
 </tr>
 <tr>
 <td><code>decapitalize</code></td>
-<td>コンポーネント名の先頭を小文字にする場合はtrueを指定します。デフォルトはtrueです。</td>
+<td>Set to true in order to decapitalize component name. Default value is true.</td>
 </tr>
 
 
@@ -1156,25 +1142,29 @@ END java.util.Date#getTime() : 0
 <table border="1">
 
 <tr bgcolor="#d1f3f4" align="center">
-<th>メソッド</th>
-<th>説明</th>
+<th>method</th>
+<th>Deccription</th>
 </tr>
 <tr>
 <td><code>setCustomizedName</code></td>
-<td>デフォルトのルールに従わないクラスを登録します。最初の引数は､クラスの完全修飾名です。
-2番目の引数は､コンポーネント名です。</td>
+<td>Class to be not applied to default rule is registered.
+The first argument is the class FQDN.
+The second argument is the component name.</td>
 </tr>
 <tr>
 <td><code>addIgnoreClassSuffix</code></td>
-<td>クラス名の末尾から削除する部分を指定します。デフォルトでImplおよびBeanが登録されています。</td>
+<td>Define the part removed from the tail of the class name.
+"Impl" and "Bean" are already registered.</td>
 </tr>
 <tr>
 <td><code>addReplaceRule</code></td>
-<td>正規表現による置換ルールを追加します。最初の引数は正規表現です。2番目の引数は置換文字列です。</td>
+<td>Add the replacement rule by regular expressions.
+The first argument is the regular expressions.
+The second argument is the replacement value.</td>
 </tr>
 <tr>
 <td><code>clearReplaceRule</code></td>
-<td>setCustomizedName、addIgnoreClassSuffix、addReplaceRuleで登録した変換規則をクリアします。デフォルトで登録されているImplおよびBeanもクリアされます。</td>
+<td>The replacement rules that are added by setCustomizedName, addIgnoreClassSuffix and addReplaceRuleare method are cleared.</td>
 </tr>
 
 </table>
