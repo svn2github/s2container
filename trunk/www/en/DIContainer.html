@@ -63,39 +63,38 @@
                   <li><a href="#UseS2Container">Using S2Container in Components</a></li>
                   <li><a href="#S2ContainerServlet">S2ContainerServlet</a></li>
                   <li><a href="#app.dicon">Purpose of app.dicon</a></li>
-                  <li><a href="#Aop">AOPの適用</a></li>
-				  <li><a href="#Meta">メタデータ</a></li>
-				  <li><a href="#Request">Requestの自動バインディング</a></li>
-				  <li><a href="#ComponentAutoRegister">コンポーネントの自動登録</a></li>
-				  <li><a href="#AspectAutoRegister">アスペクトの自動登録</a></li>
+                  <li><a href="#Aop">Use of AOP</a></li>
+				  <li><a href="#Meta">Metadata</a></li>
+				  <li><a href="#Request">Auto-binding of Requests</a></li>
+				  <li><a href="#ComponentAutoRegister">Component Auto-registration</a></li>
+				  <li><a href="#AspectAutoRegister">Aspect Auto-registration</a></li>
 				  <li><a href="#Hotswap">Hotswap</a></li>
                 </ul>
               </li>
-              <li><a href="#DefReference">S2Containerタグリファレンス</a>
+              <li><a href="#DefReference">S2Container Tag Reference</a>
                 <ul>
                   <li><a href="#DOCTYPE">DOCTYPE</a></li>
-                  <li><a href="#componentsTag">componentsタグ</a></li>
-                  <li><a href="#includeTag">includeタグ</a></li>
-                  <li><a href="#componentTag">componentタグ</a></li>
-                  <li><a href="#argTag">argタグ</a></li>
-                  <li><a href="#propertyTag">propertyタグ</a></li>
-				  <li><a href="#metaTag">metaタグ</a></li>
-                  <li><a href="#initMethodTag">initMethodタグ</a></li>
-                  <li><a href="#destroyMethodTag">destroyMethodタグ</a></li>
-                  <li><a href="#aspectTag">aspectタグ</a></li>
-                  <li><a href="#descriptionTag">descriptionタグ</a></li>
-                  <li><a href="#ognlExpr">OGNL式</a></li>
+                  <li><a href="#componentsTag">components tag</a></li>
+                  <li><a href="#includeTag">include tag</a></li>
+                  <li><a href="#componentTag">component tag</a></li>
+                  <li><a href="#argTag">arg tag</a></li>
+                  <li><a href="#propertyTag">property tag</a></li>
+				  <li><a href="#metaTag">meta tag</a></li>
+                  <li><a href="#initMethodTag">initMethod tag</a></li>
+                  <li><a href="#destroyMethodTag">destroyMethod tag</a></li>
+                  <li><a href="#aspectTag">aspect tag</a></li>
+                  <li><a href="#descriptionTag">description tag</a></li>
+                  <li><a href="#ognlExpr">OGNL expressions</a></li>
                 </ul>
               </li>
-			  <li><a href="#AnnotationReference">S2Containerアノテーションリファレンス</a>
+			  <li><a href="#AnnotationReference">S2Container Annotation Reference</a>
                 <ul>
-                  <li><a href="#ComponentAnnotation">Componentアノテーション</a></li>
-				  <li><a href="#BindingAnnotation">Bindingアノテーション</a></li>
-				  <li><a href="#AspectAnnotation">Aspectアノテーション</a></li>
-				  <li><a href="#InitMethodAnnotation">InitMethodアノテーション</a></li>
+                  <li><a href="#ComponentAnnotation">Component Annotation</a></li>
+				  <li><a href="#BindingAnnotation">Binding Annotation</a></li>
+				  <li><a href="#AspectAnnotation">Aspect Annotation</a></li>
+				  <li><a href="#InitMethodAnnotation">InitMethod Annotation</a></li>
 				</ul>
 			  </li>
-              <li>DIContainerエクササイズ</li>
             </ul>
 
 
@@ -1548,21 +1547,19 @@ It is in order to convert the contents described in XML as strings into a java o
 This example is assuming there is a component named hoge defined somewhere.</li>
 </ul>
 
-<p>
-詳しくは、<a href="http://www.ognl.org/2.6.7/Documentation/html/LanguageGuide/index.html">OGNLのマニュアル</a>を参照してください。</p><br/>
+<p>Refer to the <a href="http://www.ognl.org/2.6.7/Documentation/html/LanguageGuide/index.html">OGNL Manual</a> for details.</p><br/>
 <br/>
 
-<h2><a name="AnnotationReference">S2Containerアノテーションリファレンス</a></h2>
-<p>S2Containerでは、アノテーションの実装方法として､
-Tigerアノテーション､backport175アノテーション､定数アノテーションの3種類を用意しています。一般的にアノテーションといえば､Java 5から導入された
-Tigerアノテーションですが､それだけだと、JDK1.4のユーザが利用できなくなってしまいます。</p>
-<p>できるだけ、多くの方にアノテーションを便利に使ってもらいたいため､JDK1.4で、
-Tiger風アノテーション(JSR-175)を使うことのできる
-<a href="http://backport175.codehaus.org/">backport175</a>アノテーション、public static finalな定数を利用する定数アノテーションを用意しています。 </p>
+<h2><a name="AnnotationReference">S2Container Annotation Reference</a></h2>
+<p>S2Container uses 3 annotation implementations; Tiger annotation, Backport175 annotation, and constant annotation.
+Generally, annotation refers to Tiger annotation in Java5, but this would exclude users of JDK1.4.
+<a href="http://backport175.codehaus.org/">backport175</a> annotation allows tiger (JSR-175) style annotations in JDK1.4,
+and constant annotation uses public static final constants.
+These are implemented to give annotations capability to as many users as possible.</p>
 
-<h3><a name="ComponentAnnotation">Componentアノテーション</a></h3>
-<p><a href="#componentTag">componentタグ</a>のかわりに使えるが、Componentアノテーションです。</p>
-<p>Tigerアノテーションは以下のようになります。</p>
+<h3><a name="ComponentAnnotation">Component Annotation</a></h3>
+<p>Can be substituted for the <a href="#componentTag">component tag</a>.</p>
+<p>Tiger annotation is as follows.</p>
 <pre>
 @Component(name="xxx", instance=InstanceType.PROTOTYPE,
         autoBinding=AutoBindingType.PROPERTY)
@@ -1570,7 +1567,7 @@ public class Xxx {
     ...
 }
 </pre>
-<p>backport175アノテーションは以下のようになります。</p>
+<p>Backport175 annotation is as follows.</p>
 <pre>
 /**
  * @org.seasar.framework.container.annotation.backport175.Component(
@@ -1582,15 +1579,15 @@ public class Xxx {
     ...
 }
 </pre>
-<p>定数アノテーションは以下のようになります。</p>
+<p>Constant annotation is as follows.</p>
 <pre>
 public static final String COMPONENT =
   "name = xxx, instance = prototype, autoBinding = property";
 </pre>
 
-<h3><a name="BindingAnnotation">Bindingアノテーション</a></h3>
-<p><a href="#propertyTag">propertyタグ</a>のかわりに使えるが、Bindingアノテーションです。</p>
-<p>Tigerアノテーションは以下のようになります。</p>
+<h3><a name="BindingAnnotation">Binding Annotation</a></h3>
+<p>Can be substituted for the <a href="#propertyTag">property tag</a>.</p>
+<p>Tiger annotation is as follows.</p>
 <pre>
 @Binding("aaa2")
 public void setAaa(String aaa) {
@@ -1607,7 +1604,7 @@ public void setCcc(String ccc) {
     ...
 }
 </pre>
-<p>backport175アノテーションは以下のようになります。</p>
+<p>Backport175 annotation is as follows.</p>
 <pre>
 /**
 
@@ -1631,7 +1628,7 @@ public void setCcc(String ccc) {
     ...
 }
 </pre>
-<p>定数アノテーションはプロパティ名_BINDINGで指定します。</p>
+<p>Constant annotation specifies the property name_BINDING.</p>
 <pre>
 public static final String aaa_BINDING = "aaa2";
 
@@ -1652,10 +1649,11 @@ public void setCcc(String ccc) {
 }
 </pre>
 
-<h3><a name="AspectAnnotation">Aspectアノテーション</a></h3>
-<p><a href="aop.html#aspectTag">aspectタグ</a>のかわりに使えるが、Aspectアノテーションです。aspectタグと異なり､複数定義することはできないので､
-複数のインターセプタを適用したい場合は､<a href="aop.html#InterceptorChain">InterceptorChain</a>を使ってください。ポイントカットを指定したいときは､pointcut属性を指定します。クラスに対するアノテーションの場合､pointcutを指定しないときは､そのクラスが実装しているすべてのインターフェースのメソッドが対象になります。</p>
-<p>Tigerアノテーションは以下のようになります。</p>
+<h3><a name="AspectAnnotation">Aspect Annotation</a></h3>
+<p>Can be substituted for the <a href="aop.html#aspectTag">aspect tag</a>.
+Multiple definitions cannot be made unlike the aspect tag,
+so use <a href="aop.html#InterceptorChain">InterceptorChain</a> when multiple interceptors are to be applied.</p>
+<p>Tiger annotation is as follows.</p>
 <pre>
 @Aspect("aop.traceInterceptor")
 public class Xxx {
@@ -1670,7 +1668,7 @@ public class Xxx {
     }
 }
 </pre>
-<p>backport175アノテーションは以下のようになります。</p>
+<p>Backport175 annotation is as follows.</p>
 <pre>
 /**
  * @org.seasar.framework.container.annotation.backport175.Aspect(
@@ -1691,17 +1689,17 @@ public class Xxx {
     }
 }
 </pre>
-<p>定数アノテーションは以下のようになります。pointcutを複数指定したい場合は､pointcut= get.*\nexecute.*のように\nで区切ってください。
-\n以外の区切り文字を使ってはいけません。</p>
+<p>Constant annotation is as follows.
+Separate multiple pointcuts with \n, as in get.*\nexecute.
+Only \n may be used as a separator character.</p>
 <pre>
 public static final String ASPECT =
     "interceptor=aop.traceInterceptor, pointcut=getAaa";
 </pre>
 
-<h3><a name="InitMethodAnnotation">InitMethodアノテーション</a></h3>
-<p><a href="#initMethodTag">initMethodタグ</a>のかわりに使えるのが、InitMethodアノテーションです。
-initMethodタグと異なり､OGNLの式を書いたり、引数を設定することはできません。</p>
-<p>Tigerアノテーションは以下のようになります。</p>
+<h3><a name="InitMethodAnnotation">InitMethod Annotation</a></h3>
+<p>Can be substituted for the <a href="#initMethodTag">initMethod tag</a>.</p>
+<p>Tiger annotation is as follows.</p>
 <pre>
 public class Xxx {
     ...
@@ -1711,7 +1709,7 @@ public class Xxx {
     }
 }
 </pre>
-<p>backport175アノテーションは以下のようになります。</p>
+<p>Backport175 annotation is as follows.</p>
 <pre>
 public class Xxx {
     ...
@@ -1723,7 +1721,8 @@ public class Xxx {
     }
 }
 </pre>
-<p>定数アノテーションは以下のようになります。初期化メソッドを複数指定したい場合は､カンマ(,)で区切ってください。</p>
+<p>Constant annotation is as follows.
+Separate multiple initialization methods with commas.</p>
 <pre>
 public static final String INIT_METHOD = "init";
 </pre>
@@ -1736,7 +1735,7 @@ public static final String INIT_METHOD = "init";
 <td width="14"><img height="30" width="14" src="images/spacer.gif" alt=""></td>
 <td width="766"><img height="30" width="592" src="images/spacer.gif" alt=""></td></tr><tr>
 <td width="14"><img height="14" width="14" src="images/spacer.gif" alt=""></td>
-<td width="766" class="copyright">&copy; Copyright The Seasar Foundation and the others 2004, all rights reserved.</td>
+<td width="766" class="copyright">Copyright&copy; 2004-2005, The Seasar Foundation and the others. All rights reserved.</td>
 </tr></table>
 <td class="backright" align="left" valign="top">&nbsp;</td></tr><tr>
 <td class="backunder" align="left"  valign="top" width="780" height="16">&nbsp;</td>
