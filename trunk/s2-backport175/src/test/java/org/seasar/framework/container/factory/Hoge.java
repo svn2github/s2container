@@ -5,6 +5,7 @@ package org.seasar.framework.container.factory;
  * @org.seasar.framework.container.annotation.backport175.Aspect(
  *  value="aop.traceInterceptor",
  *  pointcut="getAaa")
+ * @org.seasar.framework.container.annotation.backport175.InterType("fieldInterType")
  *
  */
 public class Hoge {

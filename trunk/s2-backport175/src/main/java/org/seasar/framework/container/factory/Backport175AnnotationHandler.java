@@ -29,6 +29,7 @@ import org.seasar.framework.container.annotation.backport175.Aspect;
 import org.seasar.framework.container.annotation.backport175.Binding;
 import org.seasar.framework.container.annotation.backport175.Component;
 import org.seasar.framework.container.annotation.backport175.InitMethod;
+import org.seasar.framework.container.annotation.backport175.InterType;
 import org.seasar.framework.container.assembler.AutoBindingDefFactory;
 import org.seasar.framework.container.deployer.InstanceDefFactory;
 
@@ -99,6 +100,16 @@ public class Backport175AnnotationHandler extends ConstantAnnotationHandler {
             }
         }
         super.appendAspect(componentDef);
+    }
+
+    public void appendInterType(ComponentDef componentDef) {
+        Class componentClass = componentDef.getComponentClass();
+        InterType interType = (InterType) Annotations.getAnnotation(InterType.class,
+                componentClass);
+        if (interType != null) {
+            appendInterType(componentDef, interType.value());
+        }
+        super.appendInterType(componentDef);
     }
 
     public void appendInitMethod(ComponentDef componentDef) {
