@@ -21,6 +21,9 @@ package org.seasar.framework.container.annotation.backport175;
  */
 public interface Component {
 
+    /**
+     * @org.codehaus.backport175.DefaultValue ("")
+     */
     String name();
     
     /**

@@ -32,6 +32,7 @@ import org.seasar.framework.container.annotation.backport175.InitMethod;
 import org.seasar.framework.container.annotation.backport175.InterType;
 import org.seasar.framework.container.assembler.AutoBindingDefFactory;
 import org.seasar.framework.container.deployer.InstanceDefFactory;
+import org.seasar.framework.util.StringUtil;
 
 /**
  * @author higa
@@ -49,7 +50,10 @@ public class Backport175AnnotationHandler extends ConstantAnnotationHandler {
         Component component = (Component) annotation;
         ComponentDef componentDef = createComponentDefInternal(componentClass,
                 instanceDef);
-        componentDef.setComponentName(component.name());
+        String name = component.name();
+        if (!StringUtil.isEmpty(name)) {
+            componentDef.setComponentName(name);
+        }
         String instanceName = component.instance();
         if (instanceName != null) {
             componentDef.setInstanceDef(InstanceDefFactory
