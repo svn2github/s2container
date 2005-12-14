@@ -42,11 +42,14 @@
 				<li><a href="#ThrowsInterceptor">ThrowsInterceptor</a></li>
 				<li><a href="#MockInterceptor">MockInterceptor</a></li>
 				<li><a href="#DelegateInterceptor">DelegateInterceptor</a></li>
-<li><a href="#PrototypeDelegateInterceptor">PrototypeDelegateInterceptor</a></li>
-<li><a href="#SyncInterceptor">SyncInterceptor</a></li>
+				<li><a href="#PrototypeDelegateInterceptor">PrototypeDelegateInterceptor</a></li>
+				<li><a href="#SyncInterceptor">SyncInterceptor</a></li>
 				<li><a href="#InterceptorChain">InterceptorChain</a></li>
+				<li><a href="#InterceptorLifecycleAdapter">InterceptorLifecycleAdapter</a></li>
 				</ul>
-                        </li>
+			</li>
+			<li><a href="#OriginalInterceptor">独自実装によるInterceptor</a></li>
+			<li><a href="#OriginalInterType">独自実装によるInterType</a></li>
 	        <li><a href="#nodicon">diconファイルを使用しないでアスペクトを組み込む方法</a></li>
 		</ul></li>
 		<li><a href="#Example">Example</a>
@@ -71,6 +74,8 @@
     <p>どこにJoinpointを設定するのかを定義します。</p>
     <h4>Aspect</h4>
     <p>AdviceとPointcutを関連付けます。</p>
+    <h4>InterType</h4>
+    <p>フィールドやメソッドの追加、実装するインタフェースの追加など，クラスの静的な構造を変更します。</p>
     <h3><a name=AOPMerit>AOPのメリット</a></h3>
     <ul>
         <li>「Core Concern」と「Crosscutting Concern」を分離することでメンテナンス性が向上します。</li>
@@ -95,9 +100,9 @@
     <h3><a name=AOPMakeFile>作成すべきファイル</a></h3>
     <p>S2AOPを使用するにはS2Container の設定ファイル(diconファイル)で行います。設定ファイルの配置場所は、とくに指定がありませんが、通常「Crosscutting Concern」と同じ場所に配置するか、設定を行うコンポーネントと同じ場所に配置します。</p>
     <h3><a name=AOPExplanationFile>設定ファイルの説明</a></h3>
-    <h4><a name=aspecTtag>aspectタグ（AOPを使用する場合は必須）</a></h4>
-    <p>アスペクトをコンポーネントに組み込みます。Interceptorの指定は、ボディでOGNL式を使うか、子タグでcomponentタグを使います。<br />
-    ※OGNLについては <a href="http://www.ognl.org/2.6.7/Documentation/html/LanguageGuide/index.html">OGNLのマニュアル</a>を参照してください。1つのコンポーネントに複数のアスペクトを組み込んだ場合はアスペクトの登録順に組み込まれ実行されます。詳しい説明は<a href="#OriginalInterceptor">独自実装のInterceptor</a>を参照してください。</p>
+    <h4><a name=aspecTtag>aspectタグ</a></h4>
+    <p>Advice(以下Interceptor)をコンポーネントに組み込みます。Interceptorの指定は、ボディでOGNL式を使うか、子タグでcomponentタグを使います。<br />
+    ※OGNLについては <a href="ognl.html">OGNLガイド</a>を参照してください。1つのコンポーネントに複数のアスペクトを組み込んだ場合はアスペクトの登録順に組み込まれ実行されます。詳しい説明は<a href="#OriginalInterceptor">独自実装のInterceptor</a>を参照してください。</p>
 <h5>注意点</h5>
 <p>aspectタグで指定されたコンポーネントは、コンテナの初期化時にコンテナから取得されます。そのため、aspectタグで指定されたコンポーネントのinstance属性がprototypeだったとしても、Interceptor
 のメソッドが呼び出される度に新しいインスタンスが作成されるわけではありません。</p>
@@ -117,6 +122,18 @@
     &lt;aspect pointcut=&quot;.*&quot;&gt;
         &lt;component class=&quot;org.seasar.framework.aop.interceptors.TraceInterceptor&quot;/&gt;
     &lt;/aspect&gt;
+&lt;/component&gt;
+</pre>
+
+    <h4><a name=interTypeTag>interTypeタグ</a></h4>
+    <p>InterTypeをコンポーネントに組み込みます。InterTypeの指定は、ボディでOGNL式を使うか、子タグでcomponentタグを使います。<br>
+    ※OGNLについては <a href="ognl.html">OGNLガイド</a>を参照してください。1つのコンポーネントに複数のInterTypeを組み込んだ場合はInterTypeの登録順に組み込まれます。詳しい説明は<a href="#OriginalInterType">独自実装のInterType</a>を参照してください。</p>
+
+    <h5>設定例</h5>
+<pre>&lt;component class=&quot;java.util.Date&quot;&gt;
+    &lt;interType;&gt;
+        &lt;component class=&quot;org.seasar.framework.aop.intertype.PropertyInterType&quot;/&gt;
+    &lt;/interType&gt;
 &lt;/component&gt;
 </pre>
 
@@ -182,8 +199,24 @@ methodName, String targetMethodName)で指定します。例えば、bar()というメソッドをf
     &lt;aspect&gt;chain&lt;/aspect&gt;
 &lt;/component&gt;</pre>
 
-<h4><a name="OriginalInterceptor">(8) 独自実装によるInterceptor</a></h4>
+	<h4><a name=InterceptorLifecycleAdapter>(8) InterceptorLifecycleAdapter</a></h4>
+    <h5>クラス名</h5>
+    <p>org.seasar.framework.aop.interceptors.InterceptorLifecycleAdapter</p>
     <h5>説明</h5>
+    <p>Interceptorはアスペクトをクラスに組み込む際にインスタンス化されるため、singleton以外の場合は意図したとおりに動作しません。<br>
+    このような場合は、InterceptorLifecycleAdapterをMethodInterceptorのinvoke()メソッドに適用します．
+    </p>
+	<pre>&lt;component name=&quot;myInterceptor&quot; instance="prototype" .../&gt;
+    &lt;aspect pointcut="invoke"&gt;
+        &lt;component class=&quot;org.seasar.framework.aop.interceptors.InterceptorLifecycleAdapter;&gt;
+    &lt;/aspect&gt;
+&lt;/component&gt;
+&lt;component ...&gt;
+    &lt;aspect&gt;myInterceptor&lt;/aspect&gt;
+&lt;/component&gt;</pre>
+
+<h3><a name="OriginalInterceptor">独自実装によるInterceptor</a></h3>
+    <h4>説明</h4>
     <p>独自にInterceptorを作成する場合は、次のインターフェースまたは、抽象クラスを実装します。</p>
     <dl>
     	<dt style="text-indent:1em;">org.aopalliance.intercept.MethodInterceptor</dt>
@@ -199,7 +232,16 @@ methodName, String targetMethodName)で指定します。例えば、bar()というメソッドをf
     	<dt style="text-indent:1em;">protected Class getTargetClass(MethodInvocation invocation)</dt>
     </dl>
    	<p>MethodInvocationのgetThis()、getMethod()、getArguments()で対象となるオブジェクト、メソッド、引数を取得できます。getThis()でクラス名を取得するとバイトコードで組み込まれたクラス名が取得されます。proceed()を呼び出すと実際のメソッドが呼び出され実行結果を取得することができます。以下のような独自のInterceptorを作成したとします。</p>
-    <h5>作成例</h5>
+
+    <h4>注意点</h4>
+    <p>
+    Interceptorのインスタンスは、コンテナの初期化時に作成されてクラスに組み込まれます。
+    そのため、Interceptorを定義した&lt;component&gt;要素のinstance属性がprototype等だったとしても、
+    Interceptorのメソッドが呼び出される度に新しいインスタンスが作成されるわけではありません。<br>
+    instance属性がsingleton以外でないと正しく動作しないInterceptorには<a href="#InterceptorLifecycleAdapter">InterceptorLifecycleAdapter</a>を適用してください。
+    </p>
+
+    <h4>作成例</h4>
     <img src="images/aop02.gif" width="515" height="263" border="0"/>
     <p>MethodInvocation#proceed()を呼ぶ前と後で2分され、呼ぶ前は Beforeの個所を実行し、呼んだ後はAfterの個所を実行します。1つのコンポーネントに複数のアスペクトが定義されている場合は、以下のよう実行されます。</p>
    	<ol>
@@ -208,6 +250,47 @@ methodName, String targetMethodName)で指定します。例えば、bar()というメソッドをf
     	<li>Aspectの登録の逆順にMethodInterceptorのafter部分が実行されます。</li>
    	</ol>
     <p>詳しい使用方法は<a href="#OriginalInterceptorSample">独自実装によるInterceptor</a>を参照してください。</p>
+
+<h3><a name="OriginalInterType">独自実装によるInterType</a></h3>
+    <h4>説明</h4>
+    <p>独自にInterTypeを作成する場合は、次のインターフェースまたは、抽象クラスを実装します。</p>
+    <dl>
+    	<dt style="text-indent:1em;">org.seasar.framework.aop.InterType</dt>
+    	<dt style="text-indent:1em;">org.seasar.framework.aop.intertype.AbstractInterType</dt>
+    </dl>
+    <p>InterTypeを実装するクラスは、以下のメソッドを実装します。</p>
+    <dl>
+    	<dt style="text-indent:1em;">public void introduce(Class targetClass, CtClass enhancedClass)</dt>
+    </dl>
+    <p>targetClassはInterTypeが適用されるクラスです。enhancedClassはInterTypeを組み込むクラスで、先に登録されているInterceptorやInterTypeが適用済みの場合もあります。<br>
+    CtClassの詳細は<a href="http://jboss.com/products/javassist">Javassist</a>の<a href="http://www.smg.co.jp/seminar/techsquare/javassist01.html">チュートリアル</a>や<a href="http://www.csg.is.titech.ac.jp/~chiba/javassist/html/">JavaDoc</a>を参照してください。</p>
+
+    <p>AbstractInterTypeは、InterTypeをimplementsした抽象クラスです。AbstractInterTyeのサブクラスは次のメソッドを実装します。
+    <dl>
+    	<dt style="text-indent:1em;">public void introduce() trhows CannotCompileException, NotFoundException</dt>
+    </dl>
+    <p>AbstractInterTypeのサブクラスは、次のメソッドで必要なオブジェクトを取得することができます。</p>
+    <dl>
+    	<dt style="text-indent:1em;">protected Class getTargetClass()</dt>
+    	<dt style="text-indent:1em;">protected CtClass getEnhancedClass()</dt>
+    	<dt style="text-indent:1em;">protected ClassPool getClassPool()</dt>
+    </dl>
+    <p>AbstractInterTypeは、フィールドやメソッド，実装するインタフェースを追加するためのユーティリティメソッドを提供します。以下はその一部です。</p>
+    <dl>
+    	<dt style="text-indent:1em;">protected void addField(Class type, String name)</dt>
+    	<dt style="text-indent:1em;">protected void addField(Class type, String name, String init)</dt>
+    	<dt style="text-indent:1em;">protected void addStaticField(Class type, String name)</dt>
+    	<dt style="text-indent:1em;">protected void addStaticField(Class type, String name, String init)</dt>
+    	<dt style="text-indent:1em;">protected void addMethod(String name, String src)</dt>
+    	<dt style="text-indent:1em;">protected void addMethod(Class returnType, String name, String src)</dt>
+    	<dt style="text-indent:1em;">protected void addMethod(String name, Class[] paramTypes, String src)</dt>
+    	<dt style="text-indent:1em;">protected void addMethod(Class returnType, String name, Class[] paramTypes, String src)</dt>
+    	<dt style="text-indent:1em;">protected void addStaticMethod(String name, String src)</dt>
+    	<dt style="text-indent:1em;">protected void addStaticMethod(Class returnType, String name, String src)</dt>
+    	<dt style="text-indent:1em;">protected void addStaticMethod(String name, Class[] paramTypes, String src)</dt>
+    	<dt style="text-indent:1em;">protected void addStaticMethod(Class returnType, String name, Class[] paramTypes, String src)</dt>
+    </dl>
+
     <h3><a name=nodicon>diconファイルを使用しないでアスペクトを組み込む方法</a></h3>
     <p>diconファイルの設定を行わずプログラム上でアスペクトを組み込むこともできます。作成方法は次のようになります。</p>
     <ul>
