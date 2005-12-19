@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <!-- don't edit start -->
-<head><title>Seasar - DI Container with AOP - </title><meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<head><title>Seasar - DI Container with AOP - </title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <link href="seasar_p.css" type="text/css" rel="stylesheet" media="print">
 <link href="seasar_b.css" type="text/css" rel="stylesheet" media="screen">
@@ -31,10 +31,10 @@
 <!-- document start -->
             <ul>
               <li><a href="#Quickstart">Quickstart</a>
-			 Å@<ul>
+			 „ÄÄ<ul>
 				<li><a href="#FirstStep">First step</a>
 				<li><a href="#NextStep">Next step</a>
-Å@Å@Å@Å@Å@Å@Å@Å@</ul>
+„ÄÄ„ÄÄ„ÄÄ„ÄÄ„ÄÄ„ÄÄ„ÄÄ„ÄÄ</ul>
               </li>
 
               <li><a href="#S2ContainerReference">S2Container reference</a>
@@ -343,7 +343,7 @@ DEBUG 2005-10-11 21:01:49,675 [main] END examples.di.impl.GreetingClientImpl#exe
 <p>We have now mastered the basic use of S2Container.</p>
 
 <h3><a name="NextStep">Next Step</a></h3>
-<p>Writing the configuration file is still annoying, isnÅft it?
+<p>Writing the configuration file is still annoying, isn‚Äôt it?
 S2Container also possesses the following concepts to minimize the amount of writing in configuration files.</p>
 
 <ul>
@@ -368,13 +368,13 @@ they follow the DI convention of defining property type by interface.</p>
 <pre>&lt;component name=&quot;greetingClient&quot;<br>    class=&quot;examples.di.impl.GreetingClientImpl&quot;&gt;<br>&lt;/component&gt;
 </pre>
 
-<p>Actually, ÅgConvention over ConfigurationÅh is used in the AOP example from earlier.
+<p>Actually, ‚ÄúConvention over Configuration‚Äù is used in the AOP example from earlier.
 Normally, where (or which method) the AOP module is applied is defined in pointcut.
 All methods defined by interface have the AOP module applied without the use of pointcut in <a href="aop.html">S2AOP</a>
 as long as they follow the convention of using interface.
 This is how there was no need to define a module in pointcut in the earlier example.</p>
 
-<p>Using ÅgConvention over ConfigurationÅh will simplify the configuration of DI and AOP.
+<p>Using ‚ÄúConvention over Configuration‚Äù will simplify the configuration of DI and AOP.
 However, component registration itself becomes a burden as the number of components increase.
 The automation of this component registration is <a href="#ComponentAutoRegister">Component auto-registration</a> functionality.
 The registration of GreetingImpl, GreetingClientImpl from earlier is automated as follows.</p>
@@ -523,7 +523,7 @@ S2Container container = SingletonS2ContainerFactory.getContainer();</pre>
 <p>- org.seasar.framework.container.factory.SingletonS2ContainerFactory#setConfigPath(String Path)</p>
 <p>The arguments path is an absolute path of the definition file referencing the directory defined in CLASSPATH as root.
 For example, WEB-INF/classes/aaa.dicon is aaa.dicon.  WEB-INF/classes/aaa/bbb/ccc.dicon becomes aaa/bbb/ccc.dicon.
-The separator is Åg/Åh in both Windows and UNIX systems.</p>
+The separator is ‚Äú/‚Äù in both Windows and UNIX systems.</p>
 <pre>private static final String PATH = &quot;aaa/bbb/ccc.dicon&quot;;
 ...
 SingletonS2ContainerFactory.setConfigPath(PATH);

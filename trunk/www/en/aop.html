@@ -79,8 +79,8 @@
     <p>Pointcut is used to define the point where Jopinpoint is set in.</p>
     <h4>Aspect</h4>
     <p>Aspect associates Advice with Pointcut.</p>
-    <h4>InterType</h4>
-    <p>ƒtƒB[ƒ‹ƒh‚âƒƒ\ƒbƒh‚Ì’Ç‰ÁAÀ‘•‚·‚éƒCƒ“ƒ^ƒtƒF[ƒX‚Ì’Ç‰Á‚È‚ÇCƒNƒ‰ƒX‚ÌÃ“I‚È\‘¢‚ğ•ÏX‚µ‚Ü‚·B</p>
+<h4>InterType</h4>
+<p>InterType modifies class internal structures, including adding fields, methodds and interfaces.</p>
     <h3><a name=AOPMerit>AOP advantates</a></h3>
     <ul>
         <li>AOP offers you a better maintenance by separating a "Core Concern"
@@ -164,11 +164,11 @@ prototype.</p>
 &lt;/component&gt;
 </pre>
 
-    <h4><a name=interTypeTag>interType Tag</a></h4>
-    <p>InterType‚ğƒRƒ“ƒ|[ƒlƒ“ƒg‚É‘g‚İ‚İ‚Ü‚·BInterType‚Ìw’è‚ÍAƒ{ƒfƒB‚ÅOGNL®‚ğg‚¤‚©Aqƒ^ƒO‚Åcomponentƒ^ƒO‚ğg‚¢‚Ü‚·B<br>
-    * Please refer below for OGNL <a
-    href="http://www.ognl.org/2.6.7/Documentation/html/LanguageGuide/index.html">OGNL
-    Language Guide</a><br />
+<h4><a name=interTypeTag>interType Tag</a></h4>
+<p>Specifies interType which is added into components.
+Either <a href="#ognlExpr">OGNL expressions</a> in the body or the child component tag is used for the value passed as an interType.<br>
+* Please refer below for
+<a href="http://www.ognl.org/2.6.7/Documentation/html/LanguageGuide/index.html">OGNL Language Guide</a>
 
     <h5>Configuration Example</h5>
 <pre>&lt;component class=&quot;java.util.Date&quot;&gt;
@@ -282,9 +282,9 @@ href="#PrototypeDelegateInterceptorSample">PrototypeDelegateInterceptor</a>
     <h5>Class Name</h5>
     <p>org.seasar.framework.aop.interceptors.InterceptorLifecycleAdapter</p>
     <h5>Description</h5>
-    <p>Interceptor‚ÍƒAƒXƒyƒNƒg‚ğƒNƒ‰ƒX‚É‘g‚İ‚ŞÛ‚ÉƒCƒ“ƒXƒ^ƒ“ƒX‰»‚³‚ê‚é‚½‚ßAsingletonˆÈŠO‚Ìê‡‚ÍˆÓ}‚µ‚½‚Æ‚¨‚è‚É“®ì‚µ‚Ü‚¹‚ñB<br>
-    ‚±‚Ì‚æ‚¤‚Èê‡‚ÍAInterceptorLifecycleAdapter‚ğMethodInterceptor‚Ìinvoke()ƒƒ\ƒbƒh‚É“K—p‚µ‚Ü‚·D
-    </p>
+<p>Interceptor instances are built into classes only when initializeing container.
+This is why new interceptors are not built into classes even if instance property is prototype.
+In this case, applies InterceptorLifecycleAdapter to MethodInterceptor#invoke().</p>
 	<pre>&lt;component name=&quot;myInterceptor&quot; instance="prototype" .../&gt;
     &lt;aspect pointcut="invoke"&gt;
         &lt;component class=&quot;org.seasar.framework.aop.interceptors.InterceptorLifecycleAdapter;&gt;
@@ -326,13 +326,10 @@ href="#PrototypeDelegateInterceptorSample">PrototypeDelegateInterceptor</a>
     through this invocation. Following is an example how to use proceed()
     method.</p>
 
-    <h4>’ˆÓ“_</h4>
-    <p>
-    Interceptor‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ÍAƒRƒ“ƒeƒi‚Ì‰Šú‰»‚Éì¬‚³‚ê‚ÄƒNƒ‰ƒX‚É‘g‚İ‚Ü‚ê‚Ü‚·B
-    ‚»‚Ì‚½‚ßAInterceptor‚ğ’è‹`‚µ‚½&lt;component&gt;—v‘f‚Ìinstance‘®«‚ªprototype“™‚¾‚Á‚½‚Æ‚µ‚Ä‚àA
-    Interceptor‚Ìƒƒ\ƒbƒh‚ªŒÄ‚Ño‚³‚ê‚é“x‚ÉV‚µ‚¢ƒCƒ“ƒXƒ^ƒ“ƒX‚ªì¬‚³‚ê‚é‚í‚¯‚Å‚Í‚ ‚è‚Ü‚¹‚ñB<br>
-    instance‘®«‚ªsingletonˆÈŠO‚Å‚È‚¢‚Æ³‚µ‚­“®ì‚µ‚È‚¢Interceptor‚É‚Í<a href="#InterceptorLifecycleAdapter">InterceptorLifecycleAdapter</a>‚ğ“K—p‚µ‚Ä‚­‚¾‚³‚¢B
-    </p>
+<h4>Warning</h4>
+<p>Interceptor instances are built into classes only when initializeing container.
+This is why new interceptors are not built into classes even if instance property is prototype.<br />
+Applies <a href="#InterceptorLifecycleAdapter">InterceptorLifecycleAdapter</a> to such interceptor.</p>
 
     <h4>Example</h4>
     <pre>public class ABS implements MethodInterceptor {
@@ -362,30 +359,31 @@ href="#PrototypeDelegateInterceptorSample">PrototypeDelegateInterceptor</a>
     Interceptor</a> for further information.</p>
 
 <h3><a name="OriginalInterType">How to define your own InterType</a></h3>
-    <h4>Description</h4>
-    <p>“Æ©‚ÉInterType‚ğì¬‚·‚éê‡‚ÍAŸ‚ÌƒCƒ“ƒ^[ƒtƒF[ƒX‚Ü‚½‚ÍA’ŠÛƒNƒ‰ƒX‚ğÀ‘•‚µ‚Ü‚·B</p>
+<h4>Description</h4>
+<p>To define your own InterType, you need to implement an interface or an abstract class shown below.</p>
     <dl>
     	<dt style="text-indent:1em;">org.seasar.framework.aop.InterType</dt>
     	<dt style="text-indent:1em;">org.seasar.framework.aop.intertype.AbstractInterType</dt>
     </dl>
-    <p>InterType‚ğÀ‘•‚·‚éƒNƒ‰ƒX‚ÍAˆÈ‰º‚Ìƒƒ\ƒbƒh‚ğÀ‘•‚µ‚Ü‚·B</p>
+<p>The class implementing InterType need to implement the folloing method.</p>
     <dl>
     	<dt style="text-indent:1em;">public void introduce(Class targetClass, CtClass enhancedClass)</dt>
     </dl>
-    <p>targetClass‚ÍInterType‚ª“K—p‚³‚ê‚éƒNƒ‰ƒX‚Å‚·BenhancedClass‚ÍInterType‚ğ‘g‚İ‚ŞƒNƒ‰ƒX‚ÅAæ‚É“o˜^‚³‚ê‚Ä‚¢‚éInterceptor‚âInterType‚ª“K—pÏ‚İ‚Ìê‡‚à‚ ‚è‚Ü‚·B<br>
-    CtClass‚ÌÚ×‚Í<a href="http://jboss.com/products/javassist">Javassist</a>‚Ì<a href="http://www.csg.is.titech.ac.jp/~chiba/javassist/tutorial/tutorial.html">ƒ`ƒ…[ƒgƒŠƒAƒ‹</a>‚â<a href="http://www.csg.is.titech.ac.jp/~chiba/javassist/html/">JavaDoc</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+<p>InterType is applied to targetClass and is built into enhancedClass.
+Please refer to <a href="http://jboss.com/products/javassist">Javassist</a>, <a href="http://www.smg.co.jp/seminar/techsquare/javassist01.html">Tutorial</a>, <a href="http://www.csg.is.titech.ac.jp/~chiba/javassist/html/">JavaDoc</a> for details.</p>
 
-    <p>AbstractInterType‚ÍAInterType‚ğimplements‚µ‚½’ŠÛƒNƒ‰ƒX‚Å‚·BAbstractInterTye‚ÌƒTƒuƒNƒ‰ƒX‚ÍŸ‚Ìƒƒ\ƒbƒh‚ğÀ‘•‚µ‚Ü‚·B
+<p>AbstractInterType is an abstract class implementing InterType.
+The sub-class of InterType need to implement folloing methods.</p>
     <dl>
     	<dt style="text-indent:1em;">public void introduce() trhows CannotCompileException, NotFoundException</dt>
     </dl>
-    <p>AbstractInterType‚ÌƒTƒuƒNƒ‰ƒX‚ÍAŸ‚Ìƒƒ\ƒbƒh‚Å•K—v‚ÈƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B</p>
+<p>AbstractInterType acquires objects using folloing methods.</p>
     <dl>
     	<dt style="text-indent:1em;">protected Class getTargetClass()</dt>
     	<dt style="text-indent:1em;">protected CtClass getEnhancedClass()</dt>
     	<dt style="text-indent:1em;">protected ClassPool getClassPool()</dt>
     </dl>
-    <p>AbstractInterType‚ÍAƒtƒB[ƒ‹ƒh‚âƒƒ\ƒbƒhCÀ‘•‚·‚éƒCƒ“ƒ^ƒtƒF[ƒX‚ğ’Ç‰Á‚·‚é‚½‚ß‚Ìƒ†[ƒeƒBƒŠƒeƒBƒƒ\ƒbƒh‚ğ’ñ‹Ÿ‚µ‚Ü‚·BˆÈ‰º‚Í‚»‚Ìˆê•”‚Å‚·B</p>
+<p>AbstractInterType supplies following utility methods for adding fields, methods, and interfaces.</p>
     <dl>
     	<dt style="text-indent:1em;">protected void addField(Class type, String name)</dt>
     	<dt style="text-indent:1em;">protected void addField(Class type, String name, String init)</dt>
@@ -648,7 +646,7 @@ hoge
     <p>(2) This ThrowsInterceptor example shows you how to replace the type
  of exeception with another Interceptor. Modify HandleThrowableInterceptor
  defined above.</p>
- $B!!(J <b>How to make Interceptor to throw a new exception</b>
+<p><b>How to make Interceptor to throw a new exception</b></p>
     <p>Suppose org.seasar.framework.exception.SRuntimeException will be thrown
     when the first argument of handleThrowable(Throwable, MethodInvocation)
     method is NullPointerException, then you need to modify
