@@ -59,39 +59,19 @@
     <defaultGoal>validate</defaultGoal>
     <plugins>
       <plugin>
-        <artifactId>maven-antrun-plugin</artifactId>
+        <groupId>org.seasar.maven.plugin.backport175</groupId>
+        <artifactId>maven-backport175-plugin</artifactId>
         <executions>
           <execution>
-            <id>main-annotationc</id>
-            <phase>compile</phase>
-            <configuration>
-              <tasks>
-                <ant
-                  antfile="build-backport175.xml"
-                  target="main-annotationc"
-                  inheritRefs="true"
-                />
-              </tasks>
-            </configuration>
             <goals>
-              <goal>run</goal>
+              <goal>annotationc</goal>
+              <goal>testAnnotationc</goal>
             </goals>
-          </execution>
-          <execution>
-            <id>test-annotationc</id>
-            <phase>test-compile</phase>
             <configuration>
-              <tasks>
-                <ant
-                  antfile="build-backport175.xml"
-                  target="test-annotationc"
-                  inheritRefs="true"
-                />
-              </tasks>
+              <!--
+              <verbose>true</verbose>
+              -->
             </configuration>
-            <goals>
-              <goal>run</goal>
-            </goals>
           </execution>
         </executions>
       </plugin>
@@ -104,6 +84,13 @@
       <url>http://maven.seasar.org/maven2</url>
     </repository>
   </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>maven.seasar.org</id>
+      <name>The Seasar Foundation Maven2 Repository</name>
+      <url>http://maven.seasar.org/maven2</url>
+    </pluginRepository>
+  </pluginRepositories>
   <dependencies>
     <dependency>
       <groupId>backport175</groupId>
@@ -133,7 +120,4 @@
       <url>scp://www.seasar.org/home/groups/s2container/maven/maven2</url>
     </repository>
   </distributionManagement>
-  <properties>
-    <annotationc.verbose>false</annotationc.verbose>
-  </properties>
 </project>
