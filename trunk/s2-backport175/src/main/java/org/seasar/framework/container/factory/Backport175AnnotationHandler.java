@@ -17,10 +17,10 @@ package org.seasar.framework.container.factory;
 
 import java.lang.reflect.Method;
 
-import org.codehaus.backport175.reader.Annotation;
 import org.codehaus.backport175.reader.Annotations;
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.PropertyDesc;
+import org.seasar.framework.container.AutoBindingDef;
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.IllegalInitMethodAnnotationRuntimeException;
 import org.seasar.framework.container.InstanceDef;
@@ -30,9 +30,6 @@ import org.seasar.framework.container.annotation.backport175.Binding;
 import org.seasar.framework.container.annotation.backport175.Component;
 import org.seasar.framework.container.annotation.backport175.InitMethod;
 import org.seasar.framework.container.annotation.backport175.InterType;
-import org.seasar.framework.container.assembler.AutoBindingDefFactory;
-import org.seasar.framework.container.deployer.InstanceDefFactory;
-import org.seasar.framework.util.StringUtil;
 
 /**
  * @author higa
@@ -41,30 +38,20 @@ import org.seasar.framework.util.StringUtil;
 public class Backport175AnnotationHandler extends ConstantAnnotationHandler {
 
     public ComponentDef createComponentDef(Class componentClass,
-            InstanceDef instanceDef) {
-        Annotation annotation = Annotations.getAnnotation(Component.class,
+            InstanceDef defaultInstanceDef) {
+        
+    	String name = null;
+        InstanceDef instanceDef = null;
+        AutoBindingDef autoBindingDef = null;
+    	Component component = (Component) Annotations.getAnnotation(Component.class,
                 componentClass);
-        if (annotation == null) {
-            return super.createComponentDef(componentClass, instanceDef);
+        if (component == null) {
+            return super.createComponentDef(componentClass, defaultInstanceDef);
         }
-        Component component = (Component) annotation;
-        ComponentDef componentDef = createComponentDefInternal(componentClass,
-                instanceDef);
-        String name = component.name();
-        if (!StringUtil.isEmpty(name)) {
-            componentDef.setComponentName(name);
-        }
-        String instanceName = component.instance();
-        if (instanceName != null) {
-            componentDef.setInstanceDef(InstanceDefFactory
-                    .getInstanceDef(instanceName));
-        }
-        String autoBindingName = component.autoBinding();
-        if (autoBindingName != null) {
-            componentDef.setAutoBindingDef(AutoBindingDefFactory
-                    .getAutoBindingDef(autoBindingName));
-        }
-        return componentDef;
+        name = component.name();
+        instanceDef = getInstanceDef(component.instance(), defaultInstanceDef);
+        autoBindingDef = getAutoBindingDef(component.autoBinding());
+        return createComponentDef(componentClass, name, instanceDef, autoBindingDef);
     }
 
     public PropertyDef createPropertyDef(BeanDesc beanDesc,

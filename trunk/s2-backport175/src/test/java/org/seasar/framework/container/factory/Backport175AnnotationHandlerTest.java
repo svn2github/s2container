@@ -125,7 +125,6 @@ public class Backport175AnnotationHandlerTest extends S2FrameworkTestCase {
     }
     
     public void setUpAppendInitMethodForDicon() throws Exception {
-        System.out.println(ResourceUtil.getResourceAsFile(getClass().getName().replace('.', '/') + ".dicon"));
         include("Backport175AnnotationHandlerTest.dicon");
     }
     
