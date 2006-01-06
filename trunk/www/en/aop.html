@@ -52,6 +52,12 @@
                 </ul>
             </li>
 			<li><a href="#OriginalInterceptor">How to define your own Interceptor</a></li>
+			<li><a href="#AOPInterType">Available S2AOP InterType</a>
+			<ul>
+			<li><a href="#PropertyInterType">PropertyInterType</a>
+			<li><a href="#InterTypeChain">InterTypeChain</a>
+			</ul>
+			</li>
 			<li><a href="#OriginalInterType">How to define your own InterType</a></li>
             <li><a href="#nodicon">AOP without "dicon file"</a></li>
         </ul></li>
@@ -69,18 +75,18 @@
     <h2><a name=S2Overview>An Overview of S2AOP</a></h2>
     <h3><a name=AOPKey>The main idea of AOP</a></h3>
     <br />
-    <h4>Advice(MethodInterceptor)</h4>
+    <h4><a name="Advice">Advice(MethodInterceptor)</a></h4>
     <p>Advice is a block of codes which will be inserted into another
     program. This could be called Interceptor.</p>
-    <h4>Joinpoint(MethodInvocation)</h4>
+    <h4><a name="Joinpoint">Joinpoint(MethodInvocation)</a></h4>
     <p>Joinpoint is a point which Advice will be associated with a targeted
     class. Advice is allowed to get information about a method name and arguments from Joinpoint.</p>
-    <h4>Pointcut</h4>
+    <h4><a name="Pointcut">Pointcut</a></h4>
     <p>Pointcut is used to define the point where Jopinpoint is set in.</p>
-    <h4>Aspect</h4>
+    <h4><a name="Aspect">Aspect</a></h4>
     <p>Aspect associates Advice with Pointcut.</p>
-<h4>InterType</h4>
-<p>InterType modifies class internal structures, including adding fields, methodds and interfaces.</p>
+	<h4><a name="InterType">InterType</a></h4>
+	<p>InterType modifies class internal structures, including adding fields, methodds and interfaces.</p>
     <h3><a name=AOPMerit>AOP advantates</a></h3>
     <ul>
         <li>AOP offers you a better maintenance by separating a "Core Concern"
@@ -357,6 +363,86 @@ Applies <a href="#InterceptorLifecycleAdapter">InterceptorLifecycleAdapter</a> t
        </ol>
     <p>Please read <a href="#OriginalInterceptorSample">How to define your own
     Interceptor</a> for further information.</p>
+
+<h3><a name="AOPInterType">Available S2AOP InterType</a></h3>
+    <p>S2AOPでは、以下のInterTypeを用意しています。また独自のInterTypeを作成できるようになっています。</p>
+    <h4><a name="PropertyInterType">(1) PropertyTraceInterType</a></h4>
+    <h5>クラス名</h5>
+    <p>org.seasar.framework.aop.intertype.PropertyInterType</p>
+    <h5>説明</h5>
+    <p>フィールドに対する setter / getter メソッドを追加するInterTypeです。<br>
+PropertyInterTypeを使うには、S2TigerまたはS2Backport175が必要です。</p>
+<pre>&lt;component class=&quot;Hoge&quot;&gt;
+    &lt;interType&gt;
+        &lt;component class=&quot;org.seasar.framework.aop.interType.PropertyInterType&quot;/&gt;
+    &lt;/interType&gt;
+&lt;/component&gt;</pre>
+<p>PropertyInterTypeを適用するクラスには、setter / getterを追加したいフィールドにPropertyアノテーションを指定します。<br>
+Tigerアノテーションでは次のようになります。</p>
+<pre>import org.seasar.framework.container.annotation.tiger.Property;
+import org.seasar.framework.container.annotation.tiger.PropertyType;
+
+public class Hoge {
+    @Property
+    int foo;
+
+    @Property(PropertyType.READ)
+    long bar;
+
+    @Property(PropertyType.WRITE)
+    String baz;
+}</pre>
+<p>Backport175アノテーションでは次のようになります。</p>
+<pre>public class Hoge {
+    /** @org.seasar.framework.container.annotation.backport175.Property */
+    int foo;
+
+    /** @org.seasar.framework.container.annotation.backport175.Property(&quot;read&quot;) */
+    long bar;
+
+    /** @org.seasar.framework.container.annotation.backport175.Property(&quot;write&quot;) */
+    String baz;
+}</pre>
+<p>上の例では、フィールドfooにはgetterとsetterメソッドが、barにはgetterメソッドが、bazにはsetterメソッドが作成されます。</p>
+<p>クラスにPropertyアノテーションを指定することもできます。その指定がPropertyアノテーションの指定されていないフィールドに適用されます。<br>
+Tigerアノテーションでは次のようになります。</p>
+<pre>import org.seasar.framework.container.annotation.tiger.Property;
+import org.seasar.framework.container.annotation.tiger.PropertyType;
+
+@Property
+public class Hoge {
+    int foo;
+
+    long bar;
+
+    @Property(PropertyType.NONE)
+    String baz;
+}</pre>
+<p>Backport175アノテーションでは次のようになります。</p>
+<pre>/** @org.seasar.framework.container.annotation.backport175.Property */
+public class Hoge {
+    int foo;
+
+    long bar;
+
+    /** @org.seasar.framework.container.annotation.backport175.Property(&quot;none&quot;) */
+    String baz;
+}</pre>
+<p>上の例では、フィールドfooとbarにはgetterとsetterメソッドが作成されますが、bazにはgetterメソッドもsetterメソッドが作成されません。</p>
+<h4><a name="InterTypeChain">(2) InterTypeChain</a></h4>
+    <h5>クラス名</h5>
+    <p>org.seasar.framework.aop.intertye.InterTypeChain</p>
+    <h5>説明</h5>
+    <p>複数のInterTypeをグルーピング化し、再利用しやすくします。複数のInterTypeの組み合わせを複数コンポーネントに適用する場合は、InterTGypeChainで複数のInterTypeを1つにまとめて、各コンポーネントにはInterTypeChainを指定するようにするといいでしょう。</p>
+	<pre>&lt;component name=&quot;interType1&quot; .../&gt;
+&lt;component name=&quot;interType2&quot; .../&gt;
+&lt;component name=&quot;interType3&quot; .../&gt;<br>&lt;component name=&quot;chain&quot; class=&quot;org.seasar.framework.aop.interttype.InterTypeChain&quot;&gt;<br>    &lt;initMethod name=&quot;add&quot;&gt;&lt;arg&gt;interType1&lt;/arg&gt;&lt;/initMethod&gt;<br>    &lt;initMethod name=&quot;add&quot;&gt;&lt;arg&gt;interType2&lt;/arg&gt;&lt;/initMethod&gt;<br>    &lt;initMethod name=&quot;add&quot;&gt;&lt;arg&gt;interType3&lt;/arg&gt;&lt;/initMethod&gt;<br>&lt;/component&gt;
+&lt;component ...&gt;
+    &lt;interType&gt;chain&lt;/interType&gt;
+&lt;/component&gt;
+&lt;component ...&gt;
+    &lt;interType&gt;chain&lt;/interType&gt;
+&lt;/component&gt;</pre>
 
 <h3><a name="OriginalInterType">How to define your own InterType</a></h3>
 <h4>Description</h4>

@@ -80,6 +80,7 @@
                   <li><a href="#initMethodTag">initMethodタグ</a></li>
                   <li><a href="#destroyMethodTag">destroyMethodタグ</a></li>
                   <li><a href="#aspectTag">aspectタグ</a></li>
+                  <li><a href="#interTypeTag">interTypeタグ</a></li>
                   <li><a href="#descriptionTag">descriptionタグ</a></li>
                   <li><a href="#ognlExpr">OGNL式</a></li>
                 </ul>
@@ -650,7 +651,7 @@ S2Containerの定義ファイルには、次の内容を記述します。</p>
 
 <h3><a name="InstanceMode">インスタンス管理</a></h3>
 <p>S2Containerで、コンポーネントのインスタンスをどのように管理するのかを指定するのが、<a href="#componentTag">componentタグ</a>のinstance属性です。</p>
-            
+
 
 <table width="744" border="1">
   <tr bgcolor="#d1f3f4" align="center">
@@ -773,8 +774,7 @@ S2Containerの定義ファイルには、次の内容を記述します。</p>
             <h3><a name="UseS2Container">コンポーネントでS2Containerを利用する</a></h3>
             <p>コンポーネントはS2Containerに依存しないことが望ましいのですが、コンポーネントによっては、S2Containerのメソッドを呼び出したい場合もあるでしょう。S2Container自身もcontainerという名前で、登録されているので、arg,propertyタグのボディでcontainerを指定することで、コンテナのインスタンスを取得できます。また、S2Container型のsetterメソッドを定義しておいて自動バインディングで設定することもできます。arg,propertyタグでcontainerを指定する場合は、次のようになります。</p>
 
-<pre>
-&lt;components&gt;
+<pre>&lt;components&gt;
     &lt;component class=&quot;examples.dicon.BarImpl&quot;&gt;
         &lt;arg&gt;container&lt;/arg&gt;
     &lt;/component&gt;
@@ -782,8 +782,7 @@ S2Containerの定義ファイルには、次の内容を記述します。</p>
     &lt;component class=&quot;examples.dicon.FooImpl&quot;&gt;
         &lt;property name=&quot;foo&quot;&gt;container&lt;/property&gt;
     &lt;/component&gt;
-&lt;/components&gt;
-</pre>
+&lt;/components&gt;</pre>
 
 
 <h3><a name="S2ContainerServlet">S2ContainerServlet</a></h3>
@@ -868,6 +867,15 @@ END java.util.Date#hashCode() : 0
 BEGIN java.util.Date#getTime()
 END java.util.Date#getTime() : 0
 </pre>
+
+<p>コンポーネントに<a href="aop.html#InterType">インタータイプ</a>を適用することもできます。例えば、Hogeに<a href="aop.html#PropertyInterType">PropertyInterType</a>を適用したい場合次のようにします。</p>
+<pre>&lt;components&gt;
+    &lt;include path=&quot;aop.dicon&quot;/&gt;
+    &lt;component class=&quot;examples.Hoge&quot;&gt;
+        &lt;interType&gt;aop.propertyInterType&lt;/aspect&gt;
+    &lt;/component&gt;
+&lt;/components&gt;</pre>
+<p>interTypeタグのボディで<a href="aop.html#InterType">InterType</a>の名前を指定します。</p>
 
 
 <h3><a name="Meta">メタデータ</a></h3>
@@ -1400,8 +1408,9 @@ Hello2
 
             <h3><a name="aspectTag">aspectタグ(任意)</a></h3>
             <p>アスペクトをコンポーネントに組み込みます。詳しくは、S2AOPの<a href="aop.html#aspectTag">aspectタグ</a>の説明を参照してください。</p>
-
-            <h3><a name="descriptionTag">descriptionタグ(任意)</a></h3>
+<h3><a name="interTypeTag">interTypeタグ(任意)</a></h3>
+            <p>インタータイプをコンポーネントに組み込みます。詳しくは、S2AOPの<a href="aop.html#interTypeTag">interTypeタグ</a>の説明を参照してください。</p>
+<h3><a name="descriptionTag">descriptionタグ(任意)</a></h3>
 
             <p><a href="#componentsTag">componentsタグ</a>、<a href="#componentTag">componentタグ</a>、<a href="#argTag">argタグ</a>、<a href="#propertyTag">propertyタグ</a>の子タグとしてdescriptionタグを使うことができます。自由に説明を記述できます。</p>
 
@@ -1418,7 +1427,7 @@ Hello2
             <li>@java.lang.String@classのようにクラスを参照できます。</li>
             <li>hoge.toString()のようにコンポーネントのメソッドを呼び出した結果を参照することができます。この例は、どこかでhogeという名前のコンポーネントが定義されているという前提です。</li>
             </ul>
-            詳しくは、<a href="http://www.ognl.org/2.6.7/Documentation/html/LanguageGuide/index.html">OGNLのマニュアル</a>を参照してください。<br/>
+            詳しくは、<a href="ognl.html">OGNLガイド</a>を参照してください。<br/>
             <br/>
 
 <h2><a name="AnnotationReference">S2Containerアノテーションリファレンス</a></h2>
@@ -1565,6 +1574,31 @@ public class Xxx {
 <pre>
 public static final String ASPECT =
     "interceptor=aop.traceInterceptor, pointcut=getAaa";
+</pre>
+
+<h3><a name="InterTypeAnnotation">InterTypeアノテーション</a></h3>
+<p><a href="aop.html#intetTypeTag">interTypeタグ</a>のかわりに使えるのが、InterTypeアノテーションです。
+<p>Tigerアノテーションは以下のようになります。</p>
+<pre>
+@InterType({"aop.propertyInterType", "aop.someInterType"})
+public class Xxx {
+    ...
+}
+</pre>
+<p>backport175アノテーションは以下のようになります。</p>
+<pre>
+/**
+ * @org.seasar.framework.container.annotation.backport175.InterType(
+ *  {"aop.propertyInterType", "aop.someInterType"})
+ */
+public class Xxx {
+    ...
+}
+</pre>
+<p>定数アノテーションは以下のようになります。</p>
+<pre>
+public static final String INTER_TYPE =
+    "aop.propertyInterType, aop.someInterType";
 </pre>
 
 <h3><a name="InitMethodAnnotation">InitMethodアノテーション</a></h3>

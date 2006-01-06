@@ -31,10 +31,10 @@
 <!-- document start -->
             <ul>
               <li><a href="#Quickstart">Quickstart</a>
-			 ã€€<ul>
+			 ã€?<ul>
 				<li><a href="#FirstStep">First step</a>
 				<li><a href="#NextStep">Next step</a>
-ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€</ul>
+ã€?ã€?ã€?ã€?ã€?ã€?ã€?ã€?</ul>
               </li>
 
               <li><a href="#S2ContainerReference">S2Container reference</a>
@@ -83,6 +83,7 @@
                   <li><a href="#initMethodTag">initMethod tag</a></li>
                   <li><a href="#destroyMethodTag">destroyMethod tag</a></li>
                   <li><a href="#aspectTag">aspect tag</a></li>
+                  <li><a href="#interTypeTag">interType tag</a></li>
                   <li><a href="#descriptionTag">description tag</a></li>
                   <li><a href="#ognlExpr">OGNL expressions</a></li>
                 </ul>
@@ -368,13 +369,13 @@ they follow the DI convention of defining property type by interface.</p>
 <pre>&lt;component name=&quot;greetingClient&quot;<br>    class=&quot;examples.di.impl.GreetingClientImpl&quot;&gt;<br>&lt;/component&gt;
 </pre>
 
-<p>Actually, â€œConvention over Configurationâ€ is used in the AOP example from earlier.
+<p>Actually, â€œConvention over Configurationâ€? is used in the AOP example from earlier.
 Normally, where (or which method) the AOP module is applied is defined in pointcut.
 All methods defined by interface have the AOP module applied without the use of pointcut in <a href="aop.html">S2AOP</a>
 as long as they follow the convention of using interface.
 This is how there was no need to define a module in pointcut in the earlier example.</p>
 
-<p>Using â€œConvention over Configurationâ€ will simplify the configuration of DI and AOP.
+<p>Using â€œConvention over Configurationâ€? will simplify the configuration of DI and AOP.
 However, component registration itself becomes a burden as the number of components increase.
 The automation of this component registration is <a href="#ComponentAutoRegister">Component auto-registration</a> functionality.
 The registration of GreetingImpl, GreetingClientImpl from earlier is automated as follows.</p>
@@ -523,7 +524,7 @@ S2Container container = SingletonS2ContainerFactory.getContainer();</pre>
 <p>- org.seasar.framework.container.factory.SingletonS2ContainerFactory#setConfigPath(String Path)</p>
 <p>The arguments path is an absolute path of the definition file referencing the directory defined in CLASSPATH as root.
 For example, WEB-INF/classes/aaa.dicon is aaa.dicon.  WEB-INF/classes/aaa/bbb/ccc.dicon becomes aaa/bbb/ccc.dicon.
-The separator is â€œ/â€ in both Windows and UNIX systems.</p>
+The separator is â€?/â€? in both Windows and UNIX systems.</p>
 <pre>private static final String PATH = &quot;aaa/bbb/ccc.dicon&quot;;
 ...
 SingletonS2ContainerFactory.setConfigPath(PATH);
@@ -954,6 +955,15 @@ END java.util.Date#hashCode() : 0
 BEGIN java.util.Date#getTime()
 END java.util.Date#getTime() : 0
 </pre>
+
+<p>ƒRƒ“ƒ|[ƒlƒ“ƒg‚É<a href="aop.html#InterType">ƒCƒ“ƒ^[ƒ^ƒCƒv</a>‚ğ“K—p‚·‚é‚±‚Æ‚à‚Å‚«‚Ü‚·B—á‚¦‚ÎAHoge‚É<a href="aop.html#PropertyInterType">PropertyInterType</a>‚ğ“K—p‚µ‚½‚¢ê‡Ÿ‚Ì‚æ‚¤‚É‚µ‚Ü‚·B</p>
+<pre>&lt;components&gt;
+    &lt;include path=&quot;aop.dicon&quot;/&gt;
+    &lt;component class=&quot;examples.Hoge&quot;&gt;
+        &lt;interType&gt;aop.propertyInterType&lt;/aspect&gt;
+    &lt;/component&gt;
+&lt;/components&gt;</pre>
+<p>interTypeƒ^ƒO‚Ìƒ{ƒfƒB‚Å<a href="aop.html#InterType">InterType</a>‚Ì–¼‘O‚ğw’è‚µ‚Ü‚·B</p>
 
 
 <h3><a name="Meta">Metadata</a></h3>
@@ -1527,6 +1537,10 @@ These can be used as valid objects within the initMethod tag.</p>
 <p>Builds in aspect into a component.
 Refer to the description of the <a href="aop.html#aspectTag">aspect tag</a> in S2AOP.</p>
 
+<h3><a name="interTypeTag">interType tag(”CˆÓ)</a></h3>
+<p>Builds in inter-type into a component.
+Refer to the description of the <a href="aop.html#interTypeTag">interType tag</a> in S2AOP.</p>
+
 <h3><a name="descriptionTag">description tag (optional)</a></h3>
 <p>Used as a child tag in the <a href="#componentsTag">components</a>, <a href="#componentTag">component</a>, <a href="#argTag">arg</a> and <a href="#propertyTag">property</a> tags.
 Can freely used to hold descriptions or explanations.</p>
@@ -1695,6 +1709,31 @@ Only \n may be used as a separator character.</p>
 <pre>
 public static final String ASPECT =
     "interceptor=aop.traceInterceptor, pointcut=getAaa";
+</pre>
+
+<h3><a name="InterTypeAnnotation">InterTypeƒAƒmƒe[ƒVƒ‡ƒ“</a></h3>
+<p><a href="aop.html#intetTypeTag">interTypeƒ^ƒO</a>‚Ì‚©‚í‚è‚Ég‚¦‚é‚Ì‚ªAInterTypeƒAƒmƒe[ƒVƒ‡ƒ“‚Å‚·B
+<p>TigerƒAƒmƒe[ƒVƒ‡ƒ“‚ÍˆÈ‰º‚Ì‚æ‚¤‚É‚È‚è‚Ü‚·B</p>
+<pre>
+@InterType({"aop.propertyInterType", "aop.someInterType"})
+public class Xxx {
+    ...
+}
+</pre>
+<p>backport175ƒAƒmƒe[ƒVƒ‡ƒ“‚ÍˆÈ‰º‚Ì‚æ‚¤‚É‚È‚è‚Ü‚·B</p>
+<pre>
+/**
+ * @org.seasar.framework.container.annotation.backport175.InterType(
+ *  {"aop.propertyInterType", "aop.someInterType"})
+ */
+public class Xxx {
+    ...
+}
+</pre>
+<p>’è”ƒAƒmƒe[ƒVƒ‡ƒ“‚ÍˆÈ‰º‚Ì‚æ‚¤‚É‚È‚è‚Ü‚·B</p>
+<pre>
+public static final String INTER_TYPE =
+    "aop.propertyInterType, aop.someInterType";
 </pre>
 
 <h3><a name="InitMethodAnnotation">InitMethod Annotation</a></h3>
