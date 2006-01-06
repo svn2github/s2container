@@ -256,14 +256,22 @@ methodName, String targetMethodName)で指定します。例えば、bar()というメソッドをf
     	<li>Aspectの登録の逆順にMethodInterceptorのafter部分が実行されます。</li>
    	</ol>
     <p>詳しい使用方法は<a href="#OriginalInterceptorSample">独自実装によるInterceptor</a>を参照してください。</p>
+
 <h3><a name="AOPInterType">S2AOPで用意されているInterType</a></h3>
     <p>S2AOPでは、以下のInterTypeを用意しています。また独自のInterTypeを作成できるようになっています。</p>
+
     <h4><a name="PropertyInterType">(1) PropertyTraceInterType</a></h4>
     <h5>クラス名</h5>
     <p>org.seasar.framework.aop.intertype.PropertyInterType</p>
     <h5>説明</h5>
-    <p>フィールドに対する setter / getter メソッドを追加するInterTypeです。<br>
+    <p>フィールドに対するsetter / getterメソッドを追加するInterTypeです。<br>
 PropertyInterTypeを使うには、S2TigerまたはS2Backport175が必要です。</p>
+    <h5>注意点</h5>
+    <p>
+    privateのフィールドに対するgetter / setterは作成されません。<br>
+    フィールドはデフォルト(パッケージスコープ)またはprotectedにしてください。
+    </p>
+
 <pre>&lt;component class=&quot;Hoge&quot;&gt;
     &lt;interType&gt;
         &lt;component class=&quot;org.seasar.framework.aop.interType.PropertyInterType&quot;/&gt;
@@ -296,6 +304,7 @@ public class Hoge {
     String baz;
 }</pre>
 <p>上の例では、フィールドfooにはgetterとsetterメソッドが、barにはgetterメソッドが、bazにはsetterメソッドが作成されます。</p>
+
 <p>クラスにPropertyアノテーションを指定することもできます。その指定がPropertyアノテーションの指定されていないフィールドに適用されます。<br>
 Tigerアノテーションでは次のようになります。</p>
 <pre>import org.seasar.framework.container.annotation.tiger.Property;
@@ -321,6 +330,7 @@ public class Hoge {
     String baz;
 }</pre>
 <p>上の例では、フィールドfooとbarにはgetterとsetterメソッドが作成されますが、bazにはgetterメソッドもsetterメソッドが作成されません。</p>
+
 <h4><a name="InterTypeChain">(2) InterTypeChain</a></h4>
     <h5>クラス名</h5>
     <p>org.seasar.framework.aop.intertye.InterTypeChain</p>

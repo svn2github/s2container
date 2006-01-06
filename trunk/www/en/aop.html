@@ -366,12 +366,18 @@ Applies <a href="#InterceptorLifecycleAdapter">InterceptorLifecycleAdapter</a> t
 
 <h3><a name="AOPInterType">Available S2AOP InterType</a></h3>
     <p>S2AOPでは、以下のInterTypeを用意しています。また独自のInterTypeを作成できるようになっています。</p>
+
     <h4><a name="PropertyInterType">(1) PropertyTraceInterType</a></h4>
     <h5>クラス名</h5>
     <p>org.seasar.framework.aop.intertype.PropertyInterType</p>
     <h5>説明</h5>
     <p>フィールドに対する setter / getter メソッドを追加するInterTypeです。<br>
 PropertyInterTypeを使うには、S2TigerまたはS2Backport175が必要です。</p>
+    <h5>注意点</h5>
+    <p>
+    privateのフィールドに対するgetter / setterは作成されません。<br>
+    フィールドはデフォルト(パッケージスコープ)またはprotectedにしてください。
+    </p>
 <pre>&lt;component class=&quot;Hoge&quot;&gt;
     &lt;interType&gt;
         &lt;component class=&quot;org.seasar.framework.aop.interType.PropertyInterType&quot;/&gt;
