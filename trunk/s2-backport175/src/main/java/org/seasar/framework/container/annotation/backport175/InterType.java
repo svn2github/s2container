@@ -17,6 +17,6 @@ package org.seasar.framework.container.annotation.backport175;
 
 public interface InterType {
 
-    String value();
+    String[] value();
 
 }

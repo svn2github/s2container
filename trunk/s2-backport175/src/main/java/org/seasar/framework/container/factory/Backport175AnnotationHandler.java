@@ -98,7 +98,10 @@ public class Backport175AnnotationHandler extends ConstantAnnotationHandler {
         InterType interType = (InterType) Annotations.getAnnotation(InterType.class,
                 componentClass);
         if (interType != null) {
-            appendInterType(componentDef, interType.value());
+            String[] interTypeNames = interType.value();
+            for (int i = 0; i < interTypeNames.length; ++i) {
+                appendInterType(componentDef, interTypeNames[i]);
+            }
         }
         super.appendInterType(componentDef);
     }

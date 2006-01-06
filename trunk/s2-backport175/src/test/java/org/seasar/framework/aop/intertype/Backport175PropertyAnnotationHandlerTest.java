@@ -15,9 +15,6 @@
  */
 package org.seasar.framework.aop.intertype;
 
-import org.seasar.framework.container.S2Container;
-import org.seasar.framework.container.factory.S2ContainerFactory;
-
 /**
  * @author y-komori t
  */
@@ -25,9 +22,7 @@ public class Backport175PropertyAnnotationHandlerTest extends AbstractPropertyIn
 
     private static final String PATH = "org/seasar/framework/aop/intertype/Backport175PropertyAnnotationHandlerTest.dicon";
 
-    protected PropertyInterTypeTarget getTarget() {
-        S2Container container = S2ContainerFactory.create(PATH);
-        return (PropertyInterTypeTarget) container
-                .getComponent(Backport175PropertyAnnotationHandlerTarget.class);
+    protected String getPath() {
+        return PATH;
     }
 }

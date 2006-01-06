@@ -34,14 +34,18 @@ public class Backport175PropertyAnnotationHandler implements PropertyAnnotationH
 
     private static final String STR_READWRITE = "readwrite";
 
-    public boolean isPropertyAnnotatted(Field field) {
-        Annotation property = Annotations.getAnnotation(Property.class, field);
-        return (property != null) ? true : false;
+    private static final String STR_NONE = "none";
+
+    public int getPropertyType(Class clazz) {
+        return getPropertyType(Annotations.getAnnotation(Property.class, clazz));
     }
 
     public int getPropertyType(Field field) {
-        Annotation property = Annotations.getAnnotation(Property.class, field);
-        int propertyType = PropertyInterType.NONE;
+        return getPropertyType(Annotations.getAnnotation(Property.class, field));
+    }
+
+    public int getPropertyType(Annotation property) {
+        int propertyType = PropertyInterType.UNSPECIFIED;
         if (property != null) {
             String type = ((Property) property).value();
             if (STR_READ.equals(type)) {
@@ -50,6 +54,8 @@ public class Backport175PropertyAnnotationHandler implements PropertyAnnotationH
                 propertyType = PropertyInterType.WRITE;
             } else if (STR_READWRITE.equals(type)) {
                 propertyType = PropertyInterType.READWRITE;
+            } else if (STR_NONE.equals(type)) {
+                propertyType = PropertyInterType.NONE;
             }
         }
 

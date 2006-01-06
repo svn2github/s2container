@@ -3,7 +3,13 @@
 <components>
 	<include path="aop.dicon"/>
 
-	<component class="org.seasar.framework.aop.intertype.Backport175PropertyAnnotationHandlerTarget">
+	<component name="target"
+		class="org.seasar.framework.aop.intertype.Backport175PropertyAnnotationHandlerTarget"
+	>
 		<interType>aop.propertyInterType</interType>
 	</component>
+
+	<component name="target2"
+		class="org.seasar.framework.aop.intertype.Backport175PropertyAnnotationHandlerTarget2"
+	/>
 </components>
