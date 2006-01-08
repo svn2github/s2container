@@ -17,7 +17,6 @@ package org.seasar.framework.aop.intertype;
 
 /**
  * @org.seasar.framework.container.annotation.backport175.InterType({"aop.propertyInterType"})
- * @org.seasar.framework.container.annotation.backport175.Property("readwrite")
  */
 public class Backport175PropertyAnnotationHandlerTarget2 {
     int defaultField;
@@ -42,6 +41,28 @@ public class Backport175PropertyAnnotationHandlerTarget2 {
      */
     int noneField;
 
+    int hasGetter;
+
+    int hasSetter;
+
+    int hasGetterSetter;
+
     public Backport175PropertyAnnotationHandlerTarget2() {
+    }
+
+    public int getHasGetter() {
+        return hasGetter;
+    }
+
+    public void setHasSetter(int hasSetter) {
+        this.hasSetter = hasSetter;
+    }
+
+    public int getHasGetterSetter() {
+        return hasGetterSetter;
+    }
+
+    public void setHasGetterSetter(int hasGetterSetter) {
+        this.hasGetterSetter = hasGetterSetter;
     }
 }

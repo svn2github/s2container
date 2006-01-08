@@ -27,38 +27,20 @@ import org.seasar.framework.container.annotation.backport175.Property;
  * 
  */
 public class Backport175PropertyAnnotationHandler implements PropertyAnnotationHandler {
-
-    private static final String STR_READ = "read";
-
-    private static final String STR_WRITE = "write";
-
-    private static final String STR_READWRITE = "readwrite";
-
-    private static final String STR_NONE = "none";
-
-    public int getPropertyType(Class clazz) {
-        return getPropertyType(Annotations.getAnnotation(Property.class, clazz));
+    public int getPropertyType(Class clazz, int defaultValue) {
+        return getPropertyType(Annotations.getAnnotation(Property.class, clazz), defaultValue);
     }
 
-    public int getPropertyType(Field field) {
-        return getPropertyType(Annotations.getAnnotation(Property.class, field));
+    public int getPropertyType(Field field, int defaultValue) {
+        return getPropertyType(Annotations.getAnnotation(Property.class, field), defaultValue);
     }
 
-    public int getPropertyType(Annotation property) {
-        int propertyType = PropertyInterType.UNSPECIFIED;
+    public int getPropertyType(Annotation property, int defaultValue) {
+        int propertyType = defaultValue;
         if (property != null) {
             String type = ((Property) property).value();
-            if (STR_READ.equals(type)) {
-                propertyType = PropertyInterType.READ;
-            } else if (STR_WRITE.equals(type)) {
-                propertyType = PropertyInterType.WRITE;
-            } else if (STR_READWRITE.equals(type)) {
-                propertyType = PropertyInterType.READWRITE;
-            } else if (STR_NONE.equals(type)) {
-                propertyType = PropertyInterType.NONE;
-            }
+            propertyType = PropertyInterType.valueOf(type);
         }
-
         return propertyType;
     }
 }

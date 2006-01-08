@@ -22,6 +22,13 @@ public class Backport175PropertyAnnotationHandlerTest extends AbstractPropertyIn
 
     private static final String PATH = "org/seasar/framework/aop/intertype/Backport175PropertyAnnotationHandlerTest.dicon";
 
+    public Backport175PropertyAnnotationHandlerTest() {
+    }
+
+    public Backport175PropertyAnnotationHandlerTest(String name) {
+        super(name);
+    }
+
     protected String getPath() {
         return PATH;
     }
