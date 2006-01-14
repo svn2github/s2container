@@ -43,6 +43,7 @@
                 <ul>
                 <li><a href="#TraceInterceptor">TraceInterceptor</a></li>
                 <li><a href="#ThrowsInterceptor">ThrowsInterceptor</a></li>
+                <li><a href="#ToStringInterceptor">ToStringInterceptor</a></li>
                 <li><a href="#MockInterceptor">MockInterceptor</a></li>
                 <li><a href="#DelegateInterceptor">DelegateInterceptor</a></li>
                 <li><a href="#PrototypeDelegateInterceptor">PrototypeDelegateInterceptor</a></li>
@@ -65,6 +66,7 @@
         <ul>
                <li><a href="#TraceInterceptorSample">TraceInterceptor</a></li>
                <li><a href="#ThrowsInterceptorSample">ThrowsInterceptor</a></li>
+               <li><a href="#ToStringInterceptorSample">ToStringInterceptor</a></li>
                <li><a href="#DelegateInterceptorSample">DelegateInterceptor</a></li>
 <li><a href="#PrototypeDelegateInterceptorSample">PrototypeDelegateInterceptor</a></li>
 <li><a href="#SyncInterceptorSample">SyncInterceptor</a></li>
@@ -218,13 +220,27 @@ Either <a href="#ognlExpr">OGNL expressions</a> in the body or the child compone
     methods. Please read <a
     href="#ThrowsInterceptorSample">ThrowsInterceptor</a> for further
     information.</p>
-    <h4><a name="MockInterceptor">(3) MockInterceptor</a></h4>
+
+    <h4><a name=ToStringInterceptor>(3) ToStringInterceptor</a></h4>
+    <h5>クラス名</h5>
+    <p>org.seasar.framework.aop.interceptors.ToStringInterceptor</p>
+    <h5>説明</h5>
+    <p>ToString()メソッドによる文字列化処理を「Crosscutting Concern」として扱うためのInterceptorです。EntityクラスにTraceInterceptorを適用したdiconファイルは、以下のようになります。対象とするメソッドはtoString()とします。</p>
+<pre>&lt;component class=&quot;java.util.Date&quot;&gt;
+    &lt;aspect pointcut=&quot;toString&quot;&gt;
+        &lt;component class=&quot;org.seasar.framework.aop.interceptors.ToStringInterceptor&quot;/&gt;
+    &lt;/aspect&gt;
+&lt;/component&gt;
+</pre>
+    <p>詳しい使用方法は<a href="#ToStringInterceptorSample">ToStringInterceptor</a>を参照してください。</p>
+
+    <h4><a name="MockInterceptor">(4) MockInterceptor</a></h4>
     <h5>Class Name</h5>
     <p>org.seasar.framework.aop.interceptors.MockInterceptor</p>
     <h5>Description</h5>
     <p>This Interceptor let a test made by Mock easier. Please read <a href="testtech.html#MockMake">
     Testing</a> for further information.</p>
-    <h4><a name="DelegateInterceptor">(4) DelegateInterceptor</a></h4>
+    <h4><a name="DelegateInterceptor">(5) DelegateInterceptor</a></h4>
     <h5>Class Name</h5>
     <p>org.seasar.framework.aop.interceptors.DelegateInterceptor</p>
     <h5>Description</h5>
@@ -242,7 +258,7 @@ same instance will be used even if the instance attribute of the component is
 a property. If you want to get a new instance for every method invocation,
 use PrototypeDelegateInterceptor described below.
 </p>
-<h4><a name="PrototypeDelegateInterceptor">(5) PrototypeDelegateInterceptor</a></h4>
+<h4><a name="PrototypeDelegateInterceptor">(6) PrototypeDelegateInterceptor</a></h4>
     <h5>Class Name</h5>
     <p>org.seasar.framework.aop.interceptors.PrototypeDelegateInterceptor</p>
     <h5>Description</h5>
@@ -257,7 +273,7 @@ use PrototypeDelegateInterceptor described below.
 href="#PrototypeDelegateInterceptorSample">PrototypeDelegateInterceptor</a>
     for further information.</p>
 
-    <h4><a name="SyncInterceptor">(6) SyncInterceptor</a></h4>
+    <h4><a name="SyncInterceptor">(7) SyncInterceptor</a></h4>
     <h5>Class Name</h5>
     <p>org.seasar.framework.aop.interceptors.SyncInterceptor</p>
     <h5>Description</h5>
@@ -266,7 +282,7 @@ href="#PrototypeDelegateInterceptorSample">PrototypeDelegateInterceptor</a>
     method invocations. Please read <a
     href="#SyncInterceptorSample">SyncInterceptor</a> for further information.</p>
 
-    <h4><a name=InterceptorChain>(7) InterceptorChain</a></h4>
+    <h4><a name=InterceptorChain>(8) InterceptorChain</a></h4>
     <h5>Class Name</h5>
     <p>org.seasar.framework.aop.interceptors.InterceptorChain</p>
     <h5>Description</h5>
@@ -284,7 +300,7 @@ href="#PrototypeDelegateInterceptorSample">PrototypeDelegateInterceptor</a>
 &lt;/component&gt;</pre>
 
 
-	<h4><a name=InterceptorLifecycleAdapter>(8) InterceptorLifecycleAdapter</a></h4>
+	<h4><a name=InterceptorLifecycleAdapter>(9) InterceptorLifecycleAdapter</a></h4>
     <h5>Class Name</h5>
     <p>org.seasar.framework.aop.interceptors.InterceptorLifecycleAdapter</p>
     <h5>Description</h5>
@@ -781,6 +797,132 @@ Exception in thread &quot;main&quot; org.seasar.framework.exception.SRuntimeExce
         at examples.aop.throwsinterceptor.AopCheckerClient.main(AopCheckerClient.java:13)
 </pre>
     <p>This example is included in seasar2/src/examples/aop/throwsinterceptor</p>
+
+	<h3><a name=ToStringInterceptorSample>ToStringInterceptor</a></h3>
+	<p>ToStringInterceptorを使用してtoString()でフィールドの情報を文字列化しましょう。作成するファイルは以下のとおりです。</p>
+	<ul>
+		<li type="circle">フィールドを持ったエンティティクラス(Entity.java, EntityImpl.java, EntityImplImpl.java, InnerEntity.java)
+		<li type="circle">コンポーネントを定義するdiconファイル(ToString.dicon)</li>
+		<li type="circle">設定が正しく行われているか確認する実行javaファイル(AopToStringClient.java)</li>
+	</ul>
+	<p><b>エンティティクラスの作成</b></p>
+	<p>Entity.java</p>
+<pre>
+package examples.aop.tostringinterceptor;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Entity {
+    private int intValue = 1;
+    private static int staticIntValue = 12;
+    private double doubleValue = 12.3;
+    private String stringValue = &quot;1234&quot;;
+    public static final int staticFinalIntValue = 12345;
+    private Map mapValue = new HashMap();
+    private InnerEntity innerEntity;
+
+    public Entity(InnerEntity innerEntity) {
+        this.innerEntity = innerEntity;
+    }
+}
+</pre>
+	<p>EntityImpl.java</p>
+<pre>
+package examples.aop.tostringinterceptor;
+
+public class EntityImpl extends Entity {
+    private int implValue = 1;
+
+    public EntityImpl(InnerEntity innerEntity) {
+        super(innerEntity);
+    }
+}
+</pre>
+	<p>EntityImplImpl.java</p>
+<pre>
+package examples.aop.tostringinterceptor;
+
+public class EntityImplImpl extends EntityImpl {
+    private int implImplValue = 1;
+
+    public EntityImplImpl(InnerEntity innerEntity) {
+        super(innerEntity);
+    }
+}
+</pre>
+	<p>InnerEntity.java</p>
+<pre>
+package examples.aop.tostringinterceptor;
+
+public class InnerEntity {
+    int innerInt = 0;
+    long innerLong = 234;
+    String str = &quot;foo&quot;;
+    char[] charArray = new char[]{'a', 'b', 'c'};
+}
+</pre>
+	<p><b>diconファイルの作成</b></p>
+	<ul>
+		<li type="circle">ToStringInterceptorをコンポーネント定義します。name属性をtoStringInterceptorとします。</li>
+		<li type="circle">examples.aop.tostringinterceptor.EntityImplImplクラスのコンポーネントの定義します。argタグを使用してコンストラクタ引数にコンポーネントinnerEntityを設定します。aspectタグにtoStringInterceptorを指定します。pointcut属性にtoString()メソッドを指定します。</li>
+		<li type="circle">examples.aop.tostringinterceptor.InnerEntityクラスのコンポーネントの定義します。aspectタグにtoStringInterceptorを指定します。pointcut属性にtoString()メソッドを指定します。</li>
+	</ul>
+	<p>ToString.dicon</p>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;Shift_JIS&quot;?&gt;
+&lt;!DOCTYPE components PUBLIC &quot;-//SEASAR//DTD S2Container//EN&quot;
+&quot;http://www.seasar.org/dtd/components.dtd&quot;&gt;
+&lt;components&gt;
+	&lt;component name=&quot;toStringInterceptor&quot; class=&quot;org.seasar.framework.aop.interceptors.ToStringInterceptor&quot;/&gt;
+	&lt;component class=&quot;examples.aop.tostringinterceptor.EntityImplImpl&quot;&gt;
+		&lt;arg&gt;
+			innterEntity
+		&lt;/arg&gt;
+		&lt;aspect pointcut=&quot;toString&quot;&gt;
+			toStringInterceptor
+		&lt;/aspect&gt;
+	&lt;/component&gt;
+	&lt;component name=&quot;innterEntity&quot; class=&quot;examples.aop.tostringinterceptor.InnerEntity&quot;&gt;
+		&lt;aspect pointcut=&quot;toString&quot;&gt;
+			toStringInterceptor
+		&lt;/aspect&gt;
+	&lt;/component&gt;
+&lt;/components&gt;
+</pre>
+	<p><b>実行ファイルの作成</b></p>
+	<ul>
+		<li type="circle">org.seasar.framework.container.S2Container#create()メソッドの最初の引数に作成したdiconファイル(ToString.dicon)のパスを指定してコンテナを作成します。</li>
+		<li type="circle">org.seasar.framework.container.S2Container#getComponent()メソッドの第１引数にコンポーネントに登録したクラス名（EntityImplImpl.class)を指定してコンポーネントを取得します。</li>
+		<li type="circle">toString()にAspectが適用されているか確認するために取得したコンポーネントをSystem.out.println()メソッドの引数に渡して表示します。</li>
+	</ul>
+	<p>AopTraceClient.java</p>
+<pre>
+package examples.aop.tostringinterceptor;
+
+import org.seasar.framework.container.S2Container;
+import org.seasar.framework.container.factory.S2ContainerFactory;
+
+public class AopToStringClient {
+    private static String PATH = &quot;examples/aop/tostringinterceptor/ToString.dicon&quot;;
+
+    public static void main(String[] args) {
+        S2Container container = S2ContainerFactory.create(PATH);
+        Entity entity = (Entity) container.getComponent(EntityImpl.class);
+        System.out.println(entity);
+    }
+}
+</pre>
+	<p><b>実行結果</b></p>
+	<p>ObjectクラスのtoString()メソッドと異なり、クラス名とハッシュ値だけでなく、各フィールドの値が表示されていることが確認できます。
+	また、EntityImplImplクラスのフィールド(implimplValue)だけでなく、スーパークラスであるEntityImplクラスのフィールド(implValue)やそのさらにスーパークラスであるEntityクラスのフィールド(その他のフィールド)が表示されていることが確認できます。
+	Entityクラスがフィールドとして持っているInnerEntityクラスのフィールドも表示されています。</p>
+<pre>
+examples.aop.tostringinterceptor.EntityImplImpl@1db4f6f[implImplValue=3,implValue=2,intValue=1,staticIntValue=12,doubleValue=12.3,stringValue=&quot;1234&quot;,staticFinalIntValue=12345,mapValue={},innerEntity=examples.aop.tostringinterceptor.InnerEntity@13c1b02[innerInt=0,innerLong=234,str=&quot;foo&quot;,charArray={'a','b','c'}]]
+</pre>
+	<p>このサンプルは、seasar2/src/examples/aop/tostringinterceptor以下に用意されています。</p>
+	<br />
+
 <h3><a name=DelegateInterceptorSample>DelegateInterceptor</a></h3>
     <p>The third example uses DelegateInterceptor of S2AOP. This shows how to
     delegate a method invocation to another class's method invocation.<br />
