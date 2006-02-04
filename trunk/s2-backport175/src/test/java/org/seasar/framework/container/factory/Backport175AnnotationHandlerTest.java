@@ -27,8 +27,8 @@ import org.seasar.framework.container.InterTypeDef;
 import org.seasar.framework.container.PropertyDef;
 import org.seasar.framework.container.assembler.BindingTypeDefFactory;
 import org.seasar.framework.container.deployer.InstanceDefFactory;
+import org.seasar.framework.container.ognl.OgnlExpression;
 import org.seasar.framework.unit.S2FrameworkTestCase;
-import org.seasar.framework.util.ResourceUtil;
 
 /**
  * @author higa
@@ -36,7 +36,7 @@ import org.seasar.framework.util.ResourceUtil;
 public class Backport175AnnotationHandlerTest extends S2FrameworkTestCase {
 
     private Backport175AnnotationHandler handler = new Backport175AnnotationHandler();
-    
+
     public void testCreateComponentDef() throws Exception {
         assertNotNull("1", handler.createComponentDef(Hoge.class, null));
         ComponentDef cd = handler.createComponentDef(Hoge2.class, null);
@@ -46,7 +46,7 @@ public class Backport175AnnotationHandlerTest extends S2FrameworkTestCase {
         ComponentDef cd2 = handler.createComponentDef(Hoge.class, InstanceDefFactory.REQUEST);
         assertEquals("5", InstanceDef.REQUEST_NAME, cd2.getInstanceDef().getName());
     }
-    
+
     public void testCreatePropertyDef() throws Exception {
         BeanDesc beanDesc = BeanDescFactory.getBeanDesc(Hoge.class);
         PropertyDesc propDesc = beanDesc.getPropertyDesc("aaa");
@@ -56,29 +56,29 @@ public class Backport175AnnotationHandlerTest extends S2FrameworkTestCase {
         propDesc = beanDesc.getPropertyDesc("aaa");
         PropertyDef propDef = handler.createPropertyDef(beanDesc, propDesc);
         assertEquals("2", "aaa", propDef.getPropertyName());
-        assertEquals("3", "aaa2", propDef.getExpression());
-        
+        assertEquals("3", "aaa2", ((OgnlExpression) propDef.getExpression()).getSource());
+
         propDesc = beanDesc.getPropertyDesc("bbb");
         propDef = handler.createPropertyDef(beanDesc, propDesc);
-        assertEquals("4", BindingTypeDefFactory.NONE.getName(), propDef.getBindingTypeDef().getName());
+        assertEquals("4", BindingTypeDefFactory.NONE.getName(), propDef.getBindingTypeDef()
+                .getName());
     }
-    
+
     public void testCreatePropertyDefForConstantAnnotation() throws Exception {
         BeanDesc beanDesc = BeanDescFactory.getBeanDesc(Hoge.class);
         PropertyDesc propDesc = beanDesc.getPropertyDesc("aaa");
-        assertNull("1", handler.createPropertyDef(beanDesc,
-                propDesc));
+        assertNull("1", handler.createPropertyDef(beanDesc, propDesc));
 
         beanDesc = BeanDescFactory.getBeanDesc(Hoge3.class);
         propDesc = beanDesc.getPropertyDesc("aaa");
-        PropertyDef propDef = handler.createPropertyDef(
-                beanDesc, propDesc);
+        PropertyDef propDef = handler.createPropertyDef(beanDesc, propDesc);
         assertEquals("2", "aaa", propDef.getPropertyName());
-        assertEquals("3", "aaa2", propDef.getExpression());
+        assertEquals("3", "aaa2", ((OgnlExpression) propDef.getExpression()).getSource());
 
         propDesc = beanDesc.getPropertyDesc("bbb");
         propDef = handler.createPropertyDef(beanDesc, propDesc);
-        assertEquals("4", BindingTypeDefFactory.NONE.getName(), propDef.getBindingTypeDef().getName());
+        assertEquals("4", BindingTypeDefFactory.NONE.getName(), propDef.getBindingTypeDef()
+                .getName());
     }
 
     public void testAppendAspect() throws Exception {
@@ -86,25 +86,29 @@ public class Backport175AnnotationHandlerTest extends S2FrameworkTestCase {
         handler.appendAspect(cd);
         assertEquals("1", 1, cd.getAspectDefSize());
         AspectDef aspectDef = cd.getAspectDef(0);
-        assertEquals("2", "aop.traceInterceptor", aspectDef.getExpression());
+        assertEquals("2", "aop.traceInterceptor", ((OgnlExpression) aspectDef.getExpression())
+                .getSource());
     }
-    
+
     public void testAppendAspectForMethod() throws Exception {
         ComponentDef cd = handler.createComponentDef(Hoge4.class, null);
         handler.appendAspect(cd);
         assertEquals("1", 1, cd.getAspectDefSize());
         AspectDef aspectDef = cd.getAspectDef(0);
-        assertEquals("2", "aop.traceInterceptor", aspectDef.getExpression());
+        assertEquals("2", "aop.traceInterceptor", ((OgnlExpression) aspectDef.getExpression())
+                .getSource());
         assertTrue("3", aspectDef.getPointcut().isApplied(Hoge4.class.getMethod("getAaa", null)));
-        assertFalse("4", aspectDef.getPointcut().isApplied(Hoge4.class.getMethod("getAaa", new Class[] {String.class})));
+        assertFalse("4", aspectDef.getPointcut().isApplied(
+                Hoge4.class.getMethod("getAaa", new Class[] { String.class })));
     }
-    
+
     public void testAppendAspectForConstantAnnotation() throws Exception {
         ComponentDef cd = handler.createComponentDef(Hoge3.class, null);
         handler.appendAspect(cd);
         assertEquals("1", 1, cd.getAspectDefSize());
         AspectDef aspectDef = cd.getAspectDef(0);
-        assertEquals("2", "aop.traceInterceptor", aspectDef.getExpression());
+        assertEquals("2", "aop.traceInterceptor", ((OgnlExpression) aspectDef.getExpression())
+                .getSource());
     }
 
     public void testInterType() throws Exception {
@@ -112,7 +116,8 @@ public class Backport175AnnotationHandlerTest extends S2FrameworkTestCase {
         handler.appendInterType(cd);
         assertEquals("1", 1, cd.getInterTypeDefSize());
         InterTypeDef interTypeDef = cd.getInterTypeDef(0);
-        assertEquals("2", "fieldInterType", interTypeDef.getExpression());
+        assertEquals("2", "fieldInterType", ((OgnlExpression) interTypeDef.getExpression())
+                .getSource());
     }
 
     public void testAppendInterTypeForConstantAnnotation() throws Exception {
@@ -120,7 +125,8 @@ public class Backport175AnnotationHandlerTest extends S2FrameworkTestCase {
         handler.appendInterType(cd);
         assertEquals("1", 1, cd.getInterTypeDefSize());
         InterTypeDef interTypeDef = cd.getInterTypeDef(0);
-        assertEquals("2", "fieldInterType", interTypeDef.getExpression());
+        assertEquals("2", "fieldInterType", ((OgnlExpression) interTypeDef.getExpression())
+                .getSource());
     }
 
     public void testAppendInitMethod() throws Exception {
@@ -138,22 +144,23 @@ public class Backport175AnnotationHandlerTest extends S2FrameworkTestCase {
         InitMethodDef initMethodDef = cd.getInitMethodDef(0);
         assertEquals("2", "init", initMethodDef.getMethodName());
     }
-    
+
     public void setUpAppendInitMethodForDicon() throws Exception {
         include("Backport175AnnotationHandlerTest.dicon");
     }
-    
+
     public void testAppendInitMethodForDicon() throws Exception {
         ComponentDef cd = getComponentDef(Hoge5.class);
         assertEquals("1", 1, cd.getInitMethodDefSize());
     }
-    
+
     public void testAppendInitMethodForException() throws Exception {
         ComponentDef cd = handler.createComponentDef(Hoge6.class, null);
         try {
             handler.appendInitMethod(cd);
             fail("1");
-        } catch (IllegalInitMethodAnnotationRuntimeException ex) {
+        }
+        catch (IllegalInitMethodAnnotationRuntimeException ex) {
             System.out.println(ex);
         }
     }
