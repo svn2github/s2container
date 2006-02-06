@@ -1,5 +1,5 @@
 /*
- * Copyright 2004-2005 the Seasar Foundation and the Others.
+ * Copyright 2004-2006 the Seasar Foundation and the Others.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -155,13 +155,17 @@ public class XlsReader implements DataReader, DataSetConstants {
 		if (cell == null) {
 			return null;
 		}
-		switch (cell.getCellType()) {
+        switch (cell.getCellType()) {
 			case HSSFCell.CELL_TYPE_NUMERIC :
 				if (isCellDateFormatted(cell)) {
 					return TimestampConversionUtil.toTimestamp(
 						cell.getDateCellValue());
 				}
-				return new BigDecimal(cell.getNumericCellValue());
+				final double numericCellValue = cell.getNumericCellValue();
+                if (isInt(numericCellValue)) {
+                    return new BigDecimal((int)numericCellValue);
+                }
+				return new BigDecimal(Double.toString(numericCellValue));
 			case HSSFCell.CELL_TYPE_STRING :
 				String s = cell.getStringCellValue();
 				if (s != null) {
@@ -181,4 +185,9 @@ public class XlsReader implements DataReader, DataSetConstants {
 				return null;
 		}
 	}
+
+    private boolean isInt(final double numericCellValue) {
+        return ((int)numericCellValue) == numericCellValue;
+    }
+
 }

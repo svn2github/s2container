@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project
   xmlns="http://maven.apache.org/POM/4.0.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -8,7 +9,7 @@
   <artifactId>s2-container-project</artifactId>
   <packaging>pom</packaging>
   <name>Seasar2</name>
-  <version>2.3.4</version>
+  <version>2.3.5-SNAPSHOT</version>
   <description>DI Container with AOP</description>
   <url>http://s2container.seasar.org/</url>
   <issueManagement>
@@ -62,6 +63,27 @@
       <url>http://d.hatena.ne.jp/koichik/</url>
       <timezone>+9</timezone>
     </developer>
+    <developer>
+      <id>skirnir</id>
+      <name>YOKOTA Takehiko</name>
+      <email></email>
+      <url>http://kvasir.skirnir.net/diary/</url>
+      <timezone>+9</timezone>
+    </developer>
+    <developer>
+      <id>manhole</id>
+      <name>HONMA Hirotaka</name>
+      <email>manholex@gmail.com</email>
+      <url>http://popo.dyndns.info/~manhole/diary/</url>
+      <timezone>+9</timezone>
+    </developer>
+    <developer>
+      <id>y-komori</id>
+      <name>KOMORI Yusuke</name>
+      <email></email>
+      <url>http://d.hatena.ne.jp/y-komori/</url>
+      <timezone>+9</timezone>
+    </developer>
   </developers>
   <contributors>
     <contributor>
@@ -77,6 +99,9 @@
     </contributor>
     <contributor>
       <name>KUDO Kazuki</name>
+    </contributor>
+    <contributor>
+      <name>ERIGUCHI On</name>
     </contributor>
   </contributors>
   <licenses>
@@ -95,6 +120,55 @@
     <name>The Seasar Foundation</name>
     <url>http://www.seasar.org/</url>
   </organization>
+  <build>
+    <defaultGoal>validate</defaultGoal>
+    <pluginManagement>
+      <plugins>
+        <!--
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <encoding>UTF-8</encoding>
+          </configuration>
+        </plugin>
+        -->
+        <plugin>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <configuration>
+            <updateReleaseInfo>true</updateReleaseInfo>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <plugin>
+        <artifactId>maven-source-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>source-jar</id>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <!--
+      <plugin>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>javadoc-jar</id>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      -->
+    </plugins>
+  </build>
   <modules>
     <module>s2-framework</module>
     <module>s2-extension</module>
@@ -116,19 +190,26 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>geronimo-spec</groupId>
-      <artifactId>geronimo-spec-j2ee</artifactId>
-      <version>1.4-rc4</version>
+      <groupId>org.apache.geronimo.specs</groupId>
+      <artifactId>geronimo-j2ee_1.4_spec</artifactId>
+      <version>1.0</version>
       <type>jar</type>
       <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.geronimo.specs</groupId>
+      <artifactId>geronimo-jta_1.0.1B_spec</artifactId>
+      <version>1.0</version>
+      <type>jar</type>
+      <scope>runtime</scope>
+      <optional>true</optional>
     </dependency>
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
       <version>1.2.8</version>
       <type>jar</type>
-      <scope>provided</scope>
-      <optional>true</optional>
+      <scope>test</scope>
     </dependency>
   </dependencies>
   <distributionManagement>

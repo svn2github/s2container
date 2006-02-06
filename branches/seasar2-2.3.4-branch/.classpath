@@ -11,7 +11,7 @@
 	<classpathentry output="examples/target/classes" kind="src" path="examples/src/main/java"/>
 	<classpathentry output="examples/target/classes" kind="src" path="examples/src/main/resources"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry exported="true" kind="lib" path="lib/geronimo-spec-j2ee-1.4-rc4.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/geronimo-j2ee_1.4_spec-1.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/aopalliance-1.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/javassist-3.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/commons-logging-1.0.4.jar"/>
