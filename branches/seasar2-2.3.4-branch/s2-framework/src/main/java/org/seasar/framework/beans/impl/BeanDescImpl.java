@@ -48,7 +48,7 @@ import org.seasar.framework.util.StringUtil;
 
 /**
  * @author higa
- *
+ * 
  */
 public final class BeanDescImpl implements BeanDesc {
 
@@ -57,7 +57,7 @@ public final class BeanDescImpl implements BeanDesc {
 	private Constructor[] constructors;
 	private CaseInsensitiveMap propertyDescCache = new CaseInsensitiveMap();
 	private Map methodsCache = new HashMap();
-	private Map fieldCache = new CaseInsensitiveMap();
+	private Map fieldCache = new HashMap();
 	private transient Set invalidPropertyNames = new HashSet(); 
 
 	/**
