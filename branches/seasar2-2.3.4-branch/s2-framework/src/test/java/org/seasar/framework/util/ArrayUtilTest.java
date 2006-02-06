@@ -75,4 +75,11 @@ public class ArrayUtilTest extends TestCase {
         String[] newArray = (String[]) ArrayUtil.remove(array, "444");
         assertSame("1", array, newArray);
     }
+
+    public void testIsEmpty() {
+        assertTrue(ArrayUtil.isEmpty(null));
+        assertTrue(ArrayUtil.isEmpty(new Object[] {}));
+        assertFalse(ArrayUtil.isEmpty(new Object[] { "" }));
+        assertFalse(ArrayUtil.isEmpty(new Object[] { "aaa" }));
+    }
 }
