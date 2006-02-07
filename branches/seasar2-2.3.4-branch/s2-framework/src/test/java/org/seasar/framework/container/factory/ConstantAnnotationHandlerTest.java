@@ -30,6 +30,7 @@ import org.seasar.framework.unit.S2FrameworkTestCase;
 
 /**
  * @author higa
+ * @author manhole
  */
 public class ConstantAnnotationHandlerTest extends S2FrameworkTestCase {
 
@@ -115,9 +116,34 @@ public class ConstantAnnotationHandlerTest extends S2FrameworkTestCase {
         }
     }
 
-    public void testNotMistakeAsConstantAnnotation() throws Exception {
-        handler.createComponentDef(Hoge6.class, null);
-        assertTrue(true);
+    public void testNotMistakeAsConstantAnnotation1() throws Exception {
+        ComponentDef cd = handler.createComponentDef(Hoge6.class, null);
+        assertEquals(null, cd.getComponentName());
+    }
+
+    public void testNotMistakeAsConstantAnnotation2() throws Exception {
+        ComponentDef cd = handler.createComponentDef(Hoge7.class, null);
+        assertEquals(null, cd.getComponentName());
+    }
+
+    public void testNotMistakeAsConstantAnnotation3() throws Exception {
+        ComponentDef cd = handler.createComponentDef(Hoge8.class, null);
+        assertEquals(null, cd.getComponentName());
+    }
+
+    public void testNotMistakeAsConstantAnnotation4() throws Exception {
+        ComponentDef cd = handler.createComponentDef(Hoge9.class, null);
+        assertEquals(null, cd.getComponentName());
+    }
+
+    public void testNotMistakeAsConstantAnnotation5() throws Exception {
+        ComponentDef cd = handler.createComponentDef(Hoge10.class, null);
+        assertEquals(null, cd.getComponentName());
+    }
+
+    public void testNotMistakeAsConstantAnnotation6() throws Exception {
+        ComponentDef cd = handler.createComponentDef(Hoge11.class, null);
+        assertEquals(null, cd.getComponentName());
     }
 
     public static class Hoge {
@@ -179,11 +205,50 @@ public class ConstantAnnotationHandlerTest extends S2FrameworkTestCase {
     }
 
     public static class Hoge6 {
-        private String component;
+        private String component = "name = a";
 
         private String aspect;
 
         private String init_method;
     }
 
+    public static class Hoge7 {
+        private String COMPONENT = "name = a";
+
+        private String ASPECT;
+
+        private String INIT_METHOD;
+    }
+
+    public static class Hoge8 {
+        public String COMPONENT = "name = a";
+
+        public String ASPECT;
+
+        public String INIT_METHOD;
+    }
+
+    public static class Hoge9 {
+        public static String COMPONENT = "name = a";
+
+        public static String ASPECT;
+
+        public static String INIT_METHOD;
+    }
+
+    public static class Hoge10 {
+        public final String COMPONENT = "name = a";
+
+        public final String ASPECT = "a";
+
+        public final String INIT_METHOD = "a";
+    }
+
+    public static class Hoge11 {
+        private static final String COMPONENT = "name = a";
+
+        private static final String ASPECT = "a";
+
+        private static final String INIT_METHOD = "a";
+    }
 }

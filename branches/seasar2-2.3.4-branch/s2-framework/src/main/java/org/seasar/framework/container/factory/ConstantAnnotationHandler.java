@@ -17,6 +17,7 @@ package org.seasar.framework.container.factory;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.PropertyDesc;
@@ -36,26 +37,31 @@ import org.seasar.framework.util.StringUtil;
 
 public class ConstantAnnotationHandler extends AbstractAnnotationHandler {
 
-    public ComponentDef createComponentDef(Class componentClass, InstanceDef instanceDef) {
+    public ComponentDef createComponentDef(Class componentClass,
+            InstanceDef instanceDef) {
         BeanDesc beanDesc = BeanDescFactory.getBeanDesc(componentClass);
         if (!beanDesc.hasField(COMPONENT)) {
             return createComponentDefInternal(componentClass, instanceDef);
         }
         Field field = beanDesc.getField(COMPONENT);
+        if (!isConstantAnnotationField(field)) {
+            return createComponentDefInternal(componentClass, instanceDef);
+        }
         String componentStr = (String) FieldUtil.get(field, null);
         String[] array = StringUtil.split(componentStr, "=, ");
-        ComponentDef componentDef = createComponentDefInternal(componentClass, instanceDef);
+        ComponentDef componentDef = createComponentDefInternal(componentClass,
+                instanceDef);
         for (int i = 0; i < array.length; i += 2) {
             String key = array[i].trim();
             String value = array[i + 1].trim();
             if (NAME.equalsIgnoreCase(key)) {
                 componentDef.setComponentName(value);
             } else if (INSTANCE.equalsIgnoreCase(key)) {
-                componentDef.setInstanceDef(
-                        InstanceDefFactory.getInstanceDef(value));
+                componentDef.setInstanceDef(InstanceDefFactory
+                        .getInstanceDef(value));
             } else if (AUTO_BINDING.equalsIgnoreCase(key)) {
-                componentDef.setAutoBindingDef(
-                        AutoBindingDefFactory.getAutoBindingDef(value));
+                componentDef.setAutoBindingDef(AutoBindingDefFactory
+                        .getAutoBindingDef(value));
             } else {
                 throw new IllegalArgumentException(componentStr);
             }
@@ -63,7 +69,14 @@ public class ConstantAnnotationHandler extends AbstractAnnotationHandler {
         return componentDef;
     }
 
-    public PropertyDef createPropertyDef(BeanDesc beanDesc, PropertyDesc propertyDesc) {
+    protected boolean isConstantAnnotationField(Field field) {
+        final int modifiers = field.getModifiers();
+        return Modifier.isFinal(modifiers) && Modifier.isPublic(modifiers)
+                && Modifier.isStatic(modifiers);
+    }
+
+    public PropertyDef createPropertyDef(BeanDesc beanDesc,
+            PropertyDesc propertyDesc) {
         String propName = propertyDesc.getPropertyName();
         String fieldName = propName + BINDING_SUFFIX;
         if (!beanDesc.hasField(fieldName)) {
@@ -123,24 +136,26 @@ public class ConstantAnnotationHandler extends AbstractAnnotationHandler {
         }
         appendAspect(componentDef, interceptor, pointcut);
     }
-    
-    protected void appendAspect(ComponentDef componentDef,
-            String interceptor, String pointcut) {
-        
+
+    protected void appendAspect(ComponentDef componentDef, String interceptor,
+            String pointcut) {
+
         if (interceptor == null) {
             throw new EmptyRuntimeException("interceptor");
         }
-        AspectDef aspectDef = AspectDefFactory.createAspectDef(interceptor, pointcut);
+        AspectDef aspectDef = AspectDefFactory.createAspectDef(interceptor,
+                pointcut);
         componentDef.addAspectDef(aspectDef);
     }
-    
-    protected void appendAspect(ComponentDef componentDef,
-            String interceptor, Method pointcut) {
-        
+
+    protected void appendAspect(ComponentDef componentDef, String interceptor,
+            Method pointcut) {
+
         if (interceptor == null) {
             throw new EmptyRuntimeException("interceptor");
         }
-        AspectDef aspectDef = AspectDefFactory.createAspectDef(interceptor, pointcut);
+        AspectDef aspectDef = AspectDefFactory.createAspectDef(interceptor,
+                pointcut);
         componentDef.addAspectDef(aspectDef);
     }
 
@@ -153,7 +168,8 @@ public class ConstantAnnotationHandler extends AbstractAnnotationHandler {
         if (!beanDesc.hasField(INIT_METHOD)) {
             return;
         }
-        String initMethodStr = (String) beanDesc.getFieldValue(INIT_METHOD, null);
+        String initMethodStr = (String) beanDesc.getFieldValue(INIT_METHOD,
+                null);
         if (StringUtil.isEmpty(initMethodStr)) {
             return;
         }
@@ -161,11 +177,14 @@ public class ConstantAnnotationHandler extends AbstractAnnotationHandler {
         for (int i = 0; i < array.length; ++i) {
             String methodName = array[i].trim();
             if (!beanDesc.hasMethod(methodName)) {
-                throw new IllegalInitMethodAnnotationRuntimeException(componentClass, methodName);
+                throw new IllegalInitMethodAnnotationRuntimeException(
+                        componentClass, methodName);
             }
             Method[] methods = beanDesc.getMethods(methodName);
-            if (methods.length != 1 || methods[0].getParameterTypes().length != 0) {
-                throw new IllegalInitMethodAnnotationRuntimeException(componentClass, methodName);
+            if (methods.length != 1
+                    || methods[0].getParameterTypes().length != 0) {
+                throw new IllegalInitMethodAnnotationRuntimeException(
+                        componentClass, methodName);
             }
             if (!isInitMethodRegisterable(componentDef, methodName)) {
                 continue;
@@ -173,7 +192,7 @@ public class ConstantAnnotationHandler extends AbstractAnnotationHandler {
             appendInitMethod(componentDef, methodName);
         }
     }
-    
+
     protected void appendInitMethod(ComponentDef componentDef, String methodName) {
         InitMethodDef initMethodDef = new InitMethodDefImpl(methodName);
         componentDef.addInitMethodDef(initMethodDef);

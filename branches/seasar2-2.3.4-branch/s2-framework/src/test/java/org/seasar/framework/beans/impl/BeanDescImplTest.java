@@ -18,16 +18,15 @@ package org.seasar.framework.beans.impl;
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
 
+import junit.framework.TestCase;
+
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.PropertyDesc;
-import org.seasar.framework.beans.impl.BeanDescImpl;
 import org.seasar.framework.util.MathUtil;
-
-import junit.framework.TestCase;
 
 /**
  * @author higa
- * 
+ * @author manhole
  */
 public class BeanDescImplTest extends TestCase {
 
@@ -119,13 +118,13 @@ public class BeanDescImplTest extends TestCase {
         assertTrue("3", beanDesc.hasField("aaa"));
         assertFalse("4", beanDesc.hasField("aaA"));
     }
-    
+
     public void testHasMethod() throws Exception {
         BeanDesc beanDesc = new BeanDescImpl(MyBean.class);
         assertEquals(true, beanDesc.hasMethod("getAaa"));
         assertEquals(false, beanDesc.hasMethod("getaaa"));
     }
-    
+
     public void testGetMethodNames() throws Exception {
         BeanDesc beanDesc = new BeanDescImpl(getClass());
         String[] names = beanDesc.getMethodNames();
