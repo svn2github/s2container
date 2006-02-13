@@ -36,22 +36,32 @@ import org.seasar.framework.util.MethodUtil;
  * @author koichik
  */
 public class AspectWeaver {
-    //constants
+    // constants
     public static final String PREFIX_ENHANCED_CLASS = "$$";
+
     public static final String SUFFIX_ENHANCED_CLASS = "$$EnhancedByS2AOP$$";
+
     public static final String SUFFIX_METHOD_INVOCATION_CLASS = "$$MethodInvocation$$";
+
     public static final String SUFFIX_INVOKE_SUPER_METHOD = "$$invokeSuperMethod$$";
 
-    //static fields
-    protected static final Set enhancedClassNames = Collections.synchronizedSet(new HashSet());
+    // static fields
+    protected static final Set enhancedClassNames = Collections
+            .synchronizedSet(new HashSet());
 
-    //instance fields
+    // instance fields
     protected final Class targetClass;
+
     protected final Map parameters;
+
     protected final String enhancedClassName;
+
     protected final EnhancedClassGenerator enhancedClassGenerator;
+
     protected final List methodInvocationClassList = new ArrayList();
+
     protected Class enhancedClass;
+
     protected ClassPool classPool;
 
     public AspectWeaver(final Class targetClass, final Map parameters) {
@@ -60,20 +70,24 @@ public class AspectWeaver {
 
         classPool = ClassPoolUtil.getClassPool();
         enhancedClassName = getEnhancedClassName();
-        enhancedClassGenerator = new EnhancedClassGenerator(classPool, targetClass,
-                enhancedClassName);
+        enhancedClassGenerator = new EnhancedClassGenerator(classPool,
+                targetClass, enhancedClassName);
     }
 
-    public void setInterceptors(final Method method, final MethodInterceptor[] interceptors) {
+    public void setInterceptors(final Method method,
+            final MethodInterceptor[] interceptors) {
         final String methodInvocationClassName = getMethodInvocationClassName(method);
         final MethodInvocationClassGenerator methodInvocationGenerator = new MethodInvocationClassGenerator(
                 classPool, methodInvocationClassName, enhancedClassName);
 
         final String invokeSuperMethodName = createInvokeSuperMethod(method);
-        methodInvocationGenerator.createProceedMethod(method, invokeSuperMethodName);
-        enhancedClassGenerator.createTargetMethod(method, methodInvocationClassName);
+        methodInvocationGenerator.createProceedMethod(method,
+                invokeSuperMethodName);
+        enhancedClassGenerator.createTargetMethod(method,
+                methodInvocationClassName);
 
-        final Class methodInvocationClass = methodInvocationGenerator.toClass(getClassLoader());
+        final Class methodInvocationClass = methodInvocationGenerator
+                .toClass(getClassLoader());
         setStaticField(methodInvocationClass, "method", method);
         setStaticField(methodInvocationClass, "interceptors", interceptors);
         setStaticField(methodInvocationClass, "parameters", parameters);
@@ -85,8 +99,10 @@ public class AspectWeaver {
             enhancedClass = enhancedClassGenerator.toClass(getClassLoader());
 
             for (int i = 0; i < methodInvocationClassList.size(); ++i) {
-                final Class methodInvocationClass = (Class) methodInvocationClassList.get(i);
-                setStaticField(methodInvocationClass, "targetClass", targetClass);
+                final Class methodInvocationClass = (Class) methodInvocationClassList
+                        .get(i);
+                setStaticField(methodInvocationClass, "targetClass",
+                        targetClass);
             }
         }
 
@@ -97,7 +113,8 @@ public class AspectWeaver {
         final StringBuffer buf = new StringBuffer(200);
         final String targetClassName = targetClass.getName();
         final Package pkg = targetClass.getPackage();
-        if (targetClassName.startsWith("java.") || (pkg != null && pkg.isSealed())) {
+        if (targetClassName.startsWith("java.")
+                || (pkg != null && pkg.isSealed())) {
             buf.append(PREFIX_ENHANCED_CLASS);
         }
         buf.append(targetClassName).append(SUFFIX_ENHANCED_CLASS).append(
@@ -115,41 +132,43 @@ public class AspectWeaver {
     }
 
     public String getMethodInvocationClassName(final Method method) {
-        return enhancedClassName + SUFFIX_METHOD_INVOCATION_CLASS + method.getName()
-                + methodInvocationClassList.size();
+        return enhancedClassName + SUFFIX_METHOD_INVOCATION_CLASS
+                + method.getName() + methodInvocationClassList.size();
     }
 
     public String createInvokeSuperMethod(final Method method) {
-        final String invokeSuperMethodName = method.getName() + SUFFIX_INVOKE_SUPER_METHOD;
+        final String invokeSuperMethodName = method.getName()
+                + SUFFIX_INVOKE_SUPER_METHOD;
         if (!MethodUtil.isAbstract(method)) {
-            enhancedClassGenerator.createInvokeSuperMethod(method, invokeSuperMethodName);
+            enhancedClassGenerator.createInvokeSuperMethod(method,
+                    invokeSuperMethodName);
         }
         return invokeSuperMethodName;
     }
 
-    public void setStaticField(final Class clazz, final String name, final Object value) {
+    public void setStaticField(final Class clazz, final String name,
+            final Object value) {
         try {
             final Field field = clazz.getDeclaredField(name);
             field.setAccessible(true);
             FieldUtil.set(field, name, value);
             field.setAccessible(false);
-        }
-        catch (final NoSuchFieldException e) {
+        } catch (final NoSuchFieldException e) {
             throw new NoSuchFieldRuntimeException(enhancedClass, name, e);
         }
     }
 
     public ClassLoader getClassLoader() {
-        ClassLoader cl = targetClass.getClassLoader();
+        ClassLoader cl = Thread.currentThread().getContextClassLoader();
         if (cl == null) {
-            cl = Thread.currentThread().getContextClassLoader();
+            cl = targetClass.getClassLoader();
         }
         if (cl == null) {
             cl = getClass().getClassLoader();
         }
         if (cl == null) {
-            throw new IllegalStateException(MessageFormatter.getMessage("ESSR0001",
-                    new Object[] { "ClassLoader" }));
+            throw new IllegalStateException(MessageFormatter.getMessage(
+                    "ESSR0001", new Object[] { "ClassLoader" }));
         }
         return cl;
     }
