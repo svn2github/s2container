@@ -93,6 +93,7 @@
                   <li><a href="#ComponentAnnotation">Component Annotation</a></li>
 				  <li><a href="#BindingAnnotation">Binding Annotation</a></li>
 				  <li><a href="#AspectAnnotation">Aspect Annotation</a></li>
+				  <li><a href="#InterTypeAnnotation">InterType Annotation</a></li>
 				  <li><a href="#InitMethodAnnotation">InitMethod Annotation</a></li>
 				</ul>
 			  </li>
@@ -369,7 +370,7 @@ they follow the DI convention of defining property type by interface.</p>
 <pre>&lt;component name=&quot;greetingClient&quot;<br>    class=&quot;examples.di.impl.GreetingClientImpl&quot;&gt;<br>&lt;/component&gt;
 </pre>
 
-<p>Actually, ÅgConvention over Configuration? is used in the AOP example from earlier.
+<p>Actually, ÔøΩgConvention over Configuration? is used in the AOP example from earlier.
 Normally, where (or which method) the AOP module is applied is defined in pointcut.
 All methods defined by interface have the AOP module applied without the use of pointcut in <a href="aop.html">S2AOP</a>
 as long as they follow the convention of using interface.
@@ -956,16 +957,15 @@ BEGIN java.util.Date#getTime()
 END java.util.Date#getTime() : 0
 </pre>
 
-<p>We can apply<a href="aop.html#InterType">ÉCÉìÉ^Å[É^ÉCÉv</a>ÇìKópÇ∑ÇÈÇ±Ç∆Ç‡Ç≈Ç´Ç‹Ç∑ÅB
-ó·Ç¶ÇŒÅAHogeÇ…<a href="aop.html#PropertyInterType">PropertyInterType</a>ÇìKópÇµÇΩÇ¢èÍçáéüÇÃÇÊÇ§Ç…ÇµÇ‹Ç∑ÅB</p>
-<p>?R|[lg<a href="aop.html#InterType">?C^[^Cv</a>Kp??Á∑? ?B??AHoge<a href="aop.html#PropertyInterType">PropertyInterType</a>?Kp???????B</p>
+<p>We can apply <a href="aop.html#InterType">InterType</a> to a component.
+For example, When we want to apply <a href="aop.html#PropertyInterType">PropertyInterType</a> to Hoge, we define as follows:</p>
 <pre>&lt;components&gt;
     &lt;include path=&quot;aop.dicon&quot;/&gt;
     &lt;component class=&quot;examples.Hoge&quot;&gt;
         &lt;interType&gt;aop.propertyInterType&lt;/aspect&gt;
     &lt;/component&gt;
 &lt;/components&gt;</pre>
-<p>interType^O?{fB<a href="aop.html#InterType">InterType</a>??Ow ??B</p>
+<p>We can specify <a href="aop.html#InterType">InterType</a> in the interType tag body.</p>
 
 
 <h3><a name="Meta">Metadata</a></h3>
@@ -1539,7 +1539,7 @@ These can be used as valid objects within the initMethod tag.</p>
 <p>Builds in aspect into a component.
 Refer to the description of the <a href="aop.html#aspectTag">aspect tag</a> in S2AOP.</p>
 
-<h3><a name="interTypeTag">interType tag(C)</a></h3>
+<h3><a name="interTypeTag">interType tag(optional)</a></h3>
 <p>Builds in inter-type into a component.
 Refer to the description of the <a href="aop.html#interTypeTag">interType tag</a> in S2AOP.</p>
 
@@ -1713,16 +1713,16 @@ public static final String ASPECT =
     "interceptor=aop.traceInterceptor, pointcut=getAaa";
 </pre>
 
-<h3><a name="InterTypeAnnotation">InterType?Ame[V</a></h3>
-<p><a href="aop.html#intetTypeTag">interType^O</a>? ?g AInterTypeAme[V?B
-<p>TigerAme[V?????? B</p>
+<h3><a name="InterTypeAnnotation">InterType Annotation</a></h3>
+<p>Can be substituted for the <a href="aop.html#intetTypeTag">interType tag</a>.</p>
+<p>Tiger annotation is as follows.</p>
 <pre>
 @InterType({"aop.propertyInterType", "aop.someInterType"})
 public class Xxx {
     ...
 }
 </pre>
-<p>backport175Ame[V?????? B</p>
+<p>backport175 annotation is as follows.</p>
 <pre>
 /**
  * @org.seasar.framework.container.annotation.backport175.InterType(
@@ -1732,7 +1732,7 @@ public class Xxx {
     ...
 }
 </pre>
-<p>?Ame[V?????? B</p>
+<p>Constant Annotation is as follows.</p>
 <pre>
 public static final String INTER_TYPE =
     "aop.propertyInterType, aop.someInterType";
