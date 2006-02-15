@@ -31,10 +31,10 @@
 <!-- document start -->
             <ul>
               <li><a href="#Quickstart">Quickstart</a>
-			 縲?<ul>
+			  <ul>
 				<li><a href="#FirstStep">First step</a>
 				<li><a href="#NextStep">Next step</a>
-縲?縲?縲?縲?縲?縲?縲?縲?</ul>
+              </ul>
               </li>
 
               <li><a href="#S2ContainerReference">S2Container reference</a>
@@ -344,7 +344,7 @@ DEBUG 2005-10-11 21:01:49,675 [main] END examples.di.impl.GreetingClientImpl#exe
 <p>We have now mastered the basic use of S2Container.</p>
 
 <h3><a name="NextStep">Next Step</a></h3>
-<p>Writing the configuration file is still annoying, isn窶冲 it?
+<p>Writing the configuration file is still annoying, isn t it?
 S2Container also possesses the following concepts to minimize the amount of writing in configuration files.</p>
 
 <ul>
@@ -369,13 +369,13 @@ they follow the DI convention of defining property type by interface.</p>
 <pre>&lt;component name=&quot;greetingClient&quot;<br>    class=&quot;examples.di.impl.GreetingClientImpl&quot;&gt;<br>&lt;/component&gt;
 </pre>
 
-<p>Actually, 窶廚onvention over Configuration窶? is used in the AOP example from earlier.
+<p>Actually, “Convention over Configuration? is used in the AOP example from earlier.
 Normally, where (or which method) the AOP module is applied is defined in pointcut.
 All methods defined by interface have the AOP module applied without the use of pointcut in <a href="aop.html">S2AOP</a>
 as long as they follow the convention of using interface.
 This is how there was no need to define a module in pointcut in the earlier example.</p>
 
-<p>Using 窶廚onvention over Configuration窶? will simplify the configuration of DI and AOP.
+<p>Using  Convention over Configuration? will simplify the configuration of DI and AOP.
 However, component registration itself becomes a burden as the number of components increase.
 The automation of this component registration is <a href="#ComponentAutoRegister">Component auto-registration</a> functionality.
 The registration of GreetingImpl, GreetingClientImpl from earlier is automated as follows.</p>
@@ -524,7 +524,7 @@ S2Container container = SingletonS2ContainerFactory.getContainer();</pre>
 <p>- org.seasar.framework.container.factory.SingletonS2ContainerFactory#setConfigPath(String Path)</p>
 <p>The arguments path is an absolute path of the definition file referencing the directory defined in CLASSPATH as root.
 For example, WEB-INF/classes/aaa.dicon is aaa.dicon.  WEB-INF/classes/aaa/bbb/ccc.dicon becomes aaa/bbb/ccc.dicon.
-The separator is 窶?/窶? in both Windows and UNIX systems.</p>
+The separator is  ?/? in both Windows and UNIX systems.</p>
 <pre>private static final String PATH = &quot;aaa/bbb/ccc.dicon&quot;;
 ...
 SingletonS2ContainerFactory.setConfigPath(PATH);
@@ -956,14 +956,16 @@ BEGIN java.util.Date#getTime()
 END java.util.Date#getTime() : 0
 </pre>
 
-<p>コンポーネントに<a href="aop.html#InterType">インタータイプ</a>を適用することもできます。例えば、Hogeに<a href="aop.html#PropertyInterType">PropertyInterType</a>を適用したい場合次のようにします。</p>
+<p>We can apply<a href="aop.html#InterType">インタータイプ</a>を適用することもできます。
+例えば、Hogeに<a href="aop.html#PropertyInterType">PropertyInterType</a>を適用したい場合次のようにします。</p>
+<p>?R|[lg<a href="aop.html#InterType">?C^[^Cv</a>Kp??邱? ?B??AHoge<a href="aop.html#PropertyInterType">PropertyInterType</a>?Kp???????B</p>
 <pre>&lt;components&gt;
     &lt;include path=&quot;aop.dicon&quot;/&gt;
     &lt;component class=&quot;examples.Hoge&quot;&gt;
         &lt;interType&gt;aop.propertyInterType&lt;/aspect&gt;
     &lt;/component&gt;
 &lt;/components&gt;</pre>
-<p>interTypeタグのボディで<a href="aop.html#InterType">InterType</a>の名前を指定します。</p>
+<p>interType^O?{fB<a href="aop.html#InterType">InterType</a>??Ow ??B</p>
 
 
 <h3><a name="Meta">Metadata</a></h3>
@@ -1537,7 +1539,7 @@ These can be used as valid objects within the initMethod tag.</p>
 <p>Builds in aspect into a component.
 Refer to the description of the <a href="aop.html#aspectTag">aspect tag</a> in S2AOP.</p>
 
-<h3><a name="interTypeTag">interType tag(任意)</a></h3>
+<h3><a name="interTypeTag">interType tag(C)</a></h3>
 <p>Builds in inter-type into a component.
 Refer to the description of the <a href="aop.html#interTypeTag">interType tag</a> in S2AOP.</p>
 
@@ -1711,16 +1713,16 @@ public static final String ASPECT =
     "interceptor=aop.traceInterceptor, pointcut=getAaa";
 </pre>
 
-<h3><a name="InterTypeAnnotation">InterTypeアノテーション</a></h3>
-<p><a href="aop.html#intetTypeTag">interTypeタグ</a>のかわりに使えるのが、InterTypeアノテーションです。
-<p>Tigerアノテーションは以下のようになります。</p>
+<h3><a name="InterTypeAnnotation">InterType?Ame[V</a></h3>
+<p><a href="aop.html#intetTypeTag">interType^O</a>? ?g AInterTypeAme[V?B
+<p>TigerAme[V?????? B</p>
 <pre>
 @InterType({"aop.propertyInterType", "aop.someInterType"})
 public class Xxx {
     ...
 }
 </pre>
-<p>backport175アノテーションは以下のようになります。</p>
+<p>backport175Ame[V?????? B</p>
 <pre>
 /**
  * @org.seasar.framework.container.annotation.backport175.InterType(
@@ -1730,7 +1732,7 @@ public class Xxx {
     ...
 }
 </pre>
-<p>定数アノテーションは以下のようになります。</p>
+<p>?Ame[V?????? B</p>
 <pre>
 public static final String INTER_TYPE =
     "aop.propertyInterType, aop.someInterType";
