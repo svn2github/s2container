@@ -70,8 +70,8 @@
 			<li><a href="#PrototypeDelegateInterceptorSample">PrototypeDelegateInterceptor</a></li>
 			<li><a href="#SyncInterceptorSample">SyncInterceptor</a></li>
 			<li><a href="#OriginalInterceptorSample">独自実装によるInterceptor</a></li>
-	        </ul>
-	        </li>
+        </ul>
+    </li>
 	</ul>
 
 	<h2><a name=S2概要>S2AOPの概要</a></h2>
@@ -174,7 +174,7 @@
     <h5>クラス名</h5>
     <p>org.seasar.framework.aop.interceptors.ToStringInterceptor</p>
     <h5>説明</h5>
-    <p>ToString()メソッドによる文字列化処理を「Crosscutting Concern」として扱うためのInterceptorです。EntityクラスにTraceInterceptorを適用したdiconファイルは、以下のようになります。対象とするメソッドはtoString()とします。</p>
+    <p>ToString()メソッドによる文字列化処理を「Crosscutting Concern」として扱うためのInterceptorです。</p>
 <pre>&lt;component class=&quot;java.util.Date&quot;&gt;
     &lt;aspect pointcut=&quot;toString&quot;&gt;
         &lt;component class=&quot;org.seasar.framework.aop.interceptors.ToStringInterceptor&quot;/&gt;
@@ -351,7 +351,7 @@ public class Hoge {
     /** @org.seasar.framework.container.annotation.backport175.Property(&quot;none&quot;) */
     String baz;
 }</pre>
-<p>上の例では、フィールドfooとbarにはgetterとsetterメソッドが作成されますが、bazにはgetterメソッドもsetterメソッドが作成されません。</p>
+<p>上の例では、フィールドfooとbarにはgetterとsetterメソッドが作成されますが、bazにはメソッドが作成されません。</p>
 
 <h4><a name="InterTypeChain">(2) InterTypeChain</a></h4>
     <h5>クラス名</h5>

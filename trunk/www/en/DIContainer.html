@@ -91,6 +91,8 @@
 			  <li><a href="#AnnotationReference">S2Container Annotation Reference</a>
                 <ul>
                   <li><a href="#ComponentAnnotation">Component Annotation</a></li>
+				  <li><a href="#StatelessAnnotation">Stateless Annotation(EJB3)</a></li>
+				  <li><a href="#StatefulAnnotation">Stateful Annotation(EJB3)</a></li>
 				  <li><a href="#BindingAnnotation">Binding Annotation</a></li>
 				  <li><a href="#AspectAnnotation">Aspect Annotation</a></li>
 				  <li><a href="#InterTypeAnnotation">InterType Annotation</a></li>
@@ -732,6 +734,12 @@ The component is stored in the session as named using the name property.
 <a href="#request">S2ContainerFilter</a> must be configured to use session.</td>
 </tr>
 <tr>
+<td>application</td>
+<td>In case we use servlet, a new instance is created for each ServletContext.
+The component is stored in the ServletContext as named using the name property.
+<a href="#request">S2ContainerFilter</a> must be configured to use application.</td>
+</tr>
+<tr>
 <td>outer</td>
 <td>The component instance is created external to S2Container, and only Dependency Injection is applied.
 <a href="#Aop">Aspect</a> and <a href="#ConstructorInjection">Constructor Injection</a> cannot be used.</td>
@@ -987,8 +995,8 @@ Also, the following Filter must be defined in web.xml.</p>
 <pre>&lt;web-app&gt;<br>    &lt;filter&gt;<br>        &lt;filter-name&gt;s2filter&lt;/filter-name&gt;<br>        &lt;filter-class&gt;org.seasar.framework.container.filter.S2ContainerFilter&lt;/filter-class&gt;<br>    &lt;/filter&gt;<br>    <br>    &lt;filter-mapping&gt;<br>        &lt;filter-name&gt;s2filter&lt;/filter-name&gt;<br>        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;<br>    &lt;/filter-mapping&gt;<br>&lt;/web-app&gt;
 </pre>
 
-<p>In this manner, HttpServletResponse and HttpSession can be automatically bound by defining the setter method.
-Also, HttpServletRequest, HttpServletResponse, HttpSession can be accessed as components respectively named request, response, session by using S2ContainerFilter.</p>
+<p>In this manner, HttpServletResponse, HttpSession and ServletContext can be automatically bound by defining the setter method.
+Also, HttpServletRequest, HttpServletResponse, HttpSession and ServletContext can be accessed as components respectively named request, response, session and application by using S2ContainerFilter.</p>
 
 <h3><a name="ComponentAutoRegister">Component Auto-registration</a></h3>
 <p>DI configuration can be mostly automated using <a href="#AutoBindingMode">autobinding</a>.
