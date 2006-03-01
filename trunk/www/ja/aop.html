@@ -756,7 +756,11 @@ public class AopToStringClient {
 	また、EntityImplImplクラスのフィールド(implimplValue)だけでなく、スーパークラスであるEntityImplクラスのフィールド(implValue)やそのさらにスーパークラスであるEntityクラスのフィールド(その他のフィールド)が表示されていることが確認できます。
 	Entityクラスがフィールドとして持っているInnerEntityクラスのフィールドも表示されています。</p>
 <pre>
-examples.aop.tostringinterceptor.EntityImplImpl@1db4f6f[implImplValue=3,implValue=2,intValue=1,staticIntValue=12,doubleValue=12.3,stringValue=&quot;1234&quot;,staticFinalIntValue=12345,mapValue={},innerEntity=examples.aop.tostringinterceptor.InnerEntity@13c1b02[innerInt=0,innerLong=234,str=&quot;foo&quot;,charArray={'a','b','c'}]]
+examples.aop.tostringinterceptor.EntityImplImpl@1db4f6f[
+  implImplValue=3,implValue=2,intValue=1,staticIntValue=12,doubleValue=12.3,
+  stringValue=&quot;1234&quot;,staticFinalIntValue=12345,mapValue={},
+  innerEntity=examples.aop.tostringinterceptor.InnerEntity@13c1b02[
+    innerInt=0,innerLong=234,str=&quot;foo&quot;,charArray={'a','b','c'}]]
 </pre>
 	<p>このサンプルは、seasar2/src/examples/aop/tostringinterceptor以下に用意されています。</p>
 	<br />

@@ -250,7 +250,7 @@ Either <a href="#ognlExpr">OGNL expressions</a> in the body or the child compone
     method name explicitly to support different method names, use
     "DelegateInterceptor#addMethodNameMap(String methodName, String
     targetMethodName)". Suppose you want to let the method bar() be delegated
-    to foo.bar2(), then your code might be like this: "DelegateInterceptor#setTarget(foo)$B!$(JDelegateInterceptor#addMethodNameMap(&quot;bar&quot;, &quot;bar2&quot;)". Please read <a href="#DelegateInterceptorSample">DelegateInterceptor</a> for further information.</p>
+    to foo.bar2(), then your code might be like this: "DelegateInterceptor#setTarget(foo), DelegateInterceptor#addMethodNameMap(&quot;bar&quot;, &quot;bar2&quot;)". Please read <a href="#DelegateInterceptorSample">DelegateInterceptor</a> for further information.</p>
 <h5>Pay attention</h5>
 <p>A component assigned to a target property will be get through the
 container while its initialization processes are going on. As a result, the
@@ -268,7 +268,7 @@ use PrototypeDelegateInterceptor described below.
     name is assigned to the targetName property of
     PrototypeDelegateInterceptor. If you want to set a method name explicitly
     to support different method names, use
-    "PrototypeDelegateInterceptor#setTarget(foo)$B!$(J
+    "PrototypeDelegateInterceptor#setTarget(foo), 
     PrototypeDelegateInterceptor#addMethodNameMap(&quot;bar&quot;, &quot;bar2&quot;)". Please read <a
 href="#PrototypeDelegateInterceptorSample">PrototypeDelegateInterceptor</a>
     for further information.</p>
@@ -866,9 +866,9 @@ public class InnerEntity {
 </pre>
 	<p><b><b>How to write dicon file</b></b></p>
 	<ul>
-		<li type="circle">ToStringInterceptor��R���|�[�l���g��`���܂��Bname������toStringInterceptor�Ƃ��܂��B</li>
-		<li type="circle">examples.aop.tostringinterceptor.EntityImplImpl�N���X�̃R���|�[�l���g�̒�`���܂��Barg�^�O��g�p���ăR���X�g���N�^��ɃR���|�[�l���ginnerEntity��ݒ肵�܂��Baspect�^�O��toStringInterceptor��w�肵�܂��Bpointcut������toString()���\�b�h��w�肵�܂��B</li>
-		<li type="circle">examples.aop.tostringinterceptor.InnerEntity�N���X�̃R���|�[�l���g�̒�`���܂��Baspect�^�O��toStringInterceptor��w�肵�܂��Bpointcut������toString()���\�b�h��w�肵�܂��B</li>
+		<li type="circle">ToStringInterceptorをコンポーネント定義します。name属性をtoStringInterceptorとします。</li>
+		<li type="circle">examples.aop.tostringinterceptor.EntityImplImplクラスのコンポーネントの定義します。argタグを使用してコンストラクタ引数にコンポーネントinnerEntityを設定します。aspectタグにtoStringInterceptorを指定します。pointcut属性にtoString()メソッドを指定します。</li>
+		<li type="circle">examples.aop.tostringinterceptor.InnerEntityクラスのコンポーネントの定義します。aspectタグにtoStringInterceptorを指定します。pointcut属性にtoString()メソッドを指定します。</li>
 	</ul>
 	<p>ToString.dicon</p>
 <pre>
@@ -894,12 +894,11 @@ public class InnerEntity {
 	&lt;/component&gt;
 &lt;/components&gt;
 </pre>
-	<p><b>�
-s�t�@�C���̍쐬</b></p>
+	<p><b>実行ファイルの作成</b></p>
 	<ul>
-		<li type="circle">org.seasar.framework.container.S2Container#create()���\�b�h�̍ŏ��̈�ɍ쐬����dicon�t�@�C��(ToString.dicon)�̃p�X��w�肵�ăR���e�i��쐬���܂��B</li>
-		<li type="circle">org.seasar.framework.container.S2Container#getComponent()���\�b�h�̑�P��ɃR���|�[�l���g�ɓo�^�����N���X���iEntityImplImpl.class)��w�肵�ăR���|�[�l���g��擾���܂��B</li>
-		<li type="circle">toString()��Aspect���K�p����Ă��邩�m�F���邽�߂Ɏ擾�����R���|�[�l���g��System.out.println()���\�b�h�̈�ɓn���ĕ\�����܂��B</li>
+		<li type="circle">org.seasar.framework.container.S2Container#create()メソッドの最初の引数に作成したdiconファイル(ToString.dicon)のパスを指定してコンテナを作成します。</li>
+		<li type="circle">org.seasar.framework.container.S2Container#getComponent()メソッドの第１引数にコンポーネントに登録したクラス名（EntityImplImpl.class)を指定してコンポーネントを取得します。</li>
+		<li type="circle">toString()にAspectが適用されているか確認するために取得したコンポーネントをSystem.out.println()メソッドの引数に渡して表示します。</li>
 	</ul>
 	<p>AopTraceClient.java</p>
 <pre>
@@ -918,19 +917,18 @@ public class AopToStringClient {
     }
 }
 </pre>
-	<p><b>�
-s����</b></p>
-	<p>Object�N���X��toString()���\�b�h�ƈقȂ�A�N���X���ƃn�b�V���l�����łȂ��A�e�t�B�[���h�̒l���\������Ă��邱�Ƃ��m�F�ł��܂��B
-	�܂��AEntityImplImpl�N���X�̃t�B�[���h(implimplValue)�����łȂ��A�X�[�p�[�N���X�ł���EntityImpl�N���X�̃t�B�[���h(implValue)�₻�̂���ɃX�[�p�[�N���X�ł���Entity�N���X�̃t�B�[���h(���̑��̃t�B�[���h)���\������Ă��邱�Ƃ��m�F�ł��܂��B
-	Entity�N���X���t�B�[���h�Ƃ��Ď��BĂ���InnerEntity�N���X�̃t�B�[���h��\������Ă��܂��B</p>
+	<p><b>実行結果</b></p>
+	<p>ObjectクラスのtoString()メソッドと異なり、クラス名とハッシュ値だけでなく、各フィールドの値が表示されていることが確認できます。
+	また、EntityImplImplクラスのフィールド(implimplValue)だけでなく、スーパークラスであるEntityImplクラスのフィールド(implValue)やそのさらにスーパークラスであるEntityクラスのフィールド(その他のフィールド)が表示されていることが確認できます。
+	Entityクラスがフィールドとして持っているInnerEntityクラスのフィールドも表示されています。</p>
 <pre>
 examples.aop.tostringinterceptor.EntityImplImpl@1db4f6f[
-implImplValue=3,implValue=2,intValue=1,staticIntValue=12,doubleValue=12.3,
-stringValue=&quot;1234&quot;,staticFinalIntValue=12345,mapValue={},
-innerEntity=examples.aop.tostringinterceptor.InnerEntity@13c1b02[
-innerInt=0,innerLong=234,str=&quot;foo&quot;,charArray={'a','b','c'}]]
+  implImplValue=3,implValue=2,intValue=1,staticIntValue=12,doubleValue=12.3,
+  stringValue=&quot;1234&quot;,staticFinalIntValue=12345,mapValue={},
+  innerEntity=examples.aop.tostringinterceptor.InnerEntity@13c1b02[
+    innerInt=0,innerLong=234,str=&quot;foo&quot;,charArray={'a','b','c'}]]
 </pre>
-	<p>���̃T���v���́Aseasar2/src/examples/aop/tostringinterceptor�ȉ��ɗp�ӂ���Ă��܂��B</p>
+	<p>このサンプルは、seasar2/src/examples/aop/tostringinterceptor以下に用意されています。</p>
 	<br />
 
 <h3><a name=DelegateInterceptorSample>DelegateInterceptor</a></h3>
