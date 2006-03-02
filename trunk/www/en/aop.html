@@ -178,7 +178,7 @@ Either <a href="#ognlExpr">OGNL expressions</a> in the body or the child compone
 * Please refer below for
 <a href="http://www.ognl.org/2.6.7/Documentation/html/LanguageGuide/index.html">OGNL Language Guide</a>
 
-    <h5>Configuration Example</h5>
+<h5>Configuration Example</h5>
 <pre>&lt;component class=&quot;java.util.Date&quot;&gt;
     &lt;interType&gt;
         &lt;component class=&quot;org.seasar.framework.aop.intertype.PropertyInterType&quot;/&gt;
@@ -866,9 +866,15 @@ public class InnerEntity {
 </pre>
 	<p><b><b>How to write dicon file</b></b></p>
 	<ul>
-		<li type="circle">ToStringInterceptorをコンポーネント定義します。name属性をtoStringInterceptorとします。</li>
-		<li type="circle">examples.aop.tostringinterceptor.EntityImplImplクラスのコンポーネントの定義します。argタグを使用してコンストラクタ引数にコンポーネントinnerEntityを設定します。aspectタグにtoStringInterceptorを指定します。pointcut属性にtoString()メソッドを指定します。</li>
-		<li type="circle">examples.aop.tostringinterceptor.InnerEntityクラスのコンポーネントの定義します。aspectタグにtoStringInterceptorを指定します。pointcut属性にtoString()メソッドを指定します。</li>
+		<li type="circle">We define the ToStringInterceptor class as a component,
+		and the component name is toStringInterceptor.</li>
+		<li type="circle">We define the EntityImplImpl class as a component.
+		We set the innerEntity component to the constructor argument using the arg tag.
+		We specify the toStringInterceptor component for the arg tag,
+		and specify the toString method for the pointcut property.</li>
+		<li type="circle">We define the InnerEntity class as a component.
+		We specify the toStringInterceptor component to the aspect tag,
+		and specify the toString method for the pointcut property.</li>
 	</ul>
 	<p>ToString.dicon</p>
 <pre>
@@ -894,11 +900,12 @@ public class InnerEntity {
 	&lt;/component&gt;
 &lt;/components&gt;
 </pre>
-	<p><b>実行ファイルの作成</b></p>
+	<p><b>Creation the main program</b></p>
 	<ul>
-		<li type="circle">org.seasar.framework.container.S2Container#create()メソッドの最初の引数に作成したdiconファイル(ToString.dicon)のパスを指定してコンテナを作成します。</li>
-		<li type="circle">org.seasar.framework.container.S2Container#getComponent()メソッドの第１引数にコンポーネントに登録したクラス名（EntityImplImpl.class)を指定してコンポーネントを取得します。</li>
-		<li type="circle">toString()にAspectが適用されているか確認するために取得したコンポーネントをSystem.out.println()メソッドの引数に渡して表示します。</li>
+		<li type="circle">We specify the dicon file path for the first argument of S2Container#create(), and create a container.</li>
+		<li type="circle">When we specify the class, such as EnitityImpl.class, for the first argument of S2Container#getComponent(),
+		we can get the component.</li>
+		<li type="circle">We show the result using Sytem.out.println() in order to confirm it.</li>
 	</ul>
 	<p>AopTraceClient.java</p>
 <pre>
@@ -917,10 +924,7 @@ public class AopToStringClient {
     }
 }
 </pre>
-	<p><b>実行結果</b></p>
-	<p>ObjectクラスのtoString()メソッドと異なり、クラス名とハッシュ値だけでなく、各フィールドの値が表示されていることが確認できます。
-	また、EntityImplImplクラスのフィールド(implimplValue)だけでなく、スーパークラスであるEntityImplクラスのフィールド(implValue)やそのさらにスーパークラスであるEntityクラスのフィールド(その他のフィールド)が表示されていることが確認できます。
-	Entityクラスがフィールドとして持っているInnerEntityクラスのフィールドも表示されています。</p>
+	<p><b>Output</b></p>
 <pre>
 examples.aop.tostringinterceptor.EntityImplImpl@1db4f6f[
   implImplValue=3,implValue=2,intValue=1,staticIntValue=12,doubleValue=12.3,
@@ -928,7 +932,7 @@ examples.aop.tostringinterceptor.EntityImplImpl@1db4f6f[
   innerEntity=examples.aop.tostringinterceptor.InnerEntity@13c1b02[
     innerInt=0,innerLong=234,str=&quot;foo&quot;,charArray={'a','b','c'}]]
 </pre>
-	<p>このサンプルは、seasar2/src/examples/aop/tostringinterceptor以下に用意されています。</p>
+	<p>This example is included in seasar2/src/examples/aop/tostringinterceptor.</p>
 	<br />
 
 <h3><a name=DelegateInterceptorSample>DelegateInterceptor</a></h3>
@@ -1041,7 +1045,7 @@ public class AopDelegateClient {
 <pre>
 substance
 </pre>
-    <p>This example is included in seasar2/src/examples/aop/delegateinterceptor</p>
+    <p>This example is included in seasar2/src/examples/aop/delegateinterceptor.</p>
     <br />
 <h3><a name="PrototypeDelegateInterceptorSample">PrototypeDelegateInterceptor</a></h3>
     <p>This example uses PrototypeDelegateInterceptor and delegates from
