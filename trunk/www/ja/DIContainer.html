@@ -91,6 +91,7 @@
 				  <li><a href="#StatelessAnnotation">Statelessアノテーション(EJB3)</a></li>
 				  <li><a href="#StatefulAnnotation">Statefulアノテーション(EJB3)</a></li>
                   <li><a href="#BindingAnnotation">Bindingアノテーション</a></li>
+				  <li><a href="#EJBAnnotation">EJBアノテーション(EJB3)</a></li>
                   <li><a href="#AspectAnnotation">Aspectアノテーション</a></li>
 				  <li><a href="#InterTypeAnnotation">InterTypeアノテーション</a></li>
 				  <li><a href="#InitMethodAnnotation">InitMethodアノテーション</a></li>
@@ -1548,15 +1549,33 @@ public static final String bbb_BINDING = "bindingType=none";
 
 public static final String ccc_BINDING = null;
 
-public void setAaa(String aaa) {
+public void setAaa(Aaa aaa) {
     ...
 }
 
-public void setBbb(String bbb) {
+public void setBbb(Bbb bbb) {
     ...
 }
 
-public void setCcc(String ccc) {
+public void setCcc(Ccc ccc) {
+    ...
+}
+</pre>
+
+<h3><a name="EJBAnnotation">EJBアノテーション(EJB3)</a></h3>
+<p>EJBアノテーションによって､EJB3コンポーネントを参照することができます。
+Statless、Statefulアノテーションのname属性で付けた名前をbeanName属性に指定することができます。
+beanName属性は､インターフェースを実装したオブジェクトが複数存在する場合にのみ使うようにしてください。
+</p>
+<p>Tigerアノテーションは以下のようになります。</p>
+<pre>
+@EJB
+public void setAaa(Aaa aaa) {
+    ...
+}
+
+@EJB(beanName="bbb2")
+public void setBbb(Bbb bbb) {
     ...
 }
 </pre>

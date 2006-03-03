@@ -94,6 +94,7 @@
 				  <li><a href="#StatelessAnnotation">Stateless Annotation(EJB3)</a></li>
 				  <li><a href="#StatefulAnnotation">Stateful Annotation(EJB3)</a></li>
 				  <li><a href="#BindingAnnotation">Binding Annotation</a></li>
+				  <li><a href="#EJBAnnotation">EJB Annotation(EJB3)</a></li>
 				  <li><a href="#AspectAnnotation">Aspect Annotation</a></li>
 				  <li><a href="#InterTypeAnnotation">InterType Annotation</a></li>
 				  <li><a href="#InitMethodAnnotation">InitMethod Annotation</a></li>
@@ -1609,6 +1610,34 @@ public static final String COMPONENT =
   "name = xxx, instance = prototype, autoBinding = property";
 </pre>
 
+<h3><a name="StatelessAnnotation">Stateless Annotaion(EJB3)</a></h3>
+<p>We can define a stateless session bean using Stateless annnotaion.</p>
+<p>Tiger annotation is as follows.</p>
+<pre>
+@Stateless(name="xxx")
+public class Xxx {
+    ...
+}
+</pre>
+<p> When we don't specify the name property,
+the implementation class of AutoNaming interface which we use
+<a href="#ComponentAutoRegister">the automatic registration of components</a>
+will automatically deside the name.</p>
+
+<h3><a name="StatefulAnnotation">Stateful Annotaion(EJB3)</a></h3>
+<p>We can define a stateful session bean using Stateful annnotaion.</p>
+<p>Tiger annotation is as follows.</p>
+<pre>
+@Stateful(name="xxx")
+public class Xxx {
+    ...
+}
+</pre>
+<p> When we don't specify the name property,
+the implementation class of AutoNaming interface which we use
+<a href="#ComponentAutoRegister">the automatic registration of components</a>
+will automatically deside the name.</p>
+
 <h3><a name="BindingAnnotation">Binding Annotation</a></h3>
 <p>Can be substituted for the <a href="#propertyTag">property tag</a>.</p>
 <p>Tiger annotation is as follows.</p>
@@ -1669,6 +1698,24 @@ public void setBbb(String bbb) {
 }
 
 public void setCcc(String ccc) {
+    ...
+}
+</pre>
+
+<h3><a name="EJBAnnotation">EJB Annotation(EJB3)</a></h3>
+<p>The EJB annotation denotes a reference to a session bean.
+The beanName property references the value of the name property of the Stateful or Stateless annotation.
+The beanName property allows disambiguation if multiple session beans implement the same interface.
+</p>
+<p>Tiger annotation is as follows.</p>
+<pre>
+@EJB
+public void setAaa(Aaa aaa) {
+    ...
+}
+
+@EJB(beanName="bbb2")
+public void setBbb(Bbb bbb) {
     ...
 }
 </pre>
