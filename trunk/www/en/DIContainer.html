@@ -6,8 +6,7 @@
 <link href="seasar_p.css" type="text/css" rel="stylesheet" media="print">
 <link href="seasar_b.css" type="text/css" rel="stylesheet" media="screen">
 <script src="seasar_b.js" type="text/JavaScript" language="JavaScript"></script>
-</head><body onload="preload('en')">
-<img height="117" width="256" src="images/spacer.gif" alt=""><table width="100%" border="0" cellspacing="0" cellpadding="0" align="left"><tr>
+</head><body onload="preload('en')"><table width="100%" border="0" cellspacing="0" cellpadding="0" align="left"><tr>
 <td align="left" valign="top" width="780"><table width="780" border="0" cellspacing="0" cellpadding="0" class="white">
 <tr><td colspan="7"><img height="5" width="780" src="images/top01_b.gif" alt=""></td></tr>
 <tr><td><img height="117" width="235" src="images/top02_b.gif" alt="Seasar"></td>
@@ -99,6 +98,16 @@
 				  <li><a href="#InterTypeAnnotation">InterType Annotation</a></li>
 				  <li><a href="#InitMethodAnnotation">InitMethod Annotation</a></li>
 				</ul>
+              <li><a href="#EJB3AnnotationReference">EJB3 Annotation Reference</a>
+                <ul>
+				  <li><a href="#StatelessAnnotation">Stateless Annotation</a></li>
+				  <li><a href="#StatefulAnnotation">Stateful Annotation</a></li>
+				  <li><a href="#EJBAnnotation">EJB Annotation</a></li>
+                  <li><a href="#PostConstructAnnotation">PostConstruct Annotation</a></li>
+				  <li><a href="#TransactionManagementAnnotation">TransactionManagement Annotation</a></li>
+				  <li><a href="#TransactionAttributeAnnotation">TransactionAttribute Annotation</a></li>
+				  <li><a href="#AroundInvokeAnnotation">AroundInoke Annotation</a></li>
+                </ul>
 			  </li>
             </ul>
 
@@ -1610,34 +1619,6 @@ public static final String COMPONENT =
   "name = xxx, instance = prototype, autoBinding = property";
 </pre>
 
-<h3><a name="StatelessAnnotation">Stateless Annotaion(EJB3)</a></h3>
-<p>We can define a stateless session bean using Stateless annnotaion.</p>
-<p>Tiger annotation is as follows.</p>
-<pre>
-@Stateless(name="xxx")
-public class Xxx {
-    ...
-}
-</pre>
-<p> When we don't specify the name property,
-the implementation class of AutoNaming interface which we use
-<a href="#ComponentAutoRegister">the automatic registration of components</a>
-will automatically deside the name.</p>
-
-<h3><a name="StatefulAnnotation">Stateful Annotaion(EJB3)</a></h3>
-<p>We can define a stateful session bean using Stateful annnotaion.</p>
-<p>Tiger annotation is as follows.</p>
-<pre>
-@Stateful(name="xxx")
-public class Xxx {
-    ...
-}
-</pre>
-<p> When we don't specify the name property,
-the implementation class of AutoNaming interface which we use
-<a href="#ComponentAutoRegister">the automatic registration of components</a>
-will automatically deside the name.</p>
-
 <h3><a name="BindingAnnotation">Binding Annotation</a></h3>
 <p>Can be substituted for the <a href="#propertyTag">property tag</a>.</p>
 <p>Tiger annotation is as follows.</p>
@@ -1698,24 +1679,6 @@ public void setBbb(String bbb) {
 }
 
 public void setCcc(String ccc) {
-    ...
-}
-</pre>
-
-<h3><a name="EJBAnnotation">EJB Annotation(EJB3)</a></h3>
-<p>The EJB annotation denotes a reference to a session bean.
-The beanName property references the value of the name property of the Stateful or Stateless annotation.
-The beanName property allows disambiguation if multiple session beans implement the same interface.
-</p>
-<p>Tiger annotation is as follows.</p>
-<pre>
-@EJB
-public void setAaa(Aaa aaa) {
-    ...
-}
-
-@EJB(beanName="bbb2")
-public void setBbb(Bbb bbb) {
     ...
 }
 </pre>
@@ -1821,6 +1784,121 @@ public class Xxx {
 Separate multiple initialization methods with commas.</p>
 <pre>
 public static final String INIT_METHOD = "init";
+</pre>
+
+
+<h2><a name="EJB3AnnotationReference">EJB3アノテーションリファレンス</a></h2>
+<p>S2Containerでは、EJB 3.0 Simplified APIのアノテーションもサポートしています。EJB3アノテーションを利用するにはJava5(Tiger)が必要です。</p>
+
+<h3><a name="StatelessAnnotation">Stateless Annotaion</a></h3>
+<p>We can define a stateless session bean using Stateless annnotaion.</p>
+<p>Tiger annotation is as follows.</p>
+<pre>
+@Stateless(name="xxx")
+public class Xxx {
+    ...
+}
+</pre>
+<p> When we don't specify the name property,
+the implementation class of AutoNaming interface which we use
+<a href="#ComponentAutoRegister">the automatic registration of components</a>
+will automatically deside the name.</p>
+
+<h3><a name="StatefulAnnotation">Stateful Annotaion</a></h3>
+<p>We can define a stateful session bean using Stateful annnotaion.</p>
+<p>Tiger annotation is as follows.</p>
+<pre>
+@Stateful(name="xxx")
+public class Xxx {
+    ...
+}
+</pre>
+<p> When we don't specify the name property,
+the implementation class of AutoNaming interface which we use
+<a href="#ComponentAutoRegister">the automatic registration of components</a>
+will automatically deside the name.</p>
+
+<h3><a name="EJBAnnotation">EJB Annotation</a></h3>
+<p>The EJB annotation denotes a reference to a session bean.
+The beanName property references the value of the name property of the Stateful or Stateless annotation.
+The beanName property allows disambiguation if multiple session beans implement the same interface.
+</p>
+<p>Tiger annotation is as follows.</p>
+<pre>
+@EJB
+public void setAaa(Aaa aaa) {
+    ...
+}
+
+@EJB(beanName="bbb2")
+public void setBbb(Bbb bbb) {
+    ...
+}
+</pre>
+
+<h3><a name="PostConstructAnnotation">PostConstructアノテーション</a></h3>
+<p>
+PostConstructアノテーションにより、インスタンス生成～DI後に呼び出されるメソッドを指定することができます。<br>
+PostConstructアノテーションを付けることができるメソッドは非<code>static</code>、非<code>final</code>で引数がなく、戻り値型が<code>void</code>でなければなりません。メソッド名および可視性は任意です。
+</p>
+<p>Tigerアノテーションは以下のようになります。</p>
+<pre>
+public class Xxx {
+    ...
+    @PostConstruct
+    private void initialize() {
+        ...
+    }
+}
+</pre>
+
+<h3><a name="TransactionManagementAnnotation">TransactionManagementアノテーション</a></h3>
+<p>
+TransactionManagementアノテーションにより、コンテナ管理トランザクション(CMT)とBean管理トランザクション(BMT)を使い分けることができます。<br>
+デフォルトはCMTであるため、CMTを使用する場合はTransactionManagementアノテーションを明示する必要はありません。
+</p>
+<p>Tigerアノテーションは以下のようになります。</p>
+<pre>
+@Stateless
+@TransactionManagement(TransactionManagementType.BEAN)
+public class Xxx {
+    ...
+}
+</pre>
+
+<h3><a name="TransactionAttributeAnnotation">TransactionAttributeアノテーション</a></h3>
+<p>
+TransactionAttributeアノテーションにより、ビジネスメソッドのトランザクション属性を設定することができます。この指定が有効なのは、CMTの場合のみです。<br>
+クラスにTransactionAttributeアノテーションを付けることにより、そのクラスのビジネスメソッド全体のトランザクション属性を設定することができます。指定しなかった場合のデフォルトはREQUIREDです。<br>
+メソッドにTransactionAttributeアノテーションを付けることにより、そのビジネスメソッドのトランザクション属性を設定することができます。指定しなかった場合のデフォルトはクラスに付けられたトランザクション属性です。<br>
+</p>
+<p>Tigerアノテーションは以下のようになります。</p>
+<pre>
+@Stateless
+@TransactionAttribute(TransactionAttributeType.MANDATRY)
+public class Xxx {
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    public void someMethod() {
+        ...
+    }
+}
+</pre>
+
+<h3><a name="AroundInvokeAnnotation">AroungInvokeアノテーション</a></h3>
+<p>
+AroundInvokeアノテーションにより、ビジネスメソッドの呼び出しをインターセプトすることができます。<br>
+AroundInvokeアノテーションを付けることができるメソッドは非<code>static</code>、非<code>final</code>で引数は<code>javax.interceptor.InvocationContext</code>code>型一つだけ、戻り値型は<code>void</code>でなければなりません。メソッドの名前や可視性は任意です。<br>
+クラスで一つのメソッドにだけAroundInvokeアノテーションを付けることができます。
+</p>
+<p>Tigerアノテーションは以下のようになります。</p>
+<pre>
+@Stateless
+public class Xxx {
+    @AroundInvoke
+    void invoke(InvocationContext context) throws Exception {
+        ...
+    }
+}
 </pre>
 
 <!-- document end -->
