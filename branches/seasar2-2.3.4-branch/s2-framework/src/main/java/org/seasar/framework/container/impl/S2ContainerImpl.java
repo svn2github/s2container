@@ -47,6 +47,8 @@ import org.seasar.framework.util.StringUtil;
  */
 public class S2ContainerImpl implements S2Container, ContainerConstants {
 
+    private static ThreadLocal searched = new ThreadLocal();
+
 	private Map componentDefMap = new HashMap();
 	private List componentDefList = new ArrayList();
 	private String namespace;
@@ -264,31 +266,47 @@ public class S2ContainerImpl implements S2Container, ContainerConstants {
 	}
 
 	protected synchronized ComponentDef internalGetComponentDef(Object key) {
-		ComponentDef cd = (ComponentDef) componentDefMap.get(key);
-		if (cd != null) {
-			return cd;
-		}
-		if (key instanceof String) {
-			String name = (String) key;
-			int index = name.indexOf(NS_SEP);
-			if (index > 0) {
-				String ns = name.substring(0, index);
-				if (internalGetComponentDef(ns) != null) {
-					S2Container child = (S2Container) getComponent(ns);
-					name = name.substring(index + 1);
-					if (child.hasComponentDef(name)) {
-						return child.getComponentDef(name);
-					}
-				}
-			}
-		}
-		for (int i = 0; i < getChildSize(); ++i) {
-			S2Container child = getChild(i);
-			if (child.hasComponentDef(key)) {
-				return child.getComponentDef(key);
-			}
-		}
-		return null;
+        Set searchedContainers = (Set) searched.get();
+        boolean starting = searchedContainers == null;
+        if (starting) {
+            searchedContainers = new HashSet();
+            searched.set(searchedContainers);
+        }
+        try {
+    		ComponentDef cd = (ComponentDef) componentDefMap.get(key);
+    		if (cd != null) {
+    			return cd;
+    		}
+    		if (key instanceof String) {
+    			String name = (String) key;
+    			int index = name.indexOf(NS_SEP);
+    			if (index > 0) {
+    				String ns = name.substring(0, index);
+    				if (internalGetComponentDef(ns) != null) {
+    					S2Container child = (S2Container) getComponent(ns);
+    					name = name.substring(index + 1);
+    					if (child.hasComponentDef(name)) {
+    						return child.getComponentDef(name);
+    					}
+    				}
+    			}
+    		}
+    		for (int i = 0; i < getChildSize(); ++i) {
+    			S2Container child = getChild(i);
+                if (searchedContainers.contains(child)) {
+                    continue;
+                }
+    			if (child.hasComponentDef(key)) {
+    				return child.getComponentDef(key);
+    			}
+                searchedContainers.add(child);
+    		}
+    		return null;
+        } finally {
+            if (starting) {
+                searched.set(null);
+            }
+        }
 	}
 
 	/**
