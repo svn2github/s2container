@@ -1698,11 +1698,12 @@ public void setBbb(Bbb bbb) {
 
 <h3><a name="PostConstructAnnotation">PostConstructアノテーション</a></h3>
 <p>
-PostConstructアノテーションにより、インスタンス生成～DI後に呼び出されるメソッドを指定することができます。<br>
+PostConstructアノテーションにより、インスタンス生成～DIの後に呼び出されるメソッドを指定することができます。<br>
 PostConstructアノテーションを付けることができるメソッドは非<code>static</code>、非<code>final</code>で引数がなく、戻り値型が<code>void</code>でなければなりません。メソッド名および可視性は任意です。
 </p>
 <p>Tigerアノテーションは以下のようになります。</p>
 <pre>
+@Stateless
 public class Xxx {
     ...
     @PostConstruct
@@ -1747,7 +1748,7 @@ public class Xxx {
 <h3><a name="AroundInvokeAnnotation">AroundInvokeアノテーション</a></h3>
 <p>
 AroundInvokeアノテーションにより、ビジネスメソッドの呼び出しをインターセプトすることができます。<br>
-AroundInvokeアノテーションを付けることができるメソッドは非<code>static</code>、非<code>final</code>で引数は<code>javax.interceptor.InvocationContext</code>code>型一つだけ、戻り値型は<code>void</code>でなければなりません。メソッドの名前や可視性は任意です。<br>
+AroundInvokeアノテーションを付けることができるメソッドは非<code>static</code>、非<code>final</code>で引数は<code>javax.interceptor.InvocationContext</code>型一つだけ、戻り値型は<code>void</code>でなければなりません。メソッドの名前や可視性は任意です。<br>
 クラスで一つのメソッドにだけAroundInvokeアノテーションを付けることができます。
 </p>
 <p>Tigerアノテーションは以下のようになります。</p>
