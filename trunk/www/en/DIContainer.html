@@ -97,6 +97,7 @@
 				  <li><a href="#AspectAnnotation">Aspect Annotation</a></li>
 				  <li><a href="#InterTypeAnnotation">InterType Annotation</a></li>
 				  <li><a href="#InitMethodAnnotation">InitMethod Annotation</a></li>
+				  <li><a href="#DestroyMethodAnnotation">DestroyMethod Annotation</a></li>
 				</ul>
               <li><a href="#EJB3AnnotationReference">EJB3 Annotation Reference</a>
                 <ul>
@@ -1784,6 +1785,36 @@ public class Xxx {
 Separate multiple initialization methods with commas.</p>
 <pre>
 public static final String INIT_METHOD = "init";
+</pre>
+
+<h3><a name="DestroyMethodAnnotation">DestroyMethod Annotation</a></h3>
+<p>Can be substituted for the <a href="#destroyMethodTag">destroyMethod tag</a>.</p>
+<p>Tiger annotation is as follows.</p>
+<pre>
+public class Xxx {
+    ...
+    @DestroyMethod
+    public void destroy() {
+        ...
+    }
+}
+</pre>
+<p>Backport175 annotation is as follows.</p>
+<pre>
+public class Xxx {
+    ...
+    /**
+     * @org.seasar.framework.container.annotation.backport175.DestroyMethod
+     */
+    public void destroy() {
+        ...
+    }
+}
+</pre>
+<p>Constant annotation is as follows.
+Separate multiple initialization methods with commas.</p>
+<pre>
+public static final String DESTROY_METHOD = "destroy";
 </pre>
 
 

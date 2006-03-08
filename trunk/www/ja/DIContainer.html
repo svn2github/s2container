@@ -95,6 +95,7 @@
                   <li><a href="#AspectAnnotation">Aspectアノテーション</a></li>
 				  <li><a href="#InterTypeAnnotation">InterTypeアノテーション</a></li>
 				  <li><a href="#InitMethodAnnotation">InitMethodアノテーション</a></li>
+				  <li><a href="#DestroyMethodAnnotation">DestroyMethodアノテーション</a></li>
                 </ul>
               </li>
               <li><a href="#EJB3AnnotationReference">EJB3アノテーションリファレンス</a>
@@ -1648,6 +1649,36 @@ public class Xxx {
 <p>定数アノテーションは以下のようになります。初期化メソッドを複数指定したい場合は､カンマ(,)で区切ってください。</p>
 <pre>
 public static final String INIT_METHOD = "init";
+</pre>
+
+<h3><a name="DestroyMethodAnnotation">DestroyMethodアノテーション</a></h3>
+<p><a href="#destroyMethodTag">destroyMethodタグ</a>のかわりに使えるのが、DestroyMethodアノテーションです。
+destroyMethodタグと異なり､OGNLの式を書いたり、引数を設定することはできません。</p>
+<p>Tigerアノテーションは以下のようになります。</p>
+<pre>
+public class Xxx {
+    ...
+    @DestroyMethod
+    public void destroy() {
+        ...
+    }
+}
+</pre>
+<p>backport175アノテーションは以下のようになります。</p>
+<pre>
+public class Xxx {
+    ...
+    /**
+     * @org.seasar.framework.container.annotation.backport175.DestroyMethod
+     */
+    public void destroy() {
+        ...
+    }
+}
+</pre>
+<p>定数アノテーションは以下のようになります。初期化メソッドを複数指定したい場合は､カンマ(,)で区切ってください。</p>
+<pre>
+public static final String DESTROY_METHOD = "destroy";
 </pre>
 
 
