@@ -22,12 +22,14 @@ import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.PropertyDesc;
 import org.seasar.framework.container.AutoBindingDef;
 import org.seasar.framework.container.ComponentDef;
+import org.seasar.framework.container.IllegalDestroyMethodAnnotationRuntimeException;
 import org.seasar.framework.container.IllegalInitMethodAnnotationRuntimeException;
 import org.seasar.framework.container.InstanceDef;
 import org.seasar.framework.container.PropertyDef;
 import org.seasar.framework.container.annotation.backport175.Aspect;
 import org.seasar.framework.container.annotation.backport175.Binding;
 import org.seasar.framework.container.annotation.backport175.Component;
+import org.seasar.framework.container.annotation.backport175.DestroyMethod;
 import org.seasar.framework.container.annotation.backport175.InitMethod;
 import org.seasar.framework.container.annotation.backport175.InterType;
 
@@ -37,14 +39,13 @@ import org.seasar.framework.container.annotation.backport175.InterType;
  */
 public class Backport175AnnotationHandler extends ConstantAnnotationHandler {
 
-    public ComponentDef createComponentDef(Class componentClass,
-            InstanceDef defaultInstanceDef) {
-        
-    	String name = null;
+    public ComponentDef createComponentDef(Class componentClass, InstanceDef defaultInstanceDef) {
+
+        String name = null;
         InstanceDef instanceDef = null;
         AutoBindingDef autoBindingDef = null;
-    	Component component = (Component) Annotations.getAnnotation(Component.class,
-                componentClass);
+        Component component = (Component) Annotations
+                .getAnnotation(Component.class, componentClass);
         if (component == null) {
             return super.createComponentDef(componentClass, defaultInstanceDef);
         }
@@ -54,16 +55,14 @@ public class Backport175AnnotationHandler extends ConstantAnnotationHandler {
         return createComponentDef(componentClass, name, instanceDef, autoBindingDef);
     }
 
-    public PropertyDef createPropertyDef(BeanDesc beanDesc,
-            PropertyDesc propertyDesc) {
+    public PropertyDef createPropertyDef(BeanDesc beanDesc, PropertyDesc propertyDesc) {
 
         if (!propertyDesc.hasWriteMethod()) {
             return super.createPropertyDef(beanDesc, propertyDesc);
         }
         Method method = propertyDesc.getWriteMethod();
         String propName = propertyDesc.getPropertyName();
-        Binding binding = (Binding) Annotations.getAnnotation(Binding.class,
-                method);
+        Binding binding = (Binding) Annotations.getAnnotation(Binding.class, method);
         if (binding != null) {
             String bindingTypeName = binding.bindingType();
             String expression = binding.value();
@@ -74,8 +73,7 @@ public class Backport175AnnotationHandler extends ConstantAnnotationHandler {
 
     public void appendAspect(ComponentDef componentDef) {
         Class componentClass = componentDef.getComponentClass();
-        Aspect aspect = (Aspect) Annotations.getAnnotation(Aspect.class,
-                componentClass);
+        Aspect aspect = (Aspect) Annotations.getAnnotation(Aspect.class, componentClass);
         if (aspect != null) {
             String interceptor = aspect.value();
             String pointcut = aspect.pointcut();
@@ -83,8 +81,7 @@ public class Backport175AnnotationHandler extends ConstantAnnotationHandler {
         }
         Method[] methods = componentClass.getMethods();
         for (int i = 0; i < methods.length; ++i) {
-            Aspect mAspect = (Aspect) Annotations.getAnnotation(Aspect.class,
-                    methods[i]);
+            Aspect mAspect = (Aspect) Annotations.getAnnotation(Aspect.class, methods[i]);
             if (mAspect != null) {
                 String interceptor = mAspect.value();
                 appendAspect(componentDef, interceptor, methods[i]);
@@ -95,8 +92,8 @@ public class Backport175AnnotationHandler extends ConstantAnnotationHandler {
 
     public void appendInterType(ComponentDef componentDef) {
         Class componentClass = componentDef.getComponentClass();
-        InterType interType = (InterType) Annotations.getAnnotation(InterType.class,
-                componentClass);
+        InterType interType = (InterType) Annotations
+                .getAnnotation(InterType.class, componentClass);
         if (interType != null) {
             String[] interTypeNames = interType.value();
             for (int i = 0; i < interTypeNames.length; ++i) {
@@ -114,13 +111,14 @@ public class Backport175AnnotationHandler extends ConstantAnnotationHandler {
         Method[] methods = componentClass.getMethods();
         for (int i = 0; i < methods.length; ++i) {
             Method method = methods[i];
-            InitMethod initMethod = (InitMethod) Annotations.getAnnotation(
-                    InitMethod.class, method);
+            InitMethod initMethod = (InitMethod) Annotations
+                    .getAnnotation(InitMethod.class, method);
             if (initMethod == null) {
                 continue;
             }
             if (method.getParameterTypes().length != 0) {
-                throw new IllegalInitMethodAnnotationRuntimeException(componentClass, method.getName());
+                throw new IllegalInitMethodAnnotationRuntimeException(componentClass, method
+                        .getName());
             }
             if (!isInitMethodRegisterable(componentDef, method.getName())) {
                 continue;
@@ -128,5 +126,30 @@ public class Backport175AnnotationHandler extends ConstantAnnotationHandler {
             appendInitMethod(componentDef, method.getName());
         }
         super.appendInitMethod(componentDef);
+    }
+
+    public void appendDestroyMethod(ComponentDef componentDef) {
+        Class componentClass = componentDef.getComponentClass();
+        if (componentClass == null) {
+            return;
+        }
+        Method[] methods = componentClass.getMethods();
+        for (int i = 0; i < methods.length; ++i) {
+            Method method = methods[i];
+            DestroyMethod destroyMethod = (DestroyMethod) Annotations.getAnnotation(
+                    DestroyMethod.class, method);
+            if (destroyMethod == null) {
+                continue;
+            }
+            if (method.getParameterTypes().length != 0) {
+                throw new IllegalDestroyMethodAnnotationRuntimeException(componentClass, method
+                        .getName());
+            }
+            if (!isDestroyMethodRegisterable(componentDef, method.getName())) {
+                continue;
+            }
+            appendDestroyMethod(componentDef, method.getName());
+        }
+        super.appendDestroyMethod(componentDef);
     }
 }

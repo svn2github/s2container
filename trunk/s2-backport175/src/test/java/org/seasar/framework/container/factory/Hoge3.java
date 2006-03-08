@@ -29,6 +29,8 @@ public class Hoge3 {
 
     public static final String INIT_METHOD = "init";
 
+    public static final String DESTROY_METHOD = "destroy";
+
     public void setAaa(String aaa) {
     }
 
@@ -36,5 +38,8 @@ public class Hoge3 {
     }
 
     public void init() {
+    }
+
+    public void destroy() {
     }
 }

@@ -20,6 +20,8 @@ import org.seasar.framework.beans.PropertyDesc;
 import org.seasar.framework.beans.factory.BeanDescFactory;
 import org.seasar.framework.container.AspectDef;
 import org.seasar.framework.container.ComponentDef;
+import org.seasar.framework.container.DestroyMethodDef;
+import org.seasar.framework.container.IllegalDestroyMethodAnnotationRuntimeException;
 import org.seasar.framework.container.IllegalInitMethodAnnotationRuntimeException;
 import org.seasar.framework.container.InitMethodDef;
 import org.seasar.framework.container.InstanceDef;
@@ -161,6 +163,42 @@ public class Backport175AnnotationHandlerTest extends S2FrameworkTestCase {
             fail("1");
         }
         catch (IllegalInitMethodAnnotationRuntimeException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    public void testAppendDestroyMethod() throws Exception {
+        ComponentDef cd = handler.createComponentDef(Hoge.class, null);
+        handler.appendDestroyMethod(cd);
+        assertEquals("1", 1, cd.getDestroyMethodDefSize());
+        DestroyMethodDef destroyMethodDef = cd.getDestroyMethodDef(0);
+        assertEquals("2", "destroy", destroyMethodDef.getMethodName());
+    }
+
+    public void testAppendDestroyMethodForConstantAnnotation() throws Exception {
+        ComponentDef cd = handler.createComponentDef(Hoge3.class, null);
+        handler.appendDestroyMethod(cd);
+        assertEquals("1", 1, cd.getDestroyMethodDefSize());
+        DestroyMethodDef destroyMethodDef = cd.getDestroyMethodDef(0);
+        assertEquals("2", "destroy", destroyMethodDef.getMethodName());
+    }
+
+    public void setUpAppendDestroyMethodForDicon() throws Exception {
+        include("Backport175AnnotationHandlerTest.dicon");
+    }
+
+    public void testAppendDestroyMethodForDicon() throws Exception {
+        ComponentDef cd = getComponentDef(Hoge5.class);
+        assertEquals("1", 1, cd.getDestroyMethodDefSize());
+    }
+
+    public void testAppendDestroyMethodForException() throws Exception {
+        ComponentDef cd = handler.createComponentDef(Hoge6.class, null);
+        try {
+            handler.appendDestroyMethod(cd);
+            fail("1");
+        }
+        catch (IllegalDestroyMethodAnnotationRuntimeException ex) {
             System.out.println(ex);
         }
     }

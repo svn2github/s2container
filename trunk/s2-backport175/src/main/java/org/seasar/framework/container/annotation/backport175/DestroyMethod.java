@@ -13,19 +13,11 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.framework.container.factory;
+package org.seasar.framework.container.annotation.backport175;
 
-public class Hoge6 {
-
-    /**
-     * @org.seasar.framework.container.annotation.backport175.InitMethod
-     */
-    public void init(String s) {
-    }
-
-    /**
-     * @org.seasar.framework.container.annotation.backport175.DestroyMethod
-     */
-    public void destroy(String s) {
-    }
+/**
+ * 
+ * @author koichik
+ */
+public interface DestroyMethod {
 }

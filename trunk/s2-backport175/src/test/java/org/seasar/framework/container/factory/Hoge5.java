@@ -22,4 +22,10 @@ public class Hoge5 {
      */
     public void init() {
     }
+
+    /**
+     * @org.seasar.framework.container.annotation.backport175.DestroyMethod
+     */
+    public void destroy() {
+    }
 }
