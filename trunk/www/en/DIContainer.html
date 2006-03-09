@@ -90,10 +90,7 @@
 			  <li><a href="#AnnotationReference">S2Container Annotation Reference</a>
                 <ul>
                   <li><a href="#ComponentAnnotation">Component Annotation</a></li>
-				  <li><a href="#StatelessAnnotation">Stateless Annotation(EJB3)</a></li>
-				  <li><a href="#StatefulAnnotation">Stateful Annotation(EJB3)</a></li>
 				  <li><a href="#BindingAnnotation">Binding Annotation</a></li>
-				  <li><a href="#EJBAnnotation">EJB Annotation(EJB3)</a></li>
 				  <li><a href="#AspectAnnotation">Aspect Annotation</a></li>
 				  <li><a href="#InterTypeAnnotation">InterType Annotation</a></li>
 				  <li><a href="#InitMethodAnnotation">InitMethod Annotation</a></li>
@@ -1818,8 +1815,9 @@ public static final String DESTROY_METHOD = "destroy";
 </pre>
 
 
-<h2><a name="EJB3AnnotationReference">EJB3アノテーションリファレンス</a></h2>
-<p>S2Containerでは、EJB 3.0 Simplified APIのアノテーションもサポートしています。EJB3アノテーションを利用するにはJava5(Tiger)が必要です。</p>
+<h2><a name="EJB3AnnotationReference">EJB3 Annotation Reference</a></h2>
+<p>S2Container supports EJB 3.0 Simplified API.
+We need Java5 in order to use the EJB3 annotation.</p>
 
 <h3><a name="StatelessAnnotation">Stateless Annotaion</a></h3>
 <p>We can define a stateless session bean using Stateless annnotaion.</p>
@@ -1867,12 +1865,12 @@ public void setBbb(Bbb bbb) {
 }
 </pre>
 
-<h3><a name="PostConstructAnnotation">PostConstructアノテーション</a></h3>
+<h3><a name="PostConstructAnnotation">PostConstruct Annotation</a></h3>
 <p>
-PostConstructアノテーションにより、インスタンス生成～DIの後に呼び出されるメソッドを指定することができます。<br>
+We can specify the method invoked after an instance creation and DI using the PostConstruct annotation.<br>
 PostConstructアノテーションを付けることができるメソッドは非<code>static</code>、非<code>final</code>で引数がなく、戻り値型が<code>void</code>でなければなりません。メソッド名および可視性は任意です。
 </p>
-<p>Tigerアノテーションは以下のようになります。</p>
+<p>Tiger annotation is as follows.</p>
 <pre>
 @Stateless
 public class Xxx {
@@ -1884,12 +1882,12 @@ public class Xxx {
 }
 </pre>
 
-<h3><a name="TransactionManagementAnnotation">TransactionManagementアノテーション</a></h3>
+<h3><a name="TransactionManagementAnnotation">TransactionManagement Annotation</a></h3>
 <p>
 TransactionManagementアノテーションにより、コンテナ管理トランザクション(CMT)とBean管理トランザクション(BMT)を使い分けることができます。<br>
 デフォルトはCMTであるため、CMTを使用する場合はTransactionManagementアノテーションを明示する必要はありません。
 </p>
-<p>Tigerアノテーションは以下のようになります。</p>
+<p>Tiger annotation is as follows.</p>
 <pre>
 @Stateless
 @TransactionManagement(TransactionManagementType.BEAN)
@@ -1898,13 +1896,13 @@ public class Xxx {
 }
 </pre>
 
-<h3><a name="TransactionAttributeAnnotation">TransactionAttributeアノテーション</a></h3>
+<h3><a name="TransactionAttributeAnnotation">TransactionAttribute Annotation</a></h3>
 <p>
 TransactionAttributeアノテーションにより、ビジネスメソッドのトランザクション属性を設定することができます。この指定が有効なのは、CMTの場合のみです。<br>
 クラスにTransactionAttributeアノテーションを付けることにより、そのクラスのビジネスメソッド全体のトランザクション属性を設定することができます。指定しなかった場合のデフォルトはREQUIREDです。<br>
 メソッドにTransactionAttributeアノテーションを付けることにより、そのビジネスメソッドのトランザクション属性を設定することができます。指定しなかった場合のデフォルトはクラスに付けられたトランザクション属性です。<br>
 </p>
-<p>Tigerアノテーションは以下のようになります。</p>
+<p>Tiger annotation is as follows.</p>
 <pre>
 @Stateless
 @TransactionAttribute(TransactionAttributeType.MANDATRY)
@@ -1916,13 +1914,13 @@ public class Xxx {
 }
 </pre>
 
-<h3><a name="AroundInvokeAnnotation">AroundInvokeアノテーション</a></h3>
+<h3><a name="AroundInvokeAnnotation">AroundInvoke Annotation</a></h3>
 <p>
 AroundInvokeアノテーションにより、ビジネスメソッドの呼び出しをインターセプトすることができます。<br>
 AroundInvokeアノテーションを付けることができるメソッドは非<code>static</code>、非<code>final</code>で引数は<code>javax.interceptor.InvocationContext</code>型一つだけ、戻り値型は<code>void</code>でなければなりません。メソッドの名前や可視性は任意です。<br>
 クラスで一つのメソッドにだけAroundInvokeアノテーションを付けることができます。
 </p>
-<p>Tigerアノテーションは以下のようになります。</p>
+<p>Tiger annotation is as follows.</p>
 <pre>
 @Stateless
 public class Xxx {
