@@ -1868,7 +1868,7 @@ public void setBbb(Bbb bbb) {
 <h3><a name="PostConstructAnnotation">PostConstruct Annotation</a></h3>
 <p>
 We can specify the method invoked after an instance creation and DI using the PostConstruct annotation.<br>
-PostConstructアノテーションを付けることができるメソッドは非<code>static</code>、非<code>final</code>で引数がなく、戻り値型が<code>void</code>でなければなりません。メソッド名および可視性は任意です。
+The method with the PostConstructor annotation must be no static, no final, no arguments, and its return type must be void.
 </p>
 <p>Tiger annotation is as follows.</p>
 <pre>
@@ -1884,8 +1884,8 @@ public class Xxx {
 
 <h3><a name="TransactionManagementAnnotation">TransactionManagement Annotation</a></h3>
 <p>
-TransactionManagementアノテーションにより、コンテナ管理トランザクション(CMT)とBean管理トランザクション(BMT)を使い分けることができます。<br>
-デフォルトはCMTであるため、CMTを使用する場合はTransactionManagementアノテーションを明示する必要はありません。
+We can use "Container Management Transaction(CMT)" and "Bean Management Transaction(BMT)" using the TransactionManagement annotation.
+The default is CMT, therefore we don't need to specify the TransactionManagement annotation using CMT.
 </p>
 <p>Tiger annotation is as follows.</p>
 <pre>
@@ -1898,10 +1898,12 @@ public class Xxx {
 
 <h3><a name="TransactionAttributeAnnotation">TransactionAttribute Annotation</a></h3>
 <p>
-TransactionAttributeアノテーションにより、ビジネスメソッドのトランザクション属性を設定することができます。この指定が有効なのは、CMTの場合のみです。<br>
-クラスにTransactionAttributeアノテーションを付けることにより、そのクラスのビジネスメソッド全体のトランザクション属性を設定することができます。指定しなかった場合のデフォルトはREQUIREDです。<br>
-メソッドにTransactionAttributeアノテーションを付けることにより、そのビジネスメソッドのトランザクション属性を設定することができます。指定しなかった場合のデフォルトはクラスに付けられたトランザクション属性です。<br>
-</p>
+If we use CMT, we can specify transaction attribute for business method using the TransactionAttribute annotation.
+The default is REQUIRED.
+If we sepcify the TransactionAttribute annotation for a class,
+we can specify its annotation for all the business methods of the class.
+If we sepcify the TransactionAttribute annotation for a method,
+we can specify its annotation for the business method.</p>
 <p>Tiger annotation is as follows.</p>
 <pre>
 @Stateless
@@ -1916,9 +1918,11 @@ public class Xxx {
 
 <h3><a name="AroundInvokeAnnotation">AroundInvoke Annotation</a></h3>
 <p>
-AroundInvokeアノテーションにより、ビジネスメソッドの呼び出しをインターセプトすることができます。<br>
-AroundInvokeアノテーションを付けることができるメソッドは非<code>static</code>、非<code>final</code>で引数は<code>javax.interceptor.InvocationContext</code>型一つだけ、戻り値型は<code>void</code>でなければなりません。メソッドの名前や可視性は任意です。<br>
-クラスで一つのメソッドにだけAroundInvokeアノテーションを付けることができます。
+We can intercept invocations of business method using the AroundInvoke annotation.
+The method with the AroundInvoke annotation must be no static, no final,
+and the type of argument must be javax.interceptor.InvocationContext,
+and the type of return must be void.
+We can specify the AroundInvoke annotation for only one method.
 </p>
 <p>Tiger annotation is as follows.</p>
 <pre>
