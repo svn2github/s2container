@@ -95,17 +95,6 @@
 				  <li><a href="#DestroyMethodAnnotation">DestroyMethodアノテーション</a></li>
                 </ul>
               </li>
-              <li><a href="#EJB3AnnotationReference">EJB3アノテーションリファレンス</a>
-                <ul>
-				  <li><a href="#StatelessAnnotation">Statelessアノテーション</a></li>
-				  <li><a href="#StatefulAnnotation">Statefulアノテーション</a></li>
-				  <li><a href="#EJBAnnotation">EJBアノテーション</a></li>
-                  <li><a href="#PostConstructAnnotation">PostConstructアノテーション</a></li>
-				  <li><a href="#TransactionManagementAnnotation">TransactionManagementアノテーション</a></li>
-				  <li><a href="#TransactionAttributeAnnotation">TransactionAttributeアノテーション</a></li>
-				  <li><a href="#AroundInvokeAnnotation">AroundInokeアノテーション</a></li>
-                </ul>
-              </li>
               <li><a href="DIContainerExercise.html">DIContainerエクササイズ</a></li>
             </ul>
 
@@ -1676,118 +1665,6 @@ public class Xxx {
 <p>定数アノテーションは以下のようになります。初期化メソッドを複数指定したい場合は､カンマ(,)で区切ってください。</p>
 <pre>
 public static final String DESTROY_METHOD = "destroy";
-</pre>
-
-
-<h2><a name="EJB3AnnotationReference">EJB3アノテーションリファレンス</a></h2>
-<p>S2Containerでは、EJB 3.0 Simplified APIのアノテーションもサポートしています。EJB3アノテーションを利用するにはJava5(Tiger)が必要です。</p>
-
-<h3><a name="StatelessAnnotation">Statelessアノテーション</a></h3>
-<p>Statelessアノテーションを使って、Stateless SessionBeanを定義します。</p>
-<p>Tigerアノテーションは以下のようになります。name属性を省略した場合､
-<a href="#ComponentAutoRegister">コンポーネントの自動登録</a>で使われるAutoNamingの実装クラスによって､
-名前が自動的に決められます。</p>
-<pre>
-@Stateless(name="xxx")
-public class Xxx {
-    ...
-}
-</pre>
-
-<h3><a name="StatefulAnnotation">Statefulアノテーション</a></h3>
-<p>Statefulアノテーションを使って、Stateful SessionBeanを定義します。</p>
-<p>Tigerアノテーションは以下のようになります。name属性を省略した場合､
-<a href="#ComponentAutoRegister">コンポーネントの自動登録</a>で使われるAutoNamingの実装クラスによって､
-名前が自動的に決められます。</p>
-<pre>
-@Stateful(name="xxx")
-public class Xxx {
-    ...
-}
-</pre>
-
-<h3><a name="EJBAnnotation">EJBアノテーション</a></h3>
-<p>EJBアノテーションによって､EJB3コンポーネントを参照することができます。
-Statless、Statefulアノテーションのname属性で付けた名前をbeanName属性に指定することができます。
-beanName属性は､インターフェースを実装したオブジェクトが複数存在する場合にのみ使うようにしてください。
-</p>
-<p>Tigerアノテーションは以下のようになります。</p>
-<pre>
-@EJB
-public void setAaa(Aaa aaa) {
-    ...
-}
-
-@EJB(beanName="bbb2")
-public void setBbb(Bbb bbb) {
-    ...
-}
-</pre>
-
-<h3><a name="PostConstructAnnotation">PostConstructアノテーション</a></h3>
-<p>
-PostConstructアノテーションにより、インスタンス生成～DIの後に呼び出されるメソッドを指定することができます。<br>
-PostConstructアノテーションを付けることができるメソッドは非<code>static</code>、非<code>final</code>で引数がなく、戻り値型が<code>void</code>でなければなりません。メソッド名および可視性は任意です。
-</p>
-<p>Tigerアノテーションは以下のようになります。</p>
-<pre>
-@Stateless
-public class Xxx {
-    ...
-    @PostConstruct
-    private void initialize() {
-        ...
-    }
-}
-</pre>
-
-<h3><a name="TransactionManagementAnnotation">TransactionManagementアノテーション</a></h3>
-<p>
-TransactionManagementアノテーションにより、コンテナ管理トランザクション(CMT)とBean管理トランザクション(BMT)を使い分けることができます。<br>
-デフォルトはCMTであるため、CMTを使用する場合はTransactionManagementアノテーションを明示する必要はありません。
-</p>
-<p>Tigerアノテーションは以下のようになります。</p>
-<pre>
-@Stateless
-@TransactionManagement(TransactionManagementType.BEAN)
-public class Xxx {
-    ...
-}
-</pre>
-
-<h3><a name="TransactionAttributeAnnotation">TransactionAttributeアノテーション</a></h3>
-<p>
-TransactionAttributeアノテーションにより、ビジネスメソッドのトランザクション属性を設定することができます。この指定が有効なのは、CMTの場合のみです。<br>
-クラスにTransactionAttributeアノテーションを付けることにより、そのクラスのビジネスメソッド全体のトランザクション属性を設定することができます。指定しなかった場合のデフォルトはREQUIREDです。<br>
-メソッドにTransactionAttributeアノテーションを付けることにより、そのビジネスメソッドのトランザクション属性を設定することができます。指定しなかった場合のデフォルトはクラスに付けられたトランザクション属性です。<br>
-</p>
-<p>Tigerアノテーションは以下のようになります。</p>
-<pre>
-@Stateless
-@TransactionAttribute(TransactionAttributeType.MANDATRY)
-public class Xxx {
-    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-    public void someMethod() {
-        ...
-    }
-}
-</pre>
-
-<h3><a name="AroundInvokeAnnotation">AroundInvokeアノテーション</a></h3>
-<p>
-AroundInvokeアノテーションにより、ビジネスメソッドの呼び出しをインターセプトすることができます。<br>
-AroundInvokeアノテーションを付けることができるメソッドは非<code>static</code>、非<code>final</code>で引数は<code>javax.interceptor.InvocationContext</code>型一つだけ、戻り値型は<code>void</code>でなければなりません。メソッドの名前や可視性は任意です。<br>
-クラスで一つのメソッドにだけAroundInvokeアノテーションを付けることができます。
-</p>
-<p>Tigerアノテーションは以下のようになります。</p>
-<pre>
-@Stateless
-public class Xxx {
-    @AroundInvoke
-    void invoke(InvocationContext context) throws Exception {
-        ...
-    }
-}
 </pre>
 
 <!-- document end -->
