@@ -67,6 +67,7 @@
 				  <li><a href="#Request">Auto-binding of Requests</a></li>
 				  <li><a href="#ComponentAutoRegister">Component Auto-registration</a></li>
 				  <li><a href="#AspectAutoRegister">Aspect Auto-registration</a></li>
+				  <li><a href="#MetaAutoRegister">Meta Auto-registration</a></li>
 				  <li><a href="#Hotswap">Hotswap</a></li>
                 </ul>
               </li>
@@ -1001,6 +1002,7 @@ Fine control can be exerted using <a href="#AnnotationReference">annotation</a>.
 Taking this a step further is component auto-registration.</p>
 
 <h5><a name="FileSystemComponentAutoRegister">org.seasar.framework.container.autoregister.FileSystemComponentAutoRegister</a></h5>
+<p>ファイルシステムからクラスを検索としてコンポーネントを自動登録するコンポーネントです。</p>
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
 <th>property</th>
@@ -1041,6 +1043,7 @@ One may use regular expressions, and multiple entries can be separated by commas
 </tr>
 </table>
 <h5><a name="JarComponentAutoRegister">org.seasar.framework.container.autoregister.JarComponentAutoRegister</a></h5>
+<p>Jarファイルの中からクラスを検索としてコンポーネントを自動登録するコンポーネントです。</p>
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
 <th>property</th>
@@ -1092,8 +1095,8 @@ One may use regular expressions, and multiple entries can be separated by commas
 </table>
 
 <h5><a name="aComponentAutoRegister">org.seasar.framework.container.autoregister.ComponentAutoRegister</a></h5>
+<p>ファイルシステムまたはJarファイルからクラスを検索としてコンポーネントを自動登録するコンポーネントです。</p>
 <table border="1">
-
 <tr bgcolor="#d1f3f4" align="center">
 <th>property</th>
 <th>Description</th>
@@ -1108,11 +1111,9 @@ One may use regular expressions, and multiple entries can be separated by commas
 <td>Component to automatically name components from class name.
 Requires implementation of org.seasar.framework.container.autoregister.AutoNaming interface.</td>
 </tr>
-
 </table>
 <br />
 <table border="1">
-
 <tr bgcolor="#d1f3f4" align="center">
 <th>method</th>
 <th>Description</th>
@@ -1137,7 +1138,6 @@ Child packages are searched recursively.
 The second argument is class name.
 One may use regular expressions, and multiple entries can be separated by commas.</td>
 </tr>
-
 </table>
 <br />
 <p>AutoNaming automatially names components.</p>
@@ -1151,12 +1151,9 @@ One may use regular expressions, and multiple entries can be separated by commas
 <td><code>decapitalize</code></td>
 <td>Set to true in order to decapitalize component name. Default value is true.</td>
 </tr>
-
-
 </table>
 <br>
 <table border="1">
-
 <tr bgcolor="#d1f3f4" align="center">
 <th>method</th>
 <th>Deccription</th>
@@ -1182,10 +1179,8 @@ The second argument is the replacement value.</td>
 <td><code>clearReplaceRule</code></td>
 <td>The replacement rules that are added by setCustomizedName, addIgnoreClassSuffix and addReplaceRuleare method are cleared.</td>
 </tr>
-
 </table>
 <h5><a name="QualifiedAutoNaming">org.seasar.framework.container.autoregister.QualifiedAutoNaming</a></h5>
-
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
 <th>property</th>
@@ -1195,13 +1190,9 @@ The second argument is the replacement value.</td>
 <td><code>decapitalize</code></td>
 <td>Set to true in order to decapitalize component name. Default value is true.</td>
 </tr>
-
-
-
 </table>
 <br>
 <table border="1">
-
 <tr bgcolor="#d1f3f4" align="center">
 <th>method</th>
 <th>Description</th>
@@ -1231,9 +1222,7 @@ The second argument is the replacement value.</td>
 <td><code>clearReplaceRule</code></td>
 <td>The replacement rules that are added by setCustomizedName, addIgnoreClassSuffix and addReplaceRuleare method are cleared.</td>
 </tr>
-
 </table>
-<br />
 <h5>Example</h5>
 <pre>
 &lt;component
@@ -1280,7 +1269,31 @@ The second argument is the replacement value.</td>
 
 <h3><a name="AspectAutoRegister">Aspect auto-registration</a></h3>
 <p>Component registration is automated by <a href="#ComponentAutoRegister">component auto-registration</a>.
-Taking this a step further is the automation of aspect auto-registration.</p>
+Taking this a step further is the automation of aspect auto-registration.
+<p>
+コンポーネントの自動登録と組み合わせる場合は､コンポーネントの自動登録の設定よりも後に、アスペクトの自動登録の設定を記述する必要があります。
+アスペクトを適用されるコンポーネントは、アスペクトの自動登録の設定よりも後に記述する必要があります。
+</p>
+<pre>
+&lt;components&gt;
+    &lt;!-- 1.コンポーネントの自動登録 --&gt;
+    &lt;component class=&quot;org.seasar.framework.container.autoregister.ComponentAutoRegister&quot;&gt;
+        ...
+    &lt;/component&gt;
+
+    &lt;!-- 2.アスペクトの自動登録 --&gt;
+    &lt;component class=&quot;org.seasar.framework.container.autoregister.AspectAutoRegister&quot;&gt;
+        ...
+    &lt;/component&gt;
+
+    &lt;!-- 3.その他のコンポーネント --&gt;
+    &lt;component class=&quot;...&quot;&gt;
+        ...
+    &lt;/component&gt;
+    ...
+&lt;components&gt;
+</pre>
+
 <h5>org.seasar.framework.container.autoregister.AspectAutoRegister</h5>
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
@@ -1298,7 +1311,6 @@ When pointcut is not specified, all interfaces implemented methods in component 
 Regular expressions (JDK1.4 regex) may be used for method names.</td>
 </tr>
 </table>
-<br />
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
 <th>method</th>
@@ -1313,7 +1325,6 @@ Regular expressions (JDK1.4 regex) may be used for method names.</td>
 <td>Class patterns to be ignored by auto-registration are registered. The first argument is the component package name. Child packages are searched recursively. The second argument is class name. One may use regular expressions, and multiple entries can be separated by commas.</td>
 </tr>
 </table>
-<br />
 <h5>Example</h5>
 <pre>&lt;include path=&quot;aop.dicon&quot;/&gt;
 ...
@@ -1335,15 +1346,73 @@ Regular expressions (JDK1.4 regex) may be used for method names.</td>
 <td>The components implementing target interface are applied above interceptor.</td>
 </tr>
 </table>
-<br />
-
-<br />
 <h5>Example</h5>
 <pre>&lt;include path=&quot;aop.dicon&quot;/&gt;
 ...
 &lt;component<br>  class=&quot;org.seasar.framework.container.autoregister.InterfaceAspectAutoRegister&quot;&gt;<br>    &lt;property name=&quot;interceptor&quot;&gt;aop.traceInterceptor&lt;/property&gt;
     &lt;property name=&quot;targetInterface&quot;&gt;@examples.Greeing@class&lt;/property&gt;<br>&lt;/component&gt;
 </pre>
+
+
+<h3><a name="MetaAutoRegister">Meta auto-registration</a></h3>
+<p>メタデータも自動登録することができます。</p>
+<p>
+コンポーネントの自動登録と組み合わせる場合は､コンポーネントの自動登録の設定よりも後に、メタデータの自動登録の設定を記述する必要があります。
+メタデータを参照するコンポーネントは、メタデータの自動登録の設定よりも後に記述する必要があります。
+</p>
+<pre>
+&lt;components&gt;
+    &lt;!-- 1.コンポーネントの自動登録 --&gt;
+    &lt;component class=&quot;org.seasar.framework.container.autoregister.ComponentAutoRegister&quot;&gt;
+        ...
+    &lt;/component&gt;
+
+    &lt;!-- 2.メタデータの自動登録 --&gt;
+    &lt;component class=&quot;org.seasar.framework.container.autoregister.MetaAutoRegister&quot;&gt;
+        ...
+    &lt;/component&gt;
+
+    &lt;!-- 3.その他のコンポーネント --&gt;
+    &lt;component class=&quot;...&quot;&gt;
+        ...
+    &lt;/component&gt;
+    ...
+&lt;components&gt;
+</pre>
+
+<h5>org.seasar.framework.container.autoregister.MetaAutoRegister</h5>
+<p>
+クラス名のパターンを指定してメタデータを自動登録するコンポーネントです。<br>
+自動登録されるメタデータは、このコンポーネント自身の定義にautoRegisterという名前を持つメタデータの子として記述します。
+</p>
+<table border="1">
+<tr bgcolor="#d1f3f4" align="center">
+<th>method</th>
+<th>Description</th>
+</tr>
+<tr>
+<td><code>addClassPattern</code></td>
+<td>A class pattern to be auto-registered is registered. The first argument is the component package name. Child packages are searched recursively. The second argument is class name. One may use regular expressions, and multiple entries can be separated by commas.</td>
+</tr>
+<tr>
+<td><code>addIgnoreClassPattern</code></td>
+<td>Class patterns to be ignored by auto-registration are registered. The first argument is the component package name. Child packages are searched recursively. The second argument is class name. One may use regular expressions, and multiple entries can be separated by commas.</td>
+</tr>
+</table>
+<h5>Example</h5>
+<pre>
+&lt;component
+  class=&quot;org.seasar.framework.container.autoregister.MetaAutoRegister&quot;&gt;
+    &lt;meta name=&quot;autoRegister&quot;&gt;
+        &lt;meta name=&quot;hoge&quot;&lt;/meta&gt;
+    &lt;/meta&gt;
+    &lt;initMethod name=&quot;addClassPattern&quot;&gt;
+        &lt;arg&gt;&quot;examples.di.impl&quot;&lt;/arg&gt;
+        &lt;arg&gt;&quot;.*Impl&quot;&lt;/arg&gt;
+    &lt;/initMethod&gt;
+&lt;/component&gt;
+</pre>
+<p>この例では、hogeという名前のメタデータが他のコンポーネント定義に自動登録されます。</p>
 
 <h3><a name="Hotswap">Hotswap</a></h3>
 <p>Seasar2 realizes <b>Hotswap</b>, then let's try.</p>

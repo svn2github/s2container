@@ -65,6 +65,7 @@
                   <li><a href="#Request">Requestの自動バインディング</a></li>
                   <li><a href="#ComponentAutoRegister">コンポーネントの自動登録</a></li>
                   <li><a href="#AspectAutoRegister">アスペクトの自動登録</a></li>
+                  <li><a href="#MetaAutoRegister">メタデータの自動登録</a></li>
                   <li><a href="#Hotswap">Hotswap</a></li>
                 </ul>
               </li>
@@ -899,12 +900,14 @@ END java.util.Date#getTime() : 0
 </pre>
 <p>同様にHttpServletResponse、HttpSession、ServletContextもsetterメソッドを定義するだけで、自動バインディングすることが出来ます。また、S2ContainerFilterを使うと、HttpServletRequest、HttpServletResponse、HttpSession、ServletContextをそれぞれrequest、response、session、applicationという名前のコンポーネントとしてアクセスできるようになります。</p>
 
+
 <h3><a name="ComponentAutoRegister">コンポーネントの自動登録</a></h3>
 <p><a href="#AutoBindingMode">自動バインディング</a>により、DIの設定はほぼ自動化できます。
 <a href="#AnnotationReference">アノテーション</a>を使って細かく制御することも可能です。
 さらに、コンポーネントの登録も自動化してしまおうというのが、コンポーネントの自動登録機能です。</p>
 
 <h5><a name="FileSystemComponentAutoRegister">org.seasar.framework.container.autoregister.FileSystemComponentAutoRegister</a></h5>
+<p>ファイルシステムからクラスを検索としてコンポーネントを自動登録するコンポーネントです。</p>
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
 <th>プロパティ</th>
@@ -937,6 +940,7 @@ END java.util.Date#getTime() : 0
 </tr>
 </table>
 <h5><a name="JarComponentAutoRegister">org.seasar.framework.container.autoregister.JarComponentAutoRegister</a></h5>
+<p>Jarファイルの中からクラスを検索としてコンポーネントを自動登録するコンポーネントです。</p>
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
 <th>プロパティ</th>
@@ -977,6 +981,7 @@ END java.util.Date#getTime() : 0
 </tr>
 </table>
 <h5><a name="aComponentAutoRegister">org.seasar.framework.container.autoregister.ComponentAutoRegister</a></h5>
+<p>ファイルシステムまたはJarファイルからクラスを検索としてコンポーネントを自動登録するコンポーネントです。</p>
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
 <th>プロパティ</th>
@@ -1011,13 +1016,13 @@ END java.util.Date#getTime() : 0
 </tr>
 </table>
 <br />
+<h4>AutoNaming</h4>
 <p>コンポーネントの名前はAutoNamingにより制御します。</p>
 <h5><a name="DefaultAutoNaming">org.seasar.framework.container.autoregister.DefaultAutoNaming</a></h5>
 <p>クラスの完全修飾名からパッケージ部分を除き、最後がImplまたはBeanで終わっていたら削除し､
 先頭を小文字にした名前をコンポーネントの名前に設定します。
 例えば､aaa.HogeImplクラスの場合､コンポーネント名は､hogeになります。</p>
 <table border="1">
-
 <tr bgcolor="#d1f3f4" align="center">
 <th>プロパティ</th>
 <th>説明</th>
@@ -1026,7 +1031,6 @@ END java.util.Date#getTime() : 0
 <td><code>decapitalize</code></td>
 <td>コンポーネント名の先頭を小文字にする場合はtrueを指定します。デフォルトはtrueです。</td>
 </tr>
-
 </table>
 <br>
 <table border="1">
@@ -1052,6 +1056,7 @@ END java.util.Date#getTime() : 0
 <td>setCustomizedName、addIgnoreClassSuffix、addReplaceRuleで登録した変換規則をクリアします。デフォルトで登録されているImplおよびBeanもクリアされます。</td>
 </tr>
 </table>
+
 <h5><a name="QualifiedAutoNaming">org.seasar.framework.container.autoregister.QualifiedAutoNaming</a></h5>
 <p>パッケージ名またはその一部で修飾されたクラス名をコンポーネントの名前に設定します。
 クラスの完全修飾名から最後がImplまたはBeanで終わっていたら削除し､
@@ -1059,8 +1064,6 @@ END java.util.Date#getTime() : 0
 パッケージの先頭部分から不要な部分を削除することができます。<br>
 例えば､aaa.bbb.ccc.ddd.HogeImplクラスの場合で､先頭のaaa.bbbを削除するように指定した場合のコンポーネント名は､cccDddHogeになります。</p>
 <table border="1">
-
-
 <tr bgcolor="#d1f3f4" align="center">
 <th>プロパティ</th>
 <th>説明</th>
@@ -1069,8 +1072,6 @@ END java.util.Date#getTime() : 0
 <td><code>decapitalize</code></td>
 <td>コンポーネント名の先頭を小文字にする場合はtrueを指定します。デフォルトはtrueです。</td>
 </tr>
-
-
 </table>
 <br>
 <table border="1">
@@ -1100,7 +1101,7 @@ END java.util.Date#getTime() : 0
 <td>setCustomizedName、addIgnorePackagePrefix、addIgnoreClassSuffix、addReplaceRuleで登録した変換規則をクリアします。デフォルトで登録されているImplおよびBeanもクリアされます。</td>
 </tr>
 </table>
-<br />
+
 <h5>例</h5>
 <pre>
 &lt;component
@@ -1148,9 +1149,34 @@ END java.util.Date#getTime() : 0
 <h3><a name="AspectAutoRegister">アスペクトの自動登録</a></h3>
 <p><a href="#ComponentAutoRegister">コンポーネントの自動登録</a>により、コンポーネントの登録は自動化できます。
 さらに、アスペクトの登録も自動化してしまおうというのが、アスペクトの自動登録機能です。
-コンポーネントの自動登録と組み合わせる場合は､
-コンポーネントの自動登録の設定よりも後に、アスペクトの自動登録の設定を記述する必要があります。</p>
+</p>
+<p>
+コンポーネントの自動登録と組み合わせる場合は､コンポーネントの自動登録の設定よりも後に、アスペクトの自動登録の設定を記述する必要があります。
+アスペクトを適用されるコンポーネントは、アスペクトの自動登録の設定よりも後に記述する必要があります。
+</p>
+<pre>
+&lt;components&gt;
+    &lt;!-- 1.コンポーネントの自動登録 --&gt;
+    &lt;component class=&quot;org.seasar.framework.container.autoregister.ComponentAutoRegister&quot;&gt;
+        ...
+    &lt;/component&gt;
+
+    &lt;!-- 2.アスペクトの自動登録 --&gt;
+    &lt;component class=&quot;org.seasar.framework.container.autoregister.AspectAutoRegister&quot;&gt;
+        ...
+    &lt;/component&gt;
+
+    &lt;!-- 3.その他のコンポーネント --&gt;
+    &lt;component class=&quot;...&quot;&gt;
+        ...
+    &lt;/component&gt;
+    ...
+&lt;components&gt;
+</pre>
+
+
 <h5>org.seasar.framework.container.autoregister.AspectAutoRegister</h5>
+<p>クラス名のパターンを指定してアスペクトを自動登録するコンポーネントです。</p>
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
 <th>プロパティ</th>
@@ -1188,6 +1214,7 @@ END java.util.Date#getTime() : 0
 </pre>
 
 <h5><a name="InterfaceAspectAutoRegister">org.seasar.framework.container.autoregister.InterfaceAspectAutoRegister</a></h5>
+<p>あるインタフェースを実装したクラスに対してアスペクトを自動登録するコンポーネントです。</p>
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
 <th>プロパティ</th>
@@ -1202,15 +1229,73 @@ END java.util.Date#getTime() : 0
 <td> 指定したインターフェースを実装しているコンポーネントに対して､アスペクトを適用します。 </td>
 </tr>
 </table>
-<br />
 
-<br />
 <h5>例</h5>
 <pre>&lt;include path=&quot;aop.dicon&quot;/&gt;
 ...
 &lt;component<br>  class=&quot;org.seasar.framework.container.autoregister.InterfaceAspectAutoRegister&quot;&gt;<br>    &lt;property name=&quot;interceptor&quot;&gt;aop.traceInterceptor&lt;/property&gt;
     &lt;property name=&quot;targetInterface&quot;&gt;@examples.Greeing@class&lt;/property&gt;<br>&lt;/component&gt;
 </pre>
+
+<h3><a name="MetaAutoRegister">メタデータの自動登録</a></h3>
+<p>メタデータも自動登録することができます。</p>
+<p>
+コンポーネントの自動登録と組み合わせる場合は､コンポーネントの自動登録の設定よりも後に、メタデータの自動登録の設定を記述する必要があります。
+メタデータを参照するコンポーネントは、メタデータの自動登録の設定よりも後に記述する必要があります。
+</p>
+<pre>
+&lt;components&gt;
+    &lt;!-- 1.コンポーネントの自動登録 --&gt;
+    &lt;component class=&quot;org.seasar.framework.container.autoregister.ComponentAutoRegister&quot;&gt;
+        ...
+    &lt;/component&gt;
+
+    &lt;!-- 2.メタデータの自動登録 --&gt;
+    &lt;component class=&quot;org.seasar.framework.container.autoregister.MetaAutoRegister&quot;&gt;
+        ...
+    &lt;/component&gt;
+
+    &lt;!-- 3.その他のコンポーネント --&gt;
+    &lt;component class=&quot;...&quot;&gt;
+        ...
+    &lt;/component&gt;
+    ...
+&lt;components&gt;
+</pre>
+
+<h5>org.seasar.framework.container.autoregister.MetaAutoRegister</h5>
+<p>
+クラス名のパターンを指定してメタデータを自動登録するコンポーネントです。<br>
+自動登録されるメタデータは、このコンポーネント自身の定義にautoRegisterという名前を持つメタデータの子として記述します。
+</p>
+<table border="1">
+<tr bgcolor="#d1f3f4" align="center">
+<th>メソッド</th>
+<th>説明</th>
+</tr>
+<tr>
+<td><code>addClassPattern</code></td>
+<td>自動登録したいクラスパターンを登録します。最初の引数は､コンポーネントのパッケージ名です。子供のパッケージも再帰的に検索します。2番目の引数は､クラス名です。正規表現が使えます。「,」区切りで複数記述することもできます。</td>
+</tr>
+<tr>
+<td><code>addIgnoreClassPattern</code></td>
+<td>自動登録したくないクラスパターンを登録します。最初の引数は､コンポーネントのパッケージ名です。子供のパッケージも再帰的に検索します。2番目の引数は､クラス名です。正規表現が使えます。「,」区切りで複数記述することもできます。</td>
+</tr>
+</table>
+<h5>例</h5>
+<pre>
+&lt;component
+  class=&quot;org.seasar.framework.container.autoregister.MetaAutoRegister&quot;&gt;
+    &lt;meta name=&quot;autoRegister&quot;&gt;
+        &lt;meta name=&quot;hoge&quot;&lt;/meta&gt;
+    &lt;/meta&gt;
+    &lt;initMethod name=&quot;addClassPattern&quot;&gt;
+        &lt;arg&gt;&quot;examples.di.impl&quot;&lt;/arg&gt;
+        &lt;arg&gt;&quot;.*Impl&quot;&lt;/arg&gt;
+    &lt;/initMethod&gt;
+&lt;/component&gt;
+</pre>
+<p>この例では、hogeという名前のメタデータが他のコンポーネント定義に自動登録されます。</p>
 
 <h3><a name="Hotswap">Hotswap</a></h3>
 <p>従来、ソースコードを書き換えてコンパイルした場合､コンパイル後の機能を試すためには､
