@@ -101,7 +101,7 @@
 
 
 <h2><a name="Quickstart">Quickstart</a></h2>
-<p>S2Container is a light weight container for Dependency Injection (DI) operations. DI is an idea to separate the interface and implementation, to communicate with each other through the interface.</p>
+<p>Seasar2 is a light weight container for Dependency Injection (DI) operations.</p>
 
 <h3><a name="FirstStep">First Step</a></h3>
 <p>Let us give this a try. The following objects will be used.</p>
@@ -127,7 +127,7 @@
 
 </ul>
 <h5>Greeting.java</h5>
-<p>Greeting Interface.</p>
+<p>Greeting interface.</p>
 <pre>
 package examples.di;
 
@@ -164,7 +164,7 @@ public interface GreetingClient {
 </pre>
 
 <h5>GreetingClientImpl.java</h5>
-<p>Client implementation to use greeting. Instead of using Greeting Implementation (GreetingImpl) directly, the interface (Greeting) will be used. </p>
+<p>Client implementation to use the greeting. Instead of using Greeting Implementation (GreetingImpl) directly, the interface (Greeting) will be used. </p>
 <pre>
 package examples.di.impl;
 
@@ -370,7 +370,7 @@ they follow the DI convention of defining property type by interface.</p>
 <pre>&lt;component name=&quot;greetingClient&quot;<br>    class=&quot;examples.di.impl.GreetingClientImpl&quot;&gt;<br>&lt;/component&gt;
 </pre>
 
-<p>Actually, �gConvention over Configuration? is used in the AOP example from earlier.
+<p>Actually, "Convention over Configuration" is used in the AOP example from earlier.
 Normally, where (or which method) the AOP module is applied is defined in pointcut.
 All methods defined by interface have the AOP module applied without the use of pointcut in <a href="aop.html">S2AOP</a>
 as long as they follow the convention of using interface.
@@ -1002,7 +1002,8 @@ Fine control can be exerted using <a href="#AnnotationReference">annotation</a>.
 Taking this a step further is component auto-registration.</p>
 
 <h5><a name="FileSystemComponentAutoRegister">org.seasar.framework.container.autoregister.FileSystemComponentAutoRegister</a></h5>
-<p>ファイルシステムからクラスを検索としてコンポーネントを自動登録するコンポーネントです。</p>
+<p>When we use FileSystemComponentAutoRegister,
+components will be searched in the file system, and will be automatically registered.</p>
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
 <th>property</th>
@@ -1043,7 +1044,8 @@ One may use regular expressions, and multiple entries can be separated by commas
 </tr>
 </table>
 <h5><a name="JarComponentAutoRegister">org.seasar.framework.container.autoregister.JarComponentAutoRegister</a></h5>
-<p>Jarファイルの中からクラスを検索としてコンポーネントを自動登録するコンポーネントです。</p>
+<p>When we use JarComponentAutoRegister,
+components will be searched in the jar file, and will be automatically registered.</p>
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
 <th>property</th>
@@ -1095,7 +1097,9 @@ One may use regular expressions, and multiple entries can be separated by commas
 </table>
 
 <h5><a name="aComponentAutoRegister">org.seasar.framework.container.autoregister.ComponentAutoRegister</a></h5>
-<p>ファイルシステムまたはJarファイルからクラスを検索としてコンポーネントを自動登録するコンポーネントです。</p>
+<p>When we use ComponentAutoRegister,
+components will be searched in the file system or the jar file, and will be automatically registered.
+</p>
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
 <th>property</th>
@@ -1271,22 +1275,23 @@ The second argument is the replacement value.</td>
 <p>Component registration is automated by <a href="#ComponentAutoRegister">component auto-registration</a>.
 Taking this a step further is the automation of aspect auto-registration.
 <p>
-コンポーネントの自動登録と組み合わせる場合は､コンポーネントの自動登録の設定よりも後に、アスペクトの自動登録の設定を記述する必要があります。
-アスペクトを適用されるコンポーネントは、アスペクトの自動登録の設定よりも後に記述する必要があります。
+When we combine aspect auto-registration and component auto-registration,
+we need to write the aspect auto-registration configuration after component auto-registration configuration.
+The components manually registered are to be written after aspect auto-registeration configuration.
 </p>
 <pre>
 &lt;components&gt;
-    &lt;!-- 1.コンポーネントの自動登録 --&gt;
+    &lt;!-- 1.component auto-registration --&gt;
     &lt;component class=&quot;org.seasar.framework.container.autoregister.ComponentAutoRegister&quot;&gt;
         ...
     &lt;/component&gt;
 
-    &lt;!-- 2.アスペクトの自動登録 --&gt;
+    &lt;!-- 2.aspect auto-registration --&gt;
     &lt;component class=&quot;org.seasar.framework.container.autoregister.AspectAutoRegister&quot;&gt;
         ...
     &lt;/component&gt;
 
-    &lt;!-- 3.その他のコンポーネント --&gt;
+    &lt;!-- 3.component manually-registration --&gt;
     &lt;component class=&quot;...&quot;&gt;
         ...
     &lt;/component&gt;
@@ -1355,24 +1360,25 @@ Regular expressions (JDK1.4 regex) may be used for method names.</td>
 
 
 <h3><a name="MetaAutoRegister">Meta auto-registration</a></h3>
-<p>メタデータも自動登録することができます。</p>
+<p>We can automatically register meta data.</p>
 <p>
-コンポーネントの自動登録と組み合わせる場合は､コンポーネントの自動登録の設定よりも後に、メタデータの自動登録の設定を記述する必要があります。
-メタデータを参照するコンポーネントは、メタデータの自動登録の設定よりも後に記述する必要があります。
+When we combine meta auto-registration and component auto-registration,
+we need to write the meta auto-registration configuration after component auto-registration configuration.
+The components manually registered are to be written after meta auto-registeration configuration.
 </p>
 <pre>
 &lt;components&gt;
-    &lt;!-- 1.コンポーネントの自動登録 --&gt;
+    &lt;!-- 1.component auto-registration --&gt;
     &lt;component class=&quot;org.seasar.framework.container.autoregister.ComponentAutoRegister&quot;&gt;
         ...
     &lt;/component&gt;
 
-    &lt;!-- 2.メタデータの自動登録 --&gt;
+    &lt;!-- 2.meta auto-registration --&gt;
     &lt;component class=&quot;org.seasar.framework.container.autoregister.MetaAutoRegister&quot;&gt;
         ...
     &lt;/component&gt;
 
-    &lt;!-- 3.その他のコンポーネント --&gt;
+    &lt;!-- 3.component manually-registration --&gt;
     &lt;component class=&quot;...&quot;&gt;
         ...
     &lt;/component&gt;
@@ -1382,8 +1388,8 @@ Regular expressions (JDK1.4 regex) may be used for method names.</td>
 
 <h5>org.seasar.framework.container.autoregister.MetaAutoRegister</h5>
 <p>
-クラス名のパターンを指定してメタデータを自動登録するコンポーネントです。<br>
-自動登録されるメタデータは、このコンポーネント自身の定義にautoRegisterという名前を持つメタデータの子として記述します。
+MetaAutoRegister is a component in order to automatically register meta data in class name patterns.<br>
+We write the meta data automatially registered to child meta data named "autoRegister".
 </p>
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
@@ -1412,8 +1418,7 @@ Regular expressions (JDK1.4 regex) may be used for method names.</td>
     &lt;/initMethod&gt;
 &lt;/component&gt;
 </pre>
-<p>この例では、hogeという名前のメタデータが他のコンポーネント定義に自動登録されます。</p>
-
+<p>In this sample, we can automatically register the meta data named "hoge".</p>
 <h3><a name="Hotswap">Hotswap</a></h3>
 <p>Seasar2 realizes <b>Hotswap</b>, then let's try.</p>
 <h4>Greeting.java</h4>

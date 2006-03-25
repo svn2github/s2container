@@ -29,6 +29,11 @@
 <!-- don't edit end -->
 <!-- document start -->
             <ul>
+              <li><a href="#Quickstart">Quickstart</a>
+			  <ul>
+				<li><a href="#FirstStep">First step</a>
+              </ul>
+              </li>
               <li><a href="#EJB3AnnotationReference">EJB3 Annotation Reference</a>
                 <ul>
 				  <li><a href="#StatelessAnnotation">Stateless Annotation</a></li>
@@ -43,6 +48,149 @@
                 </ul>
 			  </li>
             </ul>
+
+<h2><a name="QuickStart">Quickstart</a></h2>
+<p>Seasar2 is a light weight container for Dependency Injection (DI) operations,
+and also implements EJB3.</p>
+
+<h3><a name="FirstStep">First Step</a></h3>
+<p>Let us give this a try. The following objects will be used.</p>
+<ul>
+<li>Greeting class
+<ul>
+<li>Returns a greeting string.</li>
+</ul>
+</li>
+
+<li>Greeting Client Class
+<ul>
+<li>Outputs string obtained from the greeting class to console.</li>
+</ul>
+</li>
+
+<li>Greeting Main Class
+<ul>
+<li>Startup Class.
+</li>
+</ul>
+</li>
+</ul>
+<h5>Greeting.java</h5>
+<p>Greeting interface.</p>
+<pre>
+package examples.ejb3;
+
+public interface Greeting {
+
+    String greet();
+}
+</pre>
+
+<h5>GreetingImpl.java</h5>
+<p>Implementation of the greeting.
+We can make a stateless session bean using the <a href="#StatelessAnnotation">Stateless annotation</a>.</p>
+<pre>
+package examples.ejb3.impl;
+
+import javax.ejb.Stateless;
+
+import examples.di.Greeting;
+
+@Stateless
+public class GreetingImpl implements Greeting {
+
+    public String greet() {
+        return "Hello World!";
+    }
+}
+</pre>
+
+<h5>GreetingClient.java</h5>
+<p>Client interface to use the greeting.</p>
+<pre>
+package examples.ejb3;
+
+public interface GreetingClient {
+
+    void execute();
+}
+</pre>
+
+<h5>GreetingClientImpl.java</h5>
+<p>Client implementation to use the greeting.
+We can refer the session bean implementing the greeting interface using the <a href="#EJBAnnotation">EJB annotation</a>.</p>
+<pre>
+package examples.ejb3.impl;
+
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+
+import examples.di.Greeting;
+import examples.di.GreetingClient;
+
+@Stateless
+public class GreetingClientImpl implements GreetingClient {
+
+    @EJB
+    private Greeting greeting;
+    
+    public void execute() {
+        System.out.println(greeting.greet());
+    }
+}</pre>
+
+<h5>GreetingMain.dicon</h5>
+<p>Configration file for EJB3. If we deinfe this content from the beginning,
+it's not necessary to add any information to the configuration file, even if the number of EJB increases.
+Please refer <a href="DIContainer.html#ComponentAutoRegister">component auto-registration</a> in the details.</p>
+<pre>&lt;components&gt;<br>	&lt;include path=&quot;ejb3tx.dicon&quot;/&gt;<br>    &lt;component<br>      class=&quot;org.seasar.framework.container.autoregister.FileSystemComponentAutoRegister&quot;&gt;<br>        &lt;initMethod name=&quot;addClassPattern&quot;&gt;<br>            &lt;arg&gt;&quot;examples.ejb3.impl&quot;&lt;/arg&gt;<br>            &lt;arg&gt;&quot;.*Impl&quot;&lt;/arg&gt;<br>        &lt;/initMethod&gt;<br>    &lt;/component&gt;<br>&lt;/components&gt;
+
+</pre>
+
+<h5>GreetingMain.java</h5>
+<p>The source code to run Seasar2 EJB3 is as follows.
+Please refer <a href="DIContainer.html#S2ContainerCreation">S2Container creation</a> about SingletonS2ContainerFactory.
+Please refer <a href="DIContainer.html#DefaultAutoNaming">DefaultAutoNaming</a>
+about the naming rule in case we don't specify the name property of @EJB.
+</p>
+<pre>
+package examples.ejb3.main;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+
+import org.seasar.framework.container.factory.SingletonS2ContainerFactory;
+
+import examples.di.GreetingClient;
+
+public class GreetingMain {
+
+    private static final String PATH = "examples/ejb3/dicon/GreetingMain.dicon";
+
+    public static void main(String[] args) throws Exception {
+        SingletonS2ContainerFactory.setConfigPath(PATH);
+        SingletonS2ContainerFactory.init();
+        try {
+            doMain(args);
+        } finally {
+            SingletonS2ContainerFactory.destroy();
+        }
+    }
+
+    public static void doMain(String[] args) throws Exception {
+        Context ctx = new InitialContext();
+        GreetingClient greetingClient = (GreetingClient)
+            ctx.lookup("greetingClient");
+        greetingClient.execute();
+    }
+}
+</pre>
+<p>The result will be as follows:</p>
+<pre>
+DEBUG 2006-03-25 18:38:47,892 [main] Transaction began
+Hello World!
+DEBUG 2006-03-25 18:38:47,922 [main] Transaction committed
+</pre>
 
 
 <h2><a name="EJB3AnnotationReference">EJB3 Annotation Reference</a></h2>
@@ -129,10 +277,10 @@ public class Xxx {
 }
 </pre>
 
-<h3><a name="InterceptorsAnnotation">Interceptorsアノテーション</a></h3>
+<h3><a name="InterceptorsAnnotation">Interceptors Annotation</a></h3>
 <p>
-Interceptorsアノテーションにより、ビジネスメソッドの呼び出しやライフサイクルイベントをインターセプトするクラスを複数指定することができます。<br>
-Interceptorsアノテーションはクラスまたはメソッドに付けることができます。
+We can specify several interceptors for the invocation of business methods and the lifecycle methods using the Interceptors annotation.<br>
+We can specify interceptors annotation for class or method.
 </p>
 <pre>
 @Stateless
@@ -146,7 +294,7 @@ public class Xxx {
 }
 </pre>
 
-<h3><a name="ExcludeClassInterceptorsAnnotation">ExcludeClassInterceptorsアノテーション</a></h3>
+<h3><a name="ExcludeClassInterceptorsAnnotation">ExcludeClassInterceptors Annotation</a></h3>
 <p>
 ExcludeClassInterceptorsアノテーションにより、クラスに@Interceptorsアノテーションで指定したインターセプタをメソッドに適用しないことを指定することができます。<br>
 </p>
@@ -194,7 +342,7 @@ public class Yyy {
 <h3><a name="AroundInvokeAnnotation">AroundInvoke Annotation</a></h3>
 <p>
 We can intercept invocations of business method using the AroundInvoke annotation.
-AroundInvokeアノテーションはセッションビーンまたはインターセプタクラスのメソッドに指定することができます。
+We can specify AroundInvoke annotation for a session bean and the method of interceptor.
 The method with the AroundInvoke annotation must be no static, no final,
 and the type of argument must be javax.interceptor.InvocationContext,
 and the type of return must be Object.
