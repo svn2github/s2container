@@ -185,7 +185,7 @@ public class GreetingClientImpl implements GreetingClient {
 }
 </pre>
 
-<p>Both function provider and user is prepared. Let us try running this. </p>
+<p>Both function provider and user are prepared. Let us try running this. </p>
 <h5>GreetingMain.java</h5>
 <pre>
 package examples.di.main;
@@ -210,7 +210,7 @@ Hello World!
 </pre>
 <p>As shown here, the function user (GreetingClientImpl) uses the function through the interface (Greeting),
 a third party (GreetingMain, in this case) provides the implementation object at runtime.
-That is the basic style of DI </p>
+That is the basic style of DI.</p>
 <p>However, if one writes configurations into the source as GreetingMain,
 the source code must be altered to reflect any changes.
 DIContainer is used to avoid this.
@@ -272,7 +272,7 @@ public class GreetingMain2 {
     }
 }</pre>
 
-<p>S2Container is created using S2ContainerFactor#create(String Path).
+<p>S2Container is created using S2ContainerFactory#create(String Path).
 Read <a href="#S2ContainerCreation">Creating S2Container</a> for details.</p>
 
 <p>The component(greetingClient) is acquired using S2Container#getComponent(String componentName).
