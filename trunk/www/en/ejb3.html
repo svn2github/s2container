@@ -296,7 +296,8 @@ public class Xxx {
 
 <h3><a name="ExcludeClassInterceptorsAnnotation">ExcludeClassInterceptors Annotation</a></h3>
 <p>
-ExcludeClassInterceptorsアノテーションにより、クラスに@Interceptorsアノテーションで指定したインターセプタをメソッドに適用しないことを指定することができます。<br>
+When the ExcludeDefaultInterceptors annotation applied to a business method,
+it excludes the invocation of default interceptors for that method.
 </p>
 <pre>
 @Stateless
@@ -314,9 +315,11 @@ public class Xxx {
 <h3><a name="PostConstructAnnotation">PostConstruct Annotation</a></h3>
 <p>
 We can specify the method invoked after an instance creation and DI using the PostConstruct annotation.
-PostConstructアノテーションはセッションビーンまたはインターセプタクラスのメソッドに指定することができます。
-セッションビーンにPostConstructアノテーションを付ける場合、The method with the PostConstructor annotation must be no static, no final, no arguments, and its return type must be void.
-インターセプタにPostConstructアノテーションを付ける場合、そのメソッドは非<code>static</code>、非<code>final</code>で引数は<code>javax.interceptor.InvocationContext</code>型一つだけ、戻り値型が<code>void</code>でなければなりません。メソッド名および可視性は任意です。
+We can specify the PostConstruct annotation for a sesssion bean or a method of a interceptor.
+Lifecycle callback methods defined on a bean class have the following signature:
+public void &lt;METHOD&gt;()<br />
+Lifecycle callback methods defined on an interceptor class have the following signature:
+public void &lt;METHOD&gt;(InvocationContext)
 </p>
 <p>Tiger annotation is as follows.</p>
 <pre>
@@ -325,7 +328,7 @@ PostConstructアノテーションはセッションビーンまたはインタ�
 public class Xxx {
     ...
     @PostConstruct
-    private void initialize() {
+    public void initialize() {
         ...
     }
 }
@@ -333,7 +336,7 @@ public class Xxx {
 public class Yyy {
     ...
     @PostConstruct
-    private void initialize(InvocationContext context) {
+    public void initialize(InvocationContext context) {
         ...
     }
 }
