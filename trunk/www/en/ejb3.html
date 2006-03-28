@@ -140,7 +140,7 @@ public class GreetingClientImpl implements GreetingClient {
 }</pre>
 
 <h5>GreetingMain.dicon</h5>
-<p>Configration file for EJB3. If we deinfe this content from the beginning,
+<p>Configration file for EJB3. If we define this content from the beginning,
 it's not necessary to add any information to the configuration file, even if the number of EJB increases.
 Please refer <a href="DIContainer.html#ComponentAutoRegister">component auto-registration</a> in the details.</p>
 <pre>&lt;components&gt;<br>	&lt;include path=&quot;ejb3tx.dicon&quot;/&gt;<br>    &lt;component<br>      class=&quot;org.seasar.framework.container.autoregister.FileSystemComponentAutoRegister&quot;&gt;<br>        &lt;initMethod name=&quot;addClassPattern&quot;&gt;<br>            &lt;arg&gt;&quot;examples.ejb3.impl&quot;&lt;/arg&gt;<br>            &lt;arg&gt;&quot;.*Impl&quot;&lt;/arg&gt;<br>        &lt;/initMethod&gt;<br>    &lt;/component&gt;<br>&lt;/components&gt;
