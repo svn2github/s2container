@@ -95,6 +95,55 @@ foo
 DEBUG 2004-03-14 18:05:18,432 [main] Transaction.commit()</pre>
 <p>J2ee.dicon file is in S2(under src directory). You only specify the component name of Advice for the body of the aspect tag. Thus, it is very easy to manage the transaction with POJO by using S2tx.
 </p>
+<h2><a name="Exception">Exception Handling</a></h2>
+<p>The Advice defined in j2ee.dicon rolles back the transaction, when a component throws an exception. The Advice can be specified to commit or roll back the transaction depending on the exception class.</p>
+<ul>
+<li>Using <code>addCommitRule(Class)</code> method of Advice, you can specify the exception which invokes to commit the transaction when thrown.
+<li>Using <code>addRollbackRule(Class)</code> method of Advice, you can specify the exception which invokes to roll back the transaction when thrown.
+</ul>
+<p>When a component throws an exception, S2Tx checks if it matches the classes specified by <code>addCommitRule()/addRollbackRule()</code> method. When an exception matches the class or subclass of the class specified by <code>addCommitRule()/addRollbackRule()</code> method, the transaction is commited or rolled back as specified. When an exception does not match the class or subclass of the class specified by addCommitRule()/addRollbackRule() method, the transaction is rolled back.</p>
+<h3><a name="ExExample">Example</a></h3>
+<h4>MyTx.dicon</h4>
+<p>Following example shows myTx definition as a required Advice that rolls back  the transaction when a RuntimeException (<code>java.lang.RuntimeException</code>) or subclass of it is thrown, and it commits when an Exception (<code>java.lang.Exception</code>) or subclass of it is thrown.<br>
+Be aware that when the order of the setting of RuntimeException (<code>java.lang.RuntimeException</code>) and Exception (<code>java.lang.Exception</code>) is reversed, Advice commits the transaction when a RuntimeException (<code>java.lang.RuntimeException</code>) is thrown, because it is a subclass of Exception. (It looks like the try/catch block of Java)</p>
+<pre>&lt;components&gt;<br />    &lt;include path=&quot;j2ee.dicon&quot;/&gt;<br />    &lt;component name=&quot;myTx&quot;
+        class=&quot;org.seasar.extension.tx.RequiredInterceptor&quot;&gt;
+        &lt;initMethod name=&quot;addRollbackRule&quot;&gt;
+            &lt;arg&gt;@java.lang.RuntimeException@class&lt;/arg&gt;
+        &lt;/initMethod&gt;
+        &lt;initMethod name=&quot;addCommitRule&quot;&gt;
+            &lt;arg&gt;@java.lang.Exception@class&lt;/arg&gt;
+        &lt;/initMethod&gt;
+    &lt;/component&gt;
+&lt;/components&gt;</pre>
+<h3><a name="EJBTx">Advice compatible with EJB</a></h3>
+<p>S2 provides ejbtx.dicon that has definition of <a href="aop.html#Advice">Advice</a> that rolls back the transaction when a RuntimeException (<code>java.lang.RuntimeException</code>), RemoteException (<code>java.rmi.RemoteException</code>), or subclass of them is thrown, and commits when another Exception is thrown. The column of the component is a name of <a href="aop.html#Advice">Advice.</a></p>
+<table border="1">
+
+
+<tr bgcolor="#d1f3f4" align="center">
+<th width="72">attribute</th>
+<th width="123">component</th>
+</tr>
+<tr>
+<td>Required</td>
+<td><code>ejbtx.requiredTx</code></td>
+</tr>
+<tr>
+<td>RequiresNew</td>
+<td><code>ejbtx.requiresNewTx</code></td>
+</tr>
+<tr>
+<td>Mandatory</td>
+<td><code>ejbtx.mandatoryTx</code></td>
+</tr>
+<tr>
+<td>NotSupported</td>
+<td><code>ejbtx.notSupportedTx</code></td>
+</tr>
+
+
+</table>
 <!-- document end -->
 <!-- don't edit start -->
 </td>
@@ -111,3 +160,4 @@ DEBUG 2004-03-14 18:05:18,432 [main] Transaction.commit()</pre>
 </tr></table></body>
 <!-- don't edit end -->
 </html>
+
