@@ -125,6 +125,35 @@ public class RequiredInterceptorTest extends S2TestCase {
 }
 </pre>
 コンポーネントの組み立てやコンポーネントの取り出しといった作業はS2TestCaseが自動的にやってくれて、各テストメソッドは本来必要なことに集中できることが分かっていただけたと思います。
+
+<h2><a name="s2testcase-custom">S2TestCase利用時のカスタマイズ</a></h2>
+<p>S2TestCase を継承したクラスでは、以下のメソッドをオーバーライドすることで、より細かなセットアップを行うことができます。</p>
+
+<table border="1">
+<tr bgcolor="#d1f3f4" align="center">
+<th>メソッド</th>
+<th>説明</th>
+</tr>
+<tr>
+<td><code>setUpAfterContainerInit</code></td>
+<td>S2TestCase によるS2Containerの初期化が終わった直後に呼び出されます。テストを実施する前に、コンテナに対する独自の初期化処理を行いたい場合は、このメソッドをオーバーライドします。<br />
+なお、本メソッドをオーバライドする場合、必ずスーパークラスの同メソッドも呼び出してください(S2TestCase の setUpAfterContainerInit 内でDataSourceのセットアップを行っているため、DataSource が使用できなくなります)。<br />
+</td>
+</tr>
+<tr>
+<td><code>setUpAfterBindFields</code></td>
+<td>テストクラスに対するフィールドのインジェクションが行われた直後に呼び出されます。<br /></td>
+</tr>
+<td><code>tearDownBeforeUnbindFields</code></td>
+<td>すべてのテストが終了した直後に呼び出されます。</td>
+</tr>
+<tr>
+<td><code>tearDownBeforeContainerDestroy</code></td>
+<td>S2Containerを破棄する直前に呼び出されます。<br />
+本メソッドをオーバーライドする場合、必ずスーパークラスの同メソッドも呼び出してください。</td>
+</tr>
+</table>
+
 <h2><a name="DBTest">データベースに対するテスト</a></h2>
 <p>S2では、データベースに対するテストも簡単に行えるような仕組みを用意しています。それではさっそく例を見てみましょう。SQL文を発行するためのフレームワークとしてここでは最も単純な<a href="s2jdbc.html">S2JDBC</a>を使います。</p>
 
