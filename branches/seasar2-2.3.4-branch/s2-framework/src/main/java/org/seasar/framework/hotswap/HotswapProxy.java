@@ -19,8 +19,9 @@ import java.io.Serializable;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.util.HashSet;
+import java.util.Set;
 
-import org.seasar.framework.util.ArrayUtil;
 import org.seasar.framework.util.MethodUtil;
 
 public class HotswapProxy extends Hotswap implements InvocationHandler,
@@ -50,19 +51,22 @@ public class HotswapProxy extends Hotswap implements InvocationHandler,
         return Proxy.newProxyInstance(classLoader, getInterfaces(targetClass),
                 new HotswapProxy(targetClass, hotswapTargetFactory));
     }
-    
+
     static Class[] getInterfaces(Class targetClass) {
-        Class[] intfs = targetClass.getInterfaces();
+        final Set interfaces = new HashSet();
+        addAll(interfaces, targetClass.getInterfaces());
         if (targetClass.isInterface()) {
-            Class[] intfs2 = new Class[intfs.length + 1];
-            intfs2[0] = targetClass;
-            System.arraycopy(intfs, 0, intfs2, 1, intfs.length);
-            return intfs2;
+            interfaces.add(targetClass);
         } else if (!targetClass.equals(Object.class)) {
-            intfs = (Class[]) ArrayUtil.add(intfs, getInterfaces(targetClass
-                    .getSuperclass()));
+            addAll(interfaces, getInterfaces(targetClass.getSuperclass()));
         }
-        return intfs;
+        return (Class[]) interfaces.toArray(new Class[interfaces.size()]);
+    }
+
+    private static void addAll(Set set, Class[] classes) {
+        for (int i = 0; i < classes.length; i++) {
+            set.add(classes[i]);
+        }
     }
 
     public static HotswapProxy getProxy(Object o) {
