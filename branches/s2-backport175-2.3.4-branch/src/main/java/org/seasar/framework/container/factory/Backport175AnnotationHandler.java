@@ -17,10 +17,10 @@ package org.seasar.framework.container.factory;
 
 import java.lang.reflect.Method;
 
-import org.codehaus.backport175.reader.Annotation;
 import org.codehaus.backport175.reader.Annotations;
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.PropertyDesc;
+import org.seasar.framework.container.AutoBindingDef;
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.IllegalInitMethodAnnotationRuntimeException;
 import org.seasar.framework.container.InstanceDef;
@@ -38,16 +38,17 @@ import org.seasar.framework.container.deployer.InstanceDefFactory;
  */
 public class Backport175AnnotationHandler extends ConstantAnnotationHandler {
 
-    public ComponentDef createComponentDef(Class componentClass,
-            InstanceDef instanceDef) {
-        Annotation annotation = Annotations.getAnnotation(Component.class,
-                componentClass);
-        if (annotation == null) {
-            return super.createComponentDef(componentClass, instanceDef);
+    public ComponentDef createComponentDef(Class componentClass, InstanceDef defaultInstanceDef,
+            AutoBindingDef defaultAutoBindingDef) {
+
+        Component component = (Component) Annotations
+                .getAnnotation(Component.class, componentClass);
+        if (component == null) {
+            return super.createComponentDef(componentClass, defaultInstanceDef,
+                    defaultAutoBindingDef);
         }
-        Component component = (Component) annotation;
         ComponentDef componentDef = createComponentDefInternal(componentClass,
-                instanceDef);
+                defaultInstanceDef, defaultAutoBindingDef);
         componentDef.setComponentName(component.name());
         String instanceName = component.instance();
         if (instanceName != null) {
