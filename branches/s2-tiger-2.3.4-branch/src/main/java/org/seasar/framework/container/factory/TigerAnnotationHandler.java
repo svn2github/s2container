@@ -19,6 +19,7 @@ import java.lang.reflect.Method;
 
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.PropertyDesc;
+import org.seasar.framework.container.AutoBindingDef;
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.IllegalInitMethodAnnotationRuntimeException;
 import org.seasar.framework.container.InstanceDef;
@@ -34,33 +35,35 @@ import org.seasar.framework.container.deployer.InstanceDefFactory;
 
 /**
  * @author higa
- *
+ * 
  */
 public class TigerAnnotationHandler extends ConstantAnnotationHandler {
 
-    public ComponentDef createComponentDef(Class componentClass, InstanceDef instanceDef) {
+    public ComponentDef createComponentDef(Class componentClass, InstanceDef defaultInstanceDef,
+            AutoBindingDef defaultAutoBindingDef) {
+
         Class<?> clazz = componentClass;
         Component component = clazz.getAnnotation(Component.class);
         if (component == null) {
-            return super.createComponentDef(componentClass, instanceDef);
+            return super.createComponentDef(componentClass, defaultInstanceDef,
+                    defaultAutoBindingDef);
         }
-        ComponentDef componentDef = createComponentDefInternal(componentClass, instanceDef);
+        ComponentDef componentDef = createComponentDefInternal(componentClass, defaultInstanceDef,
+                defaultAutoBindingDef);
         componentDef.setComponentName(component.name());
         InstanceType instanceType = component.instance();
         if (instanceType != null) {
-            componentDef.setInstanceDef(
-                    InstanceDefFactory.getInstanceDef(instanceType.getName()));
+            componentDef.setInstanceDef(InstanceDefFactory.getInstanceDef(instanceType.getName()));
         }
         AutoBindingType autoBindingType = component.autoBinding();
         if (autoBindingType != null) {
-            componentDef.setAutoBindingDef(
-                    AutoBindingDefFactory.getAutoBindingDef(autoBindingType.getName()));
+            componentDef.setAutoBindingDef(AutoBindingDefFactory.getAutoBindingDef(autoBindingType
+                    .getName()));
         }
         return componentDef;
     }
 
-    public PropertyDef createPropertyDef(
-            BeanDesc beanDesc, PropertyDesc propertyDesc) {
+    public PropertyDef createPropertyDef(BeanDesc beanDesc, PropertyDesc propertyDesc) {
 
         if (!propertyDesc.hasWriteMethod()) {
             return super.createPropertyDef(beanDesc, propertyDesc);
@@ -75,7 +78,7 @@ public class TigerAnnotationHandler extends ConstantAnnotationHandler {
         }
         return super.createPropertyDef(beanDesc, propertyDesc);
     }
-    
+
     public void appendAspect(ComponentDef componentDef) {
         Class<?> clazz = componentDef.getComponentClass();
         Aspect aspect = clazz.getAnnotation(Aspect.class);
@@ -94,7 +97,7 @@ public class TigerAnnotationHandler extends ConstantAnnotationHandler {
         }
         super.appendAspect(componentDef);
     }
-    
+
     public void appendInitMethod(ComponentDef componentDef) {
         Class componentClass = componentDef.getComponentClass();
         if (componentClass == null) {
@@ -102,12 +105,13 @@ public class TigerAnnotationHandler extends ConstantAnnotationHandler {
         }
         Method[] methods = componentClass.getMethods();
         for (Method method : methods) {
-        	InitMethod initMethod = method.getAnnotation(InitMethod.class);
+            InitMethod initMethod = method.getAnnotation(InitMethod.class);
             if (initMethod == null) {
                 continue;
             }
             if (method.getParameterTypes().length != 0) {
-                throw new IllegalInitMethodAnnotationRuntimeException(componentClass, method.getName());
+                throw new IllegalInitMethodAnnotationRuntimeException(componentClass, method
+                        .getName());
             }
             if (!isInitMethodRegisterable(componentDef, method.getName())) {
                 continue;

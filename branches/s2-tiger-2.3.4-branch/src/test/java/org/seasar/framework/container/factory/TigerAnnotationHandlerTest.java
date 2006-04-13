@@ -5,13 +5,14 @@ import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.PropertyDesc;
 import org.seasar.framework.beans.factory.BeanDescFactory;
 import org.seasar.framework.container.AspectDef;
+import org.seasar.framework.container.AutoBindingDef;
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.IllegalInitMethodAnnotationRuntimeException;
 import org.seasar.framework.container.InitMethodDef;
 import org.seasar.framework.container.InstanceDef;
 import org.seasar.framework.container.PropertyDef;
+import org.seasar.framework.container.assembler.AutoBindingDefFactory;
 import org.seasar.framework.container.deployer.InstanceDefFactory;
-import org.seasar.framework.container.factory.TigerAnnotationHandler;
 
 /**
  * @author higa
@@ -28,6 +29,21 @@ public class TigerAnnotationHandlerTest extends S2TestCase {
         assertEquals("4", "property", cd.getAutoBindingDef().getName());
         ComponentDef cd2 = handler.createComponentDef(Hoge.class, InstanceDefFactory.REQUEST);
         assertEquals("5", InstanceDef.REQUEST_NAME, cd2.getInstanceDef().getName());
+
+        ComponentDef cd9 = handler.createComponentDef(Hoge.class,
+                InstanceDefFactory.REQUEST, AutoBindingDefFactory.NONE);
+        assertEquals("20", AutoBindingDef.NONE_NAME, cd9.getAutoBindingDef()
+                .getName());
+
+        ComponentDef cd10 = handler.createComponentDef(Hoge2.class,
+                InstanceDefFactory.REQUEST, AutoBindingDefFactory.NONE);
+        assertEquals("21", AutoBindingDef.PROPERTY_NAME, cd10
+                .getAutoBindingDef().getName());
+
+        ComponentDef cd11 = handler.createComponentDef(Hoge3.class,
+                InstanceDefFactory.REQUEST, AutoBindingDefFactory.NONE);
+        assertEquals("22", AutoBindingDef.PROPERTY_NAME, cd11
+                .getAutoBindingDef().getName());
     }
 
     public void testCreatePropertyDef() throws Exception {
