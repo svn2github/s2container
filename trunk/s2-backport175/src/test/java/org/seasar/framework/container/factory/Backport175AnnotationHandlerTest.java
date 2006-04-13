@@ -19,6 +19,7 @@ import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.PropertyDesc;
 import org.seasar.framework.beans.factory.BeanDescFactory;
 import org.seasar.framework.container.AspectDef;
+import org.seasar.framework.container.AutoBindingDef;
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.DestroyMethodDef;
 import org.seasar.framework.container.IllegalDestroyMethodAnnotationRuntimeException;
@@ -27,6 +28,7 @@ import org.seasar.framework.container.InitMethodDef;
 import org.seasar.framework.container.InstanceDef;
 import org.seasar.framework.container.InterTypeDef;
 import org.seasar.framework.container.PropertyDef;
+import org.seasar.framework.container.assembler.AutoBindingDefFactory;
 import org.seasar.framework.container.assembler.BindingTypeDefFactory;
 import org.seasar.framework.container.deployer.InstanceDefFactory;
 import org.seasar.framework.container.ognl.OgnlExpression;
@@ -47,6 +49,21 @@ public class Backport175AnnotationHandlerTest extends S2FrameworkTestCase {
         assertEquals("4", "property", cd.getAutoBindingDef().getName());
         ComponentDef cd2 = handler.createComponentDef(Hoge.class, InstanceDefFactory.REQUEST);
         assertEquals("5", InstanceDef.REQUEST_NAME, cd2.getInstanceDef().getName());
+
+        ComponentDef cd3 = handler.createComponentDef(Hoge.class,
+                InstanceDefFactory.REQUEST, AutoBindingDefFactory.NONE);
+        assertEquals("6", AutoBindingDef.NONE_NAME, cd3.getAutoBindingDef()
+                .getName());
+
+        ComponentDef cd4 = handler.createComponentDef(Hoge2.class,
+                InstanceDefFactory.REQUEST, AutoBindingDefFactory.NONE);
+        assertEquals("7", AutoBindingDef.PROPERTY_NAME, cd4
+                .getAutoBindingDef().getName());
+
+        ComponentDef cd5 = handler.createComponentDef(Hoge3.class,
+                InstanceDefFactory.REQUEST, AutoBindingDefFactory.NONE);
+        assertEquals("8", AutoBindingDef.PROPERTY_NAME, cd5
+                .getAutoBindingDef().getName());
     }
 
     public void testCreatePropertyDef() throws Exception {
