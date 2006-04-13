@@ -18,6 +18,7 @@ package org.seasar.framework.container.factory;
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.PropertyDesc;
 import org.seasar.framework.beans.factory.BeanDescFactory;
+import org.seasar.framework.container.AutoBindingDef;
 import org.seasar.framework.container.BindingTypeDef;
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.InitMethodDef;
@@ -57,6 +58,18 @@ public abstract class AbstractAnnotationHandler implements AnnotationHandler {
         return createComponentDef(ClassUtil.forName(className), instanceDef);
     }
 
+    public ComponentDef createComponentDef(String className,
+            InstanceDef instanceDef, AutoBindingDef autoBindingDef) {
+        return createComponentDef(ClassUtil.forName(className), instanceDef,
+                autoBindingDef);
+    }
+
+    public ComponentDef createComponentDef(Class componentClass,
+            InstanceDef instanceDef) {
+        return createComponentDef(componentClass, instanceDef,
+                null);
+    }
+
     public void appendDI(ComponentDef componentDef) {
         BeanDesc beanDesc = BeanDescFactory.getBeanDesc(componentDef.getComponentClass());
         for (int i = 0; i < beanDesc.getPropertyDescSize(); ++i) {
@@ -72,10 +85,13 @@ public abstract class AbstractAnnotationHandler implements AnnotationHandler {
         }
     }
     
-    protected ComponentDef createComponentDefInternal(Class componentClass, InstanceDef instanceDef) {
+    protected ComponentDef createComponentDefInternal(Class componentClass, InstanceDef instanceDef, AutoBindingDef autoBindingDef) {
         ComponentDef componentDef = new ComponentDefImpl(componentClass);
         if (instanceDef != null) {
             componentDef.setInstanceDef(instanceDef);
+        }
+        if (autoBindingDef != null) {
+            componentDef.setAutoBindingDef(autoBindingDef);
         }
         return componentDef;
     }

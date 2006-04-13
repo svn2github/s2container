@@ -23,6 +23,7 @@ import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.PropertyDesc;
 import org.seasar.framework.beans.factory.BeanDescFactory;
 import org.seasar.framework.container.AspectDef;
+import org.seasar.framework.container.AutoBindingDef;
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.IllegalInitMethodAnnotationRuntimeException;
 import org.seasar.framework.container.InitMethodDef;
@@ -38,19 +39,22 @@ import org.seasar.framework.util.StringUtil;
 public class ConstantAnnotationHandler extends AbstractAnnotationHandler {
 
     public ComponentDef createComponentDef(Class componentClass,
-            InstanceDef instanceDef) {
+            InstanceDef defaultInstanceDef, AutoBindingDef defaultAutoBindingDef) {
+
         BeanDesc beanDesc = BeanDescFactory.getBeanDesc(componentClass);
         if (!beanDesc.hasField(COMPONENT)) {
-            return createComponentDefInternal(componentClass, instanceDef);
+            return createComponentDefInternal(componentClass, defaultInstanceDef,
+                    defaultAutoBindingDef);
         }
         Field field = beanDesc.getField(COMPONENT);
         if (!isConstantAnnotationField(field)) {
-            return createComponentDefInternal(componentClass, instanceDef);
+            return createComponentDefInternal(componentClass, defaultInstanceDef,
+                    defaultAutoBindingDef);
         }
         String componentStr = (String) FieldUtil.get(field, null);
         String[] array = StringUtil.split(componentStr, "=, ");
         ComponentDef componentDef = createComponentDefInternal(componentClass,
-                instanceDef);
+                defaultInstanceDef, defaultAutoBindingDef);
         for (int i = 0; i < array.length; i += 2) {
             String key = array[i].trim();
             String value = array[i + 1].trim();
