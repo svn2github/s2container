@@ -1,13 +1,12 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <!-- don't edit start -->
-<head><title>Seasar - DI Container with AOP - </title><meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<head><title>Seasar - DI Container with AOP - </title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <link href="seasar_p.css" type="text/css" rel="stylesheet" media="print">
 <link href="seasar_b.css" type="text/css" rel="stylesheet" media="screen">
 <script src="seasar_b.js" type="text/JavaScript" language="JavaScript"></script>
-</head><body onload="preload('en')">
-<img height="117" width="256" src="images/spacer.gif" alt=""><table width="100%" border="0" cellspacing="0" cellpadding="0" align="left"><tr>
+</head><body onload="preload('en')"><table width="100%" border="0" cellspacing="0" cellpadding="0" align="left"><tr>
 <td align="left" valign="top" width="780"><table width="780" border="0" cellspacing="0" cellpadding="0" class="white">
 <tr><td colspan="7"><img height="5" width="780" src="images/top01_b.gif" alt=""></td></tr>
 <tr><td><img height="117" width="235" src="images/top02_b.gif" alt="Seasar"></td>
@@ -31,76 +30,73 @@
 <!-- document start -->
             <ul>
               <li><a href="#Quickstart">Quickstart</a>
-			 　<ul>
+			  <ul>
 				<li><a href="#FirstStep">First step</a>
 				<li><a href="#NextStep">Next step</a>
-　　　　　　　　</ul>
+              </ul>
               </li>
 
               <li><a href="#S2ContainerReference">S2Container reference</a>
                 <ul>
-                  <li><a href="#CreateFile">作成すべきファイル</a></li>
-                  <li><a href="#S2ContainerDefinition">S2Containerの定義</a></li>
-                  <li><a href="#S2ContainerCreation">S2Containerの生成</a>
+                  <li><a href="#CreateFile">Files to be Created</a></li>
+                  <li><a href="#S2ContainerDefinition">S2Container Definition</a></li>
+                  <li><a href="#S2ContainerCreation">S2Container Creation</a>
 <ul>
-<li><a href="#SingletonS2ContainerFactory">SingletonS2ContainerFactoryを使用する</a>
-<li><a href="#S2ContainerFactory">S2ContainerFactoryを使用する</a>
+<li><a href="#SingletonS2ContainerFactory">Using SingletonS2ContainerFactory</a>
+<li><a href="#S2ContainerFactory">Using S2ContainerFactory</a>
 </ul>
 </li>
-                  <li><a href="#getComponent">コンポーネントの取得</a></li>
-                  <li><a href="#DIType">Dependency Injectionのタイプ</a>
+                  <li><a href="#getComponent">Acquiring Components</a></li>
+                  <li><a href="#DIType">Dependency Injection Type</a>
                     <ul>
-                      <li type="circle"><a href="#ConstructorInjection">コンストラクタ・インジェクション</a></li>
-                      <li type="circle"><a href="#SetterInjection">セッター・インジェクション</a></li>
-                      <li type="circle"><a href="#MethodInjection">メソッド・インジェクション</a></li>
+                      <li type="circle"><a href="#ConstructorInjection">Constructor Injection</a></li>
+                      <li type="circle"><a href="#SetterInjection">Setter Injection</a></li>
+                      <li type="circle"><a href="#MethodInjection">Method Injection</a></li>
                     </ul>
                   </li>
-                  <li><a href="#Include">S2Container定義の分割とインクルード</a></li>
-                  <li><a href="#Namespace">名前空間</a></li>
-                  <li><a href="#InstanceMode">インスタンス管理</a></li>
-                  <li><a href="#Lifecycle">ライフサイクル</a></li>
-                  <li><a href="#AutoBindingMode">自動バインディング</a></li>
-                  <li><a href="#UseS2Container">コンポーネントでS2Containerを利用する</a></li>
+                  <li><a href="#Include">S2Container Definition division and include</a></li>
+                  <li><a href="#Namespace">Namespace</a></li>
+                  <li><a href="#InstanceMode">Instance Management</a></li>
+                  <li><a href="#Lifecycle">Lifecycle</a></li>
+                  <li><a href="#AutoBindingMode">Automatic Binding</a></li>
+                  <li><a href="#UseS2Container">Using S2Container in Components</a></li>
                   <li><a href="#S2ContainerServlet">S2ContainerServlet</a></li>
-                  <li><a href="#app.dicon">app.diconの役割</a></li>
-                  <li><a href="#Aop">AOPの適用</a></li>
-				  <li><a href="#Meta">メタデータ</a></li>
-				  <li><a href="#Request">Requestの自動バインディング</a></li>
-				  <li><a href="#ComponentAutoRegister">コンポーネントの自動登録</a></li>
-				  <li><a href="#AspectAutoRegister">アスペクトの自動登録</a></li>
+                  <li><a href="#app.dicon">Purpose of app.dicon</a></li>
+                  <li><a href="#Aop">Use of AOP</a></li>
+				  <li><a href="#Meta">Metadata</a></li>
+				  <li><a href="#Request">Auto-binding of Requests</a></li>
+				  <li><a href="#ComponentAutoRegister">Component Auto-registration</a></li>
+				  <li><a href="#AspectAutoRegister">Aspect Auto-registration</a></li>
 				  <li><a href="#Hotswap">Hotswap</a></li>
                 </ul>
               </li>
-              <li><a href="#DefReference">S2Containerタグリファレンス</a>
+              <li><a href="#DefReference">S2Container Tag Reference</a>
                 <ul>
                   <li><a href="#DOCTYPE">DOCTYPE</a></li>
-                  <li><a href="#componentsTag">componentsタグ</a></li>
-                  <li><a href="#includeTag">includeタグ</a></li>
-                  <li><a href="#componentTag">componentタグ</a></li>
-                  <li><a href="#argTag">argタグ</a></li>
-                  <li><a href="#propertyTag">propertyタグ</a></li>
-				  <li><a href="#metaTag">metaタグ</a></li>
-                  <li><a href="#initMethodTag">initMethodタグ</a></li>
-                  <li><a href="#destroyMethodTag">destroyMethodタグ</a></li>
-                  <li><a href="#aspectTag">aspectタグ</a></li>
-                  <li><a href="#descriptionTag">descriptionタグ</a></li>
-                  <li><a href="#ognlExpr">OGNL式</a></li>
+                  <li><a href="#componentsTag">components tag</a></li>
+                  <li><a href="#includeTag">include tag</a></li>
+                  <li><a href="#componentTag">component tag</a></li>
+                  <li><a href="#argTag">arg tag</a></li>
+                  <li><a href="#propertyTag">property tag</a></li>
+				  <li><a href="#metaTag">meta tag</a></li>
+                  <li><a href="#initMethodTag">initMethod tag</a></li>
+                  <li><a href="#aspectTag">aspect tag</a></li>
+                  <li><a href="#descriptionTag">description tag</a></li>
+                  <li><a href="#ognlExpr">OGNL expressions</a></li>
                 </ul>
               </li>
-			  <li><a href="#AnnotationReference">S2Containerアノテーションリファレンス</a>
+			  <li><a href="#AnnotationReference">S2Container Annotation Reference</a>
                 <ul>
-                  <li><a href="#ComponentAnnotation">Componentアノテーション</a></li>
-				  <li><a href="#BindingAnnotation">Bindingアノテーション</a></li>
-				  <li><a href="#AspectAnnotation">Aspectアノテーション</a></li>
-				  <li><a href="#InitMethodAnnotation">InitMethodアノテーション</a></li>
+                  <li><a href="#ComponentAnnotation">Component Annotation</a></li>
+				  <li><a href="#BindingAnnotation">Binding Annotation</a></li>
+				  <li><a href="#AspectAnnotation">Aspect Annotation</a></li>
+				  <li><a href="#InitMethodAnnotation">InitMethod Annotation</a></li>
 				</ul>
-			  </li>
-              <li>DIContainerエクササイズ</li>
             </ul>
 
 
 <h2><a name="Quickstart">Quickstart</a></h2>
-<p>S2Container is a light weight container for Dependency Injection (DI) operations. DI is an idea to separate the interface and implementation, to communicate with each other through the interface.</p>
+<p>Seasar2 is a light weight container for Dependency Injection (DI) operations.</p>
 
 <h3><a name="FirstStep">First Step</a></h3>
 <p>Let us give this a try. The following objects will be used.</p>
@@ -126,7 +122,7 @@
 
 </ul>
 <h5>Greeting.java</h5>
-<p>Greeting Interface.</p>
+<p>Greeting interface.</p>
 <pre>
 package examples.di;
 
@@ -163,7 +159,7 @@ public interface GreetingClient {
 </pre>
 
 <h5>GreetingClientImpl.java</h5>
-<p>Client implementation to use greeting. Instead of using Greeting Implementation (GreetingImpl) directly, the interface (Greeting) will be used. </p>
+<p>Client implementation to use the greeting. Instead of using Greeting Implementation (GreetingImpl) directly, the interface (Greeting) will be used. </p>
 <pre>
 package examples.di.impl;
 
@@ -184,7 +180,7 @@ public class GreetingClientImpl implements GreetingClient {
 }
 </pre>
 
-<p>Both function provider and user is prepared. Let us try running this. </p>
+<p>Both function provider and user are prepared. Let us try running this. </p>
 <h5>GreetingMain.java</h5>
 <pre>
 package examples.di.main;
@@ -209,7 +205,7 @@ Hello World!
 </pre>
 <p>As shown here, the function user (GreetingClientImpl) uses the function through the interface (Greeting),
 a third party (GreetingMain, in this case) provides the implementation object at runtime.
-That is the basic style of DI </p>
+That is the basic style of DI.</p>
 <p>However, if one writes configurations into the source as GreetingMain,
 the source code must be altered to reflect any changes.
 DIContainer is used to avoid this.
@@ -271,7 +267,7 @@ public class GreetingMain2 {
     }
 }</pre>
 
-<p>S2Container is created using S2ContainerFactor#create(String Path).
+<p>S2Container is created using S2ContainerFactory#create(String Path).
 Read <a href="#S2ContainerCreation">Creating S2Container</a> for details.</p>
 
 <p>The component(greetingClient) is acquired using S2Container#getComponent(String componentName).
@@ -344,7 +340,7 @@ DEBUG 2005-10-11 21:01:49,675 [main] END examples.di.impl.GreetingClientImpl#exe
 <p>We have now mastered the basic use of S2Container.</p>
 
 <h3><a name="NextStep">Next Step</a></h3>
-<p>Writing the configuration file is still annoying, isn’t it?
+<p>Writing the configuration file is still annoying, isn t it?
 S2Container also possesses the following concepts to minimize the amount of writing in configuration files.</p>
 
 <ul>
@@ -369,13 +365,13 @@ they follow the DI convention of defining property type by interface.</p>
 <pre>&lt;component name=&quot;greetingClient&quot;<br>    class=&quot;examples.di.impl.GreetingClientImpl&quot;&gt;<br>&lt;/component&gt;
 </pre>
 
-<p>Actually, “Convention over Configuration” is used in the AOP example from earlier.
+<p>Actually, "Convention over Configuration" is used in the AOP example from earlier.
 Normally, where (or which method) the AOP module is applied is defined in pointcut.
 All methods defined by interface have the AOP module applied without the use of pointcut in <a href="aop.html">S2AOP</a>
 as long as they follow the convention of using interface.
 This is how there was no need to define a module in pointcut in the earlier example.</p>
 
-<p>Using “Convention over Configuration” will simplify the configuration of DI and AOP.
+<p>Using  Convention over Configuration will simplify the configuration of DI and AOP.
 However, component registration itself becomes a burden as the number of components increase.
 The automation of this component registration is <a href="#ComponentAutoRegister">Component auto-registration</a> functionality.
 The registration of GreetingImpl, GreetingClientImpl from earlier is automated as follows.</p>
@@ -524,7 +520,7 @@ S2Container container = SingletonS2ContainerFactory.getContainer();</pre>
 <p>- org.seasar.framework.container.factory.SingletonS2ContainerFactory#setConfigPath(String Path)</p>
 <p>The arguments path is an absolute path of the definition file referencing the directory defined in CLASSPATH as root.
 For example, WEB-INF/classes/aaa.dicon is aaa.dicon.  WEB-INF/classes/aaa/bbb/ccc.dicon becomes aaa/bbb/ccc.dicon.
-The separator is “/” in both Windows and UNIX systems.</p>
+The separator is  ?/? in both Windows and UNIX systems.</p>
 <pre>private static final String PATH = &quot;aaa/bbb/ccc.dicon&quot;;
 ...
 SingletonS2ContainerFactory.setConfigPath(PATH);
@@ -790,53 +786,65 @@ Automatic binding of constructor and property is applied.
 </table>
 
 <br />
-<p>コンストラクタの自動バインディングのルールは次のようになります。</p>
+<p>Constructor auto-binding rules are as follows.</p>
 <ul>
-<li>コンストラクタの引数が明示的に指定されている場合は、それに従い、自動バインディングは適用されません。</li>
-<li>上記に該当しない場合、引数のないデフォルトコンストラクタが定義されているなら、そのコンストラクタを使い、自動バインディングは適用されません。</li>
-<li>上記に該当しない場合、コンストラクタの引数の数が1以上で、
-引数の型がすべてインターフェースのコンストラクタで最も引数の数が多いコンストラクタを使います。そして、
-引数の型を実装したコンポーネントをコンテナから取得して適用します。</li>
-<li>上記に該当しない場合､自動バインディングは適用されません。</li>
+<li>When constructor arguments are 
+
+
+explicitly
+
+specified, auto-binding is not applied.</li>
+<li>When above conditions are not true and a default constructor is specified with no arguments,
+that constructor is used with no auto-binding.</li>
+<li>When above conditions are not met, the constructor with the largest number of 'interface' type arguments is used.
+In addition, components with implemented argument type are acquired from the container and applied.</li>
+<li>When above conditions are not met, auto-binding is not applied.</li>
 </ul>
 
-<p>プロパティの自動バインディングのルールは次のようになります。</p>
+<p>Property auto-binding rules are as follows.</p>
 <ul>
-<li>プロパティが明示的に指定されている場合は、それに従い、自動バインディングは適用されません。</li>
-<li>上記に該当しない場合､プロパティ名と同一のコンポーネントがコンテナに登録されてプロパティに代入可能なら、
-そのコンポーネントが適用されます。</li>
-<li>上記に該当しない場合､プロパティの型がインターフェースでプロパティの型を実装したコンポーネントがコンテナに登録されていれば、
-そのコンポーネントが適用されます。</li>
-<li>上記に該当しない場合､自動バインディングは適用されません。</li>
+<li>When property is explicitly selected, auto-binding is not applied.</li>
+<li>When above conditions are not met,
+if a component with an identical name to the property name is registered in container,
+this component will be used.</li>
+<li>When above conditions are not met,
+if a component that has implemented 'interface' type property is registered in container,
+this component will be used.</li>
+<li>When above conditions are not met, auto-binding is not applied.</li>
 </ul>
-<p>propertyタグのbindingType属性で、プロパティごとに細かく制御することもできます。</p>
+<p>The bindingType property of the property tag can be used to more finely control each property.</p>
 <table width="744" border="1">
 <tr bgcolor="#d1f3f4" align="center">
 <th width="104" scope="col">bindingType</th>
-<th width="624" scope="col">説明</th>
+<th width="624" scope="col">Description</th>
 </tr>
 <tr>
 <td>must</td>
-<td>自動バインディングが適用されない場合､例外が発生します。
+<td>An exception is throwed when auto-binding is not applied.
 </td>
 </tr>
 <tr>
 <td>should(default)</td>
-<td>自動バインディングが適用されない場合､警告を通知します。</td>
+<td>A warning is returned when auto-binding is not applied.</td>
 </tr>
 <tr>
 <td>may</td>
-<td>自動バインディングが適用されない場合､何もおきません。</td>
+<td>No response is returned when auto-binding is not applied.</td>
 </tr>
 <tr>
 <td>none</td>
-<td>autoBinding属性が、auto、propertyの場合でも､自動バインディングは適用されません。</td>
+<td>Auto-binding is not applied even if the autoBinding property is set to auto or property.</td>
 </tr>
 </table>
 <br/>
 
-            <h3><a name="UseS2Container">コンポーネントでS2Containerを利用する</a></h3>
-            <p>コンポーネントはS2Containerに依存しないことが望ましいのですが、コンポーネントによっては、S2Containerのメソッドを呼び出したい場合もあるでしょう。S2Container自身もcontainerという名前で、登録されているので、arg,propertyタグのボディでcontainerを指定することで、コンテナのインスタンスを取得できます。また、S2Container型のsetterメソッドを定義しておいて自動バインディングで設定することもできます。arg,propertyタグでcontainerを指定する場合は、次のようになります。</p>
+<h3><a name="UseS2Container">Using S2Container in Components.</a></h3>
+<p>It is preferable that components are not dependent on S2Container.
+However, there are certain components that would want to call the S2Container method.
+S2Container itself is registered by the name of container.
+Using this, an instance of the container can be acquired by specifying container in the body of arg and property tags.
+It can also be configured using auto-binding by defining the setter method of the S2Container type.
+Specifying container using arg and property tags looks like the following.</p>
 
 <pre>
 &lt;components&gt;
@@ -850,11 +858,12 @@ Automatic binding of constructor and property is applied.
 &lt;/components&gt;
 </pre>
 
-
-            <h3><a name="S2ContainerServlet">S2ContainerServlet</a></h3>
-            <p>これまでは、Javaアプリケーションで、明示的にS2Containerを作成していましたが、Webアプリケーションの場合、誰がS2Containerを作成するのでしょうか。その目的のために次のクラスが用意されています。</p>
-            <p>- org.seasar.framework.container.servlet#S2ContainerServlet</p>
-            S2ContainerServletを使うためには、web.xmlに次の項目を記述します。<br/>src/org/seasar/framework/container/servlet/web.xmlに記述例もあります。
+<h3><a name="S2ContainerServlet">S2ContainerServlet</a></h3>
+<p>We have explicitly created S2Container using Java applications so far.
+But in the case of web applications, who will create S2Container?
+The following class is prepared for this reason.</p>
+<ul><li>org.seasar.framework.container.servlet#S2ContainerServlet</li></ul>
+<p>The following is entered in web.xml in order to use S2ContainerServlet.</p>
 
 <pre>
 &lt;servlet&gt;
@@ -876,27 +885,24 @@ Automatic binding of constructor and property is applied.
     &lt;url-pattern&gt;/s2servlet&lt;/url-pattern&gt;
 &lt;/servlet-mapping&gt;
 </pre>
+<p>The path to the root S2Container definition is selected in configPath.
+The definition file is placed in WEB-INF/classes.
+Configure load-on-startup tag to make sure S2ContainerServlet is initialized first.
+Once S2ContainerServlet is initialized, an instance of S2Container is acquired using the following method.</p>
+<ul><li>org.seasar.framework.container.factory.SingletonS2ContainerFactory#getContainer()</li></ul>
+<p>The lifecycle of S2Container is linked with S2ContainerServlet.
+When the debug parameter is set to true, S2Container may be restarted while operating by using the following command.
+In this example, xxx is the web application's context name.</p>
+<pre>http://localhost:8080/xxx/s2servlet?command=restart</pre>
+<p>ServletContext can be accessed as a component named servletContext when using S2ContainerServlet.</p>
 
-            <p>configPathでメインとなるS2Container定義のパスを指定します。定義ファイルはWEB-INF/classesにおきます。S2ContainerServletは、他のサーブレットよりもはやく起動されるようにload-on-startupタグを調整してください。S2ContainerServletが起動した後は、次のメソッドでS2Containerのインスタンスを取得することができます。</p>
-            <p>- org.seasar.framework.container.factory.SingletonS2ContainerFactory#getContainer()</p>
-            <p>また、S2Containerのライフサイクルは、S2ContainerServletと連動します。debugパラメータをtrueにすると、次のようにして、稼動中にS2Containerを再起動できます。xxxはWebアプリケーションのコンテキスト名です。</p>
-			<pre>http://localhost:8080/xxx/s2servlet?command=restart
-            </pre>
-            <p>S2ContainerServletを使っている場合、ServletContextをservletContextという名前のコンポーネントとしてアクセスできるようになります。</p>
+<h3><a name="app.dicon">Purpose of app.dicon</a></h3>
+<p>Name the root S2Container definition file "app.dicon" as convention.
+It is recommended that the file be stored in WEB-INF/classes.</p>
 
-            <h3><a name="app.dicon">app.diconの役割</a></h3>
-            <p>すべてのS2Container定義のルートになる定義ファイルは、慣例でapp.diconという名前にします。app.diconにはコンポーネントの定義はしないようにしてください。通常はWEB-INF/classesにおくと良いでしょう。</p>
-
-<pre>
-&lt;components&gt;
-    &lt;include path=&quot;examples/foo.dicon&quot;/&gt;
-    &lt;include path=&quot;examples/bar.dicon&quot;/&gt;
-          ...
-&lt;/components&gt;
-</pre>
-
-<h3><a name="Aop">AOPの適用</a></h3>
-<p>コンポーネントに<a href="aop.html">AOP</a>を適用することもできます。例えば、ArrayListに<a href="aop.html#TraceInterceptor">TraceInterceptor</a>を適用したい場合次のようにします。</p>
+<h3><a name="Aop">Use of AOP</a></h3>
+<p>We can apply <a href="aop.html">AOP</a> to components.
+For example, we do the following if we want to apply <a href="aop.html#TraceInterceptor">TraceInterceptor</a> to ArrayList.</p>
 
 <pre>
 &lt;components&gt;
@@ -912,7 +918,12 @@ Automatic binding of constructor and property is applied.
 &lt;/components&gt;
 </pre>
 
-<p>aspectタグのボディで<a href="aop.html#Advice">Interceptor</a>の名前を指定します。pointcut属性にカンマ区切りで対象となるメソッド名を指定することができます。pointcut属性を指定しない場合は、コンポーネントが実装しているインターフェースのすべてのメソッドが対象になります。メソッド名には正規表現(JDK1.4のregex)も使えます。この定義を使うサンプルは次のようになります。</p>
+<p>We specify the name of <a href="aop.html#Advice">Interceptor</a> in the body of the aspect tag.
+We can specify target method names in the pointcut property.
+Multiple entries can be entered separated by commas.
+When pointcut is not specified, all interfaces implemented methods in the component are targeted.
+A regular expression(JDK1.4 regex) can be used for method name.
+A sample use of this definition is as follows.</p>
 
 <pre>
 private static final String PATH =
@@ -926,7 +937,7 @@ date.hashCode();
 date.toString();
 </pre>
 
-            <p>実行結果は次のようになります。</p>
+<p>The results will be the following.</p>
 
 <pre>
 BEGIN java.util.ArrayList#size()
@@ -942,287 +953,276 @@ END java.util.Date#getTime() : 0
 </pre>
 
 
-<h3><a name="Meta">メタデータ</a></h3>
 
-<p>components、component、arg、propertyタグにメタデータ<a href="aop.html"></a>を指定することもできます。metaタグはメタデータを指定したいタグの子タグに指定します。例えば、componentsタグにメタデータを指定したい場合次のようにします。</p>
+<h3><a name="Meta">Metadata</a></h3>
+
+<p>Metadata can be defined in the components, component, arg, and property tags.
+The meta tag is used as a child tag in the parent tag where the metadata is to be set.
+Adding metadata to a components tag will look like the following example.</p>
 
 <pre>&lt;components&gt;
     &lt;meta name=&quot;aaa&quot;&gt;111&lt;/meta&gt;
 &lt;/components&gt;
 </pre>
-<p>components、component、arg、propertyタグに指定したメタデータの情報は、S2Container、ComponentDef、ArgDef、PropertyDefで定義されている次のメソッドで取得することが出来ます。</p>
-<ul>
-<li>public int getMetaDefSize()</li>
-<li>public MetaDef getMetaDef(int index)</li>
-<li>public MetaDef getMetaDef(String name)</li>
-<li>public MetaDef[] getMetaDefs(String name)</li>
-</ul>
 
-
-<h3><a name="request">リクエストの自動バインディング</a></h3>
-<p>コンポーネントに対して、HttpServletRequestを自動的にバインディングすることが出来ます。そのためには、コンポーネントに、setRequest(HttpServletRequest request)のメソッドを定義します。そうすると、S2Containerが自動的にリクエストを設定します。また、次のようにFilterをweb.xmlに定義する必要があります。</p>
-<pre>&lt;web-app&gt;
-<br>    &lt;filter&gt;<br>        &lt;filter-name&gt;s2filter&lt;/filter-name&gt;<br>        &lt;filter-class&gt;org.seasar.framework.container.filter.S2ContainerFilter&lt;/filter-class&gt;<br>    &lt;/filter&gt;<br>    <br>    &lt;filter-mapping&gt;<br>        &lt;filter-name&gt;s2filter&lt;/filter-name&gt;<br>        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;<br>    &lt;/filter-mapping&gt;<br>&lt;/web-app&gt;
+<h3><a name="request">Auto-binding of Requests</a></h3>
+<p>HttpServletRequest can be automatically bound to a component.
+For this, setRequest (HttpServletRequest request) method is defined within the component.
+S2Container will then automatically configure a request.
+Also, the following Filter must be defined in web.xml.</p>
+<pre>&lt;web-app&gt;<br>    &lt;filter&gt;<br>        &lt;filter-name&gt;s2filter&lt;/filter-name&gt;<br>        &lt;filter-class&gt;org.seasar.framework.container.filter.S2ContainerFilter&lt;/filter-class&gt;<br>    &lt;/filter&gt;<br>    <br>    &lt;filter-mapping&gt;<br>        &lt;filter-name&gt;s2filter&lt;/filter-name&gt;<br>        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;<br>    &lt;/filter-mapping&gt;<br>&lt;/web-app&gt;
 </pre>
-<p>同様にHttpServletResponse、HttpSessionもsetterメソッドを定義するだけで、自動バインディングすることが出来ます。また、S2ContainerFilterを使うと、HttpServletRequest、HttpServletResponse、HttpSessionをそれぞれrequest、response、sessionという名前のコンポーネントとしてアクセスできるようになります。</p>
 
-<h3><a name="ComponentAutoRegister">コンポーネントの自動登録</a></h3>
-<p><a href="#AutoBindingMode">自動バインディング</a>により、DIの設定はほぼ自動化できます。
-<a href="#AnnotationReference">アノテーション</a>を使って細かく制御することも可能です。
-さらに、コンポーネントの登録も自動化してしまおうというのが、コンポーネントの自動登録機能です。
-コンポーネントの自動登録には､ファイルシステム上のclassファイルを検索するFileSystemComponentAutoRegisterコンポーネントやjarファイルの中を検索するJarComponentAutoRegisterを利用します。</p>
+<p>In this manner, HttpServletResponse, HttpSession and ServletContext can be automatically bound by defining the setter method.
+Also, HttpServletRequest, HttpServletResponse, HttpSession and ServletContext can be accessed as components respectively named request, response, session and application by using S2ContainerFilter.</p>
+
+<h3><a name="ComponentAutoRegister">Component Auto-registration</a></h3>
+<p>DI configuration can be mostly automated using <a href="#AutoBindingMode">autobinding</a>.
+Fine control can be exerted using <a href="#AnnotationReference">annotation</a>.
+Taking this a step further is component auto-registration.</p>
+
 <h5><a name="FileSystemComponentAutoRegister">org.seasar.framework.container.autoregister.FileSystemComponentAutoRegister</a></h5>
+<p>When we use FileSystemComponentAutoRegister,
+components will be searched in the file system, and will be automatically registered.</p>
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
-<th>プロパティ</th>
-<th>説明</th>
+<th>property</th>
+<th>Description</th>
 </tr>
 <tr>
 <td><code>instanceDef</code></td>
-<td>自動登録されるコンポーネントに適用するInstanceDefを指定します。XMLで指定する場合､<br>
-<code>@org.seasar.framework.container.deployer.InstanceDefFactory@REQUEST</code><br>
-のように指定します。</td>
+<td>A sample use of XML is as follows.<br>
+<code>@org.seasar.framework.container.deployer.InstanceDefFactory@REQUEST</code></td>
+</tr>
+<tr>
+<td><code>autoBindingDef</code></td>
+<td>A sample use of XML is as follows.<br>
+<code>@org.seasar.framework.container.assembler.AutoBindingDefFactory@NONE</code></td>
 </tr>
 <tr>
 <td><code>autoNaming</code></td>
-<td>クラス名からコンポーネント名を自動的に決定するコンポーネント。org.seasar.framework.container.autoregister.AutoNamingインターフェースを実装している必要があります。デフォルトは､org.seasar.framework.container.autoregister.DefaultAutoNamingクラスのインスタンスになります。</td>
+<td>Component to automatically name components from class name.
+Requires implementation of org.seasar.framework.container.autoregister.AutoNaming interface.</td>
 </tr>
 </table>
 <br />
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
-<th>メソッド</th>
-<th>説明</th>
+<th>method</th>
+<th>Description</th>
 </tr>
 <tr>
 <td><code>addClassPattern</code></td>
-<td>自動登録したいクラスパターンを登録します。最初の引数は､コンポーネントのパッケージ名です。子供のパッケージも再帰的に検索します。2番目の引数は､クラス名です。正規表現が使えます。「,」区切りで複数記述することもできます。</td>
-</tr>
-<tr>
-<td><code>addIgnoreClassPatten</code></td>
-<td>自動登録したくないクラスパターンを登録します。最初の引数は､コンポーネントのパッケージ名です。子供のパッケージも再帰的に検索します。2番目の引数は､クラス名です。正規表現が使えます。「,」区切りで複数記述することもできます。</td>
-</tr>
-</table>
-<h5><a name="JarComponentAutoRegister">org.seasar.framework.container.autoregister.JarComponentAutoRegister</a></h5>
-<table border="1">
-<tr bgcolor="#d1f3f4" align="center">
-<th>プロパティ</th>
-<th>説明</th>
-</tr>
-<tr>
-<td><code>jarFileNames</code></td>
-<td>対象のjarファイル名を指定します。正規表現も使えます。ただし､拡張子は含まれません。複数指定する場合は､「,」で区切ります。例えば､myapp.*, yourapp.*のようになります。</td>
-</tr>
-<tr>
-<td><code>classInJar</code></td>
-<td>このプロパティで指定されたクラスが存在するjarファイルの親ディレクトリをベースのディレクトリ(例えば、WEB-INF/lib)とみなします。デフォルトは、org.aopalliance.intercept.MethodInterceptor.classになります。</td>
-</tr>
-<tr>
-<td><code>instanceDef</code></td>
-<td>自動登録されるコンポーネントに適用するInstanceDefを指定します。XMLで指定する場合､@org.seasar.framework.container.deployer.InstanceDefFactory@REQUESTのように指定します。</td>
-</tr>
-<tr>
-<td><code>autoNaming</code></td>
-<td>クラス名からコンポーネント名を自動的に決定するコンポーネント。org.seasar.framework.container.autoregister.AutoNamingインターフェースを実装している必要があります。デフォルトは､org.seasar.framework.container.autoregister.DefaultAutoNamingクラスのインスタンスになります。</td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr bgcolor="#d1f3f4" align="center">
-<th>メソッド</th>
-<th>説明</th>
-</tr>
-<tr>
-<td><code>addClassPattern</code></td>
-<td>自動登録したいクラスパターンを登録します。最初の引数は､コンポーネントのパッケージ名です。子供のパッケージも再帰的に検索します。2番目の引数は､クラス名です。正規表現が使えます。「,」区切りで複数記述することもできます。</td>
-</tr>
-<tr>
-<td><code>addIgnoreClassPatten</code></td>
-<td>自動登録したくないクラスパターンを登録します。最初の引数は､コンポーネントのパッケージ名です。子供のパッケージも再帰的に検索します。2番目の引数は､クラス名です。正規表現が使えます。「,」区切りで複数記述することもできます。</td>
-</tr>
-</table>
-<h5><a name="JarComponentAutoRegister">org.seasar.framework.container.autoregister.JarComponentAutoRegister</a></h5>
-<table border="1">
-
-<tr bgcolor="#d1f3f4" align="center">
-<th>プロパティ</th>
-<th>説明</th>
-</tr>
-<tr>
-<td><code>jarFileNames</code></td>
-<td>対象のjarファイル名を指定します。正規表現も使えます。ただし､拡張子は含まれません。複数指定する場合は､「,」で区切ります。例えば､myapp.*, yourapp.*のようになります。</td>
-</tr>
-<tr>
-<td><code>referenceClass</code></td>
-<td>このプロパティで指定されたクラスが存在するjarファイルの親ディレクトリをベースのディレクトリ(例えば、WEB-INF/lib)とみなします。デフォルトは、org.aopalliance.intercept.MethodInterceptor.classになります。</td>
-</tr>
-<tr>
-<td><code>instanceDef</code></td>
-<td>自動登録されるコンポーネントに適用するInstanceDefを指定します。XMLで指定する場合､<br>
-<code>@org.seasar.framework.container.deployer.InstanceDefFactory@REQUEST</code><br>
-のように指定します。</td>
-</tr>
-<tr>
-<td><code>autoNaming</code></td>
-<td>クラス名からコンポーネント名を自動的に決定するコンポーネント。org.seasar.framework.container.autoregister.AutoNamingインターフェースを実装している必要があります。デフォルトは､org.seasar.framework.container.autoregister.DefaultAutoNamingクラスのインスタンスになります。</td>
-</tr>
-
-</table>
-<br />
-<table border="1">
-
-<tr bgcolor="#d1f3f4" align="center">
-<th>メソッド</th>
-<th>説明</th>
-</tr>
-<tr>
-<td><code>addClassPattern</code></td>
-<td>自動登録したいクラスパターンを登録します。最初の引数は､コンポーネントのパッケージ名です。子供のパッケージも再帰的に検索します。2番目の引数は､クラス名です。正規表現が使えます。「,」区切りで複数記述することもできます。</td>
+<td>A class pattern to be auto-registered is registered.
+The first argument is the component package name.
+Child packages are searched recursively.
+The second argument is class name.
+One may use regular expressions, and multiple entries can be separated by commas.</td>
 </tr>
 <tr>
 <td><code>addIgnoreClassPattern</code></td>
-<td>自動登録したくないクラスパターンを登録します。最初の引数は､コンポーネントのパッケージ名です。子供のパッケージも再帰的に検索します。2番目の引数は､クラス名です。正規表現が使えます。「,」区切りで複数記述することもできます。</td>
+<td>Class patterns to be ignored by auto-registration are registered.
+The first argument is the component package name.
+Child packages are searched recursively.
+The second argument is class name.
+One may use regular expressions, and multiple entries can be separated by commas.</td>
 </tr>
-
 </table>
-<h5><a name="aComponentAutoRegister">org.seasar.framework.container.autoregister.ComponentAutoRegister</a></h5>
+<h5><a name="JarComponentAutoRegister">org.seasar.framework.container.autoregister.JarComponentAutoRegister</a></h5>
+<p>When we use JarComponentAutoRegister,
+components will be searched in the jar file, and will be automatically registered.</p>
 <table border="1">
-
 <tr bgcolor="#d1f3f4" align="center">
-<th>プロパティ</th>
-<th>説明</th>
+<th>property</th>
+<th>Description</th>
+</tr>
+<tr>
+<td><code>jarFileNames</code></td>
+<td>Target jar file names excluded extension are registered.
+One may use regular expressions, and multiple entries can be separated by commas.</td>
+</tr>
+<tr>
+<td><code>referenceClass</code></td>
+<td>Class in jar is entered.
+Default value is @org.aopalliance.intercept.MethodInterceptor@class.</td>
 </tr>
 <tr>
 <td><code>instanceDef</code></td>
-<td>自動登録されるコンポーネントに適用するInstanceDefを指定します。XMLで指定する場合､@org.seasar.framework.container.deployer.InstanceDefFactory@REQUESTのように指定します。</td>
+<td>A sample use of XML is as follows.<br>
+<code>@org.seasar.framework.container.deployer.InstanceDefFactory@REQUEST</code></td>
+</tr>
+<tr>
+<td><code>autoBindingDef</code></td>
+<td>A sample use of XML is as follows.<br>
+<code>@org.seasar.framework.container.assembler.AutoBindingDefFactory@NONE</code></td>
 </tr>
 <tr>
 <td><code>autoNaming</code></td>
-<td>クラス名からコンポーネント名を自動的に決定するコンポーネント。org.seasar.framework.container.autoregister.AutoNamingインターフェースを実装している必要があります。デフォルトは､org.seasar.framework.container.autoregister.DefaultAutoNamingクラスのインスタンスになります。</td>
+<td>Component to automatically name components from class name.
+Requires implementation of org.seasar.framework.container.autoregister.AutoNaming interface.</td>
 </tr>
-
 </table>
 <br />
 <table border="1">
-
 <tr bgcolor="#d1f3f4" align="center">
-<th>メソッド</th>
-<th>説明</th>
-</tr>
-<tr>
-<td><code>addReferenceClass</code></td>
-<td>このプロパティで指定されたクラスが存在するディレクトリまたはJarファイルを基点としてクラスを検索します。</td>
+<th>method</th>
+<th>Description</th>
 </tr>
 <tr>
 <td><code>addClassPattern</code></td>
-<td>自動登録したいクラスパターンを登録します。最初の引数は､コンポーネントのパッケージ名です。子供のパッケージも再帰的に検索します。2番目の引数は､クラス名です。正規表現が使えます。「,」区切りで複数記述することもできます。</td>
+<td>A class pattern to be auto-registered is registered.
+The first argument is the component package name.
+Child packages are searched recursively.
+The second argument is class name.
+One may use regular expressions, and multiple entries can be separated by commas.</td>
 </tr>
 <tr>
-<td><code>addIgnoreClassPatten</code></td>
-<td>自動登録したくないクラスパターンを登録します。最初の引数は､コンポーネントのパッケージ名です。子供のパッケージも再帰的に検索します。2番目の引数は､クラス名です。正規表現が使えます。「,」区切りで複数記述することもできます。</td>
+<td><code>addIgnoreClassPattern</code></td>
+<td>Class patterns to be ignored by auto-registration are registered.
+The first argument is the component package name.
+Child packages are searched recursively.
+The second argument is class name.
+One may use regular expressions, and multiple entries can be separated by commas.</td>
 </tr>
+</table>
 
+<h5><a name="aComponentAutoRegister">org.seasar.framework.container.autoregister.ComponentAutoRegister</a></h5>
+<p>When we use ComponentAutoRegister,
+components will be searched in the file system or the jar file, and will be automatically registered.
+</p>
+<table border="1">
+<tr bgcolor="#d1f3f4" align="center">
+<th>property</th>
+<th>Description</th>
+</tr>
+<tr>
+<td><code>instanceDef</code></td>
+<td>A sample use of XML is as follows.<br>
+<code>@org.seasar.framework.container.deployer.InstanceDefFactory@REQUEST</code></td>
+</tr>
+<tr>
+<td><code>autoBindingDef</code></td>
+<td>A sample use of XML is as follows.<br>
+<code>@org.seasar.framework.container.assembler.AutoBindingDefFactory@NONE</code></td>
+</tr>
+<tr>
+<td><code>autoNaming</code></td>
+<td>Component to automatically name components from class name.
+Requires implementation of org.seasar.framework.container.autoregister.AutoNaming interface.</td>
+</tr>
 </table>
 <br />
-<p>コンポーネントの名前はAutoNamingにより制御します．クラス名をコンポーネント名とするDefaultAutoNamingと、パッケージで修飾された名前をコンポーネント名とするQualifiedAutoNamingがあります．</p>
-<h5><a name="DefaultAutoNaming">org.seasar.framework.container.autoregister.DefaultAutoNaming</a></h5>
-<p>クラスの完全修飾名からパッケージ部分を除き、最後がImplまたはBeanで終わっていたら削除し､
-先頭を小文字にした名前をコンポーネントの名前に設定します。
-例えば､aaa.HogeImplクラスの場合､コンポーネント名は､hogeになります。</p>
 <table border="1">
-
-
 <tr bgcolor="#d1f3f4" align="center">
-<th>プロパティ</th>
-<th>説明</th>
+<th>method</th>
+<th>Description</th>
+</tr>
+<tr>
+<td><code>addReferenceClass</code></td>
+<td>Classes in jars are added.</td>
+</tr>
+<tr>
+<td><code>addClassPattern</code></td>
+<td>A class pattern to be auto-registered is registered.
+The first argument is the component package name.
+Child packages are searched recursively.
+The second argument is class name.
+One may use regular expressions, and multiple entries can be separated by commas.</td>
+</tr>
+<tr>
+<td><code>addIgnoreClassPattern</code></td>
+<td>Class patterns to be ignored by auto-registration are registered.
+The first argument is the component package name.
+Child packages are searched recursively.
+The second argument is class name.
+One may use regular expressions, and multiple entries can be separated by commas.</td>
+</tr>
+</table>
+<br />
+<p>AutoNaming automatially names components.</p>
+<h5><a name="DefaultAutoNaming">org.seasar.framework.container.autoregister.DefaultAutoNaming</a></h5>
+<table border="1">
+<tr bgcolor="#d1f3f4" align="center">
+<th>property</th>
+<th>Description</th>
 </tr>
 <tr>
 <td><code>decapitalize</code></td>
-<td>コンポーネント名の先頭を小文字にする場合はtrueを指定します。デフォルトはtrueです。</td>
+<td>Set to true in order to decapitalize component name. Default value is true.</td>
 </tr>
-
-
 </table>
 <br>
 <table border="1">
-
 <tr bgcolor="#d1f3f4" align="center">
-<th>メソッド</th>
-<th>説明</th>
+<th>method</th>
+<th>Deccription</th>
 </tr>
 <tr>
 <td><code>setCustomizedName</code></td>
-<td>デフォルトのルールに従わないクラスを登録します。最初の引数は､クラスの完全修飾名です。
-2番目の引数は､コンポーネント名です。</td>
+<td>Class to be not applied to default rule is registered.
+The first argument is the class FQDN.
+The second argument is the component name.</td>
 </tr>
 <tr>
 <td><code>addIgnoreClassSuffix</code></td>
-<td>クラス名の末尾から削除する部分を指定します。デフォルトでImplおよびBeanが登録されています。</td>
+<td>Define the part removed from the tail of the class name.
+"Impl" and "Bean" are already registered.</td>
 </tr>
 <tr>
 <td><code>addReplaceRule</code></td>
-<td>正規表現による置換ルールを追加します。最初の引数は正規表現です。2番目の引数は置換文字列です。</td>
+<td>Add the replacement rule by regular expressions.
+The first argument is the regular expressions.
+The second argument is the replacement value.</td>
 </tr>
 <tr>
 <td><code>clearReplaceRule</code></td>
-<td>setCustomizedName、addIgnoreClassSuffix、addReplaceRuleで登録した変換規則をクリアします。デフォルトで登録されているImplおよびBeanもクリアされます。</td>
+<td>The replacement rules that are added by setCustomizedName, addIgnoreClassSuffix and addReplaceRuleare method are cleared.</td>
 </tr>
-
 </table>
 <h5><a name="QualifiedAutoNaming">org.seasar.framework.container.autoregister.QualifiedAutoNaming</a></h5>
-<p>パッケージ名またはその一部で修飾されたクラス名をコンポーネントの名前に設定します。
-クラスの完全修飾名から最後がImplまたはBeanで終わっていたら削除し､
-先頭を小文字、ピリオドの直後を大文字にした名前をコンポーネントの名前に設定します。<br>
-パッケージの先頭部分から不要な部分を削除することができます。<br>
-例えば､aaa.bbb.ccc.ddd.HogeImplクラスの場合で､先頭のaaa.bbbを削除するように指定した場合のコンポーネント名は､cccDddHogeになります。</p>
 <table border="1">
-
-
-
 <tr bgcolor="#d1f3f4" align="center">
-<th>プロパティ</th>
-<th>説明</th>
+<th>property</th>
+<th>Description</th>
 </tr>
 <tr>
 <td><code>decapitalize</code></td>
-<td>コンポーネント名の先頭を小文字にする場合はtrueを指定します。デフォルトはtrueです。</td>
+<td>Set to true in order to decapitalize component name. Default value is true.</td>
 </tr>
-
-
-
 </table>
 <br>
 <table border="1">
-
 <tr bgcolor="#d1f3f4" align="center">
-<th>メソッド</th>
-<th>説明</th>
+<th>method</th>
+<th>Description</th>
 </tr>
 <tr>
 <td><code>setCustomizedName</code></td>
-<td>デフォルトのルールに従わないクラスを登録します。最初の引数は､クラスの完全修飾名です。
-2番目の引数は､コンポーネント名です。</td>
+<td>Class to be not applied to default rule is registered.
+The first argument is the class FQDN.
+The second argument is the component name.</td>
 </tr>
 <tr>
 <td><code>addIgnorePackagePrefix</code></td>
-<td>パッケージ名の先頭から削除する部分を指定します。</td>
+<td>Define the part removed from the head of the package name.</td>
 </tr>
 <tr>
 <td><code>addIgnoreClassSuffix</code></td>
-<td>クラス名の末尾から削除する部分を指定します。デフォルトでImplおよびBeanが登録されています。</td>
+<td>Define the part removed from the tail of the class name.
+"Impl" and "Bean" are already registered.</td>
 </tr>
 <tr>
 <td><code>addReplaceRule</code></td>
-<td>正規表現による置換ルールを追加します。最初の引数は正規表現です。2番目の引数は置換文字列です。</td>
+<td>Add the replacement rule by regular expressions.
+The first argument is the regular expressions.
+The second argument is the replacement value.</td>
 </tr>
 <tr>
 <td><code>clearReplaceRule</code></td>
-<td>setCustomizedName、addIgnorePackagePrefix、addIgnoreClassSuffix、addReplaceRuleで登録した変換規則をクリアします。デフォルトで登録されているImplおよびBeanもクリアされます。</td>
+<td>The replacement rules that are added by setCustomizedName, addIgnoreClassSuffix and addReplaceRuleare method are cleared.</td>
 </tr>
-
 </table>
-<br />
-<h5>例</h5>
+<h5>Example</h5>
 <pre>
 &lt;component
   class=&quot;org.seasar.framework.container.autoregister.FileSystemComponentAutoRegister&quot;&gt;
@@ -1266,41 +1266,66 @@ END java.util.Date#getTime() : 0
 &lt;/component&gt;
 </pre>
 
-<h3><a name="AspectAutoRegister">アスペクトの自動登録</a></h3>
-<p><a href="#ComponentAutoRegister">コンポーネントの自動登録</a>により、コンポーネントの登録は自動化できます。
-さらに、アスペクトの登録も自動化してしまおうというのが、アスペクトの自動登録機能です。アスペクトの自動登録には､AspectAutoRegisterコンポーネントを利用します。</p>
+<h3><a name="AspectAutoRegister">Aspect auto-registration</a></h3>
+<p>Component registration is automated by <a href="#ComponentAutoRegister">component auto-registration</a>.
+Taking this a step further is the automation of aspect auto-registration.
+<p>
+When we combine aspect auto-registration and component auto-registration,
+we need to write the aspect auto-registration configuration after component auto-registration configuration.
+The components manually registered are to be written after aspect auto-registeration configuration.
+</p>
+<pre>
+&lt;components&gt;
+    &lt;!-- 1.component auto-registration --&gt;
+    &lt;component class=&quot;org.seasar.framework.container.autoregister.ComponentAutoRegister&quot;&gt;
+        ...
+    &lt;/component&gt;
+
+    &lt;!-- 2.aspect auto-registration --&gt;
+    &lt;component class=&quot;org.seasar.framework.container.autoregister.AspectAutoRegister&quot;&gt;
+        ...
+    &lt;/component&gt;
+
+    &lt;!-- 3.component manually-registration --&gt;
+    &lt;component class=&quot;...&quot;&gt;
+        ...
+    &lt;/component&gt;
+    ...
+&lt;components&gt;
+</pre>
+
 <h5>org.seasar.framework.container.autoregister.AspectAutoRegister</h5>
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
-<th>プロパティ</th>
-<th>説明</th>
+<th>property</th>
+<th>Description</th>
 </tr>
 <tr>
 <td><code>interceptor</code></td>
-<td>インターセプタを指定します。複数のインターセプタを指定したい場合は､<a href="aop.html#InterceptorChain">InterceptorChain</a>を使ってください。</td>
+<td>Specify interceptor. Use <a href="aop.html#InterceptorChain">InterceptorChain</a> to specify multiple interceptors.</td>
 </tr>
 <tr>
 <td><code>pointcut</code></td>
-<td> インターセプタを適用するメソッドをカンマ区切りで指定します。pointcutを指定しない場合は、コンポーネントが実装しているインターフェースのすべてのメソッドが対象になります。メソッド名には正規表現(JDK1.4のregex)も使えます。 </td>
+<td>Specify methods to be targeted by interceptor, separated by commas.
+When pointcut is not specified, all interfaces implemented methods in component are targeted.
+Regular expressions (JDK1.4 regex) may be used for method names.</td>
 </tr>
 </table>
-<br />
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
-<th>メソッド</th>
-<th>説明</th>
+<th>method</th>
+<th>Description</th>
 </tr>
 <tr>
 <td><code>addClassPattern</code></td>
-<td>自動登録したいクラスパターンを登録します。最初の引数は､コンポーネントのパッケージ名です。子供のパッケージも再帰的に検索します。2番目の引数は､クラス名です。正規表現が使えます。「,」区切りで複数記述することもできます。</td>
+<td>A class pattern to be auto-registered is registered. The first argument is the component package name. Child packages are searched recursively. The second argument is class name. One may use regular expressions, and multiple entries can be separated by commas.</td>
 </tr>
 <tr>
-<td><code>addIgnoreClassPatten</code></td>
-<td>自動登録したくないクラスパターンを登録します。最初の引数は､コンポーネントのパッケージ名です。子供のパッケージも再帰的に検索します。2番目の引数は､クラス名です。正規表現が使えます。「,」区切りで複数記述することもできます。</td>
+<td><code>addIgnoreClassPattern</code></td>
+<td>Class patterns to be ignored by auto-registration are registered. The first argument is the component package name. Child packages are searched recursively. The second argument is class name. One may use regular expressions, and multiple entries can be separated by commas.</td>
 </tr>
 </table>
-<br />
-<h5>例</h5>
+<h5>Example</h5>
 <pre>&lt;include path=&quot;aop.dicon&quot;/&gt;
 ...
 &lt;component<br>  class=&quot;org.seasar.framework.container.autoregister.AspectAutoRegister&quot;&gt;<br>    &lt;property name=&quot;interceptor&quot;&gt;aop.traceInterceptor&lt;/property&gt;<br>    &lt;initMethod name=&quot;addClassPattern&quot;&gt;<br>        &lt;arg&gt;&quot;examples.di.impl&quot;&lt;/arg&gt;<br>        &lt;arg&gt;&quot;.*Impl&quot;&lt;/arg&gt;<br>    &lt;/initMethod&gt;<br>&lt;/component&gt;
@@ -1309,22 +1334,19 @@ END java.util.Date#getTime() : 0
 <h5><a name="InterfaceAspectAutoRegister">org.seasar.framework.container.autoregister.InterfaceAspectAutoRegister</a></h5>
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
-<th>プロパティ</th>
-<th>説明</th>
+<th>property</th>
+<th>Description</th>
 </tr>
 <tr>
 <td><code>interceptor</code></td>
-<td>インターセプタを指定します。複数のインターセプタを指定したい場合は､<a href="aop.html#InterceptorChain">InterceptorChain</a>を使ってください。</td>
+<td>Specify interceptor. Use <a href="aop.html#InterceptorChain">InterceptorChain</a> to specify multiple interceptors.</td>
 </tr>
 <tr>
 <td><code>targetInterface</code></td>
-<td> 指定したインターフェースを実装しているコンポーネントに対して､アスペクトを適用します。 </td>
+<td>The components implementing target interface are applied above interceptor.</td>
 </tr>
 </table>
-<br />
-
-<br />
-<h5>例</h5>
+<h5>Example</h5>
 <pre>&lt;include path=&quot;aop.dicon&quot;/&gt;
 ...
 &lt;component<br>  class=&quot;org.seasar.framework.container.autoregister.InterfaceAspectAutoRegister&quot;&gt;<br>    &lt;property name=&quot;interceptor&quot;&gt;aop.traceInterceptor&lt;/property&gt;
@@ -1332,13 +1354,7 @@ END java.util.Date#getTime() : 0
 </pre>
 
 <h3><a name="Hotswap">Hotswap</a></h3>
-<p>従来、ソースコードを書き換えてコンパイルした場合､コンパイル後の機能を試すためには､
-アプリケーション(正確にはClassLoader)を再起動する必要がありました。
-アプリケーションサーバ上で､アプリケーションを再起動するのは､非常に時間がかかるものです。
-「かったるい」と思っていた方も多くいることでしょう。</p>
-<p>Seasar2では、アプリケーションを稼動させたまま､クラスファイルを置き換えて、
-即座に試すことのできる<b>Hotswap</b>機能を実現しています。
-これであの「イライラ」からも解放されます。余分な待ち時間が無いので生産性を向上させることもできます。それでは、試してみましょう。</p>
+<p>Seasar2 realizes <b>Hotswap</b>, then let's try.</p>
 <h4>Greeting.java</h4>
 <pre>
 package examples.hotswap;
@@ -1364,12 +1380,10 @@ public class GreetingImpl implements Greeting {
 <h4>hotswap.dicon</h4>
 <pre>&lt;components&gt;<br>    &lt;component class=&quot;examples.hotswap.impl.GreetingImpl&quot;/&gt;<br>&lt;/components&gt;
 </pre>
-<p>ここまでは､特に変わったところはありません。ポイントはこれからです。
-s2container.diconを使って、hotswapモードに切り替えます。</p>
+<p>Change hotswap mode using "s2container.dicon".</p>
 <h4>s2container.dicon</h4>
 <pre>&lt;components&gt;<br>    &lt;component<br>      class=&quot;org.seasar.framework.container.factory.S2ContainerFactory$DefaultProvider&quot;&gt;<br>        &lt;property name=&quot;hotswapMode&quot;&gt;true&lt;/property&gt;<br>    &lt;/component&gt;<br>&lt;/components&gt;<br></pre>
-<p>s2container.diconはクラスパスの通っているルートのディレクトリに置いておけば､自動で認識されます。
-S2ContainerFactory#configure()を使って明示的に指定することもできます。</p>
+<p>"s2container.dicon" is placed in root directory of CLASSPATH.</p>
 <h4>GreetingMain.dicon</h4>
 <pre>
 package examples.hotswap.main;
@@ -1406,14 +1420,7 @@ public class GreetingMain {
     }
 }
 </pre>
-<p>hotswapを使うためには､S2Container#init()を呼び出す必要があります。
-実行すると"Hello"と表示された後に､プログラムが停止するので､
-GreetingImpl#greet()が"Hello2"を返すように修正してコンパイルします。
-その後､コンソールにフォーカスを当ててENTERキーを押してください。
-同じインスタンスなのにかかわらず、classファイルが入れ替わっていることがわかります。
-これは、<a href="#InstanceMode">インスタンスモード</a>がsingletonの場合の例ですが､
-<a href="#InstanceMode">インスタンスモード</a>がprototypeの場合は､S2Container#getComponent()のタイミングでクラスが入れ替わります。</p>
-<h4>実行結果</h4>
+<h4>The results will be as follows.</h4>
 <pre>
 hotswapMode:true
 Hello
@@ -1422,18 +1429,14 @@ Let's modify GreetingImpl, then press ENTER.
 after modify
 Hello2
 </pre>
-<p>hotswapを使うためには､コンポーネントがインターフェースを提供し､
-コンポーネントの利用者側は､インターフェース経由でコンポーネントを利用する必要があります。
-<a href="#InstanceMode">インスタンスモード</a>がrequest、sessionの場合は､
-そのコンポーネントが他のコンポーネントから参照されていない場合には､
-インターフェースなしでもhotswapを利用することができます。
+<p>We need to use inerface in order to hotswap.
 </p>
 
 
-<h2><a name="DefReference">S2Containerタグリファレンス</a></h2>
+<h2><a name="DefReference">S2Container tag reference</a></h2>
 
 <h3><a name="DOCTYPE">DOCTYPE</a></h3>
-<p>DOCTYPEは、XML宣言の次に指定します。下記のように指定してください。</p>
+<p>DOCTYPE is specified after the XML declaration. Please specify as shown below.</p>
 
 <pre>
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
@@ -1446,10 +1449,10 @@ Hello2
 &lt;/components&gt;
 </pre>
 
-            <h3><a name="componentsTag">componentsタグ(必須)</a></h3>
-            <p>ルートのタグになります。</p>
-            <h4><a name="namespaceAttr">namespace属性(任意)</a></h4>
-            <p><a href="#Namespace">名前空間</a>を指定することができます。Javaの識別子として使えるものにします</p>
+<h3><a name="componentsTag">components tag (required)</a></h3>
+<p>Becomes the root tag.</p>
+<h4><a name="namespaceAttr">namespace property (optional)</a></h4>
+<p>Specifies a <a href="#Namespace">namespace</a>.</p>
 
 <pre>
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
@@ -1460,12 +1463,14 @@ Hello2
 &lt;/components&gt;
 </pre>
 
-            <h3><a name="includeTag">includeタグ(任意)</a></h3>
-            <p>分割されたS2Containerの定義を<a href="#Include">取り込む</a>場合に使います。</p>
-            <h4><a name="pathAttr">path属性(必須)</a></h4>
-            <p>定義ファイルのパスを指定することができます。CLASSPATHで指定されているディレクトリをルートとする定義ファイルの絶対パスです。例えば、WEB-INF/classes/aaa.dicon
-の場合は aaa.dicon に、WEB-INF/classes/aaa/bbb/ccc.dicon の場合は aaa/bbb/ccc.dicon
-になりますセパレータは、WindowsでもUnixでも/です。componentタグの前に記述する必要があります。</p>
+<h3><a name="includeTag">include tag (optional)</a></h3>
+<p><a href="#Include">Used to consolidate separated S2Container definitions.</a></p>
+<h4><a name="pathAttr">path property (required)</a></h4>
+<p>Specifies the definition file path.
+It is an absolute path referencing the directory specified in CLASSPATH as root.
+For example, WEB-INF/classes/aaa.dicon becomes aaa.dicon.
+WEB-INF/classes/aaa/bbb/ccc.dicon becomes aaa/bbb/ccc.dicon.
+The separator is '/' in both Windows and UNIX.</p>
 
 <pre>
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
@@ -1476,42 +1481,53 @@ Hello2
 &lt;/components&gt;
 </pre>
 
-            <h3><a name="componentTag">componentタグ(任意)</a></h3>
-            <p>コンポーネントを定義します。</p>
-            <h4><a name="classAttr">class属性(任意)</a></h4>
-            <p>クラスの完全限定名を指定します。ボディで、<a href="#ognlExpr">OGNL式</a>を使ってコンポーネントを指定した場合は、class属性を省略することができます。OGNL式を使った場合にclass属性を指定すると、型チェックを行います。</p>
-            <h4><a name="componentTag.nameAttr">name属性(任意)</a></h4>
-            <p>名前を指定することもできます。Javaの識別子として使えるものにします。詳しくは、<a href="#getComponent">コンポーネントの取得</a>を参照してください。</p>
-            <h4><a name="instanceAttr">instance属性(任意)</a></h4>
-            <p>S2Containerがどのようにコンポーネントのインスタンスを管理するのかを指定することができます。singleton(デフォルト)、prototype、outer、request、sessionを指定することができます。詳しくは、<a href="#InstanceMode">インスタンス管理</a>を参照してください。</p>
-            <h4><a name="autoBindingAttr">autoBinding属性(任意)</a></h4>
-            <p>S2Containerがコンポーネントの依存関係をどのように解決するのかを指定できます。auto(デフォルト)、constructor、property、noneを指定することができます。詳しくは、<a href="#AutoBindingMode">自動バインディング</a>を参照してください。</p>
+<h3><a name="componentTag">component tag (optional)</a></h3>
+<p>Defines components.</p>
+<h4><a name="classAttr">class property (optional)</h4>
+<p>Specifies a FQDN of a class.
+The class property can be omitted if components are selected using <a href="#ognlExpr">OGNL expression</a> in the body.</p>
+<h4><a name="componentTag.nameAttr">name property (optional)</a></h4>
+<p>Specifies a name, usable as a java identifier. Refer to <a href="#getComponent">acquiring components</a> for details.</p>
+<h4><a name="instanceAttr">instance property (optional)</a></h4>
+<p>Specifies how S2Container manages instances of components.
+Options are singleton (default), prototype, outer, request, and session.
+Refer to <a href="#InstanceMode">Instance Management</a> for details.</p>
+<h4><a name="autoBindingAttr">autobinding property (optional)</a></h4>
+<p>Specifies how S2Container will resolve dependencies.
+Options are auto (default), constructor, property, and none.
+Refer to <a href="#AutoBindingMode">Automatic Binding</a> for details.</p>
 
-            <h3><a name="argTag">argタグ(任意)</a></h3>
-            <p><a href="#componentTag">componentタグ</a>の子タグとして使った場合は、コンストラクタの引数になります。記述した順番でコンストラクタに渡されます。
-            <a href="#initMethodTag">initMethodタグ</a>、<a href="#destroyMethodTag">destroyMethodタグ</a>の子タグとして使った場合は、メソッドの引数になります。記述した順番でメソッドに渡されます。
-            引数として渡される実際の値は、ボディで、<a href="#ognlExpr">OGNL式</a>を使うか、子タグで、<a href="#componentTag">componentタグ</a>を使います。</p>
+<h3><a name="argTag">arg tag (optional)</a></h3>
+<p>Becomes a constructor argument when used as a child tag of the <a href="#componentTag">component tag</a>.
+It is passed to the constructor in the order described.
+Becomes a method argument when used as a child <a href="#initMethodTag">initMethod tag</a> and <a href="#destroyMethodTag">destroyMethod tag</a>.
+It is passed to the method in the order described.
+Either <a href="#ognlExpr">OGNL expressions</a> in the body or the child <a href="#componentTag">component tag</a> is used for the value passed as an argument.</p>
 
-            <h3><a name="propertyTag">propertyタグ(任意)</a></h3>
-            <p><a href="#componentTag">componentタグ</a>の子タグとして使います。プロパティとして設定される実際の値は、ボディで、<a href="#ognlExpr">OGNL式</a>を使うか、子タグで、<a href="#componentTag">componentタグ</a>を使います。</p>
+<h3><a name="propertyTag">property tag (optional)</a></h3>
+<p>Used as a child tag of the <a href="#componentTag">component tag</a>.
+Either <a href="#ognlExpr">OGNL expressions</a> in the body or the child <a href="#componentTag">component tag</a> is used for the value to be configured as a property.</p>
+<h4><a name="propertyTag.nameAttr">name property (required)</a></h4>
+<p>Specifies a property name.</p>
+<h4><a name="propertyTag.bindingTypeAttr">bindingType property (optional)</a></h4>
+<p>Allows fine control of auto-binding per property.
+Options are must, should (default), may, and none.
+Refer to <a href="#AutoBindingMode">Automatic Binding</a> for details.</p>
 
-			<h4><a name="propertyTag.nameAttr">name属性(必須)</a></h4>
-            <p>プロパティ名を指定します。</p>
+<h3><a name="metaTag">meta tag (optional)</a></h3>
+<p>Used as a child tag in the <a href="#componentsTag">components</a>, <a href="#componentTag">component</a>, <a href="#argTag">arg</a> and <a href="#propertyTag">property</a> tags.
+Either <a href="#ognlExpr">OGNL expressions</a> in the body or the child <a href="#componentTag">component tag</a> is used for the metadata value.</p>
+<h4><a name="propertyTag.nameAttr">name property (optional)</a></h4>
+<p>Specifies a meta name.</p>
 
-			<h4><a name="propertyTag.bindingTypeAttr">bindingType属性(任意)</a></h4>
-            <p>プロパティごとに自動バインディングを細かく制御できます。must、should(デフォルト)、may、noneを指定することができます。詳しくは、<a href="#AutoBindingMode">自動バインディング</a>を参照してください。</p>
-
-			<h3><a name="metaTag">metaタグ(任意)</a></h3>
-            <p><a href="#componentsTag">componentsタグ</a>、<a href="#componentTag">componentタグ</a>、<a href="#argTag">argタグ</a>、<a href="#propertyTag">propertyタグ</a>の子タグとして使います。メタデータの値は、ボディで、<a href="#ognlExpr">OGNL式</a>を使うか、子タグで、<a href="#componentTag">componentタグ</a>を使います。</p>
-
-<h4><a name="propertyTag.nameAttr">name属性(任意)</a></h4>
-
-            <p>メタ名を指定します。</p>
-
-            <h3><a name="initMethodTag">initMethodタグ(任意)</a></h3>
-            <p><a href="#componentTag">componentタグ</a>の子タグとして使います。引数は、子タグで、<a href="#argTag">argタグ</a>を使います。name属性を書かずに、<a href="#ognlExpr">OGNL式</a>を使って、コンポーネントのメソッドを呼び出すこともできます。initMethodタグが定義されているコンポーネント自身を表す#self、System.outを表す#out、System.errを表す#errがinitMethodタグ内だけで有効なオブジェクトとして使えます。</p>
-            <h4><a name="initMethodTag.nameAttr">name属性(任意)</a></h4>
-            <p>メソッド名を指定します。</p>
+<h3><a name="initMethodTag">initMethod tag (optional)</a></h3>
+<p>Used as a child tag of the <a href="#componentTag">component tag</a>.
+A child <a href="#argTag">arg tag</a> is used for arguments.
+<a href="#ognlExpr">OGNL expressions</a> can be used to call a component method without writing the name property.
+The component defined in initMethod itself, System.out, and System.err is respectively represented as #self, #out, and #err.
+These can be used as valid objects within the initMethod tag.</p>
+<h4><a name="initMethodTag.nameAttr">name property (optional)</a></h4>
+<p>Specifies a method name.</p>
 
 <pre>
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
@@ -1529,43 +1545,47 @@ Hello2
 &lt;/components&gt;
 </pre>
 
-            <h3><a name="destroyMethodTag">destroyMethodタグ(任意)</a></h3>
-            <p>initMethodタグと同様です。</p>
+<h3><a name="aspectTag">aspect tag (optional)</a></h3>
+<p>Builds in aspect into a component.
+Refer to the description of the <a href="aop.html#aspectTag">aspect tag</a> in S2AOP.</p>
 
-            <h3><a name="aspectTag">aspectタグ(任意)</a></h3>
-            <p>アスペクトをコンポーネントに組み込みます。詳しくは、S2AOPの<a href="aop.html#aspectTag">aspectタグ</a>の説明を参照してください。</p>
+<h3><a name="interTypeTag">interType tag(optional)</a></h3>
+<p>Builds in inter-type into a component.
+Refer to the description of the <a href="aop.html#interTypeTag">interType tag</a> in S2AOP.</p>
 
-            <h3><a name="descriptionTag">descriptionタグ(任意)</a></h3>
+<h3><a name="descriptionTag">description tag (optional)</a></h3>
+<p>Used as a child tag in the <a href="#componentsTag">components</a>, <a href="#componentTag">component</a>, <a href="#argTag">arg</a> and <a href="#propertyTag">property</a> tags.
+Can freely used to hold descriptions or explanations.</p>
 
-            <p><a href="#componentsTag">componentsタグ</a>、<a href="#componentTag">componentタグ</a>、<a href="#argTag">argタグ</a>、<a href="#propertyTag">propertyタグ</a>の子タグとしてdescriptionタグを使うことができます。自由に説明を記述できます。</p>
+<h3><a name="ognlExpr">OGNL expressions</a></h3>
+<p>S2Container uses <a href="http://www.ognl.org/">OGNL</a> as its expression language.
+It is in order to convert the contents described in XML as strings into a java object.</p>
 
-            <h3><a name="ognlExpr">OGNL式</a></h3>
-            <p>S2Containerでは、式言語として<a href="http://www.ognl.org/">OGNL</a>を利用しています。XMLの中で、文字列で記述した内容(式)をJavaのオブジェクトに変換するためのものだと思って間違いないと思います。</p>
+<ul>
+<li>strings are surrounded in (&quot;), as &quot;hoge&quot;.</li>
+<li>char is surrounded by ('), as 'a'.</li>
+<li>Numeral values are directly entered, as 123.</li>
+<li>boolean values are directly entered, as true false.</li>
+<li>A FQDN of class like new java.util.date(0) can be used to call a constructor</li>
+<li>Results of a static method like @java.lang.Math@max(1,2) can be referenced.</li>
+<li>Class like @java.lang.String@class can be referenced.</li>
+<li>Results of a calling a component method like hoge.toString() can be referenced.
+This example is assuming there is a component named hoge defined somewhere.</li>
+</ul>
 
-            <ul>
-            <li>文字列は、&quot;hoge&quot;のように&quot;で囲みます。</li>
-            <li>charは、'a'のように'で囲みます。</li>
-            <li>数値は、123のようにそのまま記述します。</li>
-            <li>論理値は、true,falseのようにそのまま記述します。</li>
-            <li>new java.util.Date(0)のようにクラスの完全限定名でコンストラクタを呼び出すことができます。</li>
-            <li> @java.lang.Math@max(1, 2)のようにstaticなメソッドを呼び出した結果を参照することができます。</li>
-            <li>@java.lang.String@classのようにクラスを参照できます。</li>
-            <li>hoge.toString()のようにコンポーネントのメソッドを呼び出した結果を参照することができます。この例は、どこかでhogeという名前のコンポーネントが定義されているという前提です。</li>
-            </ul>
-            詳しくは、<a href="http://www.ognl.org/2.6.7/Documentation/html/LanguageGuide/index.html">OGNLのマニュアル</a>を参照してください。<br/>
-            <br/>
+<p>Refer to the <a href="http://www.ognl.org/2.6.7/Documentation/html/LanguageGuide/index.html">OGNL Manual</a> for details.</p><br/>
+<br/>
 
-<h2><a name="AnnotationReference">S2Containerアノテーションリファレンス</a></h2>
-<p>S2Containerでは、アノテーションの実装方法として､
-Tigerアノテーション､backport175アノテーション､定数アノテーションの3種類を用意しています。一般的にアノテーションといえば､Java 5から導入された
-Tigerアノテーションですが､それだけだと、JDK1.4のユーザが利用できなくなってしまいます。</p>
-<p>できるだけ、多くの方にアノテーションを便利に使ってもらいたいため､JDK1.4で、
-Tiger風アノテーション(JSR-175)を使うことのできる
-<a href="http://backport175.codehaus.org/">backport175</a>アノテーション、public static finalな定数を利用する定数アノテーションを用意しています。 </p>
+<h2><a name="AnnotationReference">S2Container Annotation Reference</a></h2>
+<p>S2Container uses 3 annotation implementations; Tiger annotation, Backport175 annotation, and constant annotation.
+Generally, annotation refers to Tiger annotation in Java5, but this would exclude users of JDK1.4.
+<a href="http://backport175.codehaus.org/">backport175</a> annotation allows tiger (JSR-175) style annotations in JDK1.4,
+and constant annotation uses public static final constants.
+These are implemented to give annotations capability to as many users as possible.</p>
 
-<h3><a name="ComponentAnnotation">Componentアノテーション</a></h3>
-<p><a href="#componentTag">componentタグ</a>のかわりに使えるが、Componentアノテーションです。</p>
-<p>Tigerアノテーションは以下のようになります。</p>
+<h3><a name="ComponentAnnotation">Component Annotation</a></h3>
+<p>Can be substituted for the <a href="#componentTag">component tag</a>.</p>
+<p>Tiger annotation is as follows.</p>
 <pre>
 @Component(name="xxx", instance=InstanceType.PROTOTYPE,
         autoBinding=AutoBindingType.PROPERTY)
@@ -1573,7 +1593,7 @@ public class Xxx {
     ...
 }
 </pre>
-<p>backport175アノテーションは以下のようになります。</p>
+<p>Backport175 annotation is as follows.</p>
 <pre>
 /**
  * @org.seasar.framework.container.annotation.backport175.Component(
@@ -1585,15 +1605,15 @@ public class Xxx {
     ...
 }
 </pre>
-<p>定数アノテーションは以下のようになります。</p>
+<p>Constant annotation is as follows.</p>
 <pre>
 public static final String COMPONENT =
   "name = xxx, instance = prototype, autoBinding = property";
 </pre>
 
-<h3><a name="BindingAnnotation">Bindingアノテーション</a></h3>
-<p><a href="#propertyTag">propertyタグ</a>のかわりに使えるが、Bindingアノテーションです。</p>
-<p>Tigerアノテーションは以下のようになります。</p>
+<h3><a name="BindingAnnotation">Binding Annotation</a></h3>
+<p>Can be substituted for the <a href="#propertyTag">property tag</a>.</p>
+<p>Tiger annotation is as follows.</p>
 <pre>
 @Binding("aaa2")
 public void setAaa(String aaa) {
@@ -1610,7 +1630,7 @@ public void setCcc(String ccc) {
     ...
 }
 </pre>
-<p>backport175アノテーションは以下のようになります。</p>
+<p>Backport175 annotation is as follows.</p>
 <pre>
 /**
 
@@ -1634,7 +1654,7 @@ public void setCcc(String ccc) {
     ...
 }
 </pre>
-<p>定数アノテーションはプロパティ名_BINDINGで指定します。</p>
+<p>Constant annotation specifies the property name_BINDING.</p>
 <pre>
 public static final String aaa_BINDING = "aaa2";
 
@@ -1655,10 +1675,11 @@ public void setCcc(String ccc) {
 }
 </pre>
 
-<h3><a name="AspectAnnotation">Aspectアノテーション</a></h3>
-<p><a href="aop.html#aspectTag">aspectタグ</a>のかわりに使えるが、Aspectアノテーションです。aspectタグと異なり､複数定義することはできないので､
-複数のインターセプタを適用したい場合は､<a href="aop.html#InterceptorChain">InterceptorChain</a>を使ってください。ポイントカットを指定したいときは､pointcut属性を指定します。クラスに対するアノテーションの場合､pointcutを指定しないときは､そのクラスが実装しているすべてのインターフェースのメソッドが対象になります。</p>
-<p>Tigerアノテーションは以下のようになります。</p>
+<h3><a name="AspectAnnotation">Aspect Annotation</a></h3>
+<p>Can be substituted for the <a href="aop.html#aspectTag">aspect tag</a>.
+Multiple definitions cannot be made unlike the aspect tag,
+so use <a href="aop.html#InterceptorChain">InterceptorChain</a> when multiple interceptors are to be applied.</p>
+<p>Tiger annotation is as follows.</p>
 <pre>
 @Aspect("aop.traceInterceptor")
 public class Xxx {
@@ -1673,7 +1694,7 @@ public class Xxx {
     }
 }
 </pre>
-<p>backport175アノテーションは以下のようになります。</p>
+<p>Backport175 annotation is as follows.</p>
 <pre>
 /**
  * @org.seasar.framework.container.annotation.backport175.Aspect(
@@ -1694,27 +1715,15 @@ public class Xxx {
     }
 }
 </pre>
-<p>定数アノテーションは以下のようになります。pointcutを複数指定したい場合は､pointcut= get.*\nexecute.*のように\nで区切ってください。
-\n以外の区切り文字を使ってはいけません。</p>
+<p>Constant annotation is as follows.
+Separate multiple pointcuts with \n, as in get.*\nexecute.
+Only \n may be used as a separator character.</p>
 <pre>
 public static final String ASPECT =
-    "interceptor=aop.traceInterceptor, pointcut=getAaa";
+    "value=aop.traceInterceptor, pointcut=getAaa";
 </pre>
 
-<h3><a name="InitMethodAnnotation">InitMethodアノテーション</a></h3>
-<p><a href="#initMethodTag">initMethodタグ</a>のかわりに使えるのが、InitMethodアノテーションです。
-initMethodタグと異なり､OGNLの式を書いたり、引数を設定することはできません。</p>
-<p>Tigerアノテーションは以下のようになります。</p>
-<pre>
-public class Xxx {
-    ...
-    @InitMethod
-    public void init() {
-        ...
-    }
-}
-</pre>
-<p>backport175アノテーションは以下のようになります。</p>
+<p>backport175 annotation is as follows.</p>
 <pre>
 public class Xxx {
     ...
@@ -1726,7 +1735,7 @@ public class Xxx {
     }
 }
 </pre>
-<p>定数アノテーションは以下のようになります。初期化メソッドを複数指定したい場合は､カンマ(,)で区切ってください。</p>
+<p>Constant Annotation is as follows.</p>
 <pre>
 public static final String INIT_METHOD = "init";
 </pre>

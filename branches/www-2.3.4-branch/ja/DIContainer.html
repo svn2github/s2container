@@ -3,7 +3,7 @@
 <!-- don't edit start -->
 <head>
 <title>Seasar - DI Container with AOP - </title>
-<meta http-equiv="Content-Type" content="text/html; charset=MS932C">
+<meta http-equiv="Content-Type" content="text/html; charset=Windows-31j">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <link href="seasar_b.css" type="text/css" rel="stylesheet" media="screen">
 <link href="seasar_p.css" type="text/css" rel="stylesheet" media="print">
@@ -728,17 +728,16 @@ S2Containerの定義ファイルには、次の内容を記述します。</p>
 <br />
 <p>コンストラクタの自動バインディングのルールは次のようになります。</p>
 <ul>
-<li>コンストラクタの引数が明示的に指定されている場合は、それに従い、自動バインディングは適用されません。</li>
+<li>コンストラクタの引数が明示的に指定されている場合は、自動バインディングは適用されません。</li>
 <li>上記に該当しない場合、引数のないデフォルトコンストラクタが定義されているなら、そのコンストラクタを使い、自動バインディングは適用されません。</li>
-<li>上記に該当しない場合、コンストラクタの引数の数が1以上で、
-引数の型がすべてインターフェースのコンストラクタで最も引数の数が多いコンストラクタを使います。そして、
-引数の型を実装したコンポーネントをコンテナから取得して適用します。</li>
+<li>上記に該当しない場合、引数の型がすべてインターフェースで最も引数の数の多いコンストラクタを使います。
+そして、引数の型を実装したコンポーネントをコンテナから取得して適用します。</li>
 <li>上記に該当しない場合､自動バインディングは適用されません。</li>
 </ul>
 
 <p>プロパティの自動バインディングのルールは次のようになります。</p>
 <ul>
-<li>プロパティが明示的に指定されている場合は、それに従い、自動バインディングは適用されません。</li>
+<li>プロパティが明示的に指定されている場合は、自動バインディングは適用されません。</li>
 <li>上記に該当しない場合､プロパティ名と同一のコンポーネントがコンテナに登録されてプロパティに代入可能なら、
 そのコンポーネントが適用されます。</li>
 <li>上記に該当しない場合､プロパティの型がインターフェースでプロパティの型を実装したコンポーネントがコンテナに登録されていれば、
@@ -774,8 +773,7 @@ S2Containerの定義ファイルには、次の内容を記述します。</p>
             <h3><a name="UseS2Container">コンポーネントでS2Containerを利用する</a></h3>
             <p>コンポーネントはS2Containerに依存しないことが望ましいのですが、コンポーネントによっては、S2Containerのメソッドを呼び出したい場合もあるでしょう。S2Container自身もcontainerという名前で、登録されているので、arg,propertyタグのボディでcontainerを指定することで、コンテナのインスタンスを取得できます。また、S2Container型のsetterメソッドを定義しておいて自動バインディングで設定することもできます。arg,propertyタグでcontainerを指定する場合は、次のようになります。</p>
 
-<pre>
-&lt;components&gt;
+<pre>&lt;components&gt;
     &lt;component class=&quot;examples.dicon.BarImpl&quot;&gt;
         &lt;arg&gt;container&lt;/arg&gt;
     &lt;/component&gt;
@@ -783,14 +781,13 @@ S2Containerの定義ファイルには、次の内容を記述します。</p>
     &lt;component class=&quot;examples.dicon.FooImpl&quot;&gt;
         &lt;property name=&quot;foo&quot;&gt;container&lt;/property&gt;
     &lt;/component&gt;
-&lt;/components&gt;
-</pre>
+&lt;/components&gt;</pre>
 
 
-            <h3><a name="S2ContainerServlet">S2ContainerServlet</a></h3>
-            <p>これまでは、Javaアプリケーションで、明示的にS2Containerを作成していましたが、Webアプリケーションの場合、誰がS2Containerを作成するのでしょうか。その目的のために次のクラスが用意されています。</p>
-            <p>- org.seasar.framework.container.servlet#S2ContainerServlet</p>
-            S2ContainerServletを使うためには、web.xmlに次の項目を記述します。<br/>src/org/seasar/framework/container/servlet/web.xmlに記述例もあります。
+<h3><a name="S2ContainerServlet">S2ContainerServlet</a></h3>
+<p>これまでは、Javaアプリケーションで、明示的にS2Containerを作成していましたが、Webアプリケーションの場合、誰がS2Containerを作成するのでしょうか。その目的のために次のクラスが用意されています。</p>
+<ul><li>org.seasar.framework.container.servlet#S2ContainerServlet</li></ul>
+<p>S2ContainerServletを使うためには、web.xmlに次の項目を記述します。</p>
 
 <pre>
 &lt;servlet&gt;
@@ -813,23 +810,16 @@ S2Containerの定義ファイルには、次の内容を記述します。</p>
 &lt;/servlet-mapping&gt;
 </pre>
 
-            <p>configPathでメインとなるS2Container定義のパスを指定します。定義ファイルはWEB-INF/classesにおきます。S2ContainerServletは、他のサーブレットよりもはやく起動されるようにload-on-startupタグを調整してください。S2ContainerServletが起動した後は、次のメソッドでS2Containerのインスタンスを取得することができます。</p>
-            <p>- org.seasar.framework.container.factory.SingletonS2ContainerFactory#getContainer()</p>
+            <p>configPathでルートとなるS2Container定義のパスを指定します。定義ファイルはWEB-INF/classesにおきます。S2ContainerServletは、他のサーブレットよりもはやく起動されるようにload-on-startupタグを調整してください。S2ContainerServletが起動した後は、次のメソッドでS2Containerのインスタンスを取得することができます。</p>
+            <ul><li>org.seasar.framework.container.factory.SingletonS2ContainerFactory#getContainer()</li></ul>
             <p>また、S2Containerのライフサイクルは、S2ContainerServletと連動します。debugパラメータをtrueにすると、次のようにして、稼動中にS2Containerを再起動できます。xxxはWebアプリケーションのコンテキスト名です。</p>
             <pre>http://localhost:8080/xxx/s2servlet?command=restart
             </pre>
             <p>S2ContainerServletを使っている場合、ServletContextをservletContextという名前のコンポーネントとしてアクセスできるようになります。</p>
 
-            <h3><a name="app.dicon">app.diconの役割</a></h3>
-            <p>すべてのS2Container定義のルートになる定義ファイルは、慣例でapp.diconという名前にします。app.diconにはコンポーネントの定義はしないようにしてください。通常はWEB-INF/classesにおくと良いでしょう。</p>
-
-<pre>
-&lt;components&gt;
-    &lt;include path=&quot;examples/foo.dicon&quot;/&gt;
-    &lt;include path=&quot;examples/bar.dicon&quot;/&gt;
-          ...
-&lt;/components&gt;
-</pre>
+<h3><a name="app.dicon">app.diconの役割</a></h3>
+<p>ルートのS2Containerの定義ファイルは、慣例でapp.diconという名前にします。
+通常はWEB-INF/classesにおくと良いでしょう。</p>
 
 <h3><a name="Aop">AOPの適用</a></h3>
 <p>コンポーネントに<a href="aop.html">AOP</a>を適用することもできます。例えば、ArrayListに<a href="aop.html#TraceInterceptor">TraceInterceptor</a>を適用したい場合次のようにします。</p>
@@ -880,36 +870,27 @@ END java.util.Date#getTime() : 0
 
 <h3><a name="Meta">メタデータ</a></h3>
 
-<p>components、component、arg、propertyタグにメタデータ<a href="aop.html"></a>を指定することもできます。metaタグはメタデータを指定したいタグの子タグに指定します。例えば、componentsタグにメタデータを指定したい場合次のようにします。</p>
+<p>components、component、arg、propertyタグにメタデータを指定することもできます。metaタグはメタデータを指定したいタグの子タグに指定します。例えば、componentsタグにメタデータを指定したい場合次のようにします。</p>
 
 <pre>&lt;components&gt;
     &lt;meta name=&quot;aaa&quot;&gt;111&lt;/meta&gt;
 &lt;/components&gt;
 </pre>
-<p>components、component、arg、propertyタグに指定したメタデータの情報は、S2Container、ComponentDef、ArgDef、PropertyDefで定義されている次のメソッドで取得することが出来ます。</p>
-<ul>
-<li>public int getMetaDefSize()</li>
-<li>public MetaDef getMetaDef(int index)</li>
-<li>public MetaDef getMetaDef(String name)</li>
-<li>public MetaDef[] getMetaDefs(String name)</li>
-</ul>
-
 
 <h3><a name="request">リクエストの自動バインディング</a></h3>
 <p>コンポーネントに対して、HttpServletRequestを自動的にバインディングすることが出来ます。そのためには、コンポーネントに、setRequest(HttpServletRequest request)のメソッドを定義します。そうすると、S2Containerが自動的にリクエストを設定します。また、次のようにFilterをweb.xmlに定義する必要があります。</p>
-<pre>&lt;web-app&gt;
-<br>    &lt;filter&gt;<br>        &lt;filter-name&gt;s2filter&lt;/filter-name&gt;<br>        &lt;filter-class&gt;org.seasar.framework.container.filter.S2ContainerFilter&lt;/filter-class&gt;<br>    &lt;/filter&gt;<br>    <br>    &lt;filter-mapping&gt;<br>        &lt;filter-name&gt;s2filter&lt;/filter-name&gt;<br>        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;<br>    &lt;/filter-mapping&gt;<br>&lt;/web-app&gt;
+<pre>&lt;web-app&gt;<br>    &lt;filter&gt;<br>        &lt;filter-name&gt;s2filter&lt;/filter-name&gt;<br>        &lt;filter-class&gt;org.seasar.framework.container.filter.S2ContainerFilter&lt;/filter-class&gt;<br>    &lt;/filter&gt;<br>    <br>    &lt;filter-mapping&gt;<br>        &lt;filter-name&gt;s2filter&lt;/filter-name&gt;<br>        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;<br>    &lt;/filter-mapping&gt;<br>&lt;/web-app&gt;
 </pre>
 <p>同様にHttpServletResponse、HttpSessionもsetterメソッドを定義するだけで、自動バインディングすることが出来ます。また、S2ContainerFilterを使うと、HttpServletRequest、HttpServletResponse、HttpSessionをそれぞれrequest、response、sessionという名前のコンポーネントとしてアクセスできるようになります。</p>
+
 
 <h3><a name="ComponentAutoRegister">コンポーネントの自動登録</a></h3>
 <p><a href="#AutoBindingMode">自動バインディング</a>により、DIの設定はほぼ自動化できます。
 <a href="#AnnotationReference">アノテーション</a>を使って細かく制御することも可能です。
-さらに、コンポーネントの登録も自動化してしまおうというのが、コンポーネントの自動登録機能です。
-コンポーネントの自動登録には､ファイルシステム上のclassファイルを検索するFileSystemComponentAutoRegisterコンポーネントやjarファイルの中を検索するJarComponentAutoRegisterを利用します。
-開発環境ではファイルシステム、本番環境ではJarファイルを使用する場合には、ComponentAutoRegisterを利用します。
-</p>
+さらに、コンポーネントの登録も自動化してしまおうというのが、コンポーネントの自動登録機能です。</p>
+
 <h5><a name="FileSystemComponentAutoRegister">org.seasar.framework.container.autoregister.FileSystemComponentAutoRegister</a></h5>
+<p>ファイルシステムからクラスを検索としてコンポーネントを自動登録するコンポーネントです。</p>
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
 <th>プロパティ</th>
@@ -919,6 +900,12 @@ END java.util.Date#getTime() : 0
 <td><code>instanceDef</code></td>
 <td>自動登録されるコンポーネントに適用するInstanceDefを指定します。XMLで指定する場合､<br>
 <code>@org.seasar.framework.container.deployer.InstanceDefFactory@REQUEST</code><br>
+のように指定します。</td>
+</tr>
+<tr>
+<td><code>autoBindingDef</code></td>
+<td>自動登録されるコンポーネントに適用するAutoBindingDefを指定します。XMLで指定する場合､<br>
+<code>@org.seasar.framework.container.assembler.AutoBindingDefFactory@NONE</code><br>
 のように指定します。</td>
 </tr>
 <tr>
@@ -942,6 +929,7 @@ END java.util.Date#getTime() : 0
 </tr>
 </table>
 <h5><a name="JarComponentAutoRegister">org.seasar.framework.container.autoregister.JarComponentAutoRegister</a></h5>
+<p>Jarファイルの中からクラスを検索としてコンポーネントを自動登録するコンポーネントです。</p>
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
 <th>プロパティ</th>
@@ -959,6 +947,12 @@ END java.util.Date#getTime() : 0
 <td><code>instanceDef</code></td>
 <td>自動登録されるコンポーネントに適用するInstanceDefを指定します。XMLで指定する場合､<br>
 <code>@org.seasar.framework.container.deployer.InstanceDefFactory@REQUEST</code><br>
+のように指定します。</td>
+</tr>
+<tr>
+<td><code>autoBindingDef</code></td>
+<td>自動登録されるコンポーネントに適用するAutoBindingDefを指定します。XMLで指定する場合､<br>
+<code>@org.seasar.framework.container.assembler.AutoBindingDefFactory@NONE</code><br>
 のように指定します。</td>
 </tr>
 <tr>
@@ -982,6 +976,7 @@ END java.util.Date#getTime() : 0
 </tr>
 </table>
 <h5><a name="aComponentAutoRegister">org.seasar.framework.container.autoregister.ComponentAutoRegister</a></h5>
+<p>ファイルシステムまたはJarファイルからクラスを検索としてコンポーネントを自動登録するコンポーネントです。</p>
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
 <th>プロパティ</th>
@@ -990,6 +985,12 @@ END java.util.Date#getTime() : 0
 <tr>
 <td><code>instanceDef</code></td>
 <td>自動登録されるコンポーネントに適用するInstanceDefを指定します。XMLで指定する場合､@org.seasar.framework.container.deployer.InstanceDefFactory@REQUESTのように指定します。</td>
+</tr>
+<tr>
+<td><code>autoBindingDef</code></td>
+<td>自動登録されるコンポーネントに適用するAutoBindingDefを指定します。XMLで指定する場合､<br>
+<code>@org.seasar.framework.container.assembler.AutoBindingDefFactory@NONE</code><br>
+のように指定します。</td>
 </tr>
 <tr>
 <td><code>autoNaming</code></td>
@@ -1016,13 +1017,13 @@ END java.util.Date#getTime() : 0
 </tr>
 </table>
 <br />
-<p>コンポーネントの名前はAutoNamingにより制御します．クラス名をコンポーネント名とするDefaultAutoNamingと、パッケージで修飾された名前をコンポーネント名とするQualifiedAutoNamingがあります．</p>
+<h4>AutoNaming</h4>
+<p>コンポーネントの名前はAutoNamingにより制御します。</p>
 <h5><a name="DefaultAutoNaming">org.seasar.framework.container.autoregister.DefaultAutoNaming</a></h5>
 <p>クラスの完全修飾名からパッケージ部分を除き、最後がImplまたはBeanで終わっていたら削除し､
 先頭を小文字にした名前をコンポーネントの名前に設定します。
 例えば､aaa.HogeImplクラスの場合､コンポーネント名は､hogeになります。</p>
 <table border="1">
-
 <tr bgcolor="#d1f3f4" align="center">
 <th>プロパティ</th>
 <th>説明</th>
@@ -1031,7 +1032,6 @@ END java.util.Date#getTime() : 0
 <td><code>decapitalize</code></td>
 <td>コンポーネント名の先頭を小文字にする場合はtrueを指定します。デフォルトはtrueです。</td>
 </tr>
-
 </table>
 <br>
 <table border="1">
@@ -1057,6 +1057,7 @@ END java.util.Date#getTime() : 0
 <td>setCustomizedName、addIgnoreClassSuffix、addReplaceRuleで登録した変換規則をクリアします。デフォルトで登録されているImplおよびBeanもクリアされます。</td>
 </tr>
 </table>
+
 <h5><a name="QualifiedAutoNaming">org.seasar.framework.container.autoregister.QualifiedAutoNaming</a></h5>
 <p>パッケージ名またはその一部で修飾されたクラス名をコンポーネントの名前に設定します。
 クラスの完全修飾名から最後がImplまたはBeanで終わっていたら削除し､
@@ -1064,8 +1065,6 @@ END java.util.Date#getTime() : 0
 パッケージの先頭部分から不要な部分を削除することができます。<br>
 例えば､aaa.bbb.ccc.ddd.HogeImplクラスの場合で､先頭のaaa.bbbを削除するように指定した場合のコンポーネント名は､cccDddHogeになります。</p>
 <table border="1">
-
-
 <tr bgcolor="#d1f3f4" align="center">
 <th>プロパティ</th>
 <th>説明</th>
@@ -1074,8 +1073,6 @@ END java.util.Date#getTime() : 0
 <td><code>decapitalize</code></td>
 <td>コンポーネント名の先頭を小文字にする場合はtrueを指定します。デフォルトはtrueです。</td>
 </tr>
-
-
 </table>
 <br>
 <table border="1">
@@ -1105,7 +1102,7 @@ END java.util.Date#getTime() : 0
 <td>setCustomizedName、addIgnorePackagePrefix、addIgnoreClassSuffix、addReplaceRuleで登録した変換規則をクリアします。デフォルトで登録されているImplおよびBeanもクリアされます。</td>
 </tr>
 </table>
-<br />
+
 <h5>例</h5>
 <pre>
 &lt;component
@@ -1153,9 +1150,34 @@ END java.util.Date#getTime() : 0
 <h3><a name="AspectAutoRegister">アスペクトの自動登録</a></h3>
 <p><a href="#ComponentAutoRegister">コンポーネントの自動登録</a>により、コンポーネントの登録は自動化できます。
 さらに、アスペクトの登録も自動化してしまおうというのが、アスペクトの自動登録機能です。
-コンポーネントの自動登録と組み合わせる場合は､
-コンポーネントの自動登録の設定よりも後に、アスペクトの自動登録の設定を記述する必要があります。</p>
+</p>
+<p>
+コンポーネントの自動登録と組み合わせる場合は､コンポーネントの自動登録の設定よりも後に、アスペクトの自動登録の設定を記述する必要があります。
+アスペクトを適用されるコンポーネントは、アスペクトの自動登録の設定よりも後に記述する必要があります。
+</p>
+<pre>
+&lt;components&gt;
+    &lt;!-- 1.コンポーネントの自動登録 --&gt;
+    &lt;component class=&quot;org.seasar.framework.container.autoregister.ComponentAutoRegister&quot;&gt;
+        ...
+    &lt;/component&gt;
+
+    &lt;!-- 2.アスペクトの自動登録 --&gt;
+    &lt;component class=&quot;org.seasar.framework.container.autoregister.AspectAutoRegister&quot;&gt;
+        ...
+    &lt;/component&gt;
+
+    &lt;!-- 3.その他のコンポーネント --&gt;
+    &lt;component class=&quot;...&quot;&gt;
+        ...
+    &lt;/component&gt;
+    ...
+&lt;components&gt;
+</pre>
+
+
 <h5>org.seasar.framework.container.autoregister.AspectAutoRegister</h5>
+<p>クラス名のパターンを指定してアスペクトを自動登録するコンポーネントです。</p>
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
 <th>プロパティ</th>
@@ -1193,6 +1215,7 @@ END java.util.Date#getTime() : 0
 </pre>
 
 <h5><a name="InterfaceAspectAutoRegister">org.seasar.framework.container.autoregister.InterfaceAspectAutoRegister</a></h5>
+<p>あるインタフェースを実装したクラスに対してアスペクトを自動登録するコンポーネントです。</p>
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
 <th>プロパティ</th>
@@ -1207,9 +1230,7 @@ END java.util.Date#getTime() : 0
 <td> 指定したインターフェースを実装しているコンポーネントに対して､アスペクトを適用します。 </td>
 </tr>
 </table>
-<br />
 
-<br />
 <h5>例</h5>
 <pre>&lt;include path=&quot;aop.dicon&quot;/&gt;
 ...
@@ -1350,7 +1371,7 @@ Hello2
             <h4><a name="pathAttr">path属性(必須)</a></h4>
             <p>定義ファイルのパスを指定することができます。CLASSPATHで指定されているディレクトリをルートとする定義ファイルの絶対パスです。例えば、WEB-INF/classes/aaa.dicon
 の場合は aaa.dicon に、WEB-INF/classes/aaa/bbb/ccc.dicon の場合は aaa/bbb/ccc.dicon
-になりますセパレータは、WindowsでもUnixでも/です。componentタグの前に記述する必要があります。</p>
+になります。セパレータは、WindowsでもUnixでも/です。</p>
 
 <pre>
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
@@ -1420,8 +1441,6 @@ Hello2
             <h3><a name="aspectTag">aspectタグ(任意)</a></h3>
             <p>アスペクトをコンポーネントに組み込みます。詳しくは、S2AOPの<a href="aop.html#aspectTag">aspectタグ</a>の説明を参照してください。</p>
 
-            <h3><a name="descriptionTag">descriptionタグ(任意)</a></h3>
-
             <p><a href="#componentsTag">componentsタグ</a>、<a href="#componentTag">componentタグ</a>、<a href="#argTag">argタグ</a>、<a href="#propertyTag">propertyタグ</a>の子タグとしてdescriptionタグを使うことができます。自由に説明を記述できます。</p>
 
             <h3><a name="ognlExpr">OGNL式</a></h3>
@@ -1437,7 +1456,7 @@ Hello2
             <li>@java.lang.String@classのようにクラスを参照できます。</li>
             <li>hoge.toString()のようにコンポーネントのメソッドを呼び出した結果を参照することができます。この例は、どこかでhogeという名前のコンポーネントが定義されているという前提です。</li>
             </ul>
-            詳しくは、<a href="http://www.ognl.org/2.6.7/Documentation/html/LanguageGuide/index.html">OGNLのマニュアル</a>を参照してください。<br/>
+            詳しくは、<a href="ognl.html">OGNLガイド</a>を参照してください。<br/>
             <br/>
 
 <h2><a name="AnnotationReference">S2Containerアノテーションリファレンス</a></h2>
@@ -1527,15 +1546,15 @@ public static final String bbb_BINDING = "bindingType=none";
 
 public static final String ccc_BINDING = null;
 
-public void setAaa(String aaa) {
+public void setAaa(Aaa aaa) {
     ...
 }
 
-public void setBbb(String bbb) {
+public void setBbb(Bbb bbb) {
     ...
 }
 
-public void setCcc(String ccc) {
+public void setCcc(Ccc ccc) {
     ...
 }
 </pre>
@@ -1583,7 +1602,7 @@ public class Xxx {
 \n以外の区切り文字を使ってはいけません。</p>
 <pre>
 public static final String ASPECT =
-    "interceptor=aop.traceInterceptor, pointcut=getAaa";
+    "value=aop.traceInterceptor, pointcut=getAaa";
 </pre>
 
 <h3><a name="InitMethodAnnotation">InitMethodアノテーション</a></h3>
@@ -1615,7 +1634,6 @@ public class Xxx {
 <pre>
 public static final String INIT_METHOD = "init";
 </pre>
-
 
 
 <!-- document end -->
