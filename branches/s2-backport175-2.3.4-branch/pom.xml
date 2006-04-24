@@ -8,7 +8,7 @@
   <artifactId>s2-backport175</artifactId>
   <packaging>jar</packaging>
   <name>S2 Backport175</name>
-  <version>2.3.8-SNAPSHOT</version>
+  <version>2.3.8</version>
   <description></description>
   <url>http://s2container.seasar.org/</url>
   <issueManagement>
@@ -59,39 +59,19 @@
     <defaultGoal>validate</defaultGoal>
     <plugins>
       <plugin>
-        <artifactId>maven-antrun-plugin</artifactId>
+        <groupId>org.seasar.maven.plugin.backport175</groupId>
+        <artifactId>maven-backport175-plugin</artifactId>
         <executions>
           <execution>
-            <id>main-annotationc</id>
-            <phase>compile</phase>
-            <configuration>
-              <tasks>
-                <ant
-                  antfile="build-backport175.xml"
-                  target="main-annotationc"
-                  inheritRefs="true"
-                />
-              </tasks>
-            </configuration>
             <goals>
-              <goal>run</goal>
+              <goal>annotationc</goal>
+              <goal>testAnnotationc</goal>
             </goals>
-          </execution>
-          <execution>
-            <id>test-annotationc</id>
-            <phase>test-compile</phase>
             <configuration>
-              <tasks>
-                <ant
-                  antfile="build-backport175.xml"
-                  target="test-annotationc"
-                  inheritRefs="true"
-                />
-              </tasks>
+              <!--
+              <verbose>true</verbose>
+              -->
             </configuration>
-            <goals>
-              <goal>run</goal>
-            </goals>
           </execution>
         </executions>
       </plugin>
@@ -104,6 +84,13 @@
       <url>http://maven.seasar.org/maven2</url>
     </repository>
   </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>maven.seasar.org</id>
+      <name>The Seasar Foundation Maven2 Repository</name>
+      <url>http://maven.seasar.org/maven2</url>
+    </pluginRepository>
+  </pluginRepositories>
   <dependencies>
     <dependency>
       <groupId>backport175</groupId>
@@ -114,13 +101,13 @@
     <dependency>
       <groupId>org.seasar.container</groupId>
       <artifactId>s2-extension</artifactId>
-      <version>2.3.4</version>
+      <version>2.3.8</version>
       <type>jar</type>
     </dependency>
     <dependency>
-      <groupId>geronimo-spec</groupId>
-      <artifactId>geronimo-spec-j2ee</artifactId>
-      <version>1.4-rc4</version>
+      <groupId>org.apache.geronimo.specs</groupId>
+      <artifactId>geronimo-j2ee_1.4_spec</artifactId>
+      <version>1.0</version>
       <type>jar</type>
       <scope>provided</scope>
     </dependency>
@@ -133,7 +120,4 @@
       <url>scp://www.seasar.org/home/groups/s2container/maven/maven2</url>
     </repository>
   </distributionManagement>
-  <properties>
-    <annotationc.verbose>false</annotationc.verbose>
-  </properties>
 </project>
