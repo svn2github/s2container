@@ -10,6 +10,7 @@
 			</zipfileset>
 			<zipfileset prefix="s2-backport175/lib" dir="target">
 				<include name="s2-backport175-${ver}.jar"/>
+				<include name="s2-backport175-${ver}-sources.jar"/>
 			</zipfileset>
 		</zip>
 	</target>
