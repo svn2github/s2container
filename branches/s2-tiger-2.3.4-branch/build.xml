@@ -10,6 +10,7 @@
 			</zipfileset>
 			<zipfileset prefix="s2-tiger/lib" dir="target">
 				<include name="s2-tiger-${ver}.jar"/>
+				<include name="s2-tiger-${ver}-sources.jar"/>
 			</zipfileset>
 		</zip>
 	</target>
