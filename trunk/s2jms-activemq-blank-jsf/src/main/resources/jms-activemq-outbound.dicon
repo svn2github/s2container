@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.3//EN"
+	"http://www.seasar.org/dtd/components23.dtd">
+<components namespace="jms-activemq-cf">
+	<include path="jms-activemq-ra.dicon"/>
+
+	<component name="mcfDeployer"
+		class="org.seasar.jca.deploy.impl.ManagedConnectionFactoryDeployer"
+	>
+		<property name="managedConnectionFactoryClass">
+			"org.activemq.ra.ActiveMQManagedConnectionFactory"
+		</property>
+	</component>
+
+	<component name="connectionFactory" class="javax.jms.ConnectionFactory">
+		mcfDeployer.createConnectionFactory()
+	</component>
+
+	<!-- デスティネーション (キューまたはトピック) ファクトリを設定します -->
+	<component class="org.seasar.jms.core.destination.impl.QueueFactory">
+		<!-- キュー名を指定します -->
+		<property name="name">"Foo"</property>
+	</component>
+
+	<!-- セッションファクトリを設定します -->
+	<component class="org.seasar.jms.core.session.impl.SessionFactoryImpl"/>
+
+	<!-- メッセージ送信コンポーネントを設定します -->
+	<component class="org.seasar.jms.core.impl.MessageSenderImpl"/>
+</components>

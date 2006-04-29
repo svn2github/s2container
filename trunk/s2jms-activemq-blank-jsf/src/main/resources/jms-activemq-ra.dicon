@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.3//EN"
+	"http://www.seasar.org/dtd/components23.dtd">
+<components>
+	<include path="jca.dicon"/>
+
+	<component
+		class="org.seasar.jca.deploy.impl.RarResourceAdapterDeployer"
+	>
+		<!-- ActiveMQ ResourceAdapter へのパスを設定します -->
+		<property name="path">
+			application.getRealPath("WEB-INF/ra/activemq-ra-3.2.1.rar")
+		</property>
+
+		<!-- ActiveMQ Broker へのURLを設定します -->
+		<initMethod name="setProperty">
+			<arg>"ServerUrl"</arg>
+			<arg>"tcp://localhost:61616"</arg>
+		</initMethod>
+	</component>
+</components>

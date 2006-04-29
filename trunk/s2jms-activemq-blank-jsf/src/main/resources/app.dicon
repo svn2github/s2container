@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
+	"http://www.seasar.org/dtd/components21.dtd">
+<components>
+	<include path="j2ee.dicon"/>
+	<include path="jsf.dicon"/>
+	<include path="teeda.dicon"/>
+	<include path="jms-activemq-outbound.dicon"/>
+
+	<component name="sendPage" instance="request"
+		class="org.seasar.jms.blank.SendPage"
+	>
+	</component>
+
+	<component instance="request"
+		class="org.seasar.jms.blank.SendServiceImpl"
+	>
+		<aspect>j2ee.requiredTx</aspect>
+	</component>
+</components>

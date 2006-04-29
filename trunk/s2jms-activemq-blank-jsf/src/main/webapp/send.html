@@ -1,0 +1,14 @@
+<html xmlns:m="http://www.seasar.org/maya">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Windows-31j" />
+<title>JMS send message</title>
+</head>
+<body>
+<form>
+<span m:inject="h:messages" m:globalOnly="false" m:showDetail="true"/>
+Message <input type="text" m:value="#{sendPage.message}"/>
+<input type="submit" value="send" m:action="#{sendPage.send}"/>
+</form>
+</span>
+</body>
+</html>
