@@ -3,10 +3,6 @@
 - ant
 -- 環境変数ANT_HOME
 -- PATHへ$ANT_HOME/binを追加
-- groovy
--- 環境変数GROOVY_HOME
--- PATHへ$GROOVY_HOME/binを追加
-
 
 2. コンパイル
 

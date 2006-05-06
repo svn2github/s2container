@@ -1,13 +1,15 @@
 import benchmark.main.BenchmarkMain
 
+memorySize = "1024M"
+permSize = "384M"
+repeatCount = 5
+
 start = new java.util.Date();
 //format = new java.text.SimpleDateFormat("yyyyMMdd_HHmmss_SSS");
 format = new java.text.SimpleDateFormat("yyyyMMdd_HHmmss");
 timestamp = format.format(start)
 outputDir = "target/bench/${timestamp}"
 traceFileName = "${outputDir}/trace.txt"
-memorySize = "1024M"
-permSize = "384M"
 
 execute()
 
@@ -40,7 +42,7 @@ def execute() {
 		shortClassName = org.seasar.framework.util.ClassUtil.getShortClassName(clazz)
 		fileName = "${outputDir}/${shortClassName}.tsv"
 		BenchmarkMain.getBenchmarkMethods(clazz).each { |method|
-			5.times {
+			repeatCount.times {
 				runBenchmark(ant, clazz.name, method.name, fileName)
 			}
 		}

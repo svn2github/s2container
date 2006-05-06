@@ -1,23 +1,15 @@
 <project name="seasar-benchmark" default="usage" basedir=".">
 
-	<property environment="env"/>
 	<property name="maven.build.directory" value="target"/>
 	<property name="maven.build.output" value="${maven.build.directory}/classes"/>
-	<property name="groovy.home" location="${env.GROOVY_HOME}"/>
-
-	<path id="build.classpath.spring">
-		<fileset dir="lib/spring-framework-2.0-m3">
-			<include name="**/*.jar"/>
-		</fileset>
-	</path>
-	<path id="build.classpath.seasar">
-		<fileset dir="lib/seasar-2.4.0-beta-1">
-			<include name="**/*.jar"/>
-		</fileset>
-	</path>
+	
 	<path id="build.classpath">
-		<path refid="build.classpath.spring"/>
-		<path refid="build.classpath.seasar"/>
+		<fileset dir="lib/seasar-2.4.0-beta-1">
+			<include name="*.jar"/>
+		</fileset>
+		<fileset dir="lib/spring-framework-2.0-m3">
+			<include name="*.jar"/>
+		</fileset>
 		<fileset dir="lib">
 			<include name="*.jar"/>
 		</fileset>
@@ -25,10 +17,8 @@
 	<path id="runtime.classpath">
 		<path refid="build.classpath"/>
 		<path location="${maven.build.output}"/>
-	</path>
-	<path id="groovy.classpath">
-		<fileset dir="${groovy.home}/lib">
-			<include name="**/*.jar"/>
+		<fileset dir="lib/groovy-1.0-jsr-05">
+			<include name="*.jar"/>
 		</fileset>
 	</path>
 
@@ -63,7 +53,6 @@
 
 	<target name="benchmark" description="Execute the benchmark">
 		<java classname="groovy.lang.GroovyShell" fork="true">
-			<classpath refid="groovy.classpath"/>
 			<classpath refid="runtime.classpath"/>
 			<arg value="src/main/groovy/benchmark.groovy"/>
 		</java>
