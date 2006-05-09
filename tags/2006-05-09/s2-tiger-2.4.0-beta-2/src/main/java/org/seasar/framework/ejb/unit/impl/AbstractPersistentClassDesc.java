@@ -1,0 +1,215 @@
+/*
+ * Copyright 2004-2006 the Seasar Foundation and the Others.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
+ */
+package org.seasar.framework.ejb.unit.impl;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.seasar.framework.beans.BeanDesc;
+import org.seasar.framework.beans.PropertyDesc;
+import org.seasar.framework.beans.factory.BeanDescFactory;
+import org.seasar.framework.ejb.unit.PersistentClassDesc;
+import org.seasar.framework.ejb.unit.PersistentStateAccessor;
+import org.seasar.framework.ejb.unit.PersistentStateDesc;
+import org.seasar.framework.ejb.unit.PersistentStateNotFoundException;
+import org.seasar.framework.exception.EmptyRuntimeException;
+
+/**
+ * @author taedium
+ * 
+ */
+public abstract class AbstractPersistentClassDesc implements
+        PersistentClassDesc {
+
+    protected final Class<?> persistentClass;
+
+    protected boolean propertyAccessed;
+
+    protected List<String> tableNames = new ArrayList<String>();
+
+    protected List<PersistentStateDesc> stateDescs = new ArrayList<PersistentStateDesc>();
+
+    protected Map<Class<?>, List<PersistentStateDesc>> stateDescsByClass = new HashMap<Class<?>, List<PersistentStateDesc>>();
+
+    protected Map<String, List<PersistentStateDesc>> stateDescsByTableName = new HashMap<String, List<PersistentStateDesc>>();
+
+    public AbstractPersistentClassDesc(Class<?> persistentClass) {
+        this(persistentClass, null, false);
+    }
+
+    public AbstractPersistentClassDesc(Class<?> persistentClass,
+            String primayTableName, boolean propertyAccessed) {
+        if (persistentClass == null) {
+            throw new EmptyRuntimeException("persistentClass");
+        }
+        this.persistentClass = persistentClass;
+        this.propertyAccessed = propertyAccessed;
+        if (primayTableName != null) {
+            addTableName(primayTableName);
+        }
+    }
+
+    public Class<?> getPersistentClass() {
+        return persistentClass;
+    }
+
+    public boolean isPropertyAccessed() {
+        return propertyAccessed;
+    }
+
+    public List<PersistentStateDesc> getPersistentStateDescs() {
+        return stateDescs;
+    }
+
+    public PersistentStateDesc getPersistentStateDesc(String persistentStateName)
+            throws PersistentStateNotFoundException {
+
+        return getPersistentStateDesc(persistentClass, persistentStateName);
+    }
+
+    public PersistentStateDesc getPersistentStateDesc(Class owner,
+            String persistentStateName) throws PersistentStateNotFoundException {
+
+        if (stateDescsByClass.containsKey(owner)) {
+            List<PersistentStateDesc> list = stateDescsByClass.get(owner);
+            for (PersistentStateDesc stateDesc : list) {
+                if (stateDesc.getName().equals(persistentStateName)) {
+                    return stateDesc;
+                }
+            }
+        }
+        throw new PersistentStateNotFoundException(
+                propertyAccessed ? "ESSR0503" : "ESSR0502", owner,
+                persistentStateName);
+    }
+
+    public PersistentStateDesc getPersistentStateDescByColumnName(
+            String columnName) {
+
+        List<PersistentStateDesc> states = stateDescsByTableName
+                .get(getPrimaryTableName());
+
+        for (PersistentStateDesc state : states) {
+            if (state.getColumn().hasName(columnName)) {
+                return state;
+            }
+        }
+        throw new PersistentStateNotFoundException(
+                propertyAccessed ? "ESSR0505" : "ESSR0504",
+                getPrimaryTableName(), columnName);
+    }
+
+    public List<PersistentStateDesc> getPersistentStateDescsByTableName(
+            String tableName) {
+        return (List<PersistentStateDesc>) stateDescsByTableName.get(tableName
+                .toLowerCase());
+    }
+
+    public List<PersistentStateDesc> getIdentifiers() {
+        List<PersistentStateDesc> result = new ArrayList<PersistentStateDesc>();
+        for (PersistentStateDesc stateDesc : stateDescs) {
+            if (stateDesc.isIdentifier()
+                    && stateDesc.getPersistentClassDesc() == this) {
+                result.add(stateDesc);
+            }
+        }
+        return result;
+    }
+
+    public String getPrimaryTableName() {
+        return tableNames.get(0);
+    }
+
+    public List<String> getTableNames() {
+        return tableNames;
+    }
+
+    protected void setupPersistentStateDescs() {
+        BeanDesc beanDesc = BeanDescFactory.getBeanDesc(persistentClass);
+        if (propertyAccessed) {
+            for (int i = 0; i < beanDesc.getPropertyDescSize(); i++) {
+                PropertyDesc propDesc = beanDesc.getPropertyDesc(i);
+                if (!propDesc.hasReadMethod()) {
+                    continue;
+                }
+                Method readMethod = propDesc.getReadMethod();
+                if (readMethod.getDeclaringClass() == persistentClass) {
+                    PersistentStateAccessor accessor = new PropertyAccessor(
+                            propDesc, readMethod);
+                    setupPersistentStateDesc(accessor);
+                }
+            }
+        } else {
+            for (int i = 0; i < beanDesc.getFieldSize(); i++) {
+                Field field = beanDesc.getField(i);
+                if (field.getDeclaringClass() == persistentClass) {
+                    PersistentStateAccessor accessor = new FieldAccessor(field);
+                    setupPersistentStateDesc(accessor);
+                }
+            }
+        }
+    }
+
+    private void setupPersistentStateDesc(PersistentStateAccessor accessor) {
+        PersistentStateDesc ps = PersistentStateDescFactory
+                .getPersistentStateDesc(this, getPrimaryTableName(), accessor);
+        if (ps != null) {
+            addPersistentStateDesc(ps);
+        }
+    }
+
+    protected void addPersistentStateDesc(PersistentStateDesc ps) {
+        stateDescs.add(ps);
+        Class<?> clazz = ps.getPersistentClassDesc().getPersistentClass();
+        addPersistentStateDescByClass(ps, clazz);
+        addPersistentStateDescByTableName(ps, ps.getColumn().getTable());
+    }
+
+    private void addPersistentStateDescByTableName(PersistentStateDesc ps,
+            String tableName) {
+
+        String name = tableName.toLowerCase();
+        if (!stateDescsByTableName.containsKey(name)) {
+            stateDescsByTableName.put(name,
+                    new ArrayList<PersistentStateDesc>());
+        }
+        stateDescsByTableName.get(name).add(ps);
+        addTableName(name);
+    }
+
+    private void addPersistentStateDescByClass(PersistentStateDesc ps,
+            Class clazz) {
+        if (!stateDescsByClass.containsKey(clazz)) {
+            stateDescsByClass.put(clazz, new ArrayList<PersistentStateDesc>());
+        }
+        stateDescsByClass.get(clazz).add(ps);
+    }
+
+    protected void addTableName(String tableName) {
+        if (!tableNames.contains(tableName.toLowerCase())) {
+            tableNames.add(tableName.toLowerCase());
+        }
+    }
+
+    protected void setPropertyAccessed(boolean propertyAccessed) {
+        this.propertyAccessed = propertyAccessed;
+    }
+
+}
