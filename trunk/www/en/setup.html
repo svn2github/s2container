@@ -56,16 +56,17 @@
 <li>lib/poi-2.5-final-20040804.jar</li>
 <li>lib/s2-extension-2.x.x.jar</li>
 <li>lib/geronimo-jta_1.0.1B_spec-1.0.jar (refer to below)</li>
+<li>lib/geronimo-ejb_2.1_spec-1.0.jar (refer to below)</li>
 <li>resources/j2ee.dicon</li>
 <li>resources/aop.dicon</li>
 </ul>
 
-<p>Selects geronimo-j2ee_1.4_spec-1.0.jar or geronimo-jta_1.0.1B_spec-1.0.jar responding to the application evnironment.
+<p>Selects geronimo-j2ee_1.4_spec-1.0.jar, geronimo-jta_1.0.1B_spec-1.0.jar or geronimo-ejb_2.1_spec-1.0.jar responding to the application evnironment.
 <table border="1">
-<tr><th>environment</th><th>geronimo-j2ee_1.4_spec-1.0.jar</th><th>geronimo-jta_1.0.1B_spec-1.0.jar</th></tr>
-<tr align="center"><td>Servlet Container not implementing J2EE full spec<br>(Tomcat etc.)</td><td>unnecessary</td><td>necessary<br>(using S2JTA,S2Tx)</td></tr>
-<tr align="center"><td>Application Server implementing J2EE full spec<br>(JBoss, WebSphere, WebLogic etc)</td><td>unnecessary</td><td>unnecessary</td></tr>
-<tr align="center"><td>Standalone</td><td>necessary</td><td>unnecessary</td></tr>
+<tr><th>environment</th><th>geronimo-j2ee_1.4_spec-1.0.jar</th><th>geronimo-jta_1.0.1B_spec-1.0.jar</th><th>geronimo-ejb_2.1_spec-1.0.jar</th></tr>
+<tr align="center"><td>Servlet Container not implementing J2EE full spec<br>(Tomcat etc.)</td><td>unnecessary</td><td>necessary<br>(using S2JTA,S2Tx)</td><td>necessary<br>(using S2Tiger)</td></tr>
+<tr align="center"><td>Application Server implementing J2EE full spec<br>(JBoss, WebSphere, WebLogic etc)</td><td>unnecessary</td><td>unnecessary</td><td>unnecessary</td></tr>
+<tr align="center"><td>Standalone</td><td>necessary</td><td>unnecessary</td><td>unnecessary</td></tr>
 </table>
 <br>
 </p>
