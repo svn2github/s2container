@@ -92,7 +92,7 @@ package examples.ejb3.impl;
 
 import javax.ejb.Stateless;
 
-import examples.di.Greeting;
+import examples.ejb3.Greeting;
 
 @Stateless
 public class GreetingImpl implements Greeting {
@@ -123,8 +123,8 @@ package examples.ejb3.impl;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
-import examples.di.Greeting;
-import examples.di.GreetingClient;
+import examples.ejb3.Greeting;
+import examples.ejb3.GreetingClient;
 
 @Stateless
 public class GreetingClientImpl implements GreetingClient {
@@ -158,7 +158,7 @@ import javax.naming.InitialContext;
 
 import org.seasar.framework.container.factory.SingletonS2ContainerFactory;
 
-import examples.di.GreetingClient;
+import examples.ejb3.GreetingClient;
 
 public class GreetingMain {
 
