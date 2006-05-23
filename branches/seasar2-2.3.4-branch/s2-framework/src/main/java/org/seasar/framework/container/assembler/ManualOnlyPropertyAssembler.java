@@ -34,6 +34,9 @@ public class ManualOnlyPropertyAssembler extends AbstractPropertyAssembler {
 	}
 
 	public void assemble(Object component) {
+    if (component == null) {
+        return;
+    }
 		BeanDesc beanDesc = getBeanDesc(component);
 		int size = getComponentDef().getPropertyDefSize();
 		for (int i = 0; i < size; ++i) {

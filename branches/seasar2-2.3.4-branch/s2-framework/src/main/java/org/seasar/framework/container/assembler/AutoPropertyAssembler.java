@@ -35,6 +35,9 @@ public class AutoPropertyAssembler extends AbstractPropertyAssembler {
 	}
 
 	public void assemble(Object component) {
+        if (component == null) {
+            return;
+        }
 		BeanDesc beanDesc = getBeanDesc(component);
         ComponentDef cd = getComponentDef();
 		for (int i = 0; i < beanDesc.getPropertyDescSize(); ++i) {

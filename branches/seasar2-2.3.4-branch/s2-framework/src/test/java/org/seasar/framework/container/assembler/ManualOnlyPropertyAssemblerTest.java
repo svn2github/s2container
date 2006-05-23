@@ -96,6 +96,17 @@ public class ManualOnlyPropertyAssemblerTest extends TestCase {
 			System.out.println(ex);
 		}
 	}
+    
+    public void testAssembleWhenComponentNull() throws Exception {
+        S2Container container = new S2ContainerImpl();
+        ComponentDefImpl cd = new ComponentDefImpl(B.class);
+        PropertyDef pd = new PropertyDefImpl("aaa");
+        pd.setExpression("\"a\"");
+        cd.addPropertyDef(pd);
+        container.register(cd);
+        PropertyAssembler assembler = new ManualOnlyPropertyAssembler(cd);
+        assembler.assemble(null);
+    }
 
 	public interface Foo {
 		public String getHogeName();
