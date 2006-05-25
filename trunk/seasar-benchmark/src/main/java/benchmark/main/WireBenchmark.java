@@ -7,8 +7,7 @@ import junit.framework.Assert;
 import org.seasar.framework.container.S2Container;
 import org.seasar.framework.container.factory.S2ContainerFactory;
 import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.xml.XmlBeanFactory;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class WireBenchmark extends AbstractBenchmark {
 
@@ -141,8 +140,7 @@ public class WireBenchmark extends AbstractBenchmark {
     private void spring(String beansXml) {
         System.out.println(beansXml);
         long start = System.currentTimeMillis();
-        BeanFactory factory = new XmlBeanFactory(
-                new ClassPathResource(beansXml));
+        BeanFactory factory = createBeanFactory(beansXml);
         long end = System.currentTimeMillis();
         System.out.println("[Spring] container creation:" + (end - start));
         reportContainerCreation(end - start);
@@ -171,6 +169,10 @@ public class WireBenchmark extends AbstractBenchmark {
         reportGetComponents((end - start), 2);
 
         reportMemory();
+    }
+
+    protected BeanFactory createBeanFactory(String beansXml) {
+        return new ClassPathXmlApplicationContext(beansXml);
     }
 
 }

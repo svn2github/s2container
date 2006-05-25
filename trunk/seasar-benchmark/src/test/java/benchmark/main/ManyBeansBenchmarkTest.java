@@ -41,8 +41,4 @@ public class ManyBeansBenchmarkTest extends TestCase {
         benchmark_.springSameClass10000();
     }
 
-    public void test1() throws Exception {
-        benchmark_.seasarAutoRegisterFromJarSingleton01000();
-    }
-
 }

@@ -2,8 +2,6 @@ package benchmark.main;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.SortedMap;
-import java.util.TreeMap;
 
 import junit.framework.TestCase;
 

@@ -30,8 +30,10 @@ def execute() {
 	runJava(ant, "benchmark.main.BenchmarkVersion", [])
 	
 	[
-		"benchmark.main.AopWeavingBenchmark", 
 		"benchmark.main.ManyBeansAopBenchmark", 
+		"benchmark.main.ManyBeansNoInitContainerBenchmark", 
+		"benchmark.main.SeasarAutoRegisterBenchmark", 
+		"benchmark.main.AopWeavingBenchmark", 
 		"benchmark.main.AopBenchmark", 
 		"benchmark.main.BeanDescBenchmark", 
 		"benchmark.main.ManyBeansBenchmark", 

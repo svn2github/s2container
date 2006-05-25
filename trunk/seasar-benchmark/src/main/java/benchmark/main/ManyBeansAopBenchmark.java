@@ -1,10 +1,5 @@
 package benchmark.main;
 
-import junit.framework.Assert;
-
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 public class ManyBeansAopBenchmark extends AbstractManyBeansBenchmark {
 
     public void seasarAopAutoRegisterSingleton01000() {
@@ -44,36 +39,23 @@ public class ManyBeansAopBenchmark extends AbstractManyBeansBenchmark {
     }
 
     public void springAopAutoRegisterSingleton01000() {
-        springAopAutoRegister(
+        springGetComponents(
                 "benchmark/many/aop_autoRegister_singleton_01000.xml", 1000);
     }
 
     public void springAopAutoRegisterSingleton02000() {
-        springAopAutoRegister(
+        springGetComponents(
                 "benchmark/many/aop_autoRegister_singleton_02000.xml", 2000);
     }
 
     public void springAopAutoRegisterSingleton05000() {
-        springAopAutoRegister(
+        springGetComponents(
                 "benchmark/many/aop_autoRegister_singleton_05000.xml", 5000);
     }
 
     public void springAopAutoRegisterSingleton10000() {
-        springAopAutoRegister(
+        springGetComponents(
                 "benchmark/many/aop_autoRegister_singleton_10000.xml", 10000);
-    }
-
-    private void springAopAutoRegister(final String beansXml, final int times) {
-        System.out.println(beansXml);
-        long start = System.currentTimeMillis();
-        BeanFactory factory = new ClassPathXmlApplicationContext(beansXml);
-
-        springGetComponents0(times, start, factory);
-
-        final Object bean = factory.getBean("nullBean00000");
-        Assert.assertEquals("Hello", bean.toString());
-        Assert.assertEquals(true,
-                bean.getClass().getName().indexOf("CGLIB") > -1);
     }
 
     public void seasarAopPrototype01000() {

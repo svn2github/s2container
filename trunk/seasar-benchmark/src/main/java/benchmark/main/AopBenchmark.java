@@ -5,8 +5,7 @@ import junit.framework.Assert;
 import org.seasar.framework.container.S2Container;
 import org.seasar.framework.container.factory.S2ContainerFactory;
 import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.xml.XmlBeanFactory;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import benchmark.aop.Greeting;
 import benchmark.aop.GreetingImpl2;
@@ -24,7 +23,7 @@ public class AopBenchmark extends AbstractBenchmark {
     }
 
     private void springProxyAopCall(final String xml) {
-        BeanFactory factory = new XmlBeanFactory(new ClassPathResource(xml));
+        BeanFactory factory = createBeanFactory(xml); //new XmlBeanFactory(new ClassPathResource(xml));
         Greeting greeting = (Greeting) factory.getBean("greeting");
         Assert.assertEquals(true, greeting.getClass().getName().indexOf(
                 "$Proxy") > -1);
@@ -49,7 +48,7 @@ public class AopBenchmark extends AbstractBenchmark {
     }
 
     private void springCglibAopCall(final String xml) {
-        BeanFactory factory = new XmlBeanFactory(new ClassPathResource(xml));
+        BeanFactory factory = createBeanFactory(xml);
         GreetingImpl2 greeting = (GreetingImpl2) factory.getBean("greeting2");
         Assert.assertEquals(true, greeting.getClass().getName()
                 .indexOf("CGLIB") > -1);
@@ -181,7 +180,7 @@ public class AopBenchmark extends AbstractBenchmark {
     }
 
     private void springGetProxyComponent(final String xml) {
-        BeanFactory factory = new XmlBeanFactory(new ClassPathResource(xml));
+        BeanFactory factory = createBeanFactory(xml);
         {
             Greeting greeting = (Greeting) factory.getBean("greeting");
             Assert.assertNotNull(greeting);
@@ -206,7 +205,7 @@ public class AopBenchmark extends AbstractBenchmark {
     }
 
     private void springGetCglibComponent(final String xml) {
-        BeanFactory factory = new XmlBeanFactory(new ClassPathResource(xml));
+        BeanFactory factory = createBeanFactory(xml);
         {
             GreetingImpl2 greeting = (GreetingImpl2) factory
                     .getBean("greeting2");
@@ -222,6 +221,10 @@ public class AopBenchmark extends AbstractBenchmark {
                 .println("[Spring] " + times_ + " times AOP:" + (end - start));
         reportTime(end - start);
         reportMemory();
+    }
+
+    protected BeanFactory createBeanFactory(String beansXml) {
+        return new ClassPathXmlApplicationContext(beansXml);
     }
 
 }

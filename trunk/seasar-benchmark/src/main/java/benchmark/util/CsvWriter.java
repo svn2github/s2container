@@ -1,4 +1,4 @@
-package benchmark.main;
+package benchmark.util;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -18,7 +18,7 @@ import java.util.Map.Entry;
 import org.seasar.framework.exception.IORuntimeException;
 import org.seasar.framework.util.FileInputStreamUtil;
 
-class CsvWriter {
+public class CsvWriter {
 
     private File file_;
 

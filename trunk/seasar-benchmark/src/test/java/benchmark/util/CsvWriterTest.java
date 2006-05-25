@@ -1,4 +1,4 @@
-package benchmark.main;
+package benchmark.util;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -14,6 +14,8 @@ import junit.framework.TestCase;
 import org.seasar.framework.exception.IORuntimeException;
 import org.seasar.framework.util.FileInputStreamUtil;
 import org.seasar.framework.util.ReaderUtil;
+
+import benchmark.util.CsvWriter;
 
 public class CsvWriterTest extends TestCase {
 

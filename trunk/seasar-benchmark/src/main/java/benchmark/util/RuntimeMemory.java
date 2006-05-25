@@ -1,4 +1,4 @@
-package benchmark.main;
+package benchmark.util;
 
 import java.math.BigDecimal;
 

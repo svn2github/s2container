@@ -21,6 +21,9 @@ import org.seasar.framework.beans.factory.BeanDescFactory;
 import org.seasar.framework.util.ClassUtil;
 import org.seasar.framework.util.MethodUtil;
 
+import benchmark.util.CsvWriter;
+import benchmark.util.RuntimeMemory;
+
 public class BenchmarkMain {
 
     public static void main(String[] args) throws Exception {

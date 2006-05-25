@@ -3,6 +3,8 @@ package benchmark.main;
 import java.text.DecimalFormat;
 import java.util.Map;
 
+import benchmark.util.RuntimeMemory;
+
 public abstract class AbstractBenchmark {
 
     private DecimalFormat format_ = new DecimalFormat("00000");
