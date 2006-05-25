@@ -15,11 +15,13 @@
  */
 package org.seasar.framework.container.factory;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 import org.codehaus.backport175.reader.Annotations;
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.PropertyDesc;
+import org.seasar.framework.container.AccessTypeDef;
 import org.seasar.framework.container.AutoBindingDef;
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.IllegalDestroyMethodAnnotationRuntimeException;
@@ -58,19 +60,29 @@ public class Backport175AnnotationHandler extends ConstantAnnotationHandler {
     }
 
     public PropertyDef createPropertyDef(BeanDesc beanDesc, PropertyDesc propertyDesc) {
-
-        if (!propertyDesc.hasWriteMethod()) {
-            return super.createPropertyDef(beanDesc, propertyDesc);
+        if (propertyDesc.hasWriteMethod()) {
+            Method method = propertyDesc.getWriteMethod();
+            String propName = propertyDesc.getPropertyName();
+            Binding binding = (Binding) Annotations.getAnnotation(Binding.class, method);
+            if (binding != null) {
+                String bindingTypeName = binding.bindingType();
+                String expression = binding.value();
+                return createPropertyDef(propName, expression, bindingTypeName,
+                        AccessTypeDef.PROPERTY_NAME);
+            }
         }
-        Method method = propertyDesc.getWriteMethod();
-        String propName = propertyDesc.getPropertyName();
-        Binding binding = (Binding) Annotations.getAnnotation(Binding.class, method);
+        return super.createPropertyDef(beanDesc, propertyDesc);
+    }
+
+    public PropertyDef createPropertyDef(BeanDesc beanDesc, Field field) {
+        Binding binding = (Binding) Annotations.getAnnotation(Binding.class, field);
         if (binding != null) {
             String bindingTypeName = binding.bindingType();
             String expression = binding.value();
-            return createPropertyDef(propName, expression, bindingTypeName);
+            return createPropertyDef(field.getName(), expression, bindingTypeName,
+                    AccessTypeDef.FIELD_NAME);
         }
-        return super.createPropertyDef(beanDesc, propertyDesc);
+        return super.createPropertyDef(beanDesc, field);
     }
 
     public void appendAspect(ComponentDef componentDef) {

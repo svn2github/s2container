@@ -25,7 +25,7 @@ import org.seasar.framework.container.factory.Backport175AnnotationHandler;
  * @author higa
  * 
  */
-public class AnnotationHandlerFactoryTest extends TestCase {
+public class Backport175AnnotationHandlerFactoryTest extends TestCase {
 
     public void testGetAnnotationHandler() throws Exception {
         AnnotationHandler handler = AnnotationHandlerFactory

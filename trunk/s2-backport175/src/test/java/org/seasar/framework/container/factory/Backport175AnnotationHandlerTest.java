@@ -71,9 +71,19 @@ public class Backport175AnnotationHandlerTest extends S2FrameworkTestCase {
         PropertyDesc propDesc = beanDesc.getPropertyDesc("aaa");
         assertNull("1", handler.createPropertyDef(beanDesc, propDesc));
 
+        ComponentDef cd = handler.createComponentDef(Hoge.class, InstanceDefFactory.SINGLETON);
+        handler.appendDI(cd);
+        PropertyDef propDef = cd.getPropertyDef("bbb");
+        assertEquals("field", propDef.getAccessTypeDef().getName());
+        assertEquals("hoge", ((OgnlExpression) propDef.getExpression()).getSource());
+
+        propDef = cd.getPropertyDef("ccc");
+        assertEquals("property", propDef.getAccessTypeDef().getName());
+        assertEquals("bar", ((OgnlExpression) propDef.getExpression()).getSource());
+
         beanDesc = BeanDescFactory.getBeanDesc(Hoge2.class);
         propDesc = beanDesc.getPropertyDesc("aaa");
-        PropertyDef propDef = handler.createPropertyDef(beanDesc, propDesc);
+        propDef = handler.createPropertyDef(beanDesc, propDesc);
         assertEquals("2", "aaa", propDef.getPropertyName());
         assertEquals("3", "aaa2", ((OgnlExpression) propDef.getExpression()).getSource());
 

@@ -29,6 +29,35 @@ public class Hoge {
     }
 
     /**
+     * @org.seasar.framework.container.annotation.backport175.Binding("hoge")
+     */
+    private String bbb;
+
+    public String getBbb() {
+        return bbb;
+    }
+
+    public void setBbb(String bbb) {
+        this.bbb = bbb;
+    }
+
+    /**
+     * @org.seasar.framework.container.annotation.backport175.Binding("foo")
+     */
+    private String ccc;
+
+    public String getCcc() {
+        return ccc;
+    }
+
+    /**
+     * @org.seasar.framework.container.annotation.backport175.Binding("bar")
+     */
+    public void setCcc(String ccc) {
+        this.ccc = ccc;
+    }
+
+    /**
      * @org.seasar.framework.container.annotation.backport175.InitMethod
      */
     public void init() {
