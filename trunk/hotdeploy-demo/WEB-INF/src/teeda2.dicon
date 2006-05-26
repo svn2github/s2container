@@ -4,13 +4,6 @@
 <components namespace="teeda">
 
 	<include path="teedaErrorPage.dicon" />
-
-	<!-- ExternalContext -->
-	<component name="externalContext" class="org.seasar.teeda.core.context.servlet.ServletExternalContextImpl">
-		<arg>application</arg>
-		<arg>request</arg>
-		<arg>response</arg>
-	</component>
 	
 	<!-- FacesConfig configurator -->
 	<component class="org.seasar.teeda.core.config.faces.impl.FacesConfigBuilderImpl">
@@ -63,6 +56,7 @@
 	</component>
 
 	<!-- Applications -->
+	<!--
 	<component class="org.seasar.teeda.core.application.ApplicationImpl">
 		<property name="actionListener">actionListener</property>
 		<property name="navigationHandler">navigationHandler</property>
@@ -71,13 +65,13 @@
 		<property name="variableResolver">variableResolver</property>
 		<property name="stateManager">stateManager</property>
 	</component>
-	
+	-->
 	<component name="actionListener" class="org.seasar.teeda.core.application.ActionListenerImpl" />
 
 	<component name="navigationHandler" class="org.seasar.teeda.core.application.NavigationHandlerImpl" />
-
+	<!--
 	<component name="viewHandler" class="org.seasar.teeda.core.application.ViewHandlerImpl" />
-
+	-->
 	<component name="propertyResolver" class="org.seasar.teeda.core.el.TeedaPropertyResolver" />
 
 	<component name="variableResolver" class="org.seasar.teeda.core.el.TeedaVariableResolver" />

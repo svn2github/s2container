@@ -1,6 +1,6 @@
-package examples.hotdeploy.dto;
+package examples.hotdeploy.web.add;
 
-public class AddDto2 {
+public class AddPage {
 
     private int arg1;
     

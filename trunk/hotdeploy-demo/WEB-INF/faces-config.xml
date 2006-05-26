@@ -15,10 +15,5 @@
         	<supported-locale>ja</supported-locale>
     	</locale-config>
 	</application>
-
-	<converter>
-		<converter-for-class>java.util.Date</converter-for-class>
-		<converter-class>org.seasar.jsf.convert.S2DateTimeConverter</converter-class>
-	</converter>
 	
 </faces-config>
