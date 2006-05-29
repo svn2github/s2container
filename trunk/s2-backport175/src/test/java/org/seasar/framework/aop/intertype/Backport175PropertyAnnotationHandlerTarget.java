@@ -21,6 +21,7 @@ package org.seasar.framework.aop.intertype;
  * @org.seasar.framework.container.annotation.backport175.Property("none")
  */
 public class Backport175PropertyAnnotationHandlerTarget implements PropertyInterTypeTarget {
+
     /**
      * @org.seasar.framework.container.annotation.backport175.Property("read")
      */

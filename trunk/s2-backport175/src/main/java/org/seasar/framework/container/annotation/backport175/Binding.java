@@ -17,7 +17,7 @@ package org.seasar.framework.container.annotation.backport175;
 
 /**
  * @author higa
- *
+ * 
  */
 public interface Binding {
 
@@ -25,7 +25,7 @@ public interface Binding {
      * @org.codehaus.backport175.DefaultValue ("")
      */
     String value();
-    
+
     /**
      * @org.codehaus.backport175.DefaultValue ("should")
      */

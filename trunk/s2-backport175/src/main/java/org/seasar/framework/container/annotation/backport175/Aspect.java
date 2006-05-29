@@ -17,12 +17,12 @@ package org.seasar.framework.container.annotation.backport175;
 
 /**
  * @author higa
- *
+ * 
  */
 public interface Aspect {
 
     String value();
-    
+
     /**
      * @org.codehaus.backport175.DefaultValue ("")
      */

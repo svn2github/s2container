@@ -27,6 +27,7 @@ import org.seasar.framework.container.annotation.backport175.Property;
  * 
  */
 public class Backport175PropertyAnnotationHandler implements PropertyAnnotationHandler {
+
     public int getPropertyType(Class clazz, int defaultValue) {
         return getPropertyType(Annotations.getAnnotation(Property.class, clazz), defaultValue);
     }

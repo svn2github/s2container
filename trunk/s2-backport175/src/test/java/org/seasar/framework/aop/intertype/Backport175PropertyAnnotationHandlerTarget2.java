@@ -19,6 +19,7 @@ package org.seasar.framework.aop.intertype;
  * @org.seasar.framework.container.annotation.backport175.InterType({"aop.propertyInterType"})
  */
 public class Backport175PropertyAnnotationHandlerTarget2 {
+
     int defaultField;
 
     /**

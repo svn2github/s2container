@@ -50,20 +50,17 @@ public class Backport175AnnotationHandlerTest extends S2FrameworkTestCase {
         ComponentDef cd2 = handler.createComponentDef(Hoge.class, InstanceDefFactory.REQUEST);
         assertEquals("5", InstanceDef.REQUEST_NAME, cd2.getInstanceDef().getName());
 
-        ComponentDef cd3 = handler.createComponentDef(Hoge.class,
-                InstanceDefFactory.REQUEST, AutoBindingDefFactory.NONE);
-        assertEquals("6", AutoBindingDef.NONE_NAME, cd3.getAutoBindingDef()
-                .getName());
+        ComponentDef cd3 = handler.createComponentDef(Hoge.class, InstanceDefFactory.REQUEST,
+                AutoBindingDefFactory.NONE);
+        assertEquals("6", AutoBindingDef.NONE_NAME, cd3.getAutoBindingDef().getName());
 
-        ComponentDef cd4 = handler.createComponentDef(Hoge2.class,
-                InstanceDefFactory.REQUEST, AutoBindingDefFactory.NONE);
-        assertEquals("7", AutoBindingDef.PROPERTY_NAME, cd4
-                .getAutoBindingDef().getName());
+        ComponentDef cd4 = handler.createComponentDef(Hoge2.class, InstanceDefFactory.REQUEST,
+                AutoBindingDefFactory.NONE);
+        assertEquals("7", AutoBindingDef.PROPERTY_NAME, cd4.getAutoBindingDef().getName());
 
-        ComponentDef cd5 = handler.createComponentDef(Hoge3.class,
-                InstanceDefFactory.REQUEST, AutoBindingDefFactory.NONE);
-        assertEquals("8", AutoBindingDef.PROPERTY_NAME, cd5
-                .getAutoBindingDef().getName());
+        ComponentDef cd5 = handler.createComponentDef(Hoge3.class, InstanceDefFactory.REQUEST,
+                AutoBindingDefFactory.NONE);
+        assertEquals("8", AutoBindingDef.PROPERTY_NAME, cd5.getAutoBindingDef().getName());
     }
 
     public void testCreatePropertyDef() throws Exception {
