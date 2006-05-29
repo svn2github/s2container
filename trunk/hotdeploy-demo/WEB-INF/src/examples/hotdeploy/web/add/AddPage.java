@@ -3,9 +3,9 @@ package examples.hotdeploy.web.add;
 public class AddPage {
 
     private int arg1;
-    
+
     private int arg2;
-    
+
     private int result;
 
     public int getArg1() {

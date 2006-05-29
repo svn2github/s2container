@@ -1,6 +1,5 @@
 package examples.hotdeploy.web.add;
 
-
 public class AddAction {
 
     private AddPage addPage;
@@ -12,7 +11,7 @@ public class AddAction {
     public void setAddPage(AddPage addPage) {
         this.addPage = addPage;
     }
-    
+
     public String doCalculate() {
         addPage.setResult(addPage.getArg1() - addPage.getArg2());
         return null;
