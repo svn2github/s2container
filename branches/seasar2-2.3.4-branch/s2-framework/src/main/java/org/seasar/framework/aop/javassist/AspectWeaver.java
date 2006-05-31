@@ -28,7 +28,8 @@ import javassist.ClassPool;
 
 import org.aopalliance.intercept.MethodInterceptor;
 import org.seasar.framework.exception.NoSuchFieldRuntimeException;
-import org.seasar.framework.message.MessageFormatter;
+import org.seasar.framework.util.ClassLoaderUtil;
+import org.seasar.framework.util.ClassPoolUtil;
 import org.seasar.framework.util.FieldUtil;
 import org.seasar.framework.util.MethodUtil;
 
@@ -68,7 +69,7 @@ public class AspectWeaver {
         this.targetClass = targetClass;
         this.parameters = parameters;
 
-        classPool = ClassPoolUtil.getClassPool();
+        classPool = ClassPoolUtil.getClassPool(targetClass);
         enhancedClassName = getEnhancedClassName();
         enhancedClassGenerator = new EnhancedClassGenerator(classPool,
                 targetClass, enhancedClassName);
@@ -87,7 +88,7 @@ public class AspectWeaver {
                 methodInvocationClassName);
 
         final Class methodInvocationClass = methodInvocationGenerator
-                .toClass(getClassLoader());
+                .toClass(ClassLoaderUtil.getClassLoader(targetClass));
         setStaticField(methodInvocationClass, "method", method);
         setStaticField(methodInvocationClass, "interceptors", interceptors);
         setStaticField(methodInvocationClass, "parameters", parameters);
@@ -96,7 +97,8 @@ public class AspectWeaver {
 
     public Class generateClass() {
         if (enhancedClass == null) {
-            enhancedClass = enhancedClassGenerator.toClass(getClassLoader());
+            enhancedClass = enhancedClassGenerator.toClass(ClassLoaderUtil
+                    .getClassLoader(targetClass));
 
             for (int i = 0; i < methodInvocationClassList.size(); ++i) {
                 final Class methodInvocationClass = (Class) methodInvocationClassList
@@ -156,20 +158,5 @@ public class AspectWeaver {
         } catch (final NoSuchFieldException e) {
             throw new NoSuchFieldRuntimeException(enhancedClass, name, e);
         }
-    }
-
-    public ClassLoader getClassLoader() {
-        ClassLoader cl = Thread.currentThread().getContextClassLoader();
-        if (cl == null) {
-            cl = targetClass.getClassLoader();
-        }
-        if (cl == null) {
-            cl = getClass().getClassLoader();
-        }
-        if (cl == null) {
-            throw new IllegalStateException(MessageFormatter.getMessage(
-                    "ESSR0001", new Object[] { "ClassLoader" }));
-        }
-        return cl;
     }
 }

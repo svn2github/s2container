@@ -24,43 +24,76 @@ public class ConstructorNotFoundRuntimeException extends SRuntimeException {
 
     private static final long serialVersionUID = 8584662068396978822L;
 
-	private Class targetClass_;
-	private Object[] methodArgs_;
+    private Class targetClass;
 
-	/**
-	 * @param targetClass
-	 */
-	public ConstructorNotFoundRuntimeException(Class targetClass,
-		Object[] methodArgs) {
-		super("ESSR0048", new Object[]{targetClass.getName(),
-			getSignature(methodArgs)});
-		
-		targetClass_ = targetClass;
-		methodArgs_ = methodArgs;
-	}
-	
-	public Class getTargetClass() {
-		return targetClass_;
-	}
-	
-	public Object[] getMethodArgs() {
-		return methodArgs_;
-	}
-	
-	private static String getSignature(Object[] methodArgs) {
-		StringBuffer buf = new StringBuffer(100);
-		if (methodArgs != null) {
-			for (int i = 0; i < methodArgs.length; ++i) {
-				if (i > 0) {
-					buf.append(", ");
-				}
-				if (methodArgs[i] != null) {
-					buf.append(methodArgs[i].getClass().getName());
-				} else {
-					buf.append("null"); 
-				}
-			}
-		}
-		return buf.toString();
-	}
+    private Object[] methodArgs;
+
+    private Class[] paramTypes;
+
+    /**
+     * @param targetClass
+     */
+    public ConstructorNotFoundRuntimeException(Class targetClass,
+            Object[] methodArgs) {
+        super("ESSR0048", new Object[] { targetClass.getName(),
+                getSignature(methodArgs) });
+
+        this.targetClass = targetClass;
+        this.methodArgs = methodArgs;
+    }
+
+    public ConstructorNotFoundRuntimeException(Class targetClass,
+            Class[] paramTypes) {
+        super("ESSR0048", new Object[] { targetClass.getName(),
+                getSignature(paramTypes) });
+
+        this.targetClass = targetClass;
+        this.paramTypes = paramTypes;
+    }
+
+    public Class getTargetClass() {
+        return targetClass;
+    }
+
+    public Object[] getMethodArgs() {
+        return methodArgs;
+    }
+
+    public Class[] getParamTypes() {
+        return paramTypes;
+    }
+
+    private static String getSignature(Object[] methodArgs) {
+        StringBuffer buf = new StringBuffer(100);
+        if (methodArgs != null) {
+            for (int i = 0; i < methodArgs.length; ++i) {
+                if (i > 0) {
+                    buf.append(", ");
+                }
+                if (methodArgs[i] != null) {
+                    buf.append(methodArgs[i].getClass().getName());
+                } else {
+                    buf.append("null");
+                }
+            }
+        }
+        return buf.toString();
+    }
+
+    private static String getSignature(Class[] paramTypes) {
+        StringBuffer buf = new StringBuffer(100);
+        if (paramTypes != null) {
+            for (int i = 0; i < paramTypes.length; ++i) {
+                if (i > 0) {
+                    buf.append(", ");
+                }
+                if (paramTypes[i] != null) {
+                    buf.append(paramTypes[i].getName());
+                } else {
+                    buf.append("null");
+                }
+            }
+        }
+        return buf.toString();
+    }
 }
