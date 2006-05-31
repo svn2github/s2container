@@ -23,32 +23,31 @@ import org.seasar.framework.beans.factory.BeanDescFactory;
 import org.seasar.framework.container.IllegalAutoBindingPropertyRuntimeException;
 import org.seasar.framework.container.PropertyDef;
 import org.seasar.framework.container.S2Container;
-import org.seasar.framework.container.assembler.BindingTypeDefFactory;
 import org.seasar.framework.container.impl.ComponentDefImpl;
 import org.seasar.framework.container.impl.PropertyDefImpl;
 import org.seasar.framework.container.impl.S2ContainerImpl;
 
 /**
  * @author higa
- *
+ * 
  */
 public class BindingTypeMustDefTest extends TestCase {
 
-	public void testBindExpression() throws Exception {
+    public void testBindExpression() throws Exception {
         BeanDesc beanDesc = BeanDescFactory.getBeanDesc(A.class);
         PropertyDesc propDesc = beanDesc.getPropertyDesc("hoge");
-		S2Container container = new S2ContainerImpl();
-		ComponentDefImpl cd = new ComponentDefImpl(A.class);
+        S2Container container = new S2ContainerImpl();
+        ComponentDefImpl cd = new ComponentDefImpl(A.class);
         PropertyDef propDef = new PropertyDefImpl("hoge");
         propDef.setExpression("hoge");
         cd.addPropertyDef(propDef);
-		container.register(cd);
-		container.register(B.class, "hoge");
-		A a = new A();
+        container.register(cd);
+        container.register(B.class, "hoge");
+        A a = new A();
         BindingTypeDefFactory.MUST.bind(cd, propDef, propDesc, a);
         assertNotNull("1", a.getHoge());
-	}
-    
+    }
+
     public void testBindByName() throws Exception {
         BeanDesc beanDesc = BeanDescFactory.getBeanDesc(A.class);
         PropertyDesc propDesc = beanDesc.getPropertyDesc("message");
@@ -62,7 +61,7 @@ public class BindingTypeMustDefTest extends TestCase {
         BindingTypeDefFactory.MUST.bind(cd, propDef, propDesc, a);
         assertEquals("1", "aaa", a.getMessage());
     }
-    
+
     public void testBindByNameForDefferentType() throws Exception {
         BeanDesc beanDesc = BeanDescFactory.getBeanDesc(A.class);
         PropertyDesc propDesc = beanDesc.getPropertyDesc("message");
@@ -79,7 +78,7 @@ public class BindingTypeMustDefTest extends TestCase {
             System.out.println(ex.getMessage());
         }
     }
-    
+
     public void testBindByType() throws Exception {
         BeanDesc beanDesc = BeanDescFactory.getBeanDesc(A.class);
         PropertyDesc propDesc = beanDesc.getPropertyDesc("hoge");
@@ -93,7 +92,7 @@ public class BindingTypeMustDefTest extends TestCase {
         BindingTypeDefFactory.MUST.bind(cd, propDef, propDesc, a);
         assertNotNull("1", a.getHoge());
     }
-    
+
     public void testBindException() throws Exception {
         BeanDesc beanDesc = BeanDescFactory.getBeanDesc(A.class);
         PropertyDesc propDesc = beanDesc.getPropertyDesc("hoge");
@@ -110,66 +109,67 @@ public class BindingTypeMustDefTest extends TestCase {
             System.out.println(ex.getMessage());
         }
     }
-	
-	public interface Foo {
-		public String getHogeName();
-	}
 
-	public static class A implements Foo {
+    public interface Foo {
+        public String getHogeName();
+    }
 
-		private Hoge hoge_;
-		private String message_;
+    public static class A implements Foo {
 
-		public A() {
-		}
+        private Hoge hoge_;
 
-		public Hoge getHoge() {
-			return hoge_;
-		}
+        private String message_;
 
-		public void setHoge(Hoge hoge) {
-			hoge_ = hoge;
-		}
-		
-		public String getMessage() {
-			return message_;
-		}
-		
-		public void setMessage(String message) {
-			message_ = message;
-		}
+        public A() {
+        }
 
-		public String getHogeName() {
-			return hoge_.getName();
-		}
-	}
-	
-	public static class A2 implements Foo {
+        public Hoge getHoge() {
+            return hoge_;
+        }
 
-		private Hoge hoge_ = new B();
+        public void setHoge(Hoge hoge) {
+            hoge_ = hoge;
+        }
 
-		public Hoge getHoge() {
-			return hoge_;
-		}
+        public String getMessage() {
+            return message_;
+        }
 
-		public void setHoge(Hoge hoge) {
-			hoge_ = hoge;
-		}
+        public void setMessage(String message) {
+            message_ = message;
+        }
 
-		public String getHogeName() {
-			return hoge_.getName();
-		}
-	}
+        public String getHogeName() {
+            return hoge_.getName();
+        }
+    }
 
-	public interface Hoge {
+    public static class A2 implements Foo {
 
-		public String getName();
-	}
+        private Hoge hoge_ = new B();
 
-	public static class B implements Hoge {
+        public Hoge getHoge() {
+            return hoge_;
+        }
 
-		public String getName() {
-			return "B";
-		}
-	}
+        public void setHoge(Hoge hoge) {
+            hoge_ = hoge;
+        }
+
+        public String getHogeName() {
+            return hoge_.getName();
+        }
+    }
+
+    public interface Hoge {
+
+        public String getName();
+    }
+
+    public static class B implements Hoge {
+
+        public String getName() {
+            return "B";
+        }
+    }
 }

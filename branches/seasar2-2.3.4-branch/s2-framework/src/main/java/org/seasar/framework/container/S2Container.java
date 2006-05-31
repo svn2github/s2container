@@ -21,97 +21,95 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ * 
  * @author higa
  */
 public interface S2Container extends MetaDefAware {
 
-	public Object getComponent(Object componentKey)
-		throws
-			ComponentNotFoundRuntimeException,
-			TooManyRegistrationRuntimeException,
-			CyclicReferenceRuntimeException;
+    public Object getComponent(Object componentKey)
+            throws ComponentNotFoundRuntimeException,
+            TooManyRegistrationRuntimeException,
+            CyclicReferenceRuntimeException;
 
-	public Object[] findComponents(Object componentKey)
-		throws
-			CyclicReferenceRuntimeException;
+    public Object[] findComponents(Object componentKey)
+            throws CyclicReferenceRuntimeException;
 
-	public void injectDependency(Object outerComponent)
-		throws ClassUnmatchRuntimeException;
+    public void injectDependency(Object outerComponent)
+            throws ClassUnmatchRuntimeException;
 
-	public void injectDependency(Object outerComponent, Class componentClass)
-		throws ClassUnmatchRuntimeException;
+    public void injectDependency(Object outerComponent, Class componentClass)
+            throws ClassUnmatchRuntimeException;
 
-	public void injectDependency(Object outerComponent, String componentName)
-		throws ClassUnmatchRuntimeException;
+    public void injectDependency(Object outerComponent, String componentName)
+            throws ClassUnmatchRuntimeException;
 
-	public void register(Object component);
-	
-	public void register(Object component, String componentName);
+    public void register(Object component);
 
-	public void register(Class componentClass);
+    public void register(Object component, String componentName);
 
-	public void register(Class componentClass, String componentName);
+    public void register(Class componentClass);
 
-	public void register(ComponentDef componentDef);
+    public void register(Class componentClass, String componentName);
 
-	public int getComponentDefSize();
+    public void register(ComponentDef componentDef);
 
-	public ComponentDef getComponentDef(int index);
+    public int getComponentDefSize();
 
-	public ComponentDef getComponentDef(Object componentKey)
-		throws ComponentNotFoundRuntimeException;
+    public ComponentDef getComponentDef(int index);
 
-	public ComponentDef[] findComponentDefs(Object componentKey);
+    public ComponentDef getComponentDef(Object componentKey)
+            throws ComponentNotFoundRuntimeException;
 
-	public boolean hasComponentDef(Object componentKey);
-	
-	public boolean hasDescendant(String path);
-	
-	public S2Container getDescendant(String path)
-		throws ContainerNotRegisteredRuntimeException;
-	
-	public void registerDescendant(S2Container descendant);
+    public ComponentDef[] findComponentDefs(Object componentKey);
 
-	public void include(S2Container child);
-	
-	public int getChildSize();
-	
-	public S2Container getChild(int index);
+    public boolean hasComponentDef(Object componentKey);
 
-	public void init();
+    public boolean hasDescendant(String path);
 
-	public void destroy();
-	
-	public String getNamespace();
-	
-	public void setNamespace(String namespace);
-	
-	public String getPath();
-	
-	public void setPath(String path);
+    public S2Container getDescendant(String path)
+            throws ContainerNotRegisteredRuntimeException;
 
-	public S2Container getRoot();
-	
-	public void setRoot(S2Container root);
-	
-	public HttpServletRequest getRequest();
-	
-	public void setRequest(HttpServletRequest request);
-	
-	public HttpSession getSession();
-	
-	public HttpServletResponse getResponse();
-	
-	public void setResponse(HttpServletResponse response);
-	
-	public ServletContext getServletContext();
-	
-	public void setServletContext(ServletContext servletContext);
-    
+    public void registerDescendant(S2Container descendant);
+
+    public void include(S2Container child);
+
+    public int getChildSize();
+
+    public S2Container getChild(int index);
+
+    public void init();
+
+    public void destroy();
+
+    public String getNamespace();
+
+    public void setNamespace(String namespace);
+
+    public String getPath();
+
+    public void setPath(String path);
+
+    public S2Container getRoot();
+
+    public void setRoot(S2Container root);
+
+    public HttpServletRequest getRequest();
+
+    public void setRequest(HttpServletRequest request);
+
+    public HttpSession getSession();
+
+    public HttpServletResponse getResponse();
+
+    public void setResponse(HttpServletResponse response);
+
+    public ServletContext getServletContext();
+
+    public void setServletContext(ServletContext servletContext);
+
     public boolean isHotswapMode();
-    
+
     public void setHotswapMode(boolean hotswapMode);
-    
+
     public ClassLoader getClassLoader();
 }

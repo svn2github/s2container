@@ -31,23 +31,23 @@ import org.seasar.framework.mock.servlet.MockServletContextImpl;
 
 /**
  * @author higa
- *  
+ * 
  */
 public class SessionComponentDeployerTest extends TestCase {
 
-	public void testDeployAutoAutoConstructor() throws Exception {
-		MockServletContextImpl ctx = new MockServletContextImpl("s2jsf-example");
-		HttpServletRequest request = ctx.createRequest("/hello.html");
-		S2Container container = new S2ContainerImpl();
-		container.setRequest(request);
-		ComponentDef cd = new ComponentDefImpl(Foo.class, "foo");
-		container.register(cd);
-		ComponentDeployer deployer = new SessionComponentDeployer(cd);
-		Foo foo = (Foo) deployer.deploy();
-		assertSame("1", foo, request.getSession().getAttribute("foo"));
-		assertSame("2", foo, deployer.deploy());
-	}
-    
+    public void testDeployAutoAutoConstructor() throws Exception {
+        MockServletContextImpl ctx = new MockServletContextImpl("s2jsf-example");
+        HttpServletRequest request = ctx.createRequest("/hello.html");
+        S2Container container = new S2ContainerImpl();
+        container.setRequest(request);
+        ComponentDef cd = new ComponentDefImpl(Foo.class, "foo");
+        container.register(cd);
+        ComponentDeployer deployer = new SessionComponentDeployer(cd);
+        Foo foo = (Foo) deployer.deploy();
+        assertSame("1", foo, request.getSession().getAttribute("foo"));
+        assertSame("2", foo, deployer.deploy());
+    }
+
     public void testDeployForHotswap() throws Exception {
         MockServletContextImpl ctx = new MockServletContextImpl("s2jsf-example");
         HttpServletRequest request = ctx.createRequest("/hello.html");
@@ -64,9 +64,9 @@ public class SessionComponentDeployerTest extends TestCase {
         hotswap.getFile().setLastModified(new Date().getTime());
         assertNotSame("1", foo.getClass(), deployer.deploy().getClass());
     }
-    
+
     public static class Foo {
-        
+
         public void aaa() {
         }
     }

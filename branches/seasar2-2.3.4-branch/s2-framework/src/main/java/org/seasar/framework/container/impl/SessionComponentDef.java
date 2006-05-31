@@ -21,25 +21,25 @@ import org.seasar.framework.container.S2Container;
 
 /**
  * @author higa
- *  
+ * 
  */
 public class SessionComponentDef extends SimpleComponentDef {
 
-	private S2Container container;
+    private S2Container container;
 
-	public SessionComponentDef(S2Container container) {
-		super(HttpSession.class);
-		this.container = container;
-	}
+    public SessionComponentDef(S2Container container) {
+        super(HttpSession.class);
+        this.container = container;
+    }
 
-	public S2Container getRoot() {
-		return container.getRoot();
-	}
+    public S2Container getRoot() {
+        return container.getRoot();
+    }
 
-	/**
-	 * @see org.seasar.framework.container.ComponentDef#getComponent()
-	 */
-	public Object getComponent() {
-		return getRoot().getSession();
-	}
+    /**
+     * @see org.seasar.framework.container.ComponentDef#getComponent()
+     */
+    public Object getComponent() {
+        return getRoot().getSession();
+    }
 }

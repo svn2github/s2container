@@ -17,17 +17,17 @@ package org.seasar.framework.container.annotation.backport175;
 
 /**
  * @author higa
- *
+ * 
  */
 public interface Component {
 
     String name();
-    
+
     /**
      * @org.codehaus.backport175.DefaultValue ("singleton")
      */
     String instance();
-    
+
     /**
      * @org.codehaus.backport175.DefaultValue ("auto")
      */

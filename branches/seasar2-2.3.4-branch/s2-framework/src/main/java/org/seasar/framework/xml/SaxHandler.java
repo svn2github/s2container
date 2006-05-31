@@ -27,151 +27,153 @@ import org.xml.sax.helpers.DefaultHandler;
 
 public final class SaxHandler extends DefaultHandler {
 
-	private TagHandlerRule tagHandlerRule;
-	private TagHandlerContext context = new TagHandlerContext();
-	private Map dtdPaths = new HashMap();
+    private TagHandlerRule tagHandlerRule;
 
-	public SaxHandler(TagHandlerRule tagHandlerRule) {
-		this.tagHandlerRule = tagHandlerRule;
-	}
-	
-	public TagHandlerContext getTagHandlerContext() {
-		return context;
-	}
+    private TagHandlerContext context = new TagHandlerContext();
 
-	public void startElement(String namespaceURI, String localName,
-			String qName, Attributes attributes) {
+    private Map dtdPaths = new HashMap();
 
-		appendBody();
-		context.startElement(qName);
-		start(attributes);
-	}
+    public SaxHandler(TagHandlerRule tagHandlerRule) {
+        this.tagHandlerRule = tagHandlerRule;
+    }
 
-	public void characters(char[] buffer, int start, int length) {
-		int begin = start;
-		int end = start + length;
-		for (int i = begin; i < end; ++i) {
-			if (buffer[i] == '\n') {
-				context.characters(buffer, begin, i - begin + 1);
-				appendBody();
-				begin = i + 1;
-			}
-		}
-		if (begin < end) {
-			context.characters(buffer, begin, end - begin);
-		}
-	}
+    public TagHandlerContext getTagHandlerContext() {
+        return context;
+    }
 
-	public void endElement(String namespaceURI, String localName, String qName) {
+    public void startElement(String namespaceURI, String localName,
+            String qName, Attributes attributes) {
 
-		appendBody();
-		end();
-		context.endElement();
-	}
+        appendBody();
+        context.startElement(qName);
+        start(attributes);
+    }
 
-	public InputSource resolveEntity(String publicId, String systemId)
-			throws SAXException {
+    public void characters(char[] buffer, int start, int length) {
+        int begin = start;
+        int end = start + length;
+        for (int i = begin; i < end; ++i) {
+            if (buffer[i] == '\n') {
+                context.characters(buffer, begin, i - begin + 1);
+                appendBody();
+                begin = i + 1;
+            }
+        }
+        if (begin < end) {
+            context.characters(buffer, begin, end - begin);
+        }
+    }
 
-		String dtdPath = null;
-		if (publicId != null) {
-			dtdPath = (String) dtdPaths.get(publicId);
-		}
-		if (dtdPath == null) {
-			return null;
-		}
-		return new InputSource(ResourceUtil.getResourceAsStream(dtdPath));
-	}
+    public void endElement(String namespaceURI, String localName, String qName) {
 
-	public void error(SAXParseException e) throws SAXException {
-		throw e;
-	}
+        appendBody();
+        end();
+        context.endElement();
+    }
 
-	public void warning(SAXParseException e) throws SAXException {
-		System.err.println(e);
-	}
+    public InputSource resolveEntity(String publicId, String systemId)
+            throws SAXException {
 
-	public void registerDtdPath(String publicId, String dtdPath) {
-		dtdPaths.put(publicId, dtdPath);
-	}
+        String dtdPath = null;
+        if (publicId != null) {
+            dtdPath = (String) dtdPaths.get(publicId);
+        }
+        if (dtdPath == null) {
+            return null;
+        }
+        return new InputSource(ResourceUtil.getResourceAsStream(dtdPath));
+    }
 
-	public Object getResult() {
-		return context.getResult();
-	}
+    public void error(SAXParseException e) throws SAXException {
+        throw e;
+    }
 
-	private TagHandler getTagHandlerByPath() {
-		return tagHandlerRule.getTagHandler(context.getPath());
-	}
+    public void warning(SAXParseException e) throws SAXException {
+        System.err.println(e);
+    }
 
-	private TagHandler getTagHandlerByQName() {
-		return tagHandlerRule.getTagHandler(context.getQName());
-	}
+    public void registerDtdPath(String publicId, String dtdPath) {
+        dtdPaths.put(publicId, dtdPath);
+    }
 
-	private void start(Attributes attributes) {
-		TagHandler th = getTagHandlerByPath();
-		start(th, attributes);
-		th = getTagHandlerByQName();
-		start(th, attributes);
-	}
+    public Object getResult() {
+        return context.getResult();
+    }
 
-	private void start(TagHandler handler, Attributes attributes) {
-		if (handler != null) {
-			try {
-				handler.start(context, attributes);
-			} catch (RuntimeException ex) {
-				reportDetailPath();
-				ex.printStackTrace();
-				throw ex;
-			}
+    private TagHandler getTagHandlerByPath() {
+        return tagHandlerRule.getTagHandler(context.getPath());
+    }
 
-		}
-	}
+    private TagHandler getTagHandlerByQName() {
+        return tagHandlerRule.getTagHandler(context.getQName());
+    }
 
-	private void appendBody() {
-		String characters = context.getCharacters();
-		if (characters.length() > 0) {
-			TagHandler th = getTagHandlerByPath();
-			appendBody(th, characters);
-			th = getTagHandlerByQName();
-			appendBody(th, characters);
-			context.clearCharacters();
-		}
-	}
+    private void start(Attributes attributes) {
+        TagHandler th = getTagHandlerByPath();
+        start(th, attributes);
+        th = getTagHandlerByQName();
+        start(th, attributes);
+    }
 
-	private void appendBody(TagHandler handler, String characters) {
-		if (handler != null) {
-			try {
-				handler.appendBody(context, characters);
-			} catch (RuntimeException ex) {
-				reportDetailPath();
-				ex.printStackTrace();
-				throw ex;
-			}
+    private void start(TagHandler handler, Attributes attributes) {
+        if (handler != null) {
+            try {
+                handler.start(context, attributes);
+            } catch (RuntimeException ex) {
+                reportDetailPath();
+                ex.printStackTrace();
+                throw ex;
+            }
 
-		}
-	}
+        }
+    }
 
-	private void end() {
-		String body = context.getBody();
-		TagHandler th = getTagHandlerByPath();
-		end(th, body);
-		th = getTagHandlerByQName();
-		end(th, body);
-	}
+    private void appendBody() {
+        String characters = context.getCharacters();
+        if (characters.length() > 0) {
+            TagHandler th = getTagHandlerByPath();
+            appendBody(th, characters);
+            th = getTagHandlerByQName();
+            appendBody(th, characters);
+            context.clearCharacters();
+        }
+    }
 
-	private void end(TagHandler handler, String body) {
-		if (handler != null) {
-			try {
-				handler.end(context, body);
-			} catch (RuntimeException ex) {
-				reportDetailPath();
-				ex.printStackTrace();
-				throw ex;
-			}
+    private void appendBody(TagHandler handler, String characters) {
+        if (handler != null) {
+            try {
+                handler.appendBody(context, characters);
+            } catch (RuntimeException ex) {
+                reportDetailPath();
+                ex.printStackTrace();
+                throw ex;
+            }
 
-		}
-	}
+        }
+    }
 
-	private void reportDetailPath() {
-		System.err.println("Exception occured at " + context.getDetailPath());
-	}
+    private void end() {
+        String body = context.getBody();
+        TagHandler th = getTagHandlerByPath();
+        end(th, body);
+        th = getTagHandlerByQName();
+        end(th, body);
+    }
+
+    private void end(TagHandler handler, String body) {
+        if (handler != null) {
+            try {
+                handler.end(context, body);
+            } catch (RuntimeException ex) {
+                reportDetailPath();
+                ex.printStackTrace();
+                throw ex;
+            }
+
+        }
+    }
+
+    private void reportDetailPath() {
+        System.err.println("Exception occured at " + context.getDetailPath());
+    }
 }

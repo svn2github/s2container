@@ -31,36 +31,36 @@ import org.seasar.framework.container.factory.SingletonS2ContainerFactory;
 
 public class S2ContainerFilter implements Filter {
 
-	//private FilterConfig config = null;
+    // private FilterConfig config = null;
 
-	public S2ContainerFilter() {
-		super();
-	}
+    public S2ContainerFilter() {
+        super();
+    }
 
-	public void init(FilterConfig config) throws ServletException {
-		//this.config = config;
-	}
+    public void init(FilterConfig config) throws ServletException {
+        // this.config = config;
+    }
 
-	public void destroy() {
-		//config = null;
-	}
+    public void destroy() {
+        // config = null;
+    }
 
-	/**
-	 * @see javax.servlet.Filter#doFilter(javax.servlet.ServletRequest,
-	 *      javax.servlet.ServletResponse, javax.servlet.FilterChain)
-	 */
-	public void doFilter(ServletRequest request, ServletResponse response,
-			FilterChain chain) throws IOException, ServletException {
-		
-		S2Container container = SingletonS2ContainerFactory.getContainer();
-		container.setRequest((HttpServletRequest) request);
-		container.setResponse((HttpServletResponse) response);
+    /**
+     * @see javax.servlet.Filter#doFilter(javax.servlet.ServletRequest,
+     *      javax.servlet.ServletResponse, javax.servlet.FilterChain)
+     */
+    public void doFilter(ServletRequest request, ServletResponse response,
+            FilterChain chain) throws IOException, ServletException {
 
-		try {
-			chain.doFilter(request, response);
-		} finally {
-			container.setRequest(null);
-			container.setResponse(null);
-		}
-	}
+        S2Container container = SingletonS2ContainerFactory.getContainer();
+        container.setRequest((HttpServletRequest) request);
+        container.setResponse((HttpServletResponse) response);
+
+        try {
+            chain.doFilter(request, response);
+        } finally {
+            container.setRequest(null);
+            container.setResponse(null);
+        }
+    }
 }

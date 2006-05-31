@@ -43,13 +43,13 @@ public class ConstantAnnotationHandler extends AbstractAnnotationHandler {
 
         BeanDesc beanDesc = BeanDescFactory.getBeanDesc(componentClass);
         if (!beanDesc.hasField(COMPONENT)) {
-            return createComponentDefInternal(componentClass, defaultInstanceDef,
-                    defaultAutoBindingDef);
+            return createComponentDefInternal(componentClass,
+                    defaultInstanceDef, defaultAutoBindingDef);
         }
         Field field = beanDesc.getField(COMPONENT);
         if (!isConstantAnnotationField(field)) {
-            return createComponentDefInternal(componentClass, defaultInstanceDef,
-                    defaultAutoBindingDef);
+            return createComponentDefInternal(componentClass,
+                    defaultInstanceDef, defaultAutoBindingDef);
         }
         String componentStr = (String) FieldUtil.get(field, null);
         String[] array = StringUtil.split(componentStr, "=, ");

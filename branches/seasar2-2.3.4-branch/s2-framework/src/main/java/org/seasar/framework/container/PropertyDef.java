@@ -17,13 +17,13 @@ package org.seasar.framework.container;
 
 /**
  * @author higa
- *
+ * 
  */
 public interface PropertyDef extends ArgDef {
 
-	public String getPropertyName();
-    
+    public String getPropertyName();
+
     public BindingTypeDef getBindingTypeDef();
-    
+
     public void setBindingTypeDef(BindingTypeDef bindingTypeDef);
 }

@@ -19,13 +19,13 @@ import org.xml.sax.SAXException;
 
 /**
  * @author higa
- *
+ * 
  */
 public final class SAXRuntimeException extends SRuntimeException {
 
     private static final long serialVersionUID = -4933312103385038765L;
 
-	public SAXRuntimeException(SAXException cause) {
-		super("ESSR0054", new Object[] { cause }, cause);
-	}
+    public SAXRuntimeException(SAXException cause) {
+        super("ESSR0054", new Object[] { cause }, cause);
+    }
 }

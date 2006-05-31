@@ -25,7 +25,7 @@ import org.seasar.framework.util.URLUtil;
  * @author koichik
  */
 public class WebResourceResolver implements ResourceResolver {
-    
+
     protected ResourceResolver parent;
 
     public WebResourceResolver() {
@@ -45,7 +45,8 @@ public class WebResourceResolver implements ResourceResolver {
                 }
             }
 
-            URL url = SingletonS2ContainerFactory.getServletContext().getResource(path);
+            URL url = SingletonS2ContainerFactory.getServletContext()
+                    .getResource(path);
             if (url == null) {
                 final StringBuffer buf = new StringBuffer(path.length() + 10);
                 buf.append("/WEB-INF");
@@ -53,14 +54,14 @@ public class WebResourceResolver implements ResourceResolver {
                     buf.append("/");
                 }
                 buf.append(path);
-                url = SingletonS2ContainerFactory.getServletContext().getResource(new String(buf));
+                url = SingletonS2ContainerFactory.getServletContext()
+                        .getResource(new String(buf));
             }
             if (url == null) {
                 return null;
             }
             return URLUtil.openStream(url);
-        }
-        catch (final MalformedURLException e) {
+        } catch (final MalformedURLException e) {
             return null;
         }
     }

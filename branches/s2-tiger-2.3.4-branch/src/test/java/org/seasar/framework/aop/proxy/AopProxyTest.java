@@ -45,18 +45,21 @@ public class AopProxyTest extends TestCase {
     }
 
     public static class Foo<T> {
+
         public T get() {
             return null;
         }
     }
 
     public static class Bar extends Foo<String> {
+
         public String get() {
             return "Hoge";
         }
     }
 
     public class TestInterceptor implements MethodInterceptor {
+
         private boolean invoked = false;
 
         public Object invoke(MethodInvocation invocation) throws Throwable {

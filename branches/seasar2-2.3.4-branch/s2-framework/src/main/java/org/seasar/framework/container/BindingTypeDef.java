@@ -19,19 +19,20 @@ import org.seasar.framework.beans.PropertyDesc;
 
 /**
  * @author higa
- *
+ * 
  */
 public interface BindingTypeDef {
 
     String MUST_NAME = "must";
-    
+
     String SHOULD_NAME = "should";
-    
+
     String MAY_NAME = "may";
-    
+
     String NONE_NAME = "none";
-    
+
     String getName();
-    
-    void bind(ComponentDef componentDef, PropertyDef propertyDef, PropertyDesc propertyDesc, Object component);
+
+    void bind(ComponentDef componentDef, PropertyDef propertyDef,
+            PropertyDesc propertyDesc, Object component);
 }

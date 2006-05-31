@@ -19,17 +19,16 @@ import org.seasar.framework.container.DestroyMethodDef;
 
 /**
  * @author higa
- *
+ * 
  */
-public class DestroyMethodDefImpl
-	extends MethodDefImpl
-	implements DestroyMethodDef {
+public class DestroyMethodDefImpl extends MethodDefImpl implements
+        DestroyMethodDef {
 
-	public DestroyMethodDefImpl() {
-	}
+    public DestroyMethodDefImpl() {
+    }
 
-	public DestroyMethodDefImpl(String methodName) {
-		super(methodName);
-	}
+    public DestroyMethodDefImpl(String methodName) {
+        super(methodName);
+    }
 
 }

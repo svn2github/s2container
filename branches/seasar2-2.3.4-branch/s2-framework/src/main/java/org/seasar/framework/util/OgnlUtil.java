@@ -26,14 +26,14 @@ import org.seasar.framework.exception.OgnlRuntimeException;
 
 /**
  * @author higa
- *
+ * 
  */
 public final class OgnlUtil {
 
-	private OgnlUtil() {
-	}
+    private OgnlUtil() {
+    }
 
-	public static Object getValue(Object exp, Object root) {
+    public static Object getValue(Object exp, Object root) {
         Map ctx = addClassResolverIfNecessary(null, root);
         if (ctx != null) {
             try {
@@ -48,32 +48,33 @@ public final class OgnlUtil {
                 throw new OgnlRuntimeException(ex);
             }
         }
-	}
-	
+    }
+
     public static Object getValue(Object exp, Map ctx, Object root) {
         Map newCtx = addClassResolverIfNecessary(ctx, root);
-		try {
-			return Ognl.getValue(exp, newCtx, root);
-		} catch (OgnlException ex) {
-			throw new OgnlRuntimeException(ex);
-		}
-	}
-	
-	public static Object parseExpression(String expression) {
-		try {
-			return Ognl.parseExpression(expression);
-		} catch (OgnlException ex) {
-			System.err.println("parseExpression[" + expression + "]");
-			throw new OgnlRuntimeException(ex);
-		}
-	}
+        try {
+            return Ognl.getValue(exp, newCtx, root);
+        } catch (OgnlException ex) {
+            throw new OgnlRuntimeException(ex);
+        }
+    }
+
+    public static Object parseExpression(String expression) {
+        try {
+            return Ognl.parseExpression(expression);
+        } catch (OgnlException ex) {
+            System.err.println("parseExpression[" + expression + "]");
+            throw new OgnlRuntimeException(ex);
+        }
+    }
 
     static Map addClassResolverIfNecessary(Map ctx, Object root) {
         if (root instanceof S2Container) {
-            S2Container container = (S2Container)root;
+            S2Container container = (S2Container) root;
             ClassLoader classLoader = container.getClassLoader();
             if (classLoader != null) {
-                ClassResolverImpl classResolver = new ClassResolverImpl(classLoader);
+                ClassResolverImpl classResolver = new ClassResolverImpl(
+                        classLoader);
                 if (ctx == null) {
                     ctx = Ognl.createDefaultContext(root, classResolver);
                 } else {
@@ -91,13 +92,15 @@ public final class OgnlUtil {
             classLoader_ = classLoader;
         }
 
-        public Class classForName(String className, Map ctx) throws ClassNotFoundException {
+        public Class classForName(String className, Map ctx)
+                throws ClassNotFoundException {
             try {
                 return Class.forName(className, true, classLoader_);
             } catch (ClassNotFoundException ex) {
                 int dot = className.indexOf('.');
                 if (dot < 0) {
-                    return Class.forName("java.lang." + className, true, classLoader_);
+                    return Class.forName("java.lang." + className, true,
+                            classLoader_);
                 } else {
                     throw ex;
                 }

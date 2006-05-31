@@ -40,34 +40,34 @@ import org.seasar.framework.util.MethodUtil;
  */
 public final class AopProxy implements Serializable {
 
-	static final long serialVersionUID = 0L;
+    static final long serialVersionUID = 0L;
 
-	private static Logger logger_ = Logger.getLogger(AopProxy.class);
+    private static Logger logger_ = Logger.getLogger(AopProxy.class);
 
     private static final Method IS_BRIDGE_METHOD = getIsBridgeMethod();
 
-	private Class targetClass_;
+    private Class targetClass_;
 
     private Class enhancedClass_;
 
-	private Pointcut defaultPointcut_;
+    private Pointcut defaultPointcut_;
 
-	private Map parameters_;
+    private Map parameters_;
 
-	public AopProxy(Class targetClass, Aspect[] aspects) {
-		this(targetClass, aspects, null);
-	}
+    public AopProxy(Class targetClass, Aspect[] aspects) {
+        this(targetClass, aspects, null);
+    }
 
-	public AopProxy(Class targetClass, Aspect[] aspects, Map parameters) {
-		parameters_ = parameters;
-		setTargetClass(targetClass);
-		setupAspects(aspects);
-	}
+    public AopProxy(Class targetClass, Aspect[] aspects, Map parameters) {
+        parameters_ = parameters;
+        setTargetClass(targetClass);
+        setupAspects(aspects);
+    }
 
-	private void setTargetClass(Class targetClass) {
-		targetClass_ = targetClass;
-		defaultPointcut_ = new PointcutImpl(targetClass);
-	}
+    private void setTargetClass(Class targetClass) {
+        targetClass_ = targetClass;
+        defaultPointcut_ = new PointcutImpl(targetClass);
+    }
 
     private void setupAspects(Aspect[] aspects) {
         if (aspects == null || aspects.length == 0) {
@@ -114,23 +114,24 @@ public final class AopProxy implements Serializable {
         enhancedClass_ = weaver.generateClass();
     }
 
-	public Class getEnhancedClass() {
-	    return enhancedClass_;
-	}
+    public Class getEnhancedClass() {
+        return enhancedClass_;
+    }
 
-	public Object create() {
+    public Object create() {
         return ClassUtil.newInstance(enhancedClass_);
-	}
+    }
 
-	public Object create(Class[] argTypes, Object[] args) {
-        final Constructor constructor = ClassUtil.getConstructor(enhancedClass_, argTypes);
+    public Object create(Class[] argTypes, Object[] args) {
+        final Constructor constructor = ClassUtil.getConstructor(
+                enhancedClass_, argTypes);
         return ConstructorUtil.newInstance(constructor, args);
-	}
+    }
 
-	private boolean isApplicableAspect(Method method) {
-		int mod = method.getModifiers();
-		return !Modifier.isFinal(mod) && !Modifier.isStatic(mod);
-	}
+    private boolean isApplicableAspect(Method method) {
+        int mod = method.getModifiers();
+        return !Modifier.isFinal(mod) && !Modifier.isStatic(mod);
+    }
 
     private boolean isBridgeMethod(final Method method) {
         if (IS_BRIDGE_METHOD == null) {

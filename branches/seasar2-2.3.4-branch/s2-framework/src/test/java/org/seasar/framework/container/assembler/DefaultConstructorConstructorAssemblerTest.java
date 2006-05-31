@@ -25,7 +25,6 @@ import org.seasar.framework.container.ArgDef;
 import org.seasar.framework.container.ConstructorAssembler;
 import org.seasar.framework.container.IllegalConstructorRuntimeException;
 import org.seasar.framework.container.S2Container;
-import org.seasar.framework.container.assembler.DefaultConstructorConstructorAssembler;
 import org.seasar.framework.container.impl.ArgDefImpl;
 import org.seasar.framework.container.impl.AspectDefImpl;
 import org.seasar.framework.container.impl.ComponentDefImpl;
@@ -33,35 +32,38 @@ import org.seasar.framework.container.impl.S2ContainerImpl;
 
 /**
  * @author higa
- *
+ * 
  */
 public class DefaultConstructorConstructorAssemblerTest extends TestCase {
 
-	public void testAssemble() throws Exception {
-		S2Container container = new S2ContainerImpl();
-		ComponentDefImpl cd = new ComponentDefImpl(ArrayList.class);
-		container.register(cd);
-		ConstructorAssembler assempbler = new DefaultConstructorConstructorAssembler(cd);
-		assertNotNull("1", assempbler.assemble());
-	}
+    public void testAssemble() throws Exception {
+        S2Container container = new S2ContainerImpl();
+        ComponentDefImpl cd = new ComponentDefImpl(ArrayList.class);
+        container.register(cd);
+        ConstructorAssembler assempbler = new DefaultConstructorConstructorAssembler(
+                cd);
+        assertNotNull("1", assempbler.assemble());
+    }
 
-	public void testAssembleAspect() throws Exception {
-		S2Container container = new S2ContainerImpl();
-		ComponentDefImpl cd = new ComponentDefImpl(ArrayList.class);
-		cd.addAspectDef(new AspectDefImpl(new TraceInterceptor()));
-		container.register(cd);
-		ConstructorAssembler assempbler = new DefaultConstructorConstructorAssembler(cd);
-		List list = (List) assempbler.assemble();
-		list.size();
-	}
-    
+    public void testAssembleAspect() throws Exception {
+        S2Container container = new S2ContainerImpl();
+        ComponentDefImpl cd = new ComponentDefImpl(ArrayList.class);
+        cd.addAspectDef(new AspectDefImpl(new TraceInterceptor()));
+        container.register(cd);
+        ConstructorAssembler assempbler = new DefaultConstructorConstructorAssembler(
+                cd);
+        List list = (List) assempbler.assemble();
+        list.size();
+    }
+
     public void testAssembleManual() throws Exception {
         S2Container container = new S2ContainerImpl();
         ComponentDefImpl cd = new ComponentDefImpl(A.class);
         ArgDef argDef = new ArgDefImpl(new B());
         cd.addArgDef(argDef);
         container.register(cd);
-        ConstructorAssembler assembler = new DefaultConstructorConstructorAssembler(cd);
+        ConstructorAssembler assembler = new DefaultConstructorConstructorAssembler(
+                cd);
         A a = (A) assembler.assemble();
         assertEquals("1", "B", a.getHogeName());
     }
@@ -73,7 +75,8 @@ public class DefaultConstructorConstructorAssemblerTest extends TestCase {
         argDef.setExpression("hoge");
         cd.addArgDef(argDef);
         container.register(cd);
-        ConstructorAssembler assembler = new DefaultConstructorConstructorAssembler(cd);
+        ConstructorAssembler assembler = new DefaultConstructorConstructorAssembler(
+                cd);
         try {
             assembler.assemble();
             fail("1");
@@ -81,7 +84,7 @@ public class DefaultConstructorConstructorAssemblerTest extends TestCase {
             System.out.println(ex);
         }
     }
-    
+
     public interface Foo {
         public String getHogeName();
     }

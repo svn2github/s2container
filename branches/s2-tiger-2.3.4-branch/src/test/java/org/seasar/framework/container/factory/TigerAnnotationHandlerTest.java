@@ -30,20 +30,17 @@ public class TigerAnnotationHandlerTest extends S2TestCase {
         ComponentDef cd2 = handler.createComponentDef(Hoge.class, InstanceDefFactory.REQUEST);
         assertEquals("5", InstanceDef.REQUEST_NAME, cd2.getInstanceDef().getName());
 
-        ComponentDef cd9 = handler.createComponentDef(Hoge.class,
-                InstanceDefFactory.REQUEST, AutoBindingDefFactory.NONE);
-        assertEquals("20", AutoBindingDef.NONE_NAME, cd9.getAutoBindingDef()
-                .getName());
+        ComponentDef cd9 = handler.createComponentDef(Hoge.class, InstanceDefFactory.REQUEST,
+                AutoBindingDefFactory.NONE);
+        assertEquals("20", AutoBindingDef.NONE_NAME, cd9.getAutoBindingDef().getName());
 
-        ComponentDef cd10 = handler.createComponentDef(Hoge2.class,
-                InstanceDefFactory.REQUEST, AutoBindingDefFactory.NONE);
-        assertEquals("21", AutoBindingDef.PROPERTY_NAME, cd10
-                .getAutoBindingDef().getName());
+        ComponentDef cd10 = handler.createComponentDef(Hoge2.class, InstanceDefFactory.REQUEST,
+                AutoBindingDefFactory.NONE);
+        assertEquals("21", AutoBindingDef.PROPERTY_NAME, cd10.getAutoBindingDef().getName());
 
-        ComponentDef cd11 = handler.createComponentDef(Hoge3.class,
-                InstanceDefFactory.REQUEST, AutoBindingDefFactory.NONE);
-        assertEquals("22", AutoBindingDef.PROPERTY_NAME, cd11
-                .getAutoBindingDef().getName());
+        ComponentDef cd11 = handler.createComponentDef(Hoge3.class, InstanceDefFactory.REQUEST,
+                AutoBindingDefFactory.NONE);
+        assertEquals("22", AutoBindingDef.PROPERTY_NAME, cd11.getAutoBindingDef().getName());
     }
 
     public void testCreatePropertyDef() throws Exception {
@@ -85,7 +82,7 @@ public class TigerAnnotationHandlerTest extends S2TestCase {
         AspectDef aspectDef = cd.getAspectDef(0);
         assertEquals("2", "aop.traceInterceptor", aspectDef.getExpression());
     }
-    
+
     public void testAppendAspectForMethod() throws Exception {
         ComponentDef cd = handler.createComponentDef(Hoge4.class, null);
         handler.appendAspect(cd);
@@ -93,7 +90,8 @@ public class TigerAnnotationHandlerTest extends S2TestCase {
         AspectDef aspectDef = cd.getAspectDef(0);
         assertEquals("2", "aop.traceInterceptor", aspectDef.getExpression());
         assertTrue("3", aspectDef.getPointcut().isApplied(Hoge4.class.getMethod("getAaa")));
-        assertFalse("4", aspectDef.getPointcut().isApplied(Hoge4.class.getMethod("getAaa", new Class[] {String.class})));
+        assertFalse("4", aspectDef.getPointcut().isApplied(
+                Hoge4.class.getMethod("getAaa", new Class[] { String.class })));
     }
 
     public void testAppendAspectForConstantAnnotation() throws Exception {
@@ -119,22 +117,23 @@ public class TigerAnnotationHandlerTest extends S2TestCase {
         InitMethodDef initMethodDef = cd.getInitMethodDef(0);
         assertEquals("2", "init", initMethodDef.getMethodName());
     }
-    
+
     public void setUpAppendInitMethodForDicon() throws Exception {
         include("TigerAnnotationHandlerTest.dicon");
     }
-    
+
     public void testAppendInitMethodForDicon() throws Exception {
         ComponentDef cd = getComponentDef(Hoge5.class);
         assertEquals("1", 1, cd.getInitMethodDefSize());
     }
-    
+
     public void testAppendInitMethodForException() throws Exception {
         ComponentDef cd = handler.createComponentDef(Hoge6.class, null);
         try {
             handler.appendInitMethod(cd);
             fail("1");
-        } catch (IllegalInitMethodAnnotationRuntimeException ex) {
+        }
+        catch (IllegalInitMethodAnnotationRuntimeException ex) {
             System.out.println(ex);
         }
     }

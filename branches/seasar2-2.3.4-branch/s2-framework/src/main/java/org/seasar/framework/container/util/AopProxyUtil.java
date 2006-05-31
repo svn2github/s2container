@@ -27,7 +27,7 @@ import org.seasar.framework.container.ContainerConstants;
  * @author koichik
  */
 public class AopProxyUtil {
-    
+
     protected AopProxyUtil() {
     }
 
@@ -38,8 +38,8 @@ public class AopProxyUtil {
 
         final Map parameters = new HashMap();
         parameters.put(ContainerConstants.COMPONENT_DEF_NAME, componentDef);
-        AopProxy proxy = new AopProxy(componentDef.getComponentClass(), getAspects(componentDef),
-                parameters);
+        AopProxy proxy = new AopProxy(componentDef.getComponentClass(),
+                getAspects(componentDef), parameters);
         return proxy.getEnhancedClass();
     }
 

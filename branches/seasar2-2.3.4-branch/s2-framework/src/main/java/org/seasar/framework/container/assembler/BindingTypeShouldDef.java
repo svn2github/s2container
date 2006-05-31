@@ -26,8 +26,7 @@ import org.seasar.framework.log.Logger;
  */
 public class BindingTypeShouldDef extends AbstractBindingTypeDef {
 
-    private static Logger logger = Logger
-            .getLogger(BindingTypeShouldDef.class);
+    private static Logger logger = Logger.getLogger(BindingTypeShouldDef.class);
 
     protected BindingTypeShouldDef(String name) {
         super(name);
@@ -36,7 +35,8 @@ public class BindingTypeShouldDef extends AbstractBindingTypeDef {
     protected void doBind(ComponentDef componentDef, PropertyDesc propertyDesc,
             Object component) {
 
-        if (!bindAuto(componentDef, propertyDesc, component) && BindingUtil.isAutoBindable(propertyDesc.getPropertyType())) {
+        if (!bindAuto(componentDef, propertyDesc, component)
+                && BindingUtil.isAutoBindable(propertyDesc.getPropertyType())) {
             logger.log("WSSR0008", new Object[] {
                     BindingUtil.getComponentClass(componentDef, component)
                             .getName(), propertyDesc.getPropertyName() });

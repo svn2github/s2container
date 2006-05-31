@@ -22,13 +22,13 @@ import java.lang.annotation.Target;
 
 /**
  * @author higa
- *
+ * 
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface Binding {
-    
+
     String value() default "";
-    
+
     BindingType bindingType() default BindingType.SHOULD;
 }

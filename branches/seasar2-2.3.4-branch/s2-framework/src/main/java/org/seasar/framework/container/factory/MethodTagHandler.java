@@ -21,27 +21,25 @@ import org.seasar.framework.xml.TagHandler;
 
 /**
  * @author higa
- *
+ * 
  */
 public abstract class MethodTagHandler extends TagHandler {
 
-	protected void processExpression(
-		MethodDef methodDef,
-		String expression,
-		String tagName) {
+    protected void processExpression(MethodDef methodDef, String expression,
+            String tagName) {
 
-		String expr = expression;
-		if (expr != null) {
-			expr = expr.trim();
-			if (!StringUtil.isEmpty(expr)) {
-				methodDef.setExpression(expr);
-			} else {
-				expr = null;
-			}
-		}
-		if (methodDef.getMethodName() == null && expr == null) {
-			throw new TagAttributeNotDefinedRuntimeException(tagName, "name");
-		}
-	}
+        String expr = expression;
+        if (expr != null) {
+            expr = expr.trim();
+            if (!StringUtil.isEmpty(expr)) {
+                methodDef.setExpression(expr);
+            } else {
+                expr = null;
+            }
+        }
+        if (methodDef.getMethodName() == null && expr == null) {
+            throw new TagAttributeNotDefinedRuntimeException(tagName, "name");
+        }
+    }
 
 }

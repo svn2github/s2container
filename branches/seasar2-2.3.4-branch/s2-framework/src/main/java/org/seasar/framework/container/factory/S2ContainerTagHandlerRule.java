@@ -19,21 +19,21 @@ import org.seasar.framework.xml.TagHandlerRule;
 
 /**
  * @author higa
- *
+ * 
  */
 public class S2ContainerTagHandlerRule extends TagHandlerRule {
 
     private static final long serialVersionUID = -7794896627632923326L;
 
-	public S2ContainerTagHandlerRule() {
-		addTagHandler("/components", new ComponentsTagHandler());
-		addTagHandler("component", new ComponentTagHandler());
-		addTagHandler("arg", new ArgTagHandler());
-		addTagHandler("property", new PropertyTagHandler());
-		addTagHandler("meta", new MetaTagHandler());
-		addTagHandler("initMethod", new InitMethodTagHandler());
-		addTagHandler("destroyMethod", new DestroyMethodTagHandler());
-		addTagHandler("aspect", new AspectTagHandler());
-		addTagHandler("/components/include", new IncludeTagHandler());
-	}
+    public S2ContainerTagHandlerRule() {
+        addTagHandler("/components", new ComponentsTagHandler());
+        addTagHandler("component", new ComponentTagHandler());
+        addTagHandler("arg", new ArgTagHandler());
+        addTagHandler("property", new PropertyTagHandler());
+        addTagHandler("meta", new MetaTagHandler());
+        addTagHandler("initMethod", new InitMethodTagHandler());
+        addTagHandler("destroyMethod", new DestroyMethodTagHandler());
+        addTagHandler("aspect", new AspectTagHandler());
+        addTagHandler("/components/include", new IncludeTagHandler());
+    }
 }

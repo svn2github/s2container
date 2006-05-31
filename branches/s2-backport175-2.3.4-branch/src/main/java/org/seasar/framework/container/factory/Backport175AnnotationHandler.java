@@ -47,32 +47,29 @@ public class Backport175AnnotationHandler extends ConstantAnnotationHandler {
             return super.createComponentDef(componentClass, defaultInstanceDef,
                     defaultAutoBindingDef);
         }
-        ComponentDef componentDef = createComponentDefInternal(componentClass,
-                defaultInstanceDef, defaultAutoBindingDef);
+        ComponentDef componentDef = createComponentDefInternal(componentClass, defaultInstanceDef,
+                defaultAutoBindingDef);
         componentDef.setComponentName(component.name());
         String instanceName = component.instance();
         if (instanceName != null) {
-            componentDef.setInstanceDef(InstanceDefFactory
-                    .getInstanceDef(instanceName));
+            componentDef.setInstanceDef(InstanceDefFactory.getInstanceDef(instanceName));
         }
         String autoBindingName = component.autoBinding();
         if (autoBindingName != null) {
-            componentDef.setAutoBindingDef(AutoBindingDefFactory
-                    .getAutoBindingDef(autoBindingName));
+            componentDef
+                    .setAutoBindingDef(AutoBindingDefFactory.getAutoBindingDef(autoBindingName));
         }
         return componentDef;
     }
 
-    public PropertyDef createPropertyDef(BeanDesc beanDesc,
-            PropertyDesc propertyDesc) {
+    public PropertyDef createPropertyDef(BeanDesc beanDesc, PropertyDesc propertyDesc) {
 
         if (!propertyDesc.hasWriteMethod()) {
             return super.createPropertyDef(beanDesc, propertyDesc);
         }
         Method method = propertyDesc.getWriteMethod();
         String propName = propertyDesc.getPropertyName();
-        Binding binding = (Binding) Annotations.getAnnotation(Binding.class,
-                method);
+        Binding binding = (Binding) Annotations.getAnnotation(Binding.class, method);
         if (binding != null) {
             String bindingTypeName = binding.bindingType();
             String expression = binding.value();
@@ -83,8 +80,7 @@ public class Backport175AnnotationHandler extends ConstantAnnotationHandler {
 
     public void appendAspect(ComponentDef componentDef) {
         Class componentClass = componentDef.getComponentClass();
-        Aspect aspect = (Aspect) Annotations.getAnnotation(Aspect.class,
-                componentClass);
+        Aspect aspect = (Aspect) Annotations.getAnnotation(Aspect.class, componentClass);
         if (aspect != null) {
             String interceptor = aspect.value();
             String pointcut = aspect.pointcut();
@@ -92,8 +88,7 @@ public class Backport175AnnotationHandler extends ConstantAnnotationHandler {
         }
         Method[] methods = componentClass.getMethods();
         for (int i = 0; i < methods.length; ++i) {
-            Aspect mAspect = (Aspect) Annotations.getAnnotation(Aspect.class,
-                    methods[i]);
+            Aspect mAspect = (Aspect) Annotations.getAnnotation(Aspect.class, methods[i]);
             if (mAspect != null) {
                 String interceptor = mAspect.value();
                 appendAspect(componentDef, interceptor, methods[i]);
@@ -110,13 +105,14 @@ public class Backport175AnnotationHandler extends ConstantAnnotationHandler {
         Method[] methods = componentClass.getMethods();
         for (int i = 0; i < methods.length; ++i) {
             Method method = methods[i];
-            InitMethod initMethod = (InitMethod) Annotations.getAnnotation(
-                    InitMethod.class, method);
+            InitMethod initMethod = (InitMethod) Annotations
+                    .getAnnotation(InitMethod.class, method);
             if (initMethod == null) {
                 continue;
             }
             if (method.getParameterTypes().length != 0) {
-                throw new IllegalInitMethodAnnotationRuntimeException(componentClass, method.getName());
+                throw new IllegalInitMethodAnnotationRuntimeException(componentClass, method
+                        .getName());
             }
             if (!isInitMethodRegisterable(componentDef, method.getName())) {
                 continue;

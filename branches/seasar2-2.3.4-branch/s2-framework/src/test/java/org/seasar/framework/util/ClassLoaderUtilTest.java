@@ -18,8 +18,6 @@ package org.seasar.framework.util;
 import java.net.URL;
 import java.net.URLClassLoader;
 
-import org.seasar.framework.util.ClassLoaderUtil;
-
 import junit.framework.TestCase;
 
 /**

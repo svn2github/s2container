@@ -19,13 +19,13 @@ import ognl.OgnlException;
 
 /**
  * @author higa
- *
+ * 
  */
 public final class OgnlRuntimeException extends SRuntimeException {
 
     private static final long serialVersionUID = 6780487105649327767L;
 
-	public OgnlRuntimeException(OgnlException cause) {
-		super("ESSR0073", new Object[] { cause }, cause);
-	}
+    public OgnlRuntimeException(OgnlException cause) {
+        super("ESSR0073", new Object[] { cause }, cause);
+    }
 }

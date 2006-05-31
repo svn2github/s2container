@@ -23,33 +23,34 @@ import org.seasar.framework.container.PropertyDef;
 
 /**
  * @author higa
- *  
+ * 
  */
 public class AutoPropertyAssembler extends AbstractPropertyAssembler {
 
-	/**
-	 * @param componentDef
-	 */
-	public AutoPropertyAssembler(ComponentDef componentDef) {
-		super(componentDef);
-	}
+    /**
+     * @param componentDef
+     */
+    public AutoPropertyAssembler(ComponentDef componentDef) {
+        super(componentDef);
+    }
 
-	public void assemble(Object component) {
+    public void assemble(Object component) {
         if (component == null) {
             return;
         }
-		BeanDesc beanDesc = getBeanDesc(component);
+        BeanDesc beanDesc = getBeanDesc(component);
         ComponentDef cd = getComponentDef();
-		for (int i = 0; i < beanDesc.getPropertyDescSize(); ++i) {
-			PropertyDesc propDesc = beanDesc.getPropertyDesc(i);
-			String propName = propDesc.getPropertyName();
-			if (cd.hasPropertyDef(propName)) {
-				PropertyDef propDef = cd.getPropertyDef(propName);
+        for (int i = 0; i < beanDesc.getPropertyDescSize(); ++i) {
+            PropertyDesc propDesc = beanDesc.getPropertyDesc(i);
+            String propName = propDesc.getPropertyName();
+            if (cd.hasPropertyDef(propName)) {
+                PropertyDef propDef = cd.getPropertyDef(propName);
                 BindingTypeDef bindingTypeDef = propDef.getBindingTypeDef();
                 bindingTypeDef.bind(cd, propDef, propDesc, component);
-			} else {
-                BindingTypeDefFactory.SHOULD.bind(cd, null, propDesc, component);
-			}
-		}
-	}
+            } else {
+                BindingTypeDefFactory.SHOULD
+                        .bind(cd, null, propDesc, component);
+            }
+        }
+    }
 }

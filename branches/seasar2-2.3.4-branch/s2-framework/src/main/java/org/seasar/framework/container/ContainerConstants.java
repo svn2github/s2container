@@ -17,21 +17,21 @@ package org.seasar.framework.container;
 
 /**
  * @author higa
- *
+ * 
  */
 public interface ContainerConstants {
-	
-	public char NS_SEP = '.';
-	
-	public String CONTAINER_NAME = "container";
-	
-	public String REQUEST_NAME = "request";
-	
-	public String RESPONSE_NAME = "response";
-	
-	public String SESSION_NAME = "session";
-	
-	public String SERVLET_CONTEXT_NAME = "servletContext";
-	
-	public String COMPONENT_DEF_NAME = "componentDef";
+
+    public char NS_SEP = '.';
+
+    public String CONTAINER_NAME = "container";
+
+    public String REQUEST_NAME = "request";
+
+    public String RESPONSE_NAME = "response";
+
+    public String SESSION_NAME = "session";
+
+    public String SERVLET_CONTEXT_NAME = "servletContext";
+
+    public String COMPONENT_DEF_NAME = "componentDef";
 }

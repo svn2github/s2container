@@ -30,57 +30,63 @@ import org.seasar.framework.util.StringUtil;
 public class S2ContainerServlet extends HttpServlet {
 
     private static final long serialVersionUID = 407266935204779128L;
-	public static final String CONFIG_PATH_KEY = "configPath";
-	public static final String DEBUG_KEY = "debug";
-	public static final String COMMAND = "command";
-	public static final String RESTART = "restart";
-	private static S2ContainerServlet instance;
-	private boolean debug;
-	
-	public S2ContainerServlet() {
-		instance = this;
-	}
-	
-	public static S2ContainerServlet getInstance() {
-		return instance;
-	}
 
-	public void init() {
-		String configPath = null;
-		String debugStr = null;
-		ServletConfig servletConfig = getServletConfig();
-		if (servletConfig != null) {
-			configPath = servletConfig.getInitParameter(CONFIG_PATH_KEY);
-			debugStr = servletConfig.getInitParameter(DEBUG_KEY);
-		}
-		if (!StringUtil.isEmpty(configPath)) {
-			SingletonS2ContainerFactory.setConfigPath(configPath);
-		}
-		if (!StringUtil.isEmpty(debugStr)) {
-			debug = Boolean.valueOf(debugStr).booleanValue();
-		}
-		SingletonS2ContainerFactory.setServletContext(getServletContext());
-		SingletonS2ContainerFactory.init();
-	}
+    public static final String CONFIG_PATH_KEY = "configPath";
 
-	public void destroy() {
-		SingletonS2ContainerFactory.destroy();
-	}
+    public static final String DEBUG_KEY = "debug";
 
-	public static S2Container getContainer() {
-		return SingletonS2ContainerFactory.getContainer();
-	}
+    public static final String COMMAND = "command";
 
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-		throws IOException, ServletException {
+    public static final String RESTART = "restart";
 
-		String command = request.getParameter(COMMAND);
-		if (debug && command != null && RESTART.equalsIgnoreCase(command)) {
-			destroy();
-			init();
-			response.getWriter().write("S2ContainerServlet is restarted.");
-		} else {
-			response.getWriter().write("S2ContainerServlet is running.");
-		}
-	}
+    private static S2ContainerServlet instance;
+
+    private boolean debug;
+
+    public S2ContainerServlet() {
+        instance = this;
+    }
+
+    public static S2ContainerServlet getInstance() {
+        return instance;
+    }
+
+    public void init() {
+        String configPath = null;
+        String debugStr = null;
+        ServletConfig servletConfig = getServletConfig();
+        if (servletConfig != null) {
+            configPath = servletConfig.getInitParameter(CONFIG_PATH_KEY);
+            debugStr = servletConfig.getInitParameter(DEBUG_KEY);
+        }
+        if (!StringUtil.isEmpty(configPath)) {
+            SingletonS2ContainerFactory.setConfigPath(configPath);
+        }
+        if (!StringUtil.isEmpty(debugStr)) {
+            debug = Boolean.valueOf(debugStr).booleanValue();
+        }
+        SingletonS2ContainerFactory.setServletContext(getServletContext());
+        SingletonS2ContainerFactory.init();
+    }
+
+    public void destroy() {
+        SingletonS2ContainerFactory.destroy();
+    }
+
+    public static S2Container getContainer() {
+        return SingletonS2ContainerFactory.getContainer();
+    }
+
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws IOException, ServletException {
+
+        String command = request.getParameter(COMMAND);
+        if (debug && command != null && RESTART.equalsIgnoreCase(command)) {
+            destroy();
+            init();
+            response.getWriter().write("S2ContainerServlet is restarted.");
+        } else {
+            response.getWriter().write("S2ContainerServlet is running.");
+        }
+    }
 }

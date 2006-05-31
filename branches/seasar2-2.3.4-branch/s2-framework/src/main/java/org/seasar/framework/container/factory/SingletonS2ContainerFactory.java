@@ -22,52 +22,54 @@ import org.seasar.framework.exception.EmptyRuntimeException;
 
 public final class SingletonS2ContainerFactory {
 
-	private static String configPath = "app.dicon";
-	private static ServletContext servletContext;
-	private static S2Container container;
-	
-	private SingletonS2ContainerFactory() {
-	}
-	
-	public static String getConfigPath() {
-		return configPath;
-	}
-	
-	public static void setConfigPath(String path) {
-		configPath = path;
-	}
-	
-	public static ServletContext getServletContext() {
-		return servletContext;
-	}
-	
-	public static void setServletContext(ServletContext context) {
-		servletContext = context;
-	}
+    private static String configPath = "app.dicon";
 
-	public static void init() {
-		container = S2ContainerFactory.create(configPath);
-		container.setServletContext(servletContext);
-		container.init();
-	}
-	
-	public static void destroy() {
-		container.destroy();
-		container = null;
-	}
-	
-	public static S2Container getContainer() {
-		if (container == null) {
-			throw new EmptyRuntimeException("S2Container");
-		}
-		return container;
-	}
-	
-	public static void setContainer(S2Container c) {
-		container = c;
-	}
-	
-	public static boolean hasContainer() {
-		return container != null;
-	}
+    private static ServletContext servletContext;
+
+    private static S2Container container;
+
+    private SingletonS2ContainerFactory() {
+    }
+
+    public static String getConfigPath() {
+        return configPath;
+    }
+
+    public static void setConfigPath(String path) {
+        configPath = path;
+    }
+
+    public static ServletContext getServletContext() {
+        return servletContext;
+    }
+
+    public static void setServletContext(ServletContext context) {
+        servletContext = context;
+    }
+
+    public static void init() {
+        container = S2ContainerFactory.create(configPath);
+        container.setServletContext(servletContext);
+        container.init();
+    }
+
+    public static void destroy() {
+        container.destroy();
+        container = null;
+    }
+
+    public static S2Container getContainer() {
+        if (container == null) {
+            throw new EmptyRuntimeException("S2Container");
+        }
+        return container;
+    }
+
+    public static void setContainer(S2Container c) {
+        container = c;
+    }
+
+    public static boolean hasContainer() {
+        return container != null;
+    }
 }

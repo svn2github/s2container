@@ -24,28 +24,29 @@ import org.seasar.framework.util.MethodUtil;
 
 /**
  * @author higa
- *
+ * 
  */
-public final class SingletonTransactionManager
-	extends TransactionManagerWrapper {
+public final class SingletonTransactionManager extends
+        TransactionManagerWrapper {
 
-	private String className_;
-	private String methodName_;
+    private String className_;
 
-	public SingletonTransactionManager(String className, String methodName) {
-		className_ = className;
-		methodName_ = methodName;
-		Class clazz = ClassUtil.forName(className);
-		Method method = ClassUtil.getMethod(clazz, methodName, null);
-		setPhysicalTransactionManager(
-			(TransactionManager) MethodUtil.invoke(method, clazz, null));
-	}
+    private String methodName_;
 
-	public String getClassName() {
-		return className_;
-	}
+    public SingletonTransactionManager(String className, String methodName) {
+        className_ = className;
+        methodName_ = methodName;
+        Class clazz = ClassUtil.forName(className);
+        Method method = ClassUtil.getMethod(clazz, methodName, null);
+        setPhysicalTransactionManager((TransactionManager) MethodUtil.invoke(
+                method, clazz, null));
+    }
 
-	public String getMethodName() {
-		return methodName_;
-	}
+    public String getClassName() {
+        return className_;
+    }
+
+    public String getMethodName() {
+        return methodName_;
+    }
 }

@@ -16,7 +16,7 @@
 package org.seasar.framework.container.annotation.backport175;
 
 /**
- *
+ * 
  * @author koichik
  */
 public interface InitMethod {

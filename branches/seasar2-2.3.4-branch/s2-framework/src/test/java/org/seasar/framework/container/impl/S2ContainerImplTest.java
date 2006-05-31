@@ -52,7 +52,6 @@ import org.seasar.framework.util.ResourceUtil;
 public class S2ContainerImplTest extends TestCase {
     int count;
 
-    
     public S2ContainerImplTest() {
     }
 
@@ -67,7 +66,8 @@ public class S2ContainerImplTest extends TestCase {
 
     protected void tearDown() throws Exception {
         super.tearDown();
-        S2ContainerBehavior.setProvider(new S2ContainerBehavior.DefaultProvider());
+        S2ContainerBehavior
+                .setProvider(new S2ContainerBehavior.DefaultProvider());
     }
 
     public void testRegister() throws Exception {

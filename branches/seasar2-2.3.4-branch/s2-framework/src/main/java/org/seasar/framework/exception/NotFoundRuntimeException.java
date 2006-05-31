@@ -17,7 +17,6 @@ package org.seasar.framework.exception;
 
 import javassist.NotFoundException;
 
-
 /**
  * @author koichik
  */

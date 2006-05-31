@@ -22,28 +22,29 @@ import org.seasar.framework.container.PropertyDef;
 
 /**
  * @author higa
- *
+ * 
  */
 public class ManualOnlyPropertyAssembler extends AbstractPropertyAssembler {
 
-	/**
-	 * @param componentDef
-	 */
-	public ManualOnlyPropertyAssembler(ComponentDef componentDef) {
-		super(componentDef);
-	}
-
-	public void assemble(Object component) {
-    if (component == null) {
-        return;
+    /**
+     * @param componentDef
+     */
+    public ManualOnlyPropertyAssembler(ComponentDef componentDef) {
+        super(componentDef);
     }
-		BeanDesc beanDesc = getBeanDesc(component);
-		int size = getComponentDef().getPropertyDefSize();
-		for (int i = 0; i < size; ++i) {
-			PropertyDef propDef = getComponentDef().getPropertyDef(i);
-            PropertyDesc propDesc =
-                beanDesc.getPropertyDesc(propDef.getPropertyName());
-            BindingTypeDefFactory.NONE.bind(getComponentDef(), propDef, propDesc, component);
-		}
-	}
+
+    public void assemble(Object component) {
+        if (component == null) {
+            return;
+        }
+        BeanDesc beanDesc = getBeanDesc(component);
+        int size = getComponentDef().getPropertyDefSize();
+        for (int i = 0; i < size; ++i) {
+            PropertyDef propDef = getComponentDef().getPropertyDef(i);
+            PropertyDesc propDesc = beanDesc.getPropertyDesc(propDef
+                    .getPropertyName());
+            BindingTypeDefFactory.NONE.bind(getComponentDef(), propDef,
+                    propDesc, component);
+        }
+    }
 }

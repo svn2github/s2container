@@ -6,18 +6,17 @@ import org.seasar.framework.container.annotation.tiger.BindingType;
 import org.seasar.framework.container.annotation.tiger.Component;
 import org.seasar.framework.container.annotation.tiger.InstanceType;
 
-@Component(name="aaa", instance=InstanceType.PROTOTYPE,
-        autoBinding=AutoBindingType.PROPERTY)
-public class Hoge2 {    
-    
+@Component(name = "aaa", instance = InstanceType.PROTOTYPE, autoBinding = AutoBindingType.PROPERTY)
+public class Hoge2 {
+
     @Binding("aaa2")
     public void setAaa(String aaa) {
     }
-    
-    @Binding(bindingType=BindingType.NONE)
+
+    @Binding(bindingType = BindingType.NONE)
     public void setBbb(String bbb) {
     }
-    
+
     @Binding
     public void setCcc(String ccc) {
     }

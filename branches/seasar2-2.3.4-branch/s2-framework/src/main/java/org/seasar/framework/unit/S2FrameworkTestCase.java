@@ -207,7 +207,7 @@ public abstract class S2FrameworkTestCase extends TestCase {
             invoke("tearDown" + getTargetName());
         }
     }
-    
+
     protected void doRunTest() throws Throwable {
         runTest();
     }

@@ -62,9 +62,11 @@ public class ComponentAutoRegisterTest extends S2FrameworkTestCase {
 
     public void testBindingMode() throws Exception {
         ComponentDef cd = child.getComponentDef(Foo.class);
-        assertEquals("1", AutoBindingDef.PROPERTY_NAME, cd.getAutoBindingDef().getName());
+        assertEquals("1", AutoBindingDef.PROPERTY_NAME, cd.getAutoBindingDef()
+                .getName());
         cd = child.getComponentDef(Foo2.class);
-        assertEquals("2", AutoBindingDef.NONE_NAME, cd.getAutoBindingDef().getName());
+        assertEquals("2", AutoBindingDef.NONE_NAME, cd.getAutoBindingDef()
+                .getName());
     }
 
     public void setUpZipFileStrategy() throws Exception {

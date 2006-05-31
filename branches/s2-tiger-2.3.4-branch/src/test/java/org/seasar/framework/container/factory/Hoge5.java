@@ -4,7 +4,7 @@ import org.seasar.framework.container.annotation.tiger.InitMethod;
 
 public class Hoge5 {
 
-	@InitMethod
+    @InitMethod
     public void init() {
     }
 }

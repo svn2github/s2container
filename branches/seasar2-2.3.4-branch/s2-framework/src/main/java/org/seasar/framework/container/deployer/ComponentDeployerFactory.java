@@ -22,7 +22,7 @@ import org.seasar.framework.container.ComponentDeployer;
  * @author higa
  */
 public class ComponentDeployerFactory {
-    
+
     private static Provider provider = new DefaultProvider();
 
     public static Provider getProvider() {
@@ -33,62 +33,73 @@ public class ComponentDeployerFactory {
         provider = p;
     }
 
-    public static ComponentDeployer createSingletonComponentDeployer(final ComponentDef cd) {
+    public static ComponentDeployer createSingletonComponentDeployer(
+            final ComponentDef cd) {
         return getProvider().createSingletonComponentDeployer(cd);
     }
-    
-    public static ComponentDeployer createPrototypeComponentDeployer(final ComponentDef cd) {
+
+    public static ComponentDeployer createPrototypeComponentDeployer(
+            final ComponentDef cd) {
         return getProvider().createPrototypeComponentDeployer(cd);
     }
-    
-    public static ComponentDeployer createSessionComponentDeployer(final ComponentDef cd) {
+
+    public static ComponentDeployer createSessionComponentDeployer(
+            final ComponentDef cd) {
         return getProvider().createSessionComponentDeployer(cd);
     }
-    
-    public static ComponentDeployer createRequestComponentDeployer(final ComponentDef cd) {
+
+    public static ComponentDeployer createRequestComponentDeployer(
+            final ComponentDef cd) {
         return getProvider().createRequestComponentDeployer(cd);
     }
-    
-    public static ComponentDeployer createOuterComponentDeployer(final ComponentDef cd) {
+
+    public static ComponentDeployer createOuterComponentDeployer(
+            final ComponentDef cd) {
         return getProvider().createOuterComponentDeployer(cd);
     }
 
     public interface Provider {
-        
+
         ComponentDeployer createSingletonComponentDeployer(ComponentDef cd);
-        
+
         ComponentDeployer createPrototypeComponentDeployer(ComponentDef cd);
-        
+
         ComponentDeployer createSessionComponentDeployer(ComponentDef cd);
-        
+
         ComponentDeployer createRequestComponentDeployer(ComponentDef cd);
-        
+
         ComponentDeployer createOuterComponentDeployer(ComponentDef cd);
     }
 
     public static class DefaultProvider implements Provider {
 
-        public ComponentDeployer createSingletonComponentDeployer(final ComponentDef cd) {
+        public ComponentDeployer createSingletonComponentDeployer(
+                final ComponentDef cd) {
             return new SingletonComponentDeployer(cd);
         }
 
-        public ComponentDeployer createPrototypeComponentDeployer(final ComponentDef cd) {
+        public ComponentDeployer createPrototypeComponentDeployer(
+                final ComponentDef cd) {
             return new PrototypeComponentDeployer(cd);
         }
 
-        public ComponentDeployer createRequestComponentDeployer(final ComponentDef cd) {
+        public ComponentDeployer createRequestComponentDeployer(
+                final ComponentDef cd) {
             return new RequestComponentDeployer(cd);
         }
 
-        public ComponentDeployer createSessionComponentDeployer(final ComponentDef cd) {
+        public ComponentDeployer createSessionComponentDeployer(
+                final ComponentDef cd) {
             return new SessionComponentDeployer(cd);
         }
 
-        public ComponentDeployer createOuterComponentDeployer(final ComponentDef cd) {
+        public ComponentDeployer createOuterComponentDeployer(
+                final ComponentDef cd) {
             return new OuterComponentDeployer(cd);
         }
 
-        public ComponentDeployer createDefaultComponentDeployer(final ComponentDef cd) {
+        public ComponentDeployer createDefaultComponentDeployer(
+                final ComponentDef cd) {
             return createOuterComponentDeployer(cd);
         }
     }
