@@ -10,6 +10,14 @@
 			<arg>"Bar.*"</arg>
 		</initMethod>
 	</component>
+	<component class="org.seasar.framework.container.autoregister.AspectAutoRegister">
+		<property name="interceptor">greetingInterceptor</property>
+		<property name="pointcut">"greet"</property>
+		<initMethod name="addClassPattern">
+			<arg>"org.seasar.framework.container.autoregister"</arg>
+			<arg>"Foo.*"</arg>
+		</initMethod>
+	</component>
 	<component class="org.seasar.framework.container.autoregister.MetaAutoRegister">
 		<meta name="autoRegister">
 			<meta name="hoge"/>
