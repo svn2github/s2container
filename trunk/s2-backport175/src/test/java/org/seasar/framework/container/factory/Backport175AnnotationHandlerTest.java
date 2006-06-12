@@ -42,25 +42,26 @@ public class Backport175AnnotationHandlerTest extends S2FrameworkTestCase {
     private Backport175AnnotationHandler handler = new Backport175AnnotationHandler();
 
     public void testCreateComponentDef() throws Exception {
-        assertNotNull("1", handler.createComponentDef(Hoge.class, null));
+        assertNotNull(handler.createComponentDef(Hoge.class, null));
         ComponentDef cd = handler.createComponentDef(Hoge2.class, null);
-        assertEquals("2", "aaa", cd.getComponentName());
-        assertEquals("3", "prototype", cd.getInstanceDef().getName());
-        assertEquals("4", "property", cd.getAutoBindingDef().getName());
+        assertEquals("aaa", cd.getComponentName());
+        assertEquals("prototype", cd.getInstanceDef().getName());
+        assertEquals("property", cd.getAutoBindingDef().getName());
+        assertTrue(cd.isExternalBinding());
         ComponentDef cd2 = handler.createComponentDef(Hoge.class, InstanceDefFactory.REQUEST);
-        assertEquals("5", InstanceDef.REQUEST_NAME, cd2.getInstanceDef().getName());
-
+        assertEquals(InstanceDef.REQUEST_NAME, cd2.getInstanceDef().getName());
+        assertFalse(cd2.isExternalBinding());
         ComponentDef cd3 = handler.createComponentDef(Hoge.class, InstanceDefFactory.REQUEST,
                 AutoBindingDefFactory.NONE);
-        assertEquals("6", AutoBindingDef.NONE_NAME, cd3.getAutoBindingDef().getName());
+        assertEquals(AutoBindingDef.NONE_NAME, cd3.getAutoBindingDef().getName());
 
         ComponentDef cd4 = handler.createComponentDef(Hoge2.class, InstanceDefFactory.REQUEST,
                 AutoBindingDefFactory.NONE);
-        assertEquals("7", AutoBindingDef.PROPERTY_NAME, cd4.getAutoBindingDef().getName());
+        assertEquals(AutoBindingDef.PROPERTY_NAME, cd4.getAutoBindingDef().getName());
 
         ComponentDef cd5 = handler.createComponentDef(Hoge3.class, InstanceDefFactory.REQUEST,
                 AutoBindingDefFactory.NONE);
-        assertEquals("8", AutoBindingDef.PROPERTY_NAME, cd5.getAutoBindingDef().getName());
+        assertEquals(AutoBindingDef.PROPERTY_NAME, cd5.getAutoBindingDef().getName());
     }
 
     public void testCreatePropertyDef() throws Exception {

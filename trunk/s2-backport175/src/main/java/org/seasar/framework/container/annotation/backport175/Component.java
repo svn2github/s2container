@@ -35,4 +35,9 @@ public interface Component {
      * @org.codehaus.backport175.DefaultValue ("auto")
      */
     String autoBinding();
+    
+    /**
+     * @org.codehaus.backport175.DefaultValue (false)
+     */
+    boolean externalBinding();
 }

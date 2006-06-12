@@ -22,7 +22,8 @@ package org.seasar.framework.container.factory;
  *                                                                   instance =
  *                                                                   "prototype",
  *                                                                   autoBinding =
- *                                                                   "property")
+ *                                                                   "property",
+ *                                                                   externalBinding = true)
  * 
  */
 public class Hoge2 {

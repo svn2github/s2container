@@ -42,7 +42,7 @@ import org.seasar.framework.container.annotation.backport175.InterType;
 public class Backport175AnnotationHandler extends ConstantAnnotationHandler {
 
     public ComponentDef createComponentDef(Class componentClass, InstanceDef defaultInstanceDef,
-            AutoBindingDef defaultAutoBindingDef) {
+            AutoBindingDef defaultAutoBindingDef, boolean defaultExternalBinding) {
 
         String name = null;
         InstanceDef instanceDef = null;
@@ -51,12 +51,12 @@ public class Backport175AnnotationHandler extends ConstantAnnotationHandler {
                 .getAnnotation(Component.class, componentClass);
         if (component == null) {
             return super.createComponentDef(componentClass, defaultInstanceDef,
-                    defaultAutoBindingDef);
+                    defaultAutoBindingDef, defaultExternalBinding);
         }
         name = component.name();
         instanceDef = getInstanceDef(component.instance(), defaultInstanceDef);
         autoBindingDef = getAutoBindingDef(component.autoBinding());
-        return createComponentDef(componentClass, name, instanceDef, autoBindingDef);
+        return createComponentDef(componentClass, name, instanceDef, autoBindingDef, component.externalBinding());
     }
 
     public PropertyDef createPropertyDef(BeanDesc beanDesc, PropertyDesc propertyDesc) {
