@@ -1,0 +1,30 @@
+<project name="paramnames-main" default="build" basedir=".">
+	<property name="src.main"		value="src/main/java" />
+	<property name="classes.main"	value="build/classes" />
+	<property name="libdir"			value="lib" />
+
+	<path id="source.path">
+		<pathelement path="${src.main}/" />
+	</path>
+	<path id="project.classpath">
+		<pathelement path="${java.class.path}"/>
+		<fileset dir="${libdir}">
+			<include name="**/*.jar" />
+			<include name="**/*.zip" />
+		</fileset>
+	</path>
+
+	<target name="build">
+		<antcall target="enhance"/>
+	</target>
+
+	<target name="enhance">
+		<javadoc
+			doclet="org.seasar.framework.tool.ParameterNameDoclet"
+			packagenames="*"
+			sourcepathref="source.path"
+			classpathref="project.classpath"
+			docletpathref="project.classpath"
+			docletpath="${classes.main}"/>
+	</target>
+</project>
