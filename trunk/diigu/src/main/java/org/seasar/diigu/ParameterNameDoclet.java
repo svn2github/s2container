@@ -1,5 +1,8 @@
 package org.seasar.diigu;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import com.sun.javadoc.ClassDoc;
 import com.sun.javadoc.ConstructorDoc;
 import com.sun.javadoc.Doclet;
@@ -9,6 +12,18 @@ import com.sun.javadoc.RootDoc;
 import com.sun.javadoc.Type;
 
 public class ParameterNameDoclet extends Doclet {
+    protected static final Set PRIMITIVE_TYPES = new HashSet();
+    static {
+        PRIMITIVE_TYPES.add("boolean");
+        PRIMITIVE_TYPES.add("byte");
+        PRIMITIVE_TYPES.add("short");
+        PRIMITIVE_TYPES.add("int");
+        PRIMITIVE_TYPES.add("long");
+        PRIMITIVE_TYPES.add("float");
+        PRIMITIVE_TYPES.add("double");
+        PRIMITIVE_TYPES.add("char");
+        PRIMITIVE_TYPES.add("void");
+    }
 
     public ParameterNameDoclet() {
     }
@@ -23,9 +38,8 @@ public class ParameterNameDoclet extends Doclet {
     }
 
     protected static void enhanceClassFile(final ClassDoc classDoc) {
-        final String className = classDoc.qualifiedTypeName();
         final ParameterNameEnhancer enhancer = new ParameterNameEnhancer(
-                className);
+                toBinaryName(classDoc));
         boolean dirty = false;
         dirty |= enhanceConstructor(enhancer, classDoc);
         dirty |= enhanceMethod(enhancer, classDoc);
@@ -57,7 +71,7 @@ public class ParameterNameDoclet extends Doclet {
         final String[] parameterNames = new String[numParameters];
         for (int i = 0; i < numParameters; ++i) {
             final Parameter parameter = parameters[i];
-            parameterTypes[i] = parameter.type().qualifiedTypeName();
+            parameterTypes[i] = toBinaryName(parameter.type());
             parameterNames[i] = parameter.name();
         }
         enhancer.setConstructorParameterNames(parameterTypes, parameterNames);
@@ -87,12 +101,30 @@ public class ParameterNameDoclet extends Doclet {
         for (int i = 0; i < numParameters; ++i) {
             final Parameter parameter = parameters[i];
             final Type type = parameter.type();
-            parameterTypes[i] = type.qualifiedTypeName() + type.dimension();
+            parameterTypes[i] = toBinaryName(type);
             parameterNames[i] = parameter.name();
         }
         final String methodName = methodDoc.name();
         enhancer.setMethodParameterNames(methodName, parameterTypes,
                 parameterNames);
         return true;
+    }
+
+    protected static String toBinaryName(final Type type) {
+        final String dimension = type.dimension();
+        final String qualifiedTypeName = type.qualifiedTypeName();
+        if (PRIMITIVE_TYPES.contains(qualifiedTypeName)) {
+            return qualifiedTypeName + dimension;
+        }
+
+        final String typeName = type.typeName();
+        assert qualifiedTypeName.endsWith(typeName);
+        if (typeName.indexOf('.') == -1) {
+            return qualifiedTypeName + dimension;
+        }
+
+        final String packageName = qualifiedTypeName.substring(0,
+                qualifiedTypeName.length() - typeName.length());
+        return packageName + typeName.replace('.', '$');
     }
 }

@@ -1,4 +1,4 @@
-<project name="paramnames-test" default="build" basedir=".">
+<project name="paramnames-test" default="build" basedir="..">
 	<property name="src.test"		value="src/test/java" />
 	<property name="classes.test"	value="build/classes" />
 	<property name="libdir"			value="lib" />
@@ -9,8 +9,7 @@
 	<path id="project.classpath">
 		<pathelement path="${java.class.path}"/>
 		<fileset dir="${libdir}">
-			<include name="**/*.jar" />
-			<include name="**/*.zip" />
+			<include name="javassist-3.0.jar" />
 		</fileset>
 	</path>
 
@@ -21,7 +20,7 @@
 	<target name="enhance">
 		<javadoc
 			doclet="org.seasar.diigu.ParameterNameDoclet"
-			packagenames="org.seasar.diigu"
+			packagenames="org.seasar.diigu.test"
 			sourcepathref="source.path"
 			classpathref="project.classpath"
 			docletpathref="project.classpath"

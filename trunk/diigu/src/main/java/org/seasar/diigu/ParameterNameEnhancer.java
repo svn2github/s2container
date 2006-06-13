@@ -20,9 +20,6 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.Collections;
-import java.util.Map;
-import java.util.WeakHashMap;
 
 import javassist.CannotCompileException;
 import javassist.ClassPool;
@@ -44,8 +41,7 @@ public class ParameterNameEnhancer {
 
     protected static final String PARAMETER_NAME_ANNOTATION_FQCN = "org.seasar.framework.beans.annotation.ParameterName";
 
-    protected static final Map classPoolMap = Collections
-            .synchronizedMap(new WeakHashMap());
+    protected final ClassLoader loader;
 
     protected final ClassPool pool;
 
@@ -59,17 +55,11 @@ public class ParameterNameEnhancer {
 
     public ParameterNameEnhancer(final String className,
             final ClassLoader loader) {
-        this(className, getClassPool(loader));
-    }
-
-    public ParameterNameEnhancer(final String className, final ClassPool pool) {
         this.className = className;
-        this.pool = pool;
-        try {
-            clazz = pool.get(className);
-        } catch (final NotFoundException e) {
-            throw new RuntimeException(e);
-        }
+        this.loader = loader;
+        pool = new ClassPool();
+        pool.appendClassPath(new LoaderClassPath(loader));
+        clazz = toCtClass(className);
     }
 
     public void setConstructorParameterNames(final String[] parameterTypeNames,
@@ -79,8 +69,10 @@ public class ParameterNameEnhancer {
             return;
         }
         try {
-            setParameterNames(clazz.getDeclaredConstructor(toCtClassArray(pool,
-                    parameterTypeNames)), parameterNames);
+            setParameterNames(
+                    clazz
+                            .getDeclaredConstructor(toCtClassArray(parameterTypeNames)),
+                    parameterNames);
         } catch (final NotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -95,7 +87,7 @@ public class ParameterNameEnhancer {
 
         try {
             final CtMethod method = clazz.getDeclaredMethod(methodName,
-                    toCtClassArray(pool, parameterTypeNames));
+                    toCtClassArray(parameterTypeNames));
             setParameterNames(method, parameterNames);
         } catch (final NotFoundException e) {
             throw new RuntimeException(e);
@@ -198,76 +190,49 @@ public class ParameterNameEnhancer {
         return annotation;
     }
 
-    protected static String getSimpleClassName(final Class clazz) {
-        if (clazz.isArray()) {
-            return getSimpleClassName(clazz.getComponentType()) + "[]";
-        }
-        return clazz.getName();
+    protected CtClass toCtClass(final Class clazz) {
+        return toCtClass(clazz.getName());
     }
 
-    public static ClassPool getClassPool(final ClassLoader classLoader) {
-        ClassPool classPool = (ClassPool) classPoolMap.get(classLoader);
-        if (classPool == null) {
-            if (classLoader == null) {
-                return ClassPool.getDefault();
-            }
-            classPool = new ClassPool();
-            classPool.appendClassPath(new LoaderClassPath(classLoader));
-            classPoolMap.put(classLoader, classPool);
-        }
-        return classPool;
-    }
-
-    public static CtClass toCtClass(final ClassPool classPool, final Class clazz) {
-        return toCtClass(classPool, getSimpleClassName(clazz));
-    }
-
-    public static CtClass toCtClass(final ClassPool classPool,
-            final String className) {
+    protected CtClass toCtClass(final String className) {
         try {
-            return classPool.get(className);
+            return pool.get(className);
         } catch (final NotFoundException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static CtClass[] toCtClassArray(final ClassPool classPool,
-            final String[] classNames) {
+    protected CtClass[] toCtClassArray(final String[] classNames) {
         if (classNames == null) {
             return null;
         }
         final CtClass[] result = new CtClass[classNames.length];
         for (int i = 0; i < result.length; ++i) {
-            result[i] = toCtClass(classPool, classNames[i]);
+            result[i] = toCtClass(classNames[i]);
         }
         return result;
     }
 
-    public static CtClass[] toCtClassArray(final ClassPool classPool,
-            final Class[] classes) {
+    protected CtClass[] toCtClassArray(final Class[] classes) {
         if (classes == null) {
             return null;
         }
         final CtClass[] result = new CtClass[classes.length];
         for (int i = 0; i < result.length; ++i) {
-            result[i] = toCtClass(classPool, classes[i]);
+            result[i] = toCtClass(classes[i]);
         }
         return result;
     }
 
-    public static CtClass createCtClass(final ClassPool classPool,
-            final String name) {
-        return createCtClass(classPool, name, Object.class);
+    protected CtClass createCtClass(final String name) {
+        return createCtClass(name, Object.class);
     }
 
-    public static CtClass createCtClass(final ClassPool classPool,
-            final String name, final Class superClass) {
-        return createCtClass(classPool, name, toCtClass(classPool, superClass));
+    protected CtClass createCtClass(final String name, final Class superClass) {
+        return createCtClass(name, toCtClass(superClass));
     }
 
-    public static CtClass createCtClass(final ClassPool classPool,
-            final String name, final CtClass superClass) {
-        return classPool.makeClass(name, superClass);
+    protected CtClass createCtClass(final String name, final CtClass superClass) {
+        return pool.makeClass(name, superClass);
     }
-
 }

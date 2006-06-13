@@ -17,6 +17,11 @@ package org.seasar.diigu;
 
 import junit.framework.TestCase;
 
+import org.seasar.diigu.test.Bar;
+import org.seasar.diigu.test.Baz;
+import org.seasar.diigu.test.Foo;
+import org.seasar.diigu.test.Outer;
+import org.seasar.diigu.test.Outer.Inner;
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.factory.BeanDescFactory;
 
@@ -24,32 +29,38 @@ import org.seasar.framework.beans.factory.BeanDescFactory;
  * @author koichik
  */
 public class ParameterNamesEnhancerTest extends TestCase {
+    protected static final String PKG = "org.seasar.diigu.test.";
+
     protected void setUp() throws Exception {
         super.setUp();
-        String name = getClass().getName();
 
-        ParameterNameEnhancer enhancer = new ParameterNameEnhancer(name
-                + "$Foo");
+        ParameterNameEnhancer enhancer = new ParameterNameEnhancer(PKG + "Foo");
         enhancer.setMethodParameterNames("hoge", new String[] { "boolean",
                 "byte[]", "java.lang.String" }, new String[] { "flag", "bytes",
                 "str" });
         enhancer.save();
 
-        enhancer = new ParameterNameEnhancer(name + "$Bar");
-        enhancer.setConstructorParameterNames(new String[] { name + "$Foo",
-                name + "$Bar", name + "$Baz" }, new String[] { "foo", "bar",
-                "baz" });
+        enhancer = new ParameterNameEnhancer(PKG + "Bar");
+        enhancer.setConstructorParameterNames(new String[] { PKG + "Foo",
+                PKG + "Bar", PKG + "Baz" },
+                new String[] { "foo", "bar", "baz" });
         enhancer.setMethodParameterNames("array", new String[] { "int[]",
                 "int[][]", "int[][][]" }, new String[] { "a1", "a2", "a3" });
         enhancer.save();
 
-        enhancer = new ParameterNameEnhancer(name + "$Baz");
-        enhancer.setConstructorParameterNames(new String[] { name + "$Foo",
-                name + "$Bar", name + "$Baz" }, new String[] { "$foo", "$bar",
+        enhancer = new ParameterNameEnhancer("org.seasar.diigu.test.Baz");
+        enhancer.setConstructorParameterNames(new String[] { PKG + "Foo",
+                PKG + "Bar", PKG + "Baz" }, new String[] { "$foo", "$bar",
                 "$baz" });
         enhancer.setMethodParameterNames("array", new String[] { "int[]",
                 "int[][]", "int[][][]" }, new String[] { "array1", "array2",
                 "array3" });
+        enhancer.save();
+
+        enhancer = new ParameterNameEnhancer(
+                "org.seasar.diigu.test.Outer$Inner");
+        enhancer.setMethodParameterNames("hoge", new String[] { PKG + "Outer",
+                PKG + "Outer$Inner" }, new String[] { "outer", "inner" });
         enhancer.save();
     }
 
@@ -100,30 +111,14 @@ public class ParameterNamesEnhancerTest extends TestCase {
         assertEquals("array3", names[2]);
     }
 
-    public interface Foo {
-        void hoge(boolean flag, byte[] bytes, String str);
+    public void testInnerType() throws Exception {
+        BeanDesc beanDesc = BeanDescFactory.getBeanDesc(Inner.class);
+        String[] names = beanDesc.getMethodParameterNames("hoge", new Class[] {
+                Outer.class, Inner.class });
+        assertNotNull(names);
+        assertEquals(2, names.length);
+        assertEquals("outer", names[0]);
+        assertEquals("inner", names[1]);
     }
 
-    public static abstract class Bar {
-        public Bar() {
-        }
-
-        public Bar(Foo foo, Bar bar, Baz baz) {
-        }
-
-        public abstract void array(int[] a1, int[][] a2, int[][][] a3);
-    }
-
-    public static class Baz extends Bar {
-
-        public Baz() {
-        }
-
-        public Baz(Foo $foo, Bar $bar, Baz $baz) {
-            super($foo, $bar, $baz);
-        }
-
-        public void array(int[] array1, int[][] array2, int[][][] array3) {
-        }
-    }
 }
