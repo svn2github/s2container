@@ -20,7 +20,7 @@
 
 	<target name="enhance">
 		<javadoc
-			doclet="org.seasar.framework.tool.ParameterNameDoclet"
+			doclet="org.seasar.diigu.ParameterNameDoclet"
 			packagenames="*"
 			sourcepathref="source.path"
 			classpathref="project.classpath"
