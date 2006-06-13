@@ -20,6 +20,11 @@
 		</initMethod>
 		<initMethod name="addFactory">
 			<arg>
+				<component class="org.seasar.teeda.extension.html.factory.OutputTextFactory"/>
+			</arg>
+		</initMethod>
+		<initMethod name="addFactory">
+			<arg>
 				<component class="org.seasar.teeda.extension.html.factory.FormFactory"/>
 			</arg>
 		</initMethod>

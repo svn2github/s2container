@@ -1,11 +1,11 @@
 package examples.hotdeploy.web.add;
 
-public class AddPage {
+public class AddPage2 {
 
     private int arg1;
-
+    
     private int arg2;
-
+    
     private int result;
 
     public int getArg1() {
@@ -30,5 +30,10 @@ public class AddPage {
 
     public void setResult(int result) {
         this.result = result;
+    }
+    
+    public String doCalculate() {
+        result = arg1 - arg2;
+        return null;
     }
 }

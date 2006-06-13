@@ -6,11 +6,6 @@
 		<property name="rootPackageName">"examples.hotdeploy"</property>
 		<initMethod name="addCreator">
 			<arg>
-				<component class="org.seasar.framework.container.hotdeploy.creator.ActionCreator"/>
-			</arg>
-		</initMethod>
-		<initMethod name="addCreator">
-			<arg>
 				<component class="org.seasar.framework.container.hotdeploy.creator.PageCreator"/>
 			</arg>
 		</initMethod>
