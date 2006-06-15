@@ -79,8 +79,30 @@ Furthermore, it is possible to use <A
                 <TD>Maximum number of concurrent connections. When number of connections exceeds this number, a new request are blocked until a connection is returned to the pool. Default value is 10 connections.</TD>
                 <TD>10</TD></TR></TBODY></TABLE>
             <P>Connections are set as follows. Please modify it as needed to make it specific for your application.</P>
-            <H3>j2ee.dicon</H3><PRE>&lt;components namespace="j2ee"&gt;<BR>    &lt;component name="transactionManager"<BR>        class="org.seasar.extension.jta.TransactionManagerImpl"/&gt;<BR>    &lt;component name="requiredTx"<BR>        class="org.seasar.extension.tx.RequiredAdvice"/&gt;<BR>    &lt;component name="requiresNewTx"<BR>        class="org.seasar.extension.tx.RequiresNewAdvice"/&gt;<BR>    &lt;component name="mandatoryTx"<BR>        class="org.seasar.extension.tx.MandatoryAdvice"/&gt;
-<BR>    &lt;component name="xaDataSource"<BR>        class="org.seasar.extension.dbcp.impl.XADataSourceImpl"&gt;<BR>        &lt;property name="driverClassName"&gt;<BR>            "oracle.jdbc.driver.OracleDriver"<BR>        &lt;/property&gt;<BR>        &lt;property name="URL"&gt;<BR>            "jdbc:oracle:thin:@xxx:1521:yyy"<BR>        &lt;/property&gt;<BR>        &lt;property name="user"&gt;"aaa"&lt;/property&gt;<BR>        &lt;property name="password"&gt;"bbb"&lt;/property&gt;<BR>    &lt;/component&gt;<BR>    &lt;component name="connectionPool"<BR>        class="org.seasar.extension.dbcp.impl.ConnectionPoolImpl"&gt;<BR>        &lt;property name="timeout"&gt;600&lt;/property&gt;<BR>        &lt;property name="maxPoolSize"&gt;10&lt;/property&gt;<BR>        &lt;destroyMethod name="close"/&gt;<BR>    &lt;/component&gt;<BR>    &lt;component name="dataSource"<BR>        class="org.seasar.extension.dbcp.impl.DataSourceImpl"/&gt;<BR>    <BR>&lt;/components&gt;</PRE>
+            <H3>jdbc.dicon</H3>
+<pre>&lt;components namespace=&quot;jdbc&quot;&gt;
+    &lt;include path=&quot;jta.dicon&quot;/&gt;
+    &lt;component name=&quot;xaDataSource&quot;
+            class=&quot;org.seasar.extension.dbcp.impl.XADataSourceImpl&quot;&gt;
+        &lt;property name=&quot;driverClassName&quot;&gt;
+            &quot;oracle.jdbc.driver.OracleDriver&quot;
+        &lt;/property&gt;
+        &lt;property name=&quot;URL&quot;&gt;
+            &quot;jdbc:oracle:thin:@xxx:1521:yyy&quot;
+        &lt;/property&gt;
+        &lt;property name=&quot;user&quot;&gt;&quot;aaa&quot;&lt;/property&gt;
+        &lt;property name=&quot;password&quot;&gt;&quot;bbb&quot;&lt;/property&gt;
+    &lt;/component&gt;
+    &lt;component name=&quot;connectionPool&quot;
+            class=&quot;org.seasar.extension.dbcp.impl.ConnectionPoolImpl&quot;&gt;
+        &lt;property name=&quot;timeout&quot;&gt;600&lt;/property&gt;
+        &lt;property name=&quot;maxPoolSize&quot;&gt;10&lt;/property&gt;
+        &lt;property name=&quot;allowLocalTx&quot;&gt;true&lt;/property&gt;
+        &lt;destroyMethod name=&quot;close&quot;/&gt;>
+    &lt;/component&gt;
+    &lt;component name=&quot;dataSource&quot;
+       class=&quot;org.seasar.extension.dbcp.impl.DataSourceImpl&quot;/&gt;
+&lt;/components&gt;</pre>
             <H2><A name=Example>Example</A></H2>
             <H3>EmployeeDao.java</H3><PRE>package examples.dbcp;
 

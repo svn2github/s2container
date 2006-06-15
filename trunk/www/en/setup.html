@@ -58,7 +58,7 @@
 <li>lib/s2-extension-2.x.x.jar</li>
 <li>lib/geronimo-jta_1.0.1B_spec-1.0.jar (refer to below)</li>
 <li>lib/geronimo-ejb_2.1_spec-1.0.jar (refer to below)</li>
-<li>resources/j2ee.dicon</li>
+<li>resources/jdbc.dicon</li>
 </ul>
 
 <p>Selects geronimo-j2ee_1.4_spec-1.0.jar, geronimo-jta_1.0.1B_spec-1.0.jar or geronimo-ejb_2.1_spec-1.0.jar responding to the application evnironment.
@@ -72,7 +72,7 @@
 </p>
 
 <p>HSQLDB is included so that you can try the function of a database easily.
-When you try, run HSQLDB first(double-click hsql/bin/runHsqldb.bat (for Windows)).You need to <a href="dbcp.html#Setup">configurate XADataSourceImpl</a> in j2ee.dicon in accordance with your environment.</p>
+You need to <a href="dbcp.html#Setup">configurate XADataSourceImpl</a> in jdbc.dicon in accordance with your environment.</p>
 
 <p>Let's try <a href="http://www.seasar.org/updates.html">Kijimuna Eclipse Plugin for S2Container</a>.</p>
 
@@ -87,10 +87,6 @@ When you try, run HSQLDB first(double-click hsql/bin/runHsqldb.bat (for Windows)
 <ul>
 <li>lib/s2-tiger-x.x.x.jar</li>
 <li>src/examples/resources/jndi.properties</li>
-<li>resources/ejb3tx.dicon</li>
-<li>src/test/resources/j2ee.dicon</li>
-<li>src/test/resources/jdbc.dicon</li>
-<li>src/test/resources/jta.dicon</li>
 </ul>
 </li>
 </ul>

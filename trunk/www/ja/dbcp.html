@@ -24,7 +24,7 @@
 <tr align="left" valign="top"><td width="14"><img height="14" width="14" src="images/spacer.gif" alt=""></td><td width="740" class="main">
 <!-- don't edit end -->
 <!-- document start -->
-<p>本ドキュメントは<code>S2.2.10</code>について記述しています．旧バージョンについては該当バージョンの配布ファイルに含まれているドキュメントを参照してください．</p>
+<p>本ドキュメントは<code>S2.4.0</code>について記述しています．旧バージョンについては該当バージョンの配布ファイルに含まれているドキュメントを参照してください．</p>
 <p>S2DBCPの機能を使って、コネクションプーリングを実現できます。<a href="tx.html">JTA</a>と連動するので、トランザクション中にコネクションを取得し閉じるということを何度か行っても、トランザクションは維持されます。JDBCで行っていたようなトランザクションを維持したいがために複数のクラスでコネクションを持ちまわるようなことはもう必要なくなります。<a href="tx.html">S2Tx</a>を使えば、トランザクションも<a href="aop.html#Aspect">Aspect</a>で自動的に処理することができます。</p>
 <h2><a name="Setup">セットアップ</a></h2>
 <p>XADataSource、ConnectionPoolの設定をおこないます。JDBC DriverがXADataSourceの機能を提供している場合は、 それをそのまま使えますが、提供されていない場合、S2で用意しているXADataSourceImplを使って、XAの機能をエミュレートします。</p>
@@ -99,10 +99,30 @@
 </tr>
 </table>
 <p>コンポーネントの設定は以下のようになります。環境に合わせて書き換えてください。</p>
-<h3>j2ee.dicon</h3>
-<pre>&lt;components namespace=&quot;j2ee&quot;&gt;<br />    &lt;component name=&quot;transactionManager&quot;<br />        class=&quot;org.seasar.extension.jta.TransactionManagerImpl&quot;/&gt;<br />    &lt;component name=&quot;requiredTx&quot;<br />        class=&quot;org.seasar.extension.tx.RequiredAdvice&quot;/&gt;<br />    &lt;component name=&quot;requiresNewTx&quot;<br />        class=&quot;org.seasar.extension.tx.RequiresNewAdvice&quot;/&gt;<br />    &lt;component name=&quot;mandatoryTx&quot;<br />        class=&quot;org.seasar.extension.tx.MandatoryAdvice&quot;/&gt;
-<br />    &lt;component name=&quot;xaDataSource&quot;<br />        class=&quot;org.seasar.extension.dbcp.impl.XADataSourceImpl&quot;&gt;<br />        &lt;property name=&quot;driverClassName&quot;&gt;<br />            &quot;oracle.jdbc.driver.OracleDriver&quot;<br />        &lt;/property&gt;<br />        &lt;property name=&quot;URL&quot;&gt;<br />            &quot;jdbc:oracle:thin:@xxx:1521:yyy&quot;<br />        &lt;/property&gt;<br />        &lt;property name=&quot;user&quot;&gt;&quot;aaa&quot;&lt;/property&gt;<br />        &lt;property name=&quot;password&quot;&gt;&quot;bbb&quot;&lt;/property&gt;<br />    &lt;/component&gt;<br />    &lt;component name=&quot;connectionPool&quot;<br />        class=&quot;org.seasar.extension.dbcp.impl.ConnectionPoolImpl&quot;&gt;<br />        &lt;property name=&quot;timeout&quot;&gt;600&lt;/property&gt;<br />        &lt;property name=&quot;maxPoolSize&quot;&gt;10&lt;/property&gt;
-        &lt;property name=&quot;allowLocalTx&quot;&gt;true&lt;/property&gt;<br />        &lt;destroyMethod name=&quot;close&quot;/&gt;<br />    &lt;/component&gt;<br />    &lt;component name=&quot;dataSource&quot;<br />        class=&quot;org.seasar.extension.dbcp.impl.DataSourceImpl&quot;/&gt;<br />    <br />&lt;/components&gt;</pre>
+<h3>jdbc.dicon</h3>
+<pre>&lt;components namespace=&quot;jdbc&quot;&gt;
+    &lt;include path=&quot;jta.dicon&quot;/&gt;
+    &lt;component name=&quot;xaDataSource&quot;
+            class=&quot;org.seasar.extension.dbcp.impl.XADataSourceImpl&quot;&gt;
+        &lt;property name=&quot;driverClassName&quot;&gt;
+            &quot;oracle.jdbc.driver.OracleDriver&quot;
+        &lt;/property&gt;
+        &lt;property name=&quot;URL&quot;&gt;
+            &quot;jdbc:oracle:thin:@xxx:1521:yyy&quot;
+        &lt;/property&gt;
+        &lt;property name=&quot;user&quot;&gt;&quot;aaa&quot;&lt;/property&gt;
+        &lt;property name=&quot;password&quot;&gt;&quot;bbb&quot;&lt;/property&gt;
+    &lt;/component&gt;
+    &lt;component name=&quot;connectionPool&quot;
+            class=&quot;org.seasar.extension.dbcp.impl.ConnectionPoolImpl&quot;&gt;
+        &lt;property name=&quot;timeout&quot;&gt;600&lt;/property&gt;
+        &lt;property name=&quot;maxPoolSize&quot;&gt;10&lt;/property&gt;
+        &lt;property name=&quot;allowLocalTx&quot;&gt;true&lt;/property&gt;
+        &lt;destroyMethod name=&quot;close&quot;/&gt;>
+    &lt;/component&gt;
+    &lt;component name=&quot;dataSource&quot;
+       class=&quot;org.seasar.extension.dbcp.impl.DataSourceImpl&quot;/&gt;
+&lt;/components&gt;</pre>
 
 <h2><a name="Example">Example</a></h2>
 <h3>EmployeeDao.java</h3>
