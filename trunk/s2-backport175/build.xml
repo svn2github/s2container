@@ -1,13 +1,16 @@
 <project name="s2-backport175" default="dist" basedir=".">
-	<property name="ver" value="2.4.0-beta-2"/>
+	<property name="ver" value="2.4.0-beta-3"/>
 
 	<target name="dist">
 		<zip zipfile="target/S2Backport175-${ver}.zip">
 			<zipfileset prefix="s2-backport175" dir=".">
+				<exclude name="**/build**"/>
 				<exclude name="**/target/**"/>
 			</zipfileset>
 			<zipfileset prefix="s2-backport175/lib" dir="target">
 				<include name="s2-backport175-${ver}.jar"/>
+				<include name="s2-backport175-${ver}-sources.jar"/>
+				<include name="s2-backport175-${ver}-javadoc.jar"/>
 			</zipfileset>
 		</zip>
 	</target>
