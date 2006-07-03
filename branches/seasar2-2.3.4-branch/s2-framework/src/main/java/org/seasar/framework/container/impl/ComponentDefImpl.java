@@ -289,6 +289,20 @@ public class ComponentDefImpl implements ComponentDef, ContainerConstants {
      */
     public void destroy() {
         getComponentDeployer().destroy();
+        componentClass = null;
+        componentName = null;
+        concreteClass = null;
+        container = null;
+        expression = null;
+        argDefSupport = null;
+        propertyDefSupport = null;
+        initMethodDefSupport = null;
+        destroyMethodDefSupport = null;
+        aspectDefSupport = null;
+        metaDefSupport = null;
+        instanceDef = null;
+        autoBindingDef = null;
+        componentDeployer = null;
     }
 
     /**
@@ -402,4 +416,5 @@ public class ComponentDefImpl implements ComponentDef, ContainerConstants {
         }
         return componentDeployer;
     }
+
 }

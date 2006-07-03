@@ -38,6 +38,7 @@ import org.seasar.framework.mock.servlet.MockServletConfigImpl;
 import org.seasar.framework.mock.servlet.MockServletContext;
 import org.seasar.framework.mock.servlet.MockServletContextImpl;
 import org.seasar.framework.util.ClassUtil;
+import org.seasar.framework.util.DisposableUtil;
 import org.seasar.framework.util.FieldUtil;
 import org.seasar.framework.util.MethodUtil;
 import org.seasar.framework.util.ResourceUtil;
@@ -59,6 +60,10 @@ public abstract class S2FrameworkTestCase extends TestCase {
     private MockHttpServletRequest request;
 
     private MockHttpServletResponse response;
+
+    private ClassLoader originalClassLoader;
+
+    private UnitClassLoader unitClassLoader;
 
     public S2FrameworkTestCase() {
     }
@@ -158,6 +163,9 @@ public abstract class S2FrameworkTestCase extends TestCase {
     }
 
     protected void setUpContainer() throws Throwable {
+        originalClassLoader = Thread.currentThread().getContextClassLoader();
+        unitClassLoader = new UnitClassLoader(originalClassLoader);
+        Thread.currentThread().setContextClassLoader(unitClassLoader);
         container = new S2ContainerImpl();
         servletContext = new MockServletContextImpl("s2jsf-example");
         request = servletContext.createRequest("/hello.html");
@@ -174,6 +182,10 @@ public abstract class S2FrameworkTestCase extends TestCase {
 
     protected void tearDownContainer() throws Throwable {
         SingletonS2ContainerFactory.setContainer(null);
+        DisposableUtil.dispose();
+        Thread.currentThread().setContextClassLoader(originalClassLoader);
+        unitClassLoader = null;
+        originalClassLoader = null;
         container = null;
         servletContext = null;
         request = null;

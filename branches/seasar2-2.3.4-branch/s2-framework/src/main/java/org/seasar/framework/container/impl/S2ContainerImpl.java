@@ -38,6 +38,7 @@ import org.seasar.framework.container.S2Container;
 import org.seasar.framework.container.TooManyRegistrationComponentDef;
 import org.seasar.framework.container.ognl.S2ContainerPropertyAccessor;
 import org.seasar.framework.container.util.MetaDefSupport;
+import org.seasar.framework.log.Logger;
 import org.seasar.framework.util.CaseInsensitiveMap;
 import org.seasar.framework.util.StringUtil;
 
@@ -46,6 +47,9 @@ import org.seasar.framework.util.StringUtil;
  * 
  */
 public class S2ContainerImpl implements S2Container, ContainerConstants {
+
+    private static final Logger logger = Logger
+            .getLogger(S2ContainerImpl.class);
 
     private static ThreadLocal searched = new ThreadLocal();
 
@@ -57,13 +61,13 @@ public class S2ContainerImpl implements S2Container, ContainerConstants {
 
     private String path;
 
-    private List children_ = new ArrayList();
+    private List children = new ArrayList();
 
     private CaseInsensitiveMap descendants = new CaseInsensitiveMap();
 
     private S2Container root;
 
-    private ThreadLocal requests_ = new ThreadLocal();
+    private ThreadLocal requests = new ThreadLocal();
 
     private ThreadLocal responses = new ThreadLocal();
 
@@ -361,7 +365,7 @@ public class S2ContainerImpl implements S2Container, ContainerConstants {
     public synchronized void include(S2Container child) {
         assertParameterIsNotNull(child, "child");
         child.setRoot(getRoot());
-        children_.add(child);
+        children.add(child);
         String ns = child.getNamespace();
         if (ns != null) {
             registerMap(ns, new S2ContainerComponentDef(child, ns));
@@ -372,14 +376,14 @@ public class S2ContainerImpl implements S2Container, ContainerConstants {
      * @see org.seasar.framework.container.S2Container#getChildSize()
      */
     public synchronized int getChildSize() {
-        return children_.size();
+        return children.size();
     }
 
     /**
      * @see org.seasar.framework.container.S2Container#getChild(int)
      */
     public synchronized S2Container getChild(int index) {
-        return (S2Container) children_.get(index);
+        return (S2Container) children.get(index);
     }
 
     /**
@@ -389,11 +393,19 @@ public class S2ContainerImpl implements S2Container, ContainerConstants {
         if (inited) {
             return;
         }
-        for (int i = 0; i < getChildSize(); ++i) {
-            getChild(i).init();
-        }
-        for (int i = 0; i < getComponentDefSize(); ++i) {
-            getComponentDef(i).init();
+        final ClassLoader currentLoader = Thread.currentThread()
+                .getContextClassLoader();
+        Thread.currentThread().setContextClassLoader(classLoader);
+        try {
+            for (int i = 0; i < getChildSize(); ++i) {
+                getChild(i).init();
+            }
+            for (int i = 0; i < getComponentDefSize(); ++i) {
+                getComponentDef(i).init();
+            }
+            inited = true;
+        } finally {
+            Thread.currentThread().setContextClassLoader(currentLoader);
         }
         inited = true;
     }
@@ -405,18 +417,36 @@ public class S2ContainerImpl implements S2Container, ContainerConstants {
         if (!inited) {
             return;
         }
-        for (int i = getComponentDefSize() - 1; 0 <= i; --i) {
-            try {
-                getComponentDef(i).destroy();
-            } catch (Throwable t) {
-                t.printStackTrace();
+
+        final ClassLoader currentLoader = Thread.currentThread()
+                .getContextClassLoader();
+        Thread.currentThread().setContextClassLoader(classLoader);
+        try {
+            for (int i = getComponentDefSize() - 1; 0 <= i; --i) {
+                try {
+                    getComponentDef(i).destroy();
+                } catch (Throwable t) {
+                    logger.error("ESSR0017", t);
+                }
+            }
+            for (int i = getChildSize() - 1; 0 <= i; --i) {
+                getChild(i).destroy();
             }
 
+            searched.set(null);
+            componentDefMap = null;
+            componentDefList = null;
+            namespace = null;
+            path = null;
+            children = null;
+            descendants = null;
+            root = null;
+            metaDefSupport = null;
+            classLoader = null;
+            inited = false;
+        } finally {
+            Thread.currentThread().setContextClassLoader(currentLoader);
         }
-        for (int i = getChildSize() - 1; 0 <= i; --i) {
-            getChild(i).destroy();
-        }
-        inited = false;
     }
 
     /**
@@ -453,14 +483,14 @@ public class S2ContainerImpl implements S2Container, ContainerConstants {
      * @see org.seasar.framework.container.S2Container#getRequest()
      */
     public HttpServletRequest getRequest() {
-        return (HttpServletRequest) requests_.get();
+        return (HttpServletRequest) requests.get();
     }
 
     /**
      * @see org.seasar.framework.container.S2Container#setRequest(javax.servlet.http.HttpServletRequest)
      */
     public void setRequest(HttpServletRequest request) {
-        requests_.set(request);
+        requests.set(request);
     }
 
     /**
@@ -595,4 +625,5 @@ public class S2ContainerImpl implements S2Container, ContainerConstants {
             throw new IllegalArgumentException(name);
         }
     }
+
 }

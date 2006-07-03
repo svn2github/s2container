@@ -19,6 +19,7 @@ import javax.servlet.ServletContext;
 
 import org.seasar.framework.container.S2Container;
 import org.seasar.framework.exception.EmptyRuntimeException;
+import org.seasar.framework.util.DisposableUtil;
 
 public final class SingletonS2ContainerFactory {
 
@@ -54,8 +55,12 @@ public final class SingletonS2ContainerFactory {
     }
 
     public static void destroy() {
+        if (container == null) {
+            return;
+        }
         container.destroy();
         container = null;
+        DisposableUtil.dispose();
     }
 
     public static S2Container getContainer() {
