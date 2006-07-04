@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.seasar.diigu.eclipse_0.0.1.jar" id="org.seasar.diigu.eclipse" version="0.0.1">
+      <category name="Diigu"/>
+   </feature>
+   <category-def name="Diigu" label="Diigu"/>
+</site>
