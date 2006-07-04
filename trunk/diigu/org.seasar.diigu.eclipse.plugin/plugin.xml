@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         id="diiguNature"
+         name="Diigu Nature"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="org.seasar.diigu.eclipse.builder.DiiguNature">
+         </run>
+      </runtime>
+      <builder
+            id="org.seasar.diigu.eclipse.diiguBuilder">
+      </builder>
+   </extension>
+   <extension
+         id="diiguBuilder"
+         name="Diigu Builder"
+         point="org.eclipse.core.resources.builders">
+      <builder
+            hasNature="true"
+            isConfigurable="true">
+         <run
+               class="org.seasar.diigu.eclipse.builder.DiiguBuilder">
+         </run>
+      </builder>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="true"
+            objectClass="org.eclipse.core.resources.IProject"
+            nameFilter="*"
+            id="contribution1">
+         <action
+               label="Add/Remove Diigu Nature"
+               class="org.seasar.diigu.eclipse.builder.ToggleNatureAction"
+               menubarPath="additions"
+               enablesFor="+"
+               id="addRemoveDiiguNatureAction">
+         </action>
+      </objectContribution>
+   </extension>
+</plugin>
