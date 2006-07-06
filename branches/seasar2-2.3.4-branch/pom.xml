@@ -112,8 +112,8 @@
     </license>
   </licenses>
   <scm>
-    <connection>scm:svn:https://www.seasar.org/svn/s2container/trunk/seasar2/</connection>
-    <developerConnection>scm:svn:https://www.seasar.org/svn/s2container/trunk/seasar2/</developerConnection>
+    <connection>scm:svn:https://www.seasar.org/svn/s2container/branches/seasar2-2.3.4-branch/</connection>
+    <developerConnection>scm:svn:https://www.seasar.org/svn/s2container/branches/seasar2-2.3.4-branch/</developerConnection>
     <url>http://www.seasar.org/websvn/listing.php?repname=s2container</url>
   </scm>
   <organization>
