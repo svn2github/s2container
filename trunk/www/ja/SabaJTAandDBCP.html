@@ -22,24 +22,53 @@
 <tr align="left" valign="top"><td width="14"><img height="14" width="14" src="images/spacer.gif" alt=""></td><td width="752" class="main">
 <!-- don't edit end -->
 <!-- document start -->
-<p>S2のJTAとコネクションプールではなく、WebLogic、WebSphere、JBossのJTAとコネクションプールを使い<a href="tx.html">S2Tx</a>と連動させることもできます。コンポーネントの定義(j2ee.dicon)はは次のとおりです。</p>
+<p>S2のJTAとコネクションプールではなく、WebLogic、WebSphere、OracleAS、JBossのJTAとコネクションプールを使い<a href="tx.html">S2Tx</a>と連動させることもできます。コンポーネントの定義(jta.dicon)はは次のとおりです。</p>
 <h2><a name="WebLogic">WebLogic</a></h2>
-<pre>&lt;component name=&quot;initialContext&quot; class=&quot;javax.naming.InitialContext&quot;/&gt;<br />&lt;component name=&quot;transactionManager&quot;<br />    class=&quot;org.seasar.extension.j2ee.JndiTransactionManager&quot;&gt;<br />    &lt;arg&gt;initialContext&lt;/arg&gt;<br />    &lt;arg&gt;&quot;javax.transaction.TransactionManager&quot;&lt;/arg&gt;<br />&lt;/component&gt;<br />&lt;component<br />    class=&quot;org.seasar.extension.j2ee.JndiDataSource&quot;&gt;<br />    &lt;arg&gt;initialContext&lt;/arg&gt;<br />    &lt;arg&gt;&quot;jndiName&quot;&lt;/arg&gt;<br />&lt;/component&gt;</pre>
-
-<h2><a name="WebSphere4">WebSphere4</a></h2>
 <pre>
-&lt;component name=&quot;initialContext&quot; class=&quot;javax.naming.InitialContext&quot;/&gt;<br />&lt;component name=&quot;transactionManager&quot;<br />    class=&quot;org.seasar.extension.j2ee.SingletonTransactionManager&quot;&gt;<br />    &lt;arg&gt;&quot;com.ibm.ejs.jts.jta.JTSXA&quot;&lt;/arg&gt;<br />    &lt;arg&gt;&quot;getTransactionManager&quot;&lt;/arg&gt;<br />&lt;/component&gt;<br />&lt;component<br />    class=&quot;org.seasar.extension.j2ee.JndiDataSource&quot;&gt;<br />    &lt;arg&gt;initialContext&lt;/arg&gt;<br />    &lt;arg&gt;&quot;jndiName&quot;&lt;/arg&gt;<br />&lt;/component&gt;
+&lt;component name=&quot;TransactionManager&quot;
+    class=&quot;javax.transaction.TransactionManager&quot;&gt;
+  @org.seasar.extension.j2ee.JndiResourceLocator@lookup(&quot;javax.transaction.TransactionManager&quot;)
+&lt;/component&gt;
 </pre>
 
-<h2><a name="WebSphere5">WebSphere5</a></h2>
-<pre>&lt;component name=&quot;initialContext&quot; class=&quot;javax.naming.InitialContext&quot;/&gt;<br />&lt;component name=&quot;transactionManager&quot;<br />    class=&quot;org.seasar.extension.j2ee.SingletonTransactionManager&quot;&gt;<br />    &lt;arg&gt;&quot;com.ibm.ejs.jts.jta.TransactionManagerFactory&quot;&lt;/arg&gt;<br />    &lt;arg&gt;&quot;getTransactionManager&quot;&lt;/arg&gt;<br />&lt;/component&gt;<br />&lt;component<br />    class=&quot;org.seasar.extension.j2ee.JndiDataSource&quot;&gt;<br />    &lt;arg&gt;initialContext&lt;/arg&gt;<br />    &lt;arg&gt;&quot;jndiName&quot;&lt;/arg&gt;<br />&lt;/component&gt;
+<h2><a name="WebSphere4">WebSphere 4</a></h2>
+<pre>
+&lt;component name=&quot;TransactionManager&quot;
+    class=&quot;javax.transaction.TransactionManager&quot;&gt;
+  @com.ibm.ejs.jts.jta.JTSXA@getTransactionManager()
+&lt;/component&gt;
 </pre>
 
-<h2><a name="Oracle10gAS">Oracle10gAS</a></h2>
-<pre>&lt;component name=&quot;initialContext&quot; class=&quot;javax.naming.InitialContext&quot;/&gt;<br />&lt;component name=&quot;transactionManager&quot;<br />    class=&quot;org.seasar.extension.j2ee.JndiTransactionManager&quot;&gt;<br />    &lt;arg&gt;initialContext&lt;/arg&gt;<br />    &lt;arg&gt;&quot;java:comp/UserTransaction&quot;&lt;/arg&gt;<br />&lt;/component&gt;<br />&lt;component<br />    class=&quot;org.seasar.extension.j2ee.JndiDataSource&quot;&gt;<br />    &lt;arg&gt;initialContext&lt;/arg&gt;<br />    &lt;arg&gt;&quot;jndiName&quot;&lt;/arg&gt;<br />&lt;/component&gt;</pre>
+<h2><a name="WebSphere5">WebSphere 5</a></h2>
+<pre>
+&lt;component name=&quot;TransactionManager&quot;
+    class=&quot;javax.transaction.TransactionManager&quot;&gt;
+  @com.ibm.ejs.jts.jta.TransactionManagerFactory@getTransactionManager()
+&lt;/component&gt;
+</pre>
+
+<h2><a name="WebSphere51">WebSphere 5.1</a></h2>
+<pre>
+&lt;component name=&quot;TransactionManager&quot;
+    class=&quot;javax.transaction.TransactionManager&quot;&gt;
+  @com.ibm.ws.Transction.TransactionManagerFactory@getTransactionManager()
+&lt;/component&gt;
+</pre>
+
+<h2><a name="Oracle10gAS">Oracle 10g AS</a></h2>
+<pre>
+&lt;component name=&quot;TransactionManager&quot;
+    class=&quot;javax.transaction.TransactionManager&quot;&gt;
+  @org.seasar.extension.j2ee.JndiResourceLocator@lookup(&quot;java:comp/UserTransaction&quot;)
+&lt;/component&gt;
+</pre>
 
 <h2><a name="JBoss">JBoss</a></h2>
-<pre>&lt;component name=&quot;initialContext&quot; class=&quot;javax.naming.InitialContext&quot;/&gt;<br />&lt;component name=&quot;transactionManager&quot;<br />    class=&quot;org.seasar.extension.j2ee.JndiTransactionManager&quot;&gt;<br />    &lt;arg&gt;initialContext&lt;/arg&gt;<br />    &lt;arg&gt;&quot;java:/TransactionManager&quot;&lt;/arg&gt;<br />&lt;/component&gt;<br />&lt;component<br />    class=&quot;org.seasar.extension.j2ee.JndiDataSource&quot;&gt;<br />    &lt;arg&gt;initialContext&lt;/arg&gt;<br />    &lt;arg&gt;&quot;jndiName&quot;&lt;/arg&gt;<br />&lt;/component&gt;
+<pre>
+&lt;component name=&quot;TransactionManager&quot;
+    class=&quot;javax.transaction.TransactionManager&quot;&gt;
+  @org.seasar.extension.j2ee.JndiResourceLocator@lookup(&quot;java:/TransactionManager&quot;)
+&lt;/component&gt;
 </pre>
 <!-- document end -->
 <!-- don't edit start -->
