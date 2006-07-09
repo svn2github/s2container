@@ -228,7 +228,7 @@ public class DiiguBuilder extends IncrementalProjectBuilder {
     }
 
     protected URL toURL(IPath path) throws Exception {
-        return path.toFile().toURL();
+        return path.toFile().toURI().toURL();
     }
 
     protected IJavaProject getJavaProject(IPath path) throws CoreException {
