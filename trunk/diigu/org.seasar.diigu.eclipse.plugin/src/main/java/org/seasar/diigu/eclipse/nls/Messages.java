@@ -36,6 +36,8 @@ public class Messages extends NLS {
     public static String TEST_EXPRESSION;
     
     public static String ENHANCE_FULLBUILD;
+    
+    public static String SELECT_EXPRESSION_CHANGED;
 
     static {
         Class clazz = Messages.class;

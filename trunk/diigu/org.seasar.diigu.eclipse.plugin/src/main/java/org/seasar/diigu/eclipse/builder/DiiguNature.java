@@ -19,14 +19,21 @@ import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectNature;
+import org.eclipse.core.resources.IncrementalProjectBuilder;
 import org.eclipse.core.resources.ProjectScope;
+import org.eclipse.core.resources.WorkspaceJob;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.ui.preferences.ScopedPreferenceStore;
 import org.seasar.diigu.eclipse.Constants;
 import org.seasar.diigu.eclipse.DiiguPlugin;
+import org.seasar.diigu.eclipse.nls.Messages;
 import org.seasar.diigu.eclipse.util.ProjectUtils;
 
 public class DiiguNature implements IProjectNature {
@@ -95,6 +102,18 @@ public class DiiguNature implements IProjectNature {
                         .getProperty())) {
                     DiiguNature.this.selectExpression = Pattern
                             .compile((String) event.getNewValue());
+
+                    Job job = new WorkspaceJob(
+                            Messages.SELECT_EXPRESSION_CHANGED) {
+                        public IStatus runInWorkspace(IProgressMonitor monitor)
+                                throws CoreException {
+                            getProject().build(
+                                    IncrementalProjectBuilder.CLEAN_BUILD,
+                                    monitor);
+                            return Status.OK_STATUS;
+                        }
+                    };
+                    job.schedule();
                 }
             }
         });
