@@ -93,11 +93,13 @@ public class DiiguProjectPreferencePage extends PropertyPage {
 
     protected void setUpPreferenceStore() {
         IProject project = getSelectedProject();
-        DiiguNature nature = DiiguNature.getInstance(project);
-        if (nature != null) {
-            setPreferenceStore(nature.getPreferenceStore());
-        } else {
-            setPreferenceStore(DiiguNature.createPreferenceStore(project));
+        if (project != null) {
+            DiiguNature nature = DiiguNature.getInstance(project);
+            if (nature != null) {
+                setPreferenceStore(nature.getPreferenceStore());
+            } else {
+                setPreferenceStore(DiiguNature.createPreferenceStore(project));
+            }
         }
     }
 
