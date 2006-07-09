@@ -15,11 +15,19 @@
  */
 package org.seasar.diigu.eclipse.builder;
 
-import org.eclipse.core.resources.ICommand;
+import java.util.regex.Pattern;
+
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IProjectDescription;
 import org.eclipse.core.resources.IProjectNature;
+import org.eclipse.core.resources.ProjectScope;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.util.IPropertyChangeListener;
+import org.eclipse.jface.util.PropertyChangeEvent;
+import org.eclipse.ui.preferences.ScopedPreferenceStore;
+import org.seasar.diigu.eclipse.Constants;
+import org.seasar.diigu.eclipse.DiiguPlugin;
+import org.seasar.diigu.eclipse.util.ProjectUtils;
 
 public class DiiguNature implements IProjectNature {
 
@@ -28,7 +36,13 @@ public class DiiguNature implements IProjectNature {
      */
     public static final String NATURE_ID = "org.seasar.diigu.eclipse.diiguNature";
 
+    private static final String[] BUILDERS = { DiiguBuilder.BUILDER_ID };
+
     private IProject project;
+
+    private IPreferenceStore store;
+
+    private Pattern selectExpression;
 
     /*
      * (non-Javadoc)
@@ -36,23 +50,7 @@ public class DiiguNature implements IProjectNature {
      * @see org.eclipse.core.resources.IProjectNature#configure()
      */
     public void configure() throws CoreException {
-        IProjectDescription desc = project.getDescription();
-        ICommand[] commands = desc.getBuildSpec();
-
-        for (int i = 0; i < commands.length; ++i) {
-            if (commands[i].getBuilderName().equals(
-                    DiiguBuilder.BUILDER_ID)) {
-                return;
-            }
-        }
-
-        ICommand[] newCommands = new ICommand[commands.length + 1];
-        System.arraycopy(commands, 0, newCommands, 0, commands.length);
-        ICommand command = desc.newCommand();
-        command.setBuilderName(DiiguBuilder.BUILDER_ID);
-        newCommands[newCommands.length - 1] = command;
-        desc.setBuildSpec(newCommands);
-        project.setDescription(desc, null);
+        ProjectUtils.addBuilders(getProject(), BUILDERS);
     }
 
     /*
@@ -61,19 +59,11 @@ public class DiiguNature implements IProjectNature {
      * @see org.eclipse.core.resources.IProjectNature#deconfigure()
      */
     public void deconfigure() throws CoreException {
-        IProjectDescription description = getProject().getDescription();
-        ICommand[] commands = description.getBuildSpec();
-        for (int i = 0; i < commands.length; ++i) {
-            if (commands[i].getBuilderName().equals(
-                    DiiguBuilder.BUILDER_ID)) {
-                ICommand[] newCommands = new ICommand[commands.length - 1];
-                System.arraycopy(commands, 0, newCommands, 0, i);
-                System.arraycopy(commands, i + 1, newCommands, i,
-                        commands.length - i - 1);
-                description.setBuildSpec(newCommands);
-                return;
-            }
-        }
+        ProjectUtils.removeBuilders(getProject(), BUILDERS);
+    }
+
+    public IPreferenceStore getPreferenceStore() {
+        return this.store;
     }
 
     /*
@@ -92,6 +82,47 @@ public class DiiguNature implements IProjectNature {
      */
     public void setProject(IProject project) {
         this.project = project;
+        setUpPreferenceStore();
+    }
+
+    protected void setUpPreferenceStore() {
+        this.store = createPreferenceStore(getProject());
+        this.selectExpression = Pattern.compile(this.store
+                .getString(Constants.CONFIG_SELECT_EXPRESSION));
+        this.store.addPropertyChangeListener(new IPropertyChangeListener() {
+            public void propertyChange(PropertyChangeEvent event) {
+                if (Constants.CONFIG_SELECT_EXPRESSION.equals(event
+                        .getProperty())) {
+                    DiiguNature.this.selectExpression = Pattern
+                            .compile((String) event.getNewValue());
+                }
+            }
+        });
+    }
+
+    public static IPreferenceStore createPreferenceStore(IProject project) {
+        IPreferenceStore store = new ScopedPreferenceStore(new ProjectScope(
+                project), DiiguPlugin.PLUGIN_ID);
+        store.setDefault(Constants.CONFIG_SELECT_EXPRESSION, ".*");
+        return store;
+    }
+
+    public Pattern getSelectExpression() {
+        return this.selectExpression;
+    }
+
+    public static DiiguNature getInstance(IProject project) {
+        try {
+            if (project != null && project.hasNature(NATURE_ID)) {
+                IProjectNature nature = project.getNature(NATURE_ID);
+                if (nature instanceof DiiguNature) {
+                    return (DiiguNature) nature;
+                }
+            }
+        } catch (CoreException e) {
+            DiiguPlugin.log(e);
+        }
+        return null;
     }
 
 }

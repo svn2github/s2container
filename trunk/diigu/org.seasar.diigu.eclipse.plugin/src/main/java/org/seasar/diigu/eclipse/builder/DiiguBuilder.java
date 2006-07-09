@@ -20,6 +20,7 @@ import java.net.URLClassLoader;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -29,6 +30,7 @@ import org.eclipse.core.resources.IResourceDeltaVisitor;
 import org.eclipse.core.resources.IResourceVisitor;
 import org.eclipse.core.resources.IncrementalProjectBuilder;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.resources.WorkspaceJob;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -36,6 +38,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.IJavaProject;
@@ -73,17 +76,23 @@ public class DiiguBuilder extends IncrementalProjectBuilder {
         return null;
     }
 
-    protected void fullBuild(final IProgressMonitor monitor)
-            throws CoreException {
-        try {
-            getProject().accept(new IResourceVisitor() {
-                public boolean visit(IResource resource) throws CoreException {
-                    enhance(resource, monitor);
-                    return true;
-                }
-            });
-        } catch (CoreException e) {
-        }
+    protected void fullBuild(IProgressMonitor monitor) throws CoreException {
+        Job job = new WorkspaceJob(Messages.ENHANCE_FULLBUILD) {
+            public IStatus runInWorkspace(final IProgressMonitor monitor)
+                    throws CoreException {
+                getProject().accept(new IResourceVisitor() {
+                    public boolean visit(IResource resource)
+                            throws CoreException {
+                        enhance(resource, monitor);
+                        return true;
+                    }
+                });
+                return Status.OK_STATUS;
+            }
+
+        };
+        job.setPriority(Job.SHORT);
+        job.schedule();
     }
 
     protected void incrementalBuild(IResourceDelta delta,
@@ -136,23 +145,33 @@ public class DiiguBuilder extends IncrementalProjectBuilder {
             IProgressMonitor submonitor = new SubProgressMonitor(monitor, 1);
             IType[] types = unit.getAllTypes();
             submonitor.beginTask(Messages.ENHANCE_PROCEED, types.length);
+            DiiguNature nature = DiiguNature.getInstance(unit.getJavaProject()
+                    .getProject());
+            Pattern ptn = null;
+            if (nature != null) {
+                ptn = nature.getSelectExpression();
+            }
             for (int i = 0; i < types.length; i++) {
                 IType type = types[i];
-                submonitor.subTask(type.getFullyQualifiedName());
-                IPath path = outpath.append(type.getFullyQualifiedName()
-                        .replace('.', '/')
-                        + ".class");
-                IResource resource = getProject().getParent().getFile(path);
-                ParameterNameEnhancer enhancer = new ParameterNameEnhancer(type
-                        .getFullyQualifiedName(), loader);
+                String typename = type.getFullyQualifiedName();
 
-                if (enhanceClassFile(type, enhancer)) {
-                    enhancer.save();
-                    resource.refreshLocal(IResource.DEPTH_ONE, monitor);
-                }
-                submonitor.worked(1);
-                if (submonitor.isCanceled()) {
-                    break;
+                if (ptn != null && ptn.matcher(typename).matches()) {
+                    submonitor.subTask(typename);
+                    IPath path = outpath.append(type.getFullyQualifiedName()
+                            .replace('.', '/')
+                            + ".class");
+                    IResource resource = getProject().getParent().getFile(path);
+                    ParameterNameEnhancer enhancer = new ParameterNameEnhancer(
+                            type.getFullyQualifiedName(), loader);
+
+                    if (enhanceClassFile(type, enhancer)) {
+                        enhancer.save();
+                        resource.refreshLocal(IResource.DEPTH_ONE, monitor);
+                    }
+                    submonitor.worked(1);
+                    if (submonitor.isCanceled()) {
+                        break;
+                    }
                 }
             }
             submonitor.done();

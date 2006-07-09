@@ -15,6 +15,8 @@
  */
 package org.seasar.diigu.eclipse;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -70,4 +72,11 @@ public class DiiguPlugin extends AbstractUIPlugin {
         return AbstractUIPlugin.imageDescriptorFromPlugin("org.seasar.diigu",
                 path);
     }
+
+    public static void log(Throwable throwable) {
+        IStatus status = new Status(IStatus.ERROR, PLUGIN_ID, IStatus.ERROR,
+                throwable.getMessage(), throwable);
+        getDefault().getLog().log(status);
+    }
+
 }

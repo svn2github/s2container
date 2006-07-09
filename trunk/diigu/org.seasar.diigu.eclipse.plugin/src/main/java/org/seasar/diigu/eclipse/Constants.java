@@ -13,32 +13,14 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.diigu.eclipse.nls;
-
-import org.eclipse.osgi.util.NLS;
+package org.seasar.diigu.eclipse;
 
 /**
  * @author taichi
  * 
  */
-public class Messages extends NLS {
+public final class Constants {
 
-    public static String ENHANCE_BEGIN;
+    public static final String CONFIG_SELECT_EXPRESSION = "selectExpression";
 
-    public static String ENHANCE_PROCEED;
-
-    public static String ENHANCE_END;
-
-    public static String USE_BUILDER;
-
-    public static String SELECT_EXPRESSION;
-
-    public static String TEST_EXPRESSION;
-    
-    public static String ENHANCE_FULLBUILD;
-
-    static {
-        Class clazz = Messages.class;
-        NLS.initializeMessages(clazz.getName(), clazz);
-    }
 }
