@@ -2,7 +2,7 @@
 <feature
       id="org.seasar.diigu.eclipse"
       label="%plugin.brand"
-      version="0.0.1"
+      version="0.0.2"
       provider-name="%author">
 
    <description url="http://s2container.seasar.org/">
@@ -44,6 +44,6 @@ governing permissions and limitations under the License.
          id="org.seasar.diigu.eclipse"
          download-size="0"
          install-size="0"
-         version="0.0.0"/>
+         version="0.0.2"/>
 
 </feature>
