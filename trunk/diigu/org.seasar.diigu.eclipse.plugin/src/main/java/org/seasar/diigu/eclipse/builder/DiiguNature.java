@@ -100,20 +100,26 @@ public class DiiguNature implements IProjectNature {
             public void propertyChange(PropertyChangeEvent event) {
                 if (Constants.CONFIG_SELECT_EXPRESSION.equals(event
                         .getProperty())) {
+                    Pattern oldOne = DiiguNature.this.selectExpression;
                     DiiguNature.this.selectExpression = Pattern
                             .compile((String) event.getNewValue());
 
-                    Job job = new WorkspaceJob(
-                            Messages.SELECT_EXPRESSION_CHANGED) {
-                        public IStatus runInWorkspace(IProgressMonitor monitor)
-                                throws CoreException {
-                            getProject().build(
-                                    IncrementalProjectBuilder.CLEAN_BUILD,
-                                    monitor);
-                            return Status.OK_STATUS;
-                        }
-                    };
-                    job.schedule();
+                    if (oldOne == null
+                            || DiiguNature.this.selectExpression.pattern()
+                                    .equals(oldOne.pattern()) == false) {
+                        Job job = new WorkspaceJob(
+                                Messages.SELECT_EXPRESSION_CHANGED) {
+                            public IStatus runInWorkspace(
+                                    IProgressMonitor monitor)
+                                    throws CoreException {
+                                getProject().build(
+                                        IncrementalProjectBuilder.CLEAN_BUILD,
+                                        monitor);
+                                return Status.OK_STATUS;
+                            }
+                        };
+                        job.schedule();
+                    }
                 }
             }
         });

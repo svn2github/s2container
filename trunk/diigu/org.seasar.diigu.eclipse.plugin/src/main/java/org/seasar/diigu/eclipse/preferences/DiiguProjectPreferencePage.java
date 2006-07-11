@@ -135,6 +135,22 @@ public class DiiguProjectPreferencePage extends PropertyPage {
     /*
      * (non-Javadoc)
      * 
+     * @see org.eclipse.jface.preference.PreferencePage#performDefaults()
+     */
+    protected void performDefaults() {
+        IPreferenceStore store = getPreferenceStore();
+        if (store != null) {
+            this.selectExpression.setText(store
+                    .getDefaultString(Constants.CONFIG_SELECT_EXPRESSION));
+            this.useBuilder.setSelection(ProjectUtils.hasNature(
+                    getSelectedProject(), DiiguNature.NATURE_ID));
+        }
+        super.performDefaults();
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.eclipse.jface.preference.PreferencePage#performOk()
      */
     public boolean performOk() {
@@ -156,11 +172,11 @@ public class DiiguProjectPreferencePage extends PropertyPage {
                 store.setValue(Constants.CONFIG_SELECT_EXPRESSION,
                         this.selectExpression.getText());
             }
+            return true;
         } catch (CoreException e) {
             DiiguPlugin.log(e);
             return false;
         }
-        return true;
     }
 
 }
