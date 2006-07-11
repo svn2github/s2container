@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
   <modelVersion>4.0.0</modelVersion>
-  <groupId>org.seasar.diigu.maven.plugin</groupId>
+  <groupId>org.seasar.diigu.maven</groupId>
   <artifactId>diigu-maven-plugin</artifactId>
   <packaging>maven-plugin</packaging>
   <name>Diigu Maven Plugin</name>
