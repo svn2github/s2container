@@ -40,32 +40,37 @@ public class DiiguEnhancer {
         final DocletInfo doclet = task.createDoclet();
         doclet.setName(DOCLET_NAME);
 
-        final Path docletPath = doclet.createPath();
-        final Path classpath = task.createClasspath();
-        for (final Iterator it = parameter.getClasspath().iterator(); it
-                .hasNext();) {
-            final String path = (String) it.next();
-            if (!new File(path).exists()) {
-                getLog().info("classpath does not exist: " + path);
-                continue;
+        {
+            final Path docletPath = doclet.createPath();
+            final Path classpath = task.createClasspath();
+            for (final Iterator it = parameter.getClasspath().iterator(); it
+                    .hasNext();) {
+                final String path = (String) it.next();
+                if (!new File(path).exists()) {
+                    getLog().info("classpath does not exist: " + path);
+                    continue;
+                }
+                getLog().debug("classpath:" + path);
+                classpath.setPath(path);
+                docletPath.setPath(path);
             }
-            getLog().debug("classpath:" + path);
-            classpath.setPath(path);
-            docletPath.setPath(path);
         }
 
-        final Path sourcepath = task.createSourcepath();
-        for (Iterator it = parameter.getSourcepath().iterator(); it.hasNext();) {
-            String path = (String) it.next();
-            if (!new File(path).exists()) {
-                getLog().info("source directory does not exist: " + path);
-                return;
+        {
+            final Path sourcepath = task.createSourcepath();
+            for (Iterator it = parameter.getSourcepath().iterator(); it
+                    .hasNext();) {
+                String path = (String) it.next();
+                if (!new File(path).exists()) {
+                    getLog().info("source directory does not exist: " + path);
+                    return;
+                }
+                getLog().debug("sourcepath:" + path);
+                sourcepath.setPath(path);
             }
-            getLog().debug("sourcepath:" + path);
-            sourcepath.setPath(path);
+            getLog().debug("getPackagenames:" + parameter.getPackagenames());
+            task.setPackagenames(parameter.getPackagenames());
         }
-        getLog().debug("getPackagenames:" + parameter.getPackagenames());
-        task.setPackagenames(parameter.getPackagenames());
 
         task.execute();
     }
