@@ -30,7 +30,7 @@ governing permissions and limitations under the License.
    </license>
 
    <url>
-      <update url="http://eclipse.seasar.org/updates/3.1/"/>
+      <update label="Seasar Plugin Update Site" url="http://eclipse.seasar.org/updates/3.1beta/"/>
    </url>
 
    <requires>
