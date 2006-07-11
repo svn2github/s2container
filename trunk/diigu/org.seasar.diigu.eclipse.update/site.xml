@@ -3,5 +3,8 @@
    <feature url="features/org.seasar.diigu.eclipse_0.0.2.jar" id="org.seasar.diigu.eclipse" version="0.0.2">
       <category name="Diigu"/>
    </feature>
+   <feature url="features/org.seasar.diigu.eclipse_0.0.3.jar" id="org.seasar.diigu.eclipse" version="0.0.3">
+      <category name="Diigu"/>
+   </feature>
    <category-def name="Diigu" label="Diigu"/>
 </site>
