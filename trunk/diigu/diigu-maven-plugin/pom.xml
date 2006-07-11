@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
   <modelVersion>4.0.0</modelVersion>
-  <groupId>org.seasar.diigu.maven</groupId>
+  <groupId>org.seasar.container</groupId>
   <artifactId>diigu-maven-plugin</artifactId>
   <packaging>maven-plugin</packaging>
   <name>Diigu Maven Plugin</name>
-  <version>0.0.1-SNAPSHOT</version>
-  <description>diigu enhancer</description>
+  <version>0.0.1</version>
+  <description>diigu maven2 enhancer</description>
   <url>http://s2container.seasar.org/</url>
   <inceptionYear>2006</inceptionYear>
   <developers>
