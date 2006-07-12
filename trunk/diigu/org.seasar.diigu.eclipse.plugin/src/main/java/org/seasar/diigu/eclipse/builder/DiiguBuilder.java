@@ -217,7 +217,7 @@ public class DiiguBuilder extends IncrementalProjectBuilder {
             IStatus status = new Status(IStatus.ERROR, DiiguPlugin.PLUGIN_ID,
                     IStatus.ERROR, msg, e);
             DiiguPlugin.getDefault().getLog().log(status);
-            throw e;
+            return false;
         }
     }
 
