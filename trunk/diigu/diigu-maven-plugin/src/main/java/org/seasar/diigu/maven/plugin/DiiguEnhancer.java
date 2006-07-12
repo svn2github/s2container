@@ -33,6 +33,21 @@ public class DiiguEnhancer {
     private static final String DOCLET_NAME = "org.seasar.diigu.ParameterNameDoclet";
 
     public void enhance(final EnhanceParameter parameter) {
+        if (getLog().isDebugEnabled()) {
+            getLog().debug("encoding=" + parameter.getEncoding());
+            getLog().debug("packagenames=" + parameter.getPackagenames());
+            getLog().debug("verbose=" + parameter.isVerbose());
+            for (final Iterator it = parameter.getSourcepath().iterator(); it
+                    .hasNext();) {
+                final String path = (String) it.next();
+                getLog().debug("sourcepath=" + path);
+            }
+            for (final Iterator it = parameter.getClasspath().iterator(); it
+                    .hasNext();) {
+                final String path = (String) it.next();
+                getLog().debug("classpath=" + path);
+            }
+        }
         final Javadoc task = new Javadoc();
         task.setProject(createProject());
         task.setVerbose(parameter.isVerbose());
@@ -50,7 +65,6 @@ public class DiiguEnhancer {
                     getLog().info("classpath does not exist: " + path);
                     continue;
                 }
-                getLog().debug("classpath:" + path);
                 classpath.setPath(path);
                 docletPath.setPath(path);
             }
@@ -65,19 +79,18 @@ public class DiiguEnhancer {
                     getLog().info("source directory does not exist: " + path);
                     return;
                 }
-                getLog().debug("sourcepath:" + path);
                 sourcepath.setPath(path);
             }
-            getLog().debug("getPackagenames:" + parameter.getPackagenames());
-            task.setPackagenames(parameter.getPackagenames());
         }
+        task.setPackagenames(parameter.getPackagenames());
+        task.setEncoding(parameter.getEncoding());
 
         task.execute();
     }
 
     private Project createProject() {
         Project project = new Project();
-        project.setName("diigu-maven-pplugin");
+        project.setName("diigu-maven-plugin");
         ComponentHelper componentHelper = ComponentHelper
                 .getComponentHelper(project);
         componentHelper.initDefaultDefinitions();

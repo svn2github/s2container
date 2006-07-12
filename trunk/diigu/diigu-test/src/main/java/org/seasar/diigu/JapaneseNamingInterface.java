@@ -13,23 +13,13 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.diigu.maven.plugin;
-
-import java.util.List;
+package org.seasar.diigu;
 
 /**
  * @author manhole
  */
-public interface EnhanceParameter {
+public interface JapaneseNamingInterface {
 
-    public List getSourcepath();
-
-    public List getClasspath();
-
-    public boolean isVerbose();
-
-    public String getPackagenames();
-
-    public String getEncoding();
+    public String 何かする(String 引数1, Double 引数2);
 
 }
