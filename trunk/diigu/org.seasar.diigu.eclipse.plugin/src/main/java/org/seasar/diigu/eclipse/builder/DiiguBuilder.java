@@ -137,7 +137,13 @@ public class DiiguBuilder extends IncrementalProjectBuilder {
                     .getJavaProject());
             monitor.worked(1);
             IProgressMonitor submonitor = new SubProgressMonitor(monitor, 1);
-            IType[] types = unit.getAllTypes();
+            IType primaryType = unit.findPrimaryType();
+            IType[] types = null;
+            if (primaryType.isInterface()) {
+                types = unit.getAllTypes();
+            } else {
+                types = new IType[] { primaryType };
+            }
             submonitor.beginTask(Messages.ENHANCE_PROCEED, types.length);
             DiiguNature nature = DiiguNature.getInstance(unit.getJavaProject()
                     .getProject());
