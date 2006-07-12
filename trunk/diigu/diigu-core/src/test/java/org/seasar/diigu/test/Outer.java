@@ -22,5 +22,19 @@ package org.seasar.diigu.test;
 public interface Outer {
     public interface Inner {
         void hoge(Outer outer, Inner inner);
+
+        public interface InnerInner {
+            void hoge(Outer outer, Inner inner);
+        }
+    }
+
+    public class Inner2 {
+        public Inner2(String name, int hoge) {
+        }
+
+        public class InnerInner {
+            public void moge(Outer outer, Inner inner) {
+            }
+        }
     }
 }

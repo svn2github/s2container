@@ -62,6 +62,25 @@ public class ParameterNamesEnhancerTest extends TestCase {
         enhancer.setMethodParameterNames("hoge", new String[] { PKG + "Outer",
                 PKG + "Outer$Inner" }, new String[] { "outer", "inner" });
         enhancer.save();
+
+        enhancer = new ParameterNameEnhancer(
+                "org.seasar.diigu.test.Outer$Inner$InnerInner");
+        enhancer.setMethodParameterNames("hoge", new String[] { PKG + "Outer",
+                PKG + "Outer$Inner" }, new String[] { "outer", "inner" });
+        enhancer.save();
+
+        enhancer = new ParameterNameEnhancer(
+                "org.seasar.diigu.test.Outer$Inner2");
+        enhancer.setConstructorParameterNames(new String[] {
+                "java.lang.String", "int" }, new String[] { "name", "hoge" });
+        enhancer.save();
+
+        enhancer = new ParameterNameEnhancer(
+                "org.seasar.diigu.test.Outer$Inner2$InnerInner");
+        enhancer.setMethodParameterNames("moge", new String[] { PKG + "Outer",
+                PKG + "Outer$Inner" }, new String[] { "outer", "inner" });
+        enhancer.save();
+
     }
 
     public void testInterface() throws Exception {
@@ -112,8 +131,32 @@ public class ParameterNamesEnhancerTest extends TestCase {
     }
 
     public void testInnerType() throws Exception {
-        BeanDesc beanDesc = BeanDescFactory.getBeanDesc(Inner.class);
+        BeanDesc beanDesc = BeanDescFactory.getBeanDesc(Outer.Inner.class);
         String[] names = beanDesc.getMethodParameterNames("hoge", new Class[] {
+                Outer.class, Inner.class });
+        assertNotNull(names);
+        assertEquals(2, names.length);
+        assertEquals("outer", names[0]);
+        assertEquals("inner", names[1]);
+
+        beanDesc = BeanDescFactory.getBeanDesc(Outer.Inner.InnerInner.class);
+        names = beanDesc.getMethodParameterNames("hoge", new Class[] {
+                Outer.class, Inner.class });
+        assertNotNull(names);
+        assertEquals(2, names.length);
+        assertEquals("outer", names[0]);
+        assertEquals("inner", names[1]);
+
+        beanDesc = BeanDescFactory.getBeanDesc(Outer.Inner2.class);
+        names = beanDesc.getConstructorParameterNames(new Class[] {
+                String.class, int.class });
+        assertNotNull(names);
+        assertEquals(2, names.length);
+        assertEquals("name", names[0]);
+        assertEquals("hoge", names[1]);
+
+        beanDesc = BeanDescFactory.getBeanDesc(Outer.Inner2.InnerInner.class);
+        names = beanDesc.getMethodParameterNames("moge", new Class[] {
                 Outer.class, Inner.class });
         assertNotNull(names);
         assertEquals(2, names.length);
