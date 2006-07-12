@@ -34,10 +34,12 @@ public class Messages extends NLS {
     public static String SELECT_EXPRESSION;
 
     public static String TEST_EXPRESSION;
-    
+
     public static String ENHANCE_FULLBUILD;
-    
+
     public static String SELECT_EXPRESSION_CHANGED;
+
+    public static String ENHANCE_ERROR;
 
     static {
         Class clazz = Messages.class;

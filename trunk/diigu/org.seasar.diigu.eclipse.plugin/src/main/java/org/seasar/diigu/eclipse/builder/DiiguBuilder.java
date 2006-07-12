@@ -191,22 +191,34 @@ public class DiiguBuilder extends IncrementalProjectBuilder {
         if (method.getNumberOfParameters() < 1) {
             return false;
         }
-        String[] typeSignatures = method.getParameterTypes();
-        String[] parameterTypes = new String[typeSignatures.length];
-        for (int i = 0; i < typeSignatures.length; i++) {
-            parameterTypes[i] = getResolvedTypeName(typeSignatures[i], method
-                    .getDeclaringType());
+        try {
+            String[] typeSignatures = method.getParameterTypes();
+            String[] parameterTypes = new String[typeSignatures.length];
+            for (int i = 0; i < typeSignatures.length; i++) {
+                parameterTypes[i] = getResolvedTypeName(typeSignatures[i],
+                        method.getDeclaringType());
+            }
+            String[] parameterNames = method.getParameterNames();
+            if (method.isConstructor()) {
+                enhancer.setConstructorParameterNames(parameterTypes,
+                        parameterNames);
+            } else {
+                String methodName = method.getElementName();
+                enhancer.setMethodParameterNames(methodName, parameterTypes,
+                        parameterNames);
+            }
+            return true;
+        } catch (CoreException e) {
+            DiiguPlugin.log(e);
+            throw e;
+        } catch (RuntimeException e) {
+            String msg = Messages.bind(Messages.ENHANCE_ERROR, method
+                    .getDeclaringType(), method);
+            IStatus status = new Status(IStatus.ERROR, DiiguPlugin.PLUGIN_ID,
+                    IStatus.ERROR, msg, e);
+            DiiguPlugin.getDefault().getLog().log(status);
+            throw e;
         }
-        String[] parameterNames = method.getParameterNames();
-        if (method.isConstructor()) {
-            enhancer.setConstructorParameterNames(parameterTypes,
-                    parameterNames);
-        } else {
-            String methodName = method.getElementName();
-            enhancer.setMethodParameterNames(methodName, parameterTypes,
-                    parameterNames);
-        }
-        return true;
     }
 
     public static String getResolvedTypeName(String typeSignature, IType type)
