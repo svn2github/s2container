@@ -38,8 +38,8 @@ public class ParameterNamesEnhancerTest extends TestCase {
 
     public void testInterface() throws Exception {
         BeanDesc beanDesc = BeanDescFactory.getBeanDesc(Foo.class);
-        String[] names = beanDesc.getMethodParameterNames("hoge", new Class[] { boolean.class,
-                byte[].class, String.class });
+        String[] names = beanDesc.getMethodParameterNames("hoge", new Class[] {
+                boolean.class, byte[].class, String.class });
         assertNotNull(names);
         assertEquals(3, names.length);
         assertEquals("flag", names[0]);
@@ -49,15 +49,15 @@ public class ParameterNamesEnhancerTest extends TestCase {
 
     public void testAbstractClass() throws Exception {
         BeanDesc beanDesc = BeanDescFactory.getBeanDesc(Bar.class);
-        String[] names = beanDesc.getConstructorParameterNames(new Class[] { Foo.class, Bar.class,
-                Baz.class });
+        String[] names = beanDesc.getConstructorParameterNames(new Class[] {
+                Foo.class, Bar.class, Baz.class });
         assertEquals(3, names.length);
         assertEquals("foo", names[0]);
         assertEquals("bar", names[1]);
         assertEquals("baz", names[2]);
 
-        names = beanDesc.getMethodParameterNames("array", new Class[] { int[].class, int[][].class,
-                int[][][].class });
+        names = beanDesc.getMethodParameterNames("array", new Class[] {
+                int[].class, int[][].class, int[][][].class });
         assertNotNull(names);
         assertEquals(3, names.length);
         assertEquals("a1", names[0]);
@@ -67,15 +67,15 @@ public class ParameterNamesEnhancerTest extends TestCase {
 
     public void testConcreteClass() throws Exception {
         BeanDesc beanDesc = BeanDescFactory.getBeanDesc(Baz.class);
-        String[] names = beanDesc.getConstructorParameterNames(new Class[] { Foo.class, Bar.class,
-                Baz.class });
+        String[] names = beanDesc.getConstructorParameterNames(new Class[] {
+                Foo.class, Bar.class, Baz.class });
         assertEquals(3, names.length);
         assertEquals("$foo", names[0]);
         assertEquals("$bar", names[1]);
         assertEquals("$baz", names[2]);
 
-        names = beanDesc.getMethodParameterNames("array", new Class[] { int[].class, int[][].class,
-                int[][][].class });
+        names = beanDesc.getMethodParameterNames("array", new Class[] {
+                int[].class, int[][].class, int[][][].class });
         assertNotNull(names);
         assertEquals(3, names.length);
         assertEquals("array1", names[0]);
@@ -85,8 +85,32 @@ public class ParameterNamesEnhancerTest extends TestCase {
 
     public void testInnerType() throws Exception {
         BeanDesc beanDesc = BeanDescFactory.getBeanDesc(Inner.class);
-        String[] names = beanDesc.getMethodParameterNames("hoge", new Class[] { Outer.class,
-                Inner.class });
+        String[] names = beanDesc.getMethodParameterNames("hoge", new Class[] {
+                Outer.class, Inner.class });
+        assertNotNull(names);
+        assertEquals(2, names.length);
+        assertEquals("outer", names[0]);
+        assertEquals("inner", names[1]);
+
+        beanDesc = BeanDescFactory.getBeanDesc(Outer.Inner.InnerInner.class);
+        names = beanDesc.getMethodParameterNames("hoge", new Class[] {
+                Outer.class, Inner.class });
+        assertNotNull(names);
+        assertEquals(2, names.length);
+        assertEquals("outer", names[0]);
+        assertEquals("inner", names[1]);
+
+        beanDesc = BeanDescFactory.getBeanDesc(Outer.Inner2.class);
+        names = beanDesc.getConstructorParameterNames(new Class[] {
+                String.class, int.class });
+        assertNotNull(names);
+        assertEquals(2, names.length);
+        assertEquals("name", names[0]);
+        assertEquals("hoge", names[1]);
+
+        beanDesc = BeanDescFactory.getBeanDesc(Outer.Inner2.InnerInner.class);
+        names = beanDesc.getMethodParameterNames("moge", new Class[] {
+                Outer.class, Inner.class });
         assertNotNull(names);
         assertEquals(2, names.length);
         assertEquals("outer", names[0]);
