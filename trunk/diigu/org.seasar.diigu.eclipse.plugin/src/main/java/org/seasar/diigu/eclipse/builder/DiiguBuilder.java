@@ -15,11 +15,7 @@
  */
 package org.seasar.diigu.eclipse.builder;
 
-import java.net.URL;
-import java.net.URLClassLoader;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IFile;
@@ -29,7 +25,6 @@ import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.resources.IResourceDeltaVisitor;
 import org.eclipse.core.resources.IResourceVisitor;
 import org.eclipse.core.resources.IncrementalProjectBuilder;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.resources.WorkspaceJob;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
@@ -39,9 +34,7 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.core.runtime.jobs.Job;
-import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.ICompilationUnit;
-import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IMethod;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaCore;
@@ -50,6 +43,7 @@ import org.eclipse.jdt.core.Signature;
 import org.seasar.diigu.ParameterNameEnhancer;
 import org.seasar.diigu.eclipse.DiiguPlugin;
 import org.seasar.diigu.eclipse.nls.Messages;
+import org.seasar.diigu.eclipse.util.JavaProjectClassLoader;
 
 public class DiiguBuilder extends IncrementalProjectBuilder {
 
@@ -139,8 +133,8 @@ public class DiiguBuilder extends IncrementalProjectBuilder {
             // そもそも、変更の入ったクラスのローダは作り直さないといけないけど、
             // 参照ライブラリの類をロードする為のローダは、毎回作り直す必然性が無いんじゃね？
             // どっかでイベント拾って作る方が、体感速度があがると思われ。
-            URLClassLoader loader = new URLClassLoader(getClassPathEntries(unit
-                    .getJavaProject()));
+            JavaProjectClassLoader loader = new JavaProjectClassLoader(unit
+                    .getJavaProject());
             monitor.worked(1);
             IProgressMonitor submonitor = new SubProgressMonitor(monitor, 1);
             IType[] types = unit.getAllTypes();
@@ -180,61 +174,6 @@ public class DiiguBuilder extends IncrementalProjectBuilder {
         } finally {
             monitor.done();
         }
-    }
-
-    protected URL[] getClassPathEntries(IJavaProject project)
-            throws CoreException, Exception {
-        Set urls = new HashSet();
-        Set already = new HashSet();
-        addClasspathEntries(project, urls, already, true);
-        return (URL[]) urls.toArray(new URL[urls.size()]);
-    }
-
-    protected void addClasspathEntries(IJavaProject project, Set urls,
-            Set already, boolean atFirst) throws CoreException, Exception {
-        already.add(project);
-
-        IPath path = project.getOutputLocation();
-        urls.add(toURL(project.getProject().getParent().getFolder(path)
-                .getLocation()));
-
-        IClasspathEntry[] entries = project.getResolvedClasspath(true);
-        for (int i = 0; i < entries.length; i++) {
-            IClasspathEntry entry = entries[i];
-            switch (entry.getEntryKind()) {
-            case IClasspathEntry.CPE_SOURCE:
-                IPath dist = entry.getOutputLocation();
-                if (dist != null) {
-                    urls.add(toURL(project.getProject().getParent().getFolder(
-                            dist).getLocation()));
-                }
-                break;
-            case IClasspathEntry.CPE_LIBRARY:
-            case IClasspathEntry.CPE_CONTAINER:
-            case IClasspathEntry.CPE_VARIABLE:
-                urls.add(toURL(entry.getPath()));
-                break;
-            case IClasspathEntry.CPE_PROJECT:
-                IJavaProject proj = getJavaProject(entry.getPath());
-                if (proj != null && already.contains(proj) == false
-                        && (atFirst || entry.isExported())) {
-                    addClasspathEntries(proj, urls, already, false);
-                }
-                break;
-            default:
-                break;
-            }
-        }
-    }
-
-    protected URL toURL(IPath path) throws Exception {
-        return path.toFile().toURI().toURL();
-    }
-
-    protected IJavaProject getJavaProject(IPath path) throws CoreException {
-        IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(
-                path.segment(0));
-        return JavaCore.create(project);
     }
 
     protected boolean enhanceClassFile(IType type,
@@ -285,8 +224,11 @@ public class DiiguBuilder extends IncrementalProjectBuilder {
             String[][] resolvedNames = type.resolveType(name);
             if (resolvedNames != null && resolvedNames.length > 0) {
                 StringBuffer stb = new StringBuffer();
-                stb.append(resolvedNames[0][0]);
-                stb.append('.');
+                String pkg = resolvedNames[0][0];
+                if (pkg != null && 0 < pkg.length()) {
+                    stb.append(resolvedNames[0][0]);
+                    stb.append('.');
+                }
                 stb.append(resolvedNames[0][1].replace('.', '$'));
                 for (int i = 0; i < count; i++) {
                     stb.append("[]");
