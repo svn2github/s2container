@@ -39,6 +39,9 @@ public class OuterClass {
         }
 
         public class InnerInner {
+            public InnerInner(String name) {
+            }
+
             public void moge(Outer outer, Inner inner) {
             }
         }
