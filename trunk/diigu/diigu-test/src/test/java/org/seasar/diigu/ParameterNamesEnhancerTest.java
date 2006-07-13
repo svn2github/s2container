@@ -161,6 +161,15 @@ public class ParameterNamesEnhancerTest extends TestCase {
         assertEquals(2, names.length);
         assertEquals("outer", names[0]);
         assertEquals("inner", names[1]);
+
+        beanDesc = BeanDescFactory.getBeanDesc(OuterClass.Inner3.class);
+        names = beanDesc.getConstructorParameterNames(new Class[] {
+                String.class, int.class });
+        assertNotNull(names);
+        assertEquals(2, names.length);
+        assertEquals("name", names[0]);
+        assertEquals("hoge", names[1]);
+
     }
 
 }
