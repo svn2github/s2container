@@ -43,6 +43,7 @@ import org.eclipse.jdt.core.Signature;
 import org.seasar.diigu.ParameterNameEnhancer;
 import org.seasar.diigu.eclipse.DiiguPlugin;
 import org.seasar.diigu.eclipse.nls.Messages;
+import org.seasar.diigu.eclipse.util.ArrayUtil;
 import org.seasar.diigu.eclipse.util.JavaProjectClassLoader;
 
 public class DiiguBuilder extends IncrementalProjectBuilder {
@@ -137,13 +138,7 @@ public class DiiguBuilder extends IncrementalProjectBuilder {
                     .getJavaProject());
             monitor.worked(1);
             IProgressMonitor submonitor = new SubProgressMonitor(monitor, 1);
-            IType primaryType = unit.findPrimaryType();
-            IType[] types = null;
-            if (primaryType.isInterface()) {
-                types = unit.getAllTypes();
-            } else {
-                types = new IType[] { primaryType };
-            }
+            IType[] types = unit.getAllTypes();
             submonitor.beginTask(Messages.ENHANCE_PROCEED, types.length);
             DiiguNature nature = DiiguNature.getInstance(unit.getJavaProject()
                     .getProject());
@@ -206,6 +201,17 @@ public class DiiguBuilder extends IncrementalProjectBuilder {
             }
             String[] parameterNames = method.getParameterNames();
             if (method.isConstructor()) {
+                IType me = method.getDeclaringType();
+                IType around = me.getDeclaringType();
+                if (around != null && around.isClass()) {
+                    String[] newtypes = { resolveType(me, 0, around
+                            .getElementName()) };
+                    parameterTypes = (String[]) ArrayUtil.add(newtypes,
+                            parameterTypes);
+                    String[] newnames = { "this" };
+                    parameterNames = (String[]) ArrayUtil.add(newnames,
+                            parameterNames);
+                }
                 enhancer.setConstructorParameterNames(parameterTypes,
                         parameterNames);
             } else {
@@ -238,25 +244,36 @@ public class DiiguBuilder extends IncrementalProjectBuilder {
             } else {
                 name = Signature.toString(typeSignature);
             }
-
-            String[][] resolvedNames = type.resolveType(name);
-            if (resolvedNames != null && resolvedNames.length > 0) {
-                StringBuffer stb = new StringBuffer();
-                String pkg = resolvedNames[0][0];
-                if (pkg != null && 0 < pkg.length()) {
-                    stb.append(resolvedNames[0][0]);
-                    stb.append('.');
-                }
-                stb.append(resolvedNames[0][1].replace('.', '$'));
-                for (int i = 0; i < count; i++) {
-                    stb.append("[]");
-                }
-                return stb.toString();
-            }
-            return "";
+            return resolveType(type, count, name);
         } else {
             return Signature.toString(typeSignature);
         }
+    }
+
+    /**
+     * @param type
+     * @param count
+     * @param name
+     * @return
+     * @throws JavaModelException
+     */
+    private static String resolveType(IType type, int count, String name)
+            throws JavaModelException {
+        String[][] resolvedNames = type.resolveType(name);
+        if (resolvedNames != null && resolvedNames.length > 0) {
+            StringBuffer stb = new StringBuffer();
+            String pkg = resolvedNames[0][0];
+            if (pkg != null && 0 < pkg.length()) {
+                stb.append(resolvedNames[0][0]);
+                stb.append('.');
+            }
+            stb.append(resolvedNames[0][1].replace('.', '$'));
+            for (int i = 0; i < count; i++) {
+                stb.append("[]");
+            }
+            return stb.toString();
+        }
+        return "";
     }
 
 }
