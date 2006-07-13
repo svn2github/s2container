@@ -34,6 +34,7 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.jdt.core.Flags;
 import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.IMethod;
 import org.eclipse.jdt.core.IType;
@@ -203,7 +204,8 @@ public class DiiguBuilder extends IncrementalProjectBuilder {
             if (method.isConstructor()) {
                 IType me = method.getDeclaringType();
                 IType around = me.getDeclaringType();
-                if (around != null && around.isClass()) {
+                if (Flags.isStatic(me.getFlags()) == false && around != null
+                        && around.isClass()) {
                     String[] newtypes = { resolveType(me, 0, around
                             .getElementName()) };
                     parameterTypes = (String[]) ArrayUtil.add(newtypes,
