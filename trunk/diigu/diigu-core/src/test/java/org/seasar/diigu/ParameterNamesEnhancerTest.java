@@ -210,6 +210,15 @@ public class ParameterNamesEnhancerTest extends TestCase {
         assertEquals(2, names.length);
         assertEquals("outer", names[0]);
         assertEquals("inner", names[1]);
+
+        beanDesc = BeanDescFactory.getBeanDesc(OuterClass.Inner3.class);
+        names = beanDesc.getConstructorParameterNames(new Class[] {
+                String.class, int.class });
+        assertNotNull(names);
+        assertEquals(2, names.length);
+        assertEquals("name", names[0]);
+        assertEquals("hoge", names[1]);
+
     }
 
     /**
@@ -245,6 +254,13 @@ public class ParameterNamesEnhancerTest extends TestCase {
         enhancer.setMethodParameterNames("moge", new String[] { PKG + "Outer",
                 PKG + "OuterClass$Inner" }, new String[] { "outer", "inner" });
         enhancer.save();
+
+        enhancer = new ParameterNameEnhancer(
+                "org.seasar.diigu.test.OuterClass$Inner3");
+        enhancer.setConstructorParameterNames(new String[] {
+                "java.lang.String", "int" }, new String[] { "name", "hoge" });
+        enhancer.save();
+
     }
 
 }

@@ -46,4 +46,10 @@ public class OuterClass {
             }
         }
     }
+
+    public static class Inner3 {
+        public Inner3(String name, int hoge) {
+            super();
+        }
+    }
 }
