@@ -21,6 +21,7 @@ import org.seasar.diigu.test.Bar;
 import org.seasar.diigu.test.Baz;
 import org.seasar.diigu.test.Foo;
 import org.seasar.diigu.test.Outer;
+import org.seasar.diigu.test.OuterClass;
 import org.seasar.diigu.test.Outer.Inner;
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.factory.BeanDescFactory;
@@ -162,6 +163,77 @@ public class ParameterNamesEnhancerTest extends TestCase {
         assertEquals(2, names.length);
         assertEquals("outer", names[0]);
         assertEquals("inner", names[1]);
+    }
+
+    public void testInnerType2() throws Exception {
+        setUpInnerType2();
+
+        BeanDesc beanDesc = BeanDescFactory.getBeanDesc(OuterClass.Inner.class);
+        String[] names = beanDesc.getMethodParameterNames("hoge", new Class[] {
+                Outer.class, OuterClass.Inner.class });
+        assertNotNull(names);
+        assertEquals(2, names.length);
+        assertEquals("outer", names[0]);
+        assertEquals("inner", names[1]);
+
+        beanDesc = BeanDescFactory
+                .getBeanDesc(OuterClass.Inner.InnerInner.class);
+        names = beanDesc.getMethodParameterNames("hoge", new Class[] {
+                Outer.class, OuterClass.Inner.class });
+        assertNotNull(names);
+        assertEquals(2, names.length);
+        assertEquals("outer", names[0]);
+        assertEquals("inner", names[1]);
+
+        beanDesc = BeanDescFactory.getBeanDesc(OuterClass.Inner2.class);
+        names = beanDesc.getConstructorParameterNames(new Class[] {
+                OuterClass.class, String.class, int.class });
+        assertNotNull(names);
+        assertEquals(3, names.length);
+        assertEquals("this", names[0]);
+        assertEquals("name", names[1]);
+        assertEquals("hoge", names[2]);
+
+        beanDesc = BeanDescFactory
+                .getBeanDesc(OuterClass.Inner2.InnerInner.class);
+        names = beanDesc.getMethodParameterNames("moge", new Class[] {
+                Outer.class, OuterClass.Inner.class });
+        assertNotNull(names);
+        assertEquals(2, names.length);
+        assertEquals("outer", names[0]);
+        assertEquals("inner", names[1]);
+    }
+
+    /**
+     * 
+     */
+    private void setUpInnerType2() {
+        ParameterNameEnhancer enhancer = null;
+        enhancer = new ParameterNameEnhancer(
+                "org.seasar.diigu.test.OuterClass$Inner");
+        enhancer.setMethodParameterNames("hoge", new String[] { PKG + "Outer",
+                PKG + "OuterClass$Inner" }, new String[] { "outer", "inner" });
+        enhancer.save();
+
+        enhancer = new ParameterNameEnhancer(
+                "org.seasar.diigu.test.OuterClass$Inner$InnerInner");
+        enhancer.setMethodParameterNames("hoge", new String[] { PKG + "Outer",
+                PKG + "OuterClass$Inner" }, new String[] { "outer", "inner" });
+        enhancer.save();
+
+        enhancer = new ParameterNameEnhancer(
+                "org.seasar.diigu.test.OuterClass$Inner2");
+        enhancer.setConstructorParameterNames(
+                new String[] { "org.seasar.diigu.test.OuterClass",
+                        "java.lang.String", "int" }, new String[] { "this",
+                        "name", "hoge" });
+        enhancer.save();
+
+        enhancer = new ParameterNameEnhancer(
+                "org.seasar.diigu.test.OuterClass$Inner2$InnerInner");
+        enhancer.setMethodParameterNames("moge", new String[] { PKG + "Outer",
+                PKG + "OuterClass$Inner" }, new String[] { "outer", "inner" });
+        enhancer.save();
     }
 
 }
