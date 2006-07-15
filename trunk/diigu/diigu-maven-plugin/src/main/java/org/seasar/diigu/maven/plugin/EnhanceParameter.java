@@ -26,6 +26,8 @@ public interface EnhanceParameter {
 
     public List getClasspath();
 
+    public List getDocletpath();
+
     public boolean isVerbose();
 
     public String getPackagenames();

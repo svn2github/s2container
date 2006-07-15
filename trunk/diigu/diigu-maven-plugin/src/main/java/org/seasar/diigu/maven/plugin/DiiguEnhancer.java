@@ -47,6 +47,11 @@ public class DiiguEnhancer {
                 final String path = (String) it.next();
                 getLog().debug("classpath=" + path);
             }
+            for (final Iterator it = parameter.getDocletpath().iterator(); it
+                    .hasNext();) {
+                final String path = (String) it.next();
+                getLog().debug("docletpath=" + path);
+            }
         }
         final Javadoc task = new Javadoc();
         task.setProject(createProject());
@@ -56,17 +61,27 @@ public class DiiguEnhancer {
         doclet.setName(DOCLET_NAME);
 
         {
-            final Path docletPath = doclet.createPath();
+            final Path docletpath = doclet.createPath();
+            for (final Iterator it = parameter.getDocletpath().iterator(); it
+                    .hasNext();) {
+                final String path = (String) it.next();
+                if (!new File(path).exists()) {
+                    getLog().warn("docletpath does not exist: " + path);
+                    continue;
+                }
+                docletpath.setPath(path);
+            }
+        }
+        {
             final Path classpath = task.createClasspath();
             for (final Iterator it = parameter.getClasspath().iterator(); it
                     .hasNext();) {
                 final String path = (String) it.next();
                 if (!new File(path).exists()) {
-                    getLog().info("classpath does not exist: " + path);
+                    getLog().warn("classpath does not exist: " + path);
                     continue;
                 }
                 classpath.setPath(path);
-                docletPath.setPath(path);
             }
         }
 
@@ -76,7 +91,7 @@ public class DiiguEnhancer {
                     .hasNext();) {
                 String path = (String) it.next();
                 if (!new File(path).exists()) {
-                    getLog().info("source directory does not exist: " + path);
+                    getLog().warn("source directory does not exist: " + path);
                     return;
                 }
                 sourcepath.setPath(path);

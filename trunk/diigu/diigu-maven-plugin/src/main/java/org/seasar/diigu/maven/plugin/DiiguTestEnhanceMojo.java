@@ -69,6 +69,10 @@ public class DiiguTestEnhanceMojo extends AbstractDiiguEnhanceMojo {
         return testClasspathElements;
     }
 
+    public List getDocletpath() {
+        return testClasspathElements;
+    }
+
     public List getSourcepath() {
         return testCompileSourceRoots;
     }
