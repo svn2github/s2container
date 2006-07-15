@@ -50,10 +50,19 @@ public class ParameterNameDoclet extends Doclet {
 
     protected static boolean enhanceConstructor(
             final ParameterNameEnhancer enhancer, final ClassDoc classDoc) {
+        final ClassDoc outerClass = classDoc.containingClass();
+        final boolean nonStaticInncerClass = outerClass != null
+                && outerClass.isClass() && classDoc.isClass()
+                && !classDoc.isStatic();
         boolean dirty = false;
         final ConstructorDoc[] constructorDocs = classDoc.constructors();
         for (int i = 0; i < constructorDocs.length; ++i) {
-            dirty |= enhanceConstructor(enhancer, constructorDocs[i]);
+            if (nonStaticInncerClass) {
+                dirty |= enhanceConstructor(enhancer, constructorDocs[i],
+                        outerClass);
+            } else {
+                dirty |= enhanceConstructor(enhancer, constructorDocs[i]);
+            }
         }
         return dirty;
     }
@@ -73,6 +82,25 @@ public class ParameterNameDoclet extends Doclet {
             final Parameter parameter = parameters[i];
             parameterTypes[i] = toBinaryName(parameter.type());
             parameterNames[i] = parameter.name();
+        }
+        enhancer.setConstructorParameterNames(parameterTypes, parameterNames);
+        return true;
+    }
+
+    protected static boolean enhanceConstructor(
+            final ParameterNameEnhancer enhancer,
+            final ConstructorDoc constructorDoc, final ClassDoc outerClass) {
+        final Parameter[] parameters = constructorDoc.parameters();
+        final int numParameters = parameters.length;
+
+        final String[] parameterTypes = new String[numParameters + 1];
+        final String[] parameterNames = new String[numParameters + 1];
+        parameterTypes[0] = toBinaryName(outerClass);
+        parameterNames[0] = "this";
+        for (int i = 0; i < numParameters; ++i) {
+            final Parameter parameter = parameters[i];
+            parameterTypes[i + 1] = toBinaryName(parameter.type());
+            parameterNames[i + 1] = parameter.name();
         }
         enhancer.setConstructorParameterNames(parameterTypes, parameterNames);
         return true;

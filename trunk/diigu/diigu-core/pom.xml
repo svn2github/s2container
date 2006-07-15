@@ -8,7 +8,7 @@
   <artifactId>diigu-core</artifactId>
   <packaging>jar</packaging>
   <name>Diigu</name>
-  <version>0.0.1</version>
+  <version>0.0.2-SNAPSHOT</version>
   <description></description>
   <url>http://s2container.seasar.org/</url>
   <issueManagement>
