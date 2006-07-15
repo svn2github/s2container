@@ -25,22 +25,34 @@ import org.seasar.framework.beans.factory.BeanDescFactory;
  */
 public class ProductCodeEnhanceTest extends TestCase {
 
-    public void testConcreteClass() throws Exception {
+    public void testConcreteClassMethod() throws Exception {
         final BeanDesc beanDesc = BeanDescFactory
             .getBeanDesc(FooConcreteClass.class);
         final String[] parameterNames = beanDesc.getMethodParameterNames(
             "doSomething", new Class[] { String.class, Integer.class });
         assertNotNull(parameterNames);
+        assertEquals(2, parameterNames.length);
         assertEquals("aaa", parameterNames[0]);
         assertEquals("bbbb", parameterNames[1]);
     }
 
-    public void testInterface() throws Exception {
+    public void testConcreteClassConstructor() throws Exception {
+        final BeanDesc beanDesc = BeanDescFactory
+            .getBeanDesc(FooConcreteClass.class);
+        final String[] parameterNames = beanDesc
+            .getConstructorParameterNames(new Class[] { String.class });
+        assertNotNull(parameterNames);
+        assertEquals(1, parameterNames.length);
+        assertEquals("fooo", parameterNames[0]);
+    }
+
+    public void testInterfaceMethod() throws Exception {
         final BeanDesc beanDesc = BeanDescFactory
             .getBeanDesc(FooInterface.class);
         final String[] parameterNames = beanDesc.getMethodParameterNames(
             "aaaaa", new Class[] { String.class, Double.class });
         assertNotNull(parameterNames);
+        assertEquals(2, parameterNames.length);
         assertEquals("bb", parameterNames[0]);
         assertEquals("ccc", parameterNames[1]);
     }

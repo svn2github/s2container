@@ -20,6 +20,9 @@ package org.seasar.diigu;
  */
 public class FooConcreteClass {
 
+    public FooConcreteClass(String fooo) {
+    }
+
     public String doSomething(String aaa, Integer bbbb) {
         return null;
     }
