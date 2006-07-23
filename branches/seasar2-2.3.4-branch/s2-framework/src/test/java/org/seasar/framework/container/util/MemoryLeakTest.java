@@ -17,6 +17,7 @@ package org.seasar.framework.container.util;
 
 import junit.framework.TestCase;
 
+import org.seasar.framework.container.factory.S2ContainerFactory;
 import org.seasar.framework.container.factory.SingletonS2ContainerFactory;
 import org.seasar.framework.unit.UnitClassLoader;
 import org.seasar.framework.util.ClassUtil;
@@ -29,15 +30,18 @@ public class MemoryLeakTest extends TestCase {
 
     private static volatile int counter;
 
+    final String basePath = ClassUtil.getPackageName(getClass()).replace('.',
+            '/')
+            + "/";
+
     public void testFinalize() throws Exception {
         ClassLoader origin = Thread.currentThread().getContextClassLoader();
         for (int i = 0; i < 5; ++i) {
             UnitClassLoader loader = new TestClassLoader(origin);
             Thread.currentThread().setContextClassLoader(loader);
 
-            SingletonS2ContainerFactory.setConfigPath(ClassUtil.getPackageName(
-                    getClass()).replace('.', '/')
-                    + "/MemoryLeakTest.dicon");
+            SingletonS2ContainerFactory.setConfigPath(basePath
+                    + "MemoryLeakTest.dicon");
             SingletonS2ContainerFactory.init();
             SingletonS2ContainerFactory.destroy();
 
@@ -54,6 +58,23 @@ public class MemoryLeakTest extends TestCase {
             Thread.sleep(10);
         }
         assertEquals(0, counter);
+    }
+
+    public void testFinalizeConfigurationContainer() throws Exception {
+        for (int i = 0; i < 2; i++) {
+            S2ContainerFactory.configure(basePath
+                    + "MemoryLeakTest_configure.dicon");
+            SingletonS2ContainerFactory.setConfigPath(basePath
+                    + "MemoryLeakTest_app.dicon");
+            SingletonS2ContainerFactory.init();
+            SingletonS2ContainerFactory.destroy();
+            for (int j = 0; j < 5; ++j) {
+                System.gc();
+                Thread.sleep(10);
+            }
+            System.out.println();
+        }
+        testFinalize();
     }
 
     public static class TestClassLoader extends UnitClassLoader {
