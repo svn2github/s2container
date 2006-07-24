@@ -128,7 +128,7 @@ public class DiiguNature implements IProjectNature {
     public static IPreferenceStore createPreferenceStore(IProject project) {
         IPreferenceStore store = new ScopedPreferenceStore(new ProjectScope(
                 project), DiiguPlugin.PLUGIN_ID);
-        store.setDefault(Constants.CONFIG_SELECT_EXPRESSION, ".*");
+        store.setDefault(Constants.CONFIG_SELECT_EXPRESSION, ".*Dao");
         return store;
     }
 
