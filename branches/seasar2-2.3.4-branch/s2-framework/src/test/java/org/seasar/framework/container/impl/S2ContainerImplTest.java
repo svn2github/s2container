@@ -328,6 +328,21 @@ public class S2ContainerImplTest extends TestCase {
         assertEquals("1", 12, count);
     }
 
+    public void testFindComponents() throws Exception {
+        // ## Arrange ##
+        S2ContainerImpl container = new S2ContainerImpl();
+        container.register(B.class);
+        container.register(B2.class);
+        container.init();
+
+        // ## Act ##
+        final Object[] found = container.findComponents(Hoge.class);
+
+        // ## Assert ##
+        assertSame(found.getClass().toString(), Hoge.class, found.getClass()
+                .getComponentType());
+    }
+
     public void testRequest() throws Exception {
         S2Container container = new S2ContainerImpl();
         S2Container child = new S2ContainerImpl();
