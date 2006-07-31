@@ -15,20 +15,24 @@
  */
 package org.seasar.framework.util;
 
+import org.seasar.framework.exception.SRuntimeException;
+
 /**
  * @author higa
- * @author manhole
  * 
- * @deprecated use
- *             {@link org.seasar.framework.exception.ResourceNotFoundRuntimeException}
  */
-public class ResourceNotFoundRuntimeException extends
-        org.seasar.framework.exception.ResourceNotFoundRuntimeException {
+public class ResourceNotFoundRuntimeException extends SRuntimeException {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 9033370905740809950L;
+
+    private String path;
 
     public ResourceNotFoundRuntimeException(String path) {
-        super(path);
+        super("ESSR0055", new Object[] { path });
+        this.path = path;
     }
 
+    public String getPath() {
+        return path;
+    }
 }

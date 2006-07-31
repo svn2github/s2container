@@ -17,8 +17,6 @@ package org.seasar.framework.util;
 
 import java.io.File;
 
-import org.seasar.framework.exception.ResourceNotFoundRuntimeException;
-
 import junit.framework.TestCase;
 
 public class ResourceUtilTest extends TestCase {
