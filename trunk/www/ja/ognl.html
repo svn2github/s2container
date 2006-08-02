@@ -162,25 +162,25 @@ OGNLの詳細は<a href="http://www.ognl.org/">こちら</a>を参照してください．</p>
 </tr>
 <tr>
 <td><code>request</code></td>
-<td><code>javax.servlet.http.HttpServletRequest</code></td>
+<td><code>java.lang.Object</code><br>(Webコンテナでは<code>javax.servlet.http.HttpServletRequest</code>)</td>
 <td>Webコンテナ上で実行されている場合，現在のスレッドで処理しているリクエストです．<br>
 設定されていない場合もあります．</td>
 </tr>
 <tr>
 <td><code>response</code></td>
-<td><code>javax.servlet.http.HttpServletResponse</code></td>
+<td><code>java.lang.Object</code><br>(Webコンテナでは<code>javax.servlet.http.HttpServletResponse</code>)</td>
 <td>Webコンテナ上で実行されている場合，現在のスレッドで処理しているレスポンスです．<br>
 設定されていない場合もあります．</td>
 </tr>
 <tr>
 <td><code>session</code></td>
-<td><code>javax.servlet.http.session.HttpSession</code></td>
+<td><code>java.lang.Object</code><br>(Webコンテナでは<code>javax.servlet.http.HttpSession</code>)</td>
 <td>Webコンテナ上で実行されている場合，現在のスレッドで処理しているセッションです．<br>
 設定されていない場合もあります．</td>
 </tr>
 <tr>
-<td><code>servletContext</code></td>
-<td><code>javax.servlet.ServletContext</code></td>
+<td><code>application</code></td>
+<td><code>java.lang.Object</code><br>(Webコンテナでは<code>javax.servlet.http.ServletContext</code>)</td>
 <td>Webコンテナ上で実行されている場合，現在のS2コンテナに関連づけられたサーブレットコンテキストです．<br>
 設定されていない場合もあります．</td>
 </tr>
@@ -208,6 +208,8 @@ OGNLの詳細は<a href="http://www.ognl.org/">こちら</a>を参照してください．</p>
 <td><code>&lt;initMethod&gt;</code>または<code>&lt;destroyMethod&gt;</code>のボディの中でのみ定義されている変数です．<br>
 この変数は，現在のコンポーネント (<code>&lt;initMethod&gt;</code>または<code>&lt;destroyMethod&gt;</code>を囲む<code>&lt;component&gt;</code>要素で表されているオブジェクト) を参照します．</td>
 </tr>
+<td><code>#ENV</code></td>
+<td><code>環境設定ファイル(<code>env.txt</code>)の値です．環境設定ファイルが存在しない場合は<code>"product"</code>です．
 </tbody>
 </table>
 <h2><a name="creation">オブジェクトの生成</a></h2>
