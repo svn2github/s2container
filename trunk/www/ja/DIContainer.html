@@ -260,6 +260,7 @@ public class GreetingMain2 {
     public static void main(String[] args) {
         S2Container container =
             S2ContainerFactory.create(PATH);
+        container.init();
         GreetingClient greetingClient = (GreetingClient)
             container.getComponent("greetingClient");
         greetingClient.execute();
