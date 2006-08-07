@@ -41,6 +41,8 @@ public final class S2ContainerFactory {
 
     protected static boolean initialized;
 
+    protected static boolean configuring = false;
+
     protected static S2Container configurationContainer;
 
     protected static Provider provider;
@@ -87,6 +89,10 @@ public final class S2ContainerFactory {
     }
 
     public static synchronized void configure(final String configFile) {
+        if (configuring) {
+            return;
+        }
+        configuring = true;
         if (provider == null) {
             provider = new DefaultProvider();
         }
@@ -110,6 +116,7 @@ public final class S2ContainerFactory {
                 S2ContainerFactory.dispose();
             }
         });
+        configuring = false;
         initialized = true;
     }
 
