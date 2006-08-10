@@ -37,6 +37,8 @@ public class Messages extends NLS {
 
     public static String ENHANCE_FULLBUILD;
 
+    public static String ENHANCE_INCREMENTALBUILD;
+
     public static String SELECT_EXPRESSION_CHANGED;
 
     public static String ENHANCE_ERROR;
