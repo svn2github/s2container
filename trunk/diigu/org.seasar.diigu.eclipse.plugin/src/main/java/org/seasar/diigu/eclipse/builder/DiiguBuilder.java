@@ -91,17 +91,27 @@ public class DiiguBuilder extends IncrementalProjectBuilder {
         job.schedule();
     }
 
-    protected void incrementalBuild(IResourceDelta delta,
+    protected void incrementalBuild(final IResourceDelta delta,
             final IProgressMonitor monitor) throws CoreException {
-        delta.accept(new IResourceDeltaVisitor() {
-            public boolean visit(IResourceDelta delta) throws CoreException {
-                final int MASK = IResourceDelta.ADDED | IResourceDelta.CHANGED;
-                if ((MASK & delta.getKind()) != 0) {
-                    enhance(delta.getResource(), monitor);
-                }
-                return true;
+        Job job = new WorkspaceJob(Messages.ENHANCE_INCREMENTALBUILD) {
+            public IStatus runInWorkspace(final IProgressMonitor monitor)
+                    throws CoreException {
+                delta.accept(new IResourceDeltaVisitor() {
+                    public boolean visit(IResourceDelta delta)
+                            throws CoreException {
+                        final int MASK = IResourceDelta.ADDED
+                                | IResourceDelta.CHANGED;
+                        if ((MASK & delta.getKind()) != 0) {
+                            enhance(delta.getResource(), monitor);
+                        }
+                        return true;
+                    }
+                });
+                return Status.OK_STATUS;
             }
-        });
+        };
+        job.setPriority(Job.SHORT);
+        job.schedule();
     }
 
     void enhance(IResource resource, IProgressMonitor monitor)
