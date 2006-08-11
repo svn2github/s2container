@@ -26,13 +26,33 @@
 <tr align="left" valign="top"><td width="14"><img height="14" width="14" src="images/spacer.gif" alt=""></td><td width="740" class="main">
 <!-- don't edit end -->
 <!-- document start -->
-<p>S2Containerは、DI(Dependency Injection)とAOP(Aspect Oriented Programming)をサポートする軽量コンテナです。私たちは､最初にあなたにこう聞いてみたい。</p>
-<br /><h1>設定ファイルを書きたいのか､書きたくないのか。</h1><br />
-<p>もちろん、書きたくないことでしょう。S2Containerは、<b><a href="DIContainer.html#CoC">Convention over Configuration</a></b>によって、
-自動的に適切な設定がなされるようになっています。
-また、15分もあれば､マスターできる<a href="DIContainer.html#Quickstart">クイックスタート</a>も用意されています。
-<a href="ejb3.html">EJB3</a>の実装も提供しています。</p>
-<p>さあ、S2Containerを試してみましょう。</p>
+<p>「Seasar2」とは、「Javaのアプリケーション開発」で悩みを抱えている「開発者」向けの
+「軽量コンテナ」であり、「高い生産性と品質」を提供します。
+そして、「他の軽量コンテナ」とは違って、「設定ファイルをほとんど書く必要がなく」、
+「アプリケーションを修正したときでも再起動なしで即座にその変更を認識できるので、
+スクリプト言語並みの柔軟性」が得られます。
+</p>
+<p>
+設定ファイルを書かなくてもすむように、<b>Convention over Configuration</b>の
+考え方が取り入れられています。Convention over Configurationとは、
+「適切な規約を守れば得に面倒な設定をしなくてもフレームワークが自動的に適切な設定をしてくれるという考え」で、
+<a href="http://www.rubyonrails.org/">Ruby on Rails</a>によって
+提唱されました。Seasar2のConvention over Configurationは、Ruby on Railsから
+ヒントを得ました。Railsには本当に感謝いたします。
+</p>
+<p>
+アプリケーションを修正したときでも再起動なしで即座にその変更を認識できる機能のことを
+Seasar2では<b>HOT deploy</b>と呼んでいます。
+デモは<a href="./hotdeploy-demo/hotdeploy-demo.html">こちら</a>。
+</p>
+<p>
+Seasar2をつくるにあたって<a href="http://www.springframework.org">Spring Framework</a>と
+<a href="http://www.picocontainer.org/">PicoContainer</a>を
+参考にしました。本当に感謝いたします。
+</p>
+<p>
+15分もあれば､マスターできる<a href="DIContainer.html#Quickstart">クイックスタート</a>
+を用意しています。最初にお試しください</p>
 
 <h3><a name="demo">デモ</a></h3>
 <h4>FlashによるDEMO</h4>
