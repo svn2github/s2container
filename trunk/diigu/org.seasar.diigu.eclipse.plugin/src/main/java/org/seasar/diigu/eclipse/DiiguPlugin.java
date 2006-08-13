@@ -15,11 +15,19 @@
  */
 package org.seasar.diigu.eclipse;
 
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.jdt.core.ElementChangedEvent;
+import org.eclipse.jdt.core.IElementChangedListener;
+import org.eclipse.jdt.core.IJavaElementDelta;
+import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
+import org.seasar.diigu.eclipse.operation.DependencyAnalyzeJob;
 
 /**
  * The main plugin class to be used in the desktop.
@@ -43,6 +51,25 @@ public class DiiguPlugin extends AbstractUIPlugin {
      */
     public void start(BundleContext context) throws Exception {
         super.start(context);
+        JavaCore.addElementChangedListener(new IElementChangedListener() {
+            public void elementChanged(ElementChangedEvent event) {
+                IJavaElementDelta[] children = event.getDelta()
+                        .getAffectedChildren();
+                for (int i = 0; children != null && i < children.length; i++) {
+                    IResourceDelta[] rdarray = children[i].getResourceDeltas();
+                    for (int j = 0; rdarray != null && j < rdarray.length; j++) {
+                        IResource r = rdarray[j].getResource();
+                        if (r == null) {
+                            continue;
+                        }
+                        if (".classpath".equals(r.getName())) {
+                            Job job = new DependencyAnalyzeJob(r.getProject());
+                            job.schedule();
+                        }
+                    }
+                }
+            }
+        });
     }
 
     /**

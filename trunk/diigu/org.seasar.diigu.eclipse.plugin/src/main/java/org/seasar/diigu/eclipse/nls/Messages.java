@@ -43,6 +43,8 @@ public class Messages extends NLS {
 
     public static String ENHANCE_ERROR;
 
+    public static String ANALYZE_DEPENDENCY;
+
     static {
         Class clazz = Messages.class;
         NLS.initializeMessages(clazz.getName(), clazz);
