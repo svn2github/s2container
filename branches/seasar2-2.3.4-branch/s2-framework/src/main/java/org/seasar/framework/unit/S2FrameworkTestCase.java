@@ -18,6 +18,8 @@ package org.seasar.framework.unit;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.Servlet;
 
@@ -64,6 +66,8 @@ public abstract class S2FrameworkTestCase extends TestCase {
     private ClassLoader originalClassLoader;
 
     private UnitClassLoader unitClassLoader;
+
+    private List boundFields;
 
     public S2FrameworkTestCase() {
     }
@@ -130,34 +134,39 @@ public abstract class S2FrameworkTestCase extends TestCase {
      */
     public void runBare() throws Throwable {
         setUpContainer();
-        setUp();
         try {
-            setUpForEachTestMethod();
+            setUp();
             try {
-                container.init();
+                setUpForEachTestMethod();
                 try {
-                    setUpAfterContainerInit();
+                    container.init();
                     try {
-                        bindFields();
-                        setUpAfterBindFields();
+                        setUpAfterContainerInit();
                         try {
-                            doRunTest();
+                            bindFields();
+                            try {
+                                setUpAfterBindFields();
+                                try {
+                                    doRunTest();
+                                } finally {
+                                    tearDownBeforeUnbindFields();
+                                }
+                            } finally {
+                                unbindFields();
+                            }
                         } finally {
-                            tearDownBeforeUnbindFields();
-                            unbindFields();
+                            tearDownBeforeContainerDestroy();
                         }
                     } finally {
-                        tearDownBeforeContainerDestroy();
+                        container.destroy();
                     }
                 } finally {
-                    container.destroy();
+                    tearDownForEachTestMethod();
                 }
             } finally {
-                tearDownForEachTestMethod();
+                tearDown();
             }
-
         } finally {
-            tearDown();
             tearDownContainer();
         }
     }
@@ -277,6 +286,7 @@ public abstract class S2FrameworkTestCase extends TestCase {
     }
 
     protected void bindFields() throws Throwable {
+        boundFields = new ArrayList();
         for (Class clazz = getClass(); clazz != S2FrameworkTestCase.class
                 && clazz != null; clazz = clazz.getSuperclass()) {
 
@@ -319,6 +329,7 @@ public abstract class S2FrameworkTestCase extends TestCase {
             }
             if (component != null) {
                 FieldUtil.set(field, this, component);
+                boundFields.add(field);
             }
         }
     }
@@ -333,10 +344,17 @@ public abstract class S2FrameworkTestCase extends TestCase {
                 && !field.getType().isPrimitive();
     }
 
-    /**
-     * @deprecated
-     */
     protected void unbindFields() {
+        for (int i = 0; i < boundFields.size(); ++i) {
+            Field field = (Field) boundFields.get(i);
+            try {
+                field.set(this, null);
+            } catch (IllegalArgumentException e) {
+                System.err.println(e);
+            } catch (IllegalAccessException e) {
+                System.err.println(e);
+            }
+        }
     }
 
 }
