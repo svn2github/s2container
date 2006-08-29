@@ -41,4 +41,19 @@
             name="Diigu"
             objectClass="org.eclipse.jdt.core.IJavaProject"/>
    </extension>
+   <extension
+         id="diiguMarker"
+         name="Diigu Error Marker"
+         point="org.eclipse.core.resources.markers">
+      <super type="org.eclipse.core.resources.problemmarker"/>
+      <persistent value="true"/>
+   </extension>
+   <extension
+         id="diiguMarkerResolution"
+         name="Diigu Marker Resolution"
+         point="org.eclipse.ui.ide.markerResolution">
+      <markerResolutionGenerator
+            class="org.seasar.diigu.eclipse.plugin.marker.MarkerResolutionGenerator"
+            markerType="org.seasar.diigu.eclipse.diiguMarker"/>
+   </extension>
 </plugin>

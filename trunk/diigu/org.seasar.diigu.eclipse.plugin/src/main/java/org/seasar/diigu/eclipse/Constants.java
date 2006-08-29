@@ -23,4 +23,8 @@ public final class Constants {
 
     public static final String CONFIG_SELECT_EXPRESSION = "selectExpression";
 
+    public static final String PLUGIN_ID = "org.seasar.diigu.eclipse";
+
+    public static final String MARKER_ID = PLUGIN_ID + ".diiguMarker";
+
 }

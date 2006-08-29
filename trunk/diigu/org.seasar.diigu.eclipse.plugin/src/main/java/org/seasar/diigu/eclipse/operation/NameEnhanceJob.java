@@ -18,6 +18,7 @@ package org.seasar.diigu.eclipse.operation;
 import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceDelta;
@@ -42,6 +43,7 @@ import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jdt.core.Signature;
 import org.seasar.diigu.ParameterNameEnhancer;
+import org.seasar.diigu.eclipse.Constants;
 import org.seasar.diigu.eclipse.DiiguPlugin;
 import org.seasar.diigu.eclipse.builder.DiiguNature;
 import org.seasar.diigu.eclipse.nls.Messages;
@@ -105,6 +107,8 @@ public class NameEnhanceJob extends WorkspaceJob {
      */
     public IStatus runInWorkspace(IProgressMonitor monitor)
             throws CoreException {
+        this.project.deleteMarkers(Constants.MARKER_ID, true,
+                IResource.DEPTH_ONE);
         this.runnable.run(monitor);
         return Status.OK_STATUS;
     }
@@ -168,10 +172,10 @@ public class NameEnhanceJob extends WorkspaceJob {
                         resource.refreshLocal(IResource.DEPTH_ONE, monitor);
                     }
                 } else {
-                    IStatus status = new Status(IStatus.ERROR,
-                            DiiguPlugin.PLUGIN_ID, 0, Messages.bind(
-                                    Messages.CLASS_FILE_NOT_FOUND, path), null);
-                    throw new CoreException(status);
+                    IMarker m = this.project.createMarker(Constants.MARKER_ID);
+                    m.setAttribute(IMarker.MESSAGE, Messages.bind(
+                            Messages.CLASS_FILE_NOT_FOUND, path));
+                    m.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_ERROR);
                 }
                 submonitor.worked(1);
                 if (submonitor.isCanceled()) {

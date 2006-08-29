@@ -2,18 +2,23 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %plugin.brand
 Bundle-SymbolicName: org.seasar.diigu.eclipse; singleton:=true
-Bundle-Version: 0.0.8
+Bundle-Version: 0.0.9
 Bundle-Activator: org.seasar.diigu.eclipse.DiiguPlugin
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.core.resources,
- org.eclipse.jdt.core
+ org.eclipse.jdt.core,
+ org.eclipse.ui.ide
 Eclipse-AutoStart: true
 Bundle-Vendor: %plugin.author
-Export-Package: org.seasar.diigu.eclipse,
+Export-Package: org.seasar.diigu,
+ org.seasar.diigu.eclipse,
  org.seasar.diigu.eclipse.builder,
- org.seasar.diigu.eclipse.nls
+ org.seasar.diigu.eclipse.nls,
+ org.seasar.diigu.eclipse.operation,
+ org.seasar.diigu.eclipse.preferences,
+ org.seasar.diigu.eclipse.util
 Bundle-ClassPath: diigu-builder.jar,
  lib/javassist-3.0.jar,
  lib/diigu-core-0.0.1.jar

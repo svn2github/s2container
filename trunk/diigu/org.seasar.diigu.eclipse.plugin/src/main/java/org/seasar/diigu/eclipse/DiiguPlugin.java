@@ -34,7 +34,7 @@ import org.seasar.diigu.eclipse.operation.DependencyAnalyzeJob;
  */
 public class DiiguPlugin extends AbstractUIPlugin {
 
-    public static final String PLUGIN_ID = "org.seasar.diigu.eclipse";
+    public static final String PLUGIN_ID = Constants.PLUGIN_ID;
 
     // The shared instance.
     private static DiiguPlugin plugin;
