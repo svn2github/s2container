@@ -30,6 +30,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.core.runtime.jobs.Job;
@@ -122,7 +123,6 @@ public class NameEnhanceJob extends WorkspaceJob {
             } catch (CoreException e) {
                 throw e;
             } catch (Exception e) {
-                e.printStackTrace();
                 IStatus status = new Status(IStatus.ERROR,
                         DiiguPlugin.PLUGIN_ID, 0, e.getMessage(), e);
                 throw new CoreException(status);
@@ -133,33 +133,33 @@ public class NameEnhanceJob extends WorkspaceJob {
     protected void enhance(ICompilationUnit unit, IProgressMonitor monitor)
             throws CoreException, Exception {
         monitor.beginTask(Messages.ENHANCE_BEGIN, 5);
-        try {
-            IPath outpath = unit.getJavaProject().getOutputLocation();
-            // FIXME : クラスローダは毎回作らなければならないが、URL[]を毎回作るのは、どうなのかな…。
-            // そもそも、変更の入ったクラスのローダは作り直さないといけないけど、
-            // 参照ライブラリの類をロードする為のローダは、毎回作り直す必然性が無いんじゃね？
-            // どっかでイベント拾って作る方が、体感速度があがると思われ。
-            JavaProjectClassLoader loader = new JavaProjectClassLoader(unit
-                    .getJavaProject());
-            monitor.worked(1);
-            IProgressMonitor submonitor = new SubProgressMonitor(monitor, 3);
-            IType[] types = unit.getAllTypes();
-            submonitor.beginTask(Messages.ENHANCE_PROCEED, types.length);
-            DiiguNature nature = DiiguNature.getInstance(this.project);
-            Pattern ptn = null;
-            if (nature != null) {
-                ptn = nature.getSelectExpression();
-            }
-            for (int i = 0; i < types.length; i++) {
-                IType type = types[i];
-                String typename = type.getFullyQualifiedName();
+        IPath outpath = unit.getJavaProject().getOutputLocation();
+        // FIXME : クラスローダは毎回作らなければならないが、URL[]を毎回作るのは、どうなのかな…。
+        // そもそも、変更の入ったクラスのローダは作り直さないといけないけど、
+        // 参照ライブラリの類をロードする為のローダは、毎回作り直す必然性が無いんじゃね？
+        // どっかでイベント拾って作る方が、体感速度があがると思われ。
+        JavaProjectClassLoader loader = new JavaProjectClassLoader(unit
+                .getJavaProject());
+        monitor.worked(1);
+        IProgressMonitor submonitor = new SubProgressMonitor(monitor, 3);
+        IType[] types = unit.getAllTypes();
+        submonitor.beginTask(Messages.ENHANCE_PROCEED, types.length);
+        DiiguNature nature = DiiguNature.getInstance(this.project);
+        Pattern ptn = null;
+        if (nature != null) {
+            ptn = nature.getSelectExpression();
+        }
+        for (int i = 0; i < types.length; i++) {
+            IType type = types[i];
+            String typename = type.getFullyQualifiedName();
 
-                if (ptn != null && ptn.matcher(typename).matches()) {
-                    submonitor.subTask(typename);
-                    IPath path = outpath.append(type.getFullyQualifiedName()
-                            .replace('.', '/')
-                            + ".class");
-                    IResource resource = this.project.getParent().getFile(path);
+            if (ptn != null && ptn.matcher(typename).matches()) {
+                submonitor.subTask(typename);
+                IPath path = outpath.append(type.getFullyQualifiedName()
+                        .replace('.', '/')
+                        + ".class");
+                IResource resource = this.project.getParent().getFile(path);
+                if (resource.exists()) {
                     ParameterNameEnhancer enhancer = new ParameterNameEnhancer(
                             type.getFullyQualifiedName(), loader);
 
@@ -167,18 +167,22 @@ public class NameEnhanceJob extends WorkspaceJob {
                         enhancer.save();
                         resource.refreshLocal(IResource.DEPTH_ONE, monitor);
                     }
-                    submonitor.worked(1);
-                    if (submonitor.isCanceled()) {
-                        break;
-                    }
+                } else {
+                    IStatus status = new Status(IStatus.ERROR,
+                            DiiguPlugin.PLUGIN_ID, 0, Messages.bind(
+                                    Messages.CLASS_FILE_NOT_FOUND, path), null);
+                    throw new CoreException(status);
+                }
+                submonitor.worked(1);
+                if (submonitor.isCanceled()) {
+                    throw new OperationCanceledException();
                 }
             }
-            submonitor.done();
-            monitor.setTaskName(Messages.ENHANCE_END);
-            monitor.worked(1);
-        } finally {
-            monitor.done();
         }
+        submonitor.done();
+        monitor.worked(1);
+        monitor.setTaskName(Messages.ENHANCE_END);
+        monitor.done();
     }
 
     protected boolean enhanceClassFile(IType type,
