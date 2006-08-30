@@ -17,6 +17,7 @@ package org.seasar.framework.container.autoregister;
 
 import org.seasar.framework.container.S2Container;
 import org.seasar.framework.unit.S2FrameworkTestCase;
+import org.seasar.framework.util.ResourceNotFoundRuntimeException;
 
 /**
  * @author higa
@@ -39,5 +40,13 @@ public class JarComponentAutoRegisterTest extends S2FrameworkTestCase {
 
     public void testRegisterAll() throws Exception {
         assertTrue("1", child.hasComponentDef("testSuite"));
+    }
+
+    public void testInvalidBaseDir() throws Exception {
+        try {
+            autoRegister.setBaseDir("Not Found");
+            autoRegister.registerAll();
+        } catch (ResourceNotFoundRuntimeException expected) {
+        }
     }
 }

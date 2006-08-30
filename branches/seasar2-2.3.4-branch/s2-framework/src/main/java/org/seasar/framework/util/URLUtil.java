@@ -17,9 +17,14 @@ package org.seasar.framework.util;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 
+import org.seasar.framework.beans.BeanDesc;
+import org.seasar.framework.beans.factory.BeanDescFactory;
 import org.seasar.framework.exception.IORuntimeException;
 
 /**
@@ -53,5 +58,31 @@ public class URLUtil {
         } catch (IOException e) {
             throw new IORuntimeException(e);
         }
+    }
+
+    public static String encode(final String s, final String enc) {
+        try {
+            return URLEncoder.encode(s, enc);
+        } catch (final UnsupportedEncodingException e) {
+            throw new IORuntimeException(e);
+        }
+    }
+
+    public static String decode(final String s, final String enc) {
+        try {
+            return URLDecoder.decode(s, enc);
+        } catch (final UnsupportedEncodingException e) {
+            throw new IORuntimeException(e);
+        }
+    }
+
+    /**
+     * 以下のバグに対する対応です。 <br/>
+     * http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4167874
+     * 
+     */
+    public static void disableURLCaches() {
+        BeanDesc bd = BeanDescFactory.getBeanDesc(URLConnection.class);
+        FieldUtil.set(bd.getField("defaultUseCaches"), null, Boolean.FALSE);
     }
 }

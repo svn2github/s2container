@@ -21,6 +21,7 @@ import java.util.regex.Pattern;
 
 import org.seasar.framework.util.ClassTraversal;
 import org.seasar.framework.util.JarFileUtil;
+import org.seasar.framework.util.ResourceNotFoundRuntimeException;
 import org.seasar.framework.util.ResourceUtil;
 import org.seasar.framework.util.StringUtil;
 
@@ -51,6 +52,9 @@ public abstract class AbstractJarComponentAutoRegister extends
             setupBaseDir();
         }
         File dir = new File(baseDir);
+        if (!dir.exists() || !dir.isDirectory()) {
+            throw new ResourceNotFoundRuntimeException(baseDir);
+        }
         String[] jars = dir.list();
         for (int i = 0; i < jars.length; ++i) {
             if (!isAppliedJar(jars[i])) {

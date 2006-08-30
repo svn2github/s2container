@@ -16,6 +16,7 @@
 package org.seasar.framework.util;
 
 import java.io.File;
+import java.net.URL;
 
 import junit.framework.TestCase;
 
@@ -62,5 +63,16 @@ public class ResourceUtilTest extends TestCase {
         assertEquals("1", "aaa/bbb", ResourceUtil
                 .removeExtension("aaa/bbb.xml"));
         assertEquals("2", "aaa/bbb", ResourceUtil.removeExtension("aaa/bbb"));
+    }
+
+    public void testToExternalForm() throws Exception {
+        URL url = new File("C:\\Program Files").toURL();
+        assertEquals("file:/C:/Program Files/", ResourceUtil
+                .toExternalForm(url));
+    }
+
+    public void testGetFileName() throws Exception {
+        URL url = new File("C:\\Program Files").toURL();
+        assertEquals("/C:/Program Files/", ResourceUtil.getFileName(url));
     }
 }

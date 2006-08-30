@@ -16,29 +16,20 @@
 package org.seasar.framework.util;
 
 import java.io.File;
-import java.io.IOException;
+import java.net.URL;
 
-import org.seasar.framework.exception.IORuntimeException;
+import junit.framework.TestCase;
 
 /**
- * @author higa
- * 
+ * @author koichik
  */
-public final class FileUtil {
+public class JarFileUtilTest extends TestCase {
 
-    private FileUtil() {
-    }
-
-    public static byte[] getBytes(File file) {
-        return InputStreamUtil.getBytes(FileInputStreamUtil.create(file));
-    }
-
-    public static String getCanonicalPath(File file) {
-        try {
-            return file.getCanonicalPath();
-        } catch (IOException e) {
-            throw new IORuntimeException(e);
-        }
+    public void testToJarFilePath() throws Exception {
+        File f = new File("C:\\Program Files\\foo.jar");
+        URL url = new URL("jar:" + f.toURL() + "!/");
+        assertEquals("C:\\Program Files\\foo.jar", JarFileUtil
+                .toJarFilePath(url));
     }
 
 }
