@@ -22,7 +22,6 @@ import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.resources.IncrementalProjectBuilder;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.jobs.Job;
 import org.seasar.diigu.eclipse.nls.Messages;
 import org.seasar.diigu.eclipse.operation.NameEnhanceJob;
 
@@ -52,13 +51,15 @@ public class DiiguBuilder extends IncrementalProjectBuilder {
     }
 
     protected void fullBuild(IProgressMonitor monitor) throws CoreException {
-        Job job = new NameEnhanceJob(Messages.ENHANCE_FULLBUILD, getProject());
-        job.schedule();
+        NameEnhanceJob job = new NameEnhanceJob(Messages.ENHANCE_FULLBUILD,
+                getProject());
+        job.run(monitor);
     }
 
     protected void incrementalBuild(final IResourceDelta delta,
             final IProgressMonitor monitor) throws CoreException {
-        Job job = new NameEnhanceJob(Messages.ENHANCE_INCREMENTALBUILD, delta);
-        job.schedule();
+        NameEnhanceJob job = new NameEnhanceJob(
+                Messages.ENHANCE_INCREMENTALBUILD, delta);
+        job.run(monitor);
     }
 }

@@ -16,17 +16,20 @@
 package org.seasar.diigu.eclipse.operation;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IncrementalProjectBuilder;
 import org.eclipse.core.resources.WorkspaceJob;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
+import org.seasar.diigu.eclipse.builder.DiiguBuilder;
 import org.seasar.diigu.eclipse.nls.Messages;
 import org.seasar.diigu.eclipse.util.ProjectUtils;
 
@@ -62,8 +65,8 @@ public class DependencyAnalyzeJob extends WorkspaceJob {
         analyze(this.project, targets, allOf);
         for (Iterator i = targets.iterator(); i.hasNext();) {
             IProject p = (IProject) i.next();
-            Job job = new NameEnhanceJob(Messages.ENHANCE_FULLBUILD, p);
-            job.schedule();
+            p.build(IncrementalProjectBuilder.FULL_BUILD,
+                    DiiguBuilder.BUILDER_ID, new HashMap(), monitor);
         }
 
         return Status.OK_STATUS;
