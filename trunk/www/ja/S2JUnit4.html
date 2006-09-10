@@ -23,140 +23,416 @@
 <!-- don't edit end -->
 <!-- document start -->
 <p>S2JUnit4は<a href="http://www.junit.org/index.htm">JUnit4</a>を拡張したテスティングフレームワークです。
-S2JUnit4はアノテーションと命名規則の双方を利用し少ないコードで効率のよいテストを可能にします。
-Seasar2ではテスティングフレームワークとしてすでに<a href="S2Unit.html">S2Unit</a>を提供していますが、S2JUnit4はJUnit4の対応に加えS2Unitの次の機能を自動化することを特長としています。</p>
-<ul>
-<li>diconファイルのinclude</li>
-<li>Excelに用意した事前データのデータベースへの書き出し</li>
-<li>トランザクションの開始とロールバック</li>
-</ul>
-<p>S2JUnit4の主な機能には次のものがあります。</p>
-<ul>
-<li>javaee5.diconを自動でincludeします。</li>
-<li>public、非static、引数なし、戻り値なしのメソッドをテストメソッドとみなします。Testアノテーションがついているものもついていないものも等しくテストメソッドとみなします。</li>
-<li>beforeXxx、afterXxx、という命名規則に従ったメソッドを個別のテストメソッドの前後に実行します。（S2UnitにおけるsetUpXxx、tearDownXxxに相当します。）</li>
-<li>テストメソッド実行前に自動的にトランザクションを開始し、トランザクション終了後に自動的にロールバックを行います。トランザクションの振る舞いはTxBehaviorアノテーションを使うことで変更できます。TxBehaviorアノテーションに指定できるTxBehaviorTypeにはNONE（トランザクションを開始しない）、COMMIT（トランザクションをコミットする）、ROLLBACK（トランザクションをロールバックする）の3種類があります。ROLLBACKがデフォルトの振る舞いです。</li>
-<li>「テストクラス名_.dicon」という名称のdiconファイルがテストクラスと同一のパッケージもしくはクラスパスのルートに存在すればテストメソッド実行前に自動的にincludeします。</li>
-<li>「テストクラス名_テストメソッド名.xls」もしくは「テストクラス名.xls」という名称のExcelがテストクラスと同一のパッケージもしくはクラスパスのルートに存在すればテストメソッド実行前に自動的に読み込みデータベースに書き込みます。S2JUnit4は最初に「テストクラス名_テストメソッド名.xls」を存在検査し存在すれば「テストクラス名_テストメソッド名.xls」を使用し、存在しない場合は「テストクラス名.xls」を使用します。</li>
-<li>インターフェース型のフィールドがテストクラスに宣言されている場合、その型のコンポーネントがコンテナに存在すればS2JUnit4はそのコンポーネントをフィールドに設定します。</li>
-<li>非static、非finalなフィールドがテストクラスに宣言されている場合、その名前からアンダースコア(_)を除いた名前のコンポーネントがコンテナに登録されていれば、S2JUnit4はそのコンポーネントをフィールドに設定します。</li>
-<li>DataAccessorクラスがテストクラスのフィールドに宣言されている場合、S2JUnit4はDataAccessorクラスのインスタンスをフィールドに設定します。DataAccessorクラスはExcelとデータベースにアクセスするためのメソッド群を持ちます。</li>
-<li>S2Assertクラスのメソッドをstatic importすることでS2JUnit4固有のアサーションメソッドを実行できます。</li>
-<li>diconファイルを使い、上に述べた機能をカスタマイズすることができます。たとえば、beforeXxx、afterXxxという命名規則を変更したり、独自アノテーションを使って振る舞いを拡張したりすることができます。</li>
-</ul>
-<h2><a name="Example">Example</a></h2>
-
-<h2><a name="SelectTest">Select文に対するテスト</a></h2>
-<p>S2Unitのサンプルと同様、従業員を従業員番号で検索するDAOをサンプルとします。
-シナリオとして従業員番号9900で検索をかけると、従業員番号9900の従業員テーブルと部署番号99の部署テーブルをジョインして返す想定とします。
-このケースをテストするためには、検索のための従業員テーブルと部署テーブルのデータと検索した結果を検証するためのデータが必要です。
-データはExcelで用意します。データの作り方などについては適宜<a href="S2Unit.html#SelectTest">S2Unitのサンプル</a>を参照してください。
+    S2JUnit4はアノテーションと命名規則をバランス良く組み合わせ少ないコードで効率のよいテストを可能にします。
 </p>
+    <p>
+        S2JUnit4の主な機能には次のものがあります。</p>
+<ul>
+<li>命名規則に従い初期化メソッドやテストメソッドを適切な順序で呼び出します。JUnit4の@Beforeや@Testなどのアノテーションと併用することも可能です。
+</li>
+<li>テストメソッド実行のための事前条件を指定することができます。</li>
+<li>テストメソッド実行時のトランザクションの振る舞いを指定できます。デフォルトでは自動で開始され自動でロールバックされます。 </li>
+<li>複数の設定ファイルを自動でincludeできます。 </li>
+<li>テストごとに異なるテストデータを自動で準備することができます。デフォルトではExcelに用意した値をデータベースに書き込みます。</li>
+<li>テストごとに異なるテストの期待値を簡単に取得できます。デフォルトではExcelに用意した期待値を取得します。</li>
+<li>テストメソッド実行直前にコンポーネントを自動でテストクラスのフィールドにセットすることができます。EJB3のコンポーネントをフィールドにセットすることもできます。
+</li>
+    <li>BeanやEntityとDataSetを比較するためのアサートメソッドを提供します。 </li>
+</ul>
 
-<p>
-従業員テーブルと部署テーブルの事前データのExcelはS2JUnitが自動で読み込みデータベースへ書き込めるように「テストクラス名_メソッド名.xls」、すなわちここでは「EmployeeDaoImplTest_getEmployee.xls」という名前にし、テストクラスと同一パッケージ内に置きます。
-検索した結果を検証するための期待値データのExcelはテストメソッド内で明示的に指定します。
-ここではわかりやすく「EmployeeDaoImplTest_getEmployee_Expected.xls」という名前にします。
-</p>
+<h2>
+    <a name="RuntimeEnvironment">実行環境</a></h2>
+    <p>
+        S2Container 2.4.0 rc2 以上と S2Tiger 2.4.0 rc2 以上が必要です。s2junit4.diconがCLASSPATHに含まれている必要があります。
+        </p>
+    <h2>
+    <a name="Sample">サンプル</a></h2>
+<p><a href="S2Unit.html#SelectTest">S2Unitのサンプル</a>のサンプルと同様、従業員を従業員番号で検索するDAOをサンプルとします。設定ファイルとテストクラスはそれぞれ以下のようになります。
 
-<h3>examples.s2junit4.EmployeeDaoImplTest.dicon</h3>
-<pre>
-&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+</p><h4>EmployeeDaoImplTest.dicon</h4>
+<pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN" 
-    "http://www.seasar.org/dtd/components24.dtd"&gt;
+  "http://www.seasar.org/dtd/components24.dtd"&gt;
 &lt;components&gt;
-    &lt;include path="javaee5.dicon"/&gt;
-    &lt;component class="examples.s2junit4.EmployeeDaoImpl"&gt;
-        &lt;property name="getEmployeeHandler"&gt;
-            &lt;component class="org.seasar.extension.jdbc.impl.BasicSelectHandler"&gt;
-                &lt;property name="sql"&gt;
+  &lt;include path="javaee5.dicon"/&gt;
+  &lt;component class="examples.s2junit4.EmployeeDaoImpl"&gt;
+    &lt;property name="getEmployeeHandler"&gt;
+      &lt;component class="org.seasar.extension.jdbc.impl.BasicSelectHandler"&gt;
+        &lt;property name="sql"&gt;
 "SELECT e.empno, e.ename, e.deptno, d.dname FROM emp e, dept d
 WHERE e.empno = ? AND e.deptno = d.deptno"
-                &lt;/property&gt;
-                &lt;property name="resultSetHandler"&gt;
-                    &lt;component class="org.seasar.extension.jdbc.impl.BeanResultSetHandler"&gt;
-                        &lt;arg&gt;@examples.s2junit4.Employee@class&lt;/arg&gt;
-                    &lt;/component&gt;
-                &lt;/property&gt;
-            &lt;/component&gt;
         &lt;/property&gt;
-    &lt;/component&gt;
+        &lt;property name="resultSetHandler"&gt;
+          &lt;component class="org.seasar.extension.jdbc.impl.BeanResultSetHandler"&gt;
+            &lt;arg&gt;@examples.s2junit4.Employee@class&lt;/arg&gt;
+          &lt;/component&gt;
+        &lt;/property&gt;
+      &lt;/component&gt;
+    &lt;/property&gt;
+  &lt;/component&gt;
 &lt;/components&gt;
 </pre>
-<p>
-diconファイルではDAOの実装の設定を行います。
-S2JUnit4が自動でdiconファイルをincludeできるようにdiconファイルは「テストクラス名.dicon」すなわち「EmployeeDaoImplTest.dicon」という名前とし、テストクラスと同一パッケージ内に置きます。
-</p>
 
-<h3>examples.s2junit4.EmployeeDaoImplTest</h3>
-<pre>
-package examples.s2junit4;
+<h4>examples.s2junit4.EmployeeDaoImplTest</h4>
+<pre>package examples.s2junit4;
 
 import static org.seasar.framework.unit.S2Assert.assertEquals;
 
 import org.junit.Ignore;
 import org.junit.runner.RunWith;
-import org.seasar.extension.dataset.DataSet;
-import org.seasar.framework.unit.DataAccessor;
 import org.seasar.framework.unit.Seasar2;
+import org.seasar.framework.unit.TestContext;
 
 @RunWith(Seasar2.class)
 public class EmployeeDaoImplTest {
 
-    private EmployeeDao dao;
+    private TestContext ctx;
 
-    private DataAccessor da;
+    private EmployeeDao dao;
 
     public void getEmployee() throws Exception {
         Employee emp = dao.getEmployee(9900);
-        DataSet expected = da
-                .readXls("EmployeeDaoImplTest_getEmployee_Expected.xls");
-        assertEquals("1", expected, emp);
+        assertEquals("1", ctx.getExpected(), emp);
     }
 
     @Ignore("not implemented.")
     public void getEmployeeByName() throws Exception {
     }
 
+}</pre>
+    <p>
+        このテストクラスのポイントを説明します。</p>
+<ul>
+<li>クラスに@RunWith(Seasar2.class)と指定します。これはこのテストクラスをS2JUnit4で動作させるために必要です。 </li>
+<li>TestContextインタフェース型の変数をフィールドに宣言します。<a href="#AutoFieldBinding">自動フィールドバインディング</a>により変数ctxには<a href="#TestContext">テストコンテキスト</a>が自動でセットされます。ここでは期待値を取得するメソッドgetExpected()を呼び出すために使用します。
+</li>
+<li>テスト対象のコンポーネントのインタフェースを型とする変数を宣言します。自動フィールドバインディングにより変数daoにはコンポーネントが自動でセットされます。ここではEmployeeDaoが相当します。
+</li>
+<li>org.seasar.framework.unit.S2Assert.assertEqualsをstaticインポートします。assertEqualsメソッドはテストメソッドgetEmployee()内でDataSetとBeanを比較するために使用します。
+</li>
+<li>テストメソッドgetEmployee()を用意する。テストメソッドは<code>public</code>、非<code>static</code>、引数なし、戻り値なしでなければいけません。テストメソッド実行前にはトランザクションが自動で開始され、実行後にはトランザクションが自動でロールバックされます。</li>
+    <li>実行したくないテストメソッドには@Ignoreを指定します。これはJUnit4のアノテーションです。S2JUnit4ではJUnit4のアノテーションをそのまま利用できます。</li>
+</ul>
+    <p>
+
+このテストクラスは設定ファイル、準備値、期待値を自動で読み込みます。
+    <ul>
+        <li>デフォルトの設定ではjavaee5.diconとテストクラスと同一パッケージにありテストクラスと同じ名前をもつdiconファイルが自動でインクルードされます。したがってここではjavaee5.diconとEmployeeDaoImplTest.diconのふたつの設定ファイルがインクルードされます。
+        </li>
+        <li>テストクラスと同一パッケージにあり、"修飾なしテストクラス名_テストメソッド名.xls"もしくは"修飾なしテストクラス名.xls"という名前のExcelが存在すれば、自動で読み込まれ準備値としてデータベースに追加されます。
+            自動でトランザクションがロールバックされるのでデータベースのデータはテスト終了後にはテスト開始前の状態に戻ります。</li><li>TestContextインタフェースのgetExpected()メソッドを実行すると、テストクラスと同一パッケージにある”テストクラス名_テストメソッド名_Expected.xls”という名前のExcelが期待値として自動で読み込まれます。
+        </li>
+    </ul>
+
+        <p>
+            準備値と期待値のExcelを用意する方法は<a href="S2Unit.html#SelectTest">S2Unitのサンプル</a>を参考にしてください。
+        </p>
+
+<h2><a name="MethodNamingConvention">メソッド命名規則</a></h2>
+    <p>
+        S2JUnit4は命名規則により初期化メソッドやテストメソッドを判別します。以下は命名規則の一覧です。対応するアノテーションがJUnit4に存在する場合はそのアノテーションを示しています。命名規則はカスタマイズすることができます。カスタマイズの方法は<a href="#S2JUnit4Customization">S2JUnit4のカスタマイズ</a>を参照ください。</p>
+    <p>
+        <table border="1" width="744">
+            <tr align="center" bgcolor="#d1f3f4">
+                <th scope="col" style="width: 117px">
+                    メソッドの種類</th>
+                <th scope="col" style="width: 138px">
+                    JUnit4のアノテーション</th>
+                <th scope="col" style="width: 143px">
+                    S2JUnit4の命名規則</th>
+                <th scope="col" width="624">
+                    備考</th>
+            </tr>
+            <tr>
+                <td style="width: 117px; height: 45px">
+                    テストクラスの初期化メソッド</td>
+                <td style="width: 138px; height: 45px">
+                    @BeforeClass</td>
+                <td style="width: 143px; height: 45px">
+                    beforeClass</td>
+                <td style="height: 45px">
+                    ひとつのクラスに@BeforeClassが指定されたメソッドとbeforeClass()メソッドが混在する場合、beforeClass()メソッドは最後に実行される。</td>
+            </tr>
+            <tr>
+                <td style="width: 117px">
+                    テストクラスの解放メソッド</td>
+                <td style="width: 138px">
+                    @AfterClass</td>
+                <td style="width: 143px">
+                    afterClass</td>
+                <td>
+                    ひとつのクラスに@AfterClassが指定されたメソッドとafterClass()メソッドが混在する場合、beforeClass(メソッドは最後に実行される。</td>
+            </tr>
+            <tr>
+                <td style="width: 117px">
+                    テストケースの初期化メソッド</td>
+                <td style="width: 138px">
+                    @Before</td>
+                <td style="width: 143px">
+                    before</td>
+                <td>
+                    ひとつのクラスに@Beforeが指定されたメソッドとbefore()メソッドが混在する場合、before()メソッドは最後に実行される。</td>
+            </tr>
+            <tr>
+                <td style="width: 117px">
+                    テストケースの解放メソッド</td>
+                <td style="width: 138px">
+                    @After</td>
+                <td style="width: 143px">
+                    after</td>
+                <td>
+                    ひとつのクラスに@Afterが指定されたメソッドとbeforeClass()メソッドが混在する場合、after()メソッドは最後に実行される。</td>
+            </tr>
+            <tr>
+                <td style="width: 117px">
+                    個々のテストメソッドに対応する初期化メソッド</td>
+                <td style="width: 138px">
+                    -</td>
+                <td style="width: 143px">
+                    beforeXxx</td>
+                <td>
+                    Xxxはテストメソッド名をあらわす。</td>
+            </tr>
+            <tr>
+                <td style="width: 117px">
+                    個々のテストメソッドに対応する解放メソッド</td>
+                <td style="width: 138px">
+                    -</td>
+                <td style="width: 143px">
+                    afterXxx</td>
+                <td>
+                    Xxxはテストメソッド名をあらわす。</td>
+            </tr>
+            <tr>
+                <td style="width: 117px">
+                    テストメソッド</td>
+                <td style="width: 138px">
+                    @Test</td>
+                <td style="width: 143px">
+                    上記のどの命名規則にも当てはまらないメソッド</td>
+                <td>&nbsp;
+                </td>
+            </tr>
+        </table>
+    </p>
+        <p>
+            メソッドのシグネチャはすべて<code>public</code>、引数なし、戻り値なしでなければいけません。さらに、テストクラスの初期化/解放メソッドは<code>static</code>、それ以外のメソッドは非<code>static</code>でなければいけません。
+        JUnit4のアノテーションとS2JUnit4の命名規則が1つのメソッドに対して同時に使用される場合、命名規則よりもアノテーションが優先されます。
+        </p>
+<h2>
+    拡張<a name="AssertionMethod">アサートメソッド</a></h2>
+        <p>
+            S2JUnit4ではJUnit4のアサートメソッドに加えS2JUnit4独自のアサートメソッドを利用可能です。S2JUnit4独自のアサートメソッドはorg.seasar.framework.unit.S2Assertクラスに定義されています。S2Assertクラスはstaticインポートして利用してください。S2Assertクラスのアサートメソッドを使用すると以下のことが可能です。</p>
+        <ul>
+            <li>DataSetとDataSetの比較</li>
+            <li>DataTableとDataTableの比較</li>
+            <li>DataSetとBeanの比較</li>
+            <li>DataSetとBeanのListの比較</li>
+            <li>DataSetとBeanのMapの比較 </li>
+            <li>DataSetとEntityの比較</li>
+            <li>DataSetとEntityのCollectionの比較</li>
+        </ul>
+<h2>
+    <a name="AutoFieldBinding">自動フィールドバインディング</a></h2>
+    <p>
+        自動フィールドバインディングとはコンテナに管理されたコンポーネントを特定のルールに従ってテストクラスのフィールドに自動でセットする機能です。自動フィールドバインディングのルールには以下のものがあります。<!--StartFragment --></p>
+        <ul>
+            <li>バインディング対象のフィールドは非<code>static</code>、非<code>final</code>、非プリミティブ型かつ<code>null</code>でなければならない。
+            </li>
+            <li>フィールド名からアンダースコア(_)を除いた名前のコンポーネントがコンテナに存在する場合、その名前のコンポーネントがフィールドにセットされる。</li>
+            <li>フィールドの変数定義がインターフェース型でそのインタフェースをもつコンポーネントがコンテナに存在する場合、そのコンポーネントがフィールドにセットされる。</li>
+            <li>フィールドにEJBアノテーションが指定されbeanNameもしくはname要素に値が指定されている場合、その値を名前とするコンポーネントがコンテナに存在すれば、そのコンポーネントがフィールドにセットされる。
+            </li>
+            <li>自動フィールドバインディングは、テストメソッド実行の直前に行われる（ただしTestContextインタフェースの例外）。テストメソッドの実行が終了するとバインディングされたフィールドにはnullがセットされる。
+            </li>
+        </ul>
+<h2>
+    <a name="TestContext">テストコンテキスト</a></h2>
+        <p>
+            テストコンテキストはテストの実行時情報をもちS2JUnit4の振る舞いを制御するオブジェクトです。テストクラスはorg.seasar.framework.unit.TestContextインタフェースを介してテストコンテキストにアクセスできます。テストコンテキストの取得には自動フィールドバインディングを使用してください。自動バインディングは他のコンポーネントとは異なりbefore()メソッド実行直前に行われます。TestContextインタフェースが提供する機能は次のものです。</p>
+        <ul>
+            <li>設定ファイルのインクルード</li>
+            <li>コンポーネントの登録</li>
+            <li>設定ファイルの自動インクルード機能の有効/無効の設定</li>
+            <li>テストデータの自動準備機能の有効/無効の設定</li>
+            <li>期待値の取得</li>
+            <li>実行時テストクラス名の取得</li>
+            <li>実行時テストメソッド名の取得</li>
+        </ul>
+<pre>
+@RunWith(Seasar2.class)
+public class Hoge {
+
+    private TestContext ctx;                //自動フィールドバインディングにより取得  
+    
+    private EmployeeDao dao;
+    
+    public void before() {
+       ctx.setAutoIncluding(false);         //自動インクルード機能を無効に設定
+       ctx.include("hoge.dicon");            //明示的なインクルード
+       ctx.register(EmployeeDaoImpl.class);  //コンポーネントの登録
+    }
+
+    public void hoge() {
+        assertEquals(ctx.getExpected(), dao.getEmployee()); //期待値を取得
+    }
+
+} </pre>
+        <h2>
+            <a name="PrerequisiteSetting">事前条件の設定</a></h2>
+    <p>
+        テストクラスまたはテストメソッドにorg.seasar.framework.unit.Prerequisiteアノテーションを指定することで事前条件を示すことができます。事前条件はOGNL式で記述します。OGNLについては<a
+            href="ognl.html">OGNLガイド</a>を参照してください。<br />
+        OGNL式の評価が<code>true</code>となると事前条件が満たされたと判定されます。事前条件が満たされない場合、テストメソッドは実行されず無視されます。テストクラスとテストメソッドの両方にこのアノテーションが指定された場合、テストメソッドの実行には両方の事前条件が満たされる必要があります。</p>
+<pre>@Prerequisite("isWindowsEnvironment()")
+public void hoge() {
+    ...
+}
+
+public boolean isWindowsEnvironment() {
+    return ...
 }
 </pre>
-<p>S2JUnit4でテストクラスを実行するには@RunWith(Seasar2.class)の指定が必要です。public、非static、引数なし、戻り値なしのメソッドがテストメソッドとして実行されます。Ignoreアノテーションが指定されているテストメソッドは実行されません。従って、ここではgetEmployeeメソッドのみが実行されます。</p>
-<p>
-インターフェース型でインスタンス変数(dao)を宣言しておけば、テストメソッドを開始する前にS2Containerから取り出されて自動的に設定されます。
-期待値をもつExcelを読み込むためにはDataAccessorクラスのreadXlsメソッドを使います。DataAccessorクラスのインスタンスは宣言しておけば自動的に設定されます。
-DataSetとBeanを比較し値が等しいことを検証するにはS2AssertクラスのassertEqualsメソッドを利用します。このメソッドはstatic importの宣言をしておくことで簡潔に利用できます。
-</p>
-<p>テストメソッドを実行する処理の流れをgetEmployeeメソッドの実行に則して説明すると次のようになります。</p>
-<ol>
-<li>Ignoreアノテーションが指定されていないことを確認する（指定されていれば以下の一連の処理は行わない）</li>
-<li>javaee5.diconが存在すれば自動でincludeする</li>
-<li>EmployeeDaoImplTest.diconが存在すれば自動でincludeする</li>
-<li>Beforeアノテーションが指定されたメソッドが存在すれば実行する</li>
-<li>beforeGetEmployeeメソッドが存在すれば実行する</li>
-<li>EmployeeDaoImplとDataAccessorのインスタンスをフィールドに設定する</li>
-<li>トランザクションを開始する</li>
-<li>EmployeeDaoImplTest_getEmployee_.xlsが存在すれば読み込んでデータベースに書き込む</li>
-<li>EmployeeDaoImplTest.xlsが存在すれば読み込んでデータベースに書き込む</li>
-<li>getEmployeeメソッドを実行する</li>
-<li>トランザクションをロールバックする</li>
-<li>afterGetEmployeeメソッドが存在すれば実行する</li>
-<li>Afterアノテーションが指定されたメソッドが存在すれば実行する</li>
-</ol>
+    <h2>
+        <a name="TxBehaviorSetting">トランザクションの振る舞いの設定</a></h2>
+    <p>
+        トランザクションの振る舞いのデフォルトの挙動は、「テストメソッドの実行前にトランザクションが自動で開始され、テストメソッドの実行後に自動でロールバックされる」というものです。この挙動はテストクラスまたはテストメソッドにorg.seasar.framework.unit.TxBehaviorアノテーションを指定することで変更することができます。<br />
+        TxBehaviorアノテーションにTxBehaviorType.COMMITを指定した場合、テストメソッドの実行前にトランザクションが自動で開始され、テストメソッド実行後に自動でコミットされます。<br />
+        TxBehaviorアノテーションにTxBehaviorType.ROLLBACKを指定した場合、アノテーションを指定しない場合と同じ挙動になります。<br />
+        TxBehaviorアノテーションにTxBehaviorType.NONEを指定した場合、トランザクションは開始されません。<br />
+        このアノテーションをテストクラスとテストメソッドの両方に指定した場合はテストメソッドのアノテーションが優先されます。</p>
+<pre>@TxBehavior(TxBehaviorType.COMMIT)
+public void hoge() {
+    ...
+}
 
-<h2><a name="Customization">S2JUnit4のカスタマイズ</a></h2>
-<p>
-diconファイルにコンポーネントを指定することでS2JUnit4の振る舞いを変更することができます。
-カスタマイズのためのコンポーネントを含むdiconファイルのパス名には、<code>org.seasar.unit.s2junit4.config</code>をキーとして取得できるシステムプロパティが存在する場合はその値が使われ、存在しない場合はクラスパスのルートに存在するs2junit4.diconが使われます。
-diconファイルに設定できるコンポーネントはorg.seasar.framework.unitパッケージ内の次のインタフェースの実装のすべてまたはいずれかです。
-<ul>
-<li>Seasar2.Configurator</li>
-<li>Seasar2.Provider</li>
-<li>S2TestClassMethodsRunner.Provider</li>
-<li>S2TestMethodRunner.Provider</li>
-<li>TestIntrospector</li>
-</ul>
-</p>
+@TxBehavior(TxBehaviorType.ROLLBACK)
+public void foo() {
+    ...
+}
 
+@TxBehavior(TxBehaviorType.NONE)
+public void bar() {
+    ...
+}</pre>        
+<h2>
+    <a name="s2junit4Setting">s2junit4.diconの設定</a></h2>
+        <p>
+            s2junit.diconにはS2JUnit4で使用されるコンポーネントが次のように定義されています。各コンポーネントのプロパティを変更すことでS2JUnit4のデフォルトの設定を変更することができます。</p>
+<h3>
+    s2junit4.dicon</h3>
+<pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN"
+  "http://www.seasar.org/dtd/components24.dtd"&gt;
+&lt;components namespace="s2junit4"&gt;
+  
+  &lt;component name="context" class="org.seasar.framework.unit.impl.InternalTestContextImpl"/&gt;
+
+  &lt;component class="org.seasar.framework.unit.impl.DataAccessorImpl"/&gt;
+
+  &lt;component class="org.seasar.framework.unit.impl.ConfigFileIncluderImpl"&gt;
+    &lt;initMethod name="addConfigFile"&gt;
+      &lt;arg&gt;"javaee5.dicon"&lt;/arg&gt;
+    &lt;/initMethod&gt;
+    &lt;initMethod name="addConfigFile"&gt;
+      &lt;arg&gt;context.testClassShortName + ".dicon"&lt;/arg&gt;
+    &lt;/initMethod&gt;
+  &lt;/component&gt;
+    
+  &lt;component class="org.seasar.framework.unit.impl.TestDataPreparerImpl"&gt;
+    &lt;initMethod name="addTestDataXlsPath"&gt;
+      &lt;arg&gt;context.testClassShortName + "_" + context.testMethodName + ".xls"&lt;/arg&gt;
+    &lt;/initMethod&gt;
+    &lt;initMethod name="addTestDataXlsPath"&gt;
+      &lt;arg&gt;context.testClassShortName + ".xls"&lt;/arg&gt;
+    &lt;/initMethod&gt;
+  &lt;/component&gt;
+
+  &lt;component class="org.seasar.framework.unit.impl.ExpectedDataReaderImpl"&gt;
+    &lt;initMethod name="addExpectedDataXlsPath"&gt;
+      &lt;arg&gt;context.testClassShortName + "_" + context.testMethodName + "_Expected" + ".xls"&lt;/arg&gt;
+    &lt;/initMethod&gt;
+  &lt;/component&gt;
+&lt;/components&gt;</pre>
+<p>
+各コンポーネントの説明をします。
+</p>
+	<dl>
+   		<dt style="text-indent: 1em;"><b>org.seasar.framework.unit.impl.InternalTestContextImpl</b></dt><dd>org.seasar.framework.unit.InternalTestContextインタフェースの実装です。<br />
+               設定ファイルの自動インクルードを無効にしたい場合はautoIncludingプロパティにfalseを設定してください。<br />
+               テストデータの自動準備を無効にしたい場合は、autoPreparingプロパティをfalseに設定してください。<br />
+               このコンポーネントがもつテストクラス名やテストメソッド名の情報は他のコンポーネントの設定に利用できます。</dd><dt style="text-indent: 1em;"></dt><dt style="text-indent: 1em"><b>org.seasar.framework.unit.impl..DataAccessorImpl</b>
+        </dt>
+   		<dd>
+               org.seasar.framework.unit.DataAccessorインタフェースの実装です。<br />
+               データベースやExcelのデータにアクセスするためのメソッドを持ちます。
+               <br />
+           </dd><dt style="text-indent: 1em;"></dt><dt style="text-indent: 1em"><b>org.seasar.framework.unit.impl.ConfigFileIncluderImpl</b>
+        </dt>
+   		<dd>
+               org.seasar.framework.unit.ConfigFileIncluderインタフェースの実装です。このコンポーネントは設定ファイルのインクルードを行います。<br />
+               addConfigFileメソッドで自動インクルードしたい設定ファイルの名前を指定してください。テストクラスと同一パッケージに存在する場合はパッケージ部分のパスは省略できます。自動インクルードが有効であれば、テストメソッド実行前にここで指定されたすべての設定ファイルが自動でインクルードされます。<br />
+           </dd><dt style="text-indent: 1em;"></dt><dt style="text-indent: 1em"><b>org.seasar.framework.unit.impl.TestDataPreparerImpl</b>
+        </dt>
+   		<dd>
+               org.seasar.framework.unit.TestDataPreparerの実装です。このコンポーネントはExcelから読み取ったテストデータをデータベースに書き込みます。<br />
+               addTestDataXlsPathメソッドでテストデータをもつExcelファイル名を指定してください。テストクラスと同一パッケージに存在する場合はパッケージ部分のパスは省略できます。
+               テストデータの自動準備が有効であれば、テストメソッド実行前に追加された順で存在チェックを行い最初に存在が確認されたExcelファイルのデータをデータベースに書き込まれます。<br />
+               追加ではなくテストデータを置き換えをしたい場合はreplaceDbプロパティに<code>ture</code>を設定してください。<br />
+           </dd><dt style="text-indent: 1em;"></dt><dt style="text-indent: 1em"><b>org.seasar.framework.unit.impl.ExpectedReaderImpl</b>
+        </dt>
+   		<dd>
+               org.seasar.framework.unit.ExpectedReaderの実装です。このコンポーネントはExcelを読みDataSetを返します。<br />
+               addExpectedDataXlsPathで期待値をもつExcelのパス名を指定してください。テストクラスと同一パッケージに存在する場合はパッケージ部分のパスは省略できます。TestContext#getExpected()メソッドが実行されると追加された順で存在チェックを行い最初に存在が確認されたExcelファイルをDataSetに変換して返します。
+           </dd>
+
+</dl>        
+        <h2>
+            <a name="S2JUnit4Customization">S2JUnit4のカスタマイズ</a></h2>
+        <p>
+            s2junit4config.diconを使いS2JUnit4を実行するコンポーネントの設定を変更することでS2JUnit4の振る舞いをカスタマイズすることができます（ここで使用するのはs2junit4.diconではなくs2junit4config.diconであることに注意してください）。s2junit4config.diconはCLASSPATHに含める必要があります。以下では、カスタマイズの例をいくつか紹介します。</p>
+<h4>
+    メソッド命名規則の変更</h4>        
+        <p>
+            S2JUnit4の<a href="#MethodNamingConvention">メソッド命名規則</a>を変更したい場合はs2junit4config.diconを次のように記述します。ここではbefore、afterという名前の代わりにsetUp、tearDownを使うことを示しています。</p>
+<pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN"
+  "http://www.seasar.org/dtd/components24.dtd"&gt;
+&lt;components&gt;
+  &lt;component class="org.seasar.framework.unit.S2TestClassMethodsRunner$DefaultProvider"/&gt;
+  &lt;component class="org.seasar.framework.unit.impl.ConventionTestIntrospector"&gt;
+    &lt;property name="beforeClassMethodName"&gt;"setUpClass"&lt;/property&gt;
+    &lt;property name="afterClassMethodName"&gt;"tearDownClass"&lt;/property&gt;
+    &lt;property name="beforeMethodName"&gt;"setUp"&lt;/property&gt;
+    &lt;property name="afterMethodName"&gt;"tearDown"&lt;/property&gt;
+  &lt;/component&gt;
+&lt;/components&gt; </pre>
+<h4>
+    メソッド命名規則の無効化</h4>            
+        <p>
+            S2JUnit4の命名規則を無効にしたい場合は次のように記述します。こうするとJUnit4のアノテーションを明示的に指定したメソッドのみが処理の対象となります。</p>
+
+<pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN"
+  "http://www.seasar.org/dtd/components24.dtd"&gt;
+&lt;components&gt;
+  &lt;component class="org.seasar.framework.unit.S2TestClassMethodsRunner$DefaultProvider"/&gt;
+  &lt;component class="org.seasar.framework.unit.impl.AnnotationTestIntrospector"/&gt;
+&lt;/components&gt; </pre>
+<h4>
+    テスト実行処理のカスタマイズ</h4>            
+            
+        <p>
+            S2JUnit4のテスト実行に関する一連の処理順序や内容をカスタマイズしたい場合(たとえば<a href="#AutoFieldBinding">自動フィールドバインディング</a>の挙動を変更したいなど)は、カスタマイズした機能をもつクラスをorg.seasar.framework.unit.S2TestClassMethodsRunner$DefaultProviderクラスのtestMethodRunnerClassプロパティに設定できます。ただし、このクラスはorg.seasar.framework.unit.S2TestMethodRunnerを継承している必要があります。</p>
+<pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN"
+  "http://www.seasar.org/dtd/components24.dtd"&gt;
+&lt;components&gt;
+  &lt;component class="org.seasar.framework.unit.S2TestClassMethodsRunner$DefaultProvider"&gt;
+    &lt;property name="testMethodRunnerClass"&gt;@hoge.Foo@class&lt;/property&gt;
+  &lt;/component&gt;
+&lt;/components&gt;
+</pre>
 <!-- document end -->
 <!-- don't edit start -->
 </td>
