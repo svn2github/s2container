@@ -30,12 +30,12 @@
 <ul>
 <li>命名規則に従い初期化メソッドやテストメソッドを適切な順序で呼び出します。JUnit4の@Beforeや@Testなどのアノテーションと併用することも可能です。
 </li>
-<li>テストメソッド実行のための事前条件を指定することができます。</li>
+<li>テストメソッド実行のための事前条件を指定できます。</li>
 <li>テストメソッド実行時のトランザクションの振る舞いを指定できます。デフォルトでは自動で開始され自動でロールバックされます。 </li>
 <li>複数の設定ファイルを自動でincludeできます。 </li>
-<li>テストごとに異なるテストデータを自動で準備することができます。デフォルトではExcelに用意した値をデータベースに書き込みます。</li>
+<li>テストごとに異なるテストデータを自動で準備できます。デフォルトではExcelに用意した値をデータベースに書き込みます。</li>
 <li>テストごとに異なるテストの期待値を簡単に取得できます。デフォルトではExcelに用意した期待値を取得します。</li>
-<li>テストメソッド実行直前にコンポーネントを自動でテストクラスのフィールドにセットすることができます。EJB3のコンポーネントをフィールドにセットすることもできます。
+<li>テストメソッド実行直前にコンポーネントを自動でテストクラスのフィールドにセットできます。EJB3のコンポーネントをフィールドにセットすることもできます。
 </li>
     <li>BeanやEntityとDataSetを比較するためのアサートメソッドを提供します。 </li>
 </ul>
@@ -130,7 +130,7 @@ public class EmployeeDaoImplTest {
 
 <h2><a name="MethodNamingConvention">メソッド命名規則</a></h2>
     <p>
-        S2JUnit4は命名規則により初期化メソッドやテストメソッドを判別します。以下は命名規則の一覧です。対応するアノテーションがJUnit4に存在する場合はそのアノテーションを示しています。命名規則はカスタマイズすることができます。カスタマイズの方法は<a href="#S2JUnit4Customization">S2JUnit4のカスタマイズ</a>を参照ください。</p>
+        S2JUnit4は命名規則により初期化メソッドやテストメソッドを判別します。以下は命名規則の一覧です。対応するアノテーションがJUnit4に存在する場合はそのアノテーションを示しています。命名規則はカスタマイズできます。カスタマイズの方法は<a href="#S2JUnit4Customization">S2JUnit4のカスタマイズ</a>を参照ください。</p>
     <p>
         <table border="1" width="744">
             <tr align="center" bgcolor="#d1f3f4">
@@ -259,8 +259,7 @@ public class EmployeeDaoImplTest {
             <li>実行時テストクラス名の取得</li>
             <li>実行時テストメソッド名の取得</li>
         </ul>
-<pre>
-@RunWith(Seasar2.class)
+<pre>@RunWith(Seasar2.class)
 public class Hoge {
 
     private TestContext ctx;                //自動フィールドバインディングにより取得  
@@ -277,6 +276,21 @@ public class Hoge {
         assertEquals(ctx.getExpected(), dao.getEmployee()); //期待値を取得
     }
 
+} </pre>
+<h2>
+    データアクセッサー</h2>
+        <p>
+            テストクラスからデータベースやExcelファイルのデータに簡単にアクセスできるようにS2JUnit4ではDataAccessorインタフェースを提供しています。自動フィールドバインディングにより取得し使用してください。</p>
+<pre>@RunWith(Seasar2.class)
+public class Hoge {
+
+  private DataAccessor accessor;             // 自動フィールドバインディングにより取得
+
+  public void hoge() {
+    DataTable table = accessor.readDbByTable("Employee");
+    DataSet dataSet = accessor.readXls("foo.xls");
+    ...
+  }
 } </pre>
         <h2>
             <a name="PrerequisiteSetting">事前条件の設定</a></h2>
@@ -296,7 +310,7 @@ public boolean isWindowsEnvironment() {
     <h2>
         <a name="TxBehaviorSetting">トランザクションの振る舞いの設定</a></h2>
     <p>
-        トランザクションの振る舞いのデフォルトの挙動は、「テストメソッドの実行前にトランザクションが自動で開始され、テストメソッドの実行後に自動でロールバックされる」というものです。この挙動はテストクラスまたはテストメソッドにorg.seasar.framework.unit.TxBehaviorアノテーションを指定することで変更することができます。<br />
+        トランザクションの振る舞いのデフォルトの挙動は、「テストメソッドの実行前にトランザクションが自動で開始され、テストメソッドの実行後に自動でロールバックされる」というものです。この挙動はテストクラスまたはテストメソッドにorg.seasar.framework.unit.TxBehaviorアノテーションを指定することで変更できます。<br />
         TxBehaviorアノテーションにTxBehaviorType.COMMITを指定した場合、テストメソッドの実行前にトランザクションが自動で開始され、テストメソッド実行後に自動でコミットされます。<br />
         TxBehaviorアノテーションにTxBehaviorType.ROLLBACKを指定した場合、アノテーションを指定しない場合と同じ挙動になります。<br />
         TxBehaviorアノテーションにTxBehaviorType.NONEを指定した場合、トランザクションは開始されません。<br />
@@ -316,9 +330,17 @@ public void bar() {
     ...
 }</pre>        
 <h2>
-    <a name="s2junit4Setting">s2junit4.diconの設定</a></h2>
+    <a name="S2JUnit4RuntimeSettingCustomization">S2JUnit4の実行時参照情報のカスタマイズ</a></h2>
         <p>
-            s2junit.diconにはS2JUnit4で使用されるコンポーネントが次のように定義されています。各コンポーネントのプロパティを変更すことでS2JUnit4のデフォルトの設定を変更することができます。</p>
+            s2junit.diconにはS2JUnit4が実行時に参照するコンポーネントが定義されています。このファイルで設定できる項目は主に次のものです。</p>
+        <ul>
+            <li>設定ファイルの自動インクルード機能の有効/無効の設定 </li>
+            <li>テストデータの自動準備機能の有効/無効の設定</li>
+            <li>自動インクルード対象の設定ファイルの指定 </li>
+            <li>テストデータのExcelファイルのパスの指定</li>
+            <li>テストデータをデータベースに追加するときの追加/置き換えの設定</li>
+            <li>期待値のExcelファイルのパスの指定</li>
+        </ul>
 <h3>
     s2junit4.dicon</h3>
 <pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
@@ -390,7 +412,7 @@ public void bar() {
         <h2>
             <a name="S2JUnit4Customization">S2JUnit4のカスタマイズ</a></h2>
         <p>
-            s2junit4config.diconを使いS2JUnit4を実行するコンポーネントの設定を変更することでS2JUnit4の振る舞いをカスタマイズすることができます（ここで使用するのはs2junit4.diconではなくs2junit4config.diconであることに注意してください）。s2junit4config.diconはCLASSPATHに含める必要があります。以下では、カスタマイズの例をいくつか紹介します。</p>
+            s2junit4config.diconを使いS2JUnit4を実行するコンポーネントの設定を変更することでS2JUnit4の振る舞いをカスタマイズできます（ここで使用するのはs2junit4.diconではなくs2junit4config.diconであることに注意してください）。s2junit4config.diconはCLASSPATHに含める必要があります。以下では、カスタマイズの例をいくつか紹介します。</p>
 <h4>
     メソッド命名規則の変更</h4>        
         <p>
