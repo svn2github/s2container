@@ -32,7 +32,7 @@
 </li>
 <li>テストメソッド実行のための事前条件を指定できます。</li>
 <li>テストメソッド実行時のトランザクションの振る舞いを指定できます。デフォルトでは自動で開始され自動でロールバックされます。 </li>
-<li>複数の設定ファイルを自動でincludeできます。 </li>
+<li>複数の設定ファイルを自動でインクルードできます。 </li>
 <li>テストごとに異なるテストデータを自動で準備できます。デフォルトではExcelに用意した値をデータベースに書き込みます。</li>
 <li>テストごとに異なるテストの期待値を簡単に取得できます。デフォルトではExcelに用意した期待値を取得します。</li>
 <li>テストメソッド実行直前にコンポーネントを自動でテストクラスのフィールドにセットできます。EJB3のコンポーネントをフィールドにセットすることもできます。
@@ -47,7 +47,7 @@
         </p>
     <h2>
     <a name="Sample">サンプル</a></h2>
-<p><a href="S2Unit.html#SelectTest">S2Unitのサンプル</a>のサンプルと同様、従業員を従業員番号で検索するDAOをサンプルとします。設定ファイルとテストクラスはそれぞれ以下のようになります。
+<p><a href="S2Unit.html#SelectTest">S2Unitのサンプル</a>と同様、従業員を従業員番号で検索するDAOをサンプルとします。設定ファイルとテストクラスはそれぞれ以下のようになります。
 
 </p><h4>EmployeeDaoImplTest.dicon</h4>
 <pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
@@ -104,23 +104,24 @@ public class EmployeeDaoImplTest {
         このテストクラスのポイントを説明します。</p>
 <ul>
 <li>クラスに@RunWith(Seasar2.class)と指定します。これはこのテストクラスをS2JUnit4で動作させるために必要です。 </li>
-<li>TestContextインタフェース型の変数をフィールドに宣言します。<a href="#AutoFieldBinding">自動フィールドバインディング</a>により変数ctxには<a href="#TestContext">テストコンテキスト</a>が自動でセットされます。ここでは期待値を取得するメソッドgetExpected()を呼び出すために使用します。
+<li>TestContextインタフェース型の変数をフィールドに宣言します。<a href="#AutoFieldBinding">自動フィールドバインディング</a>により変数ctxには<a href="#TestContext">テストコンテキスト</a>が自動でセットされます。このサンプルではテストコンテキストのgetExpected()メソッドを使用し期待値を取得しています。
 </li>
 <li>テスト対象のコンポーネントのインタフェースを型とする変数を宣言します。自動フィールドバインディングにより変数daoにはコンポーネントが自動でセットされます。ここではEmployeeDaoが相当します。
 </li>
 <li>org.seasar.framework.unit.S2Assert.assertEqualsをstaticインポートします。assertEqualsメソッドはテストメソッドgetEmployee()内でDataSetとBeanを比較するために使用します。
 </li>
-<li>テストメソッドgetEmployee()を用意する。テストメソッドは<code>public</code>、非<code>static</code>、引数なし、戻り値なしでなければいけません。テストメソッド実行前にはトランザクションが自動で開始され、実行後にはトランザクションが自動でロールバックされます。</li>
+<li>テストメソッドgetEmployee()を用意します。テストメソッドは<code>public</code>、非<code>static</code>、引数なし、戻り値なしでなければいけません。テストメソッド実行前にはトランザクションが自動で開始され、実行後にはトランザクションが自動でロールバックされます。</li>
     <li>実行したくないテストメソッドには@Ignoreを指定します。これはJUnit4のアノテーションです。S2JUnit4ではJUnit4のアノテーションをそのまま利用できます。</li>
 </ul>
     <p>
 
 このテストクラスは設定ファイル、準備値、期待値を自動で読み込みます。
     <ul>
-        <li>デフォルトの設定ではjavaee5.diconとテストクラスと同一パッケージにありテストクラスと同じ名前をもつdiconファイルが自動でインクルードされます。したがってここではjavaee5.diconとEmployeeDaoImplTest.diconのふたつの設定ファイルがインクルードされます。
+        <li>デフォルトの設定ではjavaee5.diconとテストクラスと同一パッケージにありテストクラスと同じ名前をもつdiconファイルが自動でインクルードされます。したがってこのサンプルではjavaee5.diconとEmployeeDaoImplTest.diconの2つの設定ファイルがインクルードされます。
         </li>
-        <li>テストクラスと同一パッケージにあり、"修飾なしテストクラス名_テストメソッド名.xls"もしくは"修飾なしテストクラス名.xls"という名前のExcelが存在すれば、自動で読み込まれ準備値としてデータベースに追加されます。
-            自動でトランザクションがロールバックされるのでデータベースのデータはテスト終了後にはテスト開始前の状態に戻ります。</li><li>TestContextインタフェースのgetExpected()メソッドを実行すると、テストクラスと同一パッケージにある”テストクラス名_テストメソッド名_Expected.xls”という名前のExcelが期待値として自動で読み込まれます。
+        <li>テストクラスと同一パッケージにあり、"修飾なしテストクラス名_テストメソッド名.xls"もしくは"修飾なしテストクラス名.xls"という名前のExcelが存在すれば、自動で読み込まれ準備値としてデータベースに追加されます。このサンプルではEmployeeDaoImplTest_
+            getEmployee.xlsが読み込まれます。自動でトランザクションがロールバックされるのでデータベースのデータはテスト終了後にはテスト開始前の状態に戻ります。</li><li>TestContextインタフェースのgetExpected()メソッドを実行すると、テストクラスと同一パッケージにある”テストクラス名_テストメソッド名_Expected.xls”という名前のExcelが期待値として自動で読み込まれます。このサンプルではEmployeeDaoImplTest_
+                  getEmployee_Expected.xlsが読み込まれます。
         </li>
     </ul>
 
@@ -130,85 +131,85 @@ public class EmployeeDaoImplTest {
 
 <h2><a name="MethodNamingConvention">メソッド命名規則</a></h2>
     <p>
-        S2JUnit4は命名規則により初期化メソッドやテストメソッドを判別します。以下は命名規則の一覧です。対応するアノテーションがJUnit4に存在する場合はそのアノテーションを示しています。命名規則はカスタマイズできます。カスタマイズの方法は<a href="#S2JUnit4Customization">S2JUnit4のカスタマイズ</a>を参照ください。</p>
+        S2JUnit4は命名規則により初期化メソッドやテストメソッドを判別します(JUnit4のアノテーションを利用することも可能です)。以下は命名規則の一覧です。対応するアノテーションがJUnit4に存在する場合はそのアノテーションを示しています。命名規則はカスタマイズできます。カスタマイズの方法は<a href="#S2JUnit4Customization">S2JUnit4のカスタマイズ</a>を参照ください。</p>
     <p>
         <table border="1" width="744">
             <tr align="center" bgcolor="#d1f3f4">
-                <th scope="col" style="width: 117px">
+                <th scope="col" style="width: 149px">
                     メソッドの種類</th>
-                <th scope="col" style="width: 138px">
+                <th scope="col" style="width: 150px">
                     JUnit4のアノテーション</th>
-                <th scope="col" style="width: 143px">
+                <th scope="col" style="width: 150px">
                     S2JUnit4の命名規則</th>
                 <th scope="col" width="624">
                     備考</th>
             </tr>
             <tr>
-                <td style="width: 117px; height: 45px">
+                <td style="width: 149px; height: 45px">
                     テストクラスの初期化メソッド</td>
-                <td style="width: 138px; height: 45px">
+                <td style="width: 150px; height: 45px">
                     @BeforeClass</td>
-                <td style="width: 143px; height: 45px">
+                <td style="width: 150px; height: 45px">
                     beforeClass</td>
                 <td style="height: 45px">
                     ひとつのクラスに@BeforeClassが指定されたメソッドとbeforeClass()メソッドが混在する場合、beforeClass()メソッドは最後に実行される。</td>
             </tr>
             <tr>
-                <td style="width: 117px">
+                <td style="width: 149px">
                     テストクラスの解放メソッド</td>
-                <td style="width: 138px">
+                <td style="width: 150px">
                     @AfterClass</td>
-                <td style="width: 143px">
+                <td style="width: 150px">
                     afterClass</td>
                 <td>
-                    ひとつのクラスに@AfterClassが指定されたメソッドとafterClass()メソッドが混在する場合、beforeClass(メソッドは最後に実行される。</td>
+                    ひとつのクラスに@AfterClassが指定されたメソッドとafterClass()メソッドが混在する場合、beforeClass()メソッドは最後に実行される。</td>
             </tr>
             <tr>
-                <td style="width: 117px">
+                <td style="width: 149px">
                     テストケースの初期化メソッド</td>
-                <td style="width: 138px">
+                <td style="width: 150px">
                     @Before</td>
-                <td style="width: 143px">
+                <td style="width: 150px">
                     before</td>
                 <td>
                     ひとつのクラスに@Beforeが指定されたメソッドとbefore()メソッドが混在する場合、before()メソッドは最後に実行される。</td>
             </tr>
             <tr>
-                <td style="width: 117px">
+                <td style="width: 149px">
                     テストケースの解放メソッド</td>
-                <td style="width: 138px">
+                <td style="width: 150px">
                     @After</td>
-                <td style="width: 143px">
+                <td style="width: 150px">
                     after</td>
                 <td>
                     ひとつのクラスに@Afterが指定されたメソッドとbeforeClass()メソッドが混在する場合、after()メソッドは最後に実行される。</td>
             </tr>
             <tr>
-                <td style="width: 117px">
+                <td style="width: 149px">
                     個々のテストメソッドに対応する初期化メソッド</td>
-                <td style="width: 138px">
+                <td style="width: 150px">
                     -</td>
-                <td style="width: 143px">
+                <td style="width: 150px">
                     beforeXxx</td>
                 <td>
                     Xxxはテストメソッド名をあらわす。</td>
             </tr>
             <tr>
-                <td style="width: 117px">
+                <td style="width: 149px">
                     個々のテストメソッドに対応する解放メソッド</td>
-                <td style="width: 138px">
+                <td style="width: 150px">
                     -</td>
-                <td style="width: 143px">
+                <td style="width: 150px">
                     afterXxx</td>
                 <td>
                     Xxxはテストメソッド名をあらわす。</td>
             </tr>
             <tr>
-                <td style="width: 117px">
+                <td style="width: 149px">
                     テストメソッド</td>
-                <td style="width: 138px">
+                <td style="width: 150px">
                     @Test</td>
-                <td style="width: 143px">
+                <td style="width: 150px">
                     上記のどの命名規則にも当てはまらないメソッド</td>
                 <td>&nbsp;
                 </td>
@@ -243,13 +244,13 @@ public class EmployeeDaoImplTest {
             <li>フィールドの変数定義がインターフェース型でそのインタフェースをもつコンポーネントがコンテナに存在する場合、そのコンポーネントがフィールドにセットされる。</li>
             <li>フィールドにEJBアノテーションが指定されbeanNameもしくはname要素に値が指定されている場合、その値を名前とするコンポーネントがコンテナに存在すれば、そのコンポーネントがフィールドにセットされる。
             </li>
-            <li>自動フィールドバインディングは、テストメソッド実行の直前に行われる（ただしTestContextインタフェースの例外）。テストメソッドの実行が終了するとバインディングされたフィールドにはnullがセットされる。
+            <li>自動フィールドバインディングは、テストメソッド実行の直前に行われる（ただしTestContextインタフェースは例外的にbefore()メソッド実行前にバインディングされる）。テストメソッドの実行が終了するとバインディングされたフィールドにはnullがセットされる。
             </li>
         </ul>
 <h2>
     <a name="TestContext">テストコンテキスト</a></h2>
         <p>
-            テストコンテキストはテストの実行時情報をもちS2JUnit4の振る舞いを制御するオブジェクトです。テストクラスはorg.seasar.framework.unit.TestContextインタフェースを介してテストコンテキストにアクセスできます。テストコンテキストの取得には自動フィールドバインディングを使用してください。自動バインディングは他のコンポーネントとは異なりbefore()メソッド実行直前に行われます。TestContextインタフェースが提供する機能は次のものです。</p>
+            テストコンテキストはテストの実行時情報をもちS2JUnit4の振る舞いを制御するオブジェクトです。テストクラスはorg.seasar.framework.unit.TestContextインタフェースを介してテストコンテキストにアクセスできます。テストコンテキストの取得には自動フィールドバインディングを使用してください。自動フィールドバインディングは他のコンポーネントとは異なりbefore()メソッド実行直前に行われます。TestContextインタフェースが提供する機能は次のものです。</p>
         <ul>
             <li>設定ファイルのインクルード</li>
             <li>コンポーネントの登録</li>
@@ -337,8 +338,8 @@ public void bar() {
             <li>設定ファイルの自動インクルード機能の有効/無効の設定 </li>
             <li>テストデータの自動準備機能の有効/無効の設定</li>
             <li>自動インクルード対象の設定ファイルの指定 </li>
-            <li>テストデータのExcelファイルのパスの指定</li>
-            <li>テストデータをデータベースに追加するときの追加/置き換えの設定</li>
+            <li>準備値のExcelファイルのパスの指定 </li>
+            <li>準備値をデータベースに追加するときの追加/置き換えの設定 </li>
             <li>期待値のExcelファイルのパスの指定</li>
         </ul>
 <h3>
@@ -445,7 +446,7 @@ public void bar() {
     テスト実行処理のカスタマイズ</h4>            
             
         <p>
-            S2JUnit4のテスト実行に関する一連の処理順序や内容をカスタマイズしたい場合(たとえば<a href="#AutoFieldBinding">自動フィールドバインディング</a>の挙動を変更したいなど)は、カスタマイズした機能をもつクラスをorg.seasar.framework.unit.S2TestClassMethodsRunner$DefaultProviderクラスのtestMethodRunnerClassプロパティに設定できます。ただし、このクラスはorg.seasar.framework.unit.S2TestMethodRunnerを継承している必要があります。</p>
+            S2JUnit4のテスト実行に関する一連の処理順序や内容をカスタマイズしたい場合(たとえば<a href="#AutoFieldBinding">自動フィールドバインディング</a>の挙動を変更したいなど)は、org.seasar.framework.unit.S2TestClassMethodsRunner$DefaultProviderクラスのtestMethodRunnerClassプロパティを変更します。このプロパティにはテストメソッドの実行処理を記述したクラスを指定できます。ただし、このクラスはorg.seasar.framework.unit.S2TestMethodRunnerを継承する必要があります。</p>
 <pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN"
   "http://www.seasar.org/dtd/components24.dtd"&gt;
