@@ -53,7 +53,13 @@
          name="Diigu Marker Resolution"
          point="org.eclipse.ui.ide.markerResolution">
       <markerResolutionGenerator
-            class="org.seasar.diigu.eclipse.plugin.marker.MarkerResolutionGenerator"
+            class="org.seasar.diigu.eclipse.marker.MarkerResolutionGenerator"
             markerType="org.seasar.diigu.eclipse.diiguMarker"/>
+   </extension>
+   <extension
+         id="diiguStartup"
+         name="Diigu Startup Worker"
+         point="org.eclipse.ui.startup">
+      <startup class="org.seasar.diigu.eclipse.startup.DiiguStartup"/>
    </extension>
 </plugin>

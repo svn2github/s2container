@@ -13,7 +13,7 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.diigu.eclipse.plugin.marker;
+package org.seasar.diigu.eclipse.marker;
 
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
