@@ -47,6 +47,11 @@ public final class S2ContainerBehavior {
             S2Container container, final Object key) {
         return getProvider().acquireFromGetComponentDef(container, key);
     }
+    
+    public static ComponentDef acquireFromGetComponentDef(
+            S2Container container, final int index) {
+        return getProvider().acquireFromGetComponentDef(container, index);
+    }
 
     public static ComponentDef acquireFromHasComponentDef(
             S2Container container, final Object key) {
@@ -58,6 +63,16 @@ public final class S2ContainerBehavior {
         return getProvider().acquireFromInjectDependency(container, key);
     }
 
+    public static int acquireFromGetComponentDefSize(
+            S2Container container) {
+        return getProvider().acquireFromGetComponentDefSize(container);
+    }
+    
+    public static void acquireFromRegister(
+            S2Container container, ComponentDef cd) {
+        getProvider().acquireFromRegister(container, cd);
+    }
+    
     /**
      * 
      * @author koichik
@@ -65,16 +80,24 @@ public final class S2ContainerBehavior {
     public interface Provider {
 
         ComponentDef acquireFromGetComponent(S2Container container,
-                final Object key);
+                Object key);
 
         ComponentDef acquireFromGetComponentDef(S2Container container,
-                final Object key);
+                Object key);
+        
+        ComponentDef acquireFromGetComponentDef(S2Container container,
+                int index);
 
         ComponentDef acquireFromHasComponentDef(S2Container container,
-                final Object key);
+                Object key);
 
         ComponentDef acquireFromInjectDependency(S2Container container,
-                final Object key);
+                Object key);
+        
+        int acquireFromGetComponentDefSize(S2Container container);
+        
+        void acquireFromRegister(S2Container container,
+                ComponentDef cd);
     }
 
     /**
@@ -95,6 +118,11 @@ public final class S2ContainerBehavior {
             }
             return cd;
         }
+        
+        public ComponentDef acquireFromGetComponentDef(
+                final S2Container container, final int index) {
+            return getComponentDef(container, index);
+        }
 
         public ComponentDef acquireFromHasComponentDef(
                 final S2Container container, final Object key) {
@@ -105,10 +133,60 @@ public final class S2ContainerBehavior {
                 final S2Container container, final Object key) {
             return acquireFromGetComponentDef(container, key);
         }
+        
+        public int acquireFromGetComponentDefSize(
+                final S2Container container) {
+            return getComponentDefSize(container);
+        }
+        
+        public void acquireFromRegister(
+                final S2Container container, final ComponentDef cd) {
+            register(container, cd);
+        }
 
         protected ComponentDef getComponentDef(final S2Container container,
                 final Object key) {
             return ((S2ContainerImpl) container).internalGetComponentDef(key);
+        }
+        
+        protected ComponentDef getComponentDef(final S2Container container,
+                final int index) {
+            return ((S2ContainerImpl) container).internalGetComponentDef(index);
+        }
+        
+        protected int getComponentDefSize(final S2Container container) {
+            return ((S2ContainerImpl) container).internalGetComponentDefSize();
+        }
+        
+        protected void register(final S2Container container, final ComponentDef cd) {
+            ((S2ContainerImpl) container).internalRegister(cd);
+        }
+    }
+    
+    public static class SynchronizedProvider extends DefaultProvider {
+
+        protected ComponentDef getComponentDef(S2Container container, int index) {
+            synchronized (container) {
+                return super.getComponentDef(container, index);
+            }
+        }
+
+        protected ComponentDef getComponentDef(S2Container container, Object key) {
+            synchronized (container) {
+                return super.getComponentDef(container, key);
+            }
+        }
+
+        protected int getComponentDefSize(S2Container container) {
+            synchronized (container) {
+                return super.getComponentDefSize(container);
+            }
+        }
+
+        protected void register(S2Container container, ComponentDef cd) {
+            synchronized (container) {
+                super.register(container, cd);
+            }
         }
     }
 }

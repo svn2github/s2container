@@ -214,7 +214,11 @@ public class S2ContainerImpl implements S2Container, ContainerConstants {
     /**
      * @see org.seasar.framework.container.S2Container#register(org.seasar.framework.container.ComponentDef)
      */
-    public synchronized void register(ComponentDef componentDef) {
+    public void register(ComponentDef componentDef) {
+        S2ContainerBehavior.acquireFromRegister(this, componentDef);
+    }
+    
+    protected void internalRegister(ComponentDef componentDef) {
         assertParameterIsNotNull(componentDef, "componentDef");
         register0(componentDef);
         componentDefList.add(componentDef);
@@ -250,23 +254,22 @@ public class S2ContainerImpl implements S2Container, ContainerConstants {
         }
     }
 
-    /**
-     * @see org.seasar.framework.container.S2Container#getComponentDefSize()
-     */
-    public synchronized int getComponentDefSize() {
+    public int getComponentDefSize() {
+        return S2ContainerBehavior.acquireFromGetComponentDefSize(this);
+    }
+    
+    protected int internalGetComponentDefSize() {
         return componentDefList.size();
     }
 
-    /**
-     * @see org.seasar.framework.container.S2Container#getComponentDef(int)
-     */
-    public synchronized ComponentDef getComponentDef(int index) {
+    public ComponentDef getComponentDef(int index) {
+        return S2ContainerBehavior.acquireFromGetComponentDef(this, index);
+    }
+    
+    protected ComponentDef internalGetComponentDef(int index) {
         return (ComponentDef) componentDefList.get(index);
     }
 
-    /**
-     * @see org.seasar.framework.container.S2Container#getComponentDef(java.lang.Object)
-     */
     public ComponentDef getComponentDef(Object key)
             throws ComponentNotFoundRuntimeException {
         assertParameterIsNotNull(key, "key");
@@ -289,7 +292,7 @@ public class S2ContainerImpl implements S2Container, ContainerConstants {
         return new ComponentDef[] { cd };
     }
 
-    protected synchronized ComponentDef internalGetComponentDef(Object key) {
+    protected ComponentDef internalGetComponentDef(Object key) {
         Set searchedContainers = (Set) searched.get();
         boolean starting = searchedContainers == null;
         if (starting) {
@@ -345,12 +348,12 @@ public class S2ContainerImpl implements S2Container, ContainerConstants {
     /**
      * @see org.seasar.framework.container.S2Container#hasDescendant(java.lang.String)
      */
-    public synchronized boolean hasDescendant(String path) {
+    public boolean hasDescendant(String path) {
         assertParameterIsNotEmpty(path, "path");
         return descendants.containsKey(path);
     }
 
-    public synchronized S2Container getDescendant(String path) {
+    public S2Container getDescendant(String path) {
         S2Container descendant = (S2Container) descendants.get(path);
         if (descendant != null) {
             return descendant;
@@ -358,15 +361,12 @@ public class S2ContainerImpl implements S2Container, ContainerConstants {
         throw new ContainerNotRegisteredRuntimeException(path);
     }
 
-    public synchronized void registerDescendant(S2Container descendant) {
+    public void registerDescendant(S2Container descendant) {
         assertParameterIsNotNull(descendant, "descendant");
         descendants.put(descendant.getPath(), descendant);
     }
 
-    /**
-     * @see org.seasar.framework.container.S2Container#include(org.seasar.framework.container.S2Container)
-     */
-    public synchronized void include(S2Container child) {
+    public void include(S2Container child) {
         assertParameterIsNotNull(child, "child");
         child.setRoot(getRoot());
         children.add(child);
@@ -376,23 +376,14 @@ public class S2ContainerImpl implements S2Container, ContainerConstants {
         }
     }
 
-    /**
-     * @see org.seasar.framework.container.S2Container#getChildSize()
-     */
-    public synchronized int getChildSize() {
+    public int getChildSize() {
         return children.size();
     }
 
-    /**
-     * @see org.seasar.framework.container.S2Container#getChild(int)
-     */
-    public synchronized S2Container getChild(int index) {
+    public S2Container getChild(int index) {
         return (S2Container) children.get(index);
     }
 
-    /**
-     * @see org.seasar.framework.container.S2Container#init()
-     */
     public void init() {
         if (inited) {
             return;
@@ -414,9 +405,6 @@ public class S2ContainerImpl implements S2Container, ContainerConstants {
         inited = true;
     }
 
-    /**
-     * @see org.seasar.framework.container.S2Container#destroy()
-     */
     public void destroy() {
         if (!inited) {
             return;
@@ -453,53 +441,32 @@ public class S2ContainerImpl implements S2Container, ContainerConstants {
         }
     }
 
-    /**
-     * @see org.seasar.framework.container.S2Container#getNamespace()
-     */
     public String getNamespace() {
         return namespace;
     }
 
-    /**
-     * @see org.seasar.framework.container.S2Container#setNamespace(java.lang.String)
-     */
-    public synchronized void setNamespace(String namespace) {
+    public void setNamespace(String namespace) {
         componentDefMap.remove(namespace);
         this.namespace = namespace;
         componentDefMap.put(namespace, new SimpleComponentDef(this, namespace));
     }
 
-    /**
-     * @see org.seasar.framework.container.S2Container#getPath()
-     */
     public String getPath() {
         return path;
     }
 
-    /**
-     * @see org.seasar.framework.container.S2Container#setPath(java.lang.String)
-     */
     public void setPath(String path) {
         this.path = path;
     }
 
-    /**
-     * @see org.seasar.framework.container.S2Container#getRequest()
-     */
     public HttpServletRequest getRequest() {
         return (HttpServletRequest) requests.get();
     }
 
-    /**
-     * @see org.seasar.framework.container.S2Container#setRequest(javax.servlet.http.HttpServletRequest)
-     */
     public void setRequest(HttpServletRequest request) {
         requests.set(request);
     }
 
-    /**
-     * @see org.seasar.framework.container.S2Container#getSession()
-     */
     public HttpSession getSession() {
         HttpServletRequest request = getRequest();
         if (request != null) {
@@ -508,65 +475,38 @@ public class S2ContainerImpl implements S2Container, ContainerConstants {
         return null;
     }
 
-    /**
-     * @see org.seasar.framework.container.S2Container#getResponse()
-     */
     public HttpServletResponse getResponse() {
         return (HttpServletResponse) responses.get();
     }
 
-    /**
-     * @see org.seasar.framework.container.S2Container#setResponse(javax.servlet.http.HttpServletResponse)
-     */
     public void setResponse(HttpServletResponse response) {
         responses.set(response);
     }
 
-    /**
-     * @see org.seasar.framework.container.S2Container#getServletContext()
-     */
     public ServletContext getServletContext() {
         return servletContext;
     }
 
-    /**
-     * @see org.seasar.framework.container.S2Container#setServletContext(javax.servlet.ServletContext)
-     */
     public void setServletContext(ServletContext servletContext) {
         this.servletContext = servletContext;
     }
 
-    /**
-     * @see org.seasar.framework.container.MetaDefAware#addMetaDef(org.seasar.framework.container.MetaDef)
-     */
     public void addMetaDef(MetaDef metaDef) {
         metaDefSupport.addMetaDef(metaDef);
     }
 
-    /**
-     * @see org.seasar.framework.container.MetaDefAware#getMetaDef(int)
-     */
     public MetaDef getMetaDef(int index) {
         return metaDefSupport.getMetaDef(index);
     }
 
-    /**
-     * @see org.seasar.framework.container.MetaDefAware#getMetaDef(java.lang.String)
-     */
     public MetaDef getMetaDef(String name) {
         return metaDefSupport.getMetaDef(name);
     }
 
-    /**
-     * @see org.seasar.framework.container.MetaDefAware#getMetaDefs(java.lang.String)
-     */
     public MetaDef[] getMetaDefs(String name) {
         return metaDefSupport.getMetaDefs(name);
     }
 
-    /**
-     * @see org.seasar.framework.container.MetaDefAware#getMetaDefSize()
-     */
     public int getMetaDefSize() {
         return metaDefSupport.getMetaDefSize();
     }
@@ -629,5 +569,4 @@ public class S2ContainerImpl implements S2Container, ContainerConstants {
             throw new IllegalArgumentException(name);
         }
     }
-
 }

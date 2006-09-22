@@ -193,13 +193,13 @@ public class MockHttpServletRequestImpl implements MockHttpServletRequest {
         return (List) headers.get(name);
     }
 
-    /**
-     * @see javax.servlet.http.HttpServletRequest#getMethod()
-     */
     public String getMethod() {
         return method;
     }
 
+    public void setMethod(String method) {
+        this.method = method;
+    }
     /**
      * @see javax.servlet.http.HttpServletRequest#getPathInfo()
      */
