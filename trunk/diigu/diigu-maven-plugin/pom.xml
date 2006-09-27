@@ -9,7 +9,7 @@
   <artifactId>diigu-maven-plugin</artifactId>
   <packaging>maven-plugin</packaging>
   <name>Diigu Maven Plugin</name>
-  <version>0.0.2</version>
+  <version>1.0.0-rc-1</version>
   <description>diigu maven2 enhancer</description>
   <url>http://s2container.seasar.org/</url>
   <inceptionYear>2006</inceptionYear>
@@ -126,7 +126,7 @@
     <dependency>
       <groupId>org.seasar.container</groupId>
       <artifactId>diigu-core</artifactId>
-      <version>0.0.2</version>
+      <version>1.0.0-rc-1</version>
     </dependency>
     <dependency>
       <groupId>org.apache.maven</groupId>
