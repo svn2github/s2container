@@ -114,8 +114,6 @@ public class ParameterNameEnhancer {
             clazz.detach();
         } catch (final IOException e) {
             throw new RuntimeException(e);
-        } catch (final NotFoundException e) {
-            throw new RuntimeException(e);
         } catch (final CannotCompileException e) {
             throw new RuntimeException(e);
         }
