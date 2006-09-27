@@ -20,5 +20,5 @@ Export-Package: org.seasar.diigu,
  org.seasar.diigu.eclipse.preferences,
  org.seasar.diigu.eclipse.util
 Bundle-ClassPath: diigu-builder.jar,
- lib/javassist-3.0.jar,
+ lib/javassist-3.3.jar,
  lib/diigu-core-0.0.1.jar
