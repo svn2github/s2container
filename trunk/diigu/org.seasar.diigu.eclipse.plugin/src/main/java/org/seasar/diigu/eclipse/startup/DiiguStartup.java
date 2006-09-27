@@ -15,8 +15,11 @@
  */
 package org.seasar.diigu.eclipse.startup;
 
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceDelta;
+import org.eclipse.core.resources.IResourceDeltaVisitor;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jdt.core.ElementChangedEvent;
 import org.eclipse.jdt.core.IElementChangedListener;
@@ -25,7 +28,12 @@ import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.ui.IStartup;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
+import org.seasar.diigu.eclipse.DiiguPlugin;
+import org.seasar.diigu.eclipse.builder.DiiguNature;
+import org.seasar.diigu.eclipse.nls.Messages;
 import org.seasar.diigu.eclipse.operation.DependencyAnalyzeJob;
+import org.seasar.diigu.eclipse.operation.NameEnhanceJob;
+import org.seasar.diigu.eclipse.util.ProjectUtils;
 
 /**
  * @author taichi
@@ -50,6 +58,51 @@ public class DiiguStartup implements IStartup {
         }
     }
 
+    private class ClassImageChangedListener implements IElementChangedListener {
+        public void elementChanged(ElementChangedEvent event) {
+            IJavaElementDelta[] children = event.getDelta()
+                    .getAffectedChildren();
+            for (int i = 0; children != null && i < children.length; i++) {
+                IResourceDelta[] ary = children[i].getResourceDeltas();
+                for (int j = 0; ary != null && j < ary.length; j++) {
+                    try {
+                        final Job[] work = new Job[1];
+                        final IResourceDelta delta = ary[j];
+                        delta.accept(new IResourceDeltaVisitor() {
+                            public boolean visit(IResourceDelta delta)
+                                    throws CoreException {
+                                IResource r = delta.getResource();
+                                if ((delta.getKind() == IResourceDelta.ADDED || delta
+                                        .getKind() == IResourceDelta.CHANGED)
+                                        && r.getType() == IResource.FILE
+                                        && "class".equals(r.getFileExtension())) {
+                                    IProject p = r.getProject();
+                                    if (ProjectUtils.hasNature(p,
+                                            DiiguNature.NATURE_ID)) {
+                                        work[0] = new NameEnhanceJob(
+                                                Messages.ENHANCE_INCREMENTALBUILD,
+                                                delta);
+                                    } else {
+                                        work[0] = new DependencyAnalyzeJob(r
+                                                .getProject());
+                                    }
+                                    return false;
+                                }
+                                return true;
+                            }
+                        });
+                        if (work[0] != null) {
+                            work[0].schedule(10L);
+                            break;
+                        }
+                    } catch (CoreException e) {
+                        DiiguPlugin.log(e);
+                    }
+                }
+            }
+        }
+    }
+
     /*
      * (non-Javadoc)
      * 
@@ -61,6 +114,9 @@ public class DiiguStartup implements IStartup {
             public void run() {
                 JavaCore.addElementChangedListener(
                         new ClasspathChangedListener(),
+                        ElementChangedEvent.POST_CHANGE);
+                JavaCore.addElementChangedListener(
+                        new ClassImageChangedListener(),
                         ElementChangedEvent.POST_CHANGE);
             }
         });

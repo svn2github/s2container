@@ -30,6 +30,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.seasar.diigu.eclipse.builder.DiiguBuilder;
+import org.seasar.diigu.eclipse.builder.DiiguNature;
 import org.seasar.diigu.eclipse.nls.Messages;
 import org.seasar.diigu.eclipse.util.ProjectUtils;
 
@@ -65,8 +66,10 @@ public class DependencyAnalyzeJob extends WorkspaceJob {
         analyze(this.project, targets, allOf);
         for (Iterator i = targets.iterator(); i.hasNext();) {
             IProject p = (IProject) i.next();
-            p.build(IncrementalProjectBuilder.FULL_BUILD,
-                    DiiguBuilder.BUILDER_ID, new HashMap(), monitor);
+            if (ProjectUtils.hasNature(p, DiiguNature.NATURE_ID)) {
+                p.build(IncrementalProjectBuilder.FULL_BUILD,
+                        DiiguBuilder.BUILDER_ID, new HashMap(), monitor);
+            }
         }
 
         return Status.OK_STATUS;

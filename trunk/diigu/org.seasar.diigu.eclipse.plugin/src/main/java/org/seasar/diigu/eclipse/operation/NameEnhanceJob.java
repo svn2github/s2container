@@ -49,6 +49,7 @@ import org.seasar.diigu.eclipse.builder.DiiguNature;
 import org.seasar.diigu.eclipse.nls.Messages;
 import org.seasar.diigu.eclipse.util.ArrayUtil;
 import org.seasar.diigu.eclipse.util.JavaProjectClassLoader;
+import org.seasar.diigu.eclipse.util.ProjectUtils;
 
 /**
  * @author taichi
@@ -107,9 +108,12 @@ public class NameEnhanceJob extends WorkspaceJob {
      */
     public IStatus runInWorkspace(IProgressMonitor monitor)
             throws CoreException {
-        this.project.deleteMarkers(Constants.MARKER_ID, true,
-                IResource.DEPTH_ONE);
-        this.runnable.run(monitor);
+        if (this.project != null
+                && ProjectUtils.hasNature(this.project, DiiguNature.NATURE_ID)) {
+            this.project.deleteMarkers(Constants.MARKER_ID, true,
+                    IResource.DEPTH_ZERO);
+            this.runnable.run(monitor);
+        }
         return Status.OK_STATUS;
     }
 
