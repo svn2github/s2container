@@ -802,7 +802,6 @@ S2Containerの定義ファイルには、次の内容を記述します。</p>
 &lt;servlet&gt;
     &lt;servlet-name&gt;s2servlet&lt;/servlet-name&gt;
     &lt;servlet-class&gt;org.seasar.framework.container.servlet.S2ContainerServlet&lt;/servlet-class&gt;
-    &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
     &lt;init-param&gt;
         &lt;param-name&gt;configPath&lt;/param-name&gt;
         &lt;param-value&gt;app.dicon&lt;/param-value&gt;
@@ -811,6 +810,7 @@ S2Containerの定義ファイルには、次の内容を記述します。</p>
         &lt;param-name&gt;debug&lt;/param-name&gt;
         &lt;param-value&gt;false&lt;/param-value&gt;
     &lt;/init-param&gt;
+    &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
 &lt;/servlet&gt;
 
 &lt;servlet-mapping&gt;
