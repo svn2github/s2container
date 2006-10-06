@@ -27,7 +27,10 @@ import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.JavaCore;
 
 /**
@@ -167,6 +170,35 @@ public class ProjectUtils {
 
     public static IJavaProject getJavaProject(IResource resource) {
         return JavaCore.create(resource.getProject());
+    }
+
+    public static IPackageFragmentRoot[] getSrcPackageFragmentRoot(
+            IJavaProject javap) throws CoreException {
+        List result = new ArrayList();
+        IPackageFragmentRoot[] roots = javap.getPackageFragmentRoots();
+        for (int i = 0; roots != null && i < roots.length; i++) {
+            IPackageFragmentRoot root = roots[i];
+            if (root.getKind() == IPackageFragmentRoot.K_SOURCE) {
+                result.add(root);
+            }
+        }
+        return (IPackageFragmentRoot[]) result
+                .toArray(new IPackageFragmentRoot[result.size()]);
+    }
+
+    public static IPath[] getOutputLocations(IJavaProject project)
+            throws CoreException {
+        List result = new ArrayList();
+        result.add(project.getOutputLocation());
+        IClasspathEntry[] entries = project.getRawClasspath();
+        for (int i = 0; i < entries.length; i++) {
+            IClasspathEntry entry = entries[i];
+            if (entry.getEntryKind() == IClasspathEntry.CPE_SOURCE) {
+                result.add(entry.getOutputLocation());
+            }
+        }
+
+        return (IPath[]) result.toArray(new IPath[result.size()]);
     }
 
 }

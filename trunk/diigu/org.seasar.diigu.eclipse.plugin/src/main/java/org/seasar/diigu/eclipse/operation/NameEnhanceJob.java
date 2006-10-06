@@ -17,8 +17,8 @@ package org.seasar.diigu.eclipse.operation;
 
 import java.util.regex.Pattern;
 
+import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceDelta;
@@ -141,7 +141,7 @@ public class NameEnhanceJob extends WorkspaceJob {
     protected void enhance(ICompilationUnit unit, IProgressMonitor monitor)
             throws CoreException, Exception {
         monitor.beginTask(Messages.ENHANCE_BEGIN, 5);
-        IPath outpath = unit.getJavaProject().getOutputLocation();
+
         // FIXME : クラスローダは毎回作らなければならないが、URL[]を毎回作るのは、どうなのかな…。
         // そもそも、変更の入ったクラスのローダは作り直さないといけないけど、
         // 参照ライブラリの類をロードする為のローダは、毎回作り直す必然性が無いんじゃね？
@@ -157,39 +157,43 @@ public class NameEnhanceJob extends WorkspaceJob {
         if (nature != null) {
             ptn = nature.getSelectExpression();
         }
-        for (int i = 0; i < types.length; i++) {
-            IType type = types[i];
-            String typename = type.getFullyQualifiedName();
-
-            if (ptn != null && ptn.matcher(typename).matches()) {
+        if (ptn != null) {
+            IPath[] locations = ProjectUtils.getOutputLocations(unit
+                    .getJavaProject());
+            IContainer root = this.project.getParent();
+            for (int i = 0; i < types.length; i++) {
+                IType type = types[i];
+                String typename = type.getFullyQualifiedName();
+                String typepath = typename.replace('.', '/') + ".class";
                 submonitor.subTask(typename);
-                IPath path = outpath.append(type.getFullyQualifiedName()
-                        .replace('.', '/')
-                        + ".class");
-                IResource resource = this.project.getParent().getFile(path);
-                if (resource.exists()) {
-                    ParameterNameEnhancer enhancer = new ParameterNameEnhancer(
-                            type.getFullyQualifiedName(), loader);
-
-                    if (enhanceClassFile(type, enhancer)) {
-                        enhancer.save();
-                        resource.refreshLocal(IResource.DEPTH_ONE, monitor);
+                if (ptn.matcher(typename).matches()) {
+                    for (int index = 0; index < locations.length; index++) {
+                        IPath outpath = locations[index];
+                        IPath path = outpath.append(typepath);
+                        IResource resource = root.getFile(path);
+                        if (resource.exists()) {
+                            ParameterNameEnhancer enhancer = new ParameterNameEnhancer(
+                                    type.getFullyQualifiedName(), loader);
+                            if (enhanceClassFile(type, enhancer)) {
+                                enhancer.save();
+                                resource
+                                        .refreshLocal(IResource.DEPTH_ONE, null);
+                                break;
+                            }
+                        }
+                        if (submonitor.isCanceled()) {
+                            throw new OperationCanceledException();
+                        }
                     }
-                } else {
-                    IMarker m = this.project.createMarker(Constants.MARKER_ID);
-                    m.setAttribute(IMarker.MESSAGE, Messages.bind(
-                            Messages.CLASS_FILE_NOT_FOUND, path));
-                    m.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_ERROR);
                 }
                 submonitor.worked(1);
-                if (submonitor.isCanceled()) {
-                    throw new OperationCanceledException();
-                }
             }
+
+            submonitor.done();
+            monitor.worked(1);
+            monitor.setTaskName(Messages.ENHANCE_END);
         }
-        submonitor.done();
-        monitor.worked(1);
-        monitor.setTaskName(Messages.ENHANCE_END);
+
         monitor.done();
     }
 
