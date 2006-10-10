@@ -50,6 +50,7 @@ import org.seasar.diigu.eclipse.nls.Messages;
 import org.seasar.diigu.eclipse.util.ArrayUtil;
 import org.seasar.diigu.eclipse.util.JavaProjectClassLoader;
 import org.seasar.diigu.eclipse.util.ProjectUtils;
+import org.seasar.diigu.eclipse.util.StatusUtil;
 
 /**
  * @author taichi
@@ -131,9 +132,8 @@ public class NameEnhanceJob extends WorkspaceJob {
             } catch (CoreException e) {
                 throw e;
             } catch (Exception e) {
-                IStatus status = new Status(IStatus.ERROR,
-                        DiiguPlugin.PLUGIN_ID, 0, e.getMessage(), e);
-                throw new CoreException(status);
+                throw new CoreException(StatusUtil
+                        .createError(IStatus.ERROR, e));
             }
         }
     }
