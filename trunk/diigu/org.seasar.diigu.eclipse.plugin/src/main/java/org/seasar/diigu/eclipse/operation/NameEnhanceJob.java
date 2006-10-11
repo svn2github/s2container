@@ -62,14 +62,14 @@ public class NameEnhanceJob extends WorkspaceJob {
 
     private IWorkspaceRunnable runnable;
 
-    public NameEnhanceJob(String name, final IProject project) {
+    public NameEnhanceJob(String name, final IContainer container) {
         super(name);
         setPriority(Job.BUILD);
-        this.project = project;
+        this.project = container.getProject();
         this.runnable = new IWorkspaceRunnable() {
             public void run(final IProgressMonitor monitor)
                     throws CoreException {
-                project.accept(new IResourceVisitor() {
+                container.accept(new IResourceVisitor() {
                     public boolean visit(IResource resource)
                             throws CoreException {
                         enhance(resource, monitor);
@@ -102,6 +102,18 @@ public class NameEnhanceJob extends WorkspaceJob {
         };
     }
 
+    public NameEnhanceJob(String name, final IResource resource) {
+        super(name);
+        setPriority(Job.BUILD);
+        this.project = resource.getProject();
+        this.runnable = new IWorkspaceRunnable() {
+            public void run(final IProgressMonitor monitor)
+                    throws CoreException {
+                enhance(resource, monitor);
+            }
+        };
+    }
+
     /*
      * (non-Javadoc)
      * 
@@ -129,9 +141,8 @@ public class NameEnhanceJob extends WorkspaceJob {
                 ICompilationUnit unit = JavaCore
                         .createCompilationUnitFrom((IFile) resource);
                 enhance(unit, monitor);
-            } catch (CoreException e) {
-                throw e;
             } catch (Exception e) {
+                DiiguPlugin.log(e);
                 throw new CoreException(StatusUtil
                         .createError(IStatus.ERROR, e));
             }

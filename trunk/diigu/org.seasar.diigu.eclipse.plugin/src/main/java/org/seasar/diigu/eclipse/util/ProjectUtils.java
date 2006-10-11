@@ -194,7 +194,10 @@ public class ProjectUtils {
         for (int i = 0; i < entries.length; i++) {
             IClasspathEntry entry = entries[i];
             if (entry.getEntryKind() == IClasspathEntry.CPE_SOURCE) {
-                result.add(entry.getOutputLocation());
+                IPath path = entry.getOutputLocation();
+                if (path != null) {
+                    result.add(path);
+                }
             }
         }
 

@@ -15,11 +15,10 @@
  */
 package org.seasar.diigu.eclipse;
 
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
+import org.seasar.diigu.eclipse.util.LogUtil;
 
 /**
  * The main plugin class to be used in the desktop.
@@ -74,9 +73,7 @@ public class DiiguPlugin extends AbstractUIPlugin {
     }
 
     public static void log(Throwable throwable) {
-        IStatus status = new Status(IStatus.ERROR, PLUGIN_ID, IStatus.ERROR,
-                throwable.getMessage(), throwable);
-        getDefault().getLog().log(status);
+        LogUtil.log(getDefault(), throwable);
     }
 
 }

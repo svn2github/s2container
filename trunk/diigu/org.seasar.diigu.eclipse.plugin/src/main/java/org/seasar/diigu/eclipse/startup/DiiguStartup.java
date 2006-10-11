@@ -22,7 +22,9 @@ import org.eclipse.core.resources.IResourceDeltaVisitor;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jdt.core.ElementChangedEvent;
+import org.eclipse.jdt.core.IClassFile;
 import org.eclipse.jdt.core.IElementChangedListener;
+import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaElementDelta;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.ui.IStartup;
@@ -79,14 +81,17 @@ public class DiiguStartup implements IStartup {
                                     IProject p = r.getProject();
                                     if (ProjectUtils.hasNature(p,
                                             DiiguNature.NATURE_ID)) {
-                                        work[0] = new NameEnhanceJob(
-                                                Messages.ENHANCE_INCREMENTALBUILD,
-                                                delta);
-                                    } else {
-                                        work[0] = new DependencyAnalyzeJob(r
-                                                .getProject());
+                                        IJavaElement elem = JavaCore.create(r);
+                                        if (elem.getElementType() == IJavaElement.CLASS_FILE) {
+                                            IClassFile clazz = (IClassFile) elem;
+                                            IResource src = toSource(clazz);
+                                            if (src != null) {
+                                                work[0] = new NameEnhanceJob(
+                                                        Messages.ENHANCE_INCREMENTALBUILD,
+                                                        src);
+                                            }
+                                        }
                                     }
-                                    return false;
                                 }
                                 return true;
                             }
@@ -101,6 +106,28 @@ public class DiiguStartup implements IStartup {
                 }
             }
         }
+    }
+
+    private static IResource toSource(IClassFile clazz) throws CoreException {
+        // FIXME : 無限ループしない為の仕組みを考える。
+        // IJavaProject project = clazz.getJavaProject();
+        // IClassFileReader reader = ToolFactory.createDefaultClassFileReader(
+        // clazz, IClassFileReader.CONSTANT_POOL);
+        // IConstantPool pool = reader.getConstantPool();
+        // for (int i = 0; i < pool.getConstantPoolCount(); i++) {
+        // int kind = pool.getEntryKind(i);
+        // if (kind == IConstantPoolConstant.CONSTANT_Class) {
+        // IConstantPoolEntry entry = pool.decodeEntry(i);
+        // char[] data = entry.getClassInfoName();
+        // String name = String.valueOf(data);
+        // name = name.replace('/', '.');
+        // IType type = project.findType(name);
+        // if (type != null && type.isBinary() == false) {
+        // return type.getResource();
+        // }
+        // }
+        // }
+        return null;
     }
 
     /*
