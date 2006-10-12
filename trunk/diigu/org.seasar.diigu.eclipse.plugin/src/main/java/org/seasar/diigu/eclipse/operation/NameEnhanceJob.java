@@ -15,6 +15,8 @@
  */
 package org.seasar.diigu.eclipse.operation;
 
+import java.util.Hashtable;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IContainer;
@@ -36,12 +38,20 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jdt.core.Flags;
+import org.eclipse.jdt.core.IClassFile;
 import org.eclipse.jdt.core.ICompilationUnit;
+import org.eclipse.jdt.core.IJavaElement;
+import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IMethod;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jdt.core.Signature;
+import org.eclipse.jdt.core.ToolFactory;
+import org.eclipse.jdt.core.util.IClassFileReader;
+import org.eclipse.jdt.core.util.IConstantPool;
+import org.eclipse.jdt.core.util.IConstantPoolConstant;
+import org.eclipse.jdt.core.util.IConstantPoolEntry;
 import org.seasar.diigu.ParameterNameEnhancer;
 import org.seasar.diigu.eclipse.Constants;
 import org.seasar.diigu.eclipse.DiiguPlugin;
@@ -57,6 +67,8 @@ import org.seasar.diigu.eclipse.util.StatusUtil;
  * 
  */
 public class NameEnhanceJob extends WorkspaceJob {
+
+    private static Map CLASS_FILE_TIMESTAMPS = new Hashtable();
 
     private IProject project;
 
@@ -102,18 +114,6 @@ public class NameEnhanceJob extends WorkspaceJob {
         };
     }
 
-    public NameEnhanceJob(String name, final IResource resource) {
-        super(name);
-        setPriority(Job.BUILD);
-        this.project = resource.getProject();
-        this.runnable = new IWorkspaceRunnable() {
-            public void run(final IProgressMonitor monitor)
-                    throws CoreException {
-                enhance(resource, monitor);
-            }
-        };
-    }
-
     /*
      * (non-Javadoc)
      * 
@@ -132,31 +132,56 @@ public class NameEnhanceJob extends WorkspaceJob {
 
     void enhance(IResource resource, IProgressMonitor monitor)
             throws CoreException {
-        if (resource instanceof IFile && resource.getName().endsWith(".java")) {
-            try {
+        try {
+            if (resource instanceof IFile) {
                 if (monitor == null) {
                     monitor = new NullProgressMonitor();
                 }
 
-                ICompilationUnit unit = JavaCore
-                        .createCompilationUnitFrom((IFile) resource);
-                enhance(unit, monitor);
-            } catch (Exception e) {
-                DiiguPlugin.log(e);
-                throw new CoreException(StatusUtil
-                        .createError(IStatus.ERROR, e));
+                if ("java".equals(resource.getFileExtension())) {
+                    ICompilationUnit unit = JavaCore
+                            .createCompilationUnitFrom((IFile) resource);
+                    enhance(unit, monitor);
+                } else if ("class".equals(resource.getFileExtension())) {
+                    IJavaElement elem = JavaCore.create(resource);
+                    if (elem.getElementType() == IJavaElement.CLASS_FILE) {
+                        IResource src = toSource((IClassFile) elem);
+                        if (src != null) {
+                            enhance(src, monitor);
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            DiiguPlugin.log(e);
+            throw new CoreException(StatusUtil.createError(IStatus.ERROR, e));
+        }
+    }
+
+    private static IResource toSource(IClassFile clazz) throws CoreException {
+        IJavaProject project = clazz.getJavaProject();
+        IClassFileReader reader = ToolFactory.createDefaultClassFileReader(
+                clazz, IClassFileReader.CONSTANT_POOL);
+        IConstantPool pool = reader.getConstantPool();
+        for (int i = 0; i < pool.getConstantPoolCount(); i++) {
+            if (pool.getEntryKind(i) == IConstantPoolConstant.CONSTANT_Class) {
+                IConstantPoolEntry entry = pool.decodeEntry(i);
+                char[] data = entry.getClassInfoName();
+                String name = String.valueOf(data);
+                name = name.replace('/', '.');
+                IType type = project.findType(name);
+                if (type != null && type.isBinary() == false) {
+                    return type.getResource();
+                }
             }
         }
+        return null;
     }
 
     protected void enhance(ICompilationUnit unit, IProgressMonitor monitor)
             throws CoreException, Exception {
         monitor.beginTask(Messages.ENHANCE_BEGIN, 5);
 
-        // FIXME : クラスローダは毎回作らなければならないが、URL[]を毎回作るのは、どうなのかな…。
-        // そもそも、変更の入ったクラスのローダは作り直さないといけないけど、
-        // 参照ライブラリの類をロードする為のローダは、毎回作り直す必然性が無いんじゃね？
-        // どっかでイベント拾って作る方が、体感速度があがると思われ。
         JavaProjectClassLoader loader = new JavaProjectClassLoader(unit
                 .getJavaProject());
         monitor.worked(1);
@@ -183,12 +208,7 @@ public class NameEnhanceJob extends WorkspaceJob {
                         IPath path = outpath.append(typepath);
                         IResource resource = root.getFile(path);
                         if (resource.exists()) {
-                            ParameterNameEnhancer enhancer = new ParameterNameEnhancer(
-                                    type.getFullyQualifiedName(), loader);
-                            if (enhanceClassFile(type, enhancer)) {
-                                enhancer.save();
-                                resource
-                                        .refreshLocal(IResource.DEPTH_ONE, null);
+                            if (processEnhance(loader, type, resource)) {
                                 break;
                             }
                         }
@@ -206,6 +226,25 @@ public class NameEnhanceJob extends WorkspaceJob {
         }
 
         monitor.done();
+    }
+
+    private synchronized boolean processEnhance(JavaProjectClassLoader loader,
+            IType type, IResource classfile) throws CoreException {
+        String location = classfile.getFullPath().toString();
+        Long proceedTime = (Long) CLASS_FILE_TIMESTAMPS.get(location);
+        if (proceedTime == null
+                || proceedTime.longValue() < classfile.getLocalTimeStamp()) {
+            ParameterNameEnhancer enhancer = new ParameterNameEnhancer(type
+                    .getFullyQualifiedName(), loader);
+            if (enhanceClassFile(type, enhancer)) {
+                enhancer.save();
+                classfile.refreshLocal(IResource.DEPTH_ZERO, null);
+                CLASS_FILE_TIMESTAMPS.put(location, new Long(classfile
+                        .getLocalTimeStamp()));
+                return true;
+            }
+        }
+        return false;
     }
 
     protected boolean enhanceClassFile(IType type,
