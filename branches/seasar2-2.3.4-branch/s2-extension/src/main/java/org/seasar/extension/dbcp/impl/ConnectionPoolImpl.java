@@ -39,8 +39,13 @@ import org.seasar.framework.util.SLinkedList;
 import org.seasar.framework.util.TransactionManagerUtil;
 import org.seasar.framework.util.TransactionUtil;
 
-public class ConnectionPoolImpl implements ConnectionPool,
-        Synchronization {
+public class ConnectionPoolImpl implements ConnectionPool, Synchronization {
+
+    public static final String readOnly_BINDING = "bindingType=may";
+
+    public static final String transactionIsolationLevel_BINDING = "bindingType=may";
+
+    public static final int DEFAULT_TRANSACTION_ISOLATION_LEVEL = -1;
 
     private static Logger logger_ = Logger.getLogger(ConnectionPoolImpl.class);
 
@@ -53,6 +58,10 @@ public class ConnectionPoolImpl implements ConnectionPool,
     private int maxPoolSize_ = 10;
 
     private boolean allowLocalTx_ = true;
+
+    private boolean readOnly_ = false;
+
+    private int transactionIsolationLevel_ = DEFAULT_TRANSACTION_ISOLATION_LEVEL;
 
     private Set activePool_ = new HashSet();
 
@@ -69,6 +78,14 @@ public class ConnectionPoolImpl implements ConnectionPool,
 
     public void setXADataSource(XADataSource xaDataSource) {
         xaDataSource_ = xaDataSource;
+    }
+
+    public boolean isReadOnly() {
+        return readOnly_;
+    }
+
+    public void setReadOnly(boolean readOnly) {
+        readOnly_ = readOnly;
     }
 
     public TransactionManager getTransactionManager() {
@@ -101,6 +118,14 @@ public class ConnectionPoolImpl implements ConnectionPool,
 
     public void setAllowLocalTx(boolean allowLocalTx) {
         allowLocalTx_ = allowLocalTx;
+    }
+
+    public int getTransactionIsolationLevel() {
+        return transactionIsolationLevel_;
+    }
+
+    public void setTransactionIsolationLevel(int transactionIsolationLevel) {
+        transactionIsolationLevel_ = transactionIsolationLevel;
     }
 
     public int getActivePoolSize() {
@@ -144,6 +169,10 @@ public class ConnectionPoolImpl implements ConnectionPool,
             setConnectionTxActivePool(tx, con);
         } else {
             setConnectionActivePool(con);
+        }
+        con.setReadOnly(readOnly_);
+        if (transactionIsolationLevel_ != DEFAULT_TRANSACTION_ISOLATION_LEVEL) {
+            con.setTransactionIsolation(transactionIsolationLevel_);
         }
         return con;
     }
