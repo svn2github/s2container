@@ -39,7 +39,7 @@ import org.seasar.framework.util.SLinkedList;
 import org.seasar.framework.util.TransactionManagerUtil;
 import org.seasar.framework.util.TransactionUtil;
 
-public final class ConnectionPoolImpl implements ConnectionPool,
+public class ConnectionPoolImpl implements ConnectionPool,
         Synchronization {
 
     private static Logger logger_ = Logger.getLogger(ConnectionPoolImpl.class);
