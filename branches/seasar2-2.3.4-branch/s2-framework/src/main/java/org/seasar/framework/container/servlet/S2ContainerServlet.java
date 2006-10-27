@@ -16,6 +16,7 @@
 package org.seasar.framework.container.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -23,6 +24,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.seasar.framework.container.ComponentDef;
+import org.seasar.framework.container.ContainerNotRegisteredRuntimeException;
 import org.seasar.framework.container.S2Container;
 import org.seasar.framework.container.factory.SingletonS2ContainerFactory;
 import org.seasar.framework.util.StringUtil;
@@ -38,6 +41,10 @@ public class S2ContainerServlet extends HttpServlet {
     public static final String COMMAND = "command";
 
     public static final String RESTART = "restart";
+
+    public static final String LIST = "list";
+
+    public static final String PATH = "path";
 
     private static S2ContainerServlet instance;
 
@@ -81,12 +88,88 @@ public class S2ContainerServlet extends HttpServlet {
             throws IOException, ServletException {
 
         String command = request.getParameter(COMMAND);
-        if (debug && command != null && RESTART.equalsIgnoreCase(command)) {
+        if (debug && RESTART.equalsIgnoreCase(command)) {
             destroy();
             init();
             response.getWriter().write("S2ContainerServlet is restarted.");
+        } else if (debug && LIST.equalsIgnoreCase(command)) {
+            list(request, response);
         } else {
             response.getWriter().write("S2ContainerServlet is running.");
+        }
+    }
+
+    protected void list(final HttpServletRequest request,
+            final HttpServletResponse response) throws IOException {
+        final PrintWriter out = response.getWriter();
+
+        final String path = request.getParameter(PATH);
+        final S2Container container = getContainer(path);
+        if (container == null) {
+            out.write("S2Container[" + path + "] is not found.");
+            return;
+        }
+
+        out.write("<html><head><title>S2 Components</title></head><body>");
+        try {
+            out.write("<h1>S2Container</h1>");
+            out.write("<p>PATH:<code>" + path + "</code></p>");
+            listInclude(container, request, out);
+            listComponent(container, out);
+        } finally {
+            out.write("</body></html>");
+        }
+    }
+
+    protected void listInclude(final S2Container container,
+            final HttpServletRequest request, final PrintWriter out)
+            throws IOException {
+        if (container.getChildSize() == 0) {
+            return;
+        }
+        out.write("<h2>Includes</h2>");
+        out.write("<p><ul>");
+        try {
+            final String requestUri = request.getRequestURI();
+            final String queryString = "?" + COMMAND + "=" + LIST + "&" + PATH
+                    + "=";
+            for (int i = 0; i < container.getChildSize(); ++i) {
+                final S2Container child = container.getChild(i);
+                out.write("<li><a href='" + requestUri + queryString + child
+                        + "'><code>" + child + "</code></a></li>");
+            }
+        } finally {
+            out.write("</ul></p>");
+        }
+    }
+
+    protected void listComponent(final S2Container container,
+            final PrintWriter out) throws IOException {
+        if (container.getComponentDefSize() == 0) {
+            return;
+        }
+        out.write("<h2>Components</h2>");
+        out.write("<p><ul>");
+        try {
+            for (int i = 0; i < container.getComponentDefSize(); ++i) {
+                final ComponentDef cd = container.getComponentDef(i);
+                printComponent(cd, out);
+            }
+        } finally {
+            out.write("</ul></p>");
+        }
+    }
+
+    protected void printComponent(final ComponentDef cd, final PrintWriter out)
+            throws IOException {
+    }
+
+    protected S2Container getContainer(final String path) {
+        final S2Container root = SingletonS2ContainerFactory.getContainer();
+        try {
+            return StringUtil.isEmpty(path) ? root : root.getDescendant(path);
+        } catch (final ContainerNotRegisteredRuntimeException e) {
+            return null;
         }
     }
 }
