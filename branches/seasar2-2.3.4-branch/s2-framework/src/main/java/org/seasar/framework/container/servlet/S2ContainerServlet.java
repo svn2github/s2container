@@ -17,6 +17,7 @@ package org.seasar.framework.container.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.Field;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -24,10 +25,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.seasar.framework.aop.impl.PointcutImpl;
+import org.seasar.framework.container.ArgDef;
+import org.seasar.framework.container.ArgDefAware;
+import org.seasar.framework.container.AspectDef;
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.ContainerNotRegisteredRuntimeException;
+import org.seasar.framework.container.MethodDef;
+import org.seasar.framework.container.PropertyDef;
 import org.seasar.framework.container.S2Container;
 import org.seasar.framework.container.factory.SingletonS2ContainerFactory;
+import org.seasar.framework.container.impl.ArgDefImpl;
 import org.seasar.framework.util.StringUtil;
 
 public class S2ContainerServlet extends HttpServlet {
@@ -106,18 +114,38 @@ public class S2ContainerServlet extends HttpServlet {
         final String path = request.getParameter(PATH);
         final S2Container container = getContainer(path);
         if (container == null) {
-            out.write("S2Container[" + path + "] is not found.");
+            out.write("S2Container[" + container.getPath() + "] is not found.");
             return;
         }
 
         out.write("<html><head><title>S2 Components</title></head><body>");
         try {
             out.write("<h1>S2Container</h1>");
-            out.write("<p>PATH:<code>" + path + "</code></p>");
+            out.write("<ul>");
+            try {
+                out.write("<li>path : <code>" + container.getPath()
+                        + "</code></li>");
+                final String nameSpace = container.getNamespace();
+                if (!StringUtil.isEmpty(nameSpace)) {
+                    out.write("<li>namespace : <code>" + nameSpace
+                            + "</code></li>");
+                }
+            } finally {
+                out.write("</ul>");
+            }
             listInclude(container, request, out);
             listComponent(container, out);
         } finally {
             out.write("</body></html>");
+        }
+    }
+
+    protected S2Container getContainer(final String path) {
+        final S2Container root = SingletonS2ContainerFactory.getContainer();
+        try {
+            return StringUtil.isEmpty(path) ? root : root.getDescendant(path);
+        } catch (final ContainerNotRegisteredRuntimeException e) {
+            return null;
         }
     }
 
@@ -135,8 +163,9 @@ public class S2ContainerServlet extends HttpServlet {
                     + "=";
             for (int i = 0; i < container.getChildSize(); ++i) {
                 final S2Container child = container.getChild(i);
-                out.write("<li><a href='" + requestUri + queryString + child
-                        + "'><code>" + child + "</code></a></li>");
+                final String path = child.getPath();
+                out.write("<li><a href='" + requestUri + queryString + path
+                        + "'><code>" + path + "</code></a></li>");
             }
         } finally {
             out.write("</ul></p>");
@@ -162,13 +191,161 @@ public class S2ContainerServlet extends HttpServlet {
 
     protected void printComponent(final ComponentDef cd, final PrintWriter out)
             throws IOException {
+        final String name = cd.getComponentName();
+        final Class clazz = cd.getComponentClass();
+        out
+                .write("<li style='list-style-type: square'><code><strong>"
+                        + (name != null ? name : "-") + " ["
+                        + (clazz != null ? clazz.getName() : "-")
+                        + "]</strong></code>");
+        out.write("<ul>");
+        out.write("<li style='list-style-type: circle'>instance : <code>"
+                + cd.getInstanceDef().getName() + "</code></li>");
+        out.write("<li style='list-style-type: circle'>autoBinding : <code>"
+                + cd.getAutoBindingDef().getName() + "</code></li>");
+
+        final String expr = cd.getExpression();
+        if (!StringUtil.isEmpty(expr)) {
+            out.write("<li style='list-style-type: circle'>ognl : <code>"
+                    + expr + "</code></li>");
+        }
+
+        printArg(cd, out);
+        printAspect(cd, out);
+        printProperty(cd, out);
+        printInitMethod(cd, out);
+        printDestroyMethod(cd, out);
+
+        try {
+            final Object component = cd.getComponent();
+            out
+                    .write("<li style='list-style-type: circle'>toString : <pre style='border-style: solid; border-width: 1'>"
+                            + component + "</pre></li>");
+        } catch (final Exception ignore) {
+        }
+        out.write("</ul>");
     }
 
-    protected S2Container getContainer(final String path) {
-        final S2Container root = SingletonS2ContainerFactory.getContainer();
+    protected void printArg(final ArgDefAware cd, final PrintWriter out)
+            throws IOException {
+        for (int i = 0; i < cd.getArgDefSize(); ++i) {
+            out.write("<li style='list-style-type: circle'>arg<ul>");
+            final ArgDef ad = cd.getArgDef(i);
+
+            final String expr = ad.getExpression();
+            if (!StringUtil.isEmpty(expr)) {
+                out.write("<li style='list-style-type: circle'>ognl : <code>"
+                        + expr + "</code></li>");
+            }
+
+            final ComponentDef child = getChildComponentDef(ad);
+            if (child != null) {
+                printComponent(child, out);
+            }
+
+            out.write("</ul></li>");
+        }
+    }
+
+    protected void printAspect(final ComponentDef cd, final PrintWriter out)
+            throws IOException {
+        for (int i = 0; i < cd.getAspectDefSize(); ++i) {
+            out.write("<li style='list-style-type: circle'>aspect<ul>");
+            final AspectDef ad = cd.getAspectDef(i);
+            final PointcutImpl pc = (PointcutImpl) ad.getPointcut();
+            if (pc != null) {
+                final String[] pointCuts = pc.getMethodNames();
+                if (pointCuts != null && pointCuts.length > 0) {
+                    out
+                            .write("<li style='list-style-type: circle'>pointcut<ul>");
+                    for (int j = 0; j < pointCuts.length; ++j) {
+                        out.write("<li style='list-style-type: circle'><code>"
+                                + pointCuts[j] + "</code></li>");
+                    }
+                    out.write("</ul></li>");
+                }
+            }
+
+            final String expr = ad.getExpression();
+            if (!StringUtil.isEmpty(expr)) {
+                out.write("<li style='list-style-type: circle'>ognl : <code>"
+                        + expr + "</code></li>");
+            }
+
+            final ComponentDef child = getChildComponentDef(ad);
+            if (child != null) {
+                printComponent(child, out);
+            }
+
+            out.write("</ul></li>");
+        }
+    }
+
+    protected void printProperty(final ComponentDef cd, final PrintWriter out)
+            throws IOException {
+        for (int i = 0; i < cd.getPropertyDefSize(); ++i) {
+            out.write("<li style='list-style-type: circle'>property<ul>");
+            final PropertyDef pd = cd.getPropertyDef(i);
+            out.write("<li style='list-style-type: circle'>name : <code>"
+                    + pd.getPropertyName() + "</code></li>");
+
+            final String expr = pd.getExpression();
+            if (!StringUtil.isEmpty(expr)) {
+                out.write("<li style='list-style-type: circle'>ognl : <code>"
+                        + expr + "</code></li>");
+            }
+
+            final ComponentDef child = getChildComponentDef(pd);
+            if (child != null) {
+                printComponent(child, out);
+            }
+
+            out.write("</ul></li>");
+        }
+    }
+
+    protected void printInitMethod(final ComponentDef cd, final PrintWriter out)
+            throws IOException {
+        for (int i = 0; i < cd.getInitMethodDefSize(); ++i) {
+            out.write("<li style='list-style-type: circle'>initMethod<ul>");
+            printMethod(cd.getInitMethodDef(i), out);
+            out.write("</ul></li>");
+        }
+    }
+
+    protected void printDestroyMethod(final ComponentDef cd,
+            final PrintWriter out) throws IOException {
+        for (int i = 0; i < cd.getDestroyMethodDefSize(); ++i) {
+            out.write("<li style='list-style-type: circle'>destroyMethod<ul>");
+            printMethod(cd.getDestroyMethodDef(i), out);
+            out.write("</ul></li>");
+        }
+    }
+
+    protected void printMethod(final MethodDef md, final PrintWriter out)
+            throws IOException {
+        out.write("<li style='list-style-type: circle'>name : <code>"
+                + md.getMethodName() + "</code></li>");
+
+        final String expr = md.getExpression();
+        if (!StringUtil.isEmpty(expr)) {
+            out.write("<li style='list-style-type: circle'>ognl : <code>"
+                    + expr + "</code></li>");
+        }
+
+        final ComponentDef child = getChildComponentDef(md);
+        if (child != null) {
+            printComponent(child, out);
+        }
+    }
+
+    protected ComponentDef getChildComponentDef(final Object o) {
         try {
-            return StringUtil.isEmpty(path) ? root : root.getDescendant(path);
-        } catch (final ContainerNotRegisteredRuntimeException e) {
+            final Field f = ArgDefImpl.class
+                    .getDeclaredField("childComponentDef");
+            f.setAccessible(true);
+            return (ComponentDef) f.get(o);
+        } catch (final Exception e) {
             return null;
         }
     }
