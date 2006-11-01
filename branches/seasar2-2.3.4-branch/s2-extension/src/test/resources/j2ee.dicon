@@ -40,6 +40,10 @@
 		</property>
 		<property name="user">"xxx"</property>
 		<property name="password">"xxx"</property>
+		<initMethod name="addProperty">
+			<arg>"includeSynonyms"</arg>
+			<arg>"true"</arg>
+		</initMethod>
 	</component>
 
 	<component name="xaDataSource"
