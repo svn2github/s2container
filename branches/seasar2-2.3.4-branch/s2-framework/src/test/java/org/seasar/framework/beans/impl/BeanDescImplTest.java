@@ -32,24 +32,28 @@ public class BeanDescImplTest extends TestCase {
 
     public void testPropertyDesc() throws Exception {
         BeanDesc beanDesc = new BeanDescImpl(MyBean.class);
-        assertEquals("1", 3, beanDesc.getPropertyDescSize());
+        assertEquals(4, beanDesc.getPropertyDescSize());
         PropertyDesc propDesc = beanDesc.getPropertyDesc("aaa");
-        assertEquals("2", "aaa", propDesc.getPropertyName());
-        assertEquals("3", String.class, propDesc.getPropertyType());
-        assertNotNull("4", propDesc.getReadMethod());
-        assertNull("5", propDesc.getWriteMethod());
+        assertEquals("aaa", propDesc.getPropertyName());
+        assertEquals(String.class, propDesc.getPropertyType());
+        assertNotNull(propDesc.getReadMethod());
+        assertNull(propDesc.getWriteMethod());
 
         propDesc = beanDesc.getPropertyDesc("CCC");
-        assertEquals("6", "CCC", propDesc.getPropertyName());
-        assertEquals("7", boolean.class, propDesc.getPropertyType());
-        assertNotNull("8", propDesc.getReadMethod());
-        assertNull("9", propDesc.getWriteMethod());
+        assertEquals("CCC", propDesc.getPropertyName());
+        assertEquals(boolean.class, propDesc.getPropertyType());
+        assertNotNull(propDesc.getReadMethod());
+        assertNull(propDesc.getWriteMethod());
 
         propDesc = beanDesc.getPropertyDesc("eee");
-        assertEquals("10", "eee", propDesc.getPropertyName());
-        assertEquals("11", String.class, propDesc.getPropertyType());
-        assertNotNull("12", propDesc.getReadMethod());
-        assertNotNull("13", propDesc.getWriteMethod());
+        assertEquals("eee", propDesc.getPropertyName());
+        assertEquals(String.class, propDesc.getPropertyType());
+        assertNotNull(propDesc.getReadMethod());
+        assertNotNull(propDesc.getWriteMethod());
+
+        propDesc = beanDesc.getPropertyDesc("fff");
+        assertEquals("fff", propDesc.getPropertyName());
+        assertEquals(Boolean.class, propDesc.getPropertyType());
     }
 
     public void testInvoke() throws Exception {
@@ -145,50 +149,7 @@ public class BeanDescImplTest extends TestCase {
         assertEquals("1", true, eee.isAccessible());
     }
 
-    public void testGetConstructorParameterNames() throws Exception {
-        BeanDesc beanDesc = new BeanDescImpl(MyBean3.class);
-        String[] names = beanDesc.getConstructorParameterNames(new Class[0]);
-        assertNotNull(names);
-        assertEquals(0, names.length);
-
-        names = beanDesc.getConstructorParameterNames(new Class[] { int.class,
-                String.class, MyBean.class, MyBean2.class });
-        assertNotNull(names);
-        assertEquals(4, names.length);
-        assertEquals("num", names[0]);
-        assertEquals("text", names[1]);
-        assertEquals("bean1", names[2]);
-        assertEquals("bean2", names[3]);
-    }
-
-    public void testGetMethodParameterNames() throws Exception {
-        BeanDesc beanDesc = new BeanDescImpl(MyBean.class);
-        String[] names = beanDesc.getMethodParameterNames("getAaa",
-                new Class[0]);
-        assertNotNull(names);
-        assertEquals(0, names.length);
-
-        names = beanDesc.getMethodParameterNames("getBbb",
-                new Class[] { Object.class });
-        assertNotNull(names);
-        assertEquals(1, names.length);
-        assertEquals("a", names[0]);
-
-        names = beanDesc.getMethodParameterNames("add", new Class[] {
-                Number.class, Number.class });
-        assertNotNull(names);
-        assertEquals(2, names.length);
-        assertEquals("arg1", names[0]);
-        assertEquals("arg2", names[1]);
-
-        beanDesc = new BeanDescImpl(MyBean3.class);
-        names = beanDesc.getMethodParameterNames("foo", new Class[] {
-                MyBean.class, MyBean2.class });
-        assertNotNull(names);
-        assertEquals(2, names.length);
-        assertEquals("foo$bar", names[0]);
-        assertEquals("hoge$hoge$hoge", names[1]);
-    }
+  
 
     /*
      * public void testPerformance() { long start = System.currentTimeMillis();
@@ -234,6 +195,10 @@ public class BeanDescImplTest extends TestCase {
             this.eee = eee;
         }
 
+        public Boolean isFff() {
+            return null;
+        }
+
         public Number add(Number arg1, Number arg2) {
             return MathUtil.add(arg1, arg2);
         }
@@ -251,7 +216,13 @@ public class BeanDescImplTest extends TestCase {
         }
     }
 
-    public static class MyBean2 {
+    public class MyBean2 {
+        public MyBean2() {
+        }
+
+        public MyBean2(int num, String text, MyBean bean1, MyBean2 bean2) {
+        }
+
         public void setAaa(int i) {
         }
 
