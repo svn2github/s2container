@@ -34,7 +34,6 @@ import org.eclipse.ui.preferences.ScopedPreferenceStore;
 import org.seasar.diigu.eclipse.Constants;
 import org.seasar.diigu.eclipse.DiiguPlugin;
 import org.seasar.diigu.eclipse.nls.Messages;
-import org.seasar.diigu.eclipse.util.ProjectUtils;
 
 public class DiiguNature implements IProjectNature {
 
@@ -42,8 +41,6 @@ public class DiiguNature implements IProjectNature {
      * ID of this project nature
      */
     public static final String NATURE_ID = "org.seasar.diigu.eclipse.diiguNature";
-
-    private static final String[] BUILDERS = { DiiguBuilder.BUILDER_ID };
 
     private IProject project;
 
@@ -57,7 +54,6 @@ public class DiiguNature implements IProjectNature {
      * @see org.eclipse.core.resources.IProjectNature#configure()
      */
     public void configure() throws CoreException {
-        ProjectUtils.addBuilders(getProject(), BUILDERS);
     }
 
     /*
@@ -66,7 +62,6 @@ public class DiiguNature implements IProjectNature {
      * @see org.eclipse.core.resources.IProjectNature#deconfigure()
      */
     public void deconfigure() throws CoreException {
-        ProjectUtils.removeBuilders(getProject(), BUILDERS);
     }
 
     public IPreferenceStore getPreferenceStore() {
