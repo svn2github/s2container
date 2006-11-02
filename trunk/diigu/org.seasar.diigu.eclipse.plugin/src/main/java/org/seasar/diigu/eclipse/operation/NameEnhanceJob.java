@@ -162,16 +162,18 @@ public class NameEnhanceJob extends WorkspaceJob {
         IJavaProject project = clazz.getJavaProject();
         IClassFileReader reader = ToolFactory.createDefaultClassFileReader(
                 clazz, IClassFileReader.CONSTANT_POOL);
-        IConstantPool pool = reader.getConstantPool();
-        for (int i = 0; i < pool.getConstantPoolCount(); i++) {
-            if (pool.getEntryKind(i) == IConstantPoolConstant.CONSTANT_Class) {
-                IConstantPoolEntry entry = pool.decodeEntry(i);
-                char[] data = entry.getClassInfoName();
-                String name = String.valueOf(data);
-                name = name.replace('/', '.');
-                IType type = project.findType(name);
-                if (type != null && type.isBinary() == false) {
-                    return type.getResource();
+        if (reader != null) {
+            IConstantPool pool = reader.getConstantPool();
+            for (int i = 0; i < pool.getConstantPoolCount(); i++) {
+                if (pool.getEntryKind(i) == IConstantPoolConstant.CONSTANT_Class) {
+                    IConstantPoolEntry entry = pool.decodeEntry(i);
+                    char[] data = entry.getClassInfoName();
+                    String name = String.valueOf(data);
+                    name = name.replace('/', '.');
+                    IType type = project.findType(name);
+                    if (type != null && type.isBinary() == false) {
+                        return type.getResource();
+                    }
                 }
             }
         }
