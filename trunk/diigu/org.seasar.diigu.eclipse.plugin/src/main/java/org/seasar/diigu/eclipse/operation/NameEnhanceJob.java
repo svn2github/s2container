@@ -27,6 +27,7 @@ import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.resources.IResourceDeltaVisitor;
 import org.eclipse.core.resources.IResourceVisitor;
 import org.eclipse.core.resources.IWorkspaceRunnable;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.resources.WorkspaceJob;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
@@ -90,6 +91,17 @@ public class NameEnhanceJob extends WorkspaceJob {
                 });
             }
         };
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.eclipse.core.runtime.jobs.Job#belongsTo(java.lang.Object)
+     */
+    public boolean belongsTo(Object family) {
+        return family == ResourcesPlugin.FAMILY_AUTO_BUILD
+                || family == ResourcesPlugin.FAMILY_MANUAL_BUILD;
+
     }
 
     public NameEnhanceJob(String name, final IResourceDelta delta) {
