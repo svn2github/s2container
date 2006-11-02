@@ -36,5 +36,8 @@
    <feature url="features/org.seasar.diigu.eclipse_0.0.13.jar" id="org.seasar.diigu.eclipse" version="0.0.13">
       <category name="Diigu"/>
    </feature>
+   <feature url="features/org.seasar.diigu.eclipse_0.0.14.jar" id="org.seasar.diigu.eclipse" version="0.0.14">
+      <category name="Diigu"/>
+   </feature>
    <category-def name="Diigu" label="Diigu"/>
 </site>
