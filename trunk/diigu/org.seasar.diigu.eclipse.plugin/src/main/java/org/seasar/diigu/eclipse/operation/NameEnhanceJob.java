@@ -15,8 +15,6 @@
  */
 package org.seasar.diigu.eclipse.operation;
 
-import java.util.Hashtable;
-import java.util.Map;
 import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IContainer;
@@ -35,6 +33,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
+import org.eclipse.core.runtime.QualifiedName;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.core.runtime.jobs.Job;
@@ -68,8 +67,6 @@ import org.seasar.diigu.eclipse.util.StatusUtil;
  * 
  */
 public class NameEnhanceJob extends WorkspaceJob {
-
-    private static Map CLASS_FILE_TIMESTAMPS = new Hashtable();
 
     private IProject project;
 
@@ -170,7 +167,7 @@ public class NameEnhanceJob extends WorkspaceJob {
         }
     }
 
-    private static IResource toSource(IClassFile clazz) throws CoreException {
+    public static IResource toSource(IClassFile clazz) throws CoreException {
         IJavaProject project = clazz.getJavaProject();
         IClassFileReader reader = ToolFactory.createDefaultClassFileReader(
                 clazz, IClassFileReader.CONSTANT_POOL);
@@ -242,19 +239,16 @@ public class NameEnhanceJob extends WorkspaceJob {
         monitor.done();
     }
 
-    private synchronized boolean processEnhance(JavaProjectClassLoader loader,
-            IType type, IResource classfile) throws CoreException {
-        String location = classfile.getFullPath().toString();
-        Long proceedTime = (Long) CLASS_FILE_TIMESTAMPS.get(location);
-        if (proceedTime == null
-                || proceedTime.longValue() < classfile.getLocalTimeStamp()) {
+    private boolean processEnhance(JavaProjectClassLoader loader, IType type,
+            IResource classfile) throws CoreException {
+        QualifiedName qn = new QualifiedName(Constants.PLUGIN_ID,
+                Constants.ENHANCE_LOCALNAME);
+        if (classfile.getPersistentProperty(qn) == null) {
             ParameterNameEnhancer enhancer = new ParameterNameEnhancer(type
                     .getFullyQualifiedName(), loader);
             if (enhanceClassFile(type, enhancer)) {
                 enhancer.save();
-                classfile.refreshLocal(IResource.DEPTH_ZERO, null);
-                CLASS_FILE_TIMESTAMPS.put(location, new Long(classfile
-                        .getLocalTimeStamp()));
+                classfile.setPersistentProperty(qn, "enhanced");
                 return true;
             }
         }

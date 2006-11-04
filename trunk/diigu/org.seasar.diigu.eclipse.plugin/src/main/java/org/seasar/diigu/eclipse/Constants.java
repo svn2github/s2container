@@ -27,4 +27,5 @@ public final class Constants {
 
     public static final String MARKER_ID = PLUGIN_ID + ".diiguMarker";
 
+    public static final String ENHANCE_LOCALNAME = "enhance";
 }

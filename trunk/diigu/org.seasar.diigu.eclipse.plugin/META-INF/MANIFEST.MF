@@ -14,7 +14,6 @@ Eclipse-AutoStart: true
 Bundle-Vendor: %plugin.author
 Export-Package: org.seasar.diigu,
  org.seasar.diigu.eclipse,
- org.seasar.diigu.eclipse.builder,
  org.seasar.diigu.eclipse.nls,
  org.seasar.diigu.eclipse.operation,
  org.seasar.diigu.eclipse.preferences,

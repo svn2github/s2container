@@ -46,8 +46,16 @@ public class Messages extends NLS {
     public static String ANALYZE_DEPENDENCY;
 
     public static String CLASS_FILE_NOT_FOUND;
-    
+
     public static String REBUILD_PROJECT;
+
+    public static String ENHANCE_TARGET;
+
+    public static String ENHANCE_STATUS;
+
+    public static String ENHANCED;
+
+    public static String NOT_ENHANCE;
 
     static {
         Class clazz = Messages.class;

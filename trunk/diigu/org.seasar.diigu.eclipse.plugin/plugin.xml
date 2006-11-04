@@ -22,9 +22,28 @@
       <page
             adaptable="true"
             class="org.seasar.diigu.eclipse.preferences.DiiguProjectPreferencePage"
-            id="diiguPropertyPage"
+            id="diiguPropertyPage.java"
             name="Diigu"
             objectClass="org.eclipse.jdt.core.IJavaProject"/>
+      <page
+            adaptable="true"
+            class="org.seasar.diigu.eclipse.preferences.DiiguClassPropertyPage"
+            id="diiguClassPropertyPage"
+            name="Diigu"
+            objectClass="org.eclipse.jdt.core.ICompilationUnit"/>
+      <page
+            adaptable="true"
+            class="org.seasar.diigu.eclipse.preferences.DiiguClassPropertyPage"
+            id="diiguClassPropertyPage"
+            name="Diigu"
+            nameFilter="*.java"
+            objectClass="org.eclipse.core.resources.IFile"/>
+      <page
+            adaptable="true"
+            class="org.seasar.diigu.eclipse.preferences.DiiguClassPropertyPage"
+            id="diiguClassPropertyPage.type"
+            name="Diigu"
+            objectClass="org.eclipse.jdt.core.IType"/>
    </extension>
    <extension
          id="diiguMarker"
