@@ -22,7 +22,7 @@
       <page
             adaptable="true"
             class="org.seasar.diigu.eclipse.preferences.DiiguProjectPreferencePage"
-            id="diiguPropertyPage.java"
+            id="diiguPropertyPage"
             name="Diigu"
             objectClass="org.eclipse.jdt.core.IJavaProject"/>
       <page
