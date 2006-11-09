@@ -1,0 +1,459 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- don't edit start -->
+<head><title>Seasar - DI Container with AOP - </title>
+<meta http-equiv="Content-Type" content="text/html; charset=MS932C">
+<link href="seasar_b.css" type="text/css" rel="stylesheet" media="screen"><link href="seasar_p.css" type="text/css" rel="stylesheet" media="print"><script src="seasar_b.js" type="text/JavaScript" language="JavaScript"></script>
+</head><body onload="preload('ja')"><table width="100%" border="0" cellspacing="0" cellpadding="0" align="left"><tr>
+<td align="left" valign="top" width="780"><table width="780" border="0" cellspacing="0" cellpadding="0" class="white">
+<tr><td colspan="7"><img height="5" width="780" src="images/top01_b.gif" alt=""></td></tr>
+<tr><td><img height="117" width="235" src="images/top02_b.gif" alt="Seasar"></td>
+<td colspan="3"><img height="117" width="289" src="images/top03.gif" alt="DI Container with AOP"></td>
+<td colspan="3"><img height="117" width="256" src="images/spacer.gif" alt=""></td>
+</tr><tr><td rowspan="2"><img src="images/top04.gif" alt="" height="49" width="235"></td>
+<td><a href="http://www.seasar.org/index.html"><img src="images/menu01_b_ja.gif" height="30" width="78" border="0" alt="" id="menu01" onmouseover="swap(1)" onmouseout="restore(1)"></a></td>
+<td><a href="http://www.seasar.org/projects.html"><img src="images/menu02_b_ja.gif" height="30" width="101" border="0" alt="" id="menu02" onmouseover="swap(2)" onmouseout="restore(2)"></a></td>
+<td><a href="http://www.seasar.org/products.html"><img src="images/menu03_b_ja.gif" height="30" width="110" border="0" alt="" id="menu03" onmouseover="swap(3)" onmouseout="restore(3)"></a></td>
+<td><a href="http://www.seasar.org/resources.html"><img src="images/menu04_b_ja.gif" height="30" width="113" border="0" alt="" id="menu04" onmouseover="swap(4)" onmouseout="restore(4)"></a></td>
+<td><img src="images/menu05_b_ja.gif" height="30" width="109" border="0" alt="" id="menu05" onmouseover="swap(5)" onmouseout="restore(5)"></td>
+<td><img height="30" width="34" src="images/menu06.gif" alt=""></td></tr><tr>
+<td colspan="6"><img height="19" width="545" src="images/spacer.gif" alt=""></td></tr></table>
+<table  width="780" border="0" cellspacing="0" cellpadding="0" class="white">
+<tr align="left" valign="top"><td width="14"><img height="14" width="14" src="images/spacer.gif" alt=""></td><td width="740" class="main">
+<!-- don't edit end -->
+<!-- document start -->
+            <ul>
+              <li><a href="#SmartDeployIndex">SmartDeployについて</a>
+             <ul>
+              <li><a href="#Naming">パッケージの構成</a>
+             <ul>
+              <li><a href="#Material">個別パッケージの要素</a>
+              </li>
+              <li><a href="#SamplePackage">パッケージ構成サンプル</a>
+              </li>
+              <li><a href="#DiconConfiguration">Diconファイルの構成</a>
+              </li>
+             </ul>
+              </li>
+              <li><a href="#SmartDeployKind">SmartDeployの種類</a>
+            <ul>
+              <li><a href="#DiconConfiguration">HOT Deploy</a></li>
+              <li><a href="#DiconConfiguration">COOL Deploy</a></li>
+              <li><a href="#DiconConfiguration">WARM Deploy</a></li>
+            </ul>              
+              </li>
+            </ul>
+            　　　　　　　</li>
+            </ul>
+<h2><a name="SmartDeployIndex">SmartDeployについて</a></h2>
+<p>
+「SmartDeploy」とは、「Seasar2.4」の推奨の規約(Naming Convention)を守ることにより、プロジェクトの初期設定を行った後、開発による新たな設定ファイルを追記する必要なく、開発を進めることができるというものです。
+</p>
+<h2><a name="Naming">パッケージの構成</a></h2>
+<p>
+推奨されるパッケージの構成を使うことによって、｢SmartDeploy｣を使えるようになります。
+また、プロジェクトメンバの情報共有の点においても
+パッケージ構成が既に決まっている事で、どのクラスがどのパッケージにあるか探す事が容易になります。
+もちろん、推奨のパッケージ構成を使わずに自由に決めることもできます。その場合は､HOT deployは使えませんが､Seasar2.3の自動登録は､そのまま使うことができます。
+</p>
+<dl>
+<dt>（例）パッケージ構成</dt>
+<dd>examples.aaaa</dd>
+<dd>examples.aaaa.logic</dd>
+<dd>examples.aaaa.dao</dd>
+<dd>examples.aaaa.web.xxxx</dd>
+</dl>
+<p>
+パッケージ構成には２つのルールがあります。一つはルートパッケージ＋個別のパッケージといった構成を持つことです。　
+ここで云われているルートパッケージとは、examples.aaaaの事を示しています。
+その配下にあるパッケージは、個別のパッケージの命名規約を持っています。それについては、<a href="#Material">個別パッケージの要素</a>の処で説明いたします。
+</p>
+<p>
+もう一つはwebパッケージ以下にサブアプリケーションを持つ構成です。ここで言うサブアプリケーションとは、一つのアプリケーションを幾つかの論理的な固まりに分割したものです。ユースケースと読み替えても良いでしょう。
+</p>
+<br>
+<dl>
+<dt>(例)パッケージ構成の2パターン</dt>
+<p>①ルートパッケージ＋個別パッケージ</p>
+<dd>examples.aaa.logic</dd>
+<dd>⇒examples.aaa ：　ルートパッケージ</dd>
+<dd>⇒logic ：　個別パッケージ</dd>
+<br>
+<p>②ルートパッケージ＋Web＋サブアプリケーション</p>
+<dd>examples.aaaa.web.xxxx</dd>
+<dd>⇒examples.aaaa : ルートパッケージ</dd>
+<dd>⇒web : サブアプリケーションのルートパッケージ</dd>
+<dd>⇒xxxx  ：　サブアプリケーション</dd>
+<br>
+<h3><a name="Material">個別パッケージの要素</a></h3>
+<p> 
+次に個別パッケージの要素をしていきます。
+</p>
+<p>
+サブアプリケーション固有のものをサブアプリケーション配下に分類し
+サブアプリケーション共通のものを個別パッケージとして管理しています。
+</p>
+
+<h3>Web</h3>
+<p>
+サブアプリケーションのルートパッケージです。</p>
+<dl>
+<dt><h4>★HTML、Page、RDBMSのテーブルの関係</h4></dt>
+
+<dd>
+HTMLの入出力項目(のid属性) が Pageクラスのプロパティに対応し､Pageクラスのプロパティがテーブルのカラムに対応します。また、HTMLのアクション(ボタン等)(のid属性) が Pageクラスのメソッドに対応します。
+サブアプリケーション(ユースケース)固有のロジックは、Pageクラスに記述します。複数のサブアプリケーションで共通に使われるロジックは､Logicクラスに記述します。ドメインモデルを使う場合､もう少し複雑な構成になりますが､ここでは、最もシンプルなパターンについて説明します。
+</dd>
+</dl>
+<br>
+
+<p><B>□Page</B></p> 
+<dd>Pageクラスとは、HTMLと１対１に対応するクラスで、画面の情報と、イベント処理のロジックで構成されています。</dd>
+<dd>命名規約は、対応するHTMLの名前＋Page となります。
+HTMLのファイル名の最初を大文字にして、拡張子を取り除き、後ろにPageをつけます。HTMLが格納されるディレクトリ名がパッケージ名になります。例えば､view(Viewのルートディレクトリ)/add/addInput.htmlは、examples.aaa.web.add.AddInputPageに対応します。
+</dd>
+<p><B>□dao</B></p>
+<dd>pageクラスの固有のdaoです。</dd>
+<dd>任意のクラス名の後ろにdaoをつけます。サブアプリケーション固有のDaoを作成するならば、サブアプリケーションの名前＋Daoと命名します。</dd>
+
+<p><B>□dxo</B></p>
+<dd>pageObjectとデータベースMapとの相互変換を定義するインターフェースです。インターフェースにメソッドを書いておくだけで、モデル変換のロジックは、アスペクトが自動生成します。	実装部分を作る必要はありません。</dd>
+
+<p>□Impl</p>
+<dd>dao、dxoは通常､実装クラスは必要ありませんが､自動的に変換できないような複雑なロジックは､明示的に実装することもできます。その場合､抽象クラスとし､必要なメソッドだけを実装してください。
+<dd>dao,dxoのインターフェース名＋Implとなります。</dd>
+<dd>例えば、AaaDxoの場合､AaaDxoImplになります。</dd>
+
+<dt><h3>dao</h3></dt>
+<dd>データベースにアクセスするためのインターフェースです。インターフェースにメソッドを書いておくだけで、データアクセスのロジックは、アスペクトが自動生成します。	実装部分を作る必要はありません。
+<dd>Daoについての詳しい説明はUuji、S2Daoをご覧下さい。
+<dd>命名規約は以下の通りです。</dd>
+<dd>AaaDaoの場合､AaaDaoImplになります。</dd>
+
+<p>□impl</p>
+<dd>Daoは通常､実装クラスは必要ありませんが､自動的に変換できないような複雑なロジックは､
+<dd>明示的に実装することもできます。その場合､抽象クラスとし､必要なメソッドだけを実装してください。
+<dd>AaaDaoの場合､AaaDaoImplになります。</dd>
+
+<dt><h3>logic</h3></dt>
+<dd>アプリケーションの業務処理を行うインターフェースです。実装クラスはLogic.Implに作成します。
+<dd>エンタープライズシステムの場合、Logicは複雑な構成になります。Pageクラスだけで管理出来ない処理やサブアプリケーション共通の処理を、個別パッケージで管理するために使用します。
+<dd>任意の名前の後ろにLogicをつけたクラス名になります。</dd>
+
+<p>□impl</p>
+<dd>AaaLogicの場合､AaaLogicImplになります。</dd>
+
+<dt><h3>validator</h3></dt>
+<dd>アプリケーションで入力されるRDBMSへのデータを検証するクラスです。
+<dd>JSFのvalidatorと同じものです。独自実装が必要な場合に使用します。
+<dd>任意の名前の後ろにValidatorをつけたクラス名になります。
+
+<dt><h3>converter</h3></dt>
+<dd>データ型の変換フォーマット等、入出力のフィルターを定義するクラスです。JSFのconverterと同じものです。独自実装が必要な場合に使用します。
+<dd>任意の名前の後ろにConverterをつけたクラス名になります。
+
+<dt><h3>interceptor</h3></dt>
+<dd>アスペクトの振る舞いを記述するクラスです。独自のinterceptorを実装する場合に使用します。interceptorについての詳しい説明はS2Aopをご覧下さい。
+<dd>任意の名前の後ろにInterceptorをつけたクラス名になります。
+
+<dt><h3>dto</h3></dt>
+<dd>プレゼンテーションのモデルとしてPageクラスの持つデータを保管して、オブジェクト層との相互変換を行う為のオブジェクトの入れ物です。
+<dd>基本モデルを選択した場合、Dtoは使いませんが、必要に応じて使用することは可能です。
+<dd>任意の名前の後ろにDtoをつけたクラス名になります。
+
+<dt><h3>dxo</h3></dt>
+<dd>サブアプリケーションの中のDxoとは別に、複数のサブアプリケーションで共通に使われるDxoです。
+<dd>任意の名前の後ろにDxoをつけたクラス名になります。
+
+<dt><h3>helper</h3></dt>
+<dd>アプリケーションで処理されない追加的な処理の集まりです。instanceメソッドの集まりです。
+<dd>任意の名前の後ろにHelperをつけたクラス名になります。</dd>
+
+<p>□impl</p>
+<dd>AaaHelperの場合､AaaHelperImplになります。</dd>
+ 
+</dl>
+
+<h3><a name="SamplePackage">パッケージ構成サンプル</a></h3>
+<p>
+Seasar2.4の開発を支援するためのツールとしてDolteng(どぅるてん)というeclipseプラグインが用意されています。
+Doltengにはscaffoldというプロジェクトのテンプレートを作成する機能が実装されています。
+これまでに説明しました、Seasar2.4の命名規約に沿ったパッケージ構成はDoltengによって簡単に作成することができます。
+</p>
+<p>
+次の例では、Doltengのscaffoldを使って生成されたパッケージ構成を元に、CRUDアプリの解説を行います。
+今回の例は、Teeda+Daoの構成で作成されています。
+Doltengを使えば、データベースのテーブルから、CRUDアプリを自動生成してくれます。
+</p>
+<dl>
+<dt>命名規約</dt>
+<dd>サブアプリ名はテーブル名が小文字で入ります。
+サブアプリ内のクラス名の先頭にはサブアプリ名が入ります。
+Pageクラス名には、対応するHtmlファイル名が入ります。
+</dd>
+<br>
+<dt>Htmlファイルについて</dt>
+<p>A.  empList.html</p>
+<dd>EMPテーブルの一覧表示をする画面</dd>
+<br>
+<p>B.  empEdit.html<p>
+<dd>EMPテーブルのレコード内容を追加、更新、削除を行う画面</dd>
+<br>
+<p>C.  empConfirm.html</p>
+<dd>empEditページでレコード内容を変更したときに確認表示をする画面</dd>
+<br>
+
+<dt>クラスについて</dt>
+<dt>examples.aaaa.web.empパッケージ</dt>
+<p>A.  AbstructEmpPage.java</p>
+<dd>EMPテーブルの全カラムをフィールドに持っています。</dd>
+<br>
+<p>B.  EmpListPage.java</p>
+<dd>empList.htmlに対応するPageクラス</dd>
+<br>
+<p>C.  EmpEditPage.java</p>
+<dd>empEdit.htmlに対応するPageクラス</dd>
+<br>
+<p>D.  EmpConfirmPage.java</p>
+<dd>EmpConform.htmlに対応するPageクラス</dd>
+<br>
+<p>E.  EmpDxo.java</p>
+<dd>サブアプリケーション（EMP）固有のDxo</dd>
+<br>
+<dt>examples.aaaa.webパッケージ</dt>
+<p>AbstractCrudPage.java</p>
+<dd>ページにまたがる処理のうち、CRUDタイプの管理を行うクラス</dd>
+<br>
+<p>CrudType.java</p>
+<dd>ページにまたがる処理のうち、CRUDタイプの宣言クラス</dd>
+<br>
+<dt>examples.aaaa.daoパッケージ</dt>
+<p>F.  EmpDao.java<p>
+<dd>EMPテーブルのカラムを関連付けるDaoインターフェース</dd>
+<br>
+<dt>examples.aaaa.entityパッケージ</dt>
+<p>F.  Emp.java<p>
+<dd>EMPテーブルのbean</dd>
+<br>
+</dl>
+<h3><a name="DiconConfiguration">Diconファイルの構成</a></h3>
+<p>
+Seasar2.3ではXmlHellを解消する為の取り組みの一つとしてLessConfigrationに取り組んできました。
+その機能として、AutoRegister等の自動登録が代表的なものです。
+Seasar2.4では、Convention Over Configurationの考え方により、
+LessConfigrationをさらに突き詰めて、設定ファイル自体を書く必要がほとんど無くなりました。
+</p>
+
+<pre>
+
+&lt;include&gt;～：～ファイルのインクルードをします
+[ diconファイル ]：s2-frameworkのライブラリに同梱されているdiconファイル
+
+app.dicon
+（⇒プロジェクト任意の環境設定）
+    －＜include＞aop.dicon
+    －＜include＞convention.docon
+    －＜include＞j2ee.dicon
+    －＜include＞dao.dicon
+    －＜include＞dxo.dicon
+
+
+s2container.dicon
+(⇒s2containerの環境を読み込む為の設定)
+    －＜include condition=”条件式”＞[cooldeploy.dicon]
+                                (⇒COOL Deployの設定ファイル)
+    －＜include condition=”条件式”＞[hotdeploy.dicon]
+                                (⇒HOT Deployの設定ファイル)
+    －＜include condition=”条件式”＞[warmdeploy.dicon]
+                                (⇒WARM Deployの設定ファイル)
+                                
+jdbc.dicon
+（⇒データベース接続各種設定）
+    －＜include＞[j2ee.docon]
+                                  －＜include＞[jbtx.docon]
+                                  
+convention.dicon
+(⇒初期設定としてルートパッケージを設定するファイル)
+
+creator.dicon
+(⇒初期設定不要)
+
+customizer.dicon
+(⇒初期設定不要)
+</pre>
+<p>
+S2.4では命名規約に沿っていれば、
+開発当初に(convention.dicon)のrootPackageNameを指定する事とデータベース接続以外に
+設定ファイルに追記する作業はありません。
+</p>
+
+<h3><a name="SmartDeployKind">SmartDeployの種類</a></h3>
+<p>SmartDeployにはデプロイするタイミングによってHOT、COOL、WARMの三種類が用意されています。
+次にそれぞれの説明をしていきます。</p>
+
+<h3><a name="HorDeploy">HOT Deploy</a></h3>
+<dl>
+<dt>概要</dt>
+<p>A.  HOT Deployの概念</p>
+<dd>
+HOT Deployとは、プログラムソースの変更時にアプリケーションサーバーをRebootしなくても
+アプリケーションをオンデマンドでデプロイ/リデプロイできる技術です。
+</dd>
+<br>
+<p>B.  HOT Deployのメリット</p>
+<dd>
+webシステムの開発を行う場合に発生するRebootによる無駄な待ち時間が無くなります。
+ソースの変更がダイレクトに結果として確認できる為、小刻みな反復による修正作業を行うことが出来ます。その結果、品質が向上します。
+</dd>
+<br>
+<p>C.  注意点</p>
+<dd>HOT Deployを使用する為には、【Ⅱ．パッケージ構成】に沿う必要があります。
+リクエストが来るたびにコンポーネントをClassLoaderに登録しなおすため、マルチには使えません。
+</dd>
+<br>
+<dt>リファレンス</dt>
+<p>A.  作成ファイル</p>
+<dd>HOT Deployを使用する為には、s2container.dicon(ユーザー任意)にhotdeploy.diconを<include>する必要があります。
+</dd>
+<p>B.  設定ファイルの説明</p>
+<dd>
+s2container.diconにhotdeploy.diconを<include>します。
+hotdeploy.diconはS2container内に含まれています。
+環境による条件付includeを使うと、後に設定ファイルを書き直す必要がなくなります。
+</dd>
+
+<dt>
+<pre>
+例）s2container.diconにhotdeployを使う条件を記述します
+
+&lt;components&gt;
+	&lt;include condition="#ENV == 'ut'" path="hotdeploy.dicon"/&gt;
+	&lt;include condition="#ENV != 'ut'" path="cooldeploy.dicon"/&gt;
+&lt;/components&gt;
+
+同じ階層にenv.ｔｘｔを作成することで,#ENVの値をenv.txt内から取りに行きます。
+
+標準的な環境名としては、次のようなものを用意してありますが、名前は自由に設定することができます。
+必ずしもこの環境名に沿う必要はありません。
+　　ut :単体テスト用 
+　　ct :結合テスト用 
+　　it :総合テスト用 
+　　product :本番用
+　　batch　　 :バッチ用 
+</pre>
+<dt>
+<p>C.  用意されている機能</p>
+<dd>コンポーネントは自動で登録されます。</dd>
+<dd>
+リクエストが有る度に、ClassLoaderに必要なコンポーネントを登録しなおします。
+よって、常に以前の登録内容は破棄されることになります。
+</dd>
+</dl>
+
+<dl>
+<h3><a name=CoolDeploy>COOL Deploy</a></h3>
+<dt>概要</dt>
+<p>A.  COOL Deployの概念</p>
+<dd>COOL Deployとは、アプリケーションの起動とともにデプロイを完了する機能です。</dd>
+<br>
+<p>B.  COOL Deployのメリット</p>
+<dd>起動時にコンポーネントをClassLoaderにすべて登録するため、JVMの仕様に任せた場合よりも
+パフォーマンスが向上します。
+初期起動後のパフォーマンスはSmartDeployの中で最速となります。
+</dd>
+<br>
+<p>C.  注意点</p>
+<dd>COOL Deployを使用する為には、【Ⅱ．パッケージ構成】に沿う必要があります。
+全てのコンポーネントをClassLoadeｒに登録するため、登録するClasｓの数が膨大になると、
+初期起動のパフォーマンスが落ちます。</dd>
+<br>
+<dt>リファレンス</dt>
+<p>A.  作成ファイル</p>
+<dd>COOL Deployを使うには、app.diconにcooldeploy.diconを&lt;include&gt;する必要があります。</dd>
+<br>
+<p>B.  設定ファイルの説明</p>
+<dd>app.diconにcooldeploy.diconを&lt;include&gt;します。</dd>
+<dd>環境による条件付includeを使うと、後に設定ファイルを書き直す必要がなくなります。</dd>
+
+<dt>
+<pre>
+例）s2container.diconにcooldeployを使う条件を記述します</p>
+
+&lt;components&gt;
+	&lt;include condition="#ENV == 'ut'" path="hotdeploy.dicon"/&gt;
+	&lt;include condition="#ENV != 'ut'" path="cooldeploy.dicon"/&gt;
+&lt;/components&gt;
+
+env.txtに設定を書き込むことで、環境を操作することができます。
+</pre>
+</dt>
+<p>C.  用意されている機能</p>
+<dd>コンポーネントは自動で登録されます。</dd>
+
+<dd>S2ContainerのInit()のタイミングでClassLoaderに全てのコンポーネントを登録します。
+リクエストを受けても登録内容は破棄されません。</dd>
+</dl>
+
+<dl>
+<h3><a name=WarmDeploy>WARM Deploy</a></h3>
+<dt>(1)  概要</dt>
+<p>A.  WARM Deployの概念</p>
+<dd>WARM Deployは、COOL DeployとHOT Deployの丁度中間的な機能を持っています。
+HOT Deployの様にオンデマンドでデプロイします。しかし、ClassLoaderで一度読み込んだものを
+破棄しません。登録後はCOOLDeployと同じように登録内容を保持します。</dd>
+
+<p>B.  WARM Deployのメリット</p>
+<dd>登録Classの量が膨大なシステムでCOOL Deployを使った場合に発生するデメリット
+(起動時間の遅延)を押さえることができます。
+GUIのみ起動の場合など、全てのコンポーネントを使う必要がない処理に威力を発揮します。</dd>
+
+<p>C.  注意点</p>
+<ddWARM Deployを使用する為には、【Ⅱ．パッケージ構成】に沿う必要があります。
+HOT Deployの様にソースの変更をダイレクトに反映することは出来ません。</dd>
+
+<dt>(2)  リファレンス</p>
+<p>A.  作成ファイル</p>
+<dd>WARM Deployを使うには、ｓ２container.diconに WarmdeployBehaviorを登録する
+必要があります。</dd>
+
+<p>B.  設定ファイルの説明</p>
+<dd>s2container.diconにWarmdeployBehaviorをコンポーネント登録します。</dd>
+
+<dt>
+<pre>
+例）s2container.diconにWARM Deployを使用する設定をする
+
+&lt;components&gt;
+	&lt;include condition="#ENV == 'ut'" path="hotdeploy.dicon"/&gt;
+	&lt;!--&lt;include condition="#ENV != 'ut'" path="cooldeploy.dicon"/&gt;--&gt;
+	&lt;include condition="#ENV == 'batch'" path="warmdeploy.dicon"/&gt;
+&lt;/components&gt;
+</pre>
+</dt>
+<p>C.  用意されている機能<p>
+<dd>コンポーネントは自動で登録されます。</dd>
+
+<dd>
+リクエストが有る度に、ClassLoaderにコンポーネントを登録します。
+ただし、既に同じコンポーネントが登録されている場合には登録しません。
+</dd>
+</dl>
+
+
+<!-- document end -->
+<!-- don't edit start -->
+</td>
+<td width="14"><img height="14" width="14" src="images/spacer.gif" alt=""></td>
+</tr><tr>
+<td width="14"><img height="30" width="14" src="images/spacer.gif" alt=""></td>
+<td width="766"><img height="30" width="592" src="images/spacer.gif" alt=""></td>
+</tr><tr>
+<td width="14"><img height="14" width="14" src="images/spacer.gif" alt=""></td>
+<td width="766" class="copyright">Copyright&copy; 2004-2005, The Seasar Foundation and the others. All rights reserved.</td>
+</tr></table>
+<td class="backright" align="left" valign="top">&nbsp;</td></tr><tr>
+<td class="backunder" align="left"  valign="top" width="780" height="16">&nbsp;</td>
+<td class="backcorner" align="left" valign="top" height="16">&nbsp;</td>
+</tr></table></body>
+<!-- don't edit end -->
+</html>
