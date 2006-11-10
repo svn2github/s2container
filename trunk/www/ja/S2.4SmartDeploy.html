@@ -315,11 +315,11 @@ webシステムの開発を行う場合に発生するRebootによる無駄な待ち時間が無くなります。
 <br>
 <dt>リファレンス</dt>
 <p>A.  作成ファイル</p>
-<dd>HOT Deployを使用する為には、s2container.dicon(ユーザー任意)にhotdeploy.diconを<include>する必要があります。
+<dd>HOT Deployを使用する為には、s2container.dicon(ユーザー任意)にhotdeploy.diconを&lt;include&gt;する必要があります。
 </dd>
 <p>B.  設定ファイルの説明</p>
 <dd>
-s2container.diconにhotdeploy.diconを<include>します。
+s2container.diconにhotdeploy.diconを&lt;include&gt;します。
 hotdeploy.diconはS2container内に含まれています。
 環境による条件付includeを使うと、後に設定ファイルを書き直す必要がなくなります。
 </dd>
@@ -333,7 +333,7 @@ hotdeploy.diconはS2container内に含まれています。
 	&lt;include condition="#ENV != 'ut'" path="cooldeploy.dicon"/&gt;
 &lt;/components&gt;
 
-同じ階層にenv.ｔｘｔを作成することで,#ENVの値をenv.txt内から取りに行きます。
+同じ階層にenv.txtを作成することで,#ENVの値をenv.txt内から取りに行きます。
 
 標準的な環境名としては、次のようなものを用意してありますが、名前は自由に設定することができます。
 必ずしもこの環境名に沿う必要はありません。
@@ -371,10 +371,10 @@ hotdeploy.diconはS2container内に含まれています。
 <br>
 <dt>リファレンス</dt>
 <p>A.  作成ファイル</p>
-<dd>COOL Deployを使うには、app.diconにcooldeploy.diconを&lt;include&gt;する必要があります。</dd>
+<dd>COOL Deployを使うには、s2container.diconにcooldeploy.diconを&lt;include&gt;する必要があります。</dd>
 <br>
 <p>B.  設定ファイルの説明</p>
-<dd>app.diconにcooldeploy.diconを&lt;include&gt;します。</dd>
+<dd>s2container.diconにcooldeploy.diconを&lt;include&gt;します。</dd>
 <dd>環境による条件付includeを使うと、後に設定ファイルを書き直す必要がなくなります。</dd>
 
 <dt>
@@ -415,7 +415,7 @@ HOT Deployの様にソースの変更をダイレクトに反映することは出来ません。</dd>
 
 <dt>(2)  リファレンス</p>
 <p>A.  作成ファイル</p>
-<dd>WARM Deployを使うには、ｓ２container.diconに WarmdeployBehaviorを登録する
+<dd>WARM Deployを使うには、s2container.diconに WarmdeployBehaviorを登録する
 必要があります。</dd>
 
 <p>B.  設定ファイルの説明</p>
