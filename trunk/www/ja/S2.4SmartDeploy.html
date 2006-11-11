@@ -23,7 +23,7 @@
 <!-- don't edit end -->
 <!-- document start -->
             <ul>
-              <li><a href="#SmartDeployIndex">SmartDeployについて</a>
+              <li><a href="#SmartDeployIndex">SMART deployについて</a>
              <ul>
               <li><a href="#Naming">パッケージの構成</a>
              <ul>
@@ -31,27 +31,27 @@
               </li>
               <li><a href="#SamplePackage">パッケージ構成サンプル</a>
               </li>
-              <li><a href="#DiconConfiguration">Diconファイルの構成</a>
+              <li><a href="#DiconConfiguration">diconファイルの構成</a>
               </li>
              </ul>
               </li>
-              <li><a href="#SmartDeployKind">SmartDeployの種類</a>
+              <li><a href="#SmartDeployKind">SMART deployの種類</a>
             <ul>
-              <li><a href="#HotDeploy">HOT Deploy</a></li>
-              <li><a href="#CoolDeploy">COOL Deploy</a></li>
-              <li><a href="#WarmDeploy">WARM Deploy</a></li>
+              <li><a href="#HotDeploy">HOT deploy</a></li>
+              <li><a href="#CoolDeploy">COOL deploy</a></li>
+              <li><a href="#WarmDeploy">WARM deploy</a></li>
             </ul>              
               </li>
             </ul>
             　　　　　　　</li>
             </ul>
-<h2><a name="SmartDeployIndex">SmartDeployについて</a></h2>
+<h2><a name="SmartDeployIndex">SMART deployについて</a></h2>
 <p>
-「SmartDeploy」とは、「Seasar2.4」の推奨の規約(Naming Convention)を守ることにより、プロジェクトの初期設定を行った後、開発による新たな設定ファイルを追記する必要なく、開発を進めることができるというものです。
+「SMART deploy」とは、「Seasar2.4」の推奨の規約(Naming Convention)を守ることにより、プロジェクトの初期設定を行った後、開発による新たな設定ファイルを追記する必要なく、開発を進めることができるというものです。
 </p>
 <h2><a name="Naming">パッケージの構成</a></h2>
 <p>
-推奨されるパッケージの構成を使うことによって、｢SmartDeploy｣を使えるようになります。
+推奨されるパッケージの構成を使うことによって、｢SMART deploy｣を使えるようになります。
 また、プロジェクトメンバの情報共有の点においても
 パッケージ構成が既に決まっている事で、どのクラスがどのパッケージにあるか探す事が容易になります。
 もちろん、推奨のパッケージ構成を使わずに自由に決めることもできます。その場合は､HOT deployは使えませんが､Seasar2.3の自動登録は､そのまま使うことができます。
@@ -263,11 +263,11 @@ app.dicon
 s2container.dicon
 (⇒s2containerの環境を読み込む為の設定)
     －＜include condition=”条件式”＞[cooldeploy.dicon]
-                                (⇒COOL Deployの設定ファイル)
+                                (⇒COOL deployの設定ファイル)
     －＜include condition=”条件式”＞[hotdeploy.dicon]
-                                (⇒HOT Deployの設定ファイル)
+                                (⇒HOT deployの設定ファイル)
     －＜include condition=”条件式”＞[warmdeploy.dicon]
-                                (⇒WARM Deployの設定ファイル)
+                                (⇒WARM deployの設定ファイル)
                                 
 jdbc.dicon
 （⇒データベース接続各種設定）
@@ -293,29 +293,29 @@ S2.4では命名規約に沿っていれば、
 <p>SmartDeployにはデプロイするタイミングによってHOT、COOL、WARMの三種類が用意されています。
 次にそれぞれの説明をしていきます。</p>
 
-<h3><a name="HotDeploy">HOT Deploy</a></h3>
+<h3><a name="HotDeploy">HOT deploy</a></h3>
 <dl>
 <dt>概要</dt>
-<p>A.  HOT Deployの概念</p>
+<p>A.  HOT deployの概念</p>
 <dd>
-HOT Deployとは、プログラムソースの変更時にアプリケーションサーバーをRebootしなくても
-アプリケーションをオンデマンドでデプロイ/リデプロイできる技術です。
+HOT deployとは、プログラムソースの変更時にアプリケーションサーバーをRebootしなくても
+コンポーネントをオンデマンドでデプロイ/リデプロイできる技術です。
 </dd>
 <br>
-<p>B.  HOT Deployのメリット</p>
+<p>B.  HOT deployのメリット</p>
 <dd>
 webシステムの開発を行う場合に発生するRebootによる無駄な待ち時間が無くなります。
 ソースの変更がダイレクトに結果として確認できる為、小刻みな反復による修正作業を行うことが出来ます。その結果、品質が向上します。
 </dd>
 <br>
 <p>C.  注意点</p>
-<dd>HOT Deployを使用する為には、<a name="Naming">パッケージの構成</a>に沿う必要があります。
-リクエストが来るたびにコンポーネントをClassLoaderに登録しなおすため、マルチには使えません。
+<dd>HOT deployを使用する為には、<a name="Naming">パッケージの構成</a>に沿う必要があります。
+リクエストが来るたびにコンポーネントをコンテナに登録しなおすため、マルチスレッドでの利用は適していません。
 </dd>
 <br>
 <dt>リファレンス</dt>
 <p>A.  作成ファイル</p>
-<dd>HOT Deployを使用する為には、s2container.dicon(ユーザー任意)にhotdeploy.diconを&lt;include&gt;する必要があります。
+<dd>HOT deployを使用する為には、s2container.dicon(ユーザー任意)にhotdeploy.diconを&lt;include&gt;する必要があります。
 </dd>
 <p>B.  設定ファイルの説明</p>
 <dd>
@@ -347,31 +347,31 @@ hotdeploy.diconはS2container内に含まれています。
 <p>C.  用意されている機能</p>
 <dd>コンポーネントは自動で登録されます。</dd>
 <dd>
-リクエストが有る度に、ClassLoaderに必要なコンポーネントを登録しなおします。
+リクエストが有る度に、コンテナに必要なコンポーネントを登録しなおします。
 よって、常に以前の登録内容は破棄されることになります。
 </dd>
 </dl>
 
 <dl>
-<h3><a name=CoolDeploy>COOL Deploy</a></h3>
+<h3><a name=CoolDeploy>COOL deploy</a></h3>
 <dt>概要</dt>
-<p>A.  COOL Deployの概念</p>
-<dd>COOL Deployとは、アプリケーションの起動とともにデプロイを完了する機能です。</dd>
+<p>A.  COOL deployの概念</p>
+<dd>COOL deployとは、アプリケーションの起動とともにデプロイを完了する機能です。</dd>
 <br>
-<p>B.  COOL Deployのメリット</p>
-<dd>起動時にコンポーネントをClassLoaderにすべて登録するため、JVMの仕様に任せた場合よりも
+<p>B.  COOL deployのメリット</p>
+<dd>初期化時にすべてのコンポーネントをコンテナに登録するため、初期化後の
 パフォーマンスが向上します。
-初期起動後のパフォーマンスはSmartDeployの中で最速となります。
+初期化後のパフォーマンスはSMART deployの中で最速となります。
 </dd>
 <br>
 <p>C.  注意点</p>
-<dd>COOL Deployを使用する為には、<a name="Naming">パッケージの構成</a>に沿う必要があります。
-全てのコンポーネントをClassLoadeｒに登録するため、登録するClasｓの数が膨大になると、
-初期起動のパフォーマンスが落ちます。</dd>
+<dd>COOL deployを使用する為には、<a name="Naming">パッケージの構成</a>に沿う必要があります。
+全てのコンポーネントをコンテナに登録するため、登録するClasｓの数が膨大になると、
+初期化に必要な時間が長くなります。</dd>
 <br>
 <dt>リファレンス</dt>
 <p>A.  作成ファイル</p>
-<dd>COOL Deployを使うには、s2container.diconにcooldeploy.diconを&lt;include&gt;する必要があります。</dd>
+<dd>COOL deployを使うには、s2container.diconにcooldeploy.diconを&lt;include&gt;する必要があります。</dd>
 <br>
 <p>B.  設定ファイルの説明</p>
 <dd>s2container.diconにcooldeploy.diconを&lt;include&gt;します。</dd>
@@ -392,43 +392,42 @@ env.txtに設定を書き込むことで、環境を操作することができます。
 <p>C.  用意されている機能</p>
 <dd>コンポーネントは自動で登録されます。</dd>
 
-<dd>S2ContainerのInit()のタイミングでClassLoaderに全てのコンポーネントを登録します。
+<dd>S2ContainerのInit()のタイミングでコンテナに全てのコンポーネントを登録します。
 リクエストを受けても登録内容は破棄されません。</dd>
 </dl>
 
 <dl>
-<h3><a name=WarmDeploy>WARM Deploy</a></h3>
+<h3><a name=WarmDeploy>WARM deploy</a></h3>
 <dt>(1)  概要</dt>
-<p>A.  WARM Deployの概念</p>
-<dd>WARM Deployは、COOL DeployとHOT Deployの丁度中間的な機能を持っています。
-HOT Deployの様にオンデマンドでデプロイします。しかし、ClassLoaderで一度読み込んだものを
-破棄しません。登録後はCOOLDeployと同じように登録内容を保持します。</dd>
+<p>A.  WARM deployの概念</p>
+<dd>WARM deployは、COOL deployとHOT deployの丁度中間的な特性を持っています。
+HOT deployの様にオンデマンドでデプロイします。しかし、一度登録したものを
+破棄しません。登録後はCOOL deployと同じように登録内容を保持します。</dd>
 
-<p>B.  WARM Deployのメリット</p>
-<dd>登録Classの量が膨大なシステムでCOOL Deployを使った場合に発生するデメリット
-(起動時間の遅延)を押さえることができます。
-GUIのみ起動の場合など、全てのコンポーネントを使う必要がない処理に威力を発揮します。</dd>
+<p>B.  WARM deployのメリット</p>
+<dd>登録するコンポーネントの量が膨大なシステムでCOOL deployを使った場合に発生するデメリット
+(初期化の時間)を押さえることができます。
+GUIアプリケーションの起動の場合など、最初から全てのコンポーネントを使う必要がない場合に威力を発揮します。</dd>
 
 <p>C.  注意点</p>
-<ddWARM Deployを使用する為には、<a name="Naming">パッケージの構成</a>に沿う必要があります。
-HOT Deployの様にソースの変更をダイレクトに反映することは出来ません。</dd>
+<dd>WARM deployを使用する為には、<a name="Naming">パッケージの構成</a>に沿う必要があります。
+HOT deployの様にソースの変更をダイレクトに反映することは出来ません。</dd>
 
 <dt>(2)  リファレンス</p>
 <p>A.  作成ファイル</p>
-<dd>WARM Deployを使うには、s2container.diconに WarmdeployBehaviorを登録する
-必要があります。</dd>
+<dd>WARM deployを使うには、s2container.diconにwarmdeploy.diconを&lt;include&gt;する必要があります。</dd>
 
 <p>B.  設定ファイルの説明</p>
-<dd>s2container.diconにWarmdeployBehaviorをコンポーネント登録します。</dd>
+<dd>s2container.diconにcooldeploy.diconを&lt;include&gt;します。</dd>
+<dd>環境による条件付includeを使うと、後に設定ファイルを書き直す必要がなくなります。</dd>
 
 <dt>
 <pre>
-例）s2container.diconにWARM Deployを使用する設定をする
+例）s2container.diconにWARM deployを使用する設定をする
 
 &lt;components&gt;
 	&lt;include condition="#ENV == 'ut'" path="hotdeploy.dicon"/&gt;
-	&lt;!--&lt;include condition="#ENV != 'ut'" path="cooldeploy.dicon"/&gt;--&gt;
-	&lt;include condition="#ENV == 'batch'" path="warmdeploy.dicon"/&gt;
+	&lt;include condition="#ENV != 'ut'" path="warmdeploy.dicon"/&gt;
 &lt;/components&gt;
 </pre>
 </dt>
@@ -436,7 +435,7 @@ HOT Deployの様にソースの変更をダイレクトに反映することは出来ません。</dd>
 <dd>コンポーネントは自動で登録されます。</dd>
 
 <dd>
-リクエストが有る度に、ClassLoaderにコンポーネントを登録します。
+リクエストが有る度に、コンテナにコンポーネントを登録します。
 ただし、既に同じコンポーネントが登録されている場合には登録しません。
 </dd>
 </dl>
