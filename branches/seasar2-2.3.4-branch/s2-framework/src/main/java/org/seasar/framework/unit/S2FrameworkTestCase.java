@@ -176,7 +176,9 @@ public abstract class S2FrameworkTestCase extends TestCase {
         unitClassLoader = new UnitClassLoader(originalClassLoader);
         Thread.currentThread().setContextClassLoader(unitClassLoader);
         container = new S2ContainerImpl();
-        servletContext = new MockServletContextImpl("s2jsf-example");
+        if (servletContext == null) {
+            servletContext = new MockServletContextImpl("s2-example");
+        }
         request = servletContext.createRequest("/hello.html");
         response = new MockHttpServletResponseImpl(request);
         servletConfig = new MockServletConfigImpl();
