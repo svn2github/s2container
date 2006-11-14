@@ -3,7 +3,7 @@
 <!-- don't edit start -->
 <head>
 <title>Seasar - DI Container with AOP - </title>
-<meta http-equiv="Content-Type" content="text/html; charset=MS932C">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <link href="seasar_b.css" type="text/css" rel="stylesheet" media="screen"><link href="seasar_p.css" type="text/css" rel="stylesheet" media="print"><script src="seasar_b.js" type="text/JavaScript" language="JavaScript"></script>
 <script src="DIContainerAns.js" type="text/JavaScript" language="JavaScript"></script>
@@ -26,67 +26,67 @@
 <!-- don't edit end -->
 <!-- document start -->
     <ul>
-        <li><a href="#S2ContainerDefinition">S2Container‚Ì’è‹`‚ÉŠÖ‚·‚é–â‘è</a></li>
-        <li><a href="#S2ContainerCreation">S2Container‚Ì¶¬‚ÉŠÖ‚·‚é–â‘è</a></li>
-        <li><a href="#getComponent">ƒRƒ“ƒ|[ƒlƒ“ƒg‚Ìæ“¾‚ÉŠÖ‚·‚é–â‘è</a></li>
-        <li><a href="#ConstructorInjection">ƒRƒ“ƒXƒgƒ‰ƒNƒ^EƒCƒ“ƒWƒFƒNƒVƒ‡ƒ“‚ÉŠÖ‚·‚é–â‘è</a></li>
-        <li><a href="#SetterInjection">ƒZƒbƒ^[EƒCƒ“ƒWƒFƒNƒVƒ‡ƒ“‚ÉŠÖ‚·‚é–â‘è</a></li>
-        <li><a href="#MethodInjection">ƒƒ\ƒbƒhEƒCƒ“ƒWƒFƒNƒVƒ‡ƒ“‚ÉŠÖ‚·‚é–â‘è</a></li>
-        <li><a href="#AutoBindingMode">©“®ƒoƒCƒ“ƒfƒBƒ“ƒO‚ÉŠÖ‚·‚é–â‘è</a></li>
-        <li><a href="#S2ContainerInclude">S2Container’è‹`‚Ì•ªŠ„‚ÆƒCƒ“ƒNƒ‹[ƒh‚ÉŠÖ‚·‚é–â‘è</a></li>
-        <li><a href="#S2Namespace">–¼‘O‹óŠÔ‚ÉŠÖ‚·‚é–â‘è</a></li>
-        <li><a href="#InstanceMode">ƒCƒ“ƒXƒ^ƒ“ƒXŠÇ—‚ÉŠÖ‚·‚é–â‘è</a></li>
-        <li><a href="#Lifecycle">ƒ‰ƒCƒtƒTƒCƒNƒ‹‚ÉŠÖ‚·‚é–â‘è</a></li>
-        <li><a href="#UseS2Container">ƒRƒ“ƒ|[ƒlƒ“ƒg‚ÅS2Container‚ğ—˜—p‚·‚é‚ÉŠÖ‚·‚é–â‘è</a></li>
-        <li><a href="#S2ContainerServlet">S2ContainerServlet‚ÉŠÖ‚·‚é–â‘è</a></li>
-        <li><a href="#AppDicon">app.dicon‚Ì–ğŠ„‚ÉŠÖ‚·‚é–â‘è</a></li>
-        <li><a href="#Meta">ƒƒ^ƒf[ƒ^‚ÉŠÖ‚·‚é–â‘è</a></li>
-        <li><a href="#OgnlExpr">OGNL®‚ÉŠÖ‚·‚é–â‘è</a></li>
+        <li><a href="#S2ContainerDefinition">S2Containerã®å®šç¾©ã«é–¢ã™ã‚‹å•é¡Œ</a></li>
+        <li><a href="#S2ContainerCreation">S2Containerã®ç”Ÿæˆã«é–¢ã™ã‚‹å•é¡Œ</a></li>
+        <li><a href="#getComponent">ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®å–å¾—ã«é–¢ã™ã‚‹å•é¡Œ</a></li>
+        <li><a href="#ConstructorInjection">ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ãƒ»ã‚¤ãƒ³ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³ã«é–¢ã™ã‚‹å•é¡Œ</a></li>
+        <li><a href="#SetterInjection">ã‚»ãƒƒã‚¿ãƒ¼ãƒ»ã‚¤ãƒ³ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³ã«é–¢ã™ã‚‹å•é¡Œ</a></li>
+        <li><a href="#MethodInjection">ãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¤ãƒ³ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³ã«é–¢ã™ã‚‹å•é¡Œ</a></li>
+        <li><a href="#AutoBindingMode">è‡ªå‹•ãƒã‚¤ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ã«é–¢ã™ã‚‹å•é¡Œ</a></li>
+        <li><a href="#S2ContainerInclude">S2Containerå®šç¾©ã®åˆ†å‰²ã¨ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã«é–¢ã™ã‚‹å•é¡Œ</a></li>
+        <li><a href="#S2Namespace">åå‰ç©ºé–“ã«é–¢ã™ã‚‹å•é¡Œ</a></li>
+        <li><a href="#InstanceMode">ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç®¡ç†ã«é–¢ã™ã‚‹å•é¡Œ</a></li>
+        <li><a href="#Lifecycle">ãƒ©ã‚¤ãƒ•ã‚µã‚¤ã‚¯ãƒ«ã«é–¢ã™ã‚‹å•é¡Œ</a></li>
+        <li><a href="#UseS2Container">ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã§S2Containerã‚’åˆ©ç”¨ã™ã‚‹ã«é–¢ã™ã‚‹å•é¡Œ</a></li>
+        <li><a href="#S2ContainerServlet">S2ContainerServletã«é–¢ã™ã‚‹å•é¡Œ</a></li>
+        <li><a href="#AppDicon">app.diconã®å½¹å‰²ã«é–¢ã™ã‚‹å•é¡Œ</a></li>
+        <li><a href="#Meta">ãƒ¡ã‚¿ãƒ‡ãƒ¼ã‚¿ã«é–¢ã™ã‚‹å•é¡Œ</a></li>
+        <li><a href="#OgnlExpr">OGNLå¼ã«é–¢ã™ã‚‹å•é¡Œ</a></li>
     </ul>
     <h2>DIContainerExercise</h2>
-    <p><a href="DIContainer.html">DIContainer</a>‚Ì—‰ğ“x‚ğƒ`ƒFƒbƒN‚µ‚Ü‚·B‰º‹L‚Ì–â‘è‚ÉŠÖ‚µ‚Ä“–‚Ä‚Í‚Ü‚é‚à‚Ì‚ğ1‚Â‘I‚ñ‚Åƒ`ƒFƒbƒN‚ğ“ü‚ê‚½‚çA‰º‚Ìu‰ğ“š‚ÖGOvƒ{ƒ^ƒ“‚ğƒNƒŠƒbƒN‚µ‚Ä‚­‚¾‚³‚¢B</P>
-    <h3><a name="S2ContainerDefinition">S2Container‚Ì’è‹`‚ÉŠÖ‚·‚é–â‘è</a></h3>
-    <p><a name="Definition"><b>y–â‘è1z</b></a><br />
+    <p><a href="DIContainer.html">DIContainer</a>ã®ç†è§£åº¦ã‚’ãƒã‚§ãƒƒã‚¯ã—ã¾ã™ã€‚ä¸‹è¨˜ã®å•é¡Œã«é–¢ã—ã¦å½“ã¦ã¯ã¾ã‚‹ã‚‚ã®ã‚’1ã¤é¸ã‚“ã§ãƒã‚§ãƒƒã‚¯ã‚’å…¥ã‚ŒãŸã‚‰ã€ä¸‹ã®ã€Œè§£ç­”ã¸GOã€ãƒœã‚¿ãƒ³ã‚’ã‚¯ãƒªãƒƒã‚¯ã—ã¦ãã ã•ã„ã€‚</P>
+    <h3><a name="S2ContainerDefinition">S2Containerã®å®šç¾©ã«é–¢ã™ã‚‹å•é¡Œ</a></h3>
+    <p><a name="Definition"><b>ã€å•é¡Œ1ã€‘</b></a><br />
 <pre>
 &lt;!DOCTYPE components PUBLIC &quot;-//SEASAR2.1//DTD S2Container//EN&quot;
 &quot;http://www.seasar.org/dtd/components21.dtd&quot;&gt;
 </pre>
-ã‹L‚Ì‚æ‚¤‚ÉSeasar2.1Œn‚É‘Î‰‚·‚éDOCTYPE‚ğw’è‚µ‚½ê‡‚Ìà–¾‚ÅA
-<B>³‚µ‚­‚È‚¢</B>‚Ì‚ÍˆÈ‰º‚Ì‚Ç‚ê‚Å‚µ‚å‚¤‚©H</p>
-    ƒqƒ“ƒgF<a href="DIContainer.html#S2ContainerDefinition">S2Container‚Ì’è‹`</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+ä¸Šè¨˜ã®ã‚ˆã†ã«Seasar2.1ç³»ã«å¯¾å¿œã™ã‚‹DOCTYPEã‚’æŒ‡å®šã—ãŸå ´åˆã®èª¬æ˜ã§ã€
+<B>æ­£ã—ããªã„</B>ã®ã¯ä»¥ä¸‹ã®ã©ã‚Œã§ã—ã‚‡ã†ã‹ï¼Ÿ</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#S2ContainerDefinition">S2Containerã®å®šç¾©</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
             <td bgcolor="#d1f3f4" width="23">
               <input type="radio" name="Definition" value="Definition1">
             </td>
-            <td bgcolor="#d1f3f4" width="474">1) &lt;initMethod&gt;ƒ^ƒO‚Ìqƒ^ƒO‚É&lt;meta&gt;ƒ^ƒO‚ªw’è‚Å‚«‚éB</td>
+            <td bgcolor="#d1f3f4" width="474">1) &lt;initMethod&gt;ã‚¿ã‚°ã®å­ã‚¿ã‚°ã«&lt;meta&gt;ã‚¿ã‚°ãŒæŒ‡å®šã§ãã‚‹ã€‚</td>
           </tr>
           <tr>
             <td bgcolor="#66FFCC" width="23">
               <input type="radio" name="Definition" value="Definition2">
             </td>
-            <td bgcolor="#66FFCC" width="474">2) &lt;arg&gt;ƒ^ƒO‚Ìqƒ^ƒO‚É&lt;meta&gt;ƒ^ƒO‚ªw’è‚Å‚«‚éB</td>
+            <td bgcolor="#66FFCC" width="474">2) &lt;arg&gt;ã‚¿ã‚°ã®å­ã‚¿ã‚°ã«&lt;meta&gt;ã‚¿ã‚°ãŒæŒ‡å®šã§ãã‚‹ã€‚</td>
           </tr>
           <tr>
             <td bgcolor="#d1f3f4" width="23">
               <input type="radio" name="Definition" value="Definition3">
             </td>
-            <td bgcolor="#d1f3f4" width="474">3) &lt;component&gt;ƒ^ƒO‚Ìinstance‘®«‚Érequest‚ªw’è‚Å‚«‚éB</td>
+            <td bgcolor="#d1f3f4" width="474">3) &lt;component&gt;ã‚¿ã‚°ã®instanceå±æ€§ã«requestãŒæŒ‡å®šã§ãã‚‹ã€‚</td>
           </tr>
         <tr>
             <td bgcolor="#66FFCC" width="23">
               <input type="radio" name="Definition" value="Definition4">
             </td>
-            <td bgcolor="#66FFCC" width="474">4) &lt;component&gt;ƒ^ƒO‚Ìinstance‘®«‚Ésession‚ªw’è‚Å‚«‚éB</td>
+            <td bgcolor="#66FFCC" width="474">4) &lt;component&gt;ã‚¿ã‚°ã®instanceå±æ€§ã«sessionãŒæŒ‡å®šã§ãã‚‹ã€‚</td>
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Definition','S2ContainerCreation')"></p>
-    <h3><a name="S2ContainerCreation">S2Container‚Ì¶¬‚ÉŠÖ‚·‚é–â‘è</a></h3>
-    <p><a name="Creation"><b>y–â‘è1z</b></a><br />
-    S2ContainerFactoryƒNƒ‰ƒX‚ğg—p‚µ‚ÄS2Container‚ğ¶¬‚·‚éê‡Ag—p‚·‚éƒƒ\ƒbƒh‚Í‚Ç‚ê‚Å‚µ‚å‚¤‚©H<br />
-    ƒqƒ“ƒgF<a href="DIContainer.html#S2ContainerCreation">S2Container‚Ì¶¬</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Definition','S2ContainerCreation')"></p>
+    <h3><a name="S2ContainerCreation">S2Containerã®ç”Ÿæˆã«é–¢ã™ã‚‹å•é¡Œ</a></h3>
+    <p><a name="Creation"><b>ã€å•é¡Œ1ã€‘</b></a><br />
+    S2ContainerFactoryã‚¯ãƒ©ã‚¹ã‚’ä½¿ç”¨ã—ã¦S2Containerã‚’ç”Ÿæˆã™ã‚‹å ´åˆã€ä½¿ç”¨ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰ã¯ã©ã‚Œã§ã—ã‚‡ã†ã‹ï¼Ÿ<br />
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#S2ContainerCreation">S2Containerã®ç”Ÿæˆ</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -115,11 +115,11 @@
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Creation','Creation2')"></p>
-    <p><a name="Creation2"><b>y–â‘è2z</b></a><br />
-    examples/container/ccc.dicon‚©‚çS2Container‚ğ¶¬‚·‚éê‡AS2ContainerFactory#create()ƒƒ\ƒbƒh“à‚É
-        w’è‚·‚é³‚µ‚¢Path‚Ìw’è•û–@‚ÍˆÈ‰º‚Ì‚Ç‚ê‚Å‚µ‚å‚¤‚©H<br />
-    ƒqƒ“ƒgF<a href="DIContainer.html#S2ContainerCreation">S2Container‚Ì¶¬</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Creation','Creation2')"></p>
+    <p><a name="Creation2"><b>ã€å•é¡Œ2ã€‘</b></a><br />
+    examples/container/ccc.diconã‹ã‚‰S2Containerã‚’ç”Ÿæˆã™ã‚‹å ´åˆã€S2ContainerFactory#create()ãƒ¡ã‚½ãƒƒãƒ‰å†…ã«
+        æŒ‡å®šã™ã‚‹æ­£ã—ã„Pathã®æŒ‡å®šæ–¹æ³•ã¯ä»¥ä¸‹ã®ã©ã‚Œã§ã—ã‚‡ã†ã‹ï¼Ÿ<br />
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#S2ContainerCreation">S2Containerã®ç”Ÿæˆ</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -148,11 +148,11 @@
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Creation2','getComponent')"></p>
-<h3><a name="getComponent">ƒRƒ“ƒ|[ƒlƒ“ƒg‚Ìæ“¾‚ÉŠÖ‚·‚é–â‘è</a></h3>
-    <p><a name="Component"><b>y–â‘è1z</b></a><br />
-    S2Container‚É“o˜^‚³‚ê‚Ä‚¢‚éƒRƒ“ƒ|[ƒlƒ“ƒg‚ğæ“¾‚·‚éê‡Ag—p‚·‚éƒƒ\ƒbƒh‚Í‚Ç‚ê‚Å‚µ‚å‚¤‚©H<br />
-    ƒqƒ“ƒgF<a href="DIContainer.html#getComponent">ƒRƒ“ƒ|[ƒlƒ“ƒg‚Ìæ“¾</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Creation2','getComponent')"></p>
+<h3><a name="getComponent">ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®å–å¾—ã«é–¢ã™ã‚‹å•é¡Œ</a></h3>
+    <p><a name="Component"><b>ã€å•é¡Œ1ã€‘</b></a><br />
+    S2Containerã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’å–å¾—ã™ã‚‹å ´åˆã€ä½¿ç”¨ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰ã¯ã©ã‚Œã§ã—ã‚‡ã†ã‹ï¼Ÿ<br />
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#getComponent">ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®å–å¾—</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -181,17 +181,17 @@
         </tr>
     </table>
     <br />
-<p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Component','Component2')"></p>
-<p><a name="Component2"><b>y–â‘è2z</b></a><br />
-   hello.diconƒtƒ@ƒCƒ‹‚É’è‹`‚µ‚Ä‚ ‚é&lt;component&gt;ƒ^ƒO‚Ìname‘®«‚ª"message"‚Æ‚¢‚¤ƒRƒ“ƒ|[ƒlƒ“ƒg‚ğæ“¾‚·‚éê‡A
-       ³‚µ‚¢‹Lq‚ÍˆÈ‰º‚Ì‚Ç‚ê‚Å‚µ‚å‚¤‚©H<br /><br />
+<p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Component','Component2')"></p>
+<p><a name="Component2"><b>ã€å•é¡Œ2ã€‘</b></a><br />
+   hello.diconãƒ•ã‚¡ã‚¤ãƒ«ã«å®šç¾©ã—ã¦ã‚ã‚‹&lt;component&gt;ã‚¿ã‚°ã®nameå±æ€§ãŒ"message"ã¨ã„ã†ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’å–å¾—ã™ã‚‹å ´åˆã€
+       æ­£ã—ã„è¨˜è¿°ã¯ä»¥ä¸‹ã®ã©ã‚Œã§ã—ã‚‡ã†ã‹ï¼Ÿ<br /><br />
 examples/component/hello.dicon
 <pre>
 &lt;components&gt;
   &lt;component name=&quot;message&quot; class=&quot;examples.component.Message&quot;/&gt;
 &lt;/components&gt;
 </pre>
-    ƒqƒ“ƒgF<a href="DIContainer.html#getComponent">ƒRƒ“ƒ|[ƒlƒ“ƒg‚Ìæ“¾</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#getComponent">ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®å–å¾—</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
    <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -220,17 +220,17 @@ examples/component/hello.dicon
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Component2','Component3')"></p>
-<p><a name="Component3"><b>y–â‘è3z</b></a><br />
-   message.diconƒtƒ@ƒCƒ‹‚É’è‹`‚µ‚Ä‚ ‚éƒRƒ“ƒ|[ƒlƒ“ƒg‚ğæ“¾‚·‚éê‡A
-       ³‚µ‚¢‹Lq‚ÍˆÈ‰º‚Ì‚Ç‚ê‚Å‚µ‚å‚¤‚©H‚½‚¾‚µAMessageImpl.java‚ÍMessage.java‚ğÀ‘•‚µ‚Ä‚¢‚é‚à‚Ì‚Æ‚·‚éB<br /><br />
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Component2','Component3')"></p>
+<p><a name="Component3"><b>ã€å•é¡Œ3ã€‘</b></a><br />
+   message.diconãƒ•ã‚¡ã‚¤ãƒ«ã«å®šç¾©ã—ã¦ã‚ã‚‹ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’å–å¾—ã™ã‚‹å ´åˆã€
+       æ­£ã—ã„è¨˜è¿°ã¯ä»¥ä¸‹ã®ã©ã‚Œã§ã—ã‚‡ã†ã‹ï¼ŸãŸã ã—ã€MessageImpl.javaã¯Message.javaã‚’å®Ÿè£…ã—ã¦ã„ã‚‹ã‚‚ã®ã¨ã™ã‚‹ã€‚<br /><br />
 examples/component/message.dicon
 <pre>
 &lt;components&gt;
   &lt;component class=&quot;java.util.HashMap&quot;/&gt;
 &lt;/components&gt;
 </pre>
-    ƒqƒ“ƒgF<a href="DIContainer.html#getComponent">ƒRƒ“ƒ|[ƒlƒ“ƒg‚Ìæ“¾</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#getComponent">ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®å–å¾—</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
    <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -259,23 +259,23 @@ examples/component/message.dicon
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Component3','Component4')"></p>
-<p><a name="Component4"><b>y–â‘è4z</b></a><br />
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Component3','Component4')"></p>
+<p><a name="Component4"><b>ã€å•é¡Œ4ã€‘</b></a><br />
 examples/component/hello.dicon
 <pre>
 &lt;components&gt;
   &lt;component name=&quot;aaa&quot; class=&quot;java.util.ArrayList&quot;/&gt;
 &lt;/components&gt;
 </pre>
-   ã‹L‚Ì’è‹`‚ğg—p‚µ‚ÄS2Container‚©‚çƒRƒ“ƒ|[ƒlƒ“ƒg‚ğæ“¾‚·‚éê‡A
-[1]‚É‰½‚ğw’è‚µ‚½‚çƒRƒ“ƒ|[ƒlƒ“ƒg‚ğæ“¾‚Å‚«‚¸Aorg.seasar.framework.container.ComponentNotFoundRuntimeException
-‚ª”­¶‚·‚é‚Ì‚Í‚Ç‚ê‚Å‚µ‚å‚¤‚©H<br /><br />
+   ä¸Šè¨˜ã®å®šç¾©ã‚’ä½¿ç”¨ã—ã¦S2Containerã‹ã‚‰ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’å–å¾—ã™ã‚‹å ´åˆã€
+[1]ã«ä½•ã‚’æŒ‡å®šã—ãŸã‚‰ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’å–å¾—ã§ããšã€org.seasar.framework.container.ComponentNotFoundRuntimeException
+ãŒç™ºç”Ÿã™ã‚‹ã®ã¯ã©ã‚Œã§ã—ã‚‡ã†ã‹ï¼Ÿ<br /><br />
 
 <pre>
 S2Container container = S2ContainerFactory.create(&quot;examples/component/hello.dicon&quot;);
 container.getComponent([1]);
 </pre>
-    ƒqƒ“ƒgF<a href="DIContainer.html#getComponent">ƒRƒ“ƒ|[ƒlƒ“ƒg‚Ìæ“¾</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#getComponent">ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®å–å¾—</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
    <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -304,8 +304,8 @@ container.getComponent([1]);
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Component4','Component5')"></p>
-<p><a name="Component5"><b>y–â‘è5z</b></a><br />
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Component4','Component5')"></p>
+<p><a name="Component5"><b>ã€å•é¡Œ5ã€‘</b></a><br />
 examples/component/hello.dicon
 <pre>
 &lt;components&gt;
@@ -317,9 +317,9 @@ examples/component/hello.dicon
   &lt;/component&gt;
 &lt;/components&gt;
 </pre>
-ã‹L‚Ì‚æ‚¤‚É’è‹`‚µAƒRƒ“ƒ|[ƒlƒ“ƒgƒNƒ‰ƒX–¼‚ª"examples.component.AaaHelloImpl"‚Ì
-        ƒRƒ“ƒ|[ƒlƒ“ƒg‚ğæ“¾‚µ‚æ‚¤‚Æ‚µ‚½ê‡AˆÈ‰º‚Ì‚Ç‚Ì—áŠO‚ª”­¶‚µ‚Ü‚·‚©H<br />
-        AaaHelloImplƒNƒ‰ƒX‚ÆBbbHelloImplƒNƒ‰ƒX‚Í“¯‚¶ƒCƒ“ƒ^[ƒtƒF[ƒX(Hello.java)‚ğÀ‘•‚µ‚Ä‚¢‚é‚à‚Ì‚Æ‚·‚éB
+ä¸Šè¨˜ã®ã‚ˆã†ã«å®šç¾©ã—ã€ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚¯ãƒ©ã‚¹åãŒ"examples.component.AaaHelloImpl"ã®
+        ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’å–å¾—ã—ã‚ˆã†ã¨ã—ãŸå ´åˆã€ä»¥ä¸‹ã®ã©ã®ä¾‹å¤–ãŒç™ºç”Ÿã—ã¾ã™ã‹ï¼Ÿ<br />
+        AaaHelloImplã‚¯ãƒ©ã‚¹ã¨BbbHelloImplã‚¯ãƒ©ã‚¹ã¯åŒã˜ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹(Hello.java)ã‚’å®Ÿè£…ã—ã¦ã„ã‚‹ã‚‚ã®ã¨ã™ã‚‹ã€‚
 <br /><br />
 
 examples/component/HelloMain.java
@@ -332,7 +332,7 @@ examples/component/Hello.java
 <pre>
 public void showMessage();
 </pre>
-    ƒqƒ“ƒgF<a href="DIContainer.html#getComponent">ƒRƒ“ƒ|[ƒlƒ“ƒg‚Ìæ“¾</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#getComponent">ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®å–å¾—</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
    <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -361,8 +361,8 @@ public void showMessage();
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Component5','Component6')"></p>
-<p><a name="Component6"><b>y–â‘è6z</b></a><br />
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Component5','Component6')"></p>
+<p><a name="Component6"><b>ã€å•é¡Œ6ã€‘</b></a><br />
 
 examples/exception/message.dicon
 <pre>
@@ -370,9 +370,9 @@ examples/exception/message.dicon
   &lt;component class=&quot;examples.exception.MessageImpl&quot;/&gt;
 &lt;/components&gt;
 </pre>
-ã‹L‚Ì‚æ‚¤‚Édiconƒtƒ@ƒCƒ‹‚ğ’è‹`‚µ‚½ê‡AS2Contaner‚É“o˜^‚³‚ê‚Ä‚¢‚éƒRƒ“ƒ|[ƒlƒ“ƒg‚ğ
-æ“¾‚·‚é‚ÆAˆÈ‰º‚Ì‚Ç‚Ì—áŠO‚ª”­¶‚·‚é‚Å‚µ‚å‚¤‚©H
-‚½‚¾‚µAMessageImpl.java‚ÍMessage.java‚ğÀ‘•‚µ‚Ä‚¢‚é‚à‚Ì‚Æ‚·‚éB<br /><br />
+ä¸Šè¨˜ã®ã‚ˆã†ã«diconãƒ•ã‚¡ã‚¤ãƒ«ã‚’å®šç¾©ã—ãŸå ´åˆã€S2Contanerã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’
+å–å¾—ã™ã‚‹ã¨ã€ä»¥ä¸‹ã®ã©ã®ä¾‹å¤–ãŒç™ºç”Ÿã™ã‚‹ã§ã—ã‚‡ã†ã‹ï¼Ÿ
+ãŸã ã—ã€MessageImpl.javaã¯Message.javaã‚’å®Ÿè£…ã—ã¦ã„ã‚‹ã‚‚ã®ã¨ã™ã‚‹ã€‚<br /><br />
 examples/exception/MessageImpl.java
 <pre>
 public MessageImpl(Message message) {
@@ -388,7 +388,7 @@ S2Container container = S2ContainerFactory.create(&quot;examples/exception/messa
 Message message = (Message)container.getComponent(Message.class);
 </pre>
 
-    ƒqƒ“ƒgF<a href="DIContainer.html#getComponent">ƒRƒ“ƒ|[ƒlƒ“ƒg‚Ìæ“¾</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#getComponent">ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®å–å¾—</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
    <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -417,8 +417,8 @@ Message message = (Message)container.getComponent(Message.class);
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Component6','Component7')"></p>
-<p><a name="Component7"><b>y–â‘è7z</b></a><br />
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Component6','Component7')"></p>
+<p><a name="Component7"><b>ã€å•é¡Œ7ã€‘</b></a><br />
 <pre>
 &lt;components&gt;
     &lt;component class=&quot;example.container.HelloImpl&quot;&gt;
@@ -428,9 +428,9 @@ Message message = (Message)container.getComponent(Message.class);
     &lt;/component&gt;
 &lt;/components&gt;
 </pre>
-ã‹L‚Ì’è‹`‚ğg—p‚µ‚Ä¶¬‚µ‚½S2Container‚©‚çHelloImplƒRƒ“ƒ|[ƒlƒ“ƒg‚ğæ“¾‚µ‚½‚Æ‚±‚ëAorg.seasar.framework.container.IllegalMethodRuntimeException‚ª”­¶‚µ‚Ä‚µ‚Ü‚¢‚Ü‚µ‚½B
-diconƒtƒ@ƒCƒ‹‚ğC³‚·‚éê‡A³‚µ‚¢C³“à—e‚ÍAˆÈ‰º‚Ì‚Ç‚ê‚Å‚µ‚å‚¤‚©H
-HelloImpl#setAaa()‚ÍŸ‚Ì‚Æ‚¨‚è‚Å‚·B<br /><br />
+ä¸Šè¨˜ã®å®šç¾©ã‚’ä½¿ç”¨ã—ã¦ç”Ÿæˆã—ãŸS2Containerã‹ã‚‰HelloImplã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’å–å¾—ã—ãŸã¨ã“ã‚ã€org.seasar.framework.container.IllegalMethodRuntimeExceptionãŒç™ºç”Ÿã—ã¦ã—ã¾ã„ã¾ã—ãŸã€‚
+diconãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¿®æ­£ã™ã‚‹å ´åˆã€æ­£ã—ã„ä¿®æ­£å†…å®¹ã¯ã€ä»¥ä¸‹ã®ã©ã‚Œã§ã—ã‚‡ã†ã‹ï¼Ÿ
+HelloImpl#setAaa()ã¯æ¬¡ã®ã¨ãŠã‚Šã§ã™ã€‚<br /><br />
 
 <pre>
 public void setAaa(int aaa) {
@@ -438,37 +438,37 @@ public void setAaa(int aaa) {
 }
 </pre>
 
-    ƒqƒ“ƒgF<a href="DIContainer.html#getComponent">ƒRƒ“ƒ|[ƒlƒ“ƒg‚Ìæ“¾</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#getComponent">ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®å–å¾—</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
    <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
             <td bgcolor="#d1f3f4" width="23">
               <input type="radio" name="Component7" value="Component7_1">
             </td>
-            <td bgcolor="#d1f3f4" width="474">1) ƒƒ\ƒbƒhƒCƒ“ƒWƒFƒNƒVƒ‡ƒ“‚Å‚Í‚È‚­AƒZƒbƒ^[ƒCƒ“ƒWƒFƒNƒVƒ‡ƒ“‚Å’è‹`‚·‚éB</td>
+            <td bgcolor="#d1f3f4" width="474">1) ãƒ¡ã‚½ãƒƒãƒ‰ã‚¤ãƒ³ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³ã§ã¯ãªãã€ã‚»ãƒƒã‚¿ãƒ¼ã‚¤ãƒ³ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³ã§å®šç¾©ã™ã‚‹ã€‚</td>
           </tr>
           <tr>
             <td bgcolor="#66FFCC" width="23">
               <input type="radio" name="Component7" value="Component7_2">
             </td>
-            <td bgcolor="#66FFCC" width="474">2) &lt;arg&gt;ƒ^ƒO‚Ìƒ{ƒfƒB‚ğ•¶š—ñ‚Å‚Í‚È‚­”’l‚É•ÏX‚·‚éB</td>
+            <td bgcolor="#66FFCC" width="474">2) &lt;arg&gt;ã‚¿ã‚°ã®ãƒœãƒ‡ã‚£ã‚’æ–‡å­—åˆ—ã§ã¯ãªãæ•°å€¤ã«å¤‰æ›´ã™ã‚‹ã€‚</td>
           </tr>
           <tr>
             <td bgcolor="#d1f3f4" width="23">
               <input type="radio" name="Component7" value="Component7_3">
             </td>
-            <td bgcolor="#d1f3f4" width="474">3) ƒNƒ‰ƒX‚ğC³‚µ‚È‚¢‚ÆƒGƒ‰[‚Í‰ñ”ğ‚Å‚«‚È‚¢B</td>
+            <td bgcolor="#d1f3f4" width="474">3) ã‚¯ãƒ©ã‚¹ã‚’ä¿®æ­£ã—ãªã„ã¨ã‚¨ãƒ©ãƒ¼ã¯å›é¿ã§ããªã„ã€‚</td>
           </tr>
         <tr>
             <td bgcolor="#66FFCC" width="23">
               <input type="radio" name="Component7" value="Component7_4">
             </td>
-            <td bgcolor="#66FFCC" width="474">4) Às‚µ‚Ä‚àƒGƒ‰[‚Í”­¶‚µ‚È‚¢‚Ì‚ÅC³‚·‚é•K—v‚Í‚È‚¢B</td>
+            <td bgcolor="#66FFCC" width="474">4) å®Ÿè¡Œã—ã¦ã‚‚ã‚¨ãƒ©ãƒ¼ã¯ç™ºç”Ÿã—ãªã„ã®ã§ä¿®æ­£ã™ã‚‹å¿…è¦ã¯ãªã„ã€‚</td>
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Component7','Component8')"></p>
-<p><a name="Component8"><b>y–â‘è8z</b></a><br />
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Component7','Component8')"></p>
+<p><a name="Component8"><b>ã€å•é¡Œ8ã€‘</b></a><br />
 root.dicon
 <pre>
 &lt;components&gt;
@@ -476,16 +476,16 @@ root.dicon
     &lt;include path=&quot;sample/container/child2.dicon&quot; /&gt;
 &lt;/components&gt;
 </pre>
-ã‹L‚Ì’è‹`‚ğg—p‚µ‚Ä¶¬‚µ‚½S2Container‚©‚ç‘¶İ‚µ‚È‚¢S2Container‚ğæ“¾‚µ‚æ‚¤‚Æ‚µ‚½ê‡A
-”­¶‚·‚éException‚ÍˆÈ‰º‚Ì‚Ç‚ê‚Å‚µ‚å‚¤‚©H
-Às‚·‚éƒR[ƒh‚ÍŸ‚Ì‚Æ‚¨‚è‚Å‚·BS2Container#getDescendant()‚Íw’è‚µ‚½ƒpƒX‚É‘Î‰‚·‚éƒ[ƒhÏ‚İ‚ÌƒRƒ“ƒeƒi‚ğæ“¾‚·‚éƒƒ\ƒbƒh‚Å‚·B<br /><br />
+ä¸Šè¨˜ã®å®šç¾©ã‚’ä½¿ç”¨ã—ã¦ç”Ÿæˆã—ãŸS2Containerã‹ã‚‰å­˜åœ¨ã—ãªã„S2Containerã‚’å–å¾—ã—ã‚ˆã†ã¨ã—ãŸå ´åˆã€
+ç™ºç”Ÿã™ã‚‹Exceptionã¯ä»¥ä¸‹ã®ã©ã‚Œã§ã—ã‚‡ã†ã‹ï¼Ÿ
+å®Ÿè¡Œã™ã‚‹ã‚³ãƒ¼ãƒ‰ã¯æ¬¡ã®ã¨ãŠã‚Šã§ã™ã€‚S2Container#getDescendant()ã¯æŒ‡å®šã—ãŸãƒ‘ã‚¹ã«å¯¾å¿œã™ã‚‹ãƒ­ãƒ¼ãƒ‰æ¸ˆã¿ã®ã‚³ãƒ³ãƒ†ãƒŠã‚’å–å¾—ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰ã§ã™ã€‚<br /><br />
 
 <pre>
 S2Container container = S2ContainerFactory.create("root.dicon");
 S2Container childContainer = container.getDescendant("sample/container/child3.dicon");
 </pre>
 
-    ƒqƒ“ƒgF<a href="DIContainer.html#getComponent">ƒRƒ“ƒ|[ƒlƒ“ƒg‚Ìæ“¾</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#getComponent">ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®å–å¾—</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
    <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -510,16 +510,16 @@ S2Container childContainer = container.getDescendant("sample/container/child3.di
             <td bgcolor="#66FFCC" width="23">
               <input type="radio" name="Component8" value="Component8_4">
             </td>
-            <td bgcolor="#66FFCC" width="474">4) æ“¾‚Å‚«‚È‚¢ê‡‚ÍAnull‚ğ•Ô‚·B</td>
+            <td bgcolor="#66FFCC" width="474">4) å–å¾—ã§ããªã„å ´åˆã¯ã€nullã‚’è¿”ã™ã€‚</td>
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Component8','Component9')"></p>
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Component8','Component9')"></p>
 
-<p><a name="Component9"><b>y–â‘è9z</b></a><br />
-/example/container/hoge.dicon‚©‚çS2Container‚ğ¶¬‚·‚éê‡A
-         org.seasar.framework.container.ExtensionNotFoundRuntimeException‚ª”­¶‚·‚é‚Ì‚ÍAˆÈ‰º‚Ì‚Ç‚ê‚Å‚µ‚å‚¤‚©H<br /><br />
-    ƒqƒ“ƒgF<a href="DIContainer.html#getComponent">ƒRƒ“ƒ|[ƒlƒ“ƒg‚Ìæ“¾</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+<p><a name="Component9"><b>ã€å•é¡Œ9ã€‘</b></a><br />
+/example/container/hoge.diconã‹ã‚‰S2Containerã‚’ç”Ÿæˆã™ã‚‹å ´åˆã€
+         org.seasar.framework.container.ExtensionNotFoundRuntimeExceptionãŒç™ºç”Ÿã™ã‚‹ã®ã¯ã€ä»¥ä¸‹ã®ã©ã‚Œã§ã—ã‚‡ã†ã‹ï¼Ÿ<br /><br />
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#getComponent">ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®å–å¾—</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
    <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -548,14 +548,14 @@ S2Container childContainer = container.getDescendant("sample/container/child3.di
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Component9','ConstructorInjection')"></p>
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Component9','ConstructorInjection')"></p>
 
 
-<h3><a name="ConstructorInjection">ƒRƒ“ƒXƒgƒ‰ƒNƒ^EƒCƒ“ƒWƒFƒNƒVƒ‡ƒ“‚ÉŠÖ‚·‚é–â‘è</a></h3>
-    <p><a name="Constructor"><b>y–â‘è1z</b></a><br />
-    ƒRƒ“ƒXƒgƒ‰ƒNƒ^EƒCƒ“ƒWƒFƒNƒVƒ‡ƒ“‚ğ—p‚¢‚ÄAexamples.dicon.HelloConstructorInjectionƒNƒ‰ƒX‚Ì
-       ƒRƒ“ƒXƒgƒ‰ƒNƒ^‚Ìˆø”‚É•¶š—ñ"Hello"‚ğİ’è‚·‚éê‡AˆÈ‰º‚Ì’è‹`‚Å[1]‚É“ü‚éƒ^ƒO‚Í‚Ç‚ê‚Å‚µ‚å‚¤‚©H
-       ‚½‚¾‚µAS2Container‚É‘¼‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚Í“o˜^‚³‚ê‚Ä‚¢‚È‚¢‚à‚Ì‚Æ‚·‚éB<br /><br />
+<h3><a name="ConstructorInjection">ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ãƒ»ã‚¤ãƒ³ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³ã«é–¢ã™ã‚‹å•é¡Œ</a></h3>
+    <p><a name="Constructor"><b>ã€å•é¡Œ1ã€‘</b></a><br />
+    ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ãƒ»ã‚¤ãƒ³ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³ã‚’ç”¨ã„ã¦ã€examples.dicon.HelloConstructorInjectionã‚¯ãƒ©ã‚¹ã®
+       ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã®å¼•æ•°ã«æ–‡å­—åˆ—"Hello"ã‚’è¨­å®šã™ã‚‹å ´åˆã€ä»¥ä¸‹ã®å®šç¾©ã§[1]ã«å…¥ã‚‹ã‚¿ã‚°ã¯ã©ã‚Œã§ã—ã‚‡ã†ã‹ï¼Ÿ
+       ãŸã ã—ã€S2Containerã«ä»–ã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã¯ç™»éŒ²ã•ã‚Œã¦ã„ãªã„ã‚‚ã®ã¨ã™ã‚‹ã€‚<br /><br />
 examples/dicon/hello.dicon
 <pre>
 &lt;components&gt;
@@ -564,7 +564,7 @@ examples/dicon/hello.dicon
   &lt;/component&gt;
 &lt;/components&gt;
 </pre>
-    ƒqƒ“ƒgF<a href="DIContainer.html#ConstructorInjection">ƒRƒ“ƒXƒgƒ‰ƒNƒ^EƒCƒ“ƒWƒFƒNƒVƒ‡ƒ“</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#ConstructorInjection">ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ãƒ»ã‚¤ãƒ³ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -593,12 +593,12 @@ examples/dicon/hello.dicon
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Constructor','SetterInjection')"></p>
-    <h3><a name="SetterInjection">ƒZƒbƒ^[EƒCƒ“ƒWƒFƒNƒVƒ‡ƒ“‚ÉŠÖ‚·‚é–â‘è</a></h3>
-    <p><a name="Setter"><b>y–â‘è1z</b></a><br />
-    ƒZƒbƒ^[EƒCƒ“ƒWƒFƒNƒVƒ‡ƒ“‚ğ—p‚¢‚ÄAexamples.dicon.MessageSetterInjectionƒNƒ‰ƒX‚Ì
-        ƒZƒbƒ^[Eƒƒ\ƒbƒh(setMessage)‚Ìˆø”‚É•¶š—ñ"Test"‚ğİ’è‚·‚éê‡A
-        ˆÈ‰º‚Ì’è‹`‚Å[1]‚É“ü‚éƒ^ƒO‚Í‚Ç‚ê‚Å‚µ‚å‚¤‚©H<br /><br />
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Constructor','SetterInjection')"></p>
+    <h3><a name="SetterInjection">ã‚»ãƒƒã‚¿ãƒ¼ãƒ»ã‚¤ãƒ³ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³ã«é–¢ã™ã‚‹å•é¡Œ</a></h3>
+    <p><a name="Setter"><b>ã€å•é¡Œ1ã€‘</b></a><br />
+    ã‚»ãƒƒã‚¿ãƒ¼ãƒ»ã‚¤ãƒ³ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³ã‚’ç”¨ã„ã¦ã€examples.dicon.MessageSetterInjectionã‚¯ãƒ©ã‚¹ã®
+        ã‚»ãƒƒã‚¿ãƒ¼ãƒ»ãƒ¡ã‚½ãƒƒãƒ‰(setMessage)ã®å¼•æ•°ã«æ–‡å­—åˆ—"Test"ã‚’è¨­å®šã™ã‚‹å ´åˆã€
+        ä»¥ä¸‹ã®å®šç¾©ã§[1]ã«å…¥ã‚‹ã‚¿ã‚°ã¯ã©ã‚Œã§ã—ã‚‡ã†ã‹ï¼Ÿ<br /><br />
 examples/dicon/hello.dicon
 <pre>
 &lt;components&gt;
@@ -607,7 +607,7 @@ examples/dicon/hello.dicon
   &lt;/component&gt;
 &lt;/components&gt;
 </pre>
-    ƒqƒ“ƒgF<a href="DIContainer.html#SetterInjection">ƒZƒbƒ^[¥ƒCƒ“ƒWƒFƒNƒVƒ‡ƒ“</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#SetterInjection">ã‚»ãƒƒã‚¿ãƒ¼ï½¥ã‚¤ãƒ³ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -636,16 +636,16 @@ examples/dicon/hello.dicon
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Setter','MethodInjection')"></p>
-    <h3><a name="MethodInjection">ƒƒ\ƒbƒhEƒCƒ“ƒWƒFƒNƒVƒ‡ƒ“‚ÉŠÖ‚·‚é–â‘è</a></h3>
-    <p><a name="Method"><b>y–â‘è1z</b></a><br />
-    ƒƒ\ƒbƒhEƒCƒ“ƒWƒFƒNƒVƒ‡ƒ“‚ğ—p‚¢‚ÄAjava.util.DateƒNƒ‰ƒX‚ÌsetTimeƒƒ\ƒbƒh‚É0‚ğİ’è‚·‚éê‡AˆÈ‰º‚Ì’è‹`‚Å[1]‚É“ü‚éƒ^ƒO‚Í‚Ç‚ê‚Å‚µ‚å‚¤‚©H<br /><br />
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Setter','MethodInjection')"></p>
+    <h3><a name="MethodInjection">ãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¤ãƒ³ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³ã«é–¢ã™ã‚‹å•é¡Œ</a></h3>
+    <p><a name="Method"><b>ã€å•é¡Œ1ã€‘</b></a><br />
+    ãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¤ãƒ³ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³ã‚’ç”¨ã„ã¦ã€java.util.Dateã‚¯ãƒ©ã‚¹ã®setTimeãƒ¡ã‚½ãƒƒãƒ‰ã«0ã‚’è¨­å®šã™ã‚‹å ´åˆã€ä»¥ä¸‹ã®å®šç¾©ã§[1]ã«å…¥ã‚‹ã‚¿ã‚°ã¯ã©ã‚Œã§ã—ã‚‡ã†ã‹ï¼Ÿ<br /><br />
 <pre>
 &lt;component class=&quot;java.util.Date&quot;&gt;
     [1]
 &lt;/component&gt;
 </pre>
-    ƒqƒ“ƒgF<a href="DIContainer.html#MethodInjection">ƒƒ\ƒbƒhEƒCƒ“ƒWƒFƒNƒVƒ‡ƒ“</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#MethodInjection">ãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¤ãƒ³ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -688,11 +688,11 @@ examples/dicon/hello.dicon
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Method','AutoBindingMode')"></p>
-    <h3><a name="AutoBindingMode">©“®ƒoƒCƒ“ƒfƒBƒ“ƒO‚ÉŠÖ‚·‚é–â‘è</a></h3>
-    <p><a name="Auto"><b>y–â‘è1z</b></a><br />
-&lt;component&gt;ƒ^ƒO‚ÌautoBinding‘®«‚ğÈ—ª‚µ‚½ê‡AautoBinding‘®«‚É‚Í‰½‚ªİ’è‚³‚ê‚é‚Å‚µ‚å‚¤‚©H<br />
-    ƒqƒ“ƒgF<a href="DIContainer.html#AutoBindingMode">©“®ƒoƒCƒ“ƒfƒBƒ“ƒO</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Method','AutoBindingMode')"></p>
+    <h3><a name="AutoBindingMode">è‡ªå‹•ãƒã‚¤ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ã«é–¢ã™ã‚‹å•é¡Œ</a></h3>
+    <p><a name="Auto"><b>ã€å•é¡Œ1ã€‘</b></a><br />
+&lt;component&gt;ã‚¿ã‚°ã®autoBindingå±æ€§ã‚’çœç•¥ã—ãŸå ´åˆã€autoBindingå±æ€§ã«ã¯ä½•ãŒè¨­å®šã•ã‚Œã‚‹ã§ã—ã‚‡ã†ã‹ï¼Ÿ<br />
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#AutoBindingMode">è‡ªå‹•ãƒã‚¤ãƒ³ãƒ‡ã‚£ãƒ³ã‚°</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -721,11 +721,11 @@ examples/dicon/hello.dicon
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Auto','Auto2')"></p>
-    <p><a name="Auto2"><b>y–â‘è2z</b></a><br />
-    &lt;component&gt;ƒ^ƒO‚ÌautoBinding‘®«‚ğw’è‚µ‚Ä©“®ƒoƒCƒ“ƒfƒBƒ“ƒO‚ª<B>‚Å‚«‚È‚¢‚æ‚¤‚Éİ’è</B>‚·‚é‚É‚ÍA
-        &lt;component&gt;ƒ^ƒO‚ÌautoBinding‘®«‚É‰½‚ğw’è‚·‚é‚Å‚µ‚å‚¤‚©H<br /><br />
-    ƒqƒ“ƒgF<a href="DIContainer.html#AutoBindingMode">©“®ƒoƒCƒ“ƒfƒBƒ“ƒO</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Auto','Auto2')"></p>
+    <p><a name="Auto2"><b>ã€å•é¡Œ2ã€‘</b></a><br />
+    &lt;component&gt;ã‚¿ã‚°ã®autoBindingå±æ€§ã‚’æŒ‡å®šã—ã¦è‡ªå‹•ãƒã‚¤ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ãŒ<B>ã§ããªã„ã‚ˆã†ã«è¨­å®š</B>ã™ã‚‹ã«ã¯ã€
+        &lt;component&gt;ã‚¿ã‚°ã®autoBindingå±æ€§ã«ä½•ã‚’æŒ‡å®šã™ã‚‹ã§ã—ã‚‡ã†ã‹ï¼Ÿ<br /><br />
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#AutoBindingMode">è‡ªå‹•ãƒã‚¤ãƒ³ãƒ‡ã‚£ãƒ³ã‚°</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -754,11 +754,11 @@ examples/dicon/hello.dicon
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Auto2','Auto3')"></p>
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Auto2','Auto3')"></p>
 
- <p><a name="Auto3"><b>y–â‘è3z</b></a><br />
-ƒRƒ“ƒ|[ƒlƒ“ƒg–¼‚ªmap‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚É’è‹`‚³‚ê‚Ä‚¢‚é’l‚ğMessageImplƒNƒ‰ƒX‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^‚É©“®ƒoƒCƒ“ƒfƒBƒ“ƒO‚µ‚½‚¢ê‡A
-        ˆÈ‰º‚Ì’è‹`‚Ì[1]‚É‰½‚ğ“ü‚ê‚é‚Å‚µ‚å‚¤‚©H<br /><br />
+ <p><a name="Auto3"><b>ã€å•é¡Œ3ã€‘</b></a><br />
+ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆåãŒmapã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã«å®šç¾©ã•ã‚Œã¦ã„ã‚‹å€¤ã‚’MessageImplã‚¯ãƒ©ã‚¹ã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã«è‡ªå‹•ãƒã‚¤ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ã—ãŸã„å ´åˆã€
+        ä»¥ä¸‹ã®å®šç¾©ã®[1]ã«ä½•ã‚’å…¥ã‚Œã‚‹ã§ã—ã‚‡ã†ã‹ï¼Ÿ<br /><br />
 examples/auto/message.dicon
 <pre>
 &lt;components&gt;
@@ -777,7 +777,7 @@ public MessageImpl(Map message){
     this.message = message;
 }
 </pre>
-    ƒqƒ“ƒgF<a href="DIContainer.html#AutoBindingMode">©“®ƒoƒCƒ“ƒfƒBƒ“ƒO</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#AutoBindingMode">è‡ªå‹•ãƒã‚¤ãƒ³ãƒ‡ã‚£ãƒ³ã‚°</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -806,8 +806,8 @@ public MessageImpl(Map message){
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Auto3','Auto4')"></p>
-<p><a name="Auto4"><b>y–â‘è4z</b></a><br />
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Auto3','Auto4')"></p>
+<p><a name="Auto4"><b>ã€å•é¡Œ4ã€‘</b></a><br />
 examples/auto/message.dicon
 <pre>
 &lt;components&gt;
@@ -820,8 +820,8 @@ examples/auto/message.dicon
   &lt;component autoBinding=&quot;constructor&quot; class=&quot;examples.auto.Message&quot;/&gt;
 &lt;/components&gt;
 </pre>
-ã‹L‚Ì’è‹`‚Ì‚æ‚¤‚ÉautoBinding‘®«‚Éconstructor‚ªİ’è‚³‚ê‚Ä‚¢‚½ê‡Aexamples/auto/MessageƒNƒ‰ƒX‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^‚Ìİ’è‚Å
-©“®ƒoƒCƒ“ƒfƒBƒ“ƒO‚Å‚«‚é‚æ‚¤‚É‚·‚é‚½‚ß‚É‚ÍA[1]‚É‰½‚ğ“ü‚ê‚½‚ç—Ç‚¢‚Å‚µ‚å‚¤‚©H<br /><br />
+ä¸Šè¨˜ã®å®šç¾©ã®ã‚ˆã†ã«autoBindingå±æ€§ã«constructorãŒè¨­å®šã•ã‚Œã¦ã„ãŸå ´åˆã€examples/auto/Messageã‚¯ãƒ©ã‚¹ã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã®è¨­å®šã§
+è‡ªå‹•ãƒã‚¤ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ã§ãã‚‹ã‚ˆã†ã«ã™ã‚‹ãŸã‚ã«ã¯ã€[1]ã«ä½•ã‚’å…¥ã‚ŒãŸã‚‰è‰¯ã„ã§ã—ã‚‡ã†ã‹ï¼Ÿ<br /><br />
 
 examples/auto/Message.java
 <pre>
@@ -829,7 +829,7 @@ public Message([1] message){
     this.message = message;
  }
 </pre>
-    ƒqƒ“ƒgF<a href="DIContainer.html#AutoBindingMode">©“®ƒoƒCƒ“ƒfƒBƒ“ƒO</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#AutoBindingMode">è‡ªå‹•ãƒã‚¤ãƒ³ãƒ‡ã‚£ãƒ³ã‚°</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -858,8 +858,8 @@ public Message([1] message){
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Auto4','Auto5')"></p>
-<p><a name="Auto5"><b>y–â‘è5z</b></a><br />
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Auto4','Auto5')"></p>
+<p><a name="Auto5"><b>ã€å•é¡Œ5ã€‘</b></a><br />
 examples/auto/HelloImpl.dicon
 <pre>
 &lt;components&gt;
@@ -871,9 +871,9 @@ examples/auto/HelloImpl.dicon
   &lt;component autoBinding=&quot;constructor&quot; class=&quot;examples.auto.HelloImpl&quot;/&gt;
 &lt;/components&gt;
 </pre>
-ã‹L‚Ì‚æ‚¤‚Èdiconƒtƒ@ƒCƒ‹‚ª’è‹`‚³‚ê‚Ä‚¢‚½ê‡A‰º‚Ì‚æ‚¤‚É•¡”‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^‚ğ’è‹`‚·‚é‚Æ
-examples.auto.HelloImplƒNƒ‰ƒX‚Ì‚Ç‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^‚ªg—p‚³‚ê‚é‚Å‚µ‚å‚¤‚©H
-‚½‚¾‚µAMessgeImpl.java‚ÍMessage.java‚ğÀ‘•‚µ‚Ä‚¢‚é‚à‚Ì‚Æ‚·‚éB<br /><br />
+ä¸Šè¨˜ã®ã‚ˆã†ãªdiconãƒ•ã‚¡ã‚¤ãƒ«ãŒå®šç¾©ã•ã‚Œã¦ã„ãŸå ´åˆã€ä¸‹ã®ã‚ˆã†ã«è¤‡æ•°ã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã‚’å®šç¾©ã™ã‚‹ã¨
+examples.auto.HelloImplã‚¯ãƒ©ã‚¹ã®ã©ã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ãŒä½¿ç”¨ã•ã‚Œã‚‹ã§ã—ã‚‡ã†ã‹ï¼Ÿ
+ãŸã ã—ã€MessgeImpl.javaã¯Message.javaã‚’å®Ÿè£…ã—ã¦ã„ã‚‹ã‚‚ã®ã¨ã™ã‚‹ã€‚<br /><br />
 examples/auto/HelloImpl.java
 <pre>
 public HelloImpl(){
@@ -902,7 +902,7 @@ public void showMessage(){
     System.out.println(message_);
 }
 </pre>
-    ƒqƒ“ƒgF<a href="DIContainer.html#AutoBindingMode">©“®ƒoƒCƒ“ƒfƒBƒ“ƒO</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#AutoBindingMode">è‡ªå‹•ãƒã‚¤ãƒ³ãƒ‡ã‚£ãƒ³ã‚°</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -927,12 +927,12 @@ public void showMessage(){
             <td bgcolor="#66FFCC" width="23">
               <input type="radio" name="Auto5" value="Auto5_4">
             </td>
-            <td bgcolor="#66FFCC" width="474">4) ƒRƒ“ƒXƒgƒ‰ƒNƒ^‚ÍŒÄ‚Î‚ê‚È‚¢</td>
+            <td bgcolor="#66FFCC" width="474">4) ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã¯å‘¼ã°ã‚Œãªã„</td>
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Auto5','Auto6')"></p>
-<p><a name="Auto6"><b>y–â‘è6z</b></a><br />
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Auto5','Auto6')"></p>
+<p><a name="Auto6"><b>ã€å•é¡Œ6ã€‘</b></a><br />
 examples/auto/message.dicon
 <pre>
 &lt;components&gt;
@@ -944,8 +944,8 @@ examples/auto/message.dicon
   &lt;component autoBinding=&quot;constructor&quot; class=&quot;examples.auto.MessageImpl&quot;/&gt;
 &lt;/components&gt;
 </pre>
-ã‹L‚Ì‚æ‚¤‚Èdiconƒtƒ@ƒCƒ‹‚ª’è‹`‚³‚ê‚Ä‚¢‚½ê‡A‰º‚Ì‚æ‚¤‚É•¡”‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^‚ğ’è‹`‚·‚é‚Æ
-examples.auto.MessageImplƒNƒ‰ƒX‚Ì‚Ç‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^‚ªg—p‚³‚ê‚é‚Å‚µ‚å‚¤‚©H<br /><br />
+ä¸Šè¨˜ã®ã‚ˆã†ãªdiconãƒ•ã‚¡ã‚¤ãƒ«ãŒå®šç¾©ã•ã‚Œã¦ã„ãŸå ´åˆã€ä¸‹ã®ã‚ˆã†ã«è¤‡æ•°ã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã‚’å®šç¾©ã™ã‚‹ã¨
+examples.auto.MessageImplã‚¯ãƒ©ã‚¹ã®ã©ã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ãŒä½¿ç”¨ã•ã‚Œã‚‹ã§ã—ã‚‡ã†ã‹ï¼Ÿ<br /><br />
 
 examples/auto/MessageImpl.java
 <pre>
@@ -970,7 +970,7 @@ private MessageImpl(List list1, List list2, List list3){
     this.list3 = list3;
 }
 </pre>
-    ƒqƒ“ƒgF<a href="DIContainer.html#AutoBindingMode">©“®ƒoƒCƒ“ƒfƒBƒ“ƒO</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#AutoBindingMode">è‡ªå‹•ãƒã‚¤ãƒ³ãƒ‡ã‚£ãƒ³ã‚°</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -999,9 +999,9 @@ private MessageImpl(List list1, List list2, List list3){
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Auto6','Auto7')"></p>
-<p><a name="Auto7"><b>y–â‘è7z</b></a><br />
-ˆÈ‰º‚Ì‚æ‚¤‚Édiconƒtƒ@ƒCƒ‹‚ğ’è‹`‚µAÀ‘•ƒNƒ‰ƒXMessageImpl‚ÌƒZƒbƒ^[ƒƒ\ƒbƒh‚É©“®ƒoƒCƒ“ƒfƒBƒ“ƒO‚·‚éê‡Aexamples/auto/MessageImpl.java‚ÌƒZƒbƒ^[ƒƒ\ƒbƒh‚Å<B>ŠÔˆá‚Á‚½’è‹`</B>‚ğ‚µ‚Ä‚¢‚é‚Ì‚Í‚Ç‚ê‚Å‚µ‚å‚¤‚©H<br /><br />
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Auto6','Auto7')"></p>
+<p><a name="Auto7"><b>ã€å•é¡Œ7ã€‘</b></a><br />
+ä»¥ä¸‹ã®ã‚ˆã†ã«diconãƒ•ã‚¡ã‚¤ãƒ«ã‚’å®šç¾©ã—ã€å®Ÿè£…ã‚¯ãƒ©ã‚¹MessageImplã®ã‚»ãƒƒã‚¿ãƒ¼ãƒ¡ã‚½ãƒƒãƒ‰ã«è‡ªå‹•ãƒã‚¤ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ã™ã‚‹å ´åˆã€examples/auto/MessageImpl.javaã®ã‚»ãƒƒã‚¿ãƒ¼ãƒ¡ã‚½ãƒƒãƒ‰ã§<B>é–“é•ã£ãŸå®šç¾©</B>ã‚’ã—ã¦ã„ã‚‹ã®ã¯ã©ã‚Œã§ã—ã‚‡ã†ã‹ï¼Ÿ<br /><br />
 
 examples/auto/message.dicon
 <pre>
@@ -1015,7 +1015,7 @@ examples/auto/message.dicon
     &lt;component autoBinding=&quot;property&quot; class =&quot;examples.auto.MessageImpl&quot;/&gt;
 &lt;/components&gt;
 </pre>
-    ƒqƒ“ƒgF<a href="DIContainer.html#AutoBindingMode">©“®ƒoƒCƒ“ƒfƒBƒ“ƒO</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#AutoBindingMode">è‡ªå‹•ãƒã‚¤ãƒ³ãƒ‡ã‚£ãƒ³ã‚°</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -1058,10 +1058,10 @@ public void setBbb(Map map) {<br />
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Auto7','Auto8')"></p>
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Auto7','Auto8')"></p>
 
-<p><a name="Auto8"><b>y–â‘è8z</b></a><br />
-hello.dicon‚Å’è‹`‚µ‚Ä‚¢‚éƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì’l‚ğ©“®ƒoƒCƒ“ƒfƒBƒ“ƒO‚Å‚«‚é‚æ‚¤‚ÉÀ‘•ƒNƒ‰ƒXHelloImpl‚ÌƒZƒbƒ^[ƒƒ\ƒbƒh‚ğ³‚µ‚­’è‹`‚µ‚Ä‚¢‚é‚Ì‚Í‚Ç‚ê‚Å‚µ‚å‚¤‚©H<br /><br />
+<p><a name="Auto8"><b>ã€å•é¡Œ8ã€‘</b></a><br />
+hello.diconã§å®šç¾©ã—ã¦ã„ã‚‹ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®å€¤ã‚’è‡ªå‹•ãƒã‚¤ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ã§ãã‚‹ã‚ˆã†ã«å®Ÿè£…ã‚¯ãƒ©ã‚¹HelloImplã®ã‚»ãƒƒã‚¿ãƒ¼ãƒ¡ã‚½ãƒƒãƒ‰ã‚’æ­£ã—ãå®šç¾©ã—ã¦ã„ã‚‹ã®ã¯ã©ã‚Œã§ã—ã‚‡ã†ã‹ï¼Ÿ<br /><br />
 
 examples/auto/hello.dicon
 <pre>
@@ -1074,7 +1074,7 @@ examples/auto/hello.dicon
     &lt;component autoBinding=&quot;property&quot; name=&quot;message&quot; class =&quot;examples.auto.HelloImpl&quot;/&gt;
 &lt;/components&gt;
 </pre>
-    ƒqƒ“ƒgF<a href="DIContainer.html#AutoBindingMode">©“®ƒoƒCƒ“ƒfƒBƒ“ƒO</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#AutoBindingMode">è‡ªå‹•ãƒã‚¤ãƒ³ãƒ‡ã‚£ãƒ³ã‚°</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -1116,10 +1116,10 @@ public void setHelloMessage(List list) {<br />
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Auto8','Auto9')"></p>
-<p><a name="Auto9"><b>y–â‘è9z</b></a><br />
-ˆÈ‰º‚Ì‚æ‚¤‚É’è‹`‚µ‚½ê‡AÀ‘•ƒNƒ‰ƒXMessageImpl‚Ì‚Ç‚ÌƒZƒbƒ^[ƒƒ\ƒbƒh‚ªŒÄ‚Î‚ê‚é‚Å‚µ‚å‚¤‚©H
-         ‚½‚¾‚µAHelloImpl.java‚ÍHello.java‚ğÀ‘•‚µ‚Ä‚¢‚é‚à‚Ì‚Æ‚·‚éB<br /><br />
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Auto8','Auto9')"></p>
+<p><a name="Auto9"><b>ã€å•é¡Œ9ã€‘</b></a><br />
+ä»¥ä¸‹ã®ã‚ˆã†ã«å®šç¾©ã—ãŸå ´åˆã€å®Ÿè£…ã‚¯ãƒ©ã‚¹MessageImplã®ã©ã®ã‚»ãƒƒã‚¿ãƒ¼ãƒ¡ã‚½ãƒƒãƒ‰ãŒå‘¼ã°ã‚Œã‚‹ã§ã—ã‚‡ã†ã‹ï¼Ÿ
+         ãŸã ã—ã€HelloImpl.javaã¯Hello.javaã‚’å®Ÿè£…ã—ã¦ã„ã‚‹ã‚‚ã®ã¨ã™ã‚‹ã€‚<br /><br />
 
 examples/auto/message.dicon
 <pre>
@@ -1168,7 +1168,7 @@ public void showHelloMessage(){
     System.out.println(hello_);
 }
 </pre>
-    ƒqƒ“ƒgF<a href="DIContainer.html#AutoBindingMode">©“®ƒoƒCƒ“ƒfƒBƒ“ƒO</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#AutoBindingMode">è‡ªå‹•ãƒã‚¤ãƒ³ãƒ‡ã‚£ãƒ³ã‚°</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -1198,8 +1198,8 @@ public void showHelloMessage(){
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Auto9','Auto10')"></p>
-<p><a name="Auto10"><b>y–â‘è10z</b></a><br />
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Auto9','Auto10')"></p>
+<p><a name="Auto10"><b>ã€å•é¡Œ10ã€‘</b></a><br />
 examples/exception/message.dicon
 <pre>
 &lt;components&gt;
@@ -1212,8 +1212,8 @@ examples/exception/message.dicon
   &lt;component autoBinding=&quot;auto&quot; name=&quot;message&quot; class=&quot;examples.exception.MessageImpl&quot;/&gt;
 &lt;/components&gt;
 </pre>
-ã‹L‚Ì‚æ‚¤‚É&lt;component&gt;ƒ^ƒO‚ÌautoBinding‘®«‚ğauto‚Éw’è‚µ‚½ê‡AMessageMainƒNƒ‰ƒX‚ğÀs‚·‚é‚Æ©“®ƒoƒCƒ“ƒfƒBƒ“ƒO‚³‚ê‚é‚Ì‚Í‚Ç‚Ìƒƒ\ƒbƒh‚Å‚µ‚å‚¤‚©H<br />
-‚Ü‚½AMessageImpl.java‚ÍMessage.java‚ğÀ‘•‚µ‚Ä‚¢‚é‚à‚Ì‚Æ‚·‚éB<br /><br />
+ä¸Šè¨˜ã®ã‚ˆã†ã«&lt;component&gt;ã‚¿ã‚°ã®autoBindingå±æ€§ã‚’autoã«æŒ‡å®šã—ãŸå ´åˆã€MessageMainã‚¯ãƒ©ã‚¹ã‚’å®Ÿè¡Œã™ã‚‹ã¨è‡ªå‹•ãƒã‚¤ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ã•ã‚Œã‚‹ã®ã¯ã©ã®ãƒ¡ã‚½ãƒƒãƒ‰ã§ã—ã‚‡ã†ã‹ï¼Ÿ<br />
+ã¾ãŸã€MessageImpl.javaã¯Message.javaã‚’å®Ÿè£…ã—ã¦ã„ã‚‹ã‚‚ã®ã¨ã™ã‚‹ã€‚<br /><br />
 examples/exception/MessageImpl.java
 <pre>
 public MessageImpl(Map map) {
@@ -1228,41 +1228,41 @@ examples/exception/MessageMain.java
 S2Container container = S2ContainerFactory.create("examples/exception/message.dicon");
 Message message = (Message)container.getComponent(Message.class);
 </pre>
-    ƒqƒ“ƒgF<a href="DIContainer.html#AutoBindingMode">©“®ƒoƒCƒ“ƒfƒBƒ“ƒO</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#AutoBindingMode">è‡ªå‹•ãƒã‚¤ãƒ³ãƒ‡ã‚£ãƒ³ã‚°</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
             <td bgcolor="#d1f3f4" width="23">
               <input type="radio" name="Auto10" value="Auto10_1">
             </td>
-            <td bgcolor="#d1f3f4" width="474">1)  ƒRƒ“ƒXƒgƒ‰ƒNƒ^(MessageImpl(Map map))</td>
+            <td bgcolor="#d1f3f4" width="474">1)  ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿(MessageImpl(Map map))</td>
           </tr>
           <tr>
             <td bgcolor="#66FFCC" width="23">
               <input type="radio" name="Auto10" value="Auto10_2">
             </td>
-            <td bgcolor="#66FFCC" width="474">2) ƒZƒbƒ^[ƒƒ\ƒbƒh(setMessage(Map map))
+            <td bgcolor="#66FFCC" width="474">2) ã‚»ãƒƒã‚¿ãƒ¼ãƒ¡ã‚½ãƒƒãƒ‰(setMessage(Map map))
 </td>
           </tr>
           <tr>
             <td bgcolor="#d1f3f4" width="23">
               <input type="radio" name="Auto10" value="Auto10_3">
             </td>
-            <td bgcolor="#d1f3f4" width="474">3) ƒRƒ“ƒXƒgƒ‰ƒNƒ^(MessageImpl(Map map))‚ÆƒZƒbƒ^[ƒƒ\ƒbƒh(setMessage(Map map))</td>
+            <td bgcolor="#d1f3f4" width="474">3) ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿(MessageImpl(Map map))ã¨ã‚»ãƒƒã‚¿ãƒ¼ãƒ¡ã‚½ãƒƒãƒ‰(setMessage(Map map))</td>
           </tr>
         <tr>
             <td bgcolor="#66FFCC" width="23">
               <input type="radio" name="Auto10" value="Auto10_4">
             </td>
-            <td bgcolor="#66FFCC" width="474">4) ƒRƒ“ƒXƒgƒ‰ƒNƒ^(MessageImpl(Map map))‚ÆƒZƒbƒ^[ƒƒ\ƒbƒh(setMessage(Map map))‚É©“®ƒoƒCƒ“ƒfƒBƒ“ƒO‚³‚ê‚È‚¢</td>
+            <td bgcolor="#66FFCC" width="474">4) ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿(MessageImpl(Map map))ã¨ã‚»ãƒƒã‚¿ãƒ¼ãƒ¡ã‚½ãƒƒãƒ‰(setMessage(Map map))ã«è‡ªå‹•ãƒã‚¤ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ã•ã‚Œãªã„</td>
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Auto10','S2ContainerInclude')"></p>
-    <h3><a name="S2ContainerInclude">S2Container’è‹`‚Ì•ªŠ„‚ÆƒCƒ“ƒNƒ‹[ƒh‚ÉŠÖ‚·‚é–â‘è</a></h3>
-    <p><a name="Include"><b>y–â‘è1z</b></a><br />
-    ˆÈ‰º‚Ì‚æ‚¤‚É’è‹`‚³‚ê‚Ä‚¢‚½ê‡AƒRƒ“ƒ|[ƒlƒ“ƒg‚ÌŒŸõ‡˜‚Æ‚µ‚Ä
-        ³‚µ‚¢‚Ì‚Í‚Ç‚ê‚Å‚µ‚å‚¤‚©H<br /><br />
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Auto10','S2ContainerInclude')"></p>
+    <h3><a name="S2ContainerInclude">S2Containerå®šç¾©ã®åˆ†å‰²ã¨ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã«é–¢ã™ã‚‹å•é¡Œ</a></h3>
+    <p><a name="Include"><b>ã€å•é¡Œ1ã€‘</b></a><br />
+    ä»¥ä¸‹ã®ã‚ˆã†ã«å®šç¾©ã•ã‚Œã¦ã„ãŸå ´åˆã€ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®æ¤œç´¢é †åºã¨ã—ã¦
+        æ­£ã—ã„ã®ã¯ã©ã‚Œã§ã—ã‚‡ã†ã‹ï¼Ÿ<br /><br />
 examples/include/foo.dicon
 <pre>
 &lt;components&gt;
@@ -1271,38 +1271,38 @@ examples/include/foo.dicon
   &lt;component class=&quot;examples.include.Foo&quot; /&gt;
 &lt;/components&gt;
 </pre>
-    ƒqƒ“ƒgF<a href="DIContainer.html#Include">S2Container’è‹`‚Ì•ªŠ„‚ÆƒCƒ“ƒNƒ‹[ƒh</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#Include">S2Containerå®šç¾©ã®åˆ†å‰²ã¨ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
             <td bgcolor="#d1f3f4" width="23">
               <input type="radio" name="Include" value="Include1">
             </td>
-            <td bgcolor="#d1f3f4" width="474">1) aaa.dicon‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg¨bbb.dicon‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg¨©•ª©g‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì‡</td>
+            <td bgcolor="#d1f3f4" width="474">1) aaa.diconã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆâ†’bbb.diconã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆâ†’è‡ªåˆ†è‡ªèº«ã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®é †</td>
           </tr>
           <tr>
             <td bgcolor="#66FFCC" width="23">
               <input type="radio" name="Include" value="Include2">
             </td>
-            <td bgcolor="#66FFCC" width="474">2) ©•ª©g‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg¨aaa.dicon‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg¨bbb.dicon‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì‡</td>
+            <td bgcolor="#66FFCC" width="474">2) è‡ªåˆ†è‡ªèº«ã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆâ†’aaa.diconã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆâ†’bbb.diconã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®é †</td>
           </tr>
           <tr>
             <td bgcolor="#d1f3f4" width="23">
               <input type="radio" name="Include" value="Include3">
             </td>
-            <td bgcolor="#d1f3f4" width="474">3) ©•ª©g‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg¨bbb.dicon‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg¨aaa.dicon‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì‡</td>
+            <td bgcolor="#d1f3f4" width="474">3) è‡ªåˆ†è‡ªèº«ã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆâ†’bbb.diconã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆâ†’aaa.diconã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®é †</td>
           </tr>
         <tr>
             <td bgcolor="#66FFCC" width="23">
               <input type="radio" name="Include" value="Include4">
             </td>
-            <td bgcolor="#66FFCC" width="474">4) bbb.dicon‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg¨aaa.dicon‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg¨©•ª©g‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì‡</td>
+            <td bgcolor="#66FFCC" width="474">4) bbb.diconã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆâ†’aaa.diconã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆâ†’è‡ªåˆ†è‡ªèº«ã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®é †</td>
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Include','Include2')"></p>
-    <p><a name="Include2"><b>y–â‘è2z</b></a><br />
-    ˆÈ‰º‚Ì‚æ‚¤‚É’è‹`‚µAMainƒNƒ‰ƒX‚ğÀs‚·‚é‚Æ‰½‚ª•\¦‚³‚ê‚é‚Å‚µ‚å‚¤‚©H<br /><br />
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Include','Include2')"></p>
+    <p><a name="Include2"><b>ã€å•é¡Œ2ã€‘</b></a><br />
+    ä»¥ä¸‹ã®ã‚ˆã†ã«å®šç¾©ã—ã€Mainã‚¯ãƒ©ã‚¹ã‚’å®Ÿè¡Œã™ã‚‹ã¨ä½•ãŒè¡¨ç¤ºã•ã‚Œã‚‹ã§ã—ã‚‡ã†ã‹ï¼Ÿ<br /><br />
 examples/include/app.dicon
 <pre>
 &lt;components&gt;
@@ -1353,7 +1353,7 @@ S2Container container = S2ContainerFactory.create(&quot;examples/include/app.dic
 Hello hello = (Hello)container.getComponent(&quot;root&quot;);
 hello.showMessage();
 </pre>
-    ƒqƒ“ƒgF<a href="DIContainer.html#Include">S2Container’è‹`‚Ì•ªŠ„‚ÆƒCƒ“ƒNƒ‹[ƒh</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#Include">S2Containerå®šç¾©ã®åˆ†å‰²ã¨ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -1379,20 +1379,20 @@ hello.showMessage();
             <td bgcolor="#66FFCC" width="23">
               <input type="radio" name="Include2" value="Include2_4">
             </td>
-            <td bgcolor="#66FFCC" width="474">4) ‰½‚à•\¦‚³‚ê‚È‚¢</td>
+            <td bgcolor="#66FFCC" width="474">4) ä½•ã‚‚è¡¨ç¤ºã•ã‚Œãªã„</td>
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Include2','Include3')"></p>
- <p><a name="Include3"><b>y–â‘è3z</b></a><br />
-    –â‘è‚Q‚Ì’è‹`‚ğg—p‚µAMainƒNƒ‰ƒX‚ÅƒRƒ“ƒ|[ƒlƒ“ƒg–¼‚ªbbb‚Æ‚¢‚¤ƒRƒ“ƒ|[ƒlƒ“ƒg‚ğæ“¾‚µ‚½ê‡‚Í‰½‚ª•\¦‚³‚ê‚é‚Å‚µ‚å‚¤‚©H<br /><br />
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Include2','Include3')"></p>
+ <p><a name="Include3"><b>ã€å•é¡Œ3ã€‘</b></a><br />
+    å•é¡Œï¼’ã®å®šç¾©ã‚’ä½¿ç”¨ã—ã€Mainã‚¯ãƒ©ã‚¹ã§ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆåãŒbbbã¨ã„ã†ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’å–å¾—ã—ãŸå ´åˆã¯ä½•ãŒè¡¨ç¤ºã•ã‚Œã‚‹ã§ã—ã‚‡ã†ã‹ï¼Ÿ<br /><br />
 examples/include/Main.java
 <pre>
 S2Container container = S2ContainerFactory.create("examples/include/app.dicon");
 Hello hello = (Hello)container.getComponent("bbb");
 hello.showMessage();
 </pre>
-    ƒqƒ“ƒgF<a href="DIContainer.html#Include">S2Container’è‹`‚Ì•ªŠ„‚ÆƒCƒ“ƒNƒ‹[ƒh</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#Include">S2Containerå®šç¾©ã®åˆ†å‰²ã¨ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -1419,14 +1419,14 @@ Hello Bbb!</td>
             <td bgcolor="#66FFCC" width="23">
               <input type="radio" name="Include3" value="Include3_4">
             </td>
-            <td bgcolor="#66FFCC" width="474">4) ‰½‚à•\¦‚³‚ê‚È‚¢</td>
+            <td bgcolor="#66FFCC" width="474">4) ä½•ã‚‚è¡¨ç¤ºã•ã‚Œãªã„</td>
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Include3','S2Namespace')"></p>
-    <h3><a name="S2Namespace">–¼‘O‹óŠÔ‚ÉŠÖ‚·‚é–â‘è</a></h3>
-    <p><a name="Namespace"><b>y–â‘è1z</b></a><br />
-      child.dicon‚Å“o˜^‚µ‚½ƒRƒ“ƒ|[ƒlƒ“ƒg‚ğAaaHellompl‚ÉƒZƒbƒg‚·‚éê‡A[1]‚É‚ÍˆÈ‰º‚Ì‚Ç‚ê‚ª“ü‚é‚Å‚µ‚å‚¤‚©H<br /><br />
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Include3','S2Namespace')"></p>
+    <h3><a name="S2Namespace">åå‰ç©ºé–“ã«é–¢ã™ã‚‹å•é¡Œ</a></h3>
+    <p><a name="Namespace"><b>ã€å•é¡Œ1ã€‘</b></a><br />
+      child.diconã§ç™»éŒ²ã—ãŸã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’AaaHellomplã«ã‚»ãƒƒãƒˆã™ã‚‹å ´åˆã€[1]ã«ã¯ä»¥ä¸‹ã®ã©ã‚ŒãŒå…¥ã‚‹ã§ã—ã‚‡ã†ã‹ï¼Ÿ<br /><br />
 examples/division/root.dicon
 <pre>
 &lt;components namespace=&quot;root&quot;&gt;
@@ -1456,7 +1456,7 @@ public void showMessage() {
     System.out.println(message);
 }
 </pre>
-    ƒqƒ“ƒgF<a href="DIContainer.html#Namespace">–¼‘O‹óŠÔ</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#Namespace">åå‰ç©ºé–“</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -1485,18 +1485,18 @@ public void showMessage() {
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Namespace','InstanceMode')"></p>
-    <h3><a name="InstanceMode">ƒCƒ“ƒXƒ^ƒ“ƒXŠÇ—‚ÉŠÖ‚·‚é–â‘è</a></h3>
-    <p><a name="Instance"><b>y–â‘è1z</b></a><br />
-    &lt;component&gt;ƒ^ƒO‚Ìinstance‘®«‚ğÈ—ª‚µ‚½ê‡Ainstance‘®«‚É‚Í‰½‚ªİ’è‚³‚ê‚é‚Å‚µ‚å‚¤‚©H<br />
-    ƒqƒ“ƒgF<a href="DIContainer.html#InstanceMode">ƒCƒ“ƒXƒ^ƒ“ƒXŠÇ—</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Namespace','InstanceMode')"></p>
+    <h3><a name="InstanceMode">ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç®¡ç†ã«é–¢ã™ã‚‹å•é¡Œ</a></h3>
+    <p><a name="Instance"><b>ã€å•é¡Œ1ã€‘</b></a><br />
+    &lt;component&gt;ã‚¿ã‚°ã®instanceå±æ€§ã‚’çœç•¥ã—ãŸå ´åˆã€instanceå±æ€§ã«ã¯ä½•ãŒè¨­å®šã•ã‚Œã‚‹ã§ã—ã‚‡ã†ã‹ï¼Ÿ<br />
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#InstanceMode">ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç®¡ç†</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
             <td bgcolor="#d1f3f4" width="23">
               <input type="radio" name="Instance" value="Instance1">
             </td>
-            <td bgcolor="#d1f3f4" width="474">1) ‚È‚É‚àİ’è‚³‚ê‚È‚¢</td>
+            <td bgcolor="#d1f3f4" width="474">1) ãªã«ã‚‚è¨­å®šã•ã‚Œãªã„</td>
           </tr>
           <tr>
             <td bgcolor="#66FFCC" width="23">
@@ -1518,8 +1518,8 @@ public void showMessage() {
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Instance','Instance2')"></p>
-    <p><a name="Instance2"><b>y–â‘è2z</b></a><br />
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Instance','Instance2')"></p>
+    <p><a name="Instance2"><b>ã€å•é¡Œ2ã€‘</b></a><br />
 examples/instance/message.dicon
 <pre>
 &lt;components&gt;
@@ -1531,9 +1531,9 @@ examples/instance/message.dicon
   &lt;/component&gt;
 &lt;/components&gt;
 </pre>
-    ã‹L‚Ì‚æ‚¤‚É&lt;component&gt;ƒ^ƒO‚Éinstance‘®«‚ğ’è‹`‚µ‚È‚¢ê‡‚ÅA‰º‚ÌMessageMain.java‚Ì‚æ‚¤‚É
-ˆê“xƒRƒ“ƒeƒi‚©‚çæ“¾‚µ‚½Map‚É’l‚ğƒZƒbƒg‚µAÄ“xƒRƒ“ƒeƒi‚©‚çMap‚ğæ“¾‚µ‚Ä‚¢‚éê‡A
-ƒRƒ“ƒ\[ƒ‹‚É‚Í‰½‚ª•\¦‚³‚ê‚é‚Å‚µ‚å‚¤‚©H<br /><br />
+    ä¸Šè¨˜ã®ã‚ˆã†ã«&lt;component&gt;ã‚¿ã‚°ã«instanceå±æ€§ã‚’å®šç¾©ã—ãªã„å ´åˆã§ã€ä¸‹ã®MessageMain.javaã®ã‚ˆã†ã«
+ä¸€åº¦ã‚³ãƒ³ãƒ†ãƒŠã‹ã‚‰å–å¾—ã—ãŸMapã«å€¤ã‚’ã‚»ãƒƒãƒˆã—ã€å†åº¦ã‚³ãƒ³ãƒ†ãƒŠã‹ã‚‰Mapã‚’å–å¾—ã—ã¦ã„ã‚‹å ´åˆã€
+ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã«ã¯ä½•ãŒè¡¨ç¤ºã•ã‚Œã‚‹ã§ã—ã‚‡ã†ã‹ï¼Ÿ<br /><br />
 examples/instance/MessageMain.java
 <pre>
 S2Container container = S2ContainerFactory.create(&quot;examples/instance/message.dicon&quot;);
@@ -1542,7 +1542,7 @@ map.put(&quot;hello&quot;, &quot;world!&quot;);
 Map map2 = (Map)container.getComponent(Map.class);
 System.out.println(map.get(&quot;hello&quot;));
 </pre>
-    ƒqƒ“ƒgF<a href="DIContainer.html#InstanceMode">ƒCƒ“ƒXƒ^ƒ“ƒXŠÇ—</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#InstanceMode">ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç®¡ç†</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -1571,10 +1571,10 @@ System.out.println(map.get(&quot;hello&quot;));
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Instance2','Instance3')"></p>
-    <p><a name="Instance3"><b>y–â‘è3z</b></a><br />
-    ƒZƒbƒVƒ‡ƒ“–ˆ‚É‚P‚Â‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğì¬‚µ‚½‚¢ê‡A&lt;component&gt;ƒ^ƒO‚Ìinstance‘®«‚É‰½‚ğw’è‚·‚é‚Å‚µ‚å‚¤‚©H<br /><br />
-    ƒqƒ“ƒgF<a href="DIContainer.html#InstanceMode">ƒCƒ“ƒXƒ^ƒ“ƒXŠÇ—</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Instance2','Instance3')"></p>
+    <p><a name="Instance3"><b>ã€å•é¡Œ3ã€‘</b></a><br />
+    ã‚»ãƒƒã‚·ãƒ§ãƒ³æ¯ã«ï¼‘ã¤ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ä½œæˆã—ãŸã„å ´åˆã€&lt;component&gt;ã‚¿ã‚°ã®instanceå±æ€§ã«ä½•ã‚’æŒ‡å®šã™ã‚‹ã§ã—ã‚‡ã†ã‹ï¼Ÿ<br /><br />
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#InstanceMode">ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç®¡ç†</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -1603,10 +1603,10 @@ System.out.println(map.get(&quot;hello&quot;));
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Instance3','Instance4')"></p>
- <p><a name="Instance4"><b>y–â‘è4z</b></a><br />
-    ƒŠƒNƒGƒXƒg–ˆ‚É‚P‚Â‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğì¬‚µ‚½‚¢ê‡A&lt;component&gt;ƒ^ƒO‚Ìinstance‘®«‚É‰½‚ğw’è‚·‚é‚Å‚µ‚å‚¤‚©H<br /><br />
-    ƒqƒ“ƒgF<a href="DIContainer.html#InstanceMode">ƒCƒ“ƒXƒ^ƒ“ƒXŠÇ—</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Instance3','Instance4')"></p>
+ <p><a name="Instance4"><b>ã€å•é¡Œ4ã€‘</b></a><br />
+    ãƒªã‚¯ã‚¨ã‚¹ãƒˆæ¯ã«ï¼‘ã¤ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ä½œæˆã—ãŸã„å ´åˆã€&lt;component&gt;ã‚¿ã‚°ã®instanceå±æ€§ã«ä½•ã‚’æŒ‡å®šã™ã‚‹ã§ã—ã‚‡ã†ã‹ï¼Ÿ<br /><br />
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#InstanceMode">ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç®¡ç†</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -1636,10 +1636,10 @@ System.out.println(map.get(&quot;hello&quot;));
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Instance4','Instance5')"></p>
-<p><a name="Instance5"><b>y–â‘è5z</b></a><br />
-    S2ContainerŠO‚Åì¬‚µ‚½ƒRƒ“ƒ|[ƒlƒ“ƒg‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğæ“¾‚µA
-        Dependency Injection‚·‚éê‡AˆÈ‰º‚Ì[1]‚É“ü‚é³‚µ‚¢“š‚¦‚Í‚Ç‚ê‚Å‚µ‚å‚¤‚©H<br /><br />
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Instance4','Instance5')"></p>
+<p><a name="Instance5"><b>ã€å•é¡Œ5ã€‘</b></a><br />
+    S2Containerå¤–ã§ä½œæˆã—ãŸã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’å–å¾—ã—ã€
+        Dependency Injectionã™ã‚‹å ´åˆã€ä»¥ä¸‹ã®[1]ã«å…¥ã‚‹æ­£ã—ã„ç­”ãˆã¯ã©ã‚Œã§ã—ã‚‡ã†ã‹ï¼Ÿ<br /><br />
 examples/instance/HelloWorld.java
 <pre>
 public static void main(String[] args) {
@@ -1668,7 +1668,7 @@ public void showMessage(){
     System.out.println(message);
 }
 </pre>
-    ƒqƒ“ƒgF<a href="DIContainer.html#InstanceMode">ƒCƒ“ƒXƒ^ƒ“ƒXŠÇ—</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#InstanceMode">ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç®¡ç†</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -1698,9 +1698,9 @@ public void showMessage(){
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Instance5','Instance6')"></p>
-<p><a name="Instance6"><b>y–â‘è6z</b></a><br />
-ˆÈ‰º‚Ì‚æ‚¤‚É’è‹`‚µAŠO•”ƒRƒ“ƒ|[ƒlƒ“ƒg‚É’l‚ğİ’è‚·‚éê‡AhelloMainƒNƒ‰ƒX‚ğÀs‚·‚é‚ÆˆÈ‰º‚Ì‚Ç‚ÌƒƒbƒZ[ƒW‚ª•\¦‚³‚ê‚é‚Å‚µ‚å‚¤‚©H</p>
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Instance5','Instance6')"></p>
+<p><a name="Instance6"><b>ã€å•é¡Œ6ã€‘</b></a><br />
+ä»¥ä¸‹ã®ã‚ˆã†ã«å®šç¾©ã—ã€å¤–éƒ¨ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã«å€¤ã‚’è¨­å®šã™ã‚‹å ´åˆã€helloMainã‚¯ãƒ©ã‚¹ã‚’å®Ÿè¡Œã™ã‚‹ã¨ä»¥ä¸‹ã®ã©ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒè¡¨ç¤ºã•ã‚Œã‚‹ã§ã—ã‚‡ã†ã‹ï¼Ÿ</p>
 example/include/hello.dicon
 <pre>
 &lt;components namespace=&quot;aaa&quot;&gt;
@@ -1719,7 +1719,7 @@ Map hashMap = new HashMap();
 container.injectDependency(hashMap, HashMap.class);
 System.out.println(hashMap.get(&quot;hello&quot;));
 </pre>
-    ƒqƒ“ƒgF<a href="DIContainer.html#InstanceMode">ƒCƒ“ƒXƒ^ƒ“ƒXŠÇ—</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#InstanceMode">ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç®¡ç†</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -1749,8 +1749,8 @@ System.out.println(hashMap.get(&quot;hello&quot;));
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Instance6','Instance7')"></p>
-<p><a name="Instance7"><b>y–â‘è7z</b></a><br />
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Instance6','Instance7')"></p>
+<p><a name="Instance7"><b>ã€å•é¡Œ7ã€‘</b></a><br />
 example/include/array.dicon
 <pre>
 &lt;components&gt;
@@ -1762,15 +1762,15 @@ example/include/array.dicon
     &lt;/component&gt;
 &lt;/components&gt;
 </pre>
-  ã‹L‚Ì’è‹`‚ğg—p‚µ‚Ä¶¬‚µ‚½S2Container‚ÅAˆÙ‚È‚éƒNƒ‰ƒX(Class#isInstance()‚ªfalse)‚ğg—p‚µ‚ÄS2Container#injectDependency()‚ğŒÄ‚Ño‚µ‚½ê‡A
-”­¶‚·‚éException‚ÍˆÈ‰º‚Ì‚Ç‚ê‚Å‚µ‚å‚¤‚©H
-Às‚·‚éƒR[ƒh‚ÍŸ‚Ì‚Æ‚¨‚è‚Å‚·B<br /><br />
+  ä¸Šè¨˜ã®å®šç¾©ã‚’ä½¿ç”¨ã—ã¦ç”Ÿæˆã—ãŸS2Containerã§ã€ç•°ãªã‚‹ã‚¯ãƒ©ã‚¹(Class#isInstance()ãŒfalse)ã‚’ä½¿ç”¨ã—ã¦S2Container#injectDependency()ã‚’å‘¼ã³å‡ºã—ãŸå ´åˆã€
+ç™ºç”Ÿã™ã‚‹Exceptionã¯ä»¥ä¸‹ã®ã©ã‚Œã§ã—ã‚‡ã†ã‹ï¼Ÿ
+å®Ÿè¡Œã™ã‚‹ã‚³ãƒ¼ãƒ‰ã¯æ¬¡ã®ã¨ãŠã‚Šã§ã™ã€‚<br /><br />
 <pre>
 S2Container container = S2ContainerFactory.create(&quot;example/include/array.dicon&quot;);
 Map hashMap = new HashMap();
 container.injectDependency(hashMap, &quot;array&quot;);
 </pre>
-   ƒqƒ“ƒgF<a href="DIContainer.html#InstanceMode">ƒCƒ“ƒXƒ^ƒ“ƒXŠÇ—</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+   ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#InstanceMode">ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç®¡ç†</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
    <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -1795,14 +1795,14 @@ container.injectDependency(hashMap, &quot;array&quot;);
             <td bgcolor="#66FFCC" width="23">
               <input type="radio" name="Instance7" value="Instance7_4">
             </td>
-            <td bgcolor="#66FFCC" width="474">4) ”­¶‚µ‚È‚¢</td>
+            <td bgcolor="#66FFCC" width="474">4) ç™ºç”Ÿã—ãªã„</td>
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Instance7','Lifecycle')"></p>
-    <h3><a name="Lifecycle">ƒ‰ƒCƒtƒTƒCƒNƒ‹‚ÉŠÖ‚·‚é–â‘è</a></h3>
-    <p><a name="Life"><b>y–â‘è1z</b></a><br />
-     S2Container‚ÌŠJn‚ÉmapƒRƒ“ƒ|[ƒlƒ“ƒg‚ÌHashMap(key‚ª&quot;aaa&quot;)‚É111‚ğİ’è‚µAS2Container‚ÌI—¹‚ÉmapƒRƒ“ƒ|[ƒlƒ“ƒg‚ÌHashMap(key‚ª&quot;aaa&quot;)‚Énull‚ğƒZƒbƒg‚µ‚½‚¢ê‡A[1]‚Æ[2]‚É‚Í“ü‚é³‚µ‚¢‘g‚İ‡‚í‚¹‚Í‚Ç‚ê‚Å‚µ‚å‚¤‚©H</p>
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Instance7','Lifecycle')"></p>
+    <h3><a name="Lifecycle">ãƒ©ã‚¤ãƒ•ã‚µã‚¤ã‚¯ãƒ«ã«é–¢ã™ã‚‹å•é¡Œ</a></h3>
+    <p><a name="Life"><b>ã€å•é¡Œ1ã€‘</b></a><br />
+     S2Containerã®é–‹å§‹æ™‚ã«mapã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®HashMap(keyãŒ&quot;aaa&quot;)ã«111ã‚’è¨­å®šã—ã€S2Containerã®çµ‚äº†æ™‚ã«mapã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®HashMap(keyãŒ&quot;aaa&quot;)ã«nullã‚’ã‚»ãƒƒãƒˆã—ãŸã„å ´åˆã€[1]ã¨[2]ã«ã¯å…¥ã‚‹æ­£ã—ã„çµ„ã¿åˆã‚ã›ã¯ã©ã‚Œã§ã—ã‚‡ã†ã‹ï¼Ÿ</p>
 examples/lifecycle/aaa.dicon
 <pre>
 &lt;components namespace=&quot;bar&quot;&gt;
@@ -1818,7 +1818,7 @@ examples/lifecycle/aaa.dicon
   &lt;/component&gt;
 &lt;/components&gt;
 </pre>
-    ƒqƒ“ƒgF<a href="DIContainer.html#Lifecycle">ƒ‰ƒCƒtƒTƒCƒNƒ‹</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#Lifecycle">ãƒ©ã‚¤ãƒ•ã‚µã‚¤ã‚¯ãƒ«</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -1847,8 +1847,8 @@ examples/lifecycle/aaa.dicon
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Life','Life2')"></p>
-<p><a name="Life2"><b>y–â‘è2z</b></a><br />
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Life','Life2')"></p>
+<p><a name="Life2"><b>ã€å•é¡Œ2ã€‘</b></a><br />
 exmples/lifecycle/hello.dicon
 <pre>
 &lt;components&gt;
@@ -1871,7 +1871,7 @@ exmples/lifecycle/hello.dicon
   &lt;component name=&quot;message&quot; class=&quot;examples.lifecycle.MessageImpl&quot;/&gt;
 &lt;/components&gt;
 </pre>
-ã‹L‚Ì‚æ‚¤‚Édiconƒtƒ@ƒCƒ‹‚ğ’è‹`‚µAƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì‰Šú‰»‚ªmapƒRƒ“ƒ|[ƒlƒ“ƒgAlistƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì‡‚Ås‚í‚ê‚½ê‡AS2Container#destroy()‚ğÀs‚·‚é‚ÆI—¹ˆ—‚Í‚Ç‚Ì‚æ‚¤‚És‚í‚ê‚é‚Å‚µ‚å‚¤‚©H</p>
+ä¸Šè¨˜ã®ã‚ˆã†ã«diconãƒ•ã‚¡ã‚¤ãƒ«ã‚’å®šç¾©ã—ã€ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®åˆæœŸåŒ–ãŒmapã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã€listã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®é †ã§è¡Œã‚ã‚ŒãŸå ´åˆã€S2Container#destroy()ã‚’å®Ÿè¡Œã™ã‚‹ã¨çµ‚äº†å‡¦ç†ã¯ã©ã®ã‚ˆã†ã«è¡Œã‚ã‚Œã‚‹ã§ã—ã‚‡ã†ã‹ï¼Ÿ</p>
 examples/lifecycle/HelloMain.java
 <pre>
 S2Container container = S2ContainerFactory.create(&quot;examples/lifecycle/hello.dicon&quot;);
@@ -1885,37 +1885,37 @@ public MessageImpl(Map map, List list) {
     this.list = list;
 }
 </pre>
-    ƒqƒ“ƒgF<a href="DIContainer.html#Lifecycle">ƒ‰ƒCƒtƒTƒCƒNƒ‹</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#Lifecycle">ãƒ©ã‚¤ãƒ•ã‚µã‚¤ã‚¯ãƒ«</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
             <td bgcolor="#d1f3f4" width="23">
               <input type="radio" name="Life2" value="Life2_1">
             </td>
-            <td bgcolor="#d1f3f4" width="474">1) mapƒRƒ“ƒ|[ƒlƒ“ƒgAlistƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì‡‚ÅI—¹ˆ—‚ªs‚í‚ê‚é</td>
+            <td bgcolor="#d1f3f4" width="474">1) mapã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã€listã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®é †ã§çµ‚äº†å‡¦ç†ãŒè¡Œã‚ã‚Œã‚‹</td>
              </tr>
             <tr>
             <td bgcolor="#66FFCC" width="23">
               <input type="radio" name="Life2" value="Life2_2">
             </td>
-            <td bgcolor="#66FFCC" width="474">2) listƒRƒ“ƒ|[ƒlƒ“ƒgAmapƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì‡‚ÅI—¹ˆ—‚ªs‚í‚ê‚é</td>
+            <td bgcolor="#66FFCC" width="474">2) listã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã€mapã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®é †ã§çµ‚äº†å‡¦ç†ãŒè¡Œã‚ã‚Œã‚‹</td>
           </tr>
           <tr>
             <td bgcolor="#d1f3f4" width="23">
               <input type="radio" name="Life2" value="Life2_3">
             </td>
-            <td bgcolor="#d1f3f4" width="474">3) mapƒRƒ“ƒ|[ƒlƒ“ƒg‚¾‚¯I—¹ˆ—‚ªs‚í‚ê‚é</td>
+            <td bgcolor="#d1f3f4" width="474">3) mapã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã ã‘çµ‚äº†å‡¦ç†ãŒè¡Œã‚ã‚Œã‚‹</td>
           </tr>
         <tr>
             <td bgcolor="#66FFCC" width="23">
               <input type="radio" name="Life2" value="Life2_4">
             </td>
-            <td bgcolor="#66FFCC" width="474">4) I—¹ˆ—‚Ís‚í‚ê‚È‚¢</td>
+            <td bgcolor="#66FFCC" width="474">4) çµ‚äº†å‡¦ç†ã¯è¡Œã‚ã‚Œãªã„</td>
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Life2','Life3')"></p>
-<p><a name="Life3"><b>y–â‘è3z</b></a><br />
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Life2','Life3')"></p>
+<p><a name="Life3"><b>ã€å•é¡Œ3ã€‘</b></a><br />
 example/lifecycle/hello.dicon
 <pre>
 &lt;components namespace=&quot;bar&quot;&gt;
@@ -1931,7 +1931,7 @@ example/lifecycle/hello.dicon
   &lt;/component&gt;
 &lt;/components&gt;
 </pre>
-ã‹L‚Ìdiconƒtƒ@ƒCƒ‹‚Ì‚æ‚¤‚ÉA&lt;component&gt;ƒ^ƒO‚Ìinstance‘®«‚É&quot;prototype&quot;‚ğw’è‚µ‚½ê‡AHelloMain.java‚ğÀs‚·‚é‚Æ‰½‚ª•\¦‚³‚ê‚é‚Å‚µ‚å‚¤‚©H</p>
+ä¸Šè¨˜ã®diconãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚ˆã†ã«ã€&lt;component&gt;ã‚¿ã‚°ã®instanceå±æ€§ã«&quot;prototype&quot;ã‚’æŒ‡å®šã—ãŸå ´åˆã€HelloMain.javaã‚’å®Ÿè¡Œã™ã‚‹ã¨ä½•ãŒè¡¨ç¤ºã•ã‚Œã‚‹ã§ã—ã‚‡ã†ã‹ï¼Ÿ</p>
 example/lifecycle/HelloMain.java
 <pre>
 S2Container container = S2ContainerFactory.create(PATH);
@@ -1939,7 +1939,7 @@ Map map = (Map)container.getComponent(&quot;map&quot;);
 container.destroy();
 System.out.println(map.get(&quot;aaa&quot;));
 </pre>
-    ƒqƒ“ƒgF<a href="DIContainer.html#Lifecycle">ƒ‰ƒCƒtƒTƒCƒNƒ‹</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#Lifecycle">ãƒ©ã‚¤ãƒ•ã‚µã‚¤ã‚¯ãƒ«</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -1964,15 +1964,15 @@ System.out.println(map.get(&quot;aaa&quot;));
             <td bgcolor="#66FFCC" width="23">
               <input type="radio" name="Life3" value="Life3_4">
             </td>
-            <td bgcolor="#66FFCC" width="474">4) ‹ó”’</td>
+            <td bgcolor="#66FFCC" width="474">4) ç©ºç™½</td>
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Life3','UseS2Container')"></p>
-    <h3><a name="UseS2Container">ƒRƒ“ƒ|[ƒlƒ“ƒg‚ÅS2Container‚ğ—˜—p‚·‚é‚ÉŠÖ‚·‚é–â‘è</a></h3>
-    <p><a name="S2Use"><b>y–â‘è1z</b></a><br />
-    S2Container‚Í‰½‚Æ‚¢‚¤–¼‘O‚Å“o˜^‚³‚ê‚Ä‚¢‚é‚Å‚µ‚å‚¤‚©H<br /><br />
-    ƒqƒ“ƒgF<a href="DIContainer.html#UseS2Container">ƒRƒ“ƒ|[ƒlƒ“ƒg‚ÅS2Container‚ğ—˜—p‚·‚é</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Life3','UseS2Container')"></p>
+    <h3><a name="UseS2Container">ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã§S2Containerã‚’åˆ©ç”¨ã™ã‚‹ã«é–¢ã™ã‚‹å•é¡Œ</a></h3>
+    <p><a name="S2Use"><b>ã€å•é¡Œ1ã€‘</b></a><br />
+    S2Containerã¯ä½•ã¨ã„ã†åå‰ã§ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã§ã—ã‚‡ã†ã‹ï¼Ÿ<br /><br />
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#UseS2Container">ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã§S2Containerã‚’åˆ©ç”¨ã™ã‚‹</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -2001,9 +2001,9 @@ System.out.println(map.get(&quot;aaa&quot;));
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('S2Use','S2Use2')"></p>
-    <p><a name="S2Use2"><b>y–â‘è2z</b></a><br />
-BarImpl.java‚ÅS2Container‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğæ“¾‚µ‚½‚¢ê‡A[1]‚É‚Í‰½‚ª“ü‚é‚Å‚µ‚å‚¤‚©H</p>
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('S2Use','S2Use2')"></p>
+    <p><a name="S2Use2"><b>ã€å•é¡Œ2ã€‘</b></a><br />
+BarImpl.javaã§S2Containerã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’å–å¾—ã—ãŸã„å ´åˆã€[1]ã«ã¯ä½•ãŒå…¥ã‚‹ã§ã—ã‚‡ã†ã‹ï¼Ÿ</p>
 examples/s2container/bar.dicon
 <pre>
 &lt;component class=&quot;examples.s2container.BarImpl&quot;&gt;
@@ -2016,7 +2016,7 @@ public BarImpl(S2Container container) {
     this.containere = container;
 }
 </pre>
-    ƒqƒ“ƒgF<a href="DIContainer.html#UseS2Container">ƒRƒ“ƒ|[ƒlƒ“ƒg‚ÅS2Container‚ğ—˜—p‚·‚é</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#UseS2Container">ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã§S2Containerã‚’åˆ©ç”¨ã™ã‚‹</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -2041,15 +2041,15 @@ public BarImpl(S2Container container) {
             <td bgcolor="#66FFCC" width="23">
               <input type="radio" name="S2Use2" value="S2Use2_4">
             </td>
-            <td bgcolor="#66FFCC" width="474">4) ‰½‚à‘‚­•K—v‚ª‚È‚¢</td>
+            <td bgcolor="#66FFCC" width="474">4) ä½•ã‚‚æ›¸ãå¿…è¦ãŒãªã„</td>
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('S2Use2','S2ContainerServlet')"></p>
-    <h3><a name="S2ContainerServlet">S2ContainerServlet‚ÉŠÖ‚·‚é–â‘è</a></h3>
-    <p><a name="S2Servlet"><b>y–â‘è1z</b></a><br />
-    SingletonS2ContainerFactory#init‚Å¶¬‚µ‚½S2Container‚ğæ“¾‚·‚é‚É‚ÍASingletonS2ContainerFactoryƒNƒ‰ƒX‚Ì‚Ç‚Ìƒƒ\ƒbƒh‚ğg—p‚·‚é‚Å‚µ‚å‚¤‚©H<br />
-    ƒqƒ“ƒgF<a href="DIContainer.html#S2ContainerServlet">S2ContainerServlet</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('S2Use2','S2ContainerServlet')"></p>
+    <h3><a name="S2ContainerServlet">S2ContainerServletã«é–¢ã™ã‚‹å•é¡Œ</a></h3>
+    <p><a name="S2Servlet"><b>ã€å•é¡Œ1ã€‘</b></a><br />
+    SingletonS2ContainerFactory#initã§ç”Ÿæˆã—ãŸS2Containerã‚’å–å¾—ã™ã‚‹ã«ã¯ã€SingletonS2ContainerFactoryã‚¯ãƒ©ã‚¹ã®ã©ã®ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ä½¿ç”¨ã™ã‚‹ã§ã—ã‚‡ã†ã‹ï¼Ÿ<br />
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#S2ContainerServlet">S2ContainerServlet</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -2078,43 +2078,43 @@ public BarImpl(S2Container container) {
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('S2Servlet','S2Servlet2')"></p>
-<p><a name="S2Servlet2"><b>y–â‘è2z</b></a><br />
-    S2ContainerServlet‚É‚Â‚¢‚Ä‚Ì‹Lq‚Å<B>³‚µ‚­‚È‚¢à–¾</B>‚Í‚Ç‚ê‚Å‚µ‚å‚¤‚©H</p>
-    ƒqƒ“ƒgF<a href="DIContainer.html#S2ContainerServlet">S2ContainerServlet</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('S2Servlet','S2Servlet2')"></p>
+<p><a name="S2Servlet2"><b>ã€å•é¡Œ2ã€‘</b></a><br />
+    S2ContainerServletã«ã¤ã„ã¦ã®è¨˜è¿°ã§<B>æ­£ã—ããªã„èª¬æ˜</B>ã¯ã©ã‚Œã§ã—ã‚‡ã†ã‹ï¼Ÿ</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#S2ContainerServlet">S2ContainerServlet</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
             <td bgcolor="#d1f3f4" width="23">
               <input type="radio" name="S2Servlet2" value="S2Servlet2_1">
             </td>
-            <td bgcolor="#d1f3f4" width="474">1) S2ContainerServlet‚ª‹N“®‚µ‚½ŒãAS2Container‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğæ“¾‚·‚éƒƒ\ƒbƒh‚Í<br />
+            <td bgcolor="#d1f3f4" width="474">1) S2ContainerServletãŒèµ·å‹•ã—ãŸå¾Œã€S2Containerã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’å–å¾—ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰ã¯<br />
                          &nbsp;&nbsp;&nbsp;&nbsp;SingletonS2ContainerFactory#getContainer()</td>
           </tr>
           <tr>
             <td bgcolor="#66FFCC" width="23">
               <input type="radio" name="S2Servlet2" value="S2Servlet2_2">
             </td>
-            <td bgcolor="#66FFCC" width="474">2) S2Container‚Ìƒ‰ƒCƒtƒTƒCƒNƒ‹‚ÍAS2ContainerServlet‚Æ˜A“®‚·‚é</td>
+            <td bgcolor="#66FFCC" width="474">2) S2Containerã®ãƒ©ã‚¤ãƒ•ã‚µã‚¤ã‚¯ãƒ«ã¯ã€S2ContainerServletã¨é€£å‹•ã™ã‚‹</td>
           </tr>
           <tr>
             <td bgcolor="#d1f3f4" width="23">
               <input type="radio" name="S2Servlet2" value="S2Servlet2_3">
             </td>
-            <td bgcolor="#d1f3f4" width="474">3) ‘¼‚ÌƒT[ƒuƒŒƒbƒg‚æ‚è‚à’x‚­ŠJn‚³‚ê‚é‚æ‚¤‚Éweb.xml‚Ì&lt;load-on-startup&gt;ƒ^ƒO‚ğ<br />
-                         &nbsp;&nbsp;&nbsp;&nbsp;’²®‚·‚é</td>
+            <td bgcolor="#d1f3f4" width="474">3) ä»–ã®ã‚µãƒ¼ãƒ–ãƒ¬ãƒƒãƒˆã‚ˆã‚Šã‚‚é…ãé–‹å§‹ã•ã‚Œã‚‹ã‚ˆã†ã«web.xmlã®&lt;load-on-startup&gt;ã‚¿ã‚°ã‚’<br />
+                         &nbsp;&nbsp;&nbsp;&nbsp;èª¿æ•´ã™ã‚‹</td>
           </tr>
         <tr>
             <td bgcolor="#66FFCC" width="23">
               <input type="radio" name="S2Servlet2" value="S2Servlet2_4">
             </td>
-            <td bgcolor="#66FFCC" width="474">4) web.xml‚Ìdebugƒpƒ‰ƒ[ƒ^‚ğtrue‚É‚·‚é‚ÆS2Container‚ğÄ‹N“®‚·‚é‚±‚Æ‚ª‚Å‚«‚é</td>
+            <td bgcolor="#66FFCC" width="474">4) web.xmlã®debugãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’trueã«ã™ã‚‹ã¨S2Containerã‚’å†èµ·å‹•ã™ã‚‹ã“ã¨ãŒã§ãã‚‹</td>
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('S2Servlet2','S2Servlet3')"></p>
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('S2Servlet2','S2Servlet3')"></p>
 
-<p><a name="S2Servlet3"><b>y–â‘è3z</b></a><br />
+<p><a name="S2Servlet3"><b>ã€å•é¡Œ3ã€‘</b></a><br />
 <pre>
 &lt;servlet&gt;
   &lt;servlet-name&gt;s2servlet&lt;/servlet-name&gt;
@@ -2130,10 +2130,10 @@ public BarImpl(S2Container container) {
   &lt;/init-param&gt;
 &lt;/servlet&gt;
 </pre>
-S2ContainerServlet‚ğg‚¤‚½‚ß‚ÉAã‹L‚Ì‚æ‚¤‚Éweb.xml‚ª‹Lq‚³‚ê‚Ä‚¨‚èAWebƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ğ‰Ò“®’†‚ÉS2Container‚ğÄ‹N“®‚·‚éê‡AƒAƒNƒZƒX‚·‚éURL‚ÅˆÈ‰º‚Ì[1]‚É“ü‚é•¶š‚Í‚Ç‚ê‚Å‚µ‚å‚¤‚©H
-xxx‚ÍWebƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÌƒRƒ“ƒeƒLƒXƒg–¼‚Å‚·B<br /><br />
+S2ContainerServletã‚’ä½¿ã†ãŸã‚ã«ã€ä¸Šè¨˜ã®ã‚ˆã†ã«web.xmlãŒè¨˜è¿°ã•ã‚Œã¦ãŠã‚Šã€Webã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ç¨¼å‹•ä¸­ã«S2Containerã‚’å†èµ·å‹•ã™ã‚‹å ´åˆã€ã‚¢ã‚¯ã‚»ã‚¹ã™ã‚‹URLã§ä»¥ä¸‹ã®[1]ã«å…¥ã‚‹æ–‡å­—ã¯ã©ã‚Œã§ã—ã‚‡ã†ã‹ï¼Ÿ
+xxxã¯Webã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆåã§ã™ã€‚<br /><br />
 http://localhost:8080/xxx/s2servlet?[1]</p>
-    ƒqƒ“ƒgF<a href="DIContainer.html#S2ContainerServlet">S2ContainerServlet</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#S2ContainerServlet">S2ContainerServlet</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -2162,32 +2162,32 @@ http://localhost:8080/xxx/s2servlet?[1]</p>
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('S2Servlet3','AppDicon')"></p>
-    <h3><a name="AppDicon">app.dicon‚Ì–ğŠ„‚ÉŠÖ‚·‚é–â‘è</a></h3>
-    <p><a name="App"><b>y–â‘è1z</b></a><br />
-    Ÿ‚Ì•¶‚Ì[]‚É‚ ‚Ä‚Í‚Ü‚éŒ¾—t‚Å³‚µ‚¢‘g‚İ‡‚í‚¹‚Í‚Ç‚ê‚Å‚µ‚å‚¤‚©H<br /><br />
-‚·‚×‚Ä‚ÌS2Container’è‹`‚Ìƒ‹[ƒg‚É‚È‚é’è‹`ƒtƒ@ƒCƒ‹‚ÍAŠµ—á‚Å[1]‚Æ‚¢‚¤–¼‘O‚É‚µ‚Ü‚·B
-[1]‚É‚Í[2]‚Ì’è‹`‚Í‚µ‚È‚¢‚æ‚¤‚É‚µ‚Ä‚­‚¾‚³‚¢B<br /><br />
-    ƒqƒ“ƒgF<a href="DIContainer.html#app.dicon">app.dicon‚Ì–ğŠ„</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('S2Servlet3','AppDicon')"></p>
+    <h3><a name="AppDicon">app.diconã®å½¹å‰²ã«é–¢ã™ã‚‹å•é¡Œ</a></h3>
+    <p><a name="App"><b>ã€å•é¡Œ1ã€‘</b></a><br />
+    æ¬¡ã®æ–‡ã®[]ã«ã‚ã¦ã¯ã¾ã‚‹è¨€è‘‰ã§æ­£ã—ã„çµ„ã¿åˆã‚ã›ã¯ã©ã‚Œã§ã—ã‚‡ã†ã‹ï¼Ÿ<br /><br />
+ã™ã¹ã¦ã®S2Containerå®šç¾©ã®ãƒ«ãƒ¼ãƒˆã«ãªã‚‹å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã¯ã€æ…£ä¾‹ã§[1]ã¨ã„ã†åå‰ã«ã—ã¾ã™ã€‚
+[1]ã«ã¯[2]ã®å®šç¾©ã¯ã—ãªã„ã‚ˆã†ã«ã—ã¦ãã ã•ã„ã€‚<br /><br />
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#app.dicon">app.diconã®å½¹å‰²</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
             <td bgcolor="#d1f3f4" width="23">
               <input type="radio" name="App" value="App1">
             </td>
-            <td bgcolor="#d1f3f4" width="474">1) [1] app.dicon  [2] ƒRƒ“ƒ|[ƒlƒ“ƒg</td>
+            <td bgcolor="#d1f3f4" width="474">1) [1] app.dicon  [2] ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ</td>
           </tr>
           <tr>
             <td bgcolor="#66FFCC" width="23">
               <input type="radio" name="App" value="App2">
             </td>
-            <td bgcolor="#66FFCC" width="474">2) [1] seasar.dicon  [2] ƒZƒbƒ^[¥ƒCƒ“ƒWƒFƒNƒVƒ‡ƒ“</td>
+            <td bgcolor="#66FFCC" width="474">2) [1] seasar.dicon  [2] ã‚»ãƒƒã‚¿ãƒ¼ï½¥ã‚¤ãƒ³ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³</td>
           </tr>
           <tr>
             <td bgcolor="#d1f3f4" width="23">
               <input type="radio" name="App" value="App3">
             </td>
-            <td bgcolor="#d1f3f4" width="474">3) [1] s2.dicon  [2] &lt;include&gt;ƒ^ƒO</td>
+            <td bgcolor="#d1f3f4" width="474">3) [1] s2.dicon  [2] &lt;include&gt;ã‚¿ã‚°</td>
           </tr>
         <tr>
             <td bgcolor="#66FFCC" width="23">
@@ -2197,9 +2197,9 @@ http://localhost:8080/xxx/s2servlet?[1]</p>
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('App','Meta')"></p>
-    <h3><a name="Meta">ƒƒ^ƒf[ƒ^‚ÉŠÖ‚·‚é–â‘è</a></h3>
-    <p><a name="Metadata"><b>y–â‘è1z</b></a><br />
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('App','Meta')"></p>
+    <h3><a name="Meta">ãƒ¡ã‚¿ãƒ‡ãƒ¼ã‚¿ã«é–¢ã™ã‚‹å•é¡Œ</a></h3>
+    <p><a name="Metadata"><b>ã€å•é¡Œ1ã€‘</b></a><br />
 example/meta/message.dicon
 <pre>
 &lt;components&gt;
@@ -2208,14 +2208,14 @@ example/meta/message.dicon
   &lt;meta&gt;&quot;message&quot;&lt;/meta&gt;
 &lt;/components&gt;
 </pre>
-ã‹L‚Ì‚æ‚¤‚Édiconƒtƒ@ƒCƒ‹‚Éƒƒ^ƒf[ƒ^‚ğ’è‹`‚µ‚½ê‡AˆÈ‰º‚ÌMessageƒNƒ‰ƒX‚ğÀs‚·‚é‚Æ‰½‚ª•\¦‚³‚ê‚é‚Å‚µ‚å‚¤‚©H</p>
+ä¸Šè¨˜ã®ã‚ˆã†ã«diconãƒ•ã‚¡ã‚¤ãƒ«ã«ãƒ¡ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’å®šç¾©ã—ãŸå ´åˆã€ä»¥ä¸‹ã®Messageã‚¯ãƒ©ã‚¹ã‚’å®Ÿè¡Œã™ã‚‹ã¨ä½•ãŒè¡¨ç¤ºã•ã‚Œã‚‹ã§ã—ã‚‡ã†ã‹ï¼Ÿ</p>
 example/meta/Message.java
 <pre>
 S2Container container = S2ContainerFactory.create(&quot;example/meta/message.dicon&quot;);
 MetaDef meta = container.getMetaDef(2);
 System.out.println(meta.getValue());
 </pre>
-    ƒqƒ“ƒgF<a href="DIContainer.html#Meta">ƒƒ^ƒf[ƒ^</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#Meta">ãƒ¡ã‚¿ãƒ‡ãƒ¼ã‚¿</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -2244,8 +2244,8 @@ System.out.println(meta.getValue());
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Metadata','Metadata2')"></p>
-    <p><a name="Metadata2"><b>y–â‘è2z</b></a><br />
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Metadata','Metadata2')"></p>
+    <p><a name="Metadata2"><b>ã€å•é¡Œ2ã€‘</b></a><br />
 example/meta/hello.dicon
 <pre>
 &lt;components&gt;
@@ -2254,13 +2254,13 @@ example/meta/hello.dicon
   &lt;meta name=&quot;hello&quot; &gt;&quot;hello&quot;&lt;/meta&gt;
 &lt;/components&gt;
 </pre>
-ã‹L‚Ì‚æ‚¤‚Édiconƒtƒ@ƒCƒ‹‚Éƒƒ^ƒf[ƒ^‚ğ’è‹`‚µA&lt;meta&gt;ƒ^ƒO‚Ìname‘®«‚ª&quot;hello world&quot;‚Ì’l‚ğæ“¾‚µ‚½‚¢ê‡AˆÈ‰º‚ÌMessageMainƒNƒ‰ƒX‚Ì[1]‚É“ü‚éS2Container#getMetaDef‚Ìˆø”‚Í‚Ç‚ê‚Å‚µ‚å‚¤‚©H</p>
+ä¸Šè¨˜ã®ã‚ˆã†ã«diconãƒ•ã‚¡ã‚¤ãƒ«ã«ãƒ¡ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’å®šç¾©ã—ã€&lt;meta&gt;ã‚¿ã‚°ã®nameå±æ€§ãŒ&quot;hello world&quot;ã®å€¤ã‚’å–å¾—ã—ãŸã„å ´åˆã€ä»¥ä¸‹ã®MessageMainã‚¯ãƒ©ã‚¹ã®[1]ã«å…¥ã‚‹S2Container#getMetaDefã®å¼•æ•°ã¯ã©ã‚Œã§ã—ã‚‡ã†ã‹ï¼Ÿ</p>
 example/meta/MessageMain.java
 <pre>
 S2Container container = S2ContainerFactory.create(&quot;example/meta/hello.dicon&quot;);
 MetaDef meta = container.getMetaDef([1]);
 </pre>
-    ƒqƒ“ƒgF<a href="DIContainer.html#Meta">ƒƒ^ƒf[ƒ^</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#Meta">ãƒ¡ã‚¿ãƒ‡ãƒ¼ã‚¿</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -2289,8 +2289,8 @@ MetaDef meta = container.getMetaDef([1]);
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Metadata2','Metadata3')"></p>
-<p><a name="Metadata3"><b>y–â‘è3z</b></a><br />
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Metadata2','Metadata3')"></p>
+<p><a name="Metadata3"><b>ã€å•é¡Œ3ã€‘</b></a><br />
 example/meta/hello.dicon
 <pre>
 &lt;components&gt;
@@ -2299,7 +2299,7 @@ example/meta/hello.dicon
   &lt;meta&gt;&quot;hello&quot;&lt;/meta&gt;
 &lt;/components&gt;
 </pre>
-ã‹L‚Ì‚æ‚¤‚Édiconƒtƒ@ƒCƒ‹‚ğ’è‹`‚µAˆÈ‰º‚ÌMessageMainƒNƒ‰ƒX‚ğÀs‚µ‚½ê‡Ao—Í‚³‚ê‚é•¶š—ñ‚ÍˆÈ‰º‚Ì‚Ç‚ê‚Å‚µ‚å‚¤‚©H</p>
+ä¸Šè¨˜ã®ã‚ˆã†ã«diconãƒ•ã‚¡ã‚¤ãƒ«ã‚’å®šç¾©ã—ã€ä»¥ä¸‹ã®MessageMainã‚¯ãƒ©ã‚¹ã‚’å®Ÿè¡Œã—ãŸå ´åˆã€å‡ºåŠ›ã•ã‚Œã‚‹æ–‡å­—åˆ—ã¯ä»¥ä¸‹ã®ã©ã‚Œã§ã—ã‚‡ã†ã‹ï¼Ÿ</p>
 example/meta/MessageMain.java
 <pre>
 S2Container container = S2ContainerFactory.create(&quot;example/meta/hello.dicon&quot;);
@@ -2308,7 +2308,7 @@ for(int i=0; i&lt;meta.length; i++){
     System.out.println(meta[i].getValue());
 }
 </pre>
-    ƒqƒ“ƒgF<a href="DIContainer.html#Meta">ƒƒ^ƒf[ƒ^</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#Meta">ãƒ¡ã‚¿ãƒ‡ãƒ¼ã‚¿</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -2338,16 +2338,16 @@ for(int i=0; i&lt;meta.length; i++){
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Metadata3','OgnlExpr')"></p>
-    <h3><a name="OgnlExpr">OGNL®‚ÉŠÖ‚·‚é–â‘è</a></h3>
-    <p><a name="Ognl"><b>y–â‘è1z</b></a><br />
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Metadata3','OgnlExpr')"></p>
+    <h3><a name="OgnlExpr">OGNLå¼ã«é–¢ã™ã‚‹å•é¡Œ</a></h3>
+    <p><a name="Ognl"><b>ã€å•é¡Œ1ã€‘</b></a><br />
 <pre>
 &lt;component class=&quot;java.lang.String&quot;&gt;
   &lt;arg&gt;[1]&lt;/arg&gt;
 &lt;/component&gt;
 </pre>
-    ã‹L‚Ì‚æ‚¤‚ÈString‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚É•¶š—ñ&quot;hoge&quot;‚ğƒZƒbƒg‚µ‚½‚¢ê‡A[1]‚É“ü‚é‹Lq‚ÍˆÈ‰º‚Ì‚¤‚¿‚Ç‚ê‚Å‚µ‚å‚¤‚©H<br />
-    ƒqƒ“ƒgF<a href="DIContainer.html#ognlExpr">OGNL®</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ä¸Šè¨˜ã®ã‚ˆã†ãªStringã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã«æ–‡å­—åˆ—&quot;hoge&quot;ã‚’ã‚»ãƒƒãƒˆã—ãŸã„å ´åˆã€[1]ã«å…¥ã‚‹è¨˜è¿°ã¯ä»¥ä¸‹ã®ã†ã¡ã©ã‚Œã§ã—ã‚‡ã†ã‹ï¼Ÿ<br />
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#ognlExpr">OGNLå¼</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -2376,22 +2376,22 @@ for(int i=0; i&lt;meta.length; i++){
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Ognl','Ognl2')"></p>
-    <p><a name="Ognl2"><b>y–â‘è2z</b></a><br />
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Ognl','Ognl2')"></p>
+    <p><a name="Ognl2"><b>ã€å•é¡Œ2ã€‘</b></a><br />
 <pre>
 public class SampleChar {
     public setSampleChar(char a) {
-        F
+        ï¼š
     }
 }
 </pre>
-ã‹L‚Ì‚æ‚¤‚ÈcharŒ^‚ğˆø”‚É‚ÂƒZƒbƒ^[ƒƒ\ƒbƒh‚ÉAdiconƒtƒ@ƒCƒ‹‚Å•¶š&quot;A&quot;‚ğƒZƒbƒg‚·‚éê‡AˆÈ‰º‚Ìdiconƒtƒ@ƒCƒ‹‚Å[1]‚É“ü‚é•¶š‚Í‚Ç‚ê‚Å‚µ‚å‚¤‚©H<br />
+ä¸Šè¨˜ã®ã‚ˆã†ãªcharå‹ã‚’å¼•æ•°ã«æŒã¤ã‚»ãƒƒã‚¿ãƒ¼ãƒ¡ã‚½ãƒƒãƒ‰ã«ã€diconãƒ•ã‚¡ã‚¤ãƒ«ã§æ–‡å­—&quot;A&quot;ã‚’ã‚»ãƒƒãƒˆã™ã‚‹å ´åˆã€ä»¥ä¸‹ã®diconãƒ•ã‚¡ã‚¤ãƒ«ã§[1]ã«å…¥ã‚‹æ–‡å­—ã¯ã©ã‚Œã§ã—ã‚‡ã†ã‹ï¼Ÿ<br />
 <pre>
 &lt;component class=&quot;test.java.sample.SampleChar&quot;&gt;
   &lt;property name=&quot;sampleChar&quot;&gt;[1]&lt;/property&gt;
 &lt;/component&gt;
 </pre>
-    ƒqƒ“ƒgF<a href="DIContainer.html#ognlExpr">OGNL®</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#ognlExpr">OGNLå¼</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -2420,22 +2420,22 @@ public class SampleChar {
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Ognl2','Ognl3')"></p>
-<p><a name="Ognl3"><b>y–â‘è3z</b></a><br />
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Ognl2','Ognl3')"></p>
+<p><a name="Ognl3"><b>ã€å•é¡Œ3ã€‘</b></a><br />
 <pre>
 public class SampleBoolean {
     public SampleBoolean(boolean isA) {
-        F
+        ï¼š
     }
 }
 </pre>
-ã‹L‚Ì‚æ‚¤‚ÈbooleanŒ^‚ğˆø”‚É‚ÂƒRƒ“ƒXƒgƒ‰ƒNƒ^‚ÉAdiconƒtƒ@ƒCƒ‹‚Åtrue‚ğƒZƒbƒg‚·‚éê‡AˆÈ‰º‚Ìdiconƒtƒ@ƒCƒ‹‚Å[1]‚É“ü‚é•¶š‚Í‚Ç‚ê‚Å‚µ‚å‚¤‚©H<br />
+ä¸Šè¨˜ã®ã‚ˆã†ãªbooleanå‹ã‚’å¼•æ•°ã«æŒã¤ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã«ã€diconãƒ•ã‚¡ã‚¤ãƒ«ã§trueã‚’ã‚»ãƒƒãƒˆã™ã‚‹å ´åˆã€ä»¥ä¸‹ã®diconãƒ•ã‚¡ã‚¤ãƒ«ã§[1]ã«å…¥ã‚‹æ–‡å­—ã¯ã©ã‚Œã§ã—ã‚‡ã†ã‹ï¼Ÿ<br />
 <pre>
 &lt;component class=&quot;test.java.sample.SampleBooleam&quot;&gt;
   &lt;arg&gt;[1]&lt;/arg&gt;
 &lt;/component&gt;
 </pre>
-    ƒqƒ“ƒgF<a href="DIContainer.html#ognlExpr">OGNL®</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#ognlExpr">OGNLå¼</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -2464,16 +2464,16 @@ public class SampleBoolean {
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Ognl3','Ognl4')"></p>
-<p><a name="Ognl4"><b>y–â‘è4z</b></a><br />
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Ognl3','Ognl4')"></p>
+<p><a name="Ognl4"><b>ã€å•é¡Œ4ã€‘</b></a><br />
 <pre>
 public class SampleConst {
     public SampleConst(String message) {
-        F
+        ï¼š
     }
 }
 </pre>
-ˆÈ‰º‚Ìdiconƒtƒ@ƒCƒ‹‚Ì[1]‚É’l‚ğ“ü‚ê‚½ê‡Aã‹L‚Ì‚æ‚¤‚ÈStringƒNƒ‰ƒX‚ğˆø”‚É‚ÂƒRƒ“ƒXƒgƒ‰ƒNƒ^‚ÉA•¶š—ñ"foo"‚ğ<B>ƒZƒbƒg‚Å‚«‚È‚¢</B>‚Ì‚ÍˆÈ‰º‚Ì‚Ç‚ê‚Å‚µ‚å‚¤‚©H<br />
+ä»¥ä¸‹ã®diconãƒ•ã‚¡ã‚¤ãƒ«ã®[1]ã«å€¤ã‚’å…¥ã‚ŒãŸå ´åˆã€ä¸Šè¨˜ã®ã‚ˆã†ãªStringã‚¯ãƒ©ã‚¹ã‚’å¼•æ•°ã«æŒã¤ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã«ã€æ–‡å­—åˆ—"foo"ã‚’<B>ã‚»ãƒƒãƒˆã§ããªã„</B>ã®ã¯ä»¥ä¸‹ã®ã©ã‚Œã§ã—ã‚‡ã†ã‹ï¼Ÿ<br />
 <pre>
 &lt;component name=&quot;message&quot;&gt;
   [1]
@@ -2482,7 +2482,7 @@ public class SampleConst {
   &lt;arg&gt;message&lt;/arg&gt;
 &lt;/component&gt;
 </pre>
-    ƒqƒ“ƒgF<a href="DIContainer.html#ognlExpr">OGNL®</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#ognlExpr">OGNLå¼</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -2511,15 +2511,15 @@ public class SampleConst {
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Ognl4','Ognl5')"></p>
-<p><a name="Ognl5"><b>y–â‘è5z</b></a><br />
-ˆÈ‰º‚Ìdiconƒtƒ@ƒCƒ‹‚ÅAjava.lang.Math#max(int a,int b)‚Ìstatic‚Èƒƒ\ƒbƒh‚ğŒÄ‚Ño‚µ‚½Œ‹‰Ê‚ğQÆ‚·‚éê‡A[1]‚É“ü‚é‹Lq‚Å³‚µ‚¢‚Ì‚Ç‚ê‚Å‚µ‚å‚¤‚©H<br />
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Ognl4','Ognl5')"></p>
+<p><a name="Ognl5"><b>ã€å•é¡Œ5ã€‘</b></a><br />
+ä»¥ä¸‹ã®diconãƒ•ã‚¡ã‚¤ãƒ«ã§ã€java.lang.Math#max(int a,int b)ã®staticãªãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã³å‡ºã—ãŸçµæœã‚’å‚ç…§ã™ã‚‹å ´åˆã€[1]ã«å…¥ã‚‹è¨˜è¿°ã§æ­£ã—ã„ã®ã©ã‚Œã§ã—ã‚‡ã†ã‹ï¼Ÿ<br />
 <pre>
 &lt;component name=&quot;max&quot;&gt;
     [1]
 &lt;/component&gt;
 </pre>
-    ƒqƒ“ƒgF<a href="DIContainer.html#ognlExpr">OGNL®</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#ognlExpr">OGNLå¼</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -2548,10 +2548,10 @@ public class SampleConst {
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Ognl5','Ognl6')"></p>
-<p><a name="Ognl6"><b>y–â‘è6z</b></a><br />
-OGNL®‚Ì‹Lq‚Å<B>ŠÔˆá‚Á‚Ä‚¢‚é€–Ú</B>‚ÍA‚Ç‚ê‚Å‚µ‚å‚¤‚©H<br />
-    ƒqƒ“ƒgF<a href="DIContainer.html#ognlExpr">OGNL®</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Ognl5','Ognl6')"></p>
+<p><a name="Ognl6"><b>ã€å•é¡Œ6ã€‘</b></a><br />
+OGNLå¼ã®è¨˜è¿°ã§<B>é–“é•ã£ã¦ã„ã‚‹é …ç›®</B>ã¯ã€ã©ã‚Œã§ã—ã‚‡ã†ã‹ï¼Ÿ<br />
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#ognlExpr">OGNLå¼</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -2580,8 +2580,8 @@ OGNL®‚Ì‹Lq‚Å<B>ŠÔˆá‚Á‚Ä‚¢‚é€–Ú</B>‚ÍA‚Ç‚ê‚Å‚µ‚å‚¤‚©H<br />
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Ognl6','Ognl7')"></p>
-<p><a name="Ognl7"><b>y–â‘è7z</b></a><br />
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Ognl6','Ognl7')"></p>
+<p><a name="Ognl7"><b>ã€å•é¡Œ7ã€‘</b></a><br />
 <pre>
 public class FooMessage {
     public String getMessage() {
@@ -2589,14 +2589,14 @@ public class FooMessage {
     }
 }
 </pre>
-ã‹L‚ÌFooMessage#getMessage()‚ğdiconƒtƒ@ƒCƒ‹‚Åg—p‚·‚éê‡AˆÈ‰º‚Ìdiconƒtƒ@ƒCƒ‹‚Å[1]‚É“ü‚é‚Ì‚Í‚Ç‚ê‚Å‚µ‚å‚¤‚©H<br />
+ä¸Šè¨˜ã®FooMessage#getMessage()ã‚’diconãƒ•ã‚¡ã‚¤ãƒ«ã§ä½¿ç”¨ã™ã‚‹å ´åˆã€ä»¥ä¸‹ã®diconãƒ•ã‚¡ã‚¤ãƒ«ã§[1]ã«å…¥ã‚‹ã®ã¯ã©ã‚Œã§ã—ã‚‡ã†ã‹ï¼Ÿ<br />
 <pre>
 &lt;component name=&quot;foo&quot; class=&quot;test.java.sample.FooMessage&quot;/&gt;
 &lt;component name=&quot;message&quot;&gt;
     [1]
 &lt;/component&gt;
 </pre>
-    ƒqƒ“ƒgF<a href="DIContainer.html#ognlExpr">OGNL®</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#ognlExpr">OGNLå¼</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -2625,9 +2625,9 @@ public class FooMessage {
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Ognl7','Ognl8')"></p>
-<p><a name="Ognl8"><b>y–â‘è8z</b></a><br />
-    java.util.HashMap#put()‚Éƒƒ\ƒbƒhƒCƒ“ƒWƒFƒNƒVƒ‡ƒ“‚Å’l‚ğİ’è‚·‚éê‡AˆÈ‰º‚Ì[1]‚É“ü‚é³‚µ‚¢€–Ú‚Í‚Ç‚ê‚Å‚µ‚å‚¤‚©H</p>
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Ognl7','Ognl8')"></p>
+<p><a name="Ognl8"><b>ã€å•é¡Œ8ã€‘</b></a><br />
+    java.util.HashMap#put()ã«ãƒ¡ã‚½ãƒƒãƒ‰ã‚¤ãƒ³ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³ã§å€¤ã‚’è¨­å®šã™ã‚‹å ´åˆã€ä»¥ä¸‹ã®[1]ã«å…¥ã‚‹æ­£ã—ã„é …ç›®ã¯ã©ã‚Œã§ã—ã‚‡ã†ã‹ï¼Ÿ</p>
 examples/ognl/hello.dicon
 <pre>
 &lt;components&gt;
@@ -2636,7 +2636,7 @@ examples/ognl/hello.dicon
   &lt;/component&gt;
 &lt;/components&gt;
 </pre>
-    ƒqƒ“ƒgF<a href="DIContainer.html#ognlExpr">OGNL®</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#ognlExpr">OGNLå¼</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -2665,9 +2665,9 @@ examples/ognl/hello.dicon
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Ognl8','Ognl9')"></p>
-<p><a name="Ognl9"><b>y–â‘è9z</b></a><br />
-&lt;initMethod&gt;ƒ^ƒO‚ªŒÄ‚Î‚ê‚½‚Æ‚«‚ÉƒRƒ“ƒ\[ƒ‹‚É•¶š—ñ&quot;Hello&quot;‚ğ•\¦‚µ‚½‚¢ê‡A[1]‚É‚Í‰½‚ª“ü‚é‚Å‚µ‚å‚¤‚©H</p>
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Ognl8','Ognl9')"></p>
+<p><a name="Ognl9"><b>ã€å•é¡Œ9ã€‘</b></a><br />
+&lt;initMethod&gt;ã‚¿ã‚°ãŒå‘¼ã°ã‚ŒãŸã¨ãã«ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã«æ–‡å­—åˆ—&quot;Hello&quot;ã‚’è¡¨ç¤ºã—ãŸã„å ´åˆã€[1]ã«ã¯ä½•ãŒå…¥ã‚‹ã§ã—ã‚‡ã†ã‹ï¼Ÿ</p>
 example/ognl/hello.dicon
 <pre>
 &lt;components&gt;
@@ -2676,7 +2676,7 @@ example/ognl/hello.dicon
   &lt;/component&gt;
 &lt;/components&gt;
 </pre>
-    ƒqƒ“ƒgF<a href="DIContainer.html#ognlExpr">OGNL®</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#ognlExpr">OGNLå¼</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -2705,9 +2705,9 @@ example/ognl/hello.dicon
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Ognl9','Ognl10')"></p>
-<p><a name="Ognl10"><b>y–â‘è10z</b></a><br />
-&lt;initMethod&gt;ƒ^ƒO‚ªŒÄ‚Î‚ê‚½‚Æ‚«‚ÉƒRƒ“ƒ\[ƒ‹‚ÉƒGƒ‰[ƒƒbƒZ[ƒW‚ğ•\¦‚µ‚½‚¢ê‡A[1]‚É‚Í‰½‚ª“ü‚é‚Å‚µ‚å‚¤‚©H</p>
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Ognl9','Ognl10')"></p>
+<p><a name="Ognl10"><b>ã€å•é¡Œ10ã€‘</b></a><br />
+&lt;initMethod&gt;ã‚¿ã‚°ãŒå‘¼ã°ã‚ŒãŸã¨ãã«ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã«ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã—ãŸã„å ´åˆã€[1]ã«ã¯ä½•ãŒå…¥ã‚‹ã§ã—ã‚‡ã†ã‹ï¼Ÿ</p>
 example/ognl/hello.dicon
 <pre>
 &lt;components&gt;
@@ -2716,7 +2716,7 @@ example/ognl/hello.dicon
   &lt;/component&gt;
 &lt;/components&gt;
 </pre>
-    ƒqƒ“ƒgF<a href="DIContainer.html#ognlExpr">OGNL®</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#ognlExpr">OGNLå¼</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -2745,10 +2745,10 @@ example/ognl/hello.dicon
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Ognl10','Ognl11')"></p>
-<p><a name="Ognl11"><b>y–â‘è11z</b></a><br />
-&lt;initMethod&gt;ƒ^ƒO“à‚Å<B>—LŒø‚Å‚È‚¢</B>ƒIƒuƒWƒFƒNƒg‚ÍˆÈ‰º‚Ì‚Ç‚ê‚Å‚µ‚å‚¤‚©H</p>
-    ƒqƒ“ƒgF<a href="DIContainer.html#ognlExpr">OGNL®</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Ognl10','Ognl11')"></p>
+<p><a name="Ognl11"><b>ã€å•é¡Œ11ã€‘</b></a><br />
+&lt;initMethod&gt;ã‚¿ã‚°å†…ã§<B>æœ‰åŠ¹ã§ãªã„</B>ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¯ä»¥ä¸‹ã®ã©ã‚Œã§ã—ã‚‡ã†ã‹ï¼Ÿ</p>
+    ãƒ’ãƒ³ãƒˆï¼š<a href="DIContainer.html#ognlExpr">OGNLå¼</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
     <form name="myForm">
     <table width="80%" border="0" cellspacing="1" cellpadding="5">
           <tr>
@@ -2777,7 +2777,7 @@ example/ognl/hello.dicon
         </tr>
     </table>
     <br />
-    <p><input type="button" name="btnTable" value="‰ğ“š‚ÖGO" onClick="check('Ognl11','')"></p>
+    <p><input type="button" name="btnTable" value="è§£ç­”ã¸GO" onClick="check('Ognl11','')"></p>
 </form>
 <!-- document end -->
 <!-- don't edit start -->

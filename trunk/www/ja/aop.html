@@ -3,7 +3,7 @@
 <!-- don't edit start -->
 <head>
 <title>Seasar - DI Container with AOP - </title>
-<meta http-equiv="Content-Type" content="text/html; charset=MS932C">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <link href="seasar_b.css" type="text/css" rel="stylesheet" media="screen"><link href="seasar_p.css" type="text/css" rel="stylesheet" media="print"><script src="seasar_b.js" type="text/JavaScript" language="JavaScript"></script>
 </head><body onload="preload('ja')"><table width="100%" border="0" cellspacing="0" cellpadding="0" align="left"><tr>
@@ -25,19 +25,19 @@
 <!-- don't edit end -->
 <!-- document start -->
 	<ul>
-		<li><a href="#S2ŠT—v">S2AOP‚ÌŠT—v</a>
+		<li><a href="#S2æ¦‚è¦">S2AOPã®æ¦‚è¦</a>
 		<ul>
-			<li><a href="#AOPKey">AOP‚ğl‚¦‚éã‚ÅƒL[‚Æ‚È‚éŠT”O</a></li>
-			<li><a href="#AOPMerit">AOP‚ÌƒƒŠƒbƒg</a></li>
-			<li><a href="#S2AOPMerit">S2AOP‚ÌƒƒŠƒbƒg</a></li>
-			<li><a href="#Warning">’ˆÓ“_</a></li>
+			<li><a href="#AOPKey">AOPã‚’è€ƒãˆã‚‹ä¸Šã§ã‚­ãƒ¼ã¨ãªã‚‹æ¦‚å¿µ</a></li>
+			<li><a href="#AOPMerit">AOPã®ãƒ¡ãƒªãƒƒãƒˆ</a></li>
+			<li><a href="#S2AOPMerit">S2AOPã®ãƒ¡ãƒªãƒƒãƒˆ</a></li>
+			<li><a href="#Warning">æ³¨æ„ç‚¹</a></li>
 		</ul>
 		</li>
-		<li><a href="#S2AOPReference">S2AOPƒŠƒtƒ@ƒŒƒ“ƒX</a>
+		<li><a href="#S2AOPReference">S2AOPãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹</a>
 		<ul>
-			<li><a href="#AOPMakeFile">ì¬‚·‚×‚«ƒtƒ@ƒCƒ‹</a></li>
-			<li><a href="#AOPExplanationFile">İ’èƒtƒ@ƒCƒ‹‚Ìà–¾</a></li>
-			<li><a href="#AOPInterceptor">S2AOP‚Å—pˆÓ‚³‚ê‚Ä‚¢‚éInterceptor</a>
+			<li><a href="#AOPMakeFile">ä½œæˆã™ã¹ããƒ•ã‚¡ã‚¤ãƒ«</a></li>
+			<li><a href="#AOPExplanationFile">è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®èª¬æ˜</a></li>
+			<li><a href="#AOPInterceptor">S2AOPã§ç”¨æ„ã•ã‚Œã¦ã„ã‚‹Interceptor</a>
 				<ul>
 				<li><a href="#TraceInterceptor">TraceInterceptor</a></li>
 				<li><a href="#ThrowsInterceptor">ThrowsInterceptor</a></li>
@@ -50,15 +50,15 @@
 				<li><a href="#InterceptorLifecycleAdapter">InterceptorLifecycleAdapter</a></li>
 				</ul>
 			</li>
-			<li><a href="#OriginalInterceptor">“Æ©À‘•‚É‚æ‚éInterceptor</a></li>
-			<li><a href="#AOPInterType">S2AOP‚Å—pˆÓ‚³‚ê‚Ä‚¢‚éInterType</a>
+			<li><a href="#OriginalInterceptor">ç‹¬è‡ªå®Ÿè£…ã«ã‚ˆã‚‹Interceptor</a></li>
+			<li><a href="#AOPInterType">S2AOPã§ç”¨æ„ã•ã‚Œã¦ã„ã‚‹InterType</a>
 			<ul>
 			<li><a href="#PropertyInterType">PropertyInterType</a>
 			<li><a href="#InterTypeChain">InterTypeChain</a>
 			</ul>
 			</li>
-			<li><a href="#OriginalInterType">“Æ©À‘•‚É‚æ‚éInterType</a></li>
-			<li><a href="#nodicon">diconƒtƒ@ƒCƒ‹‚ğg—p‚µ‚È‚¢‚ÅƒAƒXƒyƒNƒg‚ğ‘g‚İ‚Ş•û–@</a></li>
+			<li><a href="#OriginalInterType">ç‹¬è‡ªå®Ÿè£…ã«ã‚ˆã‚‹InterType</a></li>
+			<li><a href="#nodicon">diconãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½¿ç”¨ã—ãªã„ã§ã‚¢ã‚¹ãƒšã‚¯ãƒˆã‚’çµ„ã¿è¾¼ã‚€æ–¹æ³•</a></li>
 		</ul>
 		</li>
 		<li><a href="#Example">Example</a>
@@ -69,58 +69,58 @@
 			<li><a href="#DelegateInterceptorSample">DelegateInterceptor</a></li>
 			<li><a href="#PrototypeDelegateInterceptorSample">PrototypeDelegateInterceptor</a></li>
 			<li><a href="#SyncInterceptorSample">SyncInterceptor</a></li>
-			<li><a href="#OriginalInterceptorSample">“Æ©À‘•‚É‚æ‚éInterceptor</a></li>
+			<li><a href="#OriginalInterceptorSample">ç‹¬è‡ªå®Ÿè£…ã«ã‚ˆã‚‹Interceptor</a></li>
         </ul>
     </li>
 	</ul>
 
-	<h2><a name=S2ŠT—v>S2AOP‚ÌŠT—v</a></h2>
-	<p>S2AOP‚Å‚ÍAAOP‚Ì‹@”\‚ğ’ñ‹Ÿ‚µ‚Ä‚¢‚Ü‚·BAOP‚Æ‚ÍAAspect Oriented Programming (ƒAƒXƒyƒNƒgwŒüƒvƒƒOƒ‰ƒ~ƒ“ƒO) ‚Ì—ª‚Å‚·BƒvƒƒOƒ‰ƒ€–{—ˆ‚Ì–Ú“I‚Æ‚ÍˆÙ‚È‚éˆ—‚ğ“à•”‚É–„‚ß‚Ü‚¸AŠO‚©‚çD‚è‚Ş‚æ‚¤‚Éì‚é‚±‚Æ‚Å‚·B</p>
-	<h3><a name=AOPKey>AOP‚ğl‚¦‚éã‚ÅƒL[‚Æ‚È‚éŠT”O</a></h3>
+	<h2><a name=S2æ¦‚è¦>S2AOPã®æ¦‚è¦</a></h2>
+	<p>S2AOPã§ã¯ã€AOPã®æ©Ÿèƒ½ã‚’æä¾›ã—ã¦ã„ã¾ã™ã€‚AOPã¨ã¯ã€Aspect Oriented Programming (ã‚¢ã‚¹ãƒšã‚¯ãƒˆæŒ‡å‘ãƒ—ãƒ­ã‚°ãƒ©ãƒŸãƒ³ã‚°) ã®ç•¥ã§ã™ã€‚ãƒ—ãƒ­ã‚°ãƒ©ãƒ æœ¬æ¥ã®ç›®çš„ã¨ã¯ç•°ãªã‚‹å‡¦ç†ã‚’å†…éƒ¨ã«åŸ‹ã‚è¾¼ã¾ãšã€å¤–ã‹ã‚‰ç¹”ã‚Šè¾¼ã‚€ã‚ˆã†ã«ä½œã‚‹ã“ã¨ã§ã™ã€‚</p>
+	<h3><a name=AOPKey>AOPã‚’è€ƒãˆã‚‹ä¸Šã§ã‚­ãƒ¼ã¨ãªã‚‹æ¦‚å¿µ</a></h3>
     <h4><a name="Advice">Advice(MethodInterceptor)</a></h4>
-	<p>ƒvƒƒOƒ‰ƒ€’†‚É‘}“ü‚³‚ê‚éƒR[ƒh‚ğ•\‚µ‚Ü‚·BInterceptor‚ÆŒÄ‚Î‚ê‚é‚±‚Æ‚à‚ ‚è‚Ü‚·B</p>
+	<p>ãƒ—ãƒ­ã‚°ãƒ©ãƒ ä¸­ã«æŒ¿å…¥ã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ‰ã‚’è¡¨ã—ã¾ã™ã€‚Interceptorã¨å‘¼ã°ã‚Œã‚‹ã“ã¨ã‚‚ã‚ã‚Šã¾ã™ã€‚</p>
     <h4><a name="Joinpoint">Joinpoint(MethodInvocation)</a></h4>
-    <p>‘ÎÛ‚Æ‚È‚éƒNƒ‰ƒX‚ÆAdvice‚ğŒ‹‡‚·‚éƒ|ƒCƒ“ƒg‚ğ•\‚µ‚Ü‚·BAdvice‚ÍJoinpoint‚©‚çˆø”‚âƒƒ\ƒbƒh‚Ìî•ñ‚ğæ“¾‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B</p>
+    <p>å¯¾è±¡ã¨ãªã‚‹ã‚¯ãƒ©ã‚¹ã¨Adviceã‚’çµåˆã™ã‚‹ãƒã‚¤ãƒ³ãƒˆã‚’è¡¨ã—ã¾ã™ã€‚Adviceã¯Joinpointã‹ã‚‰å¼•æ•°ã‚„ãƒ¡ã‚½ãƒƒãƒ‰ã®æƒ…å ±ã‚’å–å¾—ã™ã‚‹ã“ã¨ãŒã§ãã¾ã™ã€‚</p>
     <h4><a name="Pointcut">Pointcut</a></h4>
-    <p>‚Ç‚±‚ÉJoinpoint‚ğİ’è‚·‚é‚Ì‚©‚ğ’è‹`‚µ‚Ü‚·B</p>
+    <p>ã©ã“ã«Joinpointã‚’è¨­å®šã™ã‚‹ã®ã‹ã‚’å®šç¾©ã—ã¾ã™ã€‚</p>
     <h4><a name="Aspect">Aspect</a></h4>
-    <p>Advice‚ÆPointcut‚ğŠÖ˜A•t‚¯‚Ü‚·B</p>
+    <p>Adviceã¨Pointcutã‚’é–¢é€£ä»˜ã‘ã¾ã™ã€‚</p>
     <h4><a name="InterType">InterType</a></h4>
-    <p>ƒtƒB[ƒ‹ƒh‚âƒƒ\ƒbƒh‚Ì’Ç‰ÁAÀ‘•‚·‚éƒCƒ“ƒ^ƒtƒF[ƒX‚Ì’Ç‰Á‚È‚ÇCƒNƒ‰ƒX‚ÌÃ“I‚È\‘¢‚ğ•ÏX‚µ‚Ü‚·B</p>
-    <h3><a name=AOPMerit>AOP‚ÌƒƒŠƒbƒg</a></h3>
+    <p>ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚„ãƒ¡ã‚½ãƒƒãƒ‰ã®è¿½åŠ ã€å®Ÿè£…ã™ã‚‹ã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ã®è¿½åŠ ãªã©ï¼Œã‚¯ãƒ©ã‚¹ã®é™çš„ãªæ§‹é€ ã‚’å¤‰æ›´ã—ã¾ã™ã€‚</p>
+    <h3><a name=AOPMerit>AOPã®ãƒ¡ãƒªãƒƒãƒˆ</a></h3>
     <ul>
-        <li>uCore Concernv‚ÆuCrosscutting Concernv‚ğ•ª—£‚·‚é‚±‚Æ‚Åƒƒ“ƒeƒiƒ“ƒX«‚ªŒüã‚µ‚Ü‚·B</li>
-        <li>‹Æ–±ƒƒWƒbƒN‚©‚çƒVƒXƒeƒ€“I‹@”\‚ğuCrosscutting Concernv‚É”ro‚µ‚½uCore Concernv‚ÍAƒVƒ“ƒvƒ‹‚Èƒ\[ƒX‚É‚È‚è‚Ü‚·B–{—ˆ‚Ì‚â‚è‚½‚©‚Á‚½‚±‚Æ‚¾‚¯‚ª‹Lq‚³‚ê‚Ü‚·B</li>
-        <li>ƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚Ì©“®‰»‚âƒŠƒ‚[ƒgƒƒ\ƒbƒhŒÄ‚Ño‚µ‚È‚ÇA]—ˆEJB‚ğg—p‚µ‚È‚¯‚ê‚ÎÀŒ»‚Å‚«‚È‚©‚Á‚½ˆ—‚ªPOJO(Plain Old Java ObjectF“Á’è‚ÌŠÂ‹«‚ÉˆË‘¶‚µ‚È‚¢•’Ê‚Ìjava‚ÌƒIƒuƒWƒFƒNƒg)‚Å‰Â”\‚É‚È‚è‚Ü‚·B</li>
+        <li>ã€ŒCore Concernã€ã¨ã€ŒCrosscutting Concernã€ã‚’åˆ†é›¢ã™ã‚‹ã“ã¨ã§ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹æ€§ãŒå‘ä¸Šã—ã¾ã™ã€‚</li>
+        <li>æ¥­å‹™ãƒ­ã‚¸ãƒƒã‚¯ã‹ã‚‰ã‚·ã‚¹ãƒ†ãƒ çš„æ©Ÿèƒ½ã‚’ã€ŒCrosscutting Concernã€ã«æ’å‡ºã—ãŸã€ŒCore Concernã€ã¯ã€ã‚·ãƒ³ãƒ—ãƒ«ãªã‚½ãƒ¼ã‚¹ã«ãªã‚Šã¾ã™ã€‚æœ¬æ¥ã®ã‚„ã‚ŠãŸã‹ã£ãŸã“ã¨ã ã‘ãŒè¨˜è¿°ã•ã‚Œã¾ã™ã€‚</li>
+        <li>ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ã®è‡ªå‹•åŒ–ã‚„ãƒªãƒ¢ãƒ¼ãƒˆãƒ¡ã‚½ãƒƒãƒ‰å‘¼ã³å‡ºã—ãªã©ã€å¾“æ¥EJBã‚’ä½¿ç”¨ã—ãªã‘ã‚Œã°å®Ÿç¾ã§ããªã‹ã£ãŸå‡¦ç†ãŒPOJO(Plain Old Java Objectï¼šç‰¹å®šã®ç’°å¢ƒã«ä¾å­˜ã—ãªã„æ™®é€šã®javaã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ)ã§å¯èƒ½ã«ãªã‚Šã¾ã™ã€‚</li>
     </ul>
-    <h3><a name=S2AOPMerit>S2AOP‚ÌƒƒŠƒbƒg</a></h3>
+    <h3><a name=S2AOPMerit>S2AOPã®ãƒ¡ãƒªãƒƒãƒˆ</a></h3>
     <ul>
-      	<li>İ’è‚ğƒVƒ“ƒvƒ‹‚És‚¦‚Ü‚·B</li>
-      	<li>À‘•‚µ‚È‚¯‚ê‚Î‚È‚ç‚È‚¢JavaƒCƒ“ƒ^[ƒtƒF[ƒX‚ª‚P‚Â‚Å‚·B</li>
-      	<li>ƒRƒ“ƒ|[ƒlƒ“ƒg‚É‚Ç‚ñ‚ÈƒAƒXƒyƒNƒg‚ª“K—p‚³‚ê‚é‚Ì‚©‚ª–¾Šm‚Å‚·B</li>
-      	<li>Šî–{“I‚ÈAspectÀ‘•ƒIƒuƒWƒFƒNƒgƒpƒ^[ƒ“‚ª—pˆÓ‚³‚ê‚Ä‚¢‚é‚½‚ßA‚·‚®‚Ég—p‚·‚é‚±‚Æ‚ª‰Â”\‚Å‚·B(“Æ©‚ÉƒCƒ“ƒ^[ƒtƒF[ƒX‚â’ŠÛƒNƒ‰ƒX‚ğÀ‘•‚·‚é‚±‚Æ‚à‰Â”\)</li>
+      	<li>è¨­å®šã‚’ã‚·ãƒ³ãƒ—ãƒ«ã«è¡Œãˆã¾ã™ã€‚</li>
+      	<li>å®Ÿè£…ã—ãªã‘ã‚Œã°ãªã‚‰ãªã„Javaã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ãŒï¼‘ã¤ã§ã™ã€‚</li>
+      	<li>ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã«ã©ã‚“ãªã‚¢ã‚¹ãƒšã‚¯ãƒˆãŒé©ç”¨ã•ã‚Œã‚‹ã®ã‹ãŒæ˜ç¢ºã§ã™ã€‚</li>
+      	<li>åŸºæœ¬çš„ãªAspectå®Ÿè£…ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‘ã‚¿ãƒ¼ãƒ³ãŒç”¨æ„ã•ã‚Œã¦ã„ã‚‹ãŸã‚ã€ã™ãã«ä½¿ç”¨ã™ã‚‹ã“ã¨ãŒå¯èƒ½ã§ã™ã€‚(ç‹¬è‡ªã«ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚„æŠ½è±¡ã‚¯ãƒ©ã‚¹ã‚’å®Ÿè£…ã™ã‚‹ã“ã¨ã‚‚å¯èƒ½)</li>
     </ul>
-	<h3><a name="Warning">’ˆÓ“_</a></h3>
+	<h3><a name="Warning">æ³¨æ„ç‚¹</a></h3>
     <ul>
-      	<li>final‚ÈƒNƒ‰ƒX‚É‚ÍƒAƒXƒyƒNƒg‚ğ“K—p‚Å‚«‚Ü‚¹‚ñB</li>
-		<li>final‚Ü‚½‚Ístatic‚Ü‚½‚Í”ñpublic‚Èƒƒ\ƒbƒh‚É‚ÍƒAƒXƒyƒNƒg‚ğ“K—p‚Å‚«‚Ü‚¹‚ñB</li>
-		<li>pointcut‘®«‚ğw’è‚µ‚È‚¢ê‡A‚·‚×‚Ä‚Ìƒƒ\ƒbƒh‚ª‘ÎÛ‚É‚È‚é‚í‚¯‚Å‚Í‚ ‚è‚Ü‚¹‚ñBÀ‘•‚µ‚Ä‚¢‚éƒCƒ“ƒ^[ƒtƒF[ƒX‚Ì‚·‚×‚Ä‚Ìƒƒ\ƒbƒh‚ª‘ÎÛ‚É‚È‚è‚Ü‚·B‚·‚×‚Ä‚Ìƒƒ\ƒbƒh‚ğ‘ÎÛ‚É‚·‚é‚É‚ÍApointcut‘®«‚É".*"‚Æw’è‚µ‚Ü‚·B</li>
+      	<li>finalãªã‚¯ãƒ©ã‚¹ã«ã¯ã‚¢ã‚¹ãƒšã‚¯ãƒˆã‚’é©ç”¨ã§ãã¾ã›ã‚“ã€‚</li>
+		<li>finalã¾ãŸã¯staticã¾ãŸã¯épublicãªãƒ¡ã‚½ãƒƒãƒ‰ã«ã¯ã‚¢ã‚¹ãƒšã‚¯ãƒˆã‚’é©ç”¨ã§ãã¾ã›ã‚“ã€‚</li>
+		<li>pointcutå±æ€§ã‚’æŒ‡å®šã—ãªã„å ´åˆã€ã™ã¹ã¦ã®ãƒ¡ã‚½ãƒƒãƒ‰ãŒå¯¾è±¡ã«ãªã‚‹ã‚ã‘ã§ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚å®Ÿè£…ã—ã¦ã„ã‚‹ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã®ã™ã¹ã¦ã®ãƒ¡ã‚½ãƒƒãƒ‰ãŒå¯¾è±¡ã«ãªã‚Šã¾ã™ã€‚ã™ã¹ã¦ã®ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å¯¾è±¡ã«ã™ã‚‹ã«ã¯ã€pointcutå±æ€§ã«".*"ã¨æŒ‡å®šã—ã¾ã™ã€‚</li>
     </ul>
 
-	<h2><a name=S2AOPReference>S2AOPƒŠƒtƒ@ƒŒƒ“ƒX</a></h2>
-    <h3><a name=AOPMakeFile>ì¬‚·‚×‚«ƒtƒ@ƒCƒ‹</a></h3>
-    <p>S2AOP‚ğg—p‚·‚é‚É‚ÍS2Container ‚Ìİ’èƒtƒ@ƒCƒ‹(diconƒtƒ@ƒCƒ‹)‚Ås‚¢‚Ü‚·Bİ’èƒtƒ@ƒCƒ‹‚Ì”z’uêŠ‚ÍA‚Æ‚­‚Éw’è‚ª‚ ‚è‚Ü‚¹‚ñ‚ªA’ÊíuCrosscutting Concernv‚Æ“¯‚¶êŠ‚É”z’u‚·‚é‚©Aİ’è‚ğs‚¤ƒRƒ“ƒ|[ƒlƒ“ƒg‚Æ“¯‚¶êŠ‚É”z’u‚µ‚Ü‚·B</p>
-    <h3><a name=AOPExplanationFile>İ’èƒtƒ@ƒCƒ‹‚Ìà–¾</a></h3>
-    <h4><a name=aspecTtag>aspectƒ^ƒO</a></h4>
-    <p>Advice(ˆÈ‰ºInterceptor)‚ğƒRƒ“ƒ|[ƒlƒ“ƒg‚É‘g‚İ‚İ‚Ü‚·BInterceptor‚Ìw’è‚ÍAƒ{ƒfƒB‚ÅOGNL®‚ğg‚¤‚©Aqƒ^ƒO‚Åcomponentƒ^ƒO‚ğg‚¢‚Ü‚·B<br />
-    ¦OGNL‚É‚Â‚¢‚Ä‚Í <a href="ognl.html">OGNLƒKƒCƒh</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B1‚Â‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚É•¡”‚ÌƒAƒXƒyƒNƒg‚ğ‘g‚İ‚ñ‚¾ê‡‚ÍƒAƒXƒyƒNƒg‚Ì“o˜^‡‚É‘g‚İ‚Ü‚êÀs‚³‚ê‚Ü‚·BÚ‚µ‚¢à–¾‚Í<a href="#OriginalInterceptor">“Æ©À‘•‚ÌInterceptor</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
-<h5>’ˆÓ“_</h5>
-<p>aspectƒ^ƒO‚Åw’è‚³‚ê‚½ƒRƒ“ƒ|[ƒlƒ“ƒg‚ÍAƒRƒ“ƒeƒi‚Ì‰Šú‰»‚ÉƒRƒ“ƒeƒi‚©‚çæ“¾‚³‚ê‚Ü‚·B‚»‚Ì‚½‚ßAaspectƒ^ƒO‚Åw’è‚³‚ê‚½ƒRƒ“ƒ|[ƒlƒ“ƒg‚Ìinstance‘®«‚ªprototype‚¾‚Á‚½‚Æ‚µ‚Ä‚àAInterceptor
-‚Ìƒƒ\ƒbƒh‚ªŒÄ‚Ño‚³‚ê‚é“x‚ÉV‚µ‚¢ƒCƒ“ƒXƒ^ƒ“ƒX‚ªì¬‚³‚ê‚é‚í‚¯‚Å‚Í‚ ‚è‚Ü‚¹‚ñB</p>
-<h5>pointcut‘®«(”CˆÓ)</h5>
-    <p>ƒJƒ“ƒ}‹æØ‚è‚Å‘ÎÛ‚Æ‚È‚éƒƒ\ƒbƒh–¼‚ğw’è‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·Bpointcut‚ğw’è‚µ‚È‚¢ê‡‚ÍAƒRƒ“ƒ|[ƒlƒ“ƒg‚ªÀ‘•‚µ‚Ä‚¢‚éƒCƒ“ƒ^[ƒtƒF[ƒX‚Ì‚·‚×‚Ä‚Ìƒƒ\ƒbƒh‚ª‘ÎÛ‚É‚È‚è‚Ü‚·Bƒƒ\ƒbƒh–¼‚É‚Í³‹K•\Œ»(JDK1.4‚Ìregex)‚àg‚¦‚Ü‚·B</p>
-    <h5>İ’è—á</h5>
-    <p>pointcut‘®«‚ğw’è‚µ‚Äjava.util.Date‚ÌgetTime()ƒƒ\ƒbƒh‚ÆhashCode()ƒƒ\ƒbƒh‚ğ‘ÎÛ‚Æ‚·‚éê‡ˆÈ‰º‚Ì‚æ‚¤‚É‚È‚è‚Ü‚·Bpointcut‘®«‚ğw’è‚µ‚È‚¢ê‡‚Íjava.util.Date‚ªÀ‘•‚µ‚Ä‚¢‚éƒCƒ“ƒ^[ƒtƒF[ƒX‚Ìƒƒ\ƒbƒh‚ª‘ÎÛ‚É‚È‚è‚Ü‚·B</p>
+	<h2><a name=S2AOPReference>S2AOPãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹</a></h2>
+    <h3><a name=AOPMakeFile>ä½œæˆã™ã¹ããƒ•ã‚¡ã‚¤ãƒ«</a></h3>
+    <p>S2AOPã‚’ä½¿ç”¨ã™ã‚‹ã«ã¯S2Container ã®è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«(diconãƒ•ã‚¡ã‚¤ãƒ«)ã§è¡Œã„ã¾ã™ã€‚è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®é…ç½®å ´æ‰€ã¯ã€ã¨ãã«æŒ‡å®šãŒã‚ã‚Šã¾ã›ã‚“ãŒã€é€šå¸¸ã€ŒCrosscutting Concernã€ã¨åŒã˜å ´æ‰€ã«é…ç½®ã™ã‚‹ã‹ã€è¨­å®šã‚’è¡Œã†ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã¨åŒã˜å ´æ‰€ã«é…ç½®ã—ã¾ã™ã€‚</p>
+    <h3><a name=AOPExplanationFile>è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®èª¬æ˜</a></h3>
+    <h4><a name=aspecTtag>aspectã‚¿ã‚°</a></h4>
+    <p>Advice(ä»¥ä¸‹Interceptor)ã‚’ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã«çµ„ã¿è¾¼ã¿ã¾ã™ã€‚Interceptorã®æŒ‡å®šã¯ã€ãƒœãƒ‡ã‚£ã§OGNLå¼ã‚’ä½¿ã†ã‹ã€å­ã‚¿ã‚°ã§componentã‚¿ã‚°ã‚’ä½¿ã„ã¾ã™ã€‚<br />
+    â€»OGNLã«ã¤ã„ã¦ã¯ <a href="ognl.html">OGNLã‚¬ã‚¤ãƒ‰</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚1ã¤ã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã«è¤‡æ•°ã®ã‚¢ã‚¹ãƒšã‚¯ãƒˆã‚’çµ„ã¿è¾¼ã‚“ã å ´åˆã¯ã‚¢ã‚¹ãƒšã‚¯ãƒˆã®ç™»éŒ²é †ã«çµ„ã¿è¾¼ã¾ã‚Œå®Ÿè¡Œã•ã‚Œã¾ã™ã€‚è©³ã—ã„èª¬æ˜ã¯<a href="#OriginalInterceptor">ç‹¬è‡ªå®Ÿè£…ã®Interceptor</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
+<h5>æ³¨æ„ç‚¹</h5>
+<p>aspectã‚¿ã‚°ã§æŒ‡å®šã•ã‚ŒãŸã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã¯ã€ã‚³ãƒ³ãƒ†ãƒŠã®åˆæœŸåŒ–æ™‚ã«ã‚³ãƒ³ãƒ†ãƒŠã‹ã‚‰å–å¾—ã•ã‚Œã¾ã™ã€‚ãã®ãŸã‚ã€aspectã‚¿ã‚°ã§æŒ‡å®šã•ã‚ŒãŸã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®instanceå±æ€§ãŒprototypeã ã£ãŸã¨ã—ã¦ã‚‚ã€Interceptor
+ã®ãƒ¡ã‚½ãƒƒãƒ‰ãŒå‘¼ã³å‡ºã•ã‚Œã‚‹åº¦ã«æ–°ã—ã„ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãŒä½œæˆã•ã‚Œã‚‹ã‚ã‘ã§ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚</p>
+<h5>pointcutå±æ€§(ä»»æ„)</h5>
+    <p>ã‚«ãƒ³ãƒåŒºåˆ‡ã‚Šã§å¯¾è±¡ã¨ãªã‚‹ãƒ¡ã‚½ãƒƒãƒ‰åã‚’æŒ‡å®šã™ã‚‹ã“ã¨ãŒã§ãã¾ã™ã€‚pointcutã‚’æŒ‡å®šã—ãªã„å ´åˆã¯ã€ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆãŒå®Ÿè£…ã—ã¦ã„ã‚‹ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã®ã™ã¹ã¦ã®ãƒ¡ã‚½ãƒƒãƒ‰ãŒå¯¾è±¡ã«ãªã‚Šã¾ã™ã€‚ãƒ¡ã‚½ãƒƒãƒ‰åã«ã¯æ­£è¦è¡¨ç¾(JDK1.4ã®regex)ã‚‚ä½¿ãˆã¾ã™ã€‚</p>
+    <h5>è¨­å®šä¾‹</h5>
+    <p>pointcutå±æ€§ã‚’æŒ‡å®šã—ã¦java.util.Dateã®getTime()ãƒ¡ã‚½ãƒƒãƒ‰ã¨hashCode()ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆä»¥ä¸‹ã®ã‚ˆã†ã«ãªã‚Šã¾ã™ã€‚pointcutå±æ€§ã‚’æŒ‡å®šã—ãªã„å ´åˆã¯java.util.DateãŒå®Ÿè£…ã—ã¦ã„ã‚‹ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã®ãƒ¡ã‚½ãƒƒãƒ‰ãŒå¯¾è±¡ã«ãªã‚Šã¾ã™ã€‚</p>
 
 <pre>&lt;component class=&quot;java.util.Date&quot;&gt;
     &lt;aspect pointcut=&quot;getTime,hashCode&quot;&gt;
@@ -128,7 +128,7 @@
     &lt;/aspect&gt;
 &lt;/component&gt;
 </pre>
-     ³‹K•\Œ»‚ğg‚Á‚Äjava.util.Date‚Ìpublic‚Èƒƒ\ƒbƒh‚·‚×‚Ä‚ğ‘ÎÛ‚Æ‚µ‚½‚¢ê‡‚ÍAˆÈ‰º‚Ì‚æ‚¤‚Éİ’è‚µ‚Ü‚·B
+     æ­£è¦è¡¨ç¾ã‚’ä½¿ã£ã¦java.util.Dateã®publicãªãƒ¡ã‚½ãƒƒãƒ‰ã™ã¹ã¦ã‚’å¯¾è±¡ã¨ã—ãŸã„å ´åˆã¯ã€ä»¥ä¸‹ã®ã‚ˆã†ã«è¨­å®šã—ã¾ã™ã€‚
 <pre>&lt;component class=&quot;java.util.Date&quot;&gt;
     &lt;aspect pointcut=&quot;.*&quot;&gt;
         &lt;component class=&quot;org.seasar.framework.aop.interceptors.TraceInterceptor&quot;/&gt;
@@ -136,11 +136,11 @@
 &lt;/component&gt;
 </pre>
 
-    <h4><a name=interTypeTag>interTypeƒ^ƒO</a></h4>
-    <p>InterType‚ğƒRƒ“ƒ|[ƒlƒ“ƒg‚É‘g‚İ‚İ‚Ü‚·BInterType‚Ìw’è‚ÍAƒ{ƒfƒB‚ÅOGNL®‚ğg‚¤‚©Aqƒ^ƒO‚Åcomponentƒ^ƒO‚ğg‚¢‚Ü‚·B<br>
-    ¦OGNL‚É‚Â‚¢‚Ä‚Í <a href="ognl.html">OGNLƒKƒCƒh</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B1‚Â‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚É•¡”‚ÌInterType‚ğ‘g‚İ‚ñ‚¾ê‡‚ÍInterType‚Ì“o˜^‡‚É‘g‚İ‚Ü‚ê‚Ü‚·BÚ‚µ‚¢à–¾‚Í<a href="#OriginalInterType">“Æ©À‘•‚ÌInterType</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    <h4><a name=interTypeTag>interTypeã‚¿ã‚°</a></h4>
+    <p>InterTypeã‚’ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã«çµ„ã¿è¾¼ã¿ã¾ã™ã€‚InterTypeã®æŒ‡å®šã¯ã€ãƒœãƒ‡ã‚£ã§OGNLå¼ã‚’ä½¿ã†ã‹ã€å­ã‚¿ã‚°ã§componentã‚¿ã‚°ã‚’ä½¿ã„ã¾ã™ã€‚<br>
+    â€»OGNLã«ã¤ã„ã¦ã¯ <a href="ognl.html">OGNLã‚¬ã‚¤ãƒ‰</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚1ã¤ã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã«è¤‡æ•°ã®InterTypeã‚’çµ„ã¿è¾¼ã‚“ã å ´åˆã¯InterTypeã®ç™»éŒ²é †ã«çµ„ã¿è¾¼ã¾ã‚Œã¾ã™ã€‚è©³ã—ã„èª¬æ˜ã¯<a href="#OriginalInterType">ç‹¬è‡ªå®Ÿè£…ã®InterType</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
 
-    <h5>İ’è—á</h5>
+    <h5>è¨­å®šä¾‹</h5>
 <pre>&lt;component class=&quot;java.util.Date&quot;&gt;
     &lt;interType&gt;
         &lt;component class=&quot;org.seasar.framework.aop.intertype.PropertyInterType&quot;/&gt;
@@ -148,75 +148,75 @@
 &lt;/component&gt;
 </pre>
 
-    <h3><a name=AOPInterceptor>S2AOP‚Å—pˆÓ‚³‚ê‚Ä‚¢‚éInterceptor</a></h3>
-    <p>S2AOP‚Å‚ÍAˆÈ‰º‚ÌInterceptor‚ğ—pˆÓ‚µ‚Ä‚¢‚Ü‚·B‚Ü‚½“Æ©‚ÌInterceptor‚ğŠÈ’P‚Éì¬‚Å‚«‚é‚æ‚¤‚É‚È‚Á‚Ä‚¢‚Ü‚·B</p>
+    <h3><a name=AOPInterceptor>S2AOPã§ç”¨æ„ã•ã‚Œã¦ã„ã‚‹Interceptor</a></h3>
+    <p>S2AOPã§ã¯ã€ä»¥ä¸‹ã®Interceptorã‚’ç”¨æ„ã—ã¦ã„ã¾ã™ã€‚ã¾ãŸç‹¬è‡ªã®Interceptorã‚’ç°¡å˜ã«ä½œæˆã§ãã‚‹ã‚ˆã†ã«ãªã£ã¦ã„ã¾ã™ã€‚</p>
 
     <h4><a name=TraceInterceptor>(1) TraceInterceptor</a></h4>
-    <h5>ƒNƒ‰ƒX–¼</h5>
+    <h5>ã‚¯ãƒ©ã‚¹å</h5>
     <p>org.seasar.framework.aop.interceptors.TraceInterceptor</p>
-    <h5>à–¾</h5>
-    <p>ƒgƒŒ[ƒXˆ—‚ğuCrosscutting Concernv‚Æ‚µ‚Äˆµ‚¤‚½‚ß‚ÌInterceptor‚Å‚·BDateƒNƒ‰ƒX‚ÉTraceInterceptor‚ğ“K—p‚µ‚½diconƒtƒ@ƒCƒ‹‚ÍAˆÈ‰º‚Ì‚æ‚¤‚É‚È‚è‚Ü‚·B‘ÎÛ‚Æ‚·‚éƒƒ\ƒbƒh‚ÍgetTime()‚Æ‚µ‚Ü‚·B</p>
+    <h5>èª¬æ˜</h5>
+    <p>ãƒˆãƒ¬ãƒ¼ã‚¹å‡¦ç†ã‚’ã€ŒCrosscutting Concernã€ã¨ã—ã¦æ‰±ã†ãŸã‚ã®Interceptorã§ã™ã€‚Dateã‚¯ãƒ©ã‚¹ã«TraceInterceptorã‚’é©ç”¨ã—ãŸdiconãƒ•ã‚¡ã‚¤ãƒ«ã¯ã€ä»¥ä¸‹ã®ã‚ˆã†ã«ãªã‚Šã¾ã™ã€‚å¯¾è±¡ã¨ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰ã¯getTime()ã¨ã—ã¾ã™ã€‚</p>
 <pre>&lt;component class=&quot;java.util.Date&quot;&gt;
     &lt;aspect pointcut=&quot;getTime&quot;&gt;
         &lt;component class=&quot;org.seasar.framework.aop.interceptors.TraceInterceptor&quot;/&gt;
     &lt;/aspect&gt;
 &lt;/component&gt;
 </pre>
-    <p>Ú‚µ‚¢g—p•û–@‚Í<a href="#TraceInterceptorSample">TraceInterceptor</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    <p>è©³ã—ã„ä½¿ç”¨æ–¹æ³•ã¯<a href="#TraceInterceptorSample">TraceInterceptor</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
 
     <h4><a name="ThrowsInterceptor">(2) ThrowsInterceptor</a></h4>
-    <h5>ƒNƒ‰ƒX–¼</h5>
+    <h5>ã‚¯ãƒ©ã‚¹å</h5>
     <p>org.seasar.framework.aop.interceptors.ThrowsInterceptor</p>
-    <h5>à–¾</h5>
-    <p>—áŠOˆ—‚ğuCrosscutting concernv‚Æ‚µ‚Äˆµ‚¤‚½‚ß‚ÌInterceptor‚Å‚·Bg—p‚·‚é‚É‚ÍThrowsInterceptor‚ğŒp³‚µAObject handleThrowable(Throwable, MethodInvocation)‚ğÀ‘•‚·‚é‚¾‚¯‚Å‚·BThrowable‚É‚ÍThrowable‚ÌƒTƒuƒNƒ‰ƒX‚ğw’è‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B—á‚¦‚ÎhandleThrowable(IOException, MethodInvocation)‚Ì‚æ‚¤‚Éƒƒ\ƒbƒh’è‹`‚·‚é‚ÆAThrowsInterceptor‚ğ“K—p‚µ‚½ƒRƒ“ƒ|[ƒlƒ“ƒg“à‚Å”­¶‚µ‚½—áŠO‚ªIOException‚à‚µ‚­‚ÍIOException‚ÌƒTƒuƒNƒ‰ƒX‚Ìê‡‚ÉAŒÄ‚Ño‚³‚ê‚é‚±‚Æ‚É‚È‚è‚Ü‚·BhandleThrowable()‚Í‚¢‚­‚Â‚Å‚à’è‹`‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·BÚ‚µ‚¢g—p•û–@‚Í<a href="#ThrowsInterceptorSample">ThrowsInterceptor</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    <h5>èª¬æ˜</h5>
+    <p>ä¾‹å¤–å‡¦ç†ã‚’ã€ŒCrosscutting concernã€ã¨ã—ã¦æ‰±ã†ãŸã‚ã®Interceptorã§ã™ã€‚ä½¿ç”¨ã™ã‚‹ã«ã¯ThrowsInterceptorã‚’ç¶™æ‰¿ã—ã€Object handleThrowable(Throwable, MethodInvocation)ã‚’å®Ÿè£…ã™ã‚‹ã ã‘ã§ã™ã€‚Throwableã«ã¯Throwableã®ã‚µãƒ–ã‚¯ãƒ©ã‚¹ã‚’æŒ‡å®šã™ã‚‹ã“ã¨ãŒã§ãã¾ã™ã€‚ä¾‹ãˆã°handleThrowable(IOException, MethodInvocation)ã®ã‚ˆã†ã«ãƒ¡ã‚½ãƒƒãƒ‰å®šç¾©ã™ã‚‹ã¨ã€ThrowsInterceptorã‚’é©ç”¨ã—ãŸã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆå†…ã§ç™ºç”Ÿã—ãŸä¾‹å¤–ãŒIOExceptionã‚‚ã—ãã¯IOExceptionã®ã‚µãƒ–ã‚¯ãƒ©ã‚¹ã®å ´åˆã«ã€å‘¼ã³å‡ºã•ã‚Œã‚‹ã“ã¨ã«ãªã‚Šã¾ã™ã€‚handleThrowable()ã¯ã„ãã¤ã§ã‚‚å®šç¾©ã™ã‚‹ã“ã¨ãŒã§ãã¾ã™ã€‚è©³ã—ã„ä½¿ç”¨æ–¹æ³•ã¯<a href="#ThrowsInterceptorSample">ThrowsInterceptor</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
 
     <h4><a name=ToStringInterceptor>(3) ToStringInterceptor</a></h4>
-    <h5>ƒNƒ‰ƒX–¼</h5>
+    <h5>ã‚¯ãƒ©ã‚¹å</h5>
     <p>org.seasar.framework.aop.interceptors.ToStringInterceptor</p>
-    <h5>à–¾</h5>
-    <p>ToString()ƒƒ\ƒbƒh‚É‚æ‚é•¶š—ñ‰»ˆ—‚ğuCrosscutting Concernv‚Æ‚µ‚Äˆµ‚¤‚½‚ß‚ÌInterceptor‚Å‚·B</p>
+    <h5>èª¬æ˜</h5>
+    <p>ToString()ãƒ¡ã‚½ãƒƒãƒ‰ã«ã‚ˆã‚‹æ–‡å­—åˆ—åŒ–å‡¦ç†ã‚’ã€ŒCrosscutting Concernã€ã¨ã—ã¦æ‰±ã†ãŸã‚ã®Interceptorã§ã™ã€‚</p>
 <pre>&lt;component class=&quot;java.util.Date&quot;&gt;
     &lt;aspect pointcut=&quot;toString&quot;&gt;
         &lt;component class=&quot;org.seasar.framework.aop.interceptors.ToStringInterceptor&quot;/&gt;
     &lt;/aspect&gt;
 &lt;/component&gt;
 </pre>
-    <p>Ú‚µ‚¢g—p•û–@‚Í<a href="#ToStringInterceptorSample">ToStringInterceptor</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    <p>è©³ã—ã„ä½¿ç”¨æ–¹æ³•ã¯<a href="#ToStringInterceptorSample">ToStringInterceptor</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
 
     <h4><a name="MockInterceptor">(4) MockInterceptor</a></h4>
-    <h5>ƒNƒ‰ƒX–¼</h5>
+    <h5>ã‚¯ãƒ©ã‚¹å</h5>
     <p>org.seasar.framework.aop.interceptors.MockInterceptor</p>
-    <h5>à–¾</h5>
-    <p>Mock‚ğg‚Á‚½ƒeƒXƒg‚ğŠÈ’P‚És‚¤‚½‚ß‚ÌInterceptor‚Å‚·BÚ‚µ‚¢à–¾‚ÍƒeƒXƒg‹Z–@‚Ì<a href="http://homepage3.nifty.com/seasar/testtech.html#MockMake">ƒ‚ƒbƒN‚ğì¬‚·‚é‚½‚ß‚Ìİ’è</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    <h5>èª¬æ˜</h5>
+    <p>Mockã‚’ä½¿ã£ãŸãƒ†ã‚¹ãƒˆã‚’ç°¡å˜ã«è¡Œã†ãŸã‚ã®Interceptorã§ã™ã€‚è©³ã—ã„èª¬æ˜ã¯ãƒ†ã‚¹ãƒˆæŠ€æ³•ã®<a href="http://homepage3.nifty.com/seasar/testtech.html#MockMake">ãƒ¢ãƒƒã‚¯ã‚’ä½œæˆã™ã‚‹ãŸã‚ã®è¨­å®š</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
 
     <h4><a name="DelegateInterceptor">(5) DelegateInterceptor</a></h4>
-    <h5>ƒNƒ‰ƒX–¼</h5>
+    <h5>ã‚¯ãƒ©ã‚¹å</h5>
     <p>org.seasar.framework.aop.interceptors.DelegateInterceptor</p>
-    <h5>à–¾</h5>
-    <p>ƒƒ\ƒbƒhŒÄ‚Ño‚µ‚ğ•Ê‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚ÉˆÏ÷‚·‚é‚½‚ß‚ÌInterceptor‚Å‚·Bg—p•û–@‚ÍDelegateInterceptor‚ÌtargetƒvƒƒpƒeƒB‚ÉˆÏ÷‚µ‚½‚¢‘Šè‚ğw’è‚µ‚Ü‚·BˆÏ÷‚·‚é‚Æ‚«‚Ìƒƒ\ƒbƒh–¼‚ªˆÙ‚È‚éê‡‚É‚ÍADelegateInterceptor#addMethodNameMap(String
-methodName, String targetMethodName)‚Åw’è‚µ‚Ü‚·B—á‚¦‚ÎAbar()‚Æ‚¢‚¤ƒƒ\ƒbƒh‚ğfoo.bar2()‚ÉˆÏ÷‚·‚éê‡ADelegateInterceptor#setTarget(foo)CDelegateInterceptor#addMethodNameMap(&quot;bar&quot;,
-&quot;bar2&quot;)‚Ì‚æ‚¤‚Éw’è‚µ‚Ü‚·BÚ‚µ‚¢g—p•û–@‚Í<a href="#DelegateInterceptorSample">DelegateInterceptor</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
-<h5>’ˆÓ</h5>
-<p>targetƒvƒƒpƒeƒB‚Éw’è‚³‚ê‚½ƒRƒ“ƒ|[ƒlƒ“ƒg‚ÍAƒRƒ“ƒeƒi‚Ì‰Šú‰»‚ÉƒRƒ“ƒeƒi‚©‚çæ“¾‚³‚ê‚Ü‚·B‚±‚Ì‚½‚ßAtargetƒvƒƒpƒeƒB‚Éw’è‚³‚ê‚½ƒRƒ“ƒ|[ƒlƒ“ƒg‚Ìinstance‘®«‚ªprototype‚Å‚ ‚Á‚Ä‚àAí‚É“¯‚¶ƒCƒ“ƒXƒ^ƒ“ƒX‚ªg‚í‚ê‚Ü‚·Bƒƒ\ƒbƒhŒÄ‚Ño‚µ‚Ì“x‚ÉV‚µ‚¢ƒCƒ“ƒXƒ^ƒ“ƒX‚ğƒRƒ“ƒeƒi‚©‚çæ“¾‚µ‚½‚¢ê‡‚ÍŸ‚ÌPrototypeDelegateInterceptor‚ğg—p‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    <h5>èª¬æ˜</h5>
+    <p>ãƒ¡ã‚½ãƒƒãƒ‰å‘¼ã³å‡ºã—ã‚’åˆ¥ã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã«å§”è­²ã™ã‚‹ãŸã‚ã®Interceptorã§ã™ã€‚ä½¿ç”¨æ–¹æ³•ã¯DelegateInterceptorã®targetãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã«å§”è­²ã—ãŸã„ç›¸æ‰‹ã‚’æŒ‡å®šã—ã¾ã™ã€‚å§”è­²ã™ã‚‹ã¨ãã®ãƒ¡ã‚½ãƒƒãƒ‰åãŒç•°ãªã‚‹å ´åˆã«ã¯ã€DelegateInterceptor#addMethodNameMap(String
+methodName, String targetMethodName)ã§æŒ‡å®šã—ã¾ã™ã€‚ä¾‹ãˆã°ã€bar()ã¨ã„ã†ãƒ¡ã‚½ãƒƒãƒ‰ã‚’foo.bar2()ã«å§”è­²ã™ã‚‹å ´åˆã€DelegateInterceptor#setTarget(foo)ï¼ŒDelegateInterceptor#addMethodNameMap(&quot;bar&quot;,
+&quot;bar2&quot;)ã®ã‚ˆã†ã«æŒ‡å®šã—ã¾ã™ã€‚è©³ã—ã„ä½¿ç”¨æ–¹æ³•ã¯<a href="#DelegateInterceptorSample">DelegateInterceptor</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
+<h5>æ³¨æ„</h5>
+<p>targetãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã«æŒ‡å®šã•ã‚ŒãŸã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã¯ã€ã‚³ãƒ³ãƒ†ãƒŠã®åˆæœŸåŒ–æ™‚ã«ã‚³ãƒ³ãƒ†ãƒŠã‹ã‚‰å–å¾—ã•ã‚Œã¾ã™ã€‚ã“ã®ãŸã‚ã€targetãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã«æŒ‡å®šã•ã‚ŒãŸã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®instanceå±æ€§ãŒprototypeã§ã‚ã£ã¦ã‚‚ã€å¸¸ã«åŒã˜ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãŒä½¿ã‚ã‚Œã¾ã™ã€‚ãƒ¡ã‚½ãƒƒãƒ‰å‘¼ã³å‡ºã—ã®åº¦ã«æ–°ã—ã„ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ã‚³ãƒ³ãƒ†ãƒŠã‹ã‚‰å–å¾—ã—ãŸã„å ´åˆã¯æ¬¡ã®PrototypeDelegateInterceptorã‚’ä½¿ç”¨ã—ã¦ãã ã•ã„ã€‚</p>
 <h4><a name="PrototypeDelegateInterceptor">(5) PrototypeDelegateInterceptor</a></h4>
-    <h5>ƒNƒ‰ƒX–¼</h5>
+    <h5>ã‚¯ãƒ©ã‚¹å</h5>
     <p>org.seasar.framework.aop.interceptors.PrototypeDelegateInterceptor</p>
-    <h5>à–¾</h5>
-    <p>ƒƒ\ƒbƒhŒÄ‚Ño‚µ‚ğ•Ê‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚ÉˆÏ÷‚·‚é‚½‚ß‚ÌInterceptor‚Å‚·Bƒƒ\ƒbƒhŒÄ‚Ño‚µ‚Ì“x‚ÉƒRƒ“ƒ|[ƒlƒ“ƒg‚ğƒRƒ“ƒeƒi‚©‚çæ“¾‚µ‚Ü‚·Bg—p•û–@‚ÍPrototypeDelegateInterceptor‚ÌtargetNameƒvƒƒpƒeƒB‚ÉˆÏ÷‚µ‚½‚¢‘Šè‚Ì–¼‘O‚ğw’è‚µ‚Ü‚·BˆÏ÷‚·‚é‚Æ‚«‚Ìƒƒ\ƒbƒh–¼‚ªˆÙ‚È‚éê‡‚É‚ÍAPrototypeDelegateInterceptor#addMethodNameMap(String
-methodName, String targetMethodName)‚Åw’è‚µ‚Ü‚·B—á‚¦‚ÎAbar()‚Æ‚¢‚¤ƒƒ\ƒbƒh‚ğfoo.bar2()‚ÉˆÏ÷‚·‚éê‡APrototypeDelegateInterceptor#setTarget(foo)CPrototypeDelegateInterceptor#addMethodNameMap(&quot;bar&quot;,
-&quot;bar2&quot;)‚Ì‚æ‚¤‚Éw’è‚µ‚Ü‚·BÚ‚µ‚¢g—p•û–@‚Í<a href="#PrototypeDelegateInterceptorSample">PrototypeDelegateInterceptor</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    <h5>èª¬æ˜</h5>
+    <p>ãƒ¡ã‚½ãƒƒãƒ‰å‘¼ã³å‡ºã—ã‚’åˆ¥ã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã«å§”è­²ã™ã‚‹ãŸã‚ã®Interceptorã§ã™ã€‚ãƒ¡ã‚½ãƒƒãƒ‰å‘¼ã³å‡ºã—ã®åº¦ã«ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’ã‚³ãƒ³ãƒ†ãƒŠã‹ã‚‰å–å¾—ã—ã¾ã™ã€‚ä½¿ç”¨æ–¹æ³•ã¯PrototypeDelegateInterceptorã®targetNameãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã«å§”è­²ã—ãŸã„ç›¸æ‰‹ã®åå‰ã‚’æŒ‡å®šã—ã¾ã™ã€‚å§”è­²ã™ã‚‹ã¨ãã®ãƒ¡ã‚½ãƒƒãƒ‰åãŒç•°ãªã‚‹å ´åˆã«ã¯ã€PrototypeDelegateInterceptor#addMethodNameMap(String
+methodName, String targetMethodName)ã§æŒ‡å®šã—ã¾ã™ã€‚ä¾‹ãˆã°ã€bar()ã¨ã„ã†ãƒ¡ã‚½ãƒƒãƒ‰ã‚’foo.bar2()ã«å§”è­²ã™ã‚‹å ´åˆã€PrototypeDelegateInterceptor#setTarget(foo)ï¼ŒPrototypeDelegateInterceptor#addMethodNameMap(&quot;bar&quot;,
+&quot;bar2&quot;)ã®ã‚ˆã†ã«æŒ‡å®šã—ã¾ã™ã€‚è©³ã—ã„ä½¿ç”¨æ–¹æ³•ã¯<a href="#PrototypeDelegateInterceptorSample">PrototypeDelegateInterceptor</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
 
     <h4><a name="SyncInterceptor">(7) SyncInterceptor</a></h4>
-    <h5>ƒNƒ‰ƒX–¼</h5>
+    <h5>ã‚¯ãƒ©ã‚¹å</h5>
     <p>org.seasar.framework.aop.interceptors.SyncInterceptor</p>
-    <h5>à–¾</h5>
-    <p>ƒƒ\ƒbƒhŒÄ‚Ño‚µ‚ğAspect‚ğg‚Á‚Ä“¯Šú‰»‚·‚é‚½‚ß‚ÌInterceptor‚Å‚·Bƒ\[ƒX‚ğ•ÏX‚·‚é‚±‚Æ‚È‚­Aƒƒ\ƒbƒhŒÄ‚Ño‚µ‚ğ“¯Šú‰»‚Å‚«‚Ü‚·BÚ‚µ‚¢g—p•û–@‚Í<a href="#SyncInterceptorSample">SyncInterceptor</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    <h5>èª¬æ˜</h5>
+    <p>ãƒ¡ã‚½ãƒƒãƒ‰å‘¼ã³å‡ºã—ã‚’Aspectã‚’ä½¿ã£ã¦åŒæœŸåŒ–ã™ã‚‹ãŸã‚ã®Interceptorã§ã™ã€‚ã‚½ãƒ¼ã‚¹ã‚’å¤‰æ›´ã™ã‚‹ã“ã¨ãªãã€ãƒ¡ã‚½ãƒƒãƒ‰å‘¼ã³å‡ºã—ã‚’åŒæœŸåŒ–ã§ãã¾ã™ã€‚è©³ã—ã„ä½¿ç”¨æ–¹æ³•ã¯<a href="#SyncInterceptorSample">SyncInterceptor</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
 
     <h4><a name=InterceptorChain>(8) InterceptorChain</a></h4>
-    <h5>ƒNƒ‰ƒX–¼</h5>
+    <h5>ã‚¯ãƒ©ã‚¹å</h5>
     <p>org.seasar.framework.aop.interceptors.InterceptorChain</p>
-    <h5>à–¾</h5>
-    <p>•¡”‚ÌInterceptor‚ğƒOƒ‹[ƒsƒ“ƒO‰»‚µAÄ—˜—p‚µ‚â‚·‚­‚µ‚Ü‚·B•¡”‚ÌInterceptor‚Ì‘g‚İ‡‚í‚¹‚ğ•¡”ƒRƒ“ƒ|[ƒlƒ“ƒg‚É“K—p‚·‚éê‡‚ÍAInterceptorChain‚Å•¡”‚ÌInterceptor‚ğ1‚Â‚É‚Ü‚Æ‚ß‚ÄAŠeƒRƒ“ƒ|[ƒlƒ“ƒg‚É‚ÍInterceptorChain‚ğw’è‚·‚é‚æ‚¤‚É‚·‚é‚Æ‚¢‚¢‚Å‚µ‚å‚¤B</p>
+    <h5>èª¬æ˜</h5>
+    <p>è¤‡æ•°ã®Interceptorã‚’ã‚°ãƒ«ãƒ¼ãƒ”ãƒ³ã‚°åŒ–ã—ã€å†åˆ©ç”¨ã—ã‚„ã™ãã—ã¾ã™ã€‚è¤‡æ•°ã®Interceptorã®çµ„ã¿åˆã‚ã›ã‚’è¤‡æ•°ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã«é©ç”¨ã™ã‚‹å ´åˆã¯ã€InterceptorChainã§è¤‡æ•°ã®Interceptorã‚’1ã¤ã«ã¾ã¨ã‚ã¦ã€å„ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã«ã¯InterceptorChainã‚’æŒ‡å®šã™ã‚‹ã‚ˆã†ã«ã™ã‚‹ã¨ã„ã„ã§ã—ã‚‡ã†ã€‚</p>
 	<pre>&lt;component name=&quot;interceptor1&quot; .../&gt;
 &lt;component name=&quot;interceptor2&quot; .../&gt;
 &lt;component name=&quot;interceptor3&quot; .../&gt;<br>&lt;component name=&quot;chain&quot; class=&quot;org.seasar.framework.aop.interceptors.InterceptorChain&quot;&gt;<br>    &lt;initMethod name=&quot;add&quot;&gt;&lt;arg&gt;interceptor1&lt;/arg&gt;&lt;/initMethod&gt;<br>    &lt;initMethod name=&quot;add&quot;&gt;&lt;arg&gt;interceptor2&lt;/arg&gt;&lt;/initMethod&gt;<br>    &lt;initMethod name=&quot;add&quot;&gt;&lt;arg&gt;interceptor3&lt;/arg&gt;&lt;/initMethod&gt;<br>&lt;/component&gt;
@@ -228,11 +228,11 @@ methodName, String targetMethodName)‚Åw’è‚µ‚Ü‚·B—á‚¦‚ÎAbar()‚Æ‚¢‚¤ƒƒ\ƒbƒh‚ğf
 &lt;/component&gt;</pre>
 
     <h4><a name=InterceptorLifecycleAdapter>(9) InterceptorLifecycleAdapter</a></h4>
-    <h5>ƒNƒ‰ƒX–¼</h5>
+    <h5>ã‚¯ãƒ©ã‚¹å</h5>
     <p>org.seasar.framework.aop.interceptors.InterceptorLifecycleAdapter</p>
-    <h5>à–¾</h5>
-    <p>Interceptor‚ÍƒAƒXƒyƒNƒg‚ğƒNƒ‰ƒX‚É‘g‚İ‚ŞÛ‚ÉƒCƒ“ƒXƒ^ƒ“ƒX‰»‚³‚ê‚é‚½‚ßAsingletonˆÈŠO‚Ìê‡‚ÍˆÓ}‚µ‚½‚Æ‚¨‚è‚É“®ì‚µ‚Ü‚¹‚ñB<br>
-    ‚±‚Ì‚æ‚¤‚Èê‡‚ÍAInterceptorLifecycleAdapter‚ğMethodInterceptor‚Ìinvoke()ƒƒ\ƒbƒh‚É“K—p‚µ‚Ü‚·D
+    <h5>èª¬æ˜</h5>
+    <p>Interceptorã¯ã‚¢ã‚¹ãƒšã‚¯ãƒˆã‚’ã‚¯ãƒ©ã‚¹ã«çµ„ã¿è¾¼ã‚€éš›ã«ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹åŒ–ã•ã‚Œã‚‹ãŸã‚ã€singletonä»¥å¤–ã®å ´åˆã¯æ„å›³ã—ãŸã¨ãŠã‚Šã«å‹•ä½œã—ã¾ã›ã‚“ã€‚<br>
+    ã“ã®ã‚ˆã†ãªå ´åˆã¯ã€InterceptorLifecycleAdapterã‚’MethodInterceptorã®invoke()ãƒ¡ã‚½ãƒƒãƒ‰ã«é©ç”¨ã—ã¾ã™ï¼
     </p>
 	<pre>&lt;component name=&quot;myInterceptor&quot; instance="prototype" .../&gt;
     &lt;aspect pointcut="invoke"&gt;
@@ -243,55 +243,55 @@ methodName, String targetMethodName)‚Åw’è‚µ‚Ü‚·B—á‚¦‚ÎAbar()‚Æ‚¢‚¤ƒƒ\ƒbƒh‚ğf
     &lt;aspect&gt;myInterceptor&lt;/aspect&gt;
 &lt;/component&gt;</pre>
 
-<h3><a name="OriginalInterceptor">“Æ©À‘•‚É‚æ‚éInterceptor</a></h3>
-    <h4>à–¾</h4>
-    <p>“Æ©‚ÉInterceptor‚ğì¬‚·‚éê‡‚ÍAŸ‚ÌƒCƒ“ƒ^[ƒtƒF[ƒX‚Ü‚½‚ÍA’ŠÛƒNƒ‰ƒX‚ğÀ‘•‚µ‚Ü‚·B</p>
+<h3><a name="OriginalInterceptor">ç‹¬è‡ªå®Ÿè£…ã«ã‚ˆã‚‹Interceptor</a></h3>
+    <h4>èª¬æ˜</h4>
+    <p>ç‹¬è‡ªã«Interceptorã‚’ä½œæˆã™ã‚‹å ´åˆã¯ã€æ¬¡ã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã¾ãŸã¯ã€æŠ½è±¡ã‚¯ãƒ©ã‚¹ã‚’å®Ÿè£…ã—ã¾ã™ã€‚</p>
     <dl>
     	<dt style="text-indent:1em;">org.aopalliance.intercept.MethodInterceptor</dt>
     	<dt style="text-indent:1em;">org.seasar.framework.aop.interceptors.AbstractInterceptor</dt>
     </dl>
-    <p>‚Ç‚¿‚ç‚Ìê‡‚àÀ‘•‚·‚éƒƒ\ƒbƒh‚ÍAˆÈ‰º‚Ìinvoke()ƒƒ\ƒbƒh‚Ì‚P‚Â‚¾‚¯‚Å‚·B</p>
+    <p>ã©ã¡ã‚‰ã®å ´åˆã‚‚å®Ÿè£…ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰ã¯ã€ä»¥ä¸‹ã®invoke()ãƒ¡ã‚½ãƒƒãƒ‰ã®ï¼‘ã¤ã ã‘ã§ã™ã€‚</p>
     <dl>
     	<dt style="text-indent:1em;">public Object invoke(MethodInvocation invocation) throws Throwable</dt>
     </dl>
-    <p>AbstractInterceptor‚ÍAMethodInterceptor‚ğimplements‚µ‚½’ŠÛƒNƒ‰ƒX‚Å‚·BAbstractInterceptor‚É‚ÍAProxyƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚écreateProxy()ƒƒ\ƒbƒh‚ÆƒAƒXƒyƒNƒg‚ğ“K—p‚·‚éƒNƒ‰ƒX‚ğæ“¾‚·‚égetTargetClass()ƒƒ\ƒbƒh‚ª‚ ‚è‚Ü‚·BƒAƒXƒyƒNƒg‚ğ“K—p‚µ‚½ƒNƒ‰ƒX–¼‚ğ•K—v‚Æ‚·‚éInterceptor(—á‚¦‚ÎAƒƒOo—Í‚ğs‚¤Interceptor)‚ğì¬‚·‚éê‡‚ÍAAbstractInterceptor‚ğg—p‚·‚é‚±‚Æ‚ÅŠÈ’P‚ÉƒNƒ‰ƒX–¼‚ğæ“¾‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B</p>
+    <p>AbstractInterceptorã¯ã€MethodInterceptorã‚’implementsã—ãŸæŠ½è±¡ã‚¯ãƒ©ã‚¹ã§ã™ã€‚AbstractInterceptorã«ã¯ã€Proxyã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹createProxy()ãƒ¡ã‚½ãƒƒãƒ‰ã¨ã‚¢ã‚¹ãƒšã‚¯ãƒˆã‚’é©ç”¨ã™ã‚‹ã‚¯ãƒ©ã‚¹ã‚’å–å¾—ã™ã‚‹getTargetClass()ãƒ¡ã‚½ãƒƒãƒ‰ãŒã‚ã‚Šã¾ã™ã€‚ã‚¢ã‚¹ãƒšã‚¯ãƒˆã‚’é©ç”¨ã—ãŸã‚¯ãƒ©ã‚¹åã‚’å¿…è¦ã¨ã™ã‚‹Interceptor(ä¾‹ãˆã°ã€ãƒ­ã‚°å‡ºåŠ›ã‚’è¡Œã†Interceptor)ã‚’ä½œæˆã™ã‚‹å ´åˆã¯ã€AbstractInterceptorã‚’ä½¿ç”¨ã™ã‚‹ã“ã¨ã§ç°¡å˜ã«ã‚¯ãƒ©ã‚¹åã‚’å–å¾—ã™ã‚‹ã“ã¨ãŒã§ãã¾ã™ã€‚</p>
     <dl>
     	<dt style="text-indent:1em;">public Object createProxy(Class proxyClass)</dt>
     	<dt style="text-indent:1em;">protected Class getTargetClass(MethodInvocation invocation)</dt>
     </dl>
-   	<p>MethodInvocation‚ÌgetThis()AgetMethod()AgetArguments()‚Å‘ÎÛ‚Æ‚È‚éƒIƒuƒWƒFƒNƒgAƒƒ\ƒbƒhAˆø”‚ğæ“¾‚Å‚«‚Ü‚·BgetThis()‚ÅƒNƒ‰ƒX–¼‚ğæ“¾‚·‚é‚ÆƒoƒCƒgƒR[ƒh‚Å‘g‚İ‚Ü‚ê‚½ƒNƒ‰ƒX–¼‚ªæ“¾‚³‚ê‚Ü‚·Bproceed()‚ğŒÄ‚Ño‚·‚ÆÀÛ‚Ìƒƒ\ƒbƒh‚ªŒÄ‚Ño‚³‚êÀsŒ‹‰Ê‚ğæ“¾‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·BˆÈ‰º‚Ì‚æ‚¤‚È“Æ©‚ÌInterceptor‚ğì¬‚µ‚½‚Æ‚µ‚Ü‚·B</p>
+   	<p>MethodInvocationã®getThis()ã€getMethod()ã€getArguments()ã§å¯¾è±¡ã¨ãªã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€ãƒ¡ã‚½ãƒƒãƒ‰ã€å¼•æ•°ã‚’å–å¾—ã§ãã¾ã™ã€‚getThis()ã§ã‚¯ãƒ©ã‚¹åã‚’å–å¾—ã™ã‚‹ã¨ãƒã‚¤ãƒˆã‚³ãƒ¼ãƒ‰ã§çµ„ã¿è¾¼ã¾ã‚ŒãŸã‚¯ãƒ©ã‚¹åãŒå–å¾—ã•ã‚Œã¾ã™ã€‚proceed()ã‚’å‘¼ã³å‡ºã™ã¨å®Ÿéš›ã®ãƒ¡ã‚½ãƒƒãƒ‰ãŒå‘¼ã³å‡ºã•ã‚Œå®Ÿè¡Œçµæœã‚’å–å¾—ã™ã‚‹ã“ã¨ãŒã§ãã¾ã™ã€‚ä»¥ä¸‹ã®ã‚ˆã†ãªç‹¬è‡ªã®Interceptorã‚’ä½œæˆã—ãŸã¨ã—ã¾ã™ã€‚</p>
 
-    <h4>’ˆÓ“_</h4>
+    <h4>æ³¨æ„ç‚¹</h4>
     <p>
-    Interceptor‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ÍAƒRƒ“ƒeƒi‚Ì‰Šú‰»‚Éì¬‚³‚ê‚ÄƒNƒ‰ƒX‚É‘g‚İ‚Ü‚ê‚Ü‚·B
-    ‚»‚Ì‚½‚ßAInterceptor‚ğ’è‹`‚µ‚½&lt;component&gt;—v‘f‚Ìinstance‘®«‚ªprototype“™‚¾‚Á‚½‚Æ‚µ‚Ä‚àA
-    Interceptor‚Ìƒƒ\ƒbƒh‚ªŒÄ‚Ño‚³‚ê‚é“x‚ÉV‚µ‚¢ƒCƒ“ƒXƒ^ƒ“ƒX‚ªì¬‚³‚ê‚é‚í‚¯‚Å‚Í‚ ‚è‚Ü‚¹‚ñB<br>
-    instance‘®«‚ªsingletonˆÈŠO‚Å‚È‚¢‚Æ³‚µ‚­“®ì‚µ‚È‚¢Interceptor‚É‚Í<a href="#InterceptorLifecycleAdapter">InterceptorLifecycleAdapter</a>‚ğ“K—p‚µ‚Ä‚­‚¾‚³‚¢B
+    Interceptorã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¯ã€ã‚³ãƒ³ãƒ†ãƒŠã®åˆæœŸåŒ–æ™‚ã«ä½œæˆã•ã‚Œã¦ã‚¯ãƒ©ã‚¹ã«çµ„ã¿è¾¼ã¾ã‚Œã¾ã™ã€‚
+    ãã®ãŸã‚ã€Interceptorã‚’å®šç¾©ã—ãŸ&lt;component&gt;è¦ç´ ã®instanceå±æ€§ãŒprototypeç­‰ã ã£ãŸã¨ã—ã¦ã‚‚ã€
+    Interceptorã®ãƒ¡ã‚½ãƒƒãƒ‰ãŒå‘¼ã³å‡ºã•ã‚Œã‚‹åº¦ã«æ–°ã—ã„ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãŒä½œæˆã•ã‚Œã‚‹ã‚ã‘ã§ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚<br>
+    instanceå±æ€§ãŒsingletonä»¥å¤–ã§ãªã„ã¨æ­£ã—ãå‹•ä½œã—ãªã„Interceptorã«ã¯<a href="#InterceptorLifecycleAdapter">InterceptorLifecycleAdapter</a>ã‚’é©ç”¨ã—ã¦ãã ã•ã„ã€‚
     </p>
 
-    <h4>ì¬—á</h4>
+    <h4>ä½œæˆä¾‹</h4>
     <img src="images/aop02.gif" width="515" height="263" border="0"/>
-    <p>MethodInvocation#proceed()‚ğŒÄ‚Ô‘O‚ÆŒã‚Å2•ª‚³‚êAŒÄ‚Ô‘O‚Í Before‚ÌŒÂŠ‚ğÀs‚µAŒÄ‚ñ‚¾Œã‚ÍAfter‚ÌŒÂŠ‚ğÀs‚µ‚Ü‚·B1‚Â‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚É•¡”‚ÌƒAƒXƒyƒNƒg‚ª’è‹`‚³‚ê‚Ä‚¢‚éê‡‚ÍAˆÈ‰º‚Ì‚æ‚¤Às‚³‚ê‚Ü‚·B</p>
+    <p>MethodInvocation#proceed()ã‚’å‘¼ã¶å‰ã¨å¾Œã§2åˆ†ã•ã‚Œã€å‘¼ã¶å‰ã¯ Beforeã®å€‹æ‰€ã‚’å®Ÿè¡Œã—ã€å‘¼ã‚“ã å¾Œã¯Afterã®å€‹æ‰€ã‚’å®Ÿè¡Œã—ã¾ã™ã€‚1ã¤ã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã«è¤‡æ•°ã®ã‚¢ã‚¹ãƒšã‚¯ãƒˆãŒå®šç¾©ã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ã€ä»¥ä¸‹ã®ã‚ˆã†å®Ÿè¡Œã•ã‚Œã¾ã™ã€‚</p>
    	<ol>
-    	<li>Aspect‚Ì“o˜^‡‚ÉMethodInterceptor‚Ìbefore•”•ª‚ªÀs‚³‚ê‚Ü‚·B</li>
-    	<li>ÅŒã‚ÌMethodInterceptor‚Ìbefore•”•ª‚ğÀs‚µ‚½Œã‚ÉƒRƒ“ƒ|[ƒlƒ“ƒg©g‚Ìƒƒ\ƒbƒh‚ªŒÄ‚Ño‚³‚ê‚Ü‚·B</li>
-    	<li>Aspect‚Ì“o˜^‚Ì‹t‡‚ÉMethodInterceptor‚Ìafter•”•ª‚ªÀs‚³‚ê‚Ü‚·B</li>
+    	<li>Aspectã®ç™»éŒ²é †ã«MethodInterceptorã®beforeéƒ¨åˆ†ãŒå®Ÿè¡Œã•ã‚Œã¾ã™ã€‚</li>
+    	<li>æœ€å¾Œã®MethodInterceptorã®beforeéƒ¨åˆ†ã‚’å®Ÿè¡Œã—ãŸå¾Œã«ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆè‡ªèº«ã®ãƒ¡ã‚½ãƒƒãƒ‰ãŒå‘¼ã³å‡ºã•ã‚Œã¾ã™ã€‚</li>
+    	<li>Aspectã®ç™»éŒ²ã®é€†é †ã«MethodInterceptorã®afteréƒ¨åˆ†ãŒå®Ÿè¡Œã•ã‚Œã¾ã™ã€‚</li>
    	</ol>
-    <p>Ú‚µ‚¢g—p•û–@‚Í<a href="#OriginalInterceptorSample">“Æ©À‘•‚É‚æ‚éInterceptor</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    <p>è©³ã—ã„ä½¿ç”¨æ–¹æ³•ã¯<a href="#OriginalInterceptorSample">ç‹¬è‡ªå®Ÿè£…ã«ã‚ˆã‚‹Interceptor</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
 
-<h3><a name="AOPInterType">S2AOP‚Å—pˆÓ‚³‚ê‚Ä‚¢‚éInterType</a></h3>
-    <p>S2AOP‚Å‚ÍAˆÈ‰º‚ÌInterType‚ğ—pˆÓ‚µ‚Ä‚¢‚Ü‚·B‚Ü‚½“Æ©‚ÌInterType‚ğì¬‚Å‚«‚é‚æ‚¤‚É‚È‚Á‚Ä‚¢‚Ü‚·B</p>
+<h3><a name="AOPInterType">S2AOPã§ç”¨æ„ã•ã‚Œã¦ã„ã‚‹InterType</a></h3>
+    <p>S2AOPã§ã¯ã€ä»¥ä¸‹ã®InterTypeã‚’ç”¨æ„ã—ã¦ã„ã¾ã™ã€‚ã¾ãŸç‹¬è‡ªã®InterTypeã‚’ä½œæˆã§ãã‚‹ã‚ˆã†ã«ãªã£ã¦ã„ã¾ã™ã€‚</p>
 
     <h4><a name="PropertyInterType">(1) PropertyTraceInterType</a></h4>
-    <h5>ƒNƒ‰ƒX–¼</h5>
+    <h5>ã‚¯ãƒ©ã‚¹å</h5>
     <p>org.seasar.framework.aop.intertype.PropertyInterType</p>
-    <h5>à–¾</h5>
-    <p>ƒtƒB[ƒ‹ƒh‚É‘Î‚·‚ésetter / getterƒƒ\ƒbƒh‚ğ’Ç‰Á‚·‚éInterType‚Å‚·B<br>
-PropertyInterType‚ğg‚¤‚É‚ÍAS2Tiger‚Ü‚½‚ÍS2Backport175‚ª•K—v‚Å‚·B</p>
-    <h5>’ˆÓ“_</h5>
+    <h5>èª¬æ˜</h5>
+    <p>ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã«å¯¾ã™ã‚‹setter / getterãƒ¡ã‚½ãƒƒãƒ‰ã‚’è¿½åŠ ã™ã‚‹InterTypeã§ã™ã€‚<br>
+PropertyInterTypeã‚’ä½¿ã†ã«ã¯ã€S2Tigerã¾ãŸã¯S2Backport175ãŒå¿…è¦ã§ã™ã€‚</p>
+    <h5>æ³¨æ„ç‚¹</h5>
     <p>
-    private‚ÌƒtƒB[ƒ‹ƒh‚É‘Î‚·‚égetter / setter‚Íì¬‚³‚ê‚Ü‚¹‚ñB<br>
-    ƒtƒB[ƒ‹ƒh‚ÍƒfƒtƒHƒ‹ƒg(ƒpƒbƒP[ƒWƒXƒR[ƒv)‚Ü‚½‚Íprotected‚É‚µ‚Ä‚­‚¾‚³‚¢B
+    privateã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã«å¯¾ã™ã‚‹getter / setterã¯ä½œæˆã•ã‚Œã¾ã›ã‚“ã€‚<br>
+    ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã¯ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ(ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã‚¹ã‚³ãƒ¼ãƒ—)ã¾ãŸã¯protectedã«ã—ã¦ãã ã•ã„ã€‚
     </p>
 
 <pre>&lt;component class=&quot;Hoge&quot;&gt;
@@ -299,8 +299,8 @@ PropertyInterType‚ğg‚¤‚É‚ÍAS2Tiger‚Ü‚½‚ÍS2Backport175‚ª•K—v‚Å‚·B</p>
         &lt;component class=&quot;org.seasar.framework.aop.interType.PropertyInterType&quot;/&gt;
     &lt;/interType&gt;
 &lt;/component&gt;</pre>
-<p>PropertyInterType‚ğ“K—p‚·‚éƒNƒ‰ƒX‚É‚ÍAsetter / getter‚ğ’Ç‰Á‚µ‚½‚¢ƒtƒB[ƒ‹ƒh‚ÉPropertyƒAƒmƒe[ƒVƒ‡ƒ“‚ğw’è‚µ‚Ü‚·B<br>
-TigerƒAƒmƒe[ƒVƒ‡ƒ“‚Å‚ÍŸ‚Ì‚æ‚¤‚É‚È‚è‚Ü‚·B</p>
+<p>PropertyInterTypeã‚’é©ç”¨ã™ã‚‹ã‚¯ãƒ©ã‚¹ã«ã¯ã€setter / getterã‚’è¿½åŠ ã—ãŸã„ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã«Propertyã‚¢ãƒãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ã‚’æŒ‡å®šã—ã¾ã™ã€‚<br>
+Tigerã‚¢ãƒãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ã§ã¯æ¬¡ã®ã‚ˆã†ã«ãªã‚Šã¾ã™ã€‚</p>
 <pre>import org.seasar.framework.container.annotation.tiger.Property;
 import org.seasar.framework.container.annotation.tiger.PropertyType;
 
@@ -314,7 +314,7 @@ public class Hoge {
     @Property(PropertyType.WRITE)
     String baz;
 }</pre>
-<p>Backport175ƒAƒmƒe[ƒVƒ‡ƒ“‚Å‚ÍŸ‚Ì‚æ‚¤‚É‚È‚è‚Ü‚·B</p>
+<p>Backport175ã‚¢ãƒãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ã§ã¯æ¬¡ã®ã‚ˆã†ã«ãªã‚Šã¾ã™ã€‚</p>
 <pre>public class Hoge {
     /** @org.seasar.framework.container.annotation.backport175.Property */
     int foo;
@@ -325,10 +325,10 @@ public class Hoge {
     /** @org.seasar.framework.container.annotation.backport175.Property(&quot;write&quot;) */
     String baz;
 }</pre>
-<p>ã‚Ì—á‚Å‚ÍAƒtƒB[ƒ‹ƒhfoo‚É‚Ígetter‚Æsetterƒƒ\ƒbƒh‚ªAbar‚É‚Ígetterƒƒ\ƒbƒh‚ªAbaz‚É‚Ísetterƒƒ\ƒbƒh‚ªì¬‚³‚ê‚Ü‚·B</p>
+<p>ä¸Šã®ä¾‹ã§ã¯ã€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰fooã«ã¯getterã¨setterãƒ¡ã‚½ãƒƒãƒ‰ãŒã€barã«ã¯getterãƒ¡ã‚½ãƒƒãƒ‰ãŒã€bazã«ã¯setterãƒ¡ã‚½ãƒƒãƒ‰ãŒä½œæˆã•ã‚Œã¾ã™ã€‚</p>
 
-<p>ƒNƒ‰ƒX‚ÉPropertyƒAƒmƒe[ƒVƒ‡ƒ“‚ğw’è‚·‚é‚±‚Æ‚à‚Å‚«‚Ü‚·B‚»‚Ìw’è‚ªPropertyƒAƒmƒe[ƒVƒ‡ƒ“‚Ìw’è‚³‚ê‚Ä‚¢‚È‚¢ƒtƒB[ƒ‹ƒh‚É“K—p‚³‚ê‚Ü‚·B<br>
-TigerƒAƒmƒe[ƒVƒ‡ƒ“‚Å‚ÍŸ‚Ì‚æ‚¤‚É‚È‚è‚Ü‚·B</p>
+<p>ã‚¯ãƒ©ã‚¹ã«Propertyã‚¢ãƒãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ã‚’æŒ‡å®šã™ã‚‹ã“ã¨ã‚‚ã§ãã¾ã™ã€‚ãã®æŒ‡å®šãŒPropertyã‚¢ãƒãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ã®æŒ‡å®šã•ã‚Œã¦ã„ãªã„ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã«é©ç”¨ã•ã‚Œã¾ã™ã€‚<br>
+Tigerã‚¢ãƒãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ã§ã¯æ¬¡ã®ã‚ˆã†ã«ãªã‚Šã¾ã™ã€‚</p>
 <pre>import org.seasar.framework.container.annotation.tiger.Property;
 import org.seasar.framework.container.annotation.tiger.PropertyType;
 
@@ -341,7 +341,7 @@ public class Hoge {
     @Property(PropertyType.NONE)
     String baz;
 }</pre>
-<p>Backport175ƒAƒmƒe[ƒVƒ‡ƒ“‚Å‚ÍŸ‚Ì‚æ‚¤‚É‚È‚è‚Ü‚·B</p>
+<p>Backport175ã‚¢ãƒãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ã§ã¯æ¬¡ã®ã‚ˆã†ã«ãªã‚Šã¾ã™ã€‚</p>
 <pre>/** @org.seasar.framework.container.annotation.backport175.Property */
 public class Hoge {
     int foo;
@@ -351,13 +351,13 @@ public class Hoge {
     /** @org.seasar.framework.container.annotation.backport175.Property(&quot;none&quot;) */
     String baz;
 }</pre>
-<p>ã‚Ì—á‚Å‚ÍAƒtƒB[ƒ‹ƒhfoo‚Æbar‚É‚Ígetter‚Æsetterƒƒ\ƒbƒh‚ªì¬‚³‚ê‚Ü‚·‚ªAbaz‚É‚Íƒƒ\ƒbƒh‚ªì¬‚³‚ê‚Ü‚¹‚ñB</p>
+<p>ä¸Šã®ä¾‹ã§ã¯ã€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰fooã¨barã«ã¯getterã¨setterãƒ¡ã‚½ãƒƒãƒ‰ãŒä½œæˆã•ã‚Œã¾ã™ãŒã€bazã«ã¯ãƒ¡ã‚½ãƒƒãƒ‰ãŒä½œæˆã•ã‚Œã¾ã›ã‚“ã€‚</p>
 
 <h4><a name="InterTypeChain">(2) InterTypeChain</a></h4>
-    <h5>ƒNƒ‰ƒX–¼</h5>
+    <h5>ã‚¯ãƒ©ã‚¹å</h5>
     <p>org.seasar.framework.aop.intertye.InterTypeChain</p>
-    <h5>à–¾</h5>
-    <p>•¡”‚ÌInterType‚ğƒOƒ‹[ƒsƒ“ƒO‰»‚µAÄ—˜—p‚µ‚â‚·‚­‚µ‚Ü‚·B•¡”‚ÌInterType‚Ì‘g‚İ‡‚í‚¹‚ğ•¡”ƒRƒ“ƒ|[ƒlƒ“ƒg‚É“K—p‚·‚éê‡‚ÍAInterTGypeChain‚Å•¡”‚ÌInterType‚ğ1‚Â‚É‚Ü‚Æ‚ß‚ÄAŠeƒRƒ“ƒ|[ƒlƒ“ƒg‚É‚ÍInterTypeChain‚ğw’è‚·‚é‚æ‚¤‚É‚·‚é‚Æ‚¢‚¢‚Å‚µ‚å‚¤B</p>
+    <h5>èª¬æ˜</h5>
+    <p>è¤‡æ•°ã®InterTypeã‚’ã‚°ãƒ«ãƒ¼ãƒ”ãƒ³ã‚°åŒ–ã—ã€å†åˆ©ç”¨ã—ã‚„ã™ãã—ã¾ã™ã€‚è¤‡æ•°ã®InterTypeã®çµ„ã¿åˆã‚ã›ã‚’è¤‡æ•°ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã«é©ç”¨ã™ã‚‹å ´åˆã¯ã€InterTGypeChainã§è¤‡æ•°ã®InterTypeã‚’1ã¤ã«ã¾ã¨ã‚ã¦ã€å„ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã«ã¯InterTypeChainã‚’æŒ‡å®šã™ã‚‹ã‚ˆã†ã«ã™ã‚‹ã¨ã„ã„ã§ã—ã‚‡ã†ã€‚</p>
 	<pre>&lt;component name=&quot;interType1&quot; .../&gt;
 &lt;component name=&quot;interType2&quot; .../&gt;
 &lt;component name=&quot;interType3&quot; .../&gt;<br>&lt;component name=&quot;chain&quot; class=&quot;org.seasar.framework.aop.interttype.InterTypeChain&quot;&gt;<br>    &lt;initMethod name=&quot;add&quot;&gt;&lt;arg&gt;interType1&lt;/arg&gt;&lt;/initMethod&gt;<br>    &lt;initMethod name=&quot;add&quot;&gt;&lt;arg&gt;interType2&lt;/arg&gt;&lt;/initMethod&gt;<br>    &lt;initMethod name=&quot;add&quot;&gt;&lt;arg&gt;interType3&lt;/arg&gt;&lt;/initMethod&gt;<br>&lt;/component&gt;
@@ -368,31 +368,31 @@ public class Hoge {
     &lt;interType&gt;chain&lt;/interType&gt;
 &lt;/component&gt;</pre>
 
-	<h3><a name="OriginalInterType">“Æ©À‘•‚É‚æ‚éInterType</a></h3>
-    <h4>à–¾</h4>
-    <p>“Æ©‚ÉInterType‚ğì¬‚·‚éê‡‚ÍAŸ‚ÌƒCƒ“ƒ^[ƒtƒF[ƒX‚Ü‚½‚ÍA’ŠÛƒNƒ‰ƒX‚ğÀ‘•‚µ‚Ü‚·B</p>
+	<h3><a name="OriginalInterType">ç‹¬è‡ªå®Ÿè£…ã«ã‚ˆã‚‹InterType</a></h3>
+    <h4>èª¬æ˜</h4>
+    <p>ç‹¬è‡ªã«InterTypeã‚’ä½œæˆã™ã‚‹å ´åˆã¯ã€æ¬¡ã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã¾ãŸã¯ã€æŠ½è±¡ã‚¯ãƒ©ã‚¹ã‚’å®Ÿè£…ã—ã¾ã™ã€‚</p>
     <dl>
     	<dt style="text-indent:1em;">org.seasar.framework.aop.InterType</dt>
     	<dt style="text-indent:1em;">org.seasar.framework.aop.intertype.AbstractInterType</dt>
     </dl>
-    <p>InterType‚ğÀ‘•‚·‚éƒNƒ‰ƒX‚ÍAˆÈ‰º‚Ìƒƒ\ƒbƒh‚ğÀ‘•‚µ‚Ü‚·B</p>
+    <p>InterTypeã‚’å®Ÿè£…ã™ã‚‹ã‚¯ãƒ©ã‚¹ã¯ã€ä»¥ä¸‹ã®ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å®Ÿè£…ã—ã¾ã™ã€‚</p>
     <dl>
     	<dt style="text-indent:1em;">public void introduce(Class targetClass, CtClass enhancedClass)</dt>
     </dl>
-    <p>targetClass‚ÍInterType‚ª“K—p‚³‚ê‚éƒNƒ‰ƒX‚Å‚·BenhancedClass‚ÍInterType‚ğ‘g‚İ‚ŞƒNƒ‰ƒX‚ÅAæ‚É“o˜^‚³‚ê‚Ä‚¢‚éInterceptor‚âInterType‚ª“K—pÏ‚İ‚Ìê‡‚à‚ ‚è‚Ü‚·B<br>
-    CtClass‚ÌÚ×‚Í<a href="http://jboss.com/products/javassist">Javassist</a>‚Ì<a href="http://www.smg.co.jp/seminar/techsquare/javassist01.html">ƒ`ƒ…[ƒgƒŠƒAƒ‹</a>‚â<a href="http://www.csg.is.titech.ac.jp/~chiba/javassist/html/">JavaDoc</a>‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B</p>
+    <p>targetClassã¯InterTypeãŒé©ç”¨ã•ã‚Œã‚‹ã‚¯ãƒ©ã‚¹ã§ã™ã€‚enhancedClassã¯InterTypeã‚’çµ„ã¿è¾¼ã‚€ã‚¯ãƒ©ã‚¹ã§ã€å…ˆã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹Interceptorã‚„InterTypeãŒé©ç”¨æ¸ˆã¿ã®å ´åˆã‚‚ã‚ã‚Šã¾ã™ã€‚<br>
+    CtClassã®è©³ç´°ã¯<a href="http://jboss.com/products/javassist">Javassist</a>ã®<a href="http://www.smg.co.jp/seminar/techsquare/javassist01.html">ãƒãƒ¥ãƒ¼ãƒˆãƒªã‚¢ãƒ«</a>ã‚„<a href="http://www.csg.is.titech.ac.jp/~chiba/javassist/html/">JavaDoc</a>ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚</p>
 
-    <p>AbstractInterType‚ÍAInterType‚ğimplements‚µ‚½’ŠÛƒNƒ‰ƒX‚Å‚·BAbstractInterTye‚ÌƒTƒuƒNƒ‰ƒX‚ÍŸ‚Ìƒƒ\ƒbƒh‚ğÀ‘•‚µ‚Ü‚·B
+    <p>AbstractInterTypeã¯ã€InterTypeã‚’implementsã—ãŸæŠ½è±¡ã‚¯ãƒ©ã‚¹ã§ã™ã€‚AbstractInterTyeã®ã‚µãƒ–ã‚¯ãƒ©ã‚¹ã¯æ¬¡ã®ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å®Ÿè£…ã—ã¾ã™ã€‚
     <dl>
     	<dt style="text-indent:1em;">public void introduce() trhows CannotCompileException, NotFoundException</dt>
     </dl>
-    <p>AbstractInterType‚ÌƒTƒuƒNƒ‰ƒX‚ÍAŸ‚Ìƒƒ\ƒbƒh‚Å•K—v‚ÈƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B</p>
+    <p>AbstractInterTypeã®ã‚µãƒ–ã‚¯ãƒ©ã‚¹ã¯ã€æ¬¡ã®ãƒ¡ã‚½ãƒƒãƒ‰ã§å¿…è¦ãªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹ã“ã¨ãŒã§ãã¾ã™ã€‚</p>
     <dl>
     	<dt style="text-indent:1em;">protected Class getTargetClass()</dt>
     	<dt style="text-indent:1em;">protected CtClass getEnhancedClass()</dt>
     	<dt style="text-indent:1em;">protected ClassPool getClassPool()</dt>
     </dl>
-    <p>AbstractInterType‚ÍAƒtƒB[ƒ‹ƒh‚âƒƒ\ƒbƒhCÀ‘•‚·‚éƒCƒ“ƒ^ƒtƒF[ƒX‚ğ’Ç‰Á‚·‚é‚½‚ß‚Ìƒ†[ƒeƒBƒŠƒeƒBƒƒ\ƒbƒh‚ğ’ñ‹Ÿ‚µ‚Ü‚·BˆÈ‰º‚Í‚»‚Ìˆê•”‚Å‚·B</p>
+    <p>AbstractInterTypeã¯ã€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚„ãƒ¡ã‚½ãƒƒãƒ‰ï¼Œå®Ÿè£…ã™ã‚‹ã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ã‚’è¿½åŠ ã™ã‚‹ãŸã‚ã®ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ãƒ¡ã‚½ãƒƒãƒ‰ã‚’æä¾›ã—ã¾ã™ã€‚ä»¥ä¸‹ã¯ãã®ä¸€éƒ¨ã§ã™ã€‚</p>
     <dl>
     	<dt style="text-indent:1em;">protected void addField(Class type, String name)</dt>
     	<dt style="text-indent:1em;">protected void addField(Class type, String name, String init)</dt>
@@ -408,15 +408,15 @@ public class Hoge {
     	<dt style="text-indent:1em;">protected void addStaticMethod(Class returnType, String name, Class[] paramTypes, String src)</dt>
     </dl>
 
-    <h3><a name=nodicon>diconƒtƒ@ƒCƒ‹‚ğg—p‚µ‚È‚¢‚ÅƒAƒXƒyƒNƒg‚ğ‘g‚İ‚Ş•û–@</a></h3>
-    <p>diconƒtƒ@ƒCƒ‹‚Ìİ’è‚ğs‚í‚¸ƒvƒƒOƒ‰ƒ€ã‚ÅƒAƒXƒyƒNƒg‚ğ‘g‚İ‚Ş‚±‚Æ‚à‚Å‚«‚Ü‚·Bì¬•û–@‚ÍŸ‚Ì‚æ‚¤‚É‚È‚è‚Ü‚·B</p>
+    <h3><a name=nodicon>diconãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½¿ç”¨ã—ãªã„ã§ã‚¢ã‚¹ãƒšã‚¯ãƒˆã‚’çµ„ã¿è¾¼ã‚€æ–¹æ³•</a></h3>
+    <p>diconãƒ•ã‚¡ã‚¤ãƒ«ã®è¨­å®šã‚’è¡Œã‚ãšãƒ—ãƒ­ã‚°ãƒ©ãƒ ä¸Šã§ã‚¢ã‚¹ãƒšã‚¯ãƒˆã‚’çµ„ã¿è¾¼ã‚€ã“ã¨ã‚‚ã§ãã¾ã™ã€‚ä½œæˆæ–¹æ³•ã¯æ¬¡ã®ã‚ˆã†ã«ãªã‚Šã¾ã™ã€‚</p>
     <ul>
-	    <li>org.seasar.framework.aop.impl.PointcutImpl‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^‚Ìˆø”‚Å‘ÎÛ‚Æ‚È‚éƒƒ\ƒbƒh–¼‚ğw’è(•¡”‰Â)‚µ‚Ü‚·Bjava.util.HashMap‚Ì‚æ‚¤‚ÉƒCƒ“ƒ^[ƒtƒF[ƒX‚ğÀ‘•‚µ‚Ä‚¢‚é‚È‚çAnew PointcutImpl(HashMap.class)‚Ì‚æ‚¤‚ÉƒNƒ‰ƒX‚ğw’è‚·‚é‚±‚Æ‚ÅA‚»‚ÌƒNƒ‰ƒX‚ªÀ‘•‚µ‚Ä‚¢‚éƒCƒ“ƒ^[ƒtƒF[ƒX‚Ìƒƒ\ƒbƒh‚ğ‚·‚×‚Ä©“®“I‚É“K—p‚³‚¹‚é‚±‚Æ‚à‚Å‚«‚Ü‚·B</li>
-        <li>org.seasar.framework.aop.impl.AspectImpl‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^‚Ì‘æ1ˆø”‚ÉInterceptor‚ğw’è‚µ‚ÄA‘æ2ˆø”‚ÉPointcutImpl‚Åì¬‚µ‚½Pointcut‚ğw’è‚µ‚Ü‚·B</li>
-        <li>org.seasar.framework.aop.proxy.AopProxy‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^‚ÅA‘ÎÛ‚Æ‚È‚éƒNƒ‰ƒX‚ÆAspectImpl‚Åì¬‚µ‚½Aspect‚Ì”z—ñ‚ğw’è‚µ‚Ü‚·B</li>
-        <li>org.seasar.framework.aop.proxy.AopProxy#create()‚ÅAspect‚ª“K—p‚³‚ê‚½ƒIƒuƒWƒFƒNƒg‚ğæ“¾‚Å‚«‚Ü‚·B</li>
+	    <li>org.seasar.framework.aop.impl.PointcutImplã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã®å¼•æ•°ã§å¯¾è±¡ã¨ãªã‚‹ãƒ¡ã‚½ãƒƒãƒ‰åã‚’æŒ‡å®š(è¤‡æ•°å¯)ã—ã¾ã™ã€‚java.util.HashMapã®ã‚ˆã†ã«ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚’å®Ÿè£…ã—ã¦ã„ã‚‹ãªã‚‰ã€new PointcutImpl(HashMap.class)ã®ã‚ˆã†ã«ã‚¯ãƒ©ã‚¹ã‚’æŒ‡å®šã™ã‚‹ã“ã¨ã§ã€ãã®ã‚¯ãƒ©ã‚¹ãŒå®Ÿè£…ã—ã¦ã„ã‚‹ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã®ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ã™ã¹ã¦è‡ªå‹•çš„ã«é©ç”¨ã•ã›ã‚‹ã“ã¨ã‚‚ã§ãã¾ã™ã€‚</li>
+        <li>org.seasar.framework.aop.impl.AspectImplã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã®ç¬¬1å¼•æ•°ã«Interceptorã‚’æŒ‡å®šã—ã¦ã€ç¬¬2å¼•æ•°ã«PointcutImplã§ä½œæˆã—ãŸPointcutã‚’æŒ‡å®šã—ã¾ã™ã€‚</li>
+        <li>org.seasar.framework.aop.proxy.AopProxyã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã§ã€å¯¾è±¡ã¨ãªã‚‹ã‚¯ãƒ©ã‚¹ã¨AspectImplã§ä½œæˆã—ãŸAspectã®é…åˆ—ã‚’æŒ‡å®šã—ã¾ã™ã€‚</li>
+        <li>org.seasar.framework.aop.proxy.AopProxy#create()ã§AspectãŒé©ç”¨ã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã§ãã¾ã™ã€‚</li>
 	</ul>
-    <p>java.util.DateƒNƒ‰ƒX‚ÉTraceInterceptor‚ğƒvƒƒOƒ‰ƒ€ã‚Å“K—p‚·‚éê‡‚ÍAŸ‚Ì‚æ‚¤‚É‚È‚è‚Ü‚·B‘ÎÛ‚Æ‚È‚éƒƒ\ƒbƒh‚ÍgetTime()‚Æ‚µ‚Ü‚·B</p>
+    <p>java.util.Dateã‚¯ãƒ©ã‚¹ã«TraceInterceptorã‚’ãƒ—ãƒ­ã‚°ãƒ©ãƒ ä¸Šã§é©ç”¨ã™ã‚‹å ´åˆã¯ã€æ¬¡ã®ã‚ˆã†ã«ãªã‚Šã¾ã™ã€‚å¯¾è±¡ã¨ãªã‚‹ãƒ¡ã‚½ãƒƒãƒ‰ã¯getTime()ã¨ã—ã¾ã™ã€‚</p>
 <pre>Pointcut pointcut = new PointcutImpl(new String[]{"getTime"});
 Aspect aspect = new AspectImpl(new TraceInterceptor(), pointcut);
 AopProxy aopProxy = new AopProxy(Date.class, new Aspect[]{aspect});
@@ -424,19 +424,19 @@ Date proxy = (Date) aopProxy.create();
 proxy.getTime();
 </pre>
 	<h2><a name=Example>Example</a></h2>
-	<p>ˆÈ‰º‚ÌƒTƒ“ƒvƒ‹‚ğÀs‚·‚éê‡‚ÍA<a href="http://homepage3.nifty.com/seasar/setup.html">ƒZƒbƒgƒAƒbƒv</a>‚ğs‚¤•K—v‚ª‚ ‚è‚Ü‚·B</p>
+	<p>ä»¥ä¸‹ã®ã‚µãƒ³ãƒ—ãƒ«ã‚’å®Ÿè¡Œã™ã‚‹å ´åˆã¯ã€<a href="http://homepage3.nifty.com/seasar/setup.html">ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—</a>ã‚’è¡Œã†å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚</p>
 
     <h3><a name=TraceInterceptorSample>TraceInterceptor</a></h3>
-    <p>TraceInterceptor‚ğg—p‚µ‚Äjava.util.ArrayListƒNƒ‰ƒX‚Æjava.util.DateƒNƒ‰ƒX‚ÌgetTime()ƒƒ\ƒbƒh‚ÆhashCode()ƒƒ\ƒbƒh‚ªŒÄ‚Î‚ê‚½ê‡‚ÉƒgƒŒ[ƒX‚ğo—Í‚³‚¹‚Ü‚µ‚å‚¤Bì¬‚·‚éƒtƒ@ƒCƒ‹‚ÍˆÈ‰º‚Ì‚Æ‚¨‚è‚Å‚·B</p>
+    <p>TraceInterceptorã‚’ä½¿ç”¨ã—ã¦java.util.ArrayListã‚¯ãƒ©ã‚¹ã¨java.util.Dateã‚¯ãƒ©ã‚¹ã®getTime()ãƒ¡ã‚½ãƒƒãƒ‰ã¨hashCode()ãƒ¡ã‚½ãƒƒãƒ‰ãŒå‘¼ã°ã‚ŒãŸå ´åˆã«ãƒˆãƒ¬ãƒ¼ã‚¹ã‚’å‡ºåŠ›ã•ã›ã¾ã—ã‚‡ã†ã€‚ä½œæˆã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã¯ä»¥ä¸‹ã®ã¨ãŠã‚Šã§ã™ã€‚</p>
     <ul>
-    	<li type="circle">ƒRƒ“ƒ|[ƒlƒ“ƒg‚ğ’è‹`‚·‚édiconƒtƒ@ƒCƒ‹(Trace.dicon)</li>
-		<li type="circle">İ’è‚ª³‚µ‚­s‚í‚ê‚Ä‚¢‚é‚©Šm”F‚·‚éÀsjavaƒtƒ@ƒCƒ‹(AopTraceClient.java)</li>
+    	<li type="circle">ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’å®šç¾©ã™ã‚‹diconãƒ•ã‚¡ã‚¤ãƒ«(Trace.dicon)</li>
+		<li type="circle">è¨­å®šãŒæ­£ã—ãè¡Œã‚ã‚Œã¦ã„ã‚‹ã‹ç¢ºèªã™ã‚‹å®Ÿè¡Œjavaãƒ•ã‚¡ã‚¤ãƒ«(AopTraceClient.java)</li>
 	</ul>
-    <p><b>diconƒtƒ@ƒCƒ‹‚Ìì¬</b></p>
+    <p><b>diconãƒ•ã‚¡ã‚¤ãƒ«ã®ä½œæˆ</b></p>
     <ul>
-        <li type="circle">TraceInterceptor‚ğƒRƒ“ƒ|[ƒlƒ“ƒg’è‹`‚µ‚Ü‚·Bname‘®«‚ğtraceInterceptor‚Æ‚µ‚Ü‚·B</li>
-	    <li type="circle">java.util.ArrayListƒNƒ‰ƒX‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì’è‹`‚µ‚Ü‚·Baspectƒ^ƒO‚ÉInterceptor‚ğw’è‚µ‚Ü‚·B</li>
-        <li type="circle">java.util.DateƒNƒ‰ƒX‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì’è‹`‚µ‚Ü‚·Bpointcut‘®«‚ÉgetTime()ƒƒ\ƒbƒh‚ÆhashCode()ƒƒ\ƒbƒh‚ğw’è‚µ‚Ü‚·Bargƒ^ƒO‚ğg—p‚µ‚Äjava.util.DateƒNƒ‰ƒX‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^‚É0‚ğİ’è‚µ‚Ü‚·Baspectƒ^ƒO‚ÉInterceptor‚ğw’è‚µ‚Ü‚·B</li>
+        <li type="circle">TraceInterceptorã‚’ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆå®šç¾©ã—ã¾ã™ã€‚nameå±æ€§ã‚’traceInterceptorã¨ã—ã¾ã™ã€‚</li>
+	    <li type="circle">java.util.ArrayListã‚¯ãƒ©ã‚¹ã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®å®šç¾©ã—ã¾ã™ã€‚aspectã‚¿ã‚°ã«Interceptorã‚’æŒ‡å®šã—ã¾ã™ã€‚</li>
+        <li type="circle">java.util.Dateã‚¯ãƒ©ã‚¹ã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®å®šç¾©ã—ã¾ã™ã€‚pointcutå±æ€§ã«getTime()ãƒ¡ã‚½ãƒƒãƒ‰ã¨hashCode()ãƒ¡ã‚½ãƒƒãƒ‰ã‚’æŒ‡å®šã—ã¾ã™ã€‚argã‚¿ã‚°ã‚’ä½¿ç”¨ã—ã¦java.util.Dateã‚¯ãƒ©ã‚¹ã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã«0ã‚’è¨­å®šã—ã¾ã™ã€‚aspectã‚¿ã‚°ã«Interceptorã‚’æŒ‡å®šã—ã¾ã™ã€‚</li>
     </ul>
 	<p>Trace.dicon</p>
 <pre>
@@ -457,12 +457,12 @@ proxy.getTime();
     &lt;/component&gt;
 &lt;/components&gt;
 </pre>
-	<p><b>Àsƒtƒ@ƒCƒ‹‚Ìì¬</b></p>
+	<p><b>å®Ÿè¡Œãƒ•ã‚¡ã‚¤ãƒ«ã®ä½œæˆ</b></p>
     <ul>
-		<li type="circle">org.seasar.framework.container.S2Container#create()ƒƒ\ƒbƒh‚ÌÅ‰‚Ìˆø”‚Éì¬‚µ‚½diconƒtƒ@ƒCƒ‹(Trace.dicon)‚ÌƒpƒX‚ğw’è‚µ‚ÄƒRƒ“ƒeƒi‚ğì¬‚µ‚Ü‚·B</li>
-        <li type="circle">org.seasar.framework.container.S2Container#getComponent()ƒƒ\ƒbƒh‚Ì‘æ‚Pˆø”‚ÉƒRƒ“ƒ|[ƒlƒ“ƒg‚É“o˜^‚µ‚½ƒNƒ‰ƒX–¼iList.classADate.class)‚ğw’è‚µ‚ÄƒRƒ“ƒ|[ƒlƒ“ƒg‚ğæ“¾‚µ‚Ü‚·B</li>
-        <li type="circle">ƒgƒŒ[ƒX‚ªAspect‚³‚ê‚é‚©Šm”F‚·‚é‚½‚ß‚Éæ“¾‚µ‚½ƒRƒ“ƒ|[ƒlƒ“ƒg‚ÌArrayList‚Ìsize()ƒƒ\ƒbƒh‚ğÀs‚µ‚Ü‚·B</li>
-        <li type="circle">“¯—l‚Éæ“¾‚µ‚½ƒRƒ“ƒ|[ƒlƒ“ƒg‚ÌDate‚ÌgetTime()ƒƒ\ƒbƒhAhashCode()ƒƒ\ƒbƒh‚ğÀs‚µ‚Ü‚·B</li>
+		<li type="circle">org.seasar.framework.container.S2Container#create()ãƒ¡ã‚½ãƒƒãƒ‰ã®æœ€åˆã®å¼•æ•°ã«ä½œæˆã—ãŸdiconãƒ•ã‚¡ã‚¤ãƒ«(Trace.dicon)ã®ãƒ‘ã‚¹ã‚’æŒ‡å®šã—ã¦ã‚³ãƒ³ãƒ†ãƒŠã‚’ä½œæˆã—ã¾ã™ã€‚</li>
+        <li type="circle">org.seasar.framework.container.S2Container#getComponent()ãƒ¡ã‚½ãƒƒãƒ‰ã®ç¬¬ï¼‘å¼•æ•°ã«ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã«ç™»éŒ²ã—ãŸã‚¯ãƒ©ã‚¹åï¼ˆList.classã€Date.class)ã‚’æŒ‡å®šã—ã¦ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’å–å¾—ã—ã¾ã™ã€‚</li>
+        <li type="circle">ãƒˆãƒ¬ãƒ¼ã‚¹ãŒAspectã•ã‚Œã‚‹ã‹ç¢ºèªã™ã‚‹ãŸã‚ã«å–å¾—ã—ãŸã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®ArrayListã®size()ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å®Ÿè¡Œã—ã¾ã™ã€‚</li>
+        <li type="circle">åŒæ§˜ã«å–å¾—ã—ãŸã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®Dateã®getTime()ãƒ¡ã‚½ãƒƒãƒ‰ã€hashCode()ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å®Ÿè¡Œã—ã¾ã™ã€‚</li>
 	</ul>
     <p>AopTraceClient.java</p>
 <pre>
@@ -487,8 +487,8 @@ public class AopTraceClient {
     }
 }
 </pre>
-	<p><b>ÀsŒ‹‰Ê</b></p>
-    <p>ƒƒ\ƒbƒh‚ªŒÄ‚Î‚ê‚é‘O‚ÆŒã‚ÅƒgƒŒ[ƒX‚ªo—Í‚³‚ê‚Ä‚¢‚é‚Ì‚ªŠm”F‚Å‚«‚Ü‚·B‚Ü‚½Ajava.util.Date‚ÌhashCode()ƒƒ\ƒbƒh‚Íƒƒ\ƒbƒh“à‚ÅgetTime()ƒƒ\ƒbƒh‚ğŒÄ‚ñ‚Å‚¢‚é‚Ì‚ÅhashCode()ƒƒ\ƒbƒh‚ÆgetTime()ƒƒ\ƒbƒh‚ªƒgƒŒ[ƒX‚³‚ê‚Ä‚¢‚é‚±‚Æ‚ªŠm”F‚Å‚«‚Ü‚·B</p>
+	<p><b>å®Ÿè¡Œçµæœ</b></p>
+    <p>ãƒ¡ã‚½ãƒƒãƒ‰ãŒå‘¼ã°ã‚Œã‚‹å‰ã¨å¾Œã§ãƒˆãƒ¬ãƒ¼ã‚¹ãŒå‡ºåŠ›ã•ã‚Œã¦ã„ã‚‹ã®ãŒç¢ºèªã§ãã¾ã™ã€‚ã¾ãŸã€java.util.Dateã®hashCode()ãƒ¡ã‚½ãƒƒãƒ‰ã¯ãƒ¡ã‚½ãƒƒãƒ‰å†…ã§getTime()ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã‚“ã§ã„ã‚‹ã®ã§hashCode()ãƒ¡ã‚½ãƒƒãƒ‰ã¨getTime()ãƒ¡ã‚½ãƒƒãƒ‰ãŒãƒˆãƒ¬ãƒ¼ã‚¹ã•ã‚Œã¦ã„ã‚‹ã“ã¨ãŒç¢ºèªã§ãã¾ã™ã€‚</p>
 <pre>
 BEGIN java.util.ArrayList#size()
 END java.util.ArrayList#size() : 0
@@ -499,21 +499,21 @@ BEGIN java.util.Date#getTime()
 END java.util.Date#getTime() : 0
 END java.util.Date#hashCode() : 0
 </pre>
-	<p>‚±‚ÌƒTƒ“ƒvƒ‹‚ÍAseasar2/src/examples/aop/traceinterceptorˆÈ‰º‚É—pˆÓ‚³‚ê‚Ä‚¢‚Ü‚·B</p>
+	<p>ã“ã®ã‚µãƒ³ãƒ—ãƒ«ã¯ã€seasar2/src/examples/aop/traceinterceptorä»¥ä¸‹ã«ç”¨æ„ã•ã‚Œã¦ã„ã¾ã™ã€‚</p>
 	<br />
 
 	<h3><a name=ThrowsInterceptorSample>ThrowsInterceptor</a></h3>
-	<p>(1) ThrowsInterceptor‚ğg‚Á‚ÄA—áŠO‚ª”­¶‚µ‚½ê‡‚Å‚àˆ—‚ğ‘±‚¯‚ç‚ê‚é‚æ‚¤‚É‚µ‚Ü‚µ‚å‚¤Bì¬‚·‚éƒtƒ@ƒCƒ‹‚ÍˆÈ‰º‚Ì‚æ‚¤‚É‚È‚è‚Ü‚·B</p>
+	<p>(1) ThrowsInterceptorã‚’ä½¿ã£ã¦ã€ä¾‹å¤–ãŒç™ºç”Ÿã—ãŸå ´åˆã§ã‚‚å‡¦ç†ã‚’ç¶šã‘ã‚‰ã‚Œã‚‹ã‚ˆã†ã«ã—ã¾ã—ã‚‡ã†ã€‚ä½œæˆã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã¯ä»¥ä¸‹ã®ã‚ˆã†ã«ãªã‚Šã¾ã™ã€‚</p>
 	<ul>
-		<li type="circle">RuntimeException‚ğ”­¶‚³‚¹‚éƒNƒ‰ƒX(Checker.java)</li>
-		<li type="circle">ThrowsInterceptor‚ğŒp³‚µ‚Äì¬‚·‚éInterceptor(HandleThrowableInterceptor.java)</li>
-		<li type="circle">ƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì’è‹`‚ğ‚·‚édiconƒtƒ@ƒCƒ‹(Checker.dicon)</li>
-		<li type="circle">İ’è‚ª³‚µ‚­s‚í‚ê‚Ä‚¢‚é‚©Šm”F‚·‚éÀsƒtƒ@ƒCƒ‹(AopCheckerClient.java)</li>
+		<li type="circle">RuntimeExceptionã‚’ç™ºç”Ÿã•ã›ã‚‹ã‚¯ãƒ©ã‚¹(Checker.java)</li>
+		<li type="circle">ThrowsInterceptorã‚’ç¶™æ‰¿ã—ã¦ä½œæˆã™ã‚‹Interceptor(HandleThrowableInterceptor.java)</li>
+		<li type="circle">ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®å®šç¾©ã‚’ã™ã‚‹diconãƒ•ã‚¡ã‚¤ãƒ«(Checker.dicon)</li>
+		<li type="circle">è¨­å®šãŒæ­£ã—ãè¡Œã‚ã‚Œã¦ã„ã‚‹ã‹ç¢ºèªã™ã‚‹å®Ÿè¡Œãƒ•ã‚¡ã‚¤ãƒ«(AopCheckerClient.java)</li>
 	</ul>
-    <p><b>—áŠO‚ğ”­¶‚³‚¹‚éƒNƒ‰ƒX‚Ìì¬</b></p>
+    <p><b>ä¾‹å¤–ã‚’ç™ºç”Ÿã•ã›ã‚‹ã‚¯ãƒ©ã‚¹ã®ä½œæˆ</b></p>
     <ul>
-     	<li type="circle">run()ƒƒ\ƒbƒh‚Ìˆø”‚ªnull‚Å‚Í–³‚¢ê‡‚ÍAˆø”‚Ì•¶š‚ğƒRƒ“ƒ\[ƒ‹‚Éo—Í‚µ‚Ü‚·B</li>
-		<li type="circle">ˆø”‚ªnull‚Ìê‡‚ÍANullPointerException‚ğ”­¶‚³‚¹‚Ü‚·B</li>
+     	<li type="circle">run()ãƒ¡ã‚½ãƒƒãƒ‰ã®å¼•æ•°ãŒnullã§ã¯ç„¡ã„å ´åˆã¯ã€å¼•æ•°ã®æ–‡å­—ã‚’ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã«å‡ºåŠ›ã—ã¾ã™ã€‚</li>
+		<li type="circle">å¼•æ•°ãŒnullã®å ´åˆã¯ã€NullPointerExceptionã‚’ç™ºç”Ÿã•ã›ã¾ã™ã€‚</li>
 	</ul>
     <p>Checker.java</p>
 <pre>
@@ -529,10 +529,10 @@ public class Checker {
     }
 }
 </pre>
-	<p><b>ThrowsInterceptor‚ğŒp³‚·‚éInterceptor‚Ìì¬</b></p>
+	<p><b>ThrowsInterceptorã‚’ç¶™æ‰¿ã™ã‚‹Interceptorã®ä½œæˆ</b></p>
 	<ul>
-        <li type="circle">ThrowsInterceptor‚ğŒp³‚µ‚Ü‚·B</li>
-	    <li type="circle">handleThrowable(Throwable, MethodInvocation)‚ğÀ‘•‚µ‚Ü‚·B</li>
+        <li type="circle">ThrowsInterceptorã‚’ç¶™æ‰¿ã—ã¾ã™ã€‚</li>
+	    <li type="circle">handleThrowable(Throwable, MethodInvocation)ã‚’å®Ÿè£…ã—ã¾ã™ã€‚</li>
     </ul>
 	<p>HandleThrowableInterceptor.java</p>
 <pre>
@@ -547,10 +547,10 @@ public class HandleThrowableInterceptor extends ThrowsInterceptor {
     }
 }
 </pre>
-    <p><b>diconƒtƒ@ƒCƒ‹‚Ìì¬</b></p>
+    <p><b>diconãƒ•ã‚¡ã‚¤ãƒ«ã®ä½œæˆ</b></p>
 	<ul>
-    	<li type="circle">ì¬‚µ‚½Interceptor‚ğƒRƒ“ƒ|[ƒlƒ“ƒg’è‹`‚µ‚Ü‚·Bname‘®«‚ğhandleThrowableInterceptor‚Æ‚µ‚Ü‚·B</li>
-		<li type="circle">—áŠO‚ğ”­¶‚³‚¹‚éCheckerƒNƒ‰ƒX‚Ìcheck()ƒƒ\ƒbƒh‚Éì¬‚µ‚½HandleThrowableInterceptor‚ğƒAƒXƒyƒNƒg‚µ‚Ü‚·B</li>
+    	<li type="circle">ä½œæˆã—ãŸInterceptorã‚’ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆå®šç¾©ã—ã¾ã™ã€‚nameå±æ€§ã‚’handleThrowableInterceptorã¨ã—ã¾ã™ã€‚</li>
+		<li type="circle">ä¾‹å¤–ã‚’ç™ºç”Ÿã•ã›ã‚‹Checkerã‚¯ãƒ©ã‚¹ã®check()ãƒ¡ã‚½ãƒƒãƒ‰ã«ä½œæˆã—ãŸHandleThrowableInterceptorã‚’ã‚¢ã‚¹ãƒšã‚¯ãƒˆã—ã¾ã™ã€‚</li>
 	</ul>
     <p>Checker.dicon</p>
 <pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;Shift_JIS&quot;?&gt;
@@ -566,13 +566,13 @@ public class HandleThrowableInterceptor extends ThrowsInterceptor {
     &lt;/component&gt;
 &lt;/components&gt;
 </pre>
-    <p><b>Àsƒtƒ@ƒCƒ‹‚Ìì¬</b></p>
+    <p><b>å®Ÿè¡Œãƒ•ã‚¡ã‚¤ãƒ«ã®ä½œæˆ</b></p>
     <ul>
-        <li type="circle">org.seasar.framework.container.S2Container#create()ƒƒ\ƒbƒh‚Ì‘æ‚Pˆø”‚Éì¬‚µ‚½diconƒtƒ@ƒCƒ‹(Checker.dicon)‚ÌƒpƒX‚ğw’è‚µ‚ÄƒRƒ“ƒeƒi‚ğì¬‚µ‚Ü‚·B</li>
-        <li type="circle">org.seasar.framework.container.S2Container#getComponent()ƒƒ\ƒbƒh‚Ì‘æ‚Pˆø”‚ÉƒRƒ“ƒ|[ƒlƒ“ƒg‚É“o˜^‚µ‚½ƒNƒ‰ƒX–¼iFoo.class)‚ğw’è‚µ‚Äæ“¾‚µ‚Ü‚·B</li>
-        <li type="circle">Checker#check()ƒƒ\ƒbƒh‚Ìˆø”‚É&quot;foo&quot;‚Ì•¶š—ñ‚ğ“n‚µ‚Ü‚·B</li>
-        <li type="circle">Checker#check()ƒƒ\ƒbƒh‚Ìˆø”‚Énull‚ğ“n‚µ‚Ä—áŠO‚ğ”­¶‚³‚¹‚Ü‚·B</li>
-        <li type="circle">Checker#check()ƒƒ\ƒbƒh‚Ìˆø”‚É&quot;hoge&quot;‚Ì•¶š—ñ‚ğ“n‚µ‚Ü‚·B</li>
+        <li type="circle">org.seasar.framework.container.S2Container#create()ãƒ¡ã‚½ãƒƒãƒ‰ã®ç¬¬ï¼‘å¼•æ•°ã«ä½œæˆã—ãŸdiconãƒ•ã‚¡ã‚¤ãƒ«(Checker.dicon)ã®ãƒ‘ã‚¹ã‚’æŒ‡å®šã—ã¦ã‚³ãƒ³ãƒ†ãƒŠã‚’ä½œæˆã—ã¾ã™ã€‚</li>
+        <li type="circle">org.seasar.framework.container.S2Container#getComponent()ãƒ¡ã‚½ãƒƒãƒ‰ã®ç¬¬ï¼‘å¼•æ•°ã«ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã«ç™»éŒ²ã—ãŸã‚¯ãƒ©ã‚¹åï¼ˆFoo.class)ã‚’æŒ‡å®šã—ã¦å–å¾—ã—ã¾ã™ã€‚</li>
+        <li type="circle">Checker#check()ãƒ¡ã‚½ãƒƒãƒ‰ã®å¼•æ•°ã«&quot;foo&quot;ã®æ–‡å­—åˆ—ã‚’æ¸¡ã—ã¾ã™ã€‚</li>
+        <li type="circle">Checker#check()ãƒ¡ã‚½ãƒƒãƒ‰ã®å¼•æ•°ã«nullã‚’æ¸¡ã—ã¦ä¾‹å¤–ã‚’ç™ºç”Ÿã•ã›ã¾ã™ã€‚</li>
+        <li type="circle">Checker#check()ãƒ¡ã‚½ãƒƒãƒ‰ã®å¼•æ•°ã«&quot;hoge&quot;ã®æ–‡å­—åˆ—ã‚’æ¸¡ã—ã¾ã™ã€‚</li>
     </ul>
     <p>AopCheckerClient.java</p>
 <pre>package examples.aop.throwsinterceptor;
@@ -591,16 +591,16 @@ public class AopCheckerClient {
         checker.check(&quot;hoge&quot;);
     }
 }</pre>
-	<p><b>ÀsŒ‹‰Ê</b></p>
-	<p>&quot;hoge&quot;‚ª•\¦‚³‚ê‚Ä‚¢‚é‚±‚Æ‚©‚ç—áŠO‚Åˆ—‚ª~‚Ü‚Á‚Ä‚¢‚È‚¢‚±‚Æ‚ªŠm”F‚Å‚«‚Ü‚·B</p>
+	<p><b>å®Ÿè¡Œçµæœ</b></p>
+	<p>&quot;hoge&quot;ãŒè¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ã“ã¨ã‹ã‚‰ä¾‹å¤–ã§å‡¦ç†ãŒæ­¢ã¾ã£ã¦ã„ãªã„ã“ã¨ãŒç¢ºèªã§ãã¾ã™ã€‚</p>
 <pre>foo
 hoge
 </pre>
-	<p>‚±‚ÌƒTƒ“ƒvƒ‹‚ÍAseasar2/src/examples/aop/throwsinterceptorrˆÈ‰º‚É—pˆÓ‚³‚ê‚Ä‚¢‚Ü‚·B</p>
+	<p>ã“ã®ã‚µãƒ³ãƒ—ãƒ«ã¯ã€seasar2/src/examples/aop/throwsinterceptorrä»¥ä¸‹ã«ç”¨æ„ã•ã‚Œã¦ã„ã¾ã™ã€‚</p>
     <br />
-    <p>(2) —áŠO‚ğ•Ê‚Ì—áŠO‚É•ÏŠ·‚·‚éInterceptor‚ğì¬‚µ‚Ä•ÏŠ·‚µ‚½ƒƒbƒZ[ƒW‚ğ•\¦‚³‚¹‚Ü‚µ‚å‚¤Bì¬‚·‚éInterceptor‚ÍAæ‚Ù‚ÇThrowsInterceptor‚ğŒp³‚µ‚Äì¬‚µ‚½ƒNƒ‰ƒX(HandleThrowableInterceptor.java)‚ğ‰—p‚µ‚Äì¬‚µ‚Ü‚µ‚å‚¤</p>
- @ <b>—áŠO‚ğ•Ê‚Ì—áŠO‚É•ÏŠ·‚·‚éInterceptor‚Ìì¬</b>
-    <p>handleThrowable(Throwable, MethodInvocation)ƒƒ\ƒbƒh‚Ì‘æ1ˆø”‚ªNullPointerException‚Ìê‡Aorg.seasar.framework.exception.SRuntimeException‚ğ”­¶‚³‚¹‚ÄƒƒbƒZ[ƒW‚ğ•ÏX‚µ‚Ü‚·B</p>
+    <p>(2) ä¾‹å¤–ã‚’åˆ¥ã®ä¾‹å¤–ã«å¤‰æ›ã™ã‚‹Interceptorã‚’ä½œæˆã—ã¦å¤‰æ›ã—ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã•ã›ã¾ã—ã‚‡ã†ã€‚ä½œæˆã™ã‚‹Interceptorã¯ã€å…ˆã»ã©ThrowsInterceptorã‚’ç¶™æ‰¿ã—ã¦ä½œæˆã—ãŸã‚¯ãƒ©ã‚¹(HandleThrowableInterceptor.java)ã‚’å¿œç”¨ã—ã¦ä½œæˆã—ã¾ã—ã‚‡ã†</p>
+ ã€€ <b>ä¾‹å¤–ã‚’åˆ¥ã®ä¾‹å¤–ã«å¤‰æ›ã™ã‚‹Interceptorã®ä½œæˆ</b>
+    <p>handleThrowable(Throwable, MethodInvocation)ãƒ¡ã‚½ãƒƒãƒ‰ã®ç¬¬1å¼•æ•°ãŒNullPointerExceptionã®å ´åˆã€org.seasar.framework.exception.SRuntimeExceptionã‚’ç™ºç”Ÿã•ã›ã¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å¤‰æ›´ã—ã¾ã™ã€‚</p>
 <pre>
 package examples.aop.throwsinterceptor;
 
@@ -611,16 +611,16 @@ import org.seasar.framework.exception.SRuntimeException;
 public class HandleThrowableInterceptor extends ThrowsInterceptor {
     public void handleThrowable(NullPointerException t, MethodInvocation invocation)
             throws Throwable {
-        throw new SRuntimeException(&quot;ESSR0007&quot;, new Object[] { &quot;ˆø”&quot; });
+        throw new SRuntimeException(&quot;ESSR0007&quot;, new Object[] { &quot;å¼•æ•°&quot; });
     }
 }
 </pre>
-	<p>æ‚Ù‚Çì¬‚µ‚½Àsƒtƒ@ƒCƒ‹‚ğg‚Á‚ÄÀs‚µ‚Ü‚·B</p>
-    <b>ÀsŒ‹‰Ê</b>
-    <p>ƒGƒ‰[ƒƒbƒZ[ƒW‚ª•Ï‚í‚Á‚Ä‚¢‚é‚Ì‚ªŠm”F‚Å‚«‚Ü‚·B</p>
+	<p>å…ˆã»ã©ä½œæˆã—ãŸå®Ÿè¡Œãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½¿ã£ã¦å®Ÿè¡Œã—ã¾ã™ã€‚</p>
+    <b>å®Ÿè¡Œçµæœ</b>
+    <p>ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒå¤‰ã‚ã£ã¦ã„ã‚‹ã®ãŒç¢ºèªã§ãã¾ã™ã€‚</p>
 <pre>
 foo
-org.seasar.framework.exception.SRuntimeException: [ESSR0007]ˆø”‚Ínull‚ ‚é‚¢‚Í‹ó‚Å‚ ‚Á‚Ä‚Í‚¢‚¯‚Ü‚¹‚ñ
+org.seasar.framework.exception.SRuntimeException: [ESSR0007]å¼•æ•°ã¯nullã‚ã‚‹ã„ã¯ç©ºã§ã‚ã£ã¦ã¯ã„ã‘ã¾ã›ã‚“
 	at examples.aop.throwsinterceptor.HandleThrowableInterceptor.
 handleThrowable(HandleThrowableInterceptor.java:11)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -634,16 +634,16 @@ handleThrowable(HandleThrowableInterceptor.java:11)
 	at examples.aop.throwsinterceptor.AopCheckerClient.main(AopCheckerClient.java:13)
 Exception in thread &quot;main&quot;
 </pre>
-	<p>‚±‚ÌƒTƒ“ƒvƒ‹‚ÍAseasar2/src/examples/aop/throwsinterceptorrˆÈ‰º‚É—pˆÓ‚³‚ê‚Ä‚¢‚Ü‚·B</p>
+	<p>ã“ã®ã‚µãƒ³ãƒ—ãƒ«ã¯ã€seasar2/src/examples/aop/throwsinterceptorrä»¥ä¸‹ã«ç”¨æ„ã•ã‚Œã¦ã„ã¾ã™ã€‚</p>
 
 	<h3><a name=ToStringInterceptorSample>ToStringInterceptor</a></h3>
-	<p>ToStringInterceptor‚ğg—p‚µ‚ÄtoString()‚ÅƒtƒB[ƒ‹ƒh‚Ìî•ñ‚ğ•¶š—ñ‰»‚µ‚Ü‚µ‚å‚¤Bì¬‚·‚éƒtƒ@ƒCƒ‹‚ÍˆÈ‰º‚Ì‚Æ‚¨‚è‚Å‚·B</p>
+	<p>ToStringInterceptorã‚’ä½¿ç”¨ã—ã¦toString()ã§ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®æƒ…å ±ã‚’æ–‡å­—åˆ—åŒ–ã—ã¾ã—ã‚‡ã†ã€‚ä½œæˆã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã¯ä»¥ä¸‹ã®ã¨ãŠã‚Šã§ã™ã€‚</p>
 	<ul>
-		<li type="circle">ƒtƒB[ƒ‹ƒh‚ğ‚Á‚½ƒGƒ“ƒeƒBƒeƒBƒNƒ‰ƒX(Entity.java, EntityImpl.java, EntityImplImpl.java, InnerEntity.java)
-		<li type="circle">ƒRƒ“ƒ|[ƒlƒ“ƒg‚ğ’è‹`‚·‚édiconƒtƒ@ƒCƒ‹(ToString.dicon)</li>
-		<li type="circle">İ’è‚ª³‚µ‚­s‚í‚ê‚Ä‚¢‚é‚©Šm”F‚·‚éÀsjavaƒtƒ@ƒCƒ‹(AopToStringClient.java)</li>
+		<li type="circle">ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’æŒã£ãŸã‚¨ãƒ³ãƒ†ã‚£ãƒ†ã‚£ã‚¯ãƒ©ã‚¹(Entity.java, EntityImpl.java, EntityImplImpl.java, InnerEntity.java)
+		<li type="circle">ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’å®šç¾©ã™ã‚‹diconãƒ•ã‚¡ã‚¤ãƒ«(ToString.dicon)</li>
+		<li type="circle">è¨­å®šãŒæ­£ã—ãè¡Œã‚ã‚Œã¦ã„ã‚‹ã‹ç¢ºèªã™ã‚‹å®Ÿè¡Œjavaãƒ•ã‚¡ã‚¤ãƒ«(AopToStringClient.java)</li>
 	</ul>
-	<p><b>ƒGƒ“ƒeƒBƒeƒBƒNƒ‰ƒX‚Ìì¬</b></p>
+	<p><b>ã‚¨ãƒ³ãƒ†ã‚£ãƒ†ã‚£ã‚¯ãƒ©ã‚¹ã®ä½œæˆ</b></p>
 	<p>Entity.java</p>
 <pre>
 package examples.aop.tostringinterceptor;
@@ -700,11 +700,11 @@ public class InnerEntity {
     char[] charArray = new char[]{'a', 'b', 'c'};
 }
 </pre>
-	<p><b>diconƒtƒ@ƒCƒ‹‚Ìì¬</b></p>
+	<p><b>diconãƒ•ã‚¡ã‚¤ãƒ«ã®ä½œæˆ</b></p>
 	<ul>
-		<li type="circle">ToStringInterceptor‚ğƒRƒ“ƒ|[ƒlƒ“ƒg’è‹`‚µ‚Ü‚·Bname‘®«‚ğtoStringInterceptor‚Æ‚µ‚Ü‚·B</li>
-		<li type="circle">examples.aop.tostringinterceptor.EntityImplImplƒNƒ‰ƒX‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì’è‹`‚µ‚Ü‚·Bargƒ^ƒO‚ğg—p‚µ‚ÄƒRƒ“ƒXƒgƒ‰ƒNƒ^ˆø”‚ÉƒRƒ“ƒ|[ƒlƒ“ƒginnerEntity‚ğİ’è‚µ‚Ü‚·Baspectƒ^ƒO‚ÉtoStringInterceptor‚ğw’è‚µ‚Ü‚·Bpointcut‘®«‚ÉtoString()ƒƒ\ƒbƒh‚ğw’è‚µ‚Ü‚·B</li>
-		<li type="circle">examples.aop.tostringinterceptor.InnerEntityƒNƒ‰ƒX‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì’è‹`‚µ‚Ü‚·Baspectƒ^ƒO‚ÉtoStringInterceptor‚ğw’è‚µ‚Ü‚·Bpointcut‘®«‚ÉtoString()ƒƒ\ƒbƒh‚ğw’è‚µ‚Ü‚·B</li>
+		<li type="circle">ToStringInterceptorã‚’ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆå®šç¾©ã—ã¾ã™ã€‚nameå±æ€§ã‚’toStringInterceptorã¨ã—ã¾ã™ã€‚</li>
+		<li type="circle">examples.aop.tostringinterceptor.EntityImplImplã‚¯ãƒ©ã‚¹ã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®å®šç¾©ã—ã¾ã™ã€‚argã‚¿ã‚°ã‚’ä½¿ç”¨ã—ã¦ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿å¼•æ•°ã«ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆinnerEntityã‚’è¨­å®šã—ã¾ã™ã€‚aspectã‚¿ã‚°ã«toStringInterceptorã‚’æŒ‡å®šã—ã¾ã™ã€‚pointcutå±æ€§ã«toString()ãƒ¡ã‚½ãƒƒãƒ‰ã‚’æŒ‡å®šã—ã¾ã™ã€‚</li>
+		<li type="circle">examples.aop.tostringinterceptor.InnerEntityã‚¯ãƒ©ã‚¹ã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®å®šç¾©ã—ã¾ã™ã€‚aspectã‚¿ã‚°ã«toStringInterceptorã‚’æŒ‡å®šã—ã¾ã™ã€‚pointcutå±æ€§ã«toString()ãƒ¡ã‚½ãƒƒãƒ‰ã‚’æŒ‡å®šã—ã¾ã™ã€‚</li>
 	</ul>
 	<p>ToString.dicon</p>
 <pre>
@@ -728,11 +728,11 @@ public class InnerEntity {
 	&lt;/component&gt;
 &lt;/components&gt;
 </pre>
-	<p><b>Àsƒtƒ@ƒCƒ‹‚Ìì¬</b></p>
+	<p><b>å®Ÿè¡Œãƒ•ã‚¡ã‚¤ãƒ«ã®ä½œæˆ</b></p>
 	<ul>
-		<li type="circle">org.seasar.framework.container.S2Container#create()ƒƒ\ƒbƒh‚ÌÅ‰‚Ìˆø”‚Éì¬‚µ‚½diconƒtƒ@ƒCƒ‹(ToString.dicon)‚ÌƒpƒX‚ğw’è‚µ‚ÄƒRƒ“ƒeƒi‚ğì¬‚µ‚Ü‚·B</li>
-		<li type="circle">org.seasar.framework.container.S2Container#getComponent()ƒƒ\ƒbƒh‚Ì‘æ‚Pˆø”‚ÉƒRƒ“ƒ|[ƒlƒ“ƒg‚É“o˜^‚µ‚½ƒNƒ‰ƒX–¼iEntityImplImpl.class)‚ğw’è‚µ‚ÄƒRƒ“ƒ|[ƒlƒ“ƒg‚ğæ“¾‚µ‚Ü‚·B</li>
-		<li type="circle">toString()‚ÉAspect‚ª“K—p‚³‚ê‚Ä‚¢‚é‚©Šm”F‚·‚é‚½‚ß‚Éæ“¾‚µ‚½ƒRƒ“ƒ|[ƒlƒ“ƒg‚ğSystem.out.println()ƒƒ\ƒbƒh‚Ìˆø”‚É“n‚µ‚Ä•\¦‚µ‚Ü‚·B</li>
+		<li type="circle">org.seasar.framework.container.S2Container#create()ãƒ¡ã‚½ãƒƒãƒ‰ã®æœ€åˆã®å¼•æ•°ã«ä½œæˆã—ãŸdiconãƒ•ã‚¡ã‚¤ãƒ«(ToString.dicon)ã®ãƒ‘ã‚¹ã‚’æŒ‡å®šã—ã¦ã‚³ãƒ³ãƒ†ãƒŠã‚’ä½œæˆã—ã¾ã™ã€‚</li>
+		<li type="circle">org.seasar.framework.container.S2Container#getComponent()ãƒ¡ã‚½ãƒƒãƒ‰ã®ç¬¬ï¼‘å¼•æ•°ã«ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã«ç™»éŒ²ã—ãŸã‚¯ãƒ©ã‚¹åï¼ˆEntityImplImpl.class)ã‚’æŒ‡å®šã—ã¦ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’å–å¾—ã—ã¾ã™ã€‚</li>
+		<li type="circle">toString()ã«AspectãŒé©ç”¨ã•ã‚Œã¦ã„ã‚‹ã‹ç¢ºèªã™ã‚‹ãŸã‚ã«å–å¾—ã—ãŸã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’System.out.println()ãƒ¡ã‚½ãƒƒãƒ‰ã®å¼•æ•°ã«æ¸¡ã—ã¦è¡¨ç¤ºã—ã¾ã™ã€‚</li>
 	</ul>
 	<p>AopTraceClient.java</p>
 <pre>
@@ -751,10 +751,10 @@ public class AopToStringClient {
     }
 }
 </pre>
-	<p><b>ÀsŒ‹‰Ê</b></p>
-	<p>ObjectƒNƒ‰ƒX‚ÌtoString()ƒƒ\ƒbƒh‚ÆˆÙ‚È‚èAƒNƒ‰ƒX–¼‚ÆƒnƒbƒVƒ…’l‚¾‚¯‚Å‚È‚­AŠeƒtƒB[ƒ‹ƒh‚Ì’l‚ª•\¦‚³‚ê‚Ä‚¢‚é‚±‚Æ‚ªŠm”F‚Å‚«‚Ü‚·B
-	‚Ü‚½AEntityImplImplƒNƒ‰ƒX‚ÌƒtƒB[ƒ‹ƒh(implimplValue)‚¾‚¯‚Å‚È‚­AƒX[ƒp[ƒNƒ‰ƒX‚Å‚ ‚éEntityImplƒNƒ‰ƒX‚ÌƒtƒB[ƒ‹ƒh(implValue)‚â‚»‚Ì‚³‚ç‚ÉƒX[ƒp[ƒNƒ‰ƒX‚Å‚ ‚éEntityƒNƒ‰ƒX‚ÌƒtƒB[ƒ‹ƒh(‚»‚Ì‘¼‚ÌƒtƒB[ƒ‹ƒh)‚ª•\¦‚³‚ê‚Ä‚¢‚é‚±‚Æ‚ªŠm”F‚Å‚«‚Ü‚·B
-	EntityƒNƒ‰ƒX‚ªƒtƒB[ƒ‹ƒh‚Æ‚µ‚Ä‚Á‚Ä‚¢‚éInnerEntityƒNƒ‰ƒX‚ÌƒtƒB[ƒ‹ƒh‚à•\¦‚³‚ê‚Ä‚¢‚Ü‚·B</p>
+	<p><b>å®Ÿè¡Œçµæœ</b></p>
+	<p>Objectã‚¯ãƒ©ã‚¹ã®toString()ãƒ¡ã‚½ãƒƒãƒ‰ã¨ç•°ãªã‚Šã€ã‚¯ãƒ©ã‚¹åã¨ãƒãƒƒã‚·ãƒ¥å€¤ã ã‘ã§ãªãã€å„ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®å€¤ãŒè¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ã“ã¨ãŒç¢ºèªã§ãã¾ã™ã€‚
+	ã¾ãŸã€EntityImplImplã‚¯ãƒ©ã‚¹ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰(implimplValue)ã ã‘ã§ãªãã€ã‚¹ãƒ¼ãƒ‘ãƒ¼ã‚¯ãƒ©ã‚¹ã§ã‚ã‚‹EntityImplã‚¯ãƒ©ã‚¹ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰(implValue)ã‚„ãã®ã•ã‚‰ã«ã‚¹ãƒ¼ãƒ‘ãƒ¼ã‚¯ãƒ©ã‚¹ã§ã‚ã‚‹Entityã‚¯ãƒ©ã‚¹ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰(ãã®ä»–ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰)ãŒè¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ã“ã¨ãŒç¢ºèªã§ãã¾ã™ã€‚
+	Entityã‚¯ãƒ©ã‚¹ãŒãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã¨ã—ã¦æŒã£ã¦ã„ã‚‹InnerEntityã‚¯ãƒ©ã‚¹ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚‚è¡¨ç¤ºã•ã‚Œã¦ã„ã¾ã™ã€‚</p>
 <pre>
 examples.aop.tostringinterceptor.EntityImplImpl@1db4f6f[
   implImplValue=3,implValue=2,intValue=1,staticIntValue=12,doubleValue=12.3,
@@ -762,22 +762,22 @@ examples.aop.tostringinterceptor.EntityImplImpl@1db4f6f[
   innerEntity=examples.aop.tostringinterceptor.InnerEntity@13c1b02[
     innerInt=0,innerLong=234,str=&quot;foo&quot;,charArray={'a','b','c'}]]
 </pre>
-	<p>‚±‚ÌƒTƒ“ƒvƒ‹‚ÍAseasar2/src/examples/aop/tostringinterceptorˆÈ‰º‚É—pˆÓ‚³‚ê‚Ä‚¢‚Ü‚·B</p>
+	<p>ã“ã®ã‚µãƒ³ãƒ—ãƒ«ã¯ã€seasar2/src/examples/aop/tostringinterceptorä»¥ä¸‹ã«ç”¨æ„ã•ã‚Œã¦ã„ã¾ã™ã€‚</p>
 	<br />
 
 <h3><a name=DelegateInterceptorSample>DelegateInterceptor</a></h3>
-    <p>S2AOP‚Å—pˆÓ‚³‚ê‚Ä‚¢‚éDelegateInterceptor‚ğg‚Á‚ÄA‘¼‚ÌƒNƒ‰ƒX‚Ìƒƒ\ƒbƒh‚ÉˆÏ÷‚³‚¹‚Ü‚µ‚å‚¤B<br />
-    ‚±‚±‚Å‚ÍAƒCƒ“ƒ^[ƒtƒF[ƒX‚Å’ŠÛƒƒ\ƒbƒh‚ğì¬‚µ‚ÄA’ŠÛƒNƒ‰ƒX‚Æ•’Ê‚ÌƒNƒ‰ƒX‚Ì—¼•û‚É‚»‚ÌƒCƒ“ƒ^[ƒtƒF[ƒX‚ğÀ‘•‚³‚¹‚Ü‚·B’ŠÛƒNƒ‰ƒX‚ÅÀ‘•‚µ‚½ƒƒ\ƒbƒh‚ğ•’Ê‚ÌƒNƒ‰ƒX‚ÅÀ‘•‚µ‚½ƒƒ\ƒbƒh‚ÉˆÏ÷‚³‚¹‚Ü‚µ‚å‚¤Bì¬‚·‚éƒtƒ@ƒCƒ‹‚ÍˆÈ‰º‚Ì‚Æ‚¨‚è‚Å‚·B</p>
+    <p>S2AOPã§ç”¨æ„ã•ã‚Œã¦ã„ã‚‹DelegateInterceptorã‚’ä½¿ã£ã¦ã€ä»–ã®ã‚¯ãƒ©ã‚¹ã®ãƒ¡ã‚½ãƒƒãƒ‰ã«å§”è­²ã•ã›ã¾ã—ã‚‡ã†ã€‚<br />
+    ã“ã“ã§ã¯ã€ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã§æŠ½è±¡ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ä½œæˆã—ã¦ã€æŠ½è±¡ã‚¯ãƒ©ã‚¹ã¨æ™®é€šã®ã‚¯ãƒ©ã‚¹ã®ä¸¡æ–¹ã«ãã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚’å®Ÿè£…ã•ã›ã¾ã™ã€‚æŠ½è±¡ã‚¯ãƒ©ã‚¹ã§å®Ÿè£…ã—ãŸãƒ¡ã‚½ãƒƒãƒ‰ã‚’æ™®é€šã®ã‚¯ãƒ©ã‚¹ã§å®Ÿè£…ã—ãŸãƒ¡ã‚½ãƒƒãƒ‰ã«å§”è­²ã•ã›ã¾ã—ã‚‡ã†ã€‚ä½œæˆã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã¯ä»¥ä¸‹ã®ã¨ãŠã‚Šã§ã™ã€‚</p>
     <ul>
-		<li type="circle">ƒCƒ“ƒ^[ƒtƒF[ƒX(IBase.java)</li>
-		<li type="circle">ƒCƒ“ƒ^[ƒtƒF[ƒX‚ğÀ‘•‚µ‚½’ŠÛƒNƒ‰ƒX(Dummy.java)</li>
-		<li type="circle">ƒCƒ“ƒ^[ƒtƒF[ƒX‚ğÀ‘•‚µ‚½ƒNƒ‰ƒX(Substance.java)</li>
-		<li type="circle">ˆÏ÷‚ğİ’è‚·‚édiconƒtƒ@ƒCƒ‹(Delegate.dicon)</li>
-		<li type="circle">İ’è‚ª³‚µ‚­s‚í‚ê‚Ä‚¢‚é‚©Šm”F‚·‚éÀsƒtƒ@ƒCƒ‹(AopDelegateClient.java)</li>
+		<li type="circle">ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹(IBase.java)</li>
+		<li type="circle">ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚’å®Ÿè£…ã—ãŸæŠ½è±¡ã‚¯ãƒ©ã‚¹(Dummy.java)</li>
+		<li type="circle">ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚’å®Ÿè£…ã—ãŸã‚¯ãƒ©ã‚¹(Substance.java)</li>
+		<li type="circle">å§”è­²ã‚’è¨­å®šã™ã‚‹diconãƒ•ã‚¡ã‚¤ãƒ«(Delegate.dicon)</li>
+		<li type="circle">è¨­å®šãŒæ­£ã—ãè¡Œã‚ã‚Œã¦ã„ã‚‹ã‹ç¢ºèªã™ã‚‹å®Ÿè¡Œãƒ•ã‚¡ã‚¤ãƒ«(AopDelegateClient.java)</li>
 	</ul>
-    <p><b>ƒCƒ“ƒ^[ƒtƒF[ƒX‚Ìì¬</b></p>
+    <p><b>ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã®ä½œæˆ</b></p>
 	<ul>
-	    <li type="circle">’ŠÛƒƒ\ƒbƒh‚ğì¬‚µ‚Ü‚·B</li>
+	    <li type="circle">æŠ½è±¡ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ä½œæˆã—ã¾ã™ã€‚</li>
 	</ul>
     <p>IBase.java</p>
 <pre>package examples.aop.delegateinterceptor;
@@ -786,19 +786,19 @@ public interface IBase {
     public abstract void run();
 }</pre>
 
-	<p><b>ƒCƒ“ƒ^[ƒtƒF[ƒX‚ğÀ‘•‚µ‚½’ŠÛƒNƒ‰ƒX‚Ìì¬</b></p>
+	<p><b>ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚’å®Ÿè£…ã—ãŸæŠ½è±¡ã‚¯ãƒ©ã‚¹ã®ä½œæˆ</b></p>
 	<ul>
-		<li type="circle">ì¬‚µ‚½ƒCƒ“ƒ^[ƒtƒF[ƒX‚ğÀ‘•‚µ‚Ü‚·B</li>
+		<li type="circle">ä½œæˆã—ãŸã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚’å®Ÿè£…ã—ã¾ã™ã€‚</li>
 	</ul>
     <p>Dummy.java</p>
 <pre>package examples.aop.delegateinterceptor;
 
 public abstract class Dummy implements IBase {
 }</pre>
-    <p><b>ƒCƒ“ƒ^[ƒtƒF[ƒX‚ğÀ‘•‚µ‚½ƒNƒ‰ƒX‚Ìì¬</b></p>
+    <p><b>ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚’å®Ÿè£…ã—ãŸã‚¯ãƒ©ã‚¹ã®ä½œæˆ</b></p>
 	<ul>
-		<li type="circle">ì¬‚µ‚½ƒCƒ“ƒ^[ƒtƒF[ƒX‚ğÀ‘•‚µ‚Ü‚·B</li>
-		<li type="circle">À‘•‚µ‚½ƒCƒ“ƒ^ƒtƒF[ƒX‚Ì’ŠÛƒƒ\ƒbƒh‚ÌÀ‘•‚µ‚Ü‚·B</li>
+		<li type="circle">ä½œæˆã—ãŸã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚’å®Ÿè£…ã—ã¾ã™ã€‚</li>
+		<li type="circle">å®Ÿè£…ã—ãŸã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ã®æŠ½è±¡ãƒ¡ã‚½ãƒƒãƒ‰ã®å®Ÿè£…ã—ã¾ã™ã€‚</li>
 	</ul>
 	<p>Substance.java</p>
 <pre>package examples.aop.delegateinterceptor;
@@ -808,10 +808,10 @@ public class Substance implements IBase {
         System.out.println(&quot;substance&quot;);
     }
 }</pre>
-	<p><b>diconƒtƒ@ƒCƒ‹‚Ìì¬</b></p>
+	<p><b>diconãƒ•ã‚¡ã‚¤ãƒ«ã®ä½œæˆ</b></p>
 	<ul>
-		<li type="circle">’ŠÛƒNƒ‰ƒX(Dummy.java)‚ğƒRƒ“ƒ|[ƒlƒ“ƒg’è‹`‚µ‚Ü‚·B</li>
-        <li type="circle">DelegateInterceptor‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚ğaspectƒ^ƒO‚É’è‹`‚µ‚Ü‚·BDelegateInterceptor#setTarget()‚ğg‚Á‚ÄˆÏ÷‚µ‚½‚¢‘Šè‚ğw’è‚µ‚Ü‚·BˆÏ÷‚µ‚½‚¢ƒNƒ‰ƒX‚Íexamples.aop.delegateinterceptor.SubstanceƒNƒ‰ƒX‚È‚Ì‚Åƒƒ\ƒbƒhEƒCƒ“ƒWƒFƒNƒVƒ‡ƒ“‚ğg‚Á‚ÄƒZƒbƒg‚µ‚Ü‚·B</li>
+		<li type="circle">æŠ½è±¡ã‚¯ãƒ©ã‚¹(Dummy.java)ã‚’ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆå®šç¾©ã—ã¾ã™ã€‚</li>
+        <li type="circle">DelegateInterceptorã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’aspectã‚¿ã‚°ã«å®šç¾©ã—ã¾ã™ã€‚DelegateInterceptor#setTarget()ã‚’ä½¿ã£ã¦å§”è­²ã—ãŸã„ç›¸æ‰‹ã‚’æŒ‡å®šã—ã¾ã™ã€‚å§”è­²ã—ãŸã„ã‚¯ãƒ©ã‚¹ã¯examples.aop.delegateinterceptor.Substanceã‚¯ãƒ©ã‚¹ãªã®ã§ãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¤ãƒ³ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³ã‚’ä½¿ã£ã¦ã‚»ãƒƒãƒˆã—ã¾ã™ã€‚</li>
 	</ul>
 	<p>Delegate.dicon</p>
 <pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;Shift_JIS&quot;?&gt;
@@ -828,11 +828,11 @@ public class Substance implements IBase {
         &lt;/aspect&gt;
     &lt;/component&gt;
 &lt;/components&gt;</pre>
-	<p><b>Àsƒtƒ@ƒCƒ‹‚Ìì¬</b></p>
+	<p><b>å®Ÿè¡Œãƒ•ã‚¡ã‚¤ãƒ«ã®ä½œæˆ</b></p>
 	<ul>
-    	<li type="circle">org.seasar.framework.container.S2Container#create()ƒƒ\ƒbƒh‚ÌÅ‰‚Ìˆø”‚Éì¬‚µ‚½diconƒtƒ@ƒCƒ‹(Delegate.dicon)‚ÌƒpƒX‚ğw’è‚µ‚ÄƒRƒ“ƒeƒi‚ğì¬‚µ‚Ü‚·B</li>
-        <li type="circle">org.seasar.framework.container.S2Container#getComponent()ƒƒ\ƒbƒh‚Ì‘æ‚Pˆø”‚ÉƒRƒ“ƒ|[ƒlƒ“ƒg‚É“o˜^‚µ‚½ƒNƒ‰ƒX–¼iIBase.class)‚ğw’è‚µ‚Äæ“¾‚µ‚Ü‚·B</li>
-        <li type="circle">ƒRƒ“ƒeƒi‚©‚çæ“¾‚µ‚½IBase#run()ƒƒ\ƒbƒh‚ğÀs‚µ‚Ü‚·B</li>
+    	<li type="circle">org.seasar.framework.container.S2Container#create()ãƒ¡ã‚½ãƒƒãƒ‰ã®æœ€åˆã®å¼•æ•°ã«ä½œæˆã—ãŸdiconãƒ•ã‚¡ã‚¤ãƒ«(Delegate.dicon)ã®ãƒ‘ã‚¹ã‚’æŒ‡å®šã—ã¦ã‚³ãƒ³ãƒ†ãƒŠã‚’ä½œæˆã—ã¾ã™ã€‚</li>
+        <li type="circle">org.seasar.framework.container.S2Container#getComponent()ãƒ¡ã‚½ãƒƒãƒ‰ã®ç¬¬ï¼‘å¼•æ•°ã«ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã«ç™»éŒ²ã—ãŸã‚¯ãƒ©ã‚¹åï¼ˆIBase.class)ã‚’æŒ‡å®šã—ã¦å–å¾—ã—ã¾ã™ã€‚</li>
+        <li type="circle">ã‚³ãƒ³ãƒ†ãƒŠã‹ã‚‰å–å¾—ã—ãŸIBase#run()ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å®Ÿè¡Œã—ã¾ã™ã€‚</li>
 	</ul>
     AopDelegateCilent.dicon
 <pre>package examples.aop.delegateinterceptor;
@@ -849,26 +849,26 @@ public class AopDelegateClient {
     }
 }</pre>
 
-	<p><b>ÀsŒ‹‰Ê</b></p>
-	<p>ƒRƒ“ƒ\[ƒ‹‚É&quot;substance&quot;‚Æ•\¦‚³‚ê‚Ä‚¢‚é‚Ì‚ÅDummy#run()‚ªSubstance#run()‚ÉˆÏ÷‚³‚ê‚Ä‚¢‚é‚Ì‚ªŠm”F‚Å‚«‚Ü‚·B</p>
+	<p><b>å®Ÿè¡Œçµæœ</b></p>
+	<p>ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã«&quot;substance&quot;ã¨è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ã®ã§Dummy#run()ãŒSubstance#run()ã«å§”è­²ã•ã‚Œã¦ã„ã‚‹ã®ãŒç¢ºèªã§ãã¾ã™ã€‚</p>
 <pre>
 substance
 </pre>
-	<p>‚±‚ÌƒTƒ“ƒvƒ‹‚ÍAseasar2/src/examples/aop/delegateinterceptorˆÈ‰º‚É—pˆÓ‚³‚ê‚Ä‚¢‚Ü‚·B</p>
+	<p>ã“ã®ã‚µãƒ³ãƒ—ãƒ«ã¯ã€seasar2/src/examples/aop/delegateinterceptorä»¥ä¸‹ã«ç”¨æ„ã•ã‚Œã¦ã„ã¾ã™ã€‚</p>
     <br />
 <h3><a name="PrototypeDelegateInterceptorSample">PrototypeDelegateInterceptor</a></h3>
-    <p>S2AOP‚Å—pˆÓ‚³‚ê‚Ä‚¢‚éPrototypeDelegateInterceptor‚ğg‚Á‚ÄAsingleton‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚©‚çprototype‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚Ìƒƒ\ƒbƒh‚ÉˆÏ÷‚³‚¹‚Ü‚µ‚å‚¤B<br />
-‚±‚±‚Å‚ÍAƒCƒ“ƒ^[ƒtƒF[ƒX‚Å’ŠÛƒƒ\ƒbƒh‚ğì¬‚µ‚ÄA’ŠÛƒNƒ‰ƒX(singleton)‚Æ•’Ê‚ÌƒNƒ‰ƒX(prototype)‚Ì—¼•û‚É‚»‚ÌƒCƒ“ƒ^[ƒtƒF[ƒX‚ğÀ‘•‚³‚¹‚Ü‚·B’ŠÛƒNƒ‰ƒX‚ÅÀ‘•‚µ‚½ƒƒ\ƒbƒh‚ğ•’Ê‚ÌƒNƒ‰ƒX‚ÅÀ‘•‚µ‚½ƒƒ\ƒbƒh‚ÉˆÏ÷‚³‚¹‚Ü‚µ‚å‚¤Bì¬‚·‚éƒtƒ@ƒCƒ‹‚ÍˆÈ‰º‚Ì‚Æ‚¨‚è‚Å‚·B</p>
+    <p>S2AOPã§ç”¨æ„ã•ã‚Œã¦ã„ã‚‹PrototypeDelegateInterceptorã‚’ä½¿ã£ã¦ã€singletonã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‹ã‚‰prototypeã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®ãƒ¡ã‚½ãƒƒãƒ‰ã«å§”è­²ã•ã›ã¾ã—ã‚‡ã†ã€‚<br />
+ã“ã“ã§ã¯ã€ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã§æŠ½è±¡ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ä½œæˆã—ã¦ã€æŠ½è±¡ã‚¯ãƒ©ã‚¹(singleton)ã¨æ™®é€šã®ã‚¯ãƒ©ã‚¹(prototype)ã®ä¸¡æ–¹ã«ãã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚’å®Ÿè£…ã•ã›ã¾ã™ã€‚æŠ½è±¡ã‚¯ãƒ©ã‚¹ã§å®Ÿè£…ã—ãŸãƒ¡ã‚½ãƒƒãƒ‰ã‚’æ™®é€šã®ã‚¯ãƒ©ã‚¹ã§å®Ÿè£…ã—ãŸãƒ¡ã‚½ãƒƒãƒ‰ã«å§”è­²ã•ã›ã¾ã—ã‚‡ã†ã€‚ä½œæˆã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã¯ä»¥ä¸‹ã®ã¨ãŠã‚Šã§ã™ã€‚</p>
     <ul>
-		<li type="circle">ƒCƒ“ƒ^[ƒtƒF[ƒX(IBase.java)</li>
-		<li type="circle">ƒCƒ“ƒ^[ƒtƒF[ƒX‚ğÀ‘•‚µ‚½singleton‚Ì’ŠÛƒNƒ‰ƒX(Dummy.java)</li>
-		<li type="circle">ƒCƒ“ƒ^[ƒtƒF[ƒX‚ğÀ‘•‚µ‚½prototype‚ÌƒNƒ‰ƒX(Substance.java)</li>
-		<li type="circle">ˆÏ÷‚ğİ’è‚·‚édiconƒtƒ@ƒCƒ‹(Delegate.dicon)</li>
-		<li type="circle">İ’è‚ª³‚µ‚­s‚í‚ê‚Ä‚¢‚é‚©Šm”F‚·‚éÀsƒtƒ@ƒCƒ‹(AopPrototypeDelegateClient.java)</li>
+		<li type="circle">ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹(IBase.java)</li>
+		<li type="circle">ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚’å®Ÿè£…ã—ãŸsingletonã®æŠ½è±¡ã‚¯ãƒ©ã‚¹(Dummy.java)</li>
+		<li type="circle">ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚’å®Ÿè£…ã—ãŸprototypeã®ã‚¯ãƒ©ã‚¹(Substance.java)</li>
+		<li type="circle">å§”è­²ã‚’è¨­å®šã™ã‚‹diconãƒ•ã‚¡ã‚¤ãƒ«(Delegate.dicon)</li>
+		<li type="circle">è¨­å®šãŒæ­£ã—ãè¡Œã‚ã‚Œã¦ã„ã‚‹ã‹ç¢ºèªã™ã‚‹å®Ÿè¡Œãƒ•ã‚¡ã‚¤ãƒ«(AopPrototypeDelegateClient.java)</li>
 	</ul>
-    <p><b>ƒCƒ“ƒ^[ƒtƒF[ƒX‚Ìì¬</b></p>
+    <p><b>ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã®ä½œæˆ</b></p>
 	<ul>
-	    <li type="circle">’ŠÛƒƒ\ƒbƒh‚ğì¬‚µ‚Ü‚·B</li>
+	    <li type="circle">æŠ½è±¡ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ä½œæˆã—ã¾ã™ã€‚</li>
 	</ul>
     <p>IBase.java</p>
 <pre>package examples.aop.delegateinterceptor;
@@ -877,19 +877,19 @@ public interface IBase {
     public abstract void run();
 }</pre>
 
-	<p><b>ƒCƒ“ƒ^[ƒtƒF[ƒX‚ğÀ‘•‚µ‚½’ŠÛƒNƒ‰ƒX‚Ìì¬</b></p>
+	<p><b>ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚’å®Ÿè£…ã—ãŸæŠ½è±¡ã‚¯ãƒ©ã‚¹ã®ä½œæˆ</b></p>
 	<ul>
-		<li type="circle">ì¬‚µ‚½ƒCƒ“ƒ^[ƒtƒF[ƒX‚ğÀ‘•‚µ‚Ü‚·B</li>
+		<li type="circle">ä½œæˆã—ãŸã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚’å®Ÿè£…ã—ã¾ã™ã€‚</li>
 	</ul>
     <p>Dummy.java</p>
 <pre>package examples.aop.delegateinterceptor;
 
 public abstract class Dummy implements IBase {
 }</pre>
-    <p><b>ƒCƒ“ƒ^[ƒtƒF[ƒX‚ğÀ‘•‚µ‚½ƒNƒ‰ƒX‚Ìì¬</b></p>
+    <p><b>ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚’å®Ÿè£…ã—ãŸã‚¯ãƒ©ã‚¹ã®ä½œæˆ</b></p>
 	<ul>
-		<li type="circle">ì¬‚µ‚½ƒCƒ“ƒ^[ƒtƒF[ƒX‚ğÀ‘•‚µ‚Ü‚·B</li>
-		<li type="circle">À‘•‚µ‚½ƒCƒ“ƒ^ƒtƒF[ƒX‚Ì’ŠÛƒƒ\ƒbƒh‚ÌÀ‘•‚µ‚Ü‚·B</li>
+		<li type="circle">ä½œæˆã—ãŸã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚’å®Ÿè£…ã—ã¾ã™ã€‚</li>
+		<li type="circle">å®Ÿè£…ã—ãŸã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ã®æŠ½è±¡ãƒ¡ã‚½ãƒƒãƒ‰ã®å®Ÿè£…ã—ã¾ã™ã€‚</li>
 	</ul>
 	<p>Substance.java</p>
 <pre>package examples.aop.delegateinterceptor;
@@ -899,11 +899,11 @@ public class Substance implements IBase {
         System.out.println(this);
     }
 }</pre>
-	<p><b>diconƒtƒ@ƒCƒ‹‚Ìì¬</b></p>
+	<p><b>diconãƒ•ã‚¡ã‚¤ãƒ«ã®ä½œæˆ</b></p>
 	<ul>
-		<li type="circle">’ŠÛƒNƒ‰ƒX(Dummy.java)‚ğƒRƒ“ƒ|[ƒlƒ“ƒg’è‹`‚µ‚Ü‚·B‚±‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚Ísingleton‚Å‚·B</li>
-<li type="circle">PrototypeDelegateInterceptor‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚ğaspectƒ^ƒO‚É’è‹`‚µ‚Ü‚·BPrototypeDelegateInterceptor‚ÌtargetNameƒvƒƒpƒeƒB‚ÉˆÏ÷‚µ‚½‚¢‘Šè‚Ì–¼‘O(&quot;target&quot;)‚ğw’è‚µ‚Ü‚·B</li>
-<li type="circle">ˆÏ÷‚µ‚½‚¢ƒNƒ‰ƒX(Substance.java)‚ğƒRƒ“ƒ|[ƒlƒ“ƒg’è‹`‚µ‚Ü‚·B‚±‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚Ìinstance‘®«‚Íprototype‚Å‚·B
+		<li type="circle">æŠ½è±¡ã‚¯ãƒ©ã‚¹(Dummy.java)ã‚’ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆå®šç¾©ã—ã¾ã™ã€‚ã“ã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã¯singletonã§ã™ã€‚</li>
+<li type="circle">PrototypeDelegateInterceptorã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’aspectã‚¿ã‚°ã«å®šç¾©ã—ã¾ã™ã€‚PrototypeDelegateInterceptorã®targetNameãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã«å§”è­²ã—ãŸã„ç›¸æ‰‹ã®åå‰(&quot;target&quot;)ã‚’æŒ‡å®šã—ã¾ã™ã€‚</li>
+<li type="circle">å§”è­²ã—ãŸã„ã‚¯ãƒ©ã‚¹(Substance.java)ã‚’ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆå®šç¾©ã—ã¾ã™ã€‚ã“ã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®instanceå±æ€§ã¯prototypeã§ã™ã€‚
 </ul>
 	<p>PrototypeDelegate.dicon</p>
 <pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;Shift_JIS&quot;?&gt;
@@ -922,11 +922,11 @@ public class Substance implements IBase {
                   class=&quot;examples.aop.prototypedelegateinterceptor.Substance&quot;
                   instance=&quot;prototype&quot;/&gt;
 &lt;/components&gt;</pre>
-	<p><b>Àsƒtƒ@ƒCƒ‹‚Ìì¬</b></p>
+	<p><b>å®Ÿè¡Œãƒ•ã‚¡ã‚¤ãƒ«ã®ä½œæˆ</b></p>
 	<ul>
-    	<li type="circle">org.seasar.framework.container.S2Container#create()ƒƒ\ƒbƒh‚ÌÅ‰‚Ìˆø”‚Éì¬‚µ‚½diconƒtƒ@ƒCƒ‹(PrototypeDelegate.dicon)‚ÌƒpƒX‚ğw’è‚µ‚ÄƒRƒ“ƒeƒi‚ğì¬‚µ‚Ü‚·B</li>
-        <li type="circle">org.seasar.framework.container.S2Container#getComponent()ƒƒ\ƒbƒh‚Ì‘æ‚Pˆø”‚ÉƒRƒ“ƒ|[ƒlƒ“ƒg‚É“o˜^‚µ‚½ƒNƒ‰ƒX–¼iIBase.class)‚ğw’è‚µ‚Äæ“¾‚µ‚Ü‚·B</li>
-        <li type="circle">ƒRƒ“ƒeƒi‚©‚çæ“¾‚µ‚½IBase#run()ƒƒ\ƒbƒh‚ğŒJ‚è•Ô‚µÀs‚µ‚Ü‚·B</li>
+    	<li type="circle">org.seasar.framework.container.S2Container#create()ãƒ¡ã‚½ãƒƒãƒ‰ã®æœ€åˆã®å¼•æ•°ã«ä½œæˆã—ãŸdiconãƒ•ã‚¡ã‚¤ãƒ«(PrototypeDelegate.dicon)ã®ãƒ‘ã‚¹ã‚’æŒ‡å®šã—ã¦ã‚³ãƒ³ãƒ†ãƒŠã‚’ä½œæˆã—ã¾ã™ã€‚</li>
+        <li type="circle">org.seasar.framework.container.S2Container#getComponent()ãƒ¡ã‚½ãƒƒãƒ‰ã®ç¬¬ï¼‘å¼•æ•°ã«ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã«ç™»éŒ²ã—ãŸã‚¯ãƒ©ã‚¹åï¼ˆIBase.class)ã‚’æŒ‡å®šã—ã¦å–å¾—ã—ã¾ã™ã€‚</li>
+        <li type="circle">ã‚³ãƒ³ãƒ†ãƒŠã‹ã‚‰å–å¾—ã—ãŸIBase#run()ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ç¹°ã‚Šè¿”ã—å®Ÿè¡Œã—ã¾ã™ã€‚</li>
 	</ul>
 AopPrototypeDelegateCilent.dicon
 <pre>package examples.aop.prototypedelegateinterceptor;
@@ -945,28 +945,28 @@ public class AopDelegateClient {
     }
 }</pre>
 
-	<p><b>ÀsŒ‹‰Ê</b></p>
-	<p>ƒRƒ“ƒ\[ƒ‹‚É&quot;examples.aop.prototypedelegateinterceptor.Substance@`&quot;‚Æ•\¦‚³‚ê‚Ä‚¢‚é‚Ì‚ÅDummy#run()‚ªSubstance#run()‚ÉˆÏ÷‚³‚ê‚Ä‚¢‚é‚Ì‚ªŠm”F‚Å‚«‚Ü‚·B‚Ü‚½A&quot;@&quot;‚ÌŒã‚É•\¦‚³‚ê‚Ä‚¢‚éƒnƒbƒVƒ…ƒR[ƒh’l‚ªˆÙ‚È‚Á‚Ä‚¢‚é‚±‚Æ‚©‚çCrun()ƒƒ\ƒbƒh‚ğŒÄ‚Ño‚·‚½‚Ñ‚ÉV‚µ‚¢Substance‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ªì¬‚³‚ê‚Ä‚¢‚é‚±‚Æ‚ª•ª‚©‚è‚Ü‚·B</p>
+	<p><b>å®Ÿè¡Œçµæœ</b></p>
+	<p>ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã«&quot;examples.aop.prototypedelegateinterceptor.Substance@ï½&quot;ã¨è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ã®ã§Dummy#run()ãŒSubstance#run()ã«å§”è­²ã•ã‚Œã¦ã„ã‚‹ã®ãŒç¢ºèªã§ãã¾ã™ã€‚ã¾ãŸã€&quot;@&quot;ã®å¾Œã«è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ãƒãƒƒã‚·ãƒ¥ã‚³ãƒ¼ãƒ‰å€¤ãŒç•°ãªã£ã¦ã„ã‚‹ã“ã¨ã‹ã‚‰ï¼Œrun()ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã³å‡ºã™ãŸã³ã«æ–°ã—ã„Substanceã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãŒä½œæˆã•ã‚Œã¦ã„ã‚‹ã“ã¨ãŒåˆ†ã‹ã‚Šã¾ã™ã€‚</p>
 <pre>examples.aop.prototypedelegateinterceptor.Substance@ae533a
 examples.aop.prototypedelegateinterceptor.Substance@da18ac
 examples.aop.prototypedelegateinterceptor.Substance@8a0544
 examples.aop.prototypedelegateinterceptor.Substance@401369
 examples.aop.prototypedelegateinterceptor.Substance@e49dcd</pre>
-	<p>‚±‚ÌƒTƒ“ƒvƒ‹‚ÍAseasar2/src/examples/aop/delegateinterceptorˆÈ‰º‚É—pˆÓ‚³‚ê‚Ä‚¢‚Ü‚·B</p>
+	<p>ã“ã®ã‚µãƒ³ãƒ—ãƒ«ã¯ã€seasar2/src/examples/aop/delegateinterceptorä»¥ä¸‹ã«ç”¨æ„ã•ã‚Œã¦ã„ã¾ã™ã€‚</p>
     <br />
 <h3><a name=SyncInterceptorSample>SyncInterceptor</a></h3>
-    <p>SyncInterceptor‚ğg‚Á‚ÄA“¯Šú‚ğæ‚è‚Ü‚µ‚å‚¤B<br />
-    ‚Ü‚¸‚ÍASyncInterceptor‚ğ“K—p‚µ‚È‚¢ê‡‚ÌƒTƒ“ƒvƒ‹‚ğì¬‚µ‚Ü‚µ‚å‚¤B•¡”‚ÌƒXƒŒƒbƒh‚ª‹¤—LƒIƒuƒWƒFƒNƒg‚ÉƒAƒNƒZƒX‚µ‚ÄA‚ ‚é•Ï”‚É1‰ÁZ‚·‚éƒNƒ‰ƒX‚ğì¬‚µ‚Ü‚µ‚å‚¤Bì¬‚·‚éƒtƒ@ƒCƒ‹‚ÍˆÈ‰º‚Ì‚Æ‚¨‚è‚Å‚·B</p>
+    <p>SyncInterceptorã‚’ä½¿ã£ã¦ã€åŒæœŸã‚’å–ã‚Šã¾ã—ã‚‡ã†ã€‚<br />
+    ã¾ãšã¯ã€SyncInterceptorã‚’é©ç”¨ã—ãªã„å ´åˆã®ã‚µãƒ³ãƒ—ãƒ«ã‚’ä½œæˆã—ã¾ã—ã‚‡ã†ã€‚è¤‡æ•°ã®ã‚¹ãƒ¬ãƒƒãƒ‰ãŒå…±æœ‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ã‚¢ã‚¯ã‚»ã‚¹ã—ã¦ã€ã‚ã‚‹å¤‰æ•°ã«1åŠ ç®—ã™ã‚‹ã‚¯ãƒ©ã‚¹ã‚’ä½œæˆã—ã¾ã—ã‚‡ã†ã€‚ä½œæˆã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã¯ä»¥ä¸‹ã®ã¨ãŠã‚Šã§ã™ã€‚</p>
     <ul>
-		<li type="circle">‚ ‚é•Ï”‚É1‰ÁZ‚·‚éƒCƒ“ƒ^[ƒtƒF[ƒX(Count.java)</li>
-		<li type="circle">ƒCƒ“ƒ^[ƒtƒF[ƒX‚ğÀ‘•‚·‚éƒNƒ‰ƒX(CountImpl.java)</li>
-		<li type="circle">ƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì’è‹`‚ğs‚¤diconƒtƒ@ƒCƒ‹(SyncCalc.dicon)</li>
-		<li type="circle">İ’è‚ª³‚µ‚­s‚í‚ê‚Ä‚¢‚é‚©Šm”F‚·‚éÀsƒtƒ@ƒCƒ‹(AopSyncClient.java)</li>
+		<li type="circle">ã‚ã‚‹å¤‰æ•°ã«1åŠ ç®—ã™ã‚‹ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹(Count.java)</li>
+		<li type="circle">ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚’å®Ÿè£…ã™ã‚‹ã‚¯ãƒ©ã‚¹(CountImpl.java)</li>
+		<li type="circle">ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®å®šç¾©ã‚’è¡Œã†diconãƒ•ã‚¡ã‚¤ãƒ«(SyncCalc.dicon)</li>
+		<li type="circle">è¨­å®šãŒæ­£ã—ãè¡Œã‚ã‚Œã¦ã„ã‚‹ã‹ç¢ºèªã™ã‚‹å®Ÿè¡Œãƒ•ã‚¡ã‚¤ãƒ«(AopSyncClient.java)</li>
 	</ul>
-	<b>‚ ‚é•Ï”‚É1‰ÁZ‚·‚éƒCƒ“ƒ^[ƒtƒF[ƒXì¬</b>
+	<b>ã‚ã‚‹å¤‰æ•°ã«1åŠ ç®—ã™ã‚‹ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ä½œæˆ</b>
 	<ul>
-		<li type="circle">‰ÁZ‚·‚éƒƒ\ƒbƒh‚ğì¬‚µ‚Ü‚·B</li>
-		<li type="circle">ƒJƒEƒ“ƒg”‚ğæ“¾‚·‚éƒƒ\ƒbƒh‚ğì¬‚µ‚Ü‚·B</li>
+		<li type="circle">åŠ ç®—ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ä½œæˆã—ã¾ã™ã€‚</li>
+		<li type="circle">ã‚«ã‚¦ãƒ³ãƒˆæ•°ã‚’å–å¾—ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ä½œæˆã—ã¾ã™ã€‚</li>
 	</ul>
 	<p>Count.java</p>
 <pre>
@@ -979,12 +979,12 @@ public interface Count {
     public int get();
 }
 </pre>
-	<p><b>ƒCƒ“ƒ^[ƒtƒF[ƒX‚ÌÀ‘•ƒNƒ‰ƒX</b></p>
+	<p><b>ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã®å®Ÿè£…ã‚¯ãƒ©ã‚¹</b></p>
     <ul>
-		<li type="circle">ƒCƒ“ƒ^[ƒtƒF[ƒX‚ğÀ‘•‚µ‚Ü‚·B</li>
-		<li type="circle">‰ÁZ‚µ‚Ä‚¢‚­•Ï”‚ğéŒ¾‚µ‚Ü‚·B‰Šú’l‚Í0‚Æ‚µ‚Ü‚·B</li>
-		<li type="circle">ƒCƒ“ƒ^[ƒtƒF[ƒX‚Ìadd()ƒƒ\ƒbƒh‚ğÀ‘•‚µ‚ÄAˆ—‚ÍƒXƒŒƒbƒh‚ğ2•bŠÔ~‚ß‚Ä‚©‚ç•Ï”‚É1‰ÁZ‚·‚é‚æ‚¤‚É‚·‚éB‚Ü‚½A‰ÁZ‚·‚é‘O‚Ì”’l‚ğ•\¦‚µ‚Ü‚·B</li>
-		<li type="circle">ƒCƒ“ƒ^[ƒtƒF[ƒX‚Ìget()ƒƒ\ƒbƒh‚ğÀ‘•‚µ‚ÄAˆ—‚Í•Ï”‚Ì’l‚ğ•Ô‚·‚æ‚¤‚É‚µ‚Ü‚·B</li>
+		<li type="circle">ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚’å®Ÿè£…ã—ã¾ã™ã€‚</li>
+		<li type="circle">åŠ ç®—ã—ã¦ã„ãå¤‰æ•°ã‚’å®£è¨€ã—ã¾ã™ã€‚åˆæœŸå€¤ã¯0ã¨ã—ã¾ã™ã€‚</li>
+		<li type="circle">ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã®add()ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å®Ÿè£…ã—ã¦ã€å‡¦ç†ã¯ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’2ç§’é–“æ­¢ã‚ã¦ã‹ã‚‰å¤‰æ•°ã«1åŠ ç®—ã™ã‚‹ã‚ˆã†ã«ã™ã‚‹ã€‚ã¾ãŸã€åŠ ç®—ã™ã‚‹å‰ã®æ•°å€¤ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚</li>
+		<li type="circle">ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã®get()ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å®Ÿè£…ã—ã¦ã€å‡¦ç†ã¯å¤‰æ•°ã®å€¤ã‚’è¿”ã™ã‚ˆã†ã«ã—ã¾ã™ã€‚</li>
     </ul>
 	<p>CountImpl.java</p>
 <pre>
@@ -1011,9 +1011,9 @@ public class CountImpl implements Count {
     }
 }
 </pre>
-	<p><b>diconƒtƒ@ƒCƒ‹‚Ìì¬</b></p>
+	<p><b>diconãƒ•ã‚¡ã‚¤ãƒ«ã®ä½œæˆ</b></p>
 	<ul>
-    	<li type="circle">ì¬‚µ‚½CountImpl‚ğƒRƒ“ƒ|[ƒlƒ“ƒg’è‹`‚µ‚Ü‚·B</li>
+    	<li type="circle">ä½œæˆã—ãŸCountImplã‚’ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆå®šç¾©ã—ã¾ã™ã€‚</li>
 	</ul>
 	<p>Count.dicon</p>
 <pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;Shift_JIS&quot;?&gt;
@@ -1024,15 +1024,15 @@ public class CountImpl implements Count {
     &lt;/component&gt;
 &lt;/components&gt;</pre>
 
-    <p><b>Àsƒtƒ@ƒCƒ‹‚Ìì¬</b></p>
+    <p><b>å®Ÿè¡Œãƒ•ã‚¡ã‚¤ãƒ«ã®ä½œæˆ</b></p>
 	<ul>
-		<li type="circle">org.seasar.framework.container.S2Container#create()ƒƒ\ƒbƒh‚Ì‘æ‚Pˆø”‚Éì¬‚µ‚½diconƒtƒ@ƒCƒ‹(SyncCalc.dicon)‚ÌƒpƒX‚ğw’è‚µ‚ÄƒRƒ“ƒeƒi‚ğì¬‚µ‚Ü‚·B</li>
-    	<li type="circle">org.seasar.framework.container.S2Container#getComponent()ƒƒ\ƒbƒh‚Ì‘æ‚Pˆø”‚ÉƒRƒ“ƒ|[ƒlƒ“ƒg‚É“o˜^‚µ‚½ƒNƒ‰ƒX–¼iCount.class)‚ğw’è‚µ‚Äæ“¾‚µ‚Ü‚·B</li>
-		<li type="circle">Runnable‚ğì¬‚·‚éB‚»‚ÌÛ‚ÉThread ‚ªÀs‚·‚éˆ—‚Ìrun()ƒƒ\ƒbƒh‚ÉCountƒNƒ‰ƒX‚Ìadd()ƒƒ\ƒbƒh‚Ìˆ—‚ğs‚¤‚æ‚¤‚É‚µ‚Ü‚·B</li>
-		<li type="circle">Thread‚ğ5‚Âì¬‚µ‚Ü‚·B</li>
-		<li type="circle">Thread#start()ƒƒ\ƒbƒh‚Åì¬‚µ‚½5‚Â‚ÌƒXƒŒƒbƒh‚ğÀs‰Â”\ó‘Ô‚É‚µ‚Ü‚·B</li>
-        <li type="circle">Thread#join()ƒƒ\ƒbƒh‚ğg‚Á‚Ä“–ŠYƒXƒŒƒbƒh‚ªI—¹‚·‚é‚Ü‚ÅAŒÄ‚Ño‚µŒ³‚ÌƒXƒŒƒbƒh‚ğ‘Ò‹@‚µ‚Ü‚·B</li>
-        <li type="circle">‚·‚×‚Ä‚ÌƒXƒŒƒbƒh‚ªŒÄ‚Î‚ê‚½‚çAƒJƒEƒ“ƒg”‚ğ•\¦‚µ‚Ü‚·B</li>
+		<li type="circle">org.seasar.framework.container.S2Container#create()ãƒ¡ã‚½ãƒƒãƒ‰ã®ç¬¬ï¼‘å¼•æ•°ã«ä½œæˆã—ãŸdiconãƒ•ã‚¡ã‚¤ãƒ«(SyncCalc.dicon)ã®ãƒ‘ã‚¹ã‚’æŒ‡å®šã—ã¦ã‚³ãƒ³ãƒ†ãƒŠã‚’ä½œæˆã—ã¾ã™ã€‚</li>
+    	<li type="circle">org.seasar.framework.container.S2Container#getComponent()ãƒ¡ã‚½ãƒƒãƒ‰ã®ç¬¬ï¼‘å¼•æ•°ã«ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã«ç™»éŒ²ã—ãŸã‚¯ãƒ©ã‚¹åï¼ˆCount.class)ã‚’æŒ‡å®šã—ã¦å–å¾—ã—ã¾ã™ã€‚</li>
+		<li type="circle">Runnableã‚’ä½œæˆã™ã‚‹ã€‚ãã®éš›ã«Thread ãŒå®Ÿè¡Œã™ã‚‹å‡¦ç†ã®run()ãƒ¡ã‚½ãƒƒãƒ‰ã«Countã‚¯ãƒ©ã‚¹ã®add()ãƒ¡ã‚½ãƒƒãƒ‰ã®å‡¦ç†ã‚’è¡Œã†ã‚ˆã†ã«ã—ã¾ã™ã€‚</li>
+		<li type="circle">Threadã‚’5ã¤ä½œæˆã—ã¾ã™ã€‚</li>
+		<li type="circle">Thread#start()ãƒ¡ã‚½ãƒƒãƒ‰ã§ä½œæˆã—ãŸ5ã¤ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’å®Ÿè¡Œå¯èƒ½çŠ¶æ…‹ã«ã—ã¾ã™ã€‚</li>
+        <li type="circle">Thread#join()ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ä½¿ã£ã¦å½“è©²ã‚¹ãƒ¬ãƒƒãƒ‰ãŒçµ‚äº†ã™ã‚‹ã¾ã§ã€å‘¼ã³å‡ºã—å…ƒã®ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’å¾…æ©Ÿã—ã¾ã™ã€‚</li>
+        <li type="circle">ã™ã¹ã¦ã®ã‚¹ãƒ¬ãƒƒãƒ‰ãŒå‘¼ã°ã‚ŒãŸã‚‰ã€ã‚«ã‚¦ãƒ³ãƒˆæ•°ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚</li>
 	</ul>
     <p>AopSyncClient.java</p>
 <pre>package examples.aop.syncinterceptor;
@@ -1080,8 +1080,8 @@ public class AopSyncClient {
     }
 }</pre>
 
-	<p><b>ÀsŒ‹‰Ê</b></p>
-	<p>“¯Šú‚ªæ‚ê‚Ä‚¢‚È‚¢‚±‚Æ‚ªŠm”F‚Å‚«‚Ü‚·B</p>
+	<p><b>å®Ÿè¡Œçµæœ</b></p>
+	<p>åŒæœŸãŒå–ã‚Œã¦ã„ãªã„ã“ã¨ãŒç¢ºèªã§ãã¾ã™ã€‚</p>
 <pre>count: 0
 0
 0
@@ -1090,9 +1090,9 @@ public class AopSyncClient {
 0
 count: 1
 </pre>
-	<b>SyncInterceptor‚ğ“K—p‚µ‚Ä“¯Šú‚ªæ‚ê‚é‚æ‚¤‚É‚µ‚Ü‚µ‚å‚¤B</b>
+	<b>SyncInterceptorã‚’é©ç”¨ã—ã¦åŒæœŸãŒå–ã‚Œã‚‹ã‚ˆã†ã«ã—ã¾ã—ã‚‡ã†ã€‚</b>
 	<ul>
-		<li type="circle">diconƒtƒ@ƒCƒ‹‚É’è‹`‚µ‚½ƒRƒ“ƒ|[ƒlƒ“ƒg‚ÉSyncInterceptor‚ğƒAƒXƒyƒNƒg‚µ‚Ü‚·B</li>
+		<li type="circle">diconãƒ•ã‚¡ã‚¤ãƒ«ã«å®šç¾©ã—ãŸã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã«SyncInterceptorã‚’ã‚¢ã‚¹ãƒšã‚¯ãƒˆã—ã¾ã™ã€‚</li>
 	</ul>
 	<p>Count.dicon</p>
 <pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;Shift_JIS&quot;?&gt;
@@ -1105,8 +1105,8 @@ count: 1
         &lt;/aspect&gt;
     &lt;/component&gt;
 &lt;/components&gt;</pre>
-	<p><b>ÀsŒ‹‰Ê</b></p>
-    <p>‚P‚¸‚Â‰ÁZ‚³‚ê‚Ä‚¢‚é‚±‚Æ‚©‚ç“¯Šú‚ªæ‚ê‚Ä‚¢‚é‚±‚Æ‚ªŠm”F‚Å‚«‚Ü‚·B</p>
+	<p><b>å®Ÿè¡Œçµæœ</b></p>
+    <p>ï¼‘ãšã¤åŠ ç®—ã•ã‚Œã¦ã„ã‚‹ã“ã¨ã‹ã‚‰åŒæœŸãŒå–ã‚Œã¦ã„ã‚‹ã“ã¨ãŒç¢ºèªã§ãã¾ã™ã€‚</p>
 <pre>count: 0
 0
 1
@@ -1114,25 +1114,25 @@ count: 1
 3
 4
 count: 5</pre>
-	<p>‚±‚ÌƒTƒ“ƒvƒ‹‚ÍAseasar2/src/examples/aop/syncinterceptorˆÈ‰º‚É—pˆÓ‚³‚ê‚Ä‚¢‚Ü‚·B</p>
+	<p>ã“ã®ã‚µãƒ³ãƒ—ãƒ«ã¯ã€seasar2/src/examples/aop/syncinterceptorä»¥ä¸‹ã«ç”¨æ„ã•ã‚Œã¦ã„ã¾ã™ã€‚</p>
     <br />
-    <h3><a name=OriginalInterceptorSample>“Æ©À‘•‚É‚æ‚éInterceptor</a></h3>
-    <p>ƒNƒ‰ƒX–¼Aƒƒ\ƒbƒh–¼Aˆø”‚Æƒƒ\ƒbƒh‚Ìˆ—ŠÔ‚ğŒv‘ª‚µ‚ÄƒgƒŒ[ƒX‚·‚éInterceptor‚ğì¬‚µ‚Ü‚µ‚å‚¤B‚Ü‚½A‚»‚ÌInterceptor‚ğg—p‚µ‚Äd‚¢ˆ—‚ğs‚Á‚½ŠÔ‚ğƒgƒŒ[ƒX‚³‚¹‚Ü‚µ‚å‚¤Bì¬‚·‚éƒtƒ@ƒCƒ‹‚ÍˆÈ‰º‚Ì‚Æ‚¨‚è‚Å‚·B</p>
+    <h3><a name=OriginalInterceptorSample>ç‹¬è‡ªå®Ÿè£…ã«ã‚ˆã‚‹Interceptor</a></h3>
+    <p>ã‚¯ãƒ©ã‚¹åã€ãƒ¡ã‚½ãƒƒãƒ‰åã€å¼•æ•°ã¨ãƒ¡ã‚½ãƒƒãƒ‰ã®å‡¦ç†æ™‚é–“ã‚’è¨ˆæ¸¬ã—ã¦ãƒˆãƒ¬ãƒ¼ã‚¹ã™ã‚‹Interceptorã‚’ä½œæˆã—ã¾ã—ã‚‡ã†ã€‚ã¾ãŸã€ãã®Interceptorã‚’ä½¿ç”¨ã—ã¦é‡ã„å‡¦ç†ã‚’è¡Œã£ãŸæ™‚é–“ã‚’ãƒˆãƒ¬ãƒ¼ã‚¹ã•ã›ã¾ã—ã‚‡ã†ã€‚ä½œæˆã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã¯ä»¥ä¸‹ã®ã¨ãŠã‚Šã§ã™ã€‚</p>
     <ul>
-		<li type="circle">ƒNƒ‰ƒX–¼Aƒƒ\ƒbƒh–¼Aˆø”‚Æƒƒ\ƒbƒh‚Ìˆ—ŠÔ‚ğŒv‘ª‚µ‚Äo—Í‚·‚éInterceptor(MeasurementInterceptor.java)</li>
-    	<li type="circle">d‚¢ˆ—‚ğs‚¤ƒNƒ‰ƒX(HeavyProcess.java)</li>
-    	<li type="circle">ƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì’è‹`‚ğs‚¤diconƒtƒ@ƒCƒ‹(Measurement.dicon)</li>
-    	<li type="circle">İ’è‚ª³‚µ‚­s‚í‚ê‚Ä‚¢‚é‚©Šm”F‚·‚éÀsƒtƒ@ƒCƒ‹(AopMeasurementClient.java)</li>
+		<li type="circle">ã‚¯ãƒ©ã‚¹åã€ãƒ¡ã‚½ãƒƒãƒ‰åã€å¼•æ•°ã¨ãƒ¡ã‚½ãƒƒãƒ‰ã®å‡¦ç†æ™‚é–“ã‚’è¨ˆæ¸¬ã—ã¦å‡ºåŠ›ã™ã‚‹Interceptor(MeasurementInterceptor.java)</li>
+    	<li type="circle">é‡ã„å‡¦ç†ã‚’è¡Œã†ã‚¯ãƒ©ã‚¹(HeavyProcess.java)</li>
+    	<li type="circle">ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®å®šç¾©ã‚’è¡Œã†diconãƒ•ã‚¡ã‚¤ãƒ«(Measurement.dicon)</li>
+    	<li type="circle">è¨­å®šãŒæ­£ã—ãè¡Œã‚ã‚Œã¦ã„ã‚‹ã‹ç¢ºèªã™ã‚‹å®Ÿè¡Œãƒ•ã‚¡ã‚¤ãƒ«(AopMeasurementClient.java)</li>
     </ul>
-	<p><b>“Æ©À‘•‚ÌIntercepter‚Ìì¬</b></p>
+	<p><b>ç‹¬è‡ªå®Ÿè£…ã®Intercepterã®ä½œæˆ</b></p>
 	<ul>
-    	<li type="circle">org.seasar.framework.aop.interceptors.AbstractInterceptorƒNƒ‰ƒX‚ğÀ‘•‚µ‚Ü‚·B</li>
-	    <li type="circle">invoke(MethodInvocation invocation)ƒƒ\ƒbƒh‚ğÀ‘•‚µ‚Ü‚·B</li>
-        <li type="circle">getTargetClass(invocation).getName()‚ÅƒNƒ‰ƒX‚ÌŠ®‘SŒÀ’è–¼‚ğæ“¾‚µ‚Ü‚·BMethodInvocation#getThis()‚¾‚ÆƒoƒCƒgƒR[ƒh‚Å•ÏŠ·‚³‚ê‚Ä‘g‚İ‚Ü‚ê‚½ƒNƒ‰ƒX–¼‚É‚È‚è‚Ü‚·B</li>
-        <li type="circle">invocation.getMethod().getName()‚Åƒƒ\ƒbƒh–¼‚ğæ“¾‚µ‚Ü‚·B</li>
-        <li type="circle">invocation.getArguments()‚Åˆø”‚ğæ“¾‚µ‚Ü‚·B</li>
-        <li type="circle">invocation.proceed()‚ÅÀÛ‚Ìƒƒ\ƒbƒh‚ªŒÄ‚Î‚ê‚é‚Ì‚ÅA‚»‚Ì‘O‚ÌŠÔ‚ğæ“¾‚µ‚Ü‚·B</li>
-        <li type="circle">invocation.proceed()‚ÅÀÛ‚Ìƒƒ\ƒbƒh‚ªŒÄ‚Î‚ê‚½Œã‚ÌŠÔ‚ğæ“¾‚µ‚Äfinally‚Åo—Í‚µ‚Ü‚·B</li>
+    	<li type="circle">org.seasar.framework.aop.interceptors.AbstractInterceptorã‚¯ãƒ©ã‚¹ã‚’å®Ÿè£…ã—ã¾ã™ã€‚</li>
+	    <li type="circle">invoke(MethodInvocation invocation)ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å®Ÿè£…ã—ã¾ã™ã€‚</li>
+        <li type="circle">getTargetClass(invocation).getName()ã§ã‚¯ãƒ©ã‚¹ã®å®Œå…¨é™å®šåã‚’å–å¾—ã—ã¾ã™ã€‚MethodInvocation#getThis()ã ã¨ãƒã‚¤ãƒˆã‚³ãƒ¼ãƒ‰ã§å¤‰æ›ã•ã‚Œã¦çµ„ã¿è¾¼ã¾ã‚ŒãŸã‚¯ãƒ©ã‚¹åã«ãªã‚Šã¾ã™ã€‚</li>
+        <li type="circle">invocation.getMethod().getName()ã§ãƒ¡ã‚½ãƒƒãƒ‰åã‚’å–å¾—ã—ã¾ã™ã€‚</li>
+        <li type="circle">invocation.getArguments()ã§å¼•æ•°ã‚’å–å¾—ã—ã¾ã™ã€‚</li>
+        <li type="circle">invocation.proceed()ã§å®Ÿéš›ã®ãƒ¡ã‚½ãƒƒãƒ‰ãŒå‘¼ã°ã‚Œã‚‹ã®ã§ã€ãã®å‰ã®æ™‚é–“ã‚’å–å¾—ã—ã¾ã™ã€‚</li>
+        <li type="circle">invocation.proceed()ã§å®Ÿéš›ã®ãƒ¡ã‚½ãƒƒãƒ‰ãŒå‘¼ã°ã‚ŒãŸå¾Œã®æ™‚é–“ã‚’å–å¾—ã—ã¦finallyã§å‡ºåŠ›ã—ã¾ã™ã€‚</li>
 	</ul>
     <p>MeasurementInterceptor.java</p>
 <pre>package examples.aop.originalinterceptor;
@@ -1175,9 +1175,9 @@ public class MeasurementInterceptor extends AbstractInterceptor{
     }
 }</pre>
 
-    <p><b>d‚¢ˆ—‚ğs‚¤ƒNƒ‰ƒX‚Ìì¬</b></p>
+    <p><b>é‡ã„å‡¦ç†ã‚’è¡Œã†ã‚¯ãƒ©ã‚¹ã®ä½œæˆ</b></p>
 	<ul>
-		<li type="circle">d‚¢ˆ—‚ğs‚Á‚½‚Æ‚¢‚¤‚±‚Æ‚É‚·‚é‚½‚ß‚É5•bŠÔsleep‚µ‚Ü‚·B</li>
+		<li type="circle">é‡ã„å‡¦ç†ã‚’è¡Œã£ãŸã¨ã„ã†ã“ã¨ã«ã™ã‚‹ãŸã‚ã«5ç§’é–“sleepã—ã¾ã™ã€‚</li>
 	</ul>
     <p>HeavyProcess.java</p>
 <pre>package examples.aop.originalinterceptor;
@@ -1192,10 +1192,10 @@ public class HeavyProcess {
     }
 }</pre>
 
-    <b>diconƒtƒ@ƒCƒ‹‚Ìì¬</b>
+    <b>diconãƒ•ã‚¡ã‚¤ãƒ«ã®ä½œæˆ</b>
 	<ul>
-        <li type="circle">ì¬‚µ‚½MeasurementInterceptor‚ğƒRƒ“ƒ|[ƒlƒ“ƒg’è‹`‚µ‚Ü‚·Bname‘®«‚ğmeasurement‚Æ‚µ‚Ü‚·B</li>
-		<li type="circle">HeavyProcessƒNƒ‰ƒX‚Ìheavy()ƒƒ\ƒbƒh‚ÉMeasurementInterceptor‚ğaspect‚µ‚Ü‚·B</li>
+        <li type="circle">ä½œæˆã—ãŸMeasurementInterceptorã‚’ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆå®šç¾©ã—ã¾ã™ã€‚nameå±æ€§ã‚’measurementã¨ã—ã¾ã™ã€‚</li>
+		<li type="circle">HeavyProcessã‚¯ãƒ©ã‚¹ã®heavy()ãƒ¡ã‚½ãƒƒãƒ‰ã«MeasurementInterceptorã‚’aspectã—ã¾ã™ã€‚</li>
 	</ul>
     <p>Measurement.dicon</p>
 
@@ -1212,11 +1212,11 @@ public class HeavyProcess {
 &lt;/components&gt;
 </pre>
 
-	<p><b>Àsƒtƒ@ƒCƒ‹‚Ìì¬</b></p>
+	<p><b>å®Ÿè¡Œãƒ•ã‚¡ã‚¤ãƒ«ã®ä½œæˆ</b></p>
     <ul>
-    	<li type="circle">org.seasar.framework.container.S2Container#create()ƒƒ\ƒbƒh‚Ì‘æ‚Pˆø”‚Éì¬‚µ‚½diconƒtƒ@ƒCƒ‹(Measurement.dicon)‚ÌƒpƒX‚ğw’è‚µ‚ÄƒRƒ“ƒeƒi‚ğì¬‚µ‚Ü‚·B</li>
-        <li type="circle">org.seasar.framework.container.S2Container#getComponent()ƒƒ\ƒbƒh‚Ì‘æ‚Pˆø”‚ÉƒRƒ“ƒ|[ƒlƒ“ƒg‚É“o˜^‚µ‚½ƒNƒ‰ƒX–¼iHeavyProcess.class)‚ğw’è‚µ‚Äæ“¾‚µ‚Ü‚·B</li>
-        <li type="circle">ƒRƒ“ƒeƒi‚©‚çæ“¾‚µ‚½HeavyProcess#heavy()ƒƒ\ƒbƒh‚ğÀs‚µ‚Ü‚·B</li>
+    	<li type="circle">org.seasar.framework.container.S2Container#create()ãƒ¡ã‚½ãƒƒãƒ‰ã®ç¬¬ï¼‘å¼•æ•°ã«ä½œæˆã—ãŸdiconãƒ•ã‚¡ã‚¤ãƒ«(Measurement.dicon)ã®ãƒ‘ã‚¹ã‚’æŒ‡å®šã—ã¦ã‚³ãƒ³ãƒ†ãƒŠã‚’ä½œæˆã—ã¾ã™ã€‚</li>
+        <li type="circle">org.seasar.framework.container.S2Container#getComponent()ãƒ¡ã‚½ãƒƒãƒ‰ã®ç¬¬ï¼‘å¼•æ•°ã«ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã«ç™»éŒ²ã—ãŸã‚¯ãƒ©ã‚¹åï¼ˆHeavyProcess.class)ã‚’æŒ‡å®šã—ã¦å–å¾—ã—ã¾ã™ã€‚</li>
+        <li type="circle">ã‚³ãƒ³ãƒ†ãƒŠã‹ã‚‰å–å¾—ã—ãŸHeavyProcess#heavy()ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å®Ÿè¡Œã—ã¾ã™ã€‚</li>
 	</ul>
     <p>AopMeasurementClient.java</p>
 <pre>
@@ -1237,12 +1237,12 @@ public class AopMeasurementClient {
 }
 </pre>
 
-	<p><b>ÀsŒ‹‰Ê</b></p>
-    <p>ƒNƒ‰ƒX–¼Aƒƒ\ƒbƒh–¼Aˆø”‚Æƒƒ\ƒbƒh‚Ìˆ—ŠÔ‚ªƒgƒŒ[ƒX‚³‚ê‚Ä‚¢‚é‚Ì‚ªŠm”F‚Å‚«‚Ü‚·B</p>
+	<p><b>å®Ÿè¡Œçµæœ</b></p>
+    <p>ã‚¯ãƒ©ã‚¹åã€ãƒ¡ã‚½ãƒƒãƒ‰åã€å¼•æ•°ã¨ãƒ¡ã‚½ãƒƒãƒ‰ã®å‡¦ç†æ™‚é–“ãŒãƒˆãƒ¬ãƒ¼ã‚¹ã•ã‚Œã¦ã„ã‚‹ã®ãŒç¢ºèªã§ãã¾ã™ã€‚</p>
 <pre>
 examples.aop.HeavyProcess#heavy() : 5004
 </pre>
-	<p>‚±‚ÌƒTƒ“ƒvƒ‹‚ÍAseasar2/src/examples/aop/originalinterceptorˆÈ‰º‚É—pˆÓ‚³‚ê‚Ä‚¢‚Ü‚·B</p>
+	<p>ã“ã®ã‚µãƒ³ãƒ—ãƒ«ã¯ã€seasar2/src/examples/aop/originalinterceptorä»¥ä¸‹ã«ç”¨æ„ã•ã‚Œã¦ã„ã¾ã™ã€‚</p>
 
 <!-- document end -->
 <!-- don't edit start -->

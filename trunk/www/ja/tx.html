@@ -2,7 +2,7 @@
 <html>
 <!-- don't edit start -->
 <head><title>Seasar - DI Container with AOP - </title>
-<meta http-equiv="Content-Type" content="text/html; charset=MS932C">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <link href="seasar_b.css" type="text/css" rel="stylesheet" media="screen"><link href="seasar_p.css" type="text/css" rel="stylesheet" media="print"><script src="seasar_b.js" type="text/JavaScript" language="JavaScript"></script>
 </head><body onload="preload('ja')"><table width="100%" border="0" cellspacing="0" cellpadding="0" align="left"><tr>
@@ -24,49 +24,49 @@
 <!-- don't edit end -->
 <!-- document start -->
 <ul>
-<li><a href="#Tx">ƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚ÌŽ©“®§Œä</a>
+<li><a href="#Tx">ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ã®è‡ªå‹•åˆ¶å¾¡</a>
 <ul>
-<li><a href="#TransAttribute">ƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‘®«</a>
+<li><a href="#TransAttribute">ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³å±žæ€§</a>
 <li><a href="#Example">Example</a>
 </ul>
-<li><a href="#Exception">—áŠO”­¶Žž‚Ì“®ì</a>
+<li><a href="#Exception">ä¾‹å¤–ç™ºç”Ÿæ™‚ã®å‹•ä½œ</a>
 <ul>
 <li><a href="#ExExample">Example</a>
-<li><a href="#EJBTx">EJBŒÝŠ·‚ÌAdvice</a>
+<li><a href="#EJBTx">EJBäº’æ›ã®Advice</a>
 </ul>
 </ul>
-<h2><a name="Tx">ƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚ÌŽ©“®§Œä</a></h2>
-<p>S2Tx‚Ì‹@”\‚ðŽg‚Á‚ÄAPOJO(•’Ê‚ÌJava‚ÌƒNƒ‰ƒX)‚É‘Î‚µ‚ÄA<a href="aop.html">Aspect</a>‚Åƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚ÌŽ©“®ŠÇ—‹@”\‚ð‘g‚Ýž‚Þ‚±‚Æ‚ª‚Å‚«‚Ü‚·BEJBƒRƒ“ƒeƒi‚ª’ñ‹Ÿ‚·‚é‚æ‚¤‚Èƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“ŠÇ—‹@”\‚ðPOJO‚É‘Î‚µ‚Ä“§–¾‚É‘g‚Ýž‚Þ‚±‚Æ‚ª‚Å‚«‚é‚Ì‚Å‚·B‘g‚Þž‚Þ‚±‚Æ‚Ì‚Å‚«‚éƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‘®«‚ÍŽŸ‚Ì‚Æ‚¨‚è‚Å‚·B</p>
-<h3><a name="TransAttribute">ƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‘®«</a></h3>
-<p>S2‚ª•W€‚Å—pˆÓ‚µ‚Ä‚¢‚éj2ee.dicon‚É‚ÍAŽŸ‚Ìƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‘®«‚É‘Î‰ž‚µ‚½<a href="aop.html#Advice">Advice</a>‚ª’è‹`‚³‚ê‚Ä‚¢‚Ü‚·BƒRƒ“ƒ|[ƒlƒ“ƒg–¼‚ª<a href="aop.html#Advice">Advice</a>‚Ì–¼‘O‚Å‚·B</p>
+<h2><a name="Tx">ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ã®è‡ªå‹•åˆ¶å¾¡</a></h2>
+<p>S2Txã®æ©Ÿèƒ½ã‚’ä½¿ã£ã¦ã€POJO(æ™®é€šã®Javaã®ã‚¯ãƒ©ã‚¹)ã«å¯¾ã—ã¦ã€<a href="aop.html">Aspect</a>ã§ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ã®è‡ªå‹•ç®¡ç†æ©Ÿèƒ½ã‚’çµ„ã¿è¾¼ã‚€ã“ã¨ãŒã§ãã¾ã™ã€‚EJBã‚³ãƒ³ãƒ†ãƒŠãŒæä¾›ã™ã‚‹ã‚ˆã†ãªãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ç®¡ç†æ©Ÿèƒ½ã‚’POJOã«å¯¾ã—ã¦é€æ˜Žã«çµ„ã¿è¾¼ã‚€ã“ã¨ãŒã§ãã‚‹ã®ã§ã™ã€‚çµ„ã‚€è¾¼ã‚€ã“ã¨ã®ã§ãã‚‹ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³å±žæ€§ã¯æ¬¡ã®ã¨ãŠã‚Šã§ã™ã€‚</p>
+<h3><a name="TransAttribute">ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³å±žæ€§</a></h3>
+<p>S2ãŒæ¨™æº–ã§ç”¨æ„ã—ã¦ã„ã‚‹j2ee.diconã«ã¯ã€æ¬¡ã®ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³å±žæ€§ã«å¯¾å¿œã—ãŸ<a href="aop.html#Advice">Advice</a>ãŒå®šç¾©ã•ã‚Œã¦ã„ã¾ã™ã€‚ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆåãŒ<a href="aop.html#Advice">Advice</a>ã®åå‰ã§ã™ã€‚</p>
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
-<th width="72">‘®«</th>
-<th width="123">ƒRƒ“ƒ|[ƒlƒ“ƒg–¼</th>
-<th width="534">à–¾</th></tr>
+<th width="72">å±žæ€§</th>
+<th width="123">ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆå</th>
+<th width="534">èª¬æ˜Ž</th></tr>
 <tr><td>Required</td>
 <td><code>j2ee.requiredTx</code></td>
-<td>ƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚ªŠJŽn‚³‚ê‚Ä‚¢‚È‚¯‚ê‚ÎA<br />
-Ž©“®“I‚Éƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚ðŠJŽn‚µ‚Ü‚·B<br />
-Šù‚Éƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚ªŠJŽn‚³‚ê‚Ä‚¢‚ê‚ÎA<br />
-‚»‚Ìƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚ðˆø‚«Œp‚¬‚Ü‚·B</td></tr>
+<td>ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ãŒé–‹å§‹ã•ã‚Œã¦ã„ãªã‘ã‚Œã°ã€<br />
+è‡ªå‹•çš„ã«ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ã‚’é–‹å§‹ã—ã¾ã™ã€‚<br />
+æ—¢ã«ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ãŒé–‹å§‹ã•ã‚Œã¦ã„ã‚Œã°ã€<br />
+ãã®ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ã‚’å¼•ãç¶™ãŽã¾ã™ã€‚</td></tr>
 <tr><td>RequiresNew</td>
 <td><code>j2ee.requiresNewTx</code></td>
-<td>í‚ÉV‚µ‚¢ƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚ðŠJŽn‚³‚¹‚Ü‚·B<br />
-Šù‘¶‚Ìƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚ªŠJŽn‚³‚ê‚Ä‚¢‚é‚È‚çA<br />
-Šù‘¶‚Ìƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚ð’†’f‚µA<br />
-Ž©•ªŽ©g‚Ìƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚ÌI—¹ŒãA<br />
-’†’f‚µ‚½ƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚ð•œ‹A‚³‚¹‚Ü‚·B</td></tr>
+<td>å¸¸ã«æ–°ã—ã„ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ã‚’é–‹å§‹ã•ã›ã¾ã™ã€‚<br />
+æ—¢å­˜ã®ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ãŒé–‹å§‹ã•ã‚Œã¦ã„ã‚‹ãªã‚‰ã€<br />
+æ—¢å­˜ã®ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ã‚’ä¸­æ–­ã—ã€<br />
+è‡ªåˆ†è‡ªèº«ã®ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ã®çµ‚äº†å¾Œã€<br />
+ä¸­æ–­ã—ãŸãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ã‚’å¾©å¸°ã•ã›ã¾ã™ã€‚</td></tr>
 <tr><td>Mandatory</td>
 <td><code>j2ee.mandatoryTx</code></td>
-<td>ƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚ªŠù‚ÉŠJŽn‚³‚ê‚Ä‚È‚¯‚ê‚ÎƒGƒ‰[‚É‚µ‚Ü‚·B</td></tr>
+<td>ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ãŒæ—¢ã«é–‹å§‹ã•ã‚Œã¦ãªã‘ã‚Œã°ã‚¨ãƒ©ãƒ¼ã«ã—ã¾ã™ã€‚</td></tr>
 <tr>
 <td>NotSupported</td>
 <td><code>j2ee.notSupportedTx</code></td>
-<td>Šù‘¶‚Ìƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚ªŠJŽn‚³‚ê‚Ä‚¢‚é‚È‚çA<br>
-Šù‘¶‚Ìƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚ð’†’f‚µ‚Ü‚·B<br>
-ƒRƒ“ƒ|[ƒlƒ“ƒg‚Ìƒƒ\ƒbƒh‚ÌI—¹ŒãA<br />
-’†’f‚µ‚½ƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚ð•œ‹A‚³‚¹‚Ü‚·B</td>
+<td>æ—¢å­˜ã®ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ãŒé–‹å§‹ã•ã‚Œã¦ã„ã‚‹ãªã‚‰ã€<br>
+æ—¢å­˜ã®ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ã‚’ä¸­æ–­ã—ã¾ã™ã€‚<br>
+ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®ãƒ¡ã‚½ãƒƒãƒ‰ã®çµ‚äº†å¾Œã€<br />
+ä¸­æ–­ã—ãŸãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ã‚’å¾©å¸°ã•ã›ã¾ã™ã€‚</td>
 </tr>
 </table>
 <h3><a name="Example">Example</a></h3>
@@ -111,26 +111,26 @@ public class HogeClient {
         hoge.foo();
     }
 }</pre>
-<h4>ŽÀsŒ‹‰Ê</h4>
+<h4>å®Ÿè¡Œçµæžœ</h4>
 <pre>
 DEBUG 2004-03-14 18:05:18,402 [main] Transaction.begin()
 foo
 DEBUG 2004-03-14 18:05:18,432 [main] Transaction.commit()</pre>
 <p>
-j2ee.dicon‚ÍS2‚Æ‚µ‚Ä‚ ‚ç‚©‚¶‚ß—pˆÓ(src‚Ì’¼‰º)‚³‚ê‚Ä‚¢‚Ü‚·BAdvice‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg–¼‚ðaspectƒ^ƒO‚Ìƒ{ƒfƒB‚ÉŽw’è‚·‚é‚¾‚¯‚È‚Ì‚ÅŠÈ’P‚Å‚·B POJO‚ÉŠÈ’P‚Éƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“ŠÇ—‹@”\‚ª‘g‚Ýž‚ß‚é‚±‚Æ‚ª‚í‚©‚Á‚Ä‚à‚ç‚¦‚½‚ÆŽv‚¢‚Ü‚·B
+j2ee.diconã¯S2ã¨ã—ã¦ã‚ã‚‰ã‹ã˜ã‚ç”¨æ„(srcã®ç›´ä¸‹)ã•ã‚Œã¦ã„ã¾ã™ã€‚Adviceã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆåã‚’aspectã‚¿ã‚°ã®ãƒœãƒ‡ã‚£ã«æŒ‡å®šã™ã‚‹ã ã‘ãªã®ã§ç°¡å˜ã§ã™ã€‚ POJOã«ç°¡å˜ã«ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ç®¡ç†æ©Ÿèƒ½ãŒçµ„ã¿è¾¼ã‚ã‚‹ã“ã¨ãŒã‚ã‹ã£ã¦ã‚‚ã‚‰ãˆãŸã¨æ€ã„ã¾ã™ã€‚
 </p>
-<h2><a name="Exception">—áŠO”­¶Žž‚Ì“®ì</a></h2>
-<p>j2ee.dicon‚É’è‹`‚³‚ê‚Ä‚¢‚éAdvice‚ÍAƒRƒ“ƒ|[ƒlƒ“ƒg‚ª—áŠO‚ðƒXƒ[‚µ‚½ê‡‚Íƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚ðƒ[ƒ‹ƒoƒbƒN‚µ‚Ü‚·D<br>
-”­¶‚µ‚½—áŠO‚É‰ž‚¶‚Äƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚ðƒRƒ~ƒbƒg‚·‚é‚©ƒ[ƒ‹ƒoƒbƒN‚·‚é‚©‚ðŽw’è‚·‚é‚±‚Æ‚à‚Å‚«‚Ü‚·B</p>
+<h2><a name="Exception">ä¾‹å¤–ç™ºç”Ÿæ™‚ã®å‹•ä½œ</a></h2>
+<p>j2ee.diconã«å®šç¾©ã•ã‚Œã¦ã„ã‚‹Adviceã¯ã€ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆãŒä¾‹å¤–ã‚’ã‚¹ãƒ­ãƒ¼ã—ãŸå ´åˆã¯ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ã‚’ãƒ­ãƒ¼ãƒ«ãƒãƒƒã‚¯ã—ã¾ã™ï¼Ž<br>
+ç™ºç”Ÿã—ãŸä¾‹å¤–ã«å¿œã˜ã¦ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ã‚’ã‚³ãƒŸãƒƒãƒˆã™ã‚‹ã‹ãƒ­ãƒ¼ãƒ«ãƒãƒƒã‚¯ã™ã‚‹ã‹ã‚’æŒ‡å®šã™ã‚‹ã“ã¨ã‚‚ã§ãã¾ã™ã€‚</p>
 <ul>
-<li>Advice‚Ì<code>addCommitRule(Class)</code>ƒƒ\ƒbƒh‚ðŽg—p‚·‚é‚ÆAƒRƒ“ƒ|[ƒlƒ“ƒg‚©‚çƒXƒ[‚³‚ê‚Ä‚àƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚ðƒRƒ~ƒbƒg‚·‚é—áŠO‚ðŽw’è‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B
-<li>Advice‚Ì<code>addRollbackRule(Class)</code>ƒƒ\ƒbƒh‚ðŽg—p‚·‚é‚ÆAƒRƒ“ƒ|[ƒlƒ“ƒg‚©‚çƒXƒ[‚³‚ê‚Ä‚àƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚ðƒ[ƒ‹ƒoƒbƒN‚·‚é—áŠO‚ðŽw’è‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B
+<li>Adviceã®<code>addCommitRule(Class)</code>ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ä½¿ç”¨ã™ã‚‹ã¨ã€ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‹ã‚‰ã‚¹ãƒ­ãƒ¼ã•ã‚Œã¦ã‚‚ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ã‚’ã‚³ãƒŸãƒƒãƒˆã™ã‚‹ä¾‹å¤–ã‚’æŒ‡å®šã™ã‚‹ã“ã¨ãŒã§ãã¾ã™ã€‚
+<li>Adviceã®<code>addRollbackRule(Class)</code>ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ä½¿ç”¨ã™ã‚‹ã¨ã€ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‹ã‚‰ã‚¹ãƒ­ãƒ¼ã•ã‚Œã¦ã‚‚ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ã‚’ãƒ­ãƒ¼ãƒ«ãƒãƒƒã‚¯ã™ã‚‹ä¾‹å¤–ã‚’æŒ‡å®šã™ã‚‹ã“ã¨ãŒã§ãã¾ã™ã€‚
 </ul>
-<p>ƒRƒ“ƒ|[ƒlƒ“ƒg‚©‚ç—áŠO‚ªƒXƒ[‚³‚ê‚é‚ÆA<code>addCommitRule()/addRollbackRule()</code>‚ªÝ’è‚³‚ê‚½‡”Ô‚Éƒ}ƒbƒ`‚·‚é‚©ƒ`ƒFƒbƒN‚³‚ê‚Ü‚·BƒXƒ[‚³‚ê‚½—áŠO‚ª<code>addCommitRule()/addRollbackRule()</code>‚ÅŽw’è‚³‚ê‚½—áŠO‚Ü‚½‚Í‚»‚Ì”h¶—áŠO‚Å‚ ‚ê‚ÎA‚»‚ÌÝ’è‚É]‚Á‚Äƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚ðƒRƒ~ƒbƒg‚Ü‚½‚Íƒ[ƒ‹ƒoƒbƒN‚µ‚Ü‚·BƒXƒ[‚³‚ê‚½—áŠO‚ª<code>addCommitRule()/addRollbackRule()</code>‚ÅŽw’è‚³‚ê‚½—áŠO‚Æƒ}ƒbƒ`‚µ‚È‚¢ê‡Aƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚Íƒ[ƒ‹ƒoƒbƒN‚³‚ê‚Ü‚·B</p>
+<p>ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‹ã‚‰ä¾‹å¤–ãŒã‚¹ãƒ­ãƒ¼ã•ã‚Œã‚‹ã¨ã€<code>addCommitRule()/addRollbackRule()</code>ãŒè¨­å®šã•ã‚ŒãŸé †ç•ªã«ãƒžãƒƒãƒã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã•ã‚Œã¾ã™ã€‚ã‚¹ãƒ­ãƒ¼ã•ã‚ŒãŸä¾‹å¤–ãŒ<code>addCommitRule()/addRollbackRule()</code>ã§æŒ‡å®šã•ã‚ŒãŸä¾‹å¤–ã¾ãŸã¯ãã®æ´¾ç”Ÿä¾‹å¤–ã§ã‚ã‚Œã°ã€ãã®è¨­å®šã«å¾“ã£ã¦ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ã‚’ã‚³ãƒŸãƒƒãƒˆã¾ãŸã¯ãƒ­ãƒ¼ãƒ«ãƒãƒƒã‚¯ã—ã¾ã™ã€‚ã‚¹ãƒ­ãƒ¼ã•ã‚ŒãŸä¾‹å¤–ãŒ<code>addCommitRule()/addRollbackRule()</code>ã§æŒ‡å®šã•ã‚ŒãŸä¾‹å¤–ã¨ãƒžãƒƒãƒã—ãªã„å ´åˆã€ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ã¯ãƒ­ãƒ¼ãƒ«ãƒãƒƒã‚¯ã•ã‚Œã¾ã™ã€‚</p>
 <h3><a name="ExExample">Example</a></h3>
 <h4>MyTx.dicon</h4>
-<p>ŽŸ‚Ì—á‚Å‚ÍAŽÀsŽž—áŠO (<code>java.lang.RuntimeException</code>) ‚Ü‚½‚Í‚»‚Ì”h¶Œ^‚ªƒXƒ[‚³‚ê‚½ê‡‚Íƒ[ƒ‹ƒoƒbƒNA—áŠO (<code>java.lang.Exception</code>) ‚Ü‚½‚Í‚»‚Ì”h¶Œ^‚ªƒXƒ[‚³‚ê‚½ê‡‚ÍƒRƒ~ƒbƒg‚·‚éRequired ‚ÌAdvice‚Æ‚µ‚Ä<code>myTx</code>‚ð’è‹`‚µ‚Ä‚¢‚Ü‚·D<br>
-ŽÀsŽž—áŠO (<code>java.lang.RuntimeException</code>) ‚Í—áŠO (<code>java.lang.Exception</code>) ‚Ì”h¶—áŠO‚Å‚ ‚é‚½‚ßAÝ’è‚·‚é‡”Ô‚ð‹t‚É‚·‚é‚ÆŽÀsŽž—áŠO (<code>java.lang.RuntimeException</code>) ‚ªƒXƒ[‚³‚ê‚½ê‡‚Å‚àƒRƒ~ƒbƒg‚³‚ê‚Ä‚µ‚Ü‚¤‚Ì‚Å’ˆÓ‚µ‚Ä‚­‚¾‚³‚¢ (JavaŒ¾Œê‚Ìcatchß‚ÆŽ—‚Ä‚¢‚Ü‚·)B</p>
+<p>æ¬¡ã®ä¾‹ã§ã¯ã€å®Ÿè¡Œæ™‚ä¾‹å¤– (<code>java.lang.RuntimeException</code>) ã¾ãŸã¯ãã®æ´¾ç”Ÿåž‹ãŒã‚¹ãƒ­ãƒ¼ã•ã‚ŒãŸå ´åˆã¯ãƒ­ãƒ¼ãƒ«ãƒãƒƒã‚¯ã€ä¾‹å¤– (<code>java.lang.Exception</code>) ã¾ãŸã¯ãã®æ´¾ç”Ÿåž‹ãŒã‚¹ãƒ­ãƒ¼ã•ã‚ŒãŸå ´åˆã¯ã‚³ãƒŸãƒƒãƒˆã™ã‚‹Required ã®Adviceã¨ã—ã¦<code>myTx</code>ã‚’å®šç¾©ã—ã¦ã„ã¾ã™ï¼Ž<br>
+å®Ÿè¡Œæ™‚ä¾‹å¤– (<code>java.lang.RuntimeException</code>) ã¯ä¾‹å¤– (<code>java.lang.Exception</code>) ã®æ´¾ç”Ÿä¾‹å¤–ã§ã‚ã‚‹ãŸã‚ã€è¨­å®šã™ã‚‹é †ç•ªã‚’é€†ã«ã™ã‚‹ã¨å®Ÿè¡Œæ™‚ä¾‹å¤– (<code>java.lang.RuntimeException</code>) ãŒã‚¹ãƒ­ãƒ¼ã•ã‚ŒãŸå ´åˆã§ã‚‚ã‚³ãƒŸãƒƒãƒˆã•ã‚Œã¦ã—ã¾ã†ã®ã§æ³¨æ„ã—ã¦ãã ã•ã„ (Javaè¨€èªžã®catchç¯€ã¨ä¼¼ã¦ã„ã¾ã™)ã€‚</p>
 <pre>&lt;components&gt;<br />    &lt;include path=&quot;j2ee.dicon&quot;/&gt;<br />    &lt;component name=&quot;myTx&quot;
         class=&quot;org.seasar.extension.tx.RequiredInterceptor&quot;&gt;
         &lt;initMethod name=&quot;addRollbackRule&quot;&gt;
@@ -141,15 +141,15 @@ j2ee.dicon‚ÍS2‚Æ‚µ‚Ä‚ ‚ç‚©‚¶‚ß—pˆÓ(src‚Ì’¼‰º)‚³‚ê‚Ä‚¢‚Ü‚·BAdvice‚ÌƒRƒ“ƒ|[ƒlƒ“ƒ
         &lt;/initMethod&gt;
     &lt;/component&gt;
 &lt;/components&gt;</pre>
-<h3><a name="EJBTx">EJBŒÝŠ·‚ÌAdvice</a></h3>
-<p>S2‚ª•W€‚Å—pˆÓ‚µ‚Ä‚¢‚éejbtx.dicon‚É‚ÍAEJB‚ÌƒRƒ“ƒeƒiŠÇ—ƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“
-(CMT) ‚Æ“¯‚¶‚æ‚¤‚ÉŽÀsŽž—áŠO (<code>java.lang.RuntimeException</code>)EƒŠƒ‚[ƒg—áŠO (<code>java.rmi.RemoteException</code>) ‚Æ‚»‚Ì”h¶—áŠO‚ª”­¶‚µ‚½ê‡‚Íƒ[ƒ‹ƒoƒbƒN‚µA‚»‚Ì‘¼‚Ì—áŠO (<code>java.lang.Exception</code>) ‚ª”­¶‚µ‚½ê‡‚ÍƒRƒ~ƒbƒg‚·‚é<a href="aop.html#Advice">Advice</a>‚ª’è‹`‚³‚ê‚Ä‚¢‚Ü‚·BƒRƒ“ƒ|[ƒlƒ“ƒg–¼‚ª<a href="aop.html#Advice">Advice</a>‚Ì–¼‘O‚Å‚·B</p>
+<h3><a name="EJBTx">EJBäº’æ›ã®Advice</a></h3>
+<p>S2ãŒæ¨™æº–ã§ç”¨æ„ã—ã¦ã„ã‚‹ejbtx.diconã«ã¯ã€EJBã®ã‚³ãƒ³ãƒ†ãƒŠç®¡ç†ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³
+(CMT) ã¨åŒã˜ã‚ˆã†ã«å®Ÿè¡Œæ™‚ä¾‹å¤– (<code>java.lang.RuntimeException</code>)ãƒ»ãƒªãƒ¢ãƒ¼ãƒˆä¾‹å¤– (<code>java.rmi.RemoteException</code>) ã¨ãã®æ´¾ç”Ÿä¾‹å¤–ãŒç™ºç”Ÿã—ãŸå ´åˆã¯ãƒ­ãƒ¼ãƒ«ãƒãƒƒã‚¯ã—ã€ãã®ä»–ã®ä¾‹å¤– (<code>java.lang.Exception</code>) ãŒç™ºç”Ÿã—ãŸå ´åˆã¯ã‚³ãƒŸãƒƒãƒˆã™ã‚‹<a href="aop.html#Advice">Advice</a>ãŒå®šç¾©ã•ã‚Œã¦ã„ã¾ã™ã€‚ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆåãŒ<a href="aop.html#Advice">Advice</a>ã®åå‰ã§ã™ã€‚</p>
 <table border="1">
 
 
 <tr bgcolor="#d1f3f4" align="center">
-<th width="72">‘®«</th>
-<th width="123">ƒRƒ“ƒ|[ƒlƒ“ƒg–¼</th>
+<th width="72">å±žæ€§</th>
+<th width="123">ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆå</th>
 </tr>
 <tr>
 <td>Required</td>

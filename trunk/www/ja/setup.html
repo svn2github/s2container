@@ -3,7 +3,7 @@
 <!-- don't edit start -->
 <head>
 <title>Seasar - DI Container with AOP - </title>
-<meta http-equiv="Content-Type" content="text/html; charset=MS932C">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <link href="seasar_b.css" type="text/css" rel="stylesheet" media="screen">
 <link href="seasar_p.css" type="text/css" rel="stylesheet" media="print">
@@ -27,56 +27,56 @@
 <tr align="left" valign="top"><td width="14"><img height="14" width="14" src="images/spacer.gif" alt=""></td><td width="740" class="main">
 <!-- don't edit end -->
 <!-- document start -->
-<p>S2��JDK1.4 or JDK1.5���K�v�ł��B</p>
-<p>S2xxx.zip���𓀂��Ăł���seasar2�f�B���N�g����Eclipse�ŁA��t�@�C�����C���|�[�g�������̃v���W�F�N�g�����[�N�X�y�[�X�֣�ŃC���|�[�g���Ă��������B</p>
-<p>Seasar2�̊�{�@�\(S2Container, S2AOP)�𗘗p����ꍇ�ɂ͈ȉ��̃t�@�C����CLASSPATH�Ɋ܂߂�K�v������܂��B
+<p>S2はJDK1.4 or JDK1.5が必要です。</p>
+<p>S2xxx.zipを解凍してできたseasar2ディレクトリをEclipseで、｢ファイル→インポート→既存のプロジェクトをワークスペースへ｣でインポートしてください。</p>
+<p>Seasar2の基本機能(S2Container, S2AOP)を利用する場合には以下のファイルをCLASSPATHに含める必要があります。
 <ul>
 <li>lib/aopalliance-1.0.jar</li>
 <li>lib/commons-logging-1.1.jar</li>
-<li>lib/geronimo-j2ee_1.4_spec-1.0.jar (���L�Q��)</li>
+<li>lib/geronimo-j2ee_1.4_spec-1.0.jar (下記参照)</li>
 <li>lib/javassist-3.3.ga.jar</li>
 <li>lib/ognl-2.6.7.jar</li>
 <li>lib/portlet-api-1.0.jar</li>
 <li>lib/s2-framework-2.x.x.jar</li>
-<li>lib/log4j-1.2.13.jar (�I�v�V����)</li>
-<li>resources/log4j.properties (�I�v�V����)</li>
-<li>resources/aop.dicon (�I�v�V����)</li>
+<li>lib/log4j-1.2.13.jar (オプション)</li>
+<li>resources/log4j.properties (オプション)</li>
+<li>resources/aop.dicon (オプション)</li>
 </ul>
 </p>
-<p>Seasar2�̊g���@�\(S2JTA, S2DBCP, S2JDBC, S2Unit, S2Tx, S2DataSet)�𗘗p����ꍇ�ɂ͈ȉ��̃t�@�C����ǉ���CLASSPATH�Ɋ܂߂�K�v������܂��B
+<p>Seasar2の拡張機能(S2JTA, S2DBCP, S2JDBC, S2Unit, S2Tx, S2DataSet)を利用する場合には以下のファイルを追加でCLASSPATHに含める必要があります。
 <ul>
 <li>lib/junit-3.8.2.jar</li>
 <li>lib/poi-2.5-final-20040804.jar</li>
 <li>lib/s2-extension-2.x.x.jar</li>
-<li>lib/geronimo-jta_1.0.1B_spec-1.0.jar (���L�Q��)</li>
-<li>lib/geronimo-ejb_2.1_spec-1.0.jar (���L�Q��)</li>
+<li>lib/geronimo-jta_1.0.1B_spec-1.0.jar (下記参照)</li>
+<li>lib/geronimo-ejb_2.1_spec-1.0.jar (下記参照)</li>
 <li>resources/jdbc.dicon</li>
 </ul>
 </p>
 <p>
-�A�v���P�[�V�����̎��s���ɂ��Ageronimo-j2ee_1.4_spec-1.0.jar�Ageronimo-jta_1.0.1B_spec-1.0.jar�Ageronimo-ejb_2.1_spec-1.0.jar�̂����ꂪ�K�v�ɂȂ邩���قȂ�܂��B
+アプリケーションの実行環境により、geronimo-j2ee_1.4_spec-1.0.jar、geronimo-jta_1.0.1B_spec-1.0.jar、geronimo-ejb_2.1_spec-1.0.jarのいずれが必要になるかが異なります。
 <table border="1">
-<tr><th>��</th><th>geronimo-j2ee_1.4_spec-1.0.jar</th><th>geronimo-jta_1.0.1B_spec-1.0.jar</th><th>geronimo-ejb_2.1_spec-1.0.jar</th></tr>
-<tr align="center"><td>J2EE�t���Ή��łȂ��T�[�u���b�g�R���e�i<br>(Tomcat��)</td><td>�s�v</td><td>�v<br>(S2JTA,S2Tx���g���ꍇ)</td><td>�v<br>(S2Tiger���g���ꍇ)</td></tr>
-<tr align="center"><td>J2EE�t���Ή��̃A�v���P�[�V�����T�[�o<br>(JBoss, WebSphere, WebLogic��)</td><td>�s�v</td><td>�s�v</td><td>�s�v</td></tr>
-<tr align="center"><td>�X�^���h�A����</td><td>�v</td><td>�s�v</td><td>�s�v</td></tr>
+<tr><th>環境</th><th>geronimo-j2ee_1.4_spec-1.0.jar</th><th>geronimo-jta_1.0.1B_spec-1.0.jar</th><th>geronimo-ejb_2.1_spec-1.0.jar</th></tr>
+<tr align="center"><td>J2EEフル対応でないサーブレットコンテナ<br>(Tomcat等)</td><td>不要</td><td>要<br>(S2JTA,S2Txを使う場合)</td><td>要<br>(S2Tigerを使う場合)</td></tr>
+<tr align="center"><td>J2EEフル対応のアプリケーションサーバ<br>(JBoss, WebSphere, WebLogic等)</td><td>不要</td><td>不要</td><td>不要</td></tr>
+<tr align="center"><td>スタンドアロン</td><td>要</td><td>不要</td><td>不要</td></tr>
 </table>
 <br>
 </p>
-<p>�f�[�^�x�[�X�Ɋւ���@�\���ȒP�Ɏ������Ƃ��ł���悤�ɁARDBMS�Ƃ���HSQLDB��p�ӂ��Ă��܂��B�I���N���ł������ɋ@�\��������悤�ɁAhsql/sql/demo-oracle.sql���p�ӂ���Ă��܂��BSQL*Plus�ȂǂŎ��s������Ajdbc.dicon��<a href="dbcp.html#Setup">XADataSourceImpl�̐ݒ荀��</a>�����ɍ��킹�ď��������Ă��������B</p>
-<p><a href="http://www.seasar.org/updates.html">S2Container�p�̃v���O�C��Kijimuna</a>�����񂲗��p���������B</p>
+<p>データベースに関する機能を簡単に試すことができるように、RDBMSとしてHSQLDBを用意しています。オラクルでも直ぐに機能を試せるように、hsql/sql/demo-oracle.sqlが用意されています。SQL*Plusなどで実行した後、jdbc.diconの<a href="dbcp.html#Setup">XADataSourceImplの設定項目</a>を環境に合わせて書き換えてください。</p>
+<p><a href="http://www.seasar.org/updates.html">S2Container用のプラグインKijimuna</a>も是非ご利用ください。</p>
 
-<p>EJB3�A�m�e�[�V�������g�������ꍇ�ͤS2TigerXXX.zip���𓀂��Ăł���s2-tiger�f�B���N�g����Eclipse�ŁA
-��t�@�C�����C���|�[�g�������̃v���W�F�N�g�����[�N�X�y�[�X�֣�ŃC���|�[�g���Ă��������B
-Seasar2�̐ݒ�̏�ɁA����Ɉȉ��̃t�@�C����ǉ���CLASSPATH�Ɋ܂߂�K�v������܂��B</p>
+<p>EJB3アノテーションを使いたい場合は､S2TigerXXX.zipを解凍してできたs2-tigerディレクトリをEclipseで、
+｢ファイル→インポート→既存のプロジェクトをワークスペースへ｣でインポートしてください。
+Seasar2の設定の上に、さらに以下のファイルを追加でCLASSPATHに含める必要があります。</p>
 <ul>
 <li>lib/s2-tiger-x.x.x.jar</li>
 <li>resources/jdbc.dicon</li>
 </ul>
 
-<p>Tiger�A�m�e�[�V�������g�������ꍇ�ͤS2TigerXXX.zip���𓀂��Ăł���s2-tiger�f�B���N�g����Eclipse�ŁA
-��t�@�C�����C���|�[�g�������̃v���W�F�N�g�����[�N�X�y�[�X�֣�ŃC���|�[�g���Ă��������B
-Seasar2�̐ݒ�̏�ɁA����Ɉȉ��̃t�@�C����ǉ���CLASSPATH�Ɋ܂߂�K�v������܂��B</p>
+<p>Tigerアノテーションを使いたい場合は､S2TigerXXX.zipを解凍してできたs2-tigerディレクトリをEclipseで、
+｢ファイル→インポート→既存のプロジェクトをワークスペースへ｣でインポートしてください。
+Seasar2の設定の上に、さらに以下のファイルを追加でCLASSPATHに含める必要があります。</p>
 <ul>
 <li>lib/s2-tiger-x.x.x.jar</li>
 </ul>

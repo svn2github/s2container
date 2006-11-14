@@ -1,4 +1,4 @@
-//  ³‰ğ‚Ì”z—ñ(”z—ñ‚Ì‡”Ô‚Í“K“–‚ÅOK)
+//  æ­£è§£ã®é…åˆ—(é…åˆ—ã®é †ç•ªã¯é©å½“ã§OK)
     ans = new Array("Mock2", "Mock2_4", "Mock3_3", "Use1", "Use2_2", "Use3_4", "Unit4", "Auto1",
                     "Methods3", "Include3", "Include2_4", "Value3", "Value2_2", "SetUp3", "SetUp2_1", "tearDown3",
                     "tearDown2_2", "tx1", "assert4", "dao3", "readXls1","readXls2_4", "reload4",
@@ -7,19 +7,19 @@
 function check(linkName,linkNextName){
     count = 0;
     message = "";
-    //x•Ï”‚Ì‰Šú‰»
+    //xå¤‰æ•°ã®åˆæœŸåŒ–
     x = 0;
     for(i = 0; i<4; i++){
         if(document.myForm.elements["" + linkName][i].checked){
             if(answerCheck(document.myForm.elements["" + linkName][i].value)){
-                message = "³‰ğ‚Å‚·!\n‰ğà‚ğ•\¦‚µ‚Ü‚·‚©H";
+                message = "æ­£è§£ã§ã™!\nè§£èª¬ã‚’è¡¨ç¤ºã—ã¾ã™ã‹ï¼Ÿ";
                 flag=confirm(message);
                 if(flag){
                     location.href="testtechAns.html#" + linkName
                 }
                 else{
                     if(linkNextName != ""){
-                        flag=confirm("Ÿ‚Ì–â‘è‚ÉˆÚ‚è‚Ü‚·‚©H");
+                        flag=confirm("æ¬¡ã®å•é¡Œã«ç§»ã‚Šã¾ã™ã‹ï¼Ÿ");
                         if(flag){
                             location.href = "#" + linkNextName
                         }
@@ -27,7 +27,7 @@ function check(linkName,linkNextName){
                 }
             }
             else{
-                message = "•s³‰ğ‚Å‚·B\n‰ğà‚ğ•\¦‚µ‚Ü‚·‚©H";
+                message = "ä¸æ­£è§£ã§ã™ã€‚\nè§£èª¬ã‚’è¡¨ç¤ºã—ã¾ã™ã‹ï¼Ÿ";
                 flag=confirm(message);
                 if(flag){
                     location.href="testtechAns.html#" + linkName
@@ -39,7 +39,7 @@ function check(linkName,linkNextName){
     }
     
     if(count == 4){
-        alert("‚¢‚¸‚ê‚©‚Éƒ`ƒFƒbƒN‚ğ“ü‚ê‚Ä‚©‚çu‰ğ“š‚ÖGOvƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚Ä‚­‚¾‚³‚¢");  
+        alert("ã„ãšã‚Œã‹ã«ãƒã‚§ãƒƒã‚¯ã‚’å…¥ã‚Œã¦ã‹ã‚‰ã€Œè§£ç­”ã¸GOã€ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ã¦ãã ã•ã„");  
     }
 }
 

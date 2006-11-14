@@ -2,7 +2,7 @@
 <html>
 <!-- don't edit start -->
 <head><title>Seasar - DI Container with AOP - </title>
-<meta http-equiv="Content-Type" content="text/html; charset=MS932C">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="seasar_b.css" type="text/css" rel="stylesheet" media="screen"><link href="seasar_p.css" type="text/css" rel="stylesheet" media="print"><script src="seasar_b.js" type="text/JavaScript" language="JavaScript"></script>
 </head><body onload="preload('ja')"><table width="100%" border="0" cellspacing="0" cellpadding="0" align="left"><tr>
 <td align="left" valign="top" width="780"><table width="780" border="0" cellspacing="0" cellpadding="0" class="white">
@@ -23,41 +23,41 @@
 <!-- don't edit end -->
 <!-- document start -->
             <ul>
-              <li><a href="#SmartDeployIndex">SMART deploy�ɂ���</a>
+              <li><a href="#SmartDeployIndex">SMART deployについて</a>
              <ul>
-              <li><a href="#Naming">�p�b�P�[�W�̍\��</a>
+              <li><a href="#Naming">パッケージの構成</a>
              <ul>
-              <li><a href="#Material">�p�b�P�[�W�̗v�f</a>
+              <li><a href="#Material">パッケージの要素</a>
               </li>
-              <li><a href="#SamplePackage">�p�b�P�[�W�\���T���v��</a>
+              <li><a href="#SamplePackage">パッケージ構成サンプル</a>
               </li>
-              <li><a href="#DiconConfiguration">dicon�t�@�C���̍\��</a>
+              <li><a href="#DiconConfiguration">diconファイルの構成</a>
               </li>
              </ul>
               </li>
-              <li><a href="#SmartDeployKind">SMART deploy�̎��</a>
+              <li><a href="#SmartDeployKind">SMART deployの種類</a>
             <ul>
               <li><a href="#HotDeploy">HOT deploy</a></li>
               <li><a href="#CoolDeploy">COOL deploy</a></li>
               <li><a href="#WarmDeploy">WARM deploy</a></li>
-            </ul>              
+            </ul>
               </li>
             </ul>
-            �@�@�@�@�@�@�@</li>
+            　　　　　　　</li>
             </ul>
 
-<h2><a name="SmartDeployIndex">SMART deploy�ɂ���</a></h2>
-<p>�uSMART deploy�v�Ƃ́A�uSeasar2.4�v�̐����̋K��(Naming Convention)����邱�Ƃɂ��A�v���W�F�N�g�̏����ݒ���s������A�J���ɂ��V���Ȑݒ�t�@�C����ǋL����K�v�Ȃ��A�J����i�߂邱�Ƃ��ł���Ƃ������̂ł��B</p>
-<h2><a name="Naming">�p�b�P�[�W�̍\��</a></h2>
+<h2><a name="SmartDeployIndex">SMART deployについて</a></h2>
+<p>「SMART deploy」とは、「Seasar2.4」の推奨の規約(Naming Convention)を守ることにより、プロジェクトの初期設定を行った後、開発による新たな設定ファイルを追記する必要なく、開発を進めることができるというものです。</p>
+<h2><a name="Naming">パッケージの構成</a></h2>
 <p>
-���������p�b�P�[�W�̍\�����g�����Ƃɂ���āA�SMART deploy����g����悤�ɂȂ�܂��B
-�܂��A�v���W�F�N�g�����o�̏�񋤗L�̓_�ɂ����Ă�
-�p�b�P�[�W�\�������Ɍ��܂��Ă��鎖�ŁA�ǂ̃N���X���ǂ̃p�b�P�[�W�ɂ��邩�T�������e�ՂɂȂ�܂��B
-�������A�����̃p�b�P�[�W�\�����g�킸�Ɏ��R�Ɍ��߂邱�Ƃ��ł��܂��B���̏ꍇ�ͤHOT deploy�͎g���܂��񂪤Seasar2.3�̎����o�^�ͤ���̂܂܎g�����Ƃ��ł��܂��B
+推奨されるパッケージの構成を使うことによって、｢SMART deploy｣を使えるようになります。
+また、プロジェクトメンバの情報共有の点においても
+パッケージ構成が既に決まっている事で、どのクラスがどのパッケージにあるか探す事が容易になります。
+もちろん、推奨のパッケージ構成を使わずに自由に決めることもできます。その場合は､HOT deployは使えませんが､Seasar2.3の自動登録は､そのまま使うことができます。
 </p>
 
 <dl>
-<dt>�i��j�p�b�P�[�W�\��</dt>
+<dt>（例）パッケージ構成</dt>
 <dd>examples.aaaa</dd>
 <dd>examples.aaaa.logic</dd>
 <dd>examples.aaaa.dao</dd>
@@ -65,388 +65,388 @@
 </dl>
 
 <p>
-�p�b�P�[�W�\���ɂ͂Q�̃��[��������܂��B��̓��[�g�p�b�P�[�W�{�ʂ̃p�b�P�[�W�Ƃ������\���������Ƃł��B�@
-�����ŉ]���Ă��郋�[�g�p�b�P�[�W�Ƃ́Aexamples.aaaa�̎��������Ă��܂��B
-���̔z���ɂ���p�b�P�[�W�́A�ʂ̃p�b�P�[�W�̖����K��������Ă��܂��B����ɂ��ẮA<a href="#Material">�ʃp�b�P�[�W�̗v�f</a>�̏��Ő����������܂��B
+パッケージ構成には２つのルールがあります。一つはルートパッケージ＋個別のパッケージといった構成を持つことです。
+ここで云われているルートパッケージとは、examples.aaaaの事を示しています。
+その配下にあるパッケージは、個別のパッケージの命名規約を持っています。それについては、<a href="#Material">個別パッケージの要素</a>の処で説明いたします。
 </p>
-<p>�������web�p�b�P�[�W�ȉ��ɃT�u�A�v���P�[�V���������\���ł��B�����Ō����T�u�A�v���P�[�V�����Ƃ́A��̃A�v���P�[�V����������̘_���I�Ȍł܂�ɕ����������̂ł��B���[�X�P�[�X�Ɠǂݑւ��Ă��ǂ��ł��傤�B</p>
+<p>もう一つはwebパッケージ以下にサブアプリケーションを持つ構成です。ここで言うサブアプリケーションとは、一つのアプリケーションを幾つかの論理的な固まりに分割したものです。ユースケースと読み替えても良いでしょう。</p>
 
 <br>
 
 <dl>
-	<dt>(��)�p�b�P�[�W�\����2�p�^�[��</dt>
-<p>�@���[�g�p�b�P�[�W�{�ʃp�b�P�[�W</p>
+	<dt>(例)パッケージ構成の2パターン</dt>
+<p>①ルートパッケージ＋個別パッケージ</p>
 		<dd>examples.aaa.logic</dd>
-		<dd>��examples.aaa �F�@���[�g�p�b�P�[�W</dd>
-		<dd>��logic �F�@�ʃp�b�P�[�W</dd>
+		<dd>⇒examples.aaa ：　ルートパッケージ</dd>
+		<dd>⇒logic ：　個別パッケージ</dd>
 </dl>
 
 <br>
 
 <dl>
-<p>�A���[�g�p�b�P�[�W�{Web�{�T�u�A�v���P�[�V����</p>
+<p>②ルートパッケージ＋Web＋サブアプリケーション</p>
 		<dd>examples.aaaa.web.xxxx</dd>
-		<dd>��examples.aaaa : ���[�g�p�b�P�[�W</dd>
-		<dd>��web : �T�u�A�v���P�[�V�����̃��[�g�p�b�P�[�W</dd>
-		<dd>��xxxx  �F�@�T�u�A�v���P�[�V����</dd>
+		<dd>⇒examples.aaaa : ルートパッケージ</dd>
+		<dd>⇒web : サブアプリケーションのルートパッケージ</dd>
+		<dd>⇒xxxx  ：　サブアプリケーション</dd>
 </dl>
 
 <br>
 
-<h2><a name="Material">�p�b�P�[�W�̗v�f</a></h2>
-<p> ���Ƀp�b�P�[�W�̗v�f�����Ă����܂��B</p>
+<h2><a name="Material">パッケージの要素</a></h2>
+<p> 次にパッケージの要素をしていきます。</p>
 <p>
-�T�u�A�v���P�[�V�����ŗL�̂��̂��T�u�A�v���P�[�V�����z���ɕ��ނ�
-�T�u�A�v���P�[�V�������ʂ̂��̂��ʃp�b�P�[�W�Ƃ��ĊǗ����Ă��܂��B
+サブアプリケーション固有のものをサブアプリケーション配下に分類し
+サブアプリケーション共通のものを個別パッケージとして管理しています。
 </p>
 
 <h3>Web</h3>
-<p>�T�u�A�v���P�[�V�����̃��[�g�p�b�P�[�W�ł��B</p>
+<p>サブアプリケーションのルートパッケージです。</p>
 
 <dl>
-	<dt><h4>��HTML�APage�ARDBMS�̃e�[�u���̊֌W</h4></dt>
-		<dd>HTML�̓��o�͍���(��id����) �� Page�N���X�̃v���p�e�B�ɑΉ����Page�N���X�̃v���p�e�B���e�[�u���̃J�����ɑΉ����܂��B�܂��AHTML�̃A�N�V����(�{�^����)(��id����) �� Page�N���X�̃��\�b�h�ɑΉ����܂��B�T�u�A�v���P�[�V����(���[�X�P�[�X)�ŗL�̃��W�b�N�́APage�N���X�ɋL�q���܂��B�����̃T�u�A�v���P�[�V�����ŋ��ʂɎg���郍�W�b�N�ͤLogic�N���X�ɋL�q���܂��B�h���C�����f�����g���ꍇ������������G�ȍ\���ɂȂ�܂���������ł́A�ł��V���v���ȃp�^�[���ɂ��Đ������܂��B</dd>
+	<dt><h4>★HTML、Page、RDBMSのテーブルの関係</h4></dt>
+		<dd>HTMLの入出力項目(のid属性) が Pageクラスのプロパティに対応し､Pageクラスのプロパティがテーブルのカラムに対応します。また、HTMLのアクション(ボタン等)(のid属性) が Pageクラスのメソッドに対応します。サブアプリケーション(ユースケース)固有のロジックは、Pageクラスに記述します。複数のサブアプリケーションで共通に使われるロジックは､Logicクラスに記述します。ドメインモデルを使う場合､もう少し複雑な構成になりますが､ここでは、最もシンプルなパターンについて説明します。</dd>
 </dl>
 
 <br>
 
 <dl>
-<p><B>��Page</B></p> 
-		<dd>Page�N���X�Ƃ́AHTML�ƂP�΂P�ɑΉ�����N���X�ŁA��ʂ̏��ƁA�C�x���g�����̃��W�b�N�ō\������Ă��܂��B</dd>
-		<dd>�����K��́A�Ή�����HTML�̖��O�{Page �ƂȂ�܂��BHTML�̃t�@�C�����̍ŏ���啶���ɂ��āA�g���q����菜���A����Page�����܂��BHTML���i�[�����f�B���N�g�������p�b�P�[�W���ɂȂ�܂��B�Ⴆ�Τview(View�̃��[�g�f�B���N�g��)/add/addInput.html�́Aexamples.aaa.web.add.AddInputPage�ɑΉ����܂��B</dd>
+<p><B>□Page</B></p>
+		<dd>Pageクラスとは、HTMLと１対１に対応するクラスで、画面の情報と、イベント処理のロジックで構成されています。</dd>
+		<dd>命名規約は、対応するHTMLの名前＋Page となります。HTMLのファイル名の最初を大文字にして、拡張子を取り除き、後ろにPageをつけます。HTMLが格納されるディレクトリ名がパッケージ名になります。例えば､view(Viewのルートディレクトリ)/add/addInput.htmlは、examples.aaa.web.add.AddInputPageに対応します。</dd>
 </dl>
 <dl>
-<p><B>��dao</B></p>
-		<dd>page�N���X�̌ŗL��dao�ł��B</dd>
-		<dd>�����K��́A�C�ӂ̃N���X���̌���dao�����܂��B�T�u�A�v���P�[�V�����ŗL��Dao���쐬����Ȃ�΁A�T�u�A�v���P�[�V�����̖��O�{Dao�Ɩ������܂��B</dd>
+<p><B>□dao</B></p>
+		<dd>pageクラスの固有のdaoです。</dd>
+		<dd>命名規約は、任意のクラス名の後ろにdaoをつけます。サブアプリケーション固有のDaoを作成するならば、サブアプリケーションの名前＋Daoと命名します。</dd>
 </dl>
 <dl>
-<p><B>��dxo</B></p>
-		<dd>Map��JavaBeans�AJavaBeans��JavaBeans�Ƃ������I�u�W�F�N�g�Ԃ̃f�[�^�̑��ݕϊ����`����C���^�[�t�F�[�X�ł��B�C���^�[�t�F�[�X�Ƀ��\�b�h�������Ă��������ŁA���f���ϊ��̃��W�b�N�́A�A�X�y�N�g�������������܂��B	�������������K�v�͂���܂���B</dd>
+<p><B>□dxo</B></p>
+		<dd>MapとJavaBeans、JavaBeansとJavaBeansといったオブジェクト間のデータの相互変換を定義するインターフェースです。インターフェースにメソッドを書いておくだけで、モデル変換のロジックは、アスペクトが自動生成します。	実装部分を作る必要はありません。</dd>
 </dl>
 <dl>
-<p>��Impl</p>
-		<dd>dao�Adxo�͒ʏ�������N���X�͕K�v����܂��񂪤�����I�ɕϊ��ł��Ȃ��悤�ȕ��G�ȃ��W�b�N�ͤ�����I�Ɏ������邱�Ƃ��ł��܂��B���̏ꍇ����ۃN���X�Ƃ���K�v�ȃ��\�b�h�������������Ă��������B
-		<dd>�����K��́Adao,dxo�̃C���^�[�t�F�[�X���{Impl�ƂȂ�܂��B</dd>
-		<dd>�Ⴆ�΁AAaaDxo�̏ꍇ�AaaDxoImpl�ɂȂ�܂��B</dd>
+<p>□Impl</p>
+		<dd>dao、dxoは通常､実装クラスは必要ありませんが､自動的に変換できないような複雑なロジックは､明示的に実装することもできます。その場合､抽象クラスとし､必要なメソッドだけを実装してください。
+		<dd>命名規約は、dao,dxoのインターフェース名＋Implとなります。</dd>
+		<dd>例えば、AaaDxoの場合､AaaDxoImplになります。</dd>
 </dl>
 <br>
 
 <dl>
-	<dt><h4>���[�g�p�b�P�[�W�����̗v�f</h4></dt>
-		<dd>�T�u�A�v���P�[�V�����p�b�P�[�W�̒��ŋ��ʂɈ�����v�f���ʃp�b�P�[�W�Ƃ��ĊǗ����܂��B</dd>
+	<dt><h4>ルートパッケージ直下の要素</h4></dt>
+		<dd>サブアプリケーションパッケージの中で共通に扱われる要素を個別パッケージとして管理します。</dd>
 
 	<dt><h3>dao</h3></dt>
-		<dd>�f�[�^�x�[�X�ɃA�N�Z�X���邽�߂̃C���^�[�t�F�[�X�ł��B�C���^�[�t�F�[�X�Ƀ��\�b�h�������Ă��������ŁA�f�[�^�A�N�Z�X�̃��W�b�N�́A�A�X�y�N�g�������������܂��B�������������K�v�͂���܂���B
-		<dd>Dao�ɂ��Ă̏ڂ���������S2Dao�������������B
-		<dd>�����K��͔C�ӂ̃N���X���{Dao�ƂȂ�܂��B</dd>
-	<dt>��impl</dt>
-		<dd>Dao�͒ʏ�������N���X�͕K�v����܂��񂪤�����I�ɕϊ��ł��Ȃ��悤�ȕ��G�ȃ��W�b�N�ͤ�����I�Ɏ������邱�Ƃ��ł��܂��B���̏ꍇ����ۃN���X�Ƃ���K�v�ȃ��\�b�h�������������Ă��������B
-		<dd>�����K��́A�C�ӂ̃N���X���{Impl�ƂȂ�܂��B</dd>
-		<dd>�Ⴆ�΁AAaaDao�̎����N���X�́AAaaDaoImpl�ɂȂ�܂��B</dd>
+		<dd>データベースにアクセスするためのインターフェースです。インターフェースにメソッドを書いておくだけで、データアクセスのロジックは、アスペクトが自動生成します。実装部分を作る必要はありません。
+		<dd>Daoについての詳しい説明はS2Daoをご覧下さい。
+		<dd>命名規約は任意のクラス名＋Daoとなります。</dd>
+	<dt>□impl</dt>
+		<dd>Daoは通常､実装クラスは必要ありませんが､自動的に変換できないような複雑なロジックは､明示的に実装することもできます。その場合､抽象クラスとし､必要なメソッドだけを実装してください。
+		<dd>命名規約は、任意のクラス名＋Implとなります。</dd>
+		<dd>例えば、AaaDaoの実装クラスは、AaaDaoImplになります。</dd>
 	<dt><h3>logic</h3></dt>
-		<dd>�A�v���P�[�V�����̋Ɩ��������s���C���^�[�t�F�[�X�ł��B�����N���X��Logic.Impl�ɍ쐬���܂��B
-		<dd>�G���^�[�v���C�Y�V�X�e���̏ꍇ�ALogic�͕��G�ȍ\���ɂȂ�܂��BPage�N���X�����ŊǗ��o���Ȃ�������T�u�A�v���P�[�V�������ʂ̏������A�ʃp�b�P�[�W�ŊǗ����邽�߂Ɏg�p���܂��B
-		<dd>�����K��́A�C�ӂ̖��O�{Logic�ƂȂ�܂��B</dd>
-	<dt>��impl</dt>
-		<dd>Logic�̎����N���X�ł��B�����K���AaaLogic�̏ꍇ�AaaLogicImpl�ɂȂ�܂��B</dd>
+		<dd>アプリケーションの業務処理を行うインターフェースです。実装クラスはLogic.Implに作成します。
+		<dd>エンタープライズシステムの場合、Logicは複雑な構成になります。Pageクラスだけで管理出来ない処理やサブアプリケーション共通の処理を、個別パッケージで管理するために使用します。
+		<dd>命名規約は、任意の名前＋Logicとなります。</dd>
+	<dt>□impl</dt>
+		<dd>Logicの実装クラスです。命名規約はAaaLogicの場合､AaaLogicImplになります。</dd>
 	<dt><h3>validator</h3></dt>
-		<dd>�A�v���P�[�V�����œ��͂����RDBMS�ւ̃f�[�^�����؂���N���X�ł��B
-		<dd>JSF��validator�Ɠ������̂ł��B�Ǝ��������K�v�ȏꍇ�Ɏg�p���܂��B
-		<dd>�����K��́A�C�ӂ̖��O+Validator�ƂȂ�܂��B
+		<dd>アプリケーションで入力されるRDBMSへのデータを検証するクラスです。
+		<dd>JSFのvalidatorと同じものです。独自実装が必要な場合に使用します。
+		<dd>命名規約は、任意の名前+Validatorとなります。
 	<dt><h3>converter</h3></dt>
-		<dd>�f�[�^�^�̕ϊ��t�H�[�}�b�g���A���o�͂̃t�B���^�[���`����N���X�ł��BJSF��converter�Ɠ������̂ł��B�Ǝ��������K�v�ȏꍇ�Ɏg�p���܂��B
-		<dd>�����K��́A�C�ӂ̖��O�{Converter�ƂȂ�܂��B</dd>
+		<dd>データ型の変換フォーマット等、入出力のフィルターを定義するクラスです。JSFのconverterと同じものです。独自実装が必要な場合に使用します。
+		<dd>命名規約は、任意の名前＋Converterとなります。</dd>
 	<dt><h3>interceptor</h3></dt>
-		<dd>�A�X�y�N�g�̐U�镑�����L�q����N���X�ł��B�Ǝ���interceptor����������ꍇ�Ɏg�p���܂��Binterceptor�ɂ��Ă̏ڂ���������S2Aop�������������B
-		<dd>�����K��́A�C�ӂ̖��O+Interceptor�ƂȂ�܂��B</dd>
+		<dd>アスペクトの振る舞いを記述するクラスです。独自のinterceptorを実装する場合に使用します。interceptorについての詳しい説明はS2Aopをご覧下さい。
+		<dd>命名規約は、任意の名前+Interceptorとなります。</dd>
 	<dt><h3>dto</h3></dt>
-		<dd>�v���[���e�[�V�����̃��f���Ƃ���Page�N���X�̎��f�[�^��ۊǂ��āA�I�u�W�F�N�g�w�Ƃ̑��ݕϊ����s���ׂ̃I�u�W�F�N�g�̓��ꕨ�ł��B��{���f����I�������ꍇ�ADto�͎g���܂��񂪁A�K�v�ɉ����Ďg�p���邱�Ƃ͉\�ł��B</dd>
-		<dd>�����K��́A�C�ӂ̖��O+Dto�ƂȂ�܂��B</dd>
+		<dd>プレゼンテーションのモデルとしてPageクラスの持つデータを保管して、オブジェクト層との相互変換を行う為のオブジェクトの入れ物です。基本モデルを選択した場合、Dtoは使いませんが、必要に応じて使用することは可能です。</dd>
+		<dd>命名規約は、任意の名前+Dtoとなります。</dd>
 	<dt><h3>dxo</h3></dt>
-		<dd>�T�u�A�v���P�[�V�����̒���Dxo�Ƃ͕ʂɁA�����̃T�u�A�v���P�[�V�����ŋ��ʂɎg����Dxo�ł��B</dd>
-		<dd>�����K��́A�C�ӂ̖��O+Dxo�ƂȂ�܂��B</dd>
+		<dd>サブアプリケーションの中のDxoとは別に、複数のサブアプリケーションで共通に使われるDxoです。</dd>
+		<dd>命名規約は、任意の名前+Dxoとなります。</dd>
 	<dt><h3>helper</h3></dt>
-		<dd>�A�v���P�[�V�����ŏ�������Ȃ��ǉ��I�ȏ����̏W�܂�ł��Binstance���\�b�h�̏W�܂�ł��B</dd>
-		<dd>�����K��́A�C�ӂ̖��O+Helper�ƂȂ�܂��B</dd>
-	<dt>��impl</dt>
-		<dd>helper�̎����N���X�ł��B�����K���AaaHelper�̏ꍇ�AaaHelperImpl�ɂȂ�܂��B</dd>
+		<dd>アプリケーションで処理されない追加的な処理の集まりです。instanceメソッドの集まりです。</dd>
+		<dd>命名規約は、任意の名前+Helperとなります。</dd>
+	<dt>□impl</dt>
+		<dd>helperの実装クラスです。命名規約はAaaHelperの場合､AaaHelperImplになります。</dd>
 </dl>
 <br>
 
-<h3><a name="SamplePackage">�p�b�P�[�W�\���T���v��</a></h3>
+<h3><a name="SamplePackage">パッケージ構成サンプル</a></h3>
 <p>
-Seasar2.4�̊J�����x�����邽�߂̃c�[���Ƃ���Dolteng(�ǂ���Ă�)�Ƃ���eclipse�v���O�C�����p�ӂ���Ă��܂��B
-Dolteng�ɂ�scaffold�Ƃ����v���W�F�N�g�̃e���v���[�g���쐬����@�\����������Ă��܂��B
-����܂łɐ������܂����ASeasar2.4�̖����K��ɉ������p�b�P�[�W�\����Dolteng�ɂ���ĊȒP�ɍ쐬���邱�Ƃ��ł��܂��B
+Seasar2.4の開発を支援するためのツールとしてDolteng(どぅるてん)というeclipseプラグインが用意されています。
+Doltengにはscaffoldというプロジェクトのテンプレートを作成する機能が実装されています。
+これまでに説明しました、Seasar2.4の命名規約に沿ったパッケージ構成はDoltengによって簡単に作成することができます。
 </p>
 <p>
-���̗�ł́ADolteng��scaffold���g���Đ������ꂽ�p�b�P�[�W�\�������ɁACRUD�A�v���̉�����s���܂��B
-����̗�́ATeeda+Dao�̍\���ō쐬����Ă��܂��B
-Dolteng���g���΁A�f�[�^�x�[�X�̃e�[�u������ACRUD�A�v���������������Ă���܂��B
+次の例では、Doltengのscaffoldを使って生成されたパッケージ構成を元に、CRUDアプリの解説を行います。
+今回の例は、Teeda+Daoの構成で作成されています。
+Doltengを使えば、データベースのテーブルから、CRUDアプリを自動生成してくれます。
 </p>
 
 <dl>
-	<dt><h4>�����K��</h4></dt>
-		<dd>�T�u�A�v�����̓e�[�u�������������œ���܂��B�T�u�A�v�����̃N���X���̐擪�ɂ̓T�u�A�v����������܂��BPage�N���X���ɂ́A�Ή�����Html�t�@�C����������܂��B</dd>
+	<dt><h4>命名規約</h4></dt>
+		<dd>サブアプリ名はテーブル名が小文字で入ります。サブアプリ内のクラス名の先頭にはサブアプリ名が入ります。Pageクラス名には、対応するHtmlファイル名が入ります。</dd>
 </dl>
 <br>
 <dl>
-	<dt><h4>Html�t�@�C���ɂ���</h4></dt>
+	<dt><h4>Htmlファイルについて</h4></dt>
 <p>A.  empList.html</p>
-		<dd>EMP�e�[�u���̈ꗗ�\����������</dd>
+		<dd>EMPテーブルの一覧表示をする画面</dd>
 </dl>
 <br>
 <dl>
 <p>B.  empEdit.html</p>
-		<dd>EMP�e�[�u���̃��R�[�h���e��ǉ��A�X�V�A�폜���s�����</dd>
+		<dd>EMPテーブルのレコード内容を追加、更新、削除を行う画面</dd>
 </dl>
 <br>
 <dl>
 <p>C.  empConfirm.html</p>
-		<dd>empEdit�y�[�W�Ń��R�[�h���e��ύX�����Ƃ��Ɋm�F�\����������</dd>
+		<dd>empEditページでレコード内容を変更したときに確認表示をする画面</dd>
 </dl>
 <br>
 <dl>
-	<dt><h4>�N���X�ɂ���</h4></dt>
-	<dt>examples.aaaa.web.emp�p�b�P�[�W</dt>
+	<dt><h4>クラスについて</h4></dt>
+	<dt>examples.aaaa.web.empパッケージ</dt>
 <p>A.  AbstructEmpPage.java</p>
-		<dd>EMP�e�[�u���̑S�J�������t�B�[���h�Ɏ����Ă��܂��B</dd>
+		<dd>EMPテーブルの全カラムをフィールドに持っています。</dd>
 </dl>
 <br>
 <dl>
 <p>B.  EmpListPage.java</p>
-		<dd>empList.html�ɑΉ�����Page�N���X</dd>
+		<dd>empList.htmlに対応するPageクラス</dd>
 </dl>
 <br>
 <dl>
 <p>C.  EmpEditPage.java</p>
-		<dd>empEdit.html�ɑΉ�����Page�N���X</dd>
+		<dd>empEdit.htmlに対応するPageクラス</dd>
 </dl>
 <br>
 <dl>
 <p>D.  EmpConfirmPage.java</p>
-		<dd>EmpConform.html�ɑΉ�����Page�N���X</dd>
+		<dd>EmpConform.htmlに対応するPageクラス</dd>
 </dl>
 <br>
 <dl>
 <p>E.  EmpDxo.java</p>
-		<dd>�T�u�A�v���P�[�V�����iEMP�j�ŗL��Dxo</dd>
+		<dd>サブアプリケーション（EMP）固有のDxo</dd>
 </dl>
 <br>
 <dl>
-	<dt>examples.aaaa.web�p�b�P�[�W</dt>
+	<dt>examples.aaaa.webパッケージ</dt>
 <p>AbstractCrudPage.java</p>
-		<dd>�y�[�W�ɂ܂����鏈���̂����ACRUD�^�C�v�̊Ǘ����s���N���X</dd>
+		<dd>ページにまたがる処理のうち、CRUDタイプの管理を行うクラス</dd>
 </dl>
 <br>
 <dl>
 <p>CrudType.java</p>
-		<dd>�y�[�W�ɂ܂����鏈���̂����ACRUD�^�C�v�̐錾�N���X</dd>
+		<dd>ページにまたがる処理のうち、CRUDタイプの宣言クラス</dd>
 </dl>
 <br>
 <dl>
-	<dt>examples.aaaa.dao�p�b�P�[�W</dt>
+	<dt>examples.aaaa.daoパッケージ</dt>
 <p>F.  EmpDao.java<p>
-		<dd>EMP�e�[�u���̃J�������֘A�t����Dao�C���^�[�t�F�[�X</dd>
+		<dd>EMPテーブルのカラムを関連付けるDaoインターフェース</dd>
 </dl>
 <br>
 <dl>
-	<dt>examples.aaaa.entity�p�b�P�[�W</dt>
+	<dt>examples.aaaa.entityパッケージ</dt>
 <p>F.  Emp.java<p>
-		<dd>EMP�e�[�u����bean</dd>
+		<dd>EMPテーブルのbean</dd>
 </dl>
 <br>
 
-<h3><a name="DiconConfiguration">Dicon�t�@�C���̍\��</a></h3>
+<h3><a name="DiconConfiguration">Diconファイルの構成</a></h3>
 <p>
-Seasar2.3�ł�XmlHell����������ׂ̎��g�݂̈�Ƃ���LessConfigration�Ɏ��g��ł��܂����B
-���̋@�\�Ƃ��āAAutoRegister���̎����o�^����\�I�Ȃ��̂ł��B
-Seasar2.4�ł́AConvention Over Configuration�̍l�����ɂ��A
-LessConfigration������ɓ˂��l�߂āA�ݒ�t�@�C�����̂������K�v���قƂ�ǖ����Ȃ�܂����B
+Seasar2.3ではXmlHellを解消する為の取り組みの一つとしてLessConfigrationに取り組んできました。
+その機能として、AutoRegister等の自動登録が代表的なものです。
+Seasar2.4では、Convention Over Configurationの考え方により、
+LessConfigrationをさらに突き詰めて、設定ファイル自体を書く必要がほとんど無くなりました。
 </p>
 
 <pre>
 
-&lt;include&gt;�`�F�`�t�@�C���̃C���N���[�h�����܂�
-[ dicon�t�@�C�� ]�Fs2-framework�̃��C�u�����ɓ�������Ă���dicon�t�@�C��
+&lt;include&gt;～：～ファイルのインクルードをします
+[ diconファイル ]：s2-frameworkのライブラリに同梱されているdiconファイル
 
 app.dicon
-�i�˃v���W�F�N�g�C�ӂ̊��ݒ�j
-    �|��include��aop.dicon
-    �|��include��convention.docon
-    �|��include��j2ee.dicon
-    �|��include��dao.dicon
-    �|��include��dxo.dicon
+（⇒プロジェクト任意の環境設定）
+    －＜include＞aop.dicon
+    －＜include＞convention.docon
+    －＜include＞j2ee.dicon
+    －＜include＞dao.dicon
+    －＜include＞dxo.dicon
 
 
 s2container.dicon
-(��s2container�̊���ǂݍ��ވׂ̐ݒ�)
-    �|��include condition=�h�������h��[cooldeploy.dicon]
-                                (��COOL deploy�̐ݒ�t�@�C��)
-    �|��include condition=�h�������h��[hotdeploy.dicon]
-                                (��HOT deploy�̐ݒ�t�@�C��)
-    �|��include condition=�h�������h��[warmdeploy.dicon]
-                                (��WARM deploy�̐ݒ�t�@�C��)
-                                
+(⇒s2containerの環境を読み込む為の設定)
+    －＜include condition=”条件式”＞[cooldeploy.dicon]
+                                (⇒COOL deployの設定ファイル)
+    －＜include condition=”条件式”＞[hotdeploy.dicon]
+                                (⇒HOT deployの設定ファイル)
+    －＜include condition=”条件式”＞[warmdeploy.dicon]
+                                (⇒WARM deployの設定ファイル)
+
 jdbc.dicon
-�i�˃f�[�^�x�[�X�ڑ��e��ݒ�j
-    �|��include��[j2ee.docon]
-                                  �|��include��[jbtx.docon]
-                                  
+（⇒データベース接続各種設定）
+    －＜include＞[j2ee.docon]
+                                  －＜include＞[jbtx.docon]
+
 convention.dicon
-(�ˏ����ݒ�Ƃ��ă��[�g�p�b�P�[�W��ݒ肷��t�@�C��)
+(⇒初期設定としてルートパッケージを設定するファイル)
 
 creator.dicon
-(�ˏ����ݒ�s�v)
+(⇒初期設定不要)
 
 customizer.dicon
-(�ˏ����ݒ�s�v)
+(⇒初期設定不要)
 </pre>
 
 <p>
-S2.4�ł͖����K��ɉ����Ă���΁A
-�J��������(convention.dicon)��rootPackageName���w�肷�鎖�ƃf�[�^�x�[�X�ڑ��ȊO��
-�ݒ�t�@�C���ɒǋL�����Ƃ͂���܂���B
+S2.4では命名規約に沿っていれば、
+開発当初に(convention.dicon)のrootPackageNameを指定する事とデータベース接続以外に
+設定ファイルに追記する作業はありません。
 </p>
 
-<h3><a name="SmartDeployKind">SmartDeploy�̎��</a></h3>
-<p>SmartDeploy�ɂ̓f�v���C����^�C�~���O�ɂ����HOT�ACOOL�AWARM�̎O��ނ��p�ӂ���Ă��܂��B���ɂ��ꂼ��̐��������Ă����܂��B</p>
+<h3><a name="SmartDeployKind">SmartDeployの種類</a></h3>
+<p>SmartDeployにはデプロイするタイミングによってHOT、COOL、WARMの三種類が用意されています。次にそれぞれの説明をしていきます。</p>
 
 <h3><a name="HotDeploy">HOT deploy</a></h3>
 
 <dl>
-	<dt>�T�v</dt>
-<p>A.  HOT deploy�̊T�O</p>
-		<dd>HOT deploy�Ƃ́A�v���O�����\�[�X�̕ύX���ɃA�v���P�[�V�����T�[�o�[��Reboot���Ȃ��Ă��R���|�[�l���g���I���f�}���h�Ńf�v���C/���f�v���C�ł���Z�p�ł��B</dd>
+	<dt>概要</dt>
+<p>A.  HOT deployの概念</p>
+		<dd>HOT deployとは、プログラムソースの変更時にアプリケーションサーバーをRebootしなくてもコンポーネントをオンデマンドでデプロイ/リデプロイできる技術です。</dd>
 </dl>
 <br>
 <dl>
-<p>B.  HOT deploy�̃����b�g</p>
-		<dd>web�V�X�e���̊J�����s���ꍇ�ɔ�������Reboot�ɂ�閳�ʂȑ҂����Ԃ������Ȃ�܂��B�\�[�X�̕ύX���_�C���N�g�Ɍ��ʂƂ��Ċm�F�ł���ׁA�����݂Ȕ����ɂ��C����Ƃ��s�����Ƃ��o���܂��B���̌��ʁA�i�������サ�܂��B</dd>
+<p>B.  HOT deployのメリット</p>
+		<dd>webシステムの開発を行う場合に発生するRebootによる無駄な待ち時間が無くなります。ソースの変更がダイレクトに結果として確認できる為、小刻みな反復による修正作業を行うことが出来ます。その結果、品質が向上します。</dd>
 </dl>
 <br>
 <dl>
-<p>C.  ���ӓ_</p>
-		<dd>HOT deploy���g�p����ׂɂ́A<a name="Naming">�p�b�P�[�W�̍\��</a>�ɉ����K�v������܂��B���N�G�X�g�����邽�тɃR���|�[�l���g���R���e�i�ɓo�^���Ȃ������߁A�}���`�X���b�h�ł̗��p�͓K���Ă��܂���B</dd>
+<p>C.  注意点</p>
+		<dd>HOT deployを使用する為には、<a name="Naming">パッケージの構成</a>に沿う必要があります。リクエストが来るたびにコンポーネントをコンテナに登録しなおすため、マルチスレッドでの利用は適していません。</dd>
 </dl>
 <br>
 <dl>
-	<dt>���t�@�����X</dt>
-<p>A.  �쐬�t�@�C��</p>
-		<dd>HOT deploy���g�p����ׂɂ́As2container.dicon(���[�U�[�C��)��hotdeploy.dicon��&lt;include&gt;����K�v������܂��B</dd>
+	<dt>リファレンス</dt>
+<p>A.  作成ファイル</p>
+		<dd>HOT deployを使用する為には、s2container.dicon(ユーザー任意)にhotdeploy.diconを&lt;include&gt;する必要があります。</dd>
 </dl>
 <br>
 <dl>
-<p>B.  �ݒ�t�@�C���̐���</p>
-		<dd>s2container.dicon��hotdeploy.dicon��&lt;include&gt;���܂��Bhotdeploy.dicon��S2container���Ɋ܂܂�Ă��܂��B���ɂ������tinclude���g���ƁA��ɐݒ�t�@�C�������������K�v���Ȃ��Ȃ�܂��B</dd>
+<p>B.  設定ファイルの説明</p>
+		<dd>s2container.diconにhotdeploy.diconを&lt;include&gt;します。hotdeploy.diconはS2container内に含まれています。環境による条件付includeを使うと、後に設定ファイルを書き直す必要がなくなります。</dd>
 	<dt>
 </dl>
 <br>
 <dl>
 <pre>
-��js2container.dicon��hotdeploy���g���������L�q���܂�
+例）s2container.diconにhotdeployを使う条件を記述します
 
 &lt;components&gt;
 	&lt;include condition="#ENV == 'ut'" path="hotdeploy.dicon"/&gt;
 	&lt;include condition="#ENV != 'ut'" path="cooldeploy.dicon"/&gt;
 &lt;/components&gt;
 
-�����K�w��env.txt���쐬���邱�Ƃ�,#ENV�̒l��env.txt��������ɍs���܂��B
+同じ階層にenv.txtを作成することで,#ENVの値をenv.txt内から取りに行きます。
 
-�W���I�Ȋ����Ƃ��ẮA���̂悤�Ȃ��̂�p�ӂ��Ă���܂����A���O�͎��R�ɐݒ肷�邱�Ƃ��ł��܂��B
-�K���������̊����ɉ����K�v�͂���܂���B
-�@�@ut :�P�̃e�X�g�p 
-�@�@ct :�����e�X�g�p 
-�@�@it :�����e�X�g�p 
-�@�@product :�{�ԗp
-�@�@batch�@�@ :�o�b�`�p 
+標準的な環境名としては、次のようなものを用意してありますが、名前は自由に設定することができます。
+必ずしもこの環境名に沿う必要はありません。
+　　ut :単体テスト用
+　　ct :結合テスト用
+　　it :総合テスト用
+　　product :本番用
+　　batch　　 :バッチ用
 </pre>
 	</dt>
-	<dt><p>C.  �p�ӂ���Ă���@�\</p></dt>
-		<dd>�R���|�[�l���g�͎����œo�^����܂��B</dd>
-		<dd>���N�G�X�g���L��x�ɁA�R���e�i�ɕK�v�ȃR���|�[�l���g��o�^���Ȃ����܂��B����āA��ɈȑO�̓o�^���e�͔j������邱�ƂɂȂ�܂��B</dd>
+	<dt><p>C.  用意されている機能</p></dt>
+		<dd>コンポーネントは自動で登録されます。</dd>
+		<dd>リクエストが有る度に、コンテナに必要なコンポーネントを登録しなおします。よって、常に以前の登録内容は破棄されることになります。</dd>
 </dl>
 
 <h3><a name=CoolDeploy>COOL deploy</a></h3>
 
 <dl>
-	<dt>�T�v</dt>
-<p>A.  COOL deploy�̊T�O</p>
-		<dd>COOL deploy�Ƃ́A�A�v���P�[�V�����̋N���ƂƂ��Ƀf�v���C����������@�\�ł��B</dd>
+	<dt>概要</dt>
+<p>A.  COOL deployの概念</p>
+		<dd>COOL deployとは、アプリケーションの起動とともにデプロイを完了する機能です。</dd>
 </dl>
 <br>
 <dl>
-<p>B.  COOL deploy�̃����b�g</p>
-		<dd>���������ɂ��ׂẴR���|�[�l���g���R���e�i�ɓo�^���邽�߁A��������̃p�t�H�[�}���X�����サ�܂��B��������̃p�t�H�[�}���X��SMART deploy�̒��ōő��ƂȂ�܂��B</dd>
+<p>B.  COOL deployのメリット</p>
+		<dd>初期化時にすべてのコンポーネントをコンテナに登録するため、初期化後のパフォーマンスが向上します。初期化後のパフォーマンスはSMART deployの中で最速となります。</dd>
 </dl>
 <br>
 <dl>
-<p>C.  ���ӓ_</p>
-		<dd>COOL deploy���g�p����ׂɂ́A<a name="Naming">�p�b�P�[�W�̍\��</a>�ɉ����K�v������܂��B�S�ẴR���|�[�l���g���R���e�i�ɓo�^���邽�߁A�o�^����Clas���̐����c��ɂȂ�ƁA�������ɕK�v�Ȏ��Ԃ������Ȃ�܂��B</dd>
+<p>C.  注意点</p>
+		<dd>COOL deployを使用する為には、<a name="Naming">パッケージの構成</a>に沿う必要があります。全てのコンポーネントをコンテナに登録するため、登録するClasｓの数が膨大になると、初期化に必要な時間が長くなります。</dd>
 </dl>
 <br>
 <dl>
-	<dt>���t�@�����X</dt>
-<p>A.  �쐬�t�@�C��</p>
-		<dd>COOL deploy���g���ɂ́As2container.dicon��cooldeploy.dicon��&lt;include&gt;����K�v������܂��B</dd>
+	<dt>リファレンス</dt>
+<p>A.  作成ファイル</p>
+		<dd>COOL deployを使うには、s2container.diconにcooldeploy.diconを&lt;include&gt;する必要があります。</dd>
 </dl>
 <br>
 <dl>
-<p>B.  �ݒ�t�@�C���̐���</p>
-		<dd>s2container.dicon��cooldeploy.dicon��&lt;include&gt;���܂��B</dd>
-		<dd>���ɂ������tinclude���g���ƁA��ɐݒ�t�@�C�������������K�v���Ȃ��Ȃ�܂��B</dd>
+<p>B.  設定ファイルの説明</p>
+		<dd>s2container.diconにcooldeploy.diconを&lt;include&gt;します。</dd>
+		<dd>環境による条件付includeを使うと、後に設定ファイルを書き直す必要がなくなります。</dd>
 
 	<dt>
 <pre>
-��js2container.dicon��cooldeploy���g���������L�q���܂�
+例）s2container.diconにcooldeployを使う条件を記述します
 
 &lt;components&gt;
 	&lt;include condition="#ENV == 'ut'" path="hotdeploy.dicon"/&gt;
 	&lt;include condition="#ENV != 'ut'" path="cooldeploy.dicon"/&gt;
 &lt;/components&gt;
 
-env.txt�ɐݒ���������ނ��ƂŁA���𑀍삷�邱�Ƃ��ł��܂��B
+env.txtに設定を書き込むことで、環境を操作することができます。
 </pre>
 	</dt>
-<p>C.  �p�ӂ���Ă���@�\</p>
-		<dd>�R���|�[�l���g�͎����œo�^����܂��B</dd>
-		<dd>S2Container��Init()�̃^�C�~���O�ŃR���e�i�ɑS�ẴR���|�[�l���g��o�^���܂��B���N�G�X�g���󂯂Ă��o�^���e�͔j������܂���B</dd>
+<p>C.  用意されている機能</p>
+		<dd>コンポーネントは自動で登録されます。</dd>
+		<dd>S2ContainerのInit()のタイミングでコンテナに全てのコンポーネントを登録します。リクエストを受けても登録内容は破棄されません。</dd>
 </dl>
 
 <h3><a name=WarmDeploy>WARM deploy</a></h3>
 <dl>
-	<dt>(1)  �T�v</dt>
-<p>A.  WARM deploy�̊T�O</p>
-		<dd>WARM deploy�́ACOOL deploy��HOT deploy�̒��x���ԓI�ȓ����������Ă��܂��BHOT deploy�̗l�ɃI���f�}���h�Ńf�v���C���܂��B�������A��x�o�^�������̂�j�����܂���B�o�^���COOL deploy�Ɠ����悤�ɓo�^���e��ێ����܂��B</dd>
+	<dt>(1)  概要</dt>
+<p>A.  WARM deployの概念</p>
+		<dd>WARM deployは、COOL deployとHOT deployの丁度中間的な特性を持っています。HOT deployの様にオンデマンドでデプロイします。しかし、一度登録したものを破棄しません。登録後はCOOL deployと同じように登録内容を保持します。</dd>
 </dl>
 <br>
 <dl>
-<p>B.  WARM deploy�̃����b�g</p>
-		<dd>�o�^����R���|�[�l���g�̗ʂ��c��ȃV�X�e����COOL deploy���g�����ꍇ�ɔ�������f�����b�g(�������̎���)���������邱�Ƃ��ł��܂��BGUI�A�v���P�[�V�����̋N���̏ꍇ�ȂǁA�ŏ�����S�ẴR���|�[�l���g���g���K�v���Ȃ��ꍇ�ɈЗ͂𔭊����܂��B</dd>
+<p>B.  WARM deployのメリット</p>
+		<dd>登録するコンポーネントの量が膨大なシステムでCOOL deployを使った場合に発生するデメリット(初期化の時間)を押さえることができます。GUIアプリケーションの起動の場合など、最初から全てのコンポーネントを使う必要がない場合に威力を発揮します。</dd>
 </dl>
 <br>
 <dl>
-<p>C.  ���ӓ_</p>
-		<dd>WARM deploy���g�p����ׂɂ́A<a name="Naming">�p�b�P�[�W�̍\��</a>�ɉ����K�v������܂��BHOT deploy�̗l�Ƀ\�[�X�̕ύX���_�C���N�g�ɔ��f���邱�Ƃ͏o���܂���B</dd>
+<p>C.  注意点</p>
+		<dd>WARM deployを使用する為には、<a name="Naming">パッケージの構成</a>に沿う必要があります。HOT deployの様にソースの変更をダイレクトに反映することは出来ません。</dd>
 </dl>
 <br>
 <dl>
-	<dt>(2)  ���t�@�����X</dt>
-<p>A.  �쐬�t�@�C��</p>
-		<dd>WARM deploy���g���ɂ́As2container.dicon��warmdeploy.dicon��&lt;include&gt;����K�v������܂��B</dd>
+	<dt>(2)  リファレンス</dt>
+<p>A.  作成ファイル</p>
+		<dd>WARM deployを使うには、s2container.diconにwarmdeploy.diconを&lt;include&gt;する必要があります。</dd>
 </dl>
 <br>
 <dl>
-<p>B.  �ݒ�t�@�C���̐���</p>
-		<dd>s2container.dicon��cooldeploy.dicon��&lt;include&gt;���܂��B</dd>
-		<dd>���ɂ������tinclude���g���ƁA��ɐݒ�t�@�C�������������K�v���Ȃ��Ȃ�܂��B</dd>
+<p>B.  設定ファイルの説明</p>
+		<dd>s2container.diconにcooldeploy.diconを&lt;include&gt;します。</dd>
+		<dd>環境による条件付includeを使うと、後に設定ファイルを書き直す必要がなくなります。</dd>
 </dl>
 <br>
 <dl>
 	<dt>
 <pre>
-��js2container.dicon��WARM deploy���g�p����ݒ������
+例）s2container.diconにWARM deployを使用する設定をする
 
 &lt;components&gt;
 	&lt;include condition="#ENV == 'ut'" path="hotdeploy.dicon"/&gt;
@@ -454,9 +454,9 @@ env.txt�ɐݒ���������ނ��ƂŁA���𑀍삷�邱�Ƃ��ł��܂��B
 &lt;/components&gt;
 </pre>
 	</dt>
-<p>C.  �p�ӂ���Ă���@�\<p>
-		<dd>�R���|�[�l���g�͎����œo�^����܂��B</dd>
-		<dd>���N�G�X�g���L��x�ɁA�R���e�i�ɃR���|�[�l���g��o�^���܂��B�������A���ɓ����R���|�[�l���g���o�^����Ă���ꍇ�ɂ͓o�^���܂���B</dd>
+<p>C.  用意されている機能<p>
+		<dd>コンポーネントは自動で登録されます。</dd>
+		<dd>リクエストが有る度に、コンテナにコンポーネントを登録します。ただし、既に同じコンポーネントが登録されている場合には登録しません。</dd>
 </dl>
 
 

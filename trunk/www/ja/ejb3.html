@@ -3,7 +3,7 @@
 <!-- don't edit start -->
 <head>
 <title>Seasar - DI Container with AOP - </title>
-<meta http-equiv="Content-Type" content="text/html; charset=Windows-31j">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <link href="seasar_b.css" type="text/css" rel="stylesheet" media="screen">
 <link href="seasar_p.css" type="text/css" rel="stylesheet" media="print">
@@ -27,55 +27,55 @@
 <!-- don't edit end -->
 <!-- document start -->
             <ul>
-			  <li><a href="#Quickstart">�N�C�b�N�X�^�[�g</a>
-             �@<ul>
-                <li><a href="#FirstStep">�ŏ��̈��</a>
-�@�@�@�@�@�@�@�@</ul>
+			  <li><a href="#Quickstart">クイックスタート</a>
+             　<ul>
+                <li><a href="#FirstStep">最初の一歩</a>
+　　　　　　　　</ul>
               </li>
-              <li><a href="#EJB3AnnotationReference">EJB3�A�m�e�[�V�������t�@�����X</a>
+              <li><a href="#EJB3AnnotationReference">EJB3アノテーションリファレンス</a>
                 <ul>
-				  <li><a href="#StatelessAnnotation">Stateless�A�m�e�[�V����</a></li>
-				  <li><a href="#StatefulAnnotation">Stateful�A�m�e�[�V����</a></li>
-				  <li><a href="#EJBAnnotation">EJB�A�m�e�[�V����</a></li>
-				  <li><a href="#TransactionManagementAnnotation">TransactionManagement�A�m�e�[�V����</a></li>
-				  <li><a href="#TransactionAttributeAnnotation">TransactionAttribute�A�m�e�[�V����</a></li>
-                  <li><a href="#InterceptorsAnnotation">Interceptors�A�m�e�[�V����</a></li>
-                  <li><a href="#ExcludeClassInterceptorsAnnotation">ExcludeClassInterceptors�A�m�e�[�V����</a></li>
-                  <li><a href="#PostConstructAnnotation">PostConstruct�A�m�e�[�V����</a></li>
-				  <li><a href="#AroundInvokeAnnotation">AroundInoke�A�m�e�[�V����</a></li>
+				  <li><a href="#StatelessAnnotation">Statelessアノテーション</a></li>
+				  <li><a href="#StatefulAnnotation">Statefulアノテーション</a></li>
+				  <li><a href="#EJBAnnotation">EJBアノテーション</a></li>
+				  <li><a href="#TransactionManagementAnnotation">TransactionManagementアノテーション</a></li>
+				  <li><a href="#TransactionAttributeAnnotation">TransactionAttributeアノテーション</a></li>
+                  <li><a href="#InterceptorsAnnotation">Interceptorsアノテーション</a></li>
+                  <li><a href="#ExcludeClassInterceptorsAnnotation">ExcludeClassInterceptorsアノテーション</a></li>
+                  <li><a href="#PostConstructAnnotation">PostConstructアノテーション</a></li>
+				  <li><a href="#AroundInvokeAnnotation">AroundInokeアノテーション</a></li>
                 </ul>
               </li>
             </ul>
 
-<h2><a name="QuickStart">�N�C�b�N�X�^�[�g</a></h2>
-<p>S2Container�́ADependency Injection�i�ȍ~DI�Ɨ����܂��j�������Ȃ��y�ʃR���e�i�ł��B
-EJB3���������Ă��܂��B</p>
+<h2><a name="QuickStart">クイックスタート</a></h2>
+<p>S2Containerは、Dependency Injection（以降DIと略します）をおこなう軽量コンテナです。
+EJB3も実装しています。</p>
 
-<h3><a name="FirstStep">�ŏ��̈��</a></h3>
-<p>���������Ă݂܂��傤�B�o��l���͎��̂悤�ɂȂ�܂��B</p>
+<h3><a name="FirstStep">最初の一歩</a></h3>
+<p>早速試してみましょう。登場人物は次のようになります。</p>
 <ul>
-<li>�������N���X
+<li>あいさつクラス
 <ul>
-<li>�������p�̕������Ԃ��B</li>
+<li>あいさつ用の文字列を返す。</li>
 </ul>
 </li>
 
-<li>�������N���C�A���g�N���X
+<li>あいさつクライアントクラス
 <ul>
-<li>�������N���X����擾�����������i������j���R���\�[���ɏo�͂���B</li>
+<li>あいさつクラスから取得したあいさつ（文字列）をコンソールに出力する。</li>
 </ul>
 </li>
 
-<li>���������C���N���X
+<li>あいさつメインクラス
 <ul>
-<li>�N���p�̃N���X�B�������N���X�Ƃ������N���C�A���g�N���X�̑g�ݗ��Ă��s���
+<li>起動用のクラス。あいさつクラスとあいさつクライアントクラスの組み立ても行う｡
 </li>
 </ul>
 </li>
 
 </ul>
 <h5>Greeting.java</h5>
-<p>�������̂��߂̃C���^�[�t�F�[�X�ł��B</p>
+<p>あいさつのためのインターフェースです。</p>
 <pre>
 package examples.ejb3;
 
@@ -86,7 +86,7 @@ public interface Greeting {
 </pre>
 
 <h5>GreetingImpl.java</h5>
-<p>�������̎����ł��B<a href="#StatelessAnnotation">Stateless�A�m�e�[�V����</a>���g���āA�ȒP��Stateless SessionBean����邱�Ƃ��ł��܂��B</p>
+<p>あいさつの実装です。<a href="#StatelessAnnotation">Statelessアノテーション</a>を使って、簡単にStateless SessionBeanを作ることができます。</p>
 <pre>
 package examples.ejb3.impl;
 
@@ -104,7 +104,7 @@ public class GreetingImpl implements Greeting {
 </pre>
 
 <h5>GreetingClient.java</h5>
-<p>�������𗘗p����N���C�A���g�̃C���^�[�t�F�[�X�ł��B</p>
+<p>あいさつを利用するクライアントのインターフェースです。</p>
 <pre>
 package examples.ejb3;
 
@@ -115,8 +115,8 @@ public interface GreetingClient {
 </pre>
 
 <h5>GreetingClientImpl.java</h5>
-<p>�������𗘗p����N���C�A���g�̎����ł��B
-<a href="#EJBAnnotation">EJB�A�m�e�[�V����</a>���g���āAGreeting�C���^�[�t�F�[�X����������SessionBean���Q�Ƃ��邱�Ƃ��ł��܂��B</p>
+<p>あいさつを利用するクライアントの実装です。
+<a href="#EJBAnnotation">EJBアノテーション</a>を使って、Greetingインターフェースを実装したSessionBeanを参照することができます。</p>
 <pre>
 package examples.ejb3.impl;
 
@@ -131,24 +131,24 @@ public class GreetingClientImpl implements GreetingClient {
 
     @EJB
     private Greeting greeting;
-    
+
     public void execute() {
         System.out.println(greeting.greet());
     }
 }</pre>
 
 <h5>GreetingMain.dicon</h5>
-<p>EJB3�p�̐ݒ�t�@�C���ł��B
-���̓��e���ŏ��ɋL�q���Ă����Τ�ォ��EJB�������Ă��A�t�@�C���ɏ���ǉ�����K�v�͂���܂���B
-�ڂ����ͤ<a href="DIContainer.html#ComponentAutoRegister">�R���|�[�l���g�̎����o�^</a>���Q�Ƃ��Ă��������B</p>
+<p>EJB3用の設定ファイルです。
+この内容を最初に記述しておけば､後からEJBが増えても、ファイルに情報を追加する必要はありません。
+詳しくは､<a href="DIContainer.html#ComponentAutoRegister">コンポーネントの自動登録</a>を参照してください。</p>
 <pre>&lt;components&gt;<br>	&lt;include path=&quot;ejb3tx.dicon&quot;/&gt;<br>    &lt;component<br>      class=&quot;org.seasar.framework.container.autoregister.FileSystemComponentAutoRegister&quot;&gt;<br>        &lt;initMethod name=&quot;addClassPattern&quot;&gt;<br>            &lt;arg&gt;&quot;examples.ejb3.impl&quot;&lt;/arg&gt;<br>            &lt;arg&gt;&quot;.*Impl&quot;&lt;/arg&gt;<br>        &lt;/initMethod&gt;<br>    &lt;/component&gt;<br>&lt;/components&gt;
 
 </pre>
 
 <h5>GreetingMain.java</h5>
-<p>Seasar2��EJB3�����s���邽�߂̃R�[�h�͎��̂悤�ɂȂ�܂��B
-SingletonS2ContainerFactory�ɂ��Ă̏ڍׂ�<a href="DIContainer.html#S2ContainerCreation">S2Container�̐���</a>���Q�Ƃ��Ă��������B
-@EJB��name�������w�肵�Ȃ������ꍇ�̤�f�t�H���g�̖��O�̖����K���ͤ<a href="DIContainer.html#DefaultAutoNaming">DefaultAutoNaming</a>���Q�Ƃ��Ă��������B
+<p>Seasar2のEJB3を実行するためのコードは次のようになります。
+SingletonS2ContainerFactoryについての詳細は<a href="DIContainer.html#S2ContainerCreation">S2Containerの生成</a>を参照してください。
+@EJBのname属性を指定しなかった場合の､デフォルトの名前の命名規則は､<a href="DIContainer.html#DefaultAutoNaming">DefaultAutoNaming</a>を参照してください。
 </p>
 <pre>
 package examples.ejb3.main;
@@ -182,21 +182,21 @@ public class GreetingMain {
     }
 }
 </pre>
-<p>���s���ʂ͉��L�̂悤�ɂȂ�܂��B</p>
+<p>実行結果は下記のようになります。</p>
 <pre>
-DEBUG 2006-03-25 18:38:47,892 [main] �g�����U�N�V�������J�n���܂���
+DEBUG 2006-03-25 18:38:47,892 [main] トランザクションを開始しました
 Hello World!
-DEBUG 2006-03-25 18:38:47,922 [main] �g�����U�N�V�������R�~�b�g���܂���
+DEBUG 2006-03-25 18:38:47,922 [main] トランザクションをコミットしました
 </pre>
 
-<h2><a name="EJB3AnnotationReference">EJB3�A�m�e�[�V�������t�@�����X</a></h2>
-<p>S2Container�ł́AEJB 3.0 Simplified API�̃A�m�e�[�V�������T�|�[�g���Ă��܂��BEJB3�A�m�e�[�V�����𗘗p����ɂ�Java5(Tiger)���K�v�ł��B</p>
+<h2><a name="EJB3AnnotationReference">EJB3アノテーションリファレンス</a></h2>
+<p>S2Containerでは、EJB 3.0 Simplified APIのアノテーションもサポートしています。EJB3アノテーションを利用するにはJava5(Tiger)が必要です。</p>
 
-<h3><a name="StatelessAnnotation">Stateless�A�m�e�[�V����</a></h3>
-<p>Stateless�A�m�e�[�V�������g���āAStateless SessionBean���`���܂��B</p>
-<p>Tiger�A�m�e�[�V�����͈ȉ��̂悤�ɂȂ�܂��Bname�������ȗ������ꍇ�
-<a href="#ComponentAutoRegister">�R���|�[�l���g�̎����o�^</a>�Ŏg����AutoNaming�̎����N���X�ɂ���Ĥ
-���O�������I�Ɍ��߂��܂��B</p>
+<h3><a name="StatelessAnnotation">Statelessアノテーション</a></h3>
+<p>Statelessアノテーションを使って、Stateless SessionBeanを定義します。</p>
+<p>Tigerアノテーションは以下のようになります。name属性を省略した場合､
+<a href="#ComponentAutoRegister">コンポーネントの自動登録</a>で使われるAutoNamingの実装クラスによって､
+名前が自動的に決められます。</p>
 <pre>
 @Stateless(name="xxx")
 public class Xxx {
@@ -204,11 +204,11 @@ public class Xxx {
 }
 </pre>
 
-<h3><a name="StatefulAnnotation">Stateful�A�m�e�[�V����</a></h3>
-<p>Stateful�A�m�e�[�V�������g���āAStateful SessionBean���`���܂��B</p>
-<p>Tiger�A�m�e�[�V�����͈ȉ��̂悤�ɂȂ�܂��Bname�������ȗ������ꍇ�
-<a href="#ComponentAutoRegister">�R���|�[�l���g�̎����o�^</a>�Ŏg����AutoNaming�̎����N���X�ɂ���Ĥ
-���O�������I�Ɍ��߂��܂��B</p>
+<h3><a name="StatefulAnnotation">Statefulアノテーション</a></h3>
+<p>Statefulアノテーションを使って、Stateful SessionBeanを定義します。</p>
+<p>Tigerアノテーションは以下のようになります。name属性を省略した場合､
+<a href="#ComponentAutoRegister">コンポーネントの自動登録</a>で使われるAutoNamingの実装クラスによって､
+名前が自動的に決められます。</p>
 <pre>
 @Stateful(name="xxx")
 public class Xxx {
@@ -216,10 +216,10 @@ public class Xxx {
 }
 </pre>
 
-<h3><a name="EJBAnnotation">EJB�A�m�e�[�V����</a></h3>
-<p>EJB�A�m�e�[�V�����ɂ���ĤEJB3�R���|�[�l���g���Q�Ƃ��邱�Ƃ��ł��܂��B
-Statless�AStateful�A�m�e�[�V������name�����ŕt�������O��beanName�����Ɏw�肷�邱�Ƃ��ł��܂��B
-beanName�����ͤ�C���^�[�t�F�[�X�����������I�u�W�F�N�g���������݂���ꍇ�ɂ̂ݎg���悤�ɂ��Ă��������B
+<h3><a name="EJBAnnotation">EJBアノテーション</a></h3>
+<p>EJBアノテーションによって､EJB3コンポーネントを参照することができます。
+Statless、Statefulアノテーションのname属性で付けた名前をbeanName属性に指定することができます。
+beanName属性は､インターフェースを実装したオブジェクトが複数存在する場合にのみ使うようにしてください。
 </p>
 <pre>
 @EJB
@@ -233,10 +233,10 @@ public void setBbb(Bbb bbb) {
 }
 </pre>
 
-<h3><a name="TransactionManagementAnnotation">TransactionManagement�A�m�e�[�V����</a></h3>
+<h3><a name="TransactionManagementAnnotation">TransactionManagementアノテーション</a></h3>
 <p>
-TransactionManagement�A�m�e�[�V�����ɂ��A�R���e�i�Ǘ��g�����U�N�V����(CMT)��Bean�Ǘ��g�����U�N�V����(BMT)���g�������邱�Ƃ��ł��܂��B<br>
-�f�t�H���g��CMT�ł��邽�߁ACMT���g�p����ꍇ��TransactionManagement�A�m�e�[�V�����𖾎�����K�v�͂���܂���B
+TransactionManagementアノテーションにより、コンテナ管理トランザクション(CMT)とBean管理トランザクション(BMT)を使い分けることができます。<br>
+デフォルトはCMTであるため、CMTを使用する場合はTransactionManagementアノテーションを明示する必要はありません。
 </p>
 <pre>
 @Stateless
@@ -246,13 +246,13 @@ public class Xxx {
 }
 </pre>
 
-<h3><a name="TransactionAttributeAnnotation">TransactionAttribute�A�m�e�[�V����</a></h3>
+<h3><a name="TransactionAttributeAnnotation">TransactionAttributeアノテーション</a></h3>
 <p>
-TransactionAttribute�A�m�e�[�V�����ɂ��A�r�W�l�X���\�b�h�̃g�����U�N�V����������ݒ肷�邱�Ƃ��ł��܂��B���̎w�肪�L���Ȃ̂́ACMT�̏ꍇ�݂̂ł��B<br>
-�N���X��TransactionAttribute�A�m�e�[�V������t���邱�Ƃɂ��A���̃N���X�̃r�W�l�X���\�b�h�S�̂̃g�����U�N�V����������ݒ肷�邱�Ƃ��ł��܂��B�w�肵�Ȃ������ꍇ�̃f�t�H���g��REQUIRED�ł��B<br>
-���\�b�h��TransactionAttribute�A�m�e�[�V������t���邱�Ƃɂ��A���̃r�W�l�X���\�b�h�̃g�����U�N�V����������ݒ肷�邱�Ƃ��ł��܂��B�w�肵�Ȃ������ꍇ�̃f�t�H���g�̓N���X�ɕt����ꂽ�g�����U�N�V���������ł��B<br>
-TransactionAttribute�A�m�e�[�V�������g�p����ɂ́A���̃Z�b�V�����r�[����o�^����R���e�i��ejb3tx.dicon���C���N���[�h����K�v������܂��B
-ejb3tx.dicon��S2Tiger��resources�f�B���N�g���̉��ɂ���܂��B
+TransactionAttributeアノテーションにより、ビジネスメソッドのトランザクション属性を設定することができます。この指定が有効なのは、CMTの場合のみです。<br>
+クラスにTransactionAttributeアノテーションを付けることにより、そのクラスのビジネスメソッド全体のトランザクション属性を設定することができます。指定しなかった場合のデフォルトはREQUIREDです。<br>
+メソッドにTransactionAttributeアノテーションを付けることにより、そのビジネスメソッドのトランザクション属性を設定することができます。指定しなかった場合のデフォルトはクラスに付けられたトランザクション属性です。<br>
+TransactionAttributeアノテーションを使用するには、そのセッションビーンを登録するコンテナにejb3tx.diconをインクルードする必要があります。
+ejb3tx.diconはS2Tigerのresourcesディレクトリの下にあります。
 </p>
 <pre>
 @Stateless
@@ -265,10 +265,10 @@ public class Xxx {
 }
 </pre>
 
-<h3><a name="InterceptorsAnnotation">Interceptors�A�m�e�[�V����</a></h3>
+<h3><a name="InterceptorsAnnotation">Interceptorsアノテーション</a></h3>
 <p>
-Interceptors�A�m�e�[�V�����ɂ��A�r�W�l�X���\�b�h�̌Ăяo���⃉�C�t�T�C�N���C�x���g���C���^�[�Z�v�g����N���X�𕡐��w�肷�邱�Ƃ��ł��܂��B<br>
-Interceptors�A�m�e�[�V�����̓N���X�܂��̓��\�b�h�ɕt���邱�Ƃ��ł��܂��B
+Interceptorsアノテーションにより、ビジネスメソッドの呼び出しやライフサイクルイベントをインターセプトするクラスを複数指定することができます。<br>
+Interceptorsアノテーションはクラスまたはメソッドに付けることができます。
 </p>
 <pre>
 @Stateless
@@ -282,9 +282,9 @@ public class Xxx {
 }
 </pre>
 
-<h3><a name="ExcludeClassInterceptorsAnnotation">ExcludeClassInterceptors�A�m�e�[�V����</a></h3>
+<h3><a name="ExcludeClassInterceptorsAnnotation">ExcludeClassInterceptorsアノテーション</a></h3>
 <p>
-ExcludeClassInterceptors�A�m�e�[�V�����ɂ��A�N���X��@Interceptors�A�m�e�[�V�����Ŏw�肵���C���^�[�Z�v�^�����\�b�h�ɓK�p���Ȃ����Ƃ��w�肷�邱�Ƃ��ł��܂��B<br>
+ExcludeClassInterceptorsアノテーションにより、クラスに@Interceptorsアノテーションで指定したインターセプタをメソッドに適用しないことを指定することができます。<br>
 </p>
 <pre>
 @Stateless
@@ -299,12 +299,12 @@ public class Xxx {
 }
 </pre>
 
-<h3><a name="PostConstructAnnotation">PostConstruct�A�m�e�[�V����</a></h3>
+<h3><a name="PostConstructAnnotation">PostConstructアノテーション</a></h3>
 <p>
-PostConstruct�A�m�e�[�V�����ɂ��A�C���X�^���X�����`DI�̌�ɌĂяo����郁�\�b�h���w�肷�邱�Ƃ��ł��܂��B<br>
-PostConstruct�A�m�e�[�V�����̓Z�b�V�����r�[���܂��̓C���^�[�Z�v�^�N���X�̃��\�b�h�Ɏw�肷�邱�Ƃ��ł��܂��B<br>
-�Z�b�V�����r�[����PostConstruct�A�m�e�[�V������t����ꍇ�A���̃��\�b�h�͔�<code>static</code>�A��<code>final</code>�ň������Ȃ��A�߂�l�^��<code>void</code>�łȂ���΂Ȃ�܂���B���\�b�h������щ����͔C�ӂł��B<br>
-�C���^�[�Z�v�^��PostConstruct�A�m�e�[�V������t����ꍇ�A���̃��\�b�h�͔�<code>static</code>�A��<code>final</code>�ň�����<code>javax.interceptor.InvocationContext</code>�^������A�߂�l�^��<code>void</code>�łȂ���΂Ȃ�܂���B���\�b�h������щ����͔C�ӂł��B
+PostConstructアノテーションにより、インスタンス生成～DIの後に呼び出されるメソッドを指定することができます。<br>
+PostConstructアノテーションはセッションビーンまたはインターセプタクラスのメソッドに指定することができます。<br>
+セッションビーンにPostConstructアノテーションを付ける場合、そのメソッドは非<code>static</code>、非<code>final</code>で引数がなく、戻り値型が<code>void</code>でなければなりません。メソッド名および可視性は任意です。<br>
+インターセプタにPostConstructアノテーションを付ける場合、そのメソッドは非<code>static</code>、非<code>final</code>で引数は<code>javax.interceptor.InvocationContext</code>型一つだけ、戻り値型が<code>void</code>でなければなりません。メソッド名および可視性は任意です。
 </p>
 <pre>
 @Stateless
@@ -326,12 +326,12 @@ public class Yyy {
 }
 </pre>
 
-<h3><a name="AroundInvokeAnnotation">AroundInvoke�A�m�e�[�V����</a></h3>
+<h3><a name="AroundInvokeAnnotation">AroundInvokeアノテーション</a></h3>
 <p>
-AroundInvoke�A�m�e�[�V�����ɂ��A�r�W�l�X���\�b�h�̌Ăяo�����C���^�[�Z�v�g���邱�Ƃ��ł��܂��B<br>
-AroundInvoke�A�m�e�[�V�����̓Z�b�V�����r�[���܂��̓C���^�[�Z�v�^�N���X�̃��\�b�h�Ɏw�肷�邱�Ƃ��ł��܂��B<br>
-�Z�b�V�����r�[����AroundInvoke�A�m�e�[�V������t���邱�Ƃ��ł��郁�\�b�h�͔�<code>static</code>�A��<code>final</code>�ň�����<code>javax.interceptor.InvocationContext</code>�^������A�߂�l�^��<code>java.lang.Object</code>�^�łȂ���΂Ȃ�܂���B���\�b�h�̖��O������͔C�ӂł��B<br>
-�N���X�ň�̃��\�b�h�ɂ���AroundInvoke�A�m�e�[�V������t���邱�Ƃ��ł��܂��B
+AroundInvokeアノテーションにより、ビジネスメソッドの呼び出しをインターセプトすることができます。<br>
+AroundInvokeアノテーションはセッションビーンまたはインターセプタクラスのメソッドに指定することができます。<br>
+セッションビーンにAroundInvokeアノテーションを付けることができるメソッドは非<code>static</code>、非<code>final</code>で引数は<code>javax.interceptor.InvocationContext</code>型一つだけ、戻り値型は<code>java.lang.Object</code>型でなければなりません。メソッドの名前や可視性は任意です。<br>
+クラスで一つのメソッドにだけAroundInvokeアノテーションを付けることができます。
 </p>
 <pre>
 @Stateless

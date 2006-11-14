@@ -2,7 +2,7 @@
 <html>
 <!-- don't edit start -->
 <head><title>Seasar - DI Container with AOP - </title>
-<meta http-equiv="Content-Type" content="text/html; charset=MS932C">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="seasar_b.css" type="text/css" rel="stylesheet" media="screen"><link href="seasar_p.css" type="text/css" rel="stylesheet" media="print"><script src="seasar_b.js" type="text/JavaScript" language="JavaScript"></script>
 </head><body onload="preload('ja')"><table width="100%" border="0" cellspacing="0" cellpadding="0" align="left"><tr>
 <td align="left" valign="top" width="780"><table width="780" border="0" cellspacing="0" cellpadding="0" class="white">
@@ -23,33 +23,33 @@
 <!-- don't edit end -->
 <!-- document start -->
 <p>
-SQL‚Í©—R‚É”­s‚µ‚½‚¢B‚Å‚àJDBC‚ğg‚¤‚Ì‚Í‚ß‚ñ‚Ç‚­‚³‚¢B‚»‚ñ‚È‚ ‚È‚½‚Ì‚½‚ß‚É—pˆÓ‚³‚ê‚Ä‚¢‚é‚Ì‚ªAS2JDBC‚Å‚·B</p>
-<h2><a name="Setup">ƒZƒbƒgƒAƒbƒv</a></h2>
-<p> ŠÈ’P‚É‹@”\‚ğ‚·‚±‚Æ‚ª‚Å‚«‚é‚æ‚¤‚ÉARDBMS‚Æ‚µ‚ÄHSQLDB‚ğ—pˆÓ‚µ‚Ä‚¢‚Ü‚·B‹@”\‚ğ‚·‘O‚É‚ ‚ç‚©‚¶‚ßHSQLDB‚ğÀs‚µ‚Ä‚¨‚¢‚Ä‚­‚¾‚³‚¢BHSQLDB‚ğÀs‚·‚é‚É‚ÍAbin/runHsqldb.bat‚ğƒ_ƒuƒ‹ƒNƒŠƒbƒN(Windows‚Ìê‡)‚µ‚Ü‚·Blib/hsqldb.jar‚ÍHSQLDB‚ğÀs‚·‚éã‚Å‚Í•K—v‚Å‚·‚ªA–{”Ô‚Å‚Í•K—v‚ ‚è‚Ü‚¹‚ñB</p>
+SQLã¯è‡ªç”±ã«ç™ºè¡Œã—ãŸã„ã€‚ã§ã‚‚JDBCã‚’ä½¿ã†ã®ã¯ã‚ã‚“ã©ãã•ã„ã€‚ãã‚“ãªã‚ãªãŸã®ãŸã‚ã«ç”¨æ„ã•ã‚Œã¦ã„ã‚‹ã®ãŒã€S2JDBCã§ã™ã€‚</p>
+<h2><a name="Setup">ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—</a></h2>
+<p> ç°¡å˜ã«æ©Ÿèƒ½ã‚’è©¦ã™ã“ã¨ãŒã§ãã‚‹ã‚ˆã†ã«ã€RDBMSã¨ã—ã¦HSQLDBã‚’ç”¨æ„ã—ã¦ã„ã¾ã™ã€‚æ©Ÿèƒ½ã‚’è©¦ã™å‰ã«ã‚ã‚‰ã‹ã˜ã‚HSQLDBã‚’å®Ÿè¡Œã—ã¦ãŠã„ã¦ãã ã•ã„ã€‚HSQLDBã‚’å®Ÿè¡Œã™ã‚‹ã«ã¯ã€bin/runHsqldb.batã‚’ãƒ€ãƒ–ãƒ«ã‚¯ãƒªãƒƒã‚¯(Windowsã®å ´åˆ)ã—ã¾ã™ã€‚lib/hsqldb.jarã¯HSQLDBã‚’å®Ÿè¡Œã™ã‚‹ä¸Šã§ã¯å¿…è¦ã§ã™ãŒã€æœ¬ç•ªã§ã¯å¿…è¦ã‚ã‚Šã¾ã›ã‚“ã€‚</p>
 
-<h2><a name="BeanListResultSetHandler">ŒŸõˆ—(BeanList)</a></h2>
-<p>‚³‚Á‚»‚­•¡”Œ‚ÌJavaBeans‚ğŒŸõ‚µ‚Ä‚İ‚Ü‚µ‚å‚¤BŒŸõ‚·‚é‚½‚ß‚É‚ÍBasicSelectHandler‚ğg‚¢‚Ü‚·BŸ‚Ì‚æ‚¤‚ÈƒvƒƒpƒeƒB‚ª—pˆÓ‚³‚ê‚Ä‚¢‚Ü‚·B</p>
+<h2><a name="BeanListResultSetHandler">æ¤œç´¢å‡¦ç†(BeanList)</a></h2>
+<p>ã•ã£ããè¤‡æ•°ä»¶ã®JavaBeansã‚’æ¤œç´¢ã—ã¦ã¿ã¾ã—ã‚‡ã†ã€‚æ¤œç´¢ã™ã‚‹ãŸã‚ã«ã¯BasicSelectHandlerã‚’ä½¿ã„ã¾ã™ã€‚æ¬¡ã®ã‚ˆã†ãªãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãŒç”¨æ„ã•ã‚Œã¦ã„ã¾ã™ã€‚</p>
 <h3>org.seasar.extension.jdbc.impl.BasicSelectHandler</h3>
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
-<th width="96">ƒvƒƒpƒeƒB</th>
-<th width="156">à–¾</th>
-<th width="478" >S2Container‚Å‚Ìİ’è—á</th>
+<th width="96">ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£</th>
+<th width="156">èª¬æ˜</th>
+<th width="478" >S2Containerã§ã®è¨­å®šä¾‹</th>
 </tr>
 <tr>
 <td>dataSource</td>
 <td>DataSource</td>
-<td>’Êí©“®“I‚Éİ’è‚³‚ê‚Ü‚·B</td>
+<td>é€šå¸¸è‡ªå‹•çš„ã«è¨­å®šã•ã‚Œã¾ã™ã€‚</td>
 </tr>
 <tr>
 <td>sql</td>
-<td>Às‚µ‚½‚¢SQL•¶</td>
+<td>å®Ÿè¡Œã—ãŸã„SQLæ–‡</td>
 <td>&quot;SELECT * FROM emp&quot;</td>
 </tr>
 <tr>
 <td>resultSetHandler</td>
-<td>ResultSet‚ğˆ—‚·‚éHandler‚ÌƒNƒ‰ƒX</td>
-<td><p>•¡”Œ‚ÌJavaBeans‚ğ•Ô‚·‚½‚ß‚É‚ÍBeanListResultSetHandler‚ğg‚¢‚Ü‚·B
+<td>ResultSetã‚’å‡¦ç†ã™ã‚‹Handlerã®ã‚¯ãƒ©ã‚¹</td>
+<td><p>è¤‡æ•°ä»¶ã®JavaBeansã‚’è¿”ã™ãŸã‚ã«ã¯BeanListResultSetHandlerã‚’ä½¿ã„ã¾ã™ã€‚
 <pre>&lt;component
   class=&quot;org.seasar.extension.jdbc.impl.BeanListResultSetHandler&quot;&gt;
   &lt;arg&gt;@examples.jdbc.Employee@class&lt;/arg&gt;
@@ -59,12 +59,12 @@ SQL‚Í©—R‚É”­s‚µ‚½‚¢B‚Å‚àJDBC‚ğg‚¤‚Ì‚Í‚ß‚ñ‚Ç‚­‚³‚¢B‚»‚ñ‚È‚ ‚È‚½‚Ì‚½‚ß‚É—pˆÓ‚
 </tr>
 <tr>
 <td>fetchSize</td>
-<td>1‰ñ‚ÌƒtƒFƒbƒ`‚Åæ“¾‚·‚és”</td>
+<td>1å›ã®ãƒ•ã‚§ãƒƒãƒã§å–å¾—ã™ã‚‹è¡Œæ•°</td>
 <td>100</td>
 </tr>
 <tr>
 <td>maxRows</td>
-<td>æ“¾‚·‚éÅ‘ås”B-1‚Ìê‡‚Í“Á‚Éİ’è‚Ís‚í‚ê‚È‚¢B</td>
+<td>å–å¾—ã™ã‚‹æœ€å¤§è¡Œæ•°ã€‚-1ã®å ´åˆã¯ç‰¹ã«è¨­å®šã¯è¡Œã‚ã‚Œãªã„ã€‚</td>
 <td>&nbsp;</td>
 </tr>
 </table>
@@ -102,15 +102,15 @@ public class SelectBeanListClient {
 
     }
 }</pre>
-<h3>ÀsŒ‹‰Ê</h3>
+<h3>å®Ÿè¡Œçµæœ</h3>
 <pre>DEBUG 2004-04-23 11:40:45,086 [main] SELECT empno, ename, job, mgr, hiredate, sal, comm, deptno
-  FROM emp<br />DEBUG 2004-04-23 11:40:46,408 [main] •¨—“I‚ÈƒRƒlƒNƒVƒ‡ƒ“‚ğæ“¾‚µ‚Ü‚µ‚½<br />DEBUG 2004-04-23 11:40:46,408 [main] ˜_—“I‚ÈƒRƒlƒNƒVƒ‡ƒ“‚ğæ“¾‚µ‚Ü‚µ‚½<br />DEBUG 2004-04-23 11:40:46,749 [main] ˜_—“I‚ÈƒRƒlƒNƒVƒ‡ƒ“‚ğ•Â‚¶‚Ü‚µ‚½<br />7369, SMITH, CLERK, 7902, 1980-12-17 00:00:00.0, 800.0, 0.0, 20<br />7499, ALLEN, SALESMAN, 7698, 1981-02-20 00:00:00.0, 1600.0, 300.0, 30<br />7521, WARD, SALESMAN, 7698, 1981-02-22 00:00:00.0, 1250.0, 500.0, 30<br />7566, JONES, MANAGER, 7839, 1981-04-02 00:00:00.0, 2975.0, 0.0, 20<br />7654, MARTIN, SALESMAN, 7698, 1981-09-28 00:00:00.0, 1250.0, 1400.0, 30<br />7698, BLAKE, MANAGER, 7839, 1981-05-01 00:00:00.0, 2850.0, 0.0, 30<br />7782, CLARK, MANAGER, 7839, 1981-06-09 00:00:00.0, 2450.0, 333.0, 10<br />7788, SCOTT, ANALYST, 7566, 1982-12-09 00:00:00.0, 3000.0, 0.0, 20<br />7839, KING, PRESIDENT, 0, 1981-11-17 00:00:00.0, 5000.0, 444.0, 10<br />7844, TURNER, SALESMAN, 7698, 1981-09-08 00:00:00.0, 1500.0, 0.0, 30<br />7876, ADAMS, CLERK, 7788, 1983-01-12 00:00:00.0, 1100.0, 0.0, 20<br />7900, JAMES, CLERK, 7698, 1981-12-03 00:00:00.0, 950.0, 0.0, 30<br />7902, FORD, ANALYST, 7566, 1981-12-03 00:00:00.0, 3000.0, 0.0, 20<br />7934, MILLER, CLERK, 7782, 1982-01-23 00:00:00.0, 1300.0, 555.0, 10<br />DEBUG 2004-04-23 11:40:46,799 [main] •¨—“I‚ÈƒRƒlƒNƒVƒ‡ƒ“‚ğ•Â‚¶‚Ü‚µ‚½<br />
+  FROM emp<br />DEBUG 2004-04-23 11:40:46,408 [main] ç‰©ç†çš„ãªã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—ã—ã¾ã—ãŸ<br />DEBUG 2004-04-23 11:40:46,408 [main] è«–ç†çš„ãªã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—ã—ã¾ã—ãŸ<br />DEBUG 2004-04-23 11:40:46,749 [main] è«–ç†çš„ãªã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚’é–‰ã˜ã¾ã—ãŸ<br />7369, SMITH, CLERK, 7902, 1980-12-17 00:00:00.0, 800.0, 0.0, 20<br />7499, ALLEN, SALESMAN, 7698, 1981-02-20 00:00:00.0, 1600.0, 300.0, 30<br />7521, WARD, SALESMAN, 7698, 1981-02-22 00:00:00.0, 1250.0, 500.0, 30<br />7566, JONES, MANAGER, 7839, 1981-04-02 00:00:00.0, 2975.0, 0.0, 20<br />7654, MARTIN, SALESMAN, 7698, 1981-09-28 00:00:00.0, 1250.0, 1400.0, 30<br />7698, BLAKE, MANAGER, 7839, 1981-05-01 00:00:00.0, 2850.0, 0.0, 30<br />7782, CLARK, MANAGER, 7839, 1981-06-09 00:00:00.0, 2450.0, 333.0, 10<br />7788, SCOTT, ANALYST, 7566, 1982-12-09 00:00:00.0, 3000.0, 0.0, 20<br />7839, KING, PRESIDENT, 0, 1981-11-17 00:00:00.0, 5000.0, 444.0, 10<br />7844, TURNER, SALESMAN, 7698, 1981-09-08 00:00:00.0, 1500.0, 0.0, 30<br />7876, ADAMS, CLERK, 7788, 1983-01-12 00:00:00.0, 1100.0, 0.0, 20<br />7900, JAMES, CLERK, 7698, 1981-12-03 00:00:00.0, 950.0, 0.0, 30<br />7902, FORD, ANALYST, 7566, 1981-12-03 00:00:00.0, 3000.0, 0.0, 20<br />7934, MILLER, CLERK, 7782, 1982-01-23 00:00:00.0, 1300.0, 555.0, 10<br />DEBUG 2004-04-23 11:40:46,799 [main] ç‰©ç†çš„ãªã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚’é–‰ã˜ã¾ã—ãŸ<br />
 </pre>
 <p>
-ƒoƒCƒ“ƒh•Ï”‚ª‚ ‚éê‡‚É‚ÍAexecute(Object[])‚Ìˆø”‚Éw’è‚µ‚Ü‚·B¡‰ñ‚Ì—á‚ÍƒoƒCƒ“ƒh•Ï”‚ª‚È‚¢‚Ì‚ÅAnull‚ğİ’è‚µ‚Ä‚¢‚Ü‚·BS2Container‚ÉƒRƒ“ƒ|[ƒlƒ“ƒg‚ğ‘g‚İ—§‚Ä‚Ä‚à‚ç‚¢AŒã‚Íexecute()‚ğŒÄ‚Ño‚·‚¾‚¯‚È‚Ì‚ÅŠyƒ`ƒ“‚Å‚·BƒJƒ‰ƒ€–¼‚ÉƒAƒ“ƒ_[ƒXƒRƒA(_)‚ªŠÜ‚Ü‚ê‚Ä‚¢‚éê‡‚ÍAƒAƒ“ƒ_ƒXƒRƒA‚ğœ‚¢‚ÄƒvƒƒpƒeƒB‚Éƒ}ƒbƒsƒ“ƒO‚³‚ê‚Ü‚·B</p>
+ãƒã‚¤ãƒ³ãƒ‰å¤‰æ•°ãŒã‚ã‚‹å ´åˆã«ã¯ã€execute(Object[])ã®å¼•æ•°ã«æŒ‡å®šã—ã¾ã™ã€‚ä»Šå›ã®ä¾‹ã¯ãƒã‚¤ãƒ³ãƒ‰å¤‰æ•°ãŒãªã„ã®ã§ã€nullã‚’è¨­å®šã—ã¦ã„ã¾ã™ã€‚S2Containerã«ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’çµ„ã¿ç«‹ã¦ã¦ã‚‚ã‚‰ã„ã€å¾Œã¯execute()ã‚’å‘¼ã³å‡ºã™ã ã‘ãªã®ã§æ¥½ãƒãƒ³ã§ã™ã€‚ã‚«ãƒ©ãƒ åã«ã‚¢ãƒ³ãƒ€ãƒ¼ã‚¹ã‚³ã‚¢(_)ãŒå«ã¾ã‚Œã¦ã„ã‚‹å ´åˆã¯ã€ã‚¢ãƒ³ãƒ€ã‚¹ã‚³ã‚¢ã‚’é™¤ã„ã¦ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã«ãƒãƒƒãƒ”ãƒ³ã‚°ã•ã‚Œã¾ã™ã€‚</p>
 
-<h2><a name="BeanResultSetHandler">ŒŸõˆ—(Bean)</a></h2>
-<p>1Œ‚ÌJavaBeans‚ğŒŸõ‚·‚é‚½‚ß‚É‚Íã‹L‚Æ“¯—l‚ÉBasicSelectHandler‚ğg‚¢‚Ü‚·BBeanResultSetHandler‚ğg‚¤‚±‚ÆˆÈŠO‚Íã‹L‚Æ“¯—l‚Å‚·BŒ‹‰Ê‚ÍƒŠƒXƒg‚Å‚Í‚È‚­JavaBeans‚Æ‚µ‚Ä‚©‚¦‚Á‚Ä‚«‚Ü‚·B</p>
+<h2><a name="BeanResultSetHandler">æ¤œç´¢å‡¦ç†(Bean)</a></h2>
+<p>1ä»¶ã®JavaBeansã‚’æ¤œç´¢ã™ã‚‹ãŸã‚ã«ã¯ä¸Šè¨˜ã¨åŒæ§˜ã«BasicSelectHandlerã‚’ä½¿ã„ã¾ã™ã€‚BeanResultSetHandlerã‚’ä½¿ã†ã“ã¨ä»¥å¤–ã¯ä¸Šè¨˜ã¨åŒæ§˜ã§ã™ã€‚çµæœã¯ãƒªã‚¹ãƒˆã§ã¯ãªãJavaBeansã¨ã—ã¦ã‹ãˆã£ã¦ãã¾ã™ã€‚</p>
 <h3>examples/jdbc/SelectBean.dicon</h3>
 <pre>&lt;components&gt;<br />    &lt;include path=&quot;j2ee.dicon&quot;/&gt;<br />    &lt;component name=&quot;selectBeanHandler&quot;<br />        class=&quot;org.seasar.extension.jdbc.impl.BasicSelectHandler&quot;&gt;<br />        &lt;property name=&quot;sql&quot;&gt;<br />&quot;SELECT empno, ename, job, mgr, hiredate, sal, comm, deptno<br />FROM emp WHERE empno = ?&quot;<br />        &lt;/property&gt;<br />        &lt;property name=&quot;resultSetHandler&quot;&gt;<br />            &lt;component class=&quot;org.seasar.extension.jdbc.impl.BeanResultSetHandler&quot;&gt;<br />                &lt;arg&gt;@examples.jdbc.Employee@class&lt;/arg&gt;<br />            &lt;/component&gt;<br />        &lt;/property&gt;<br />    &lt;/component&gt;<br />&lt;/components&gt;
 </pre>
@@ -142,12 +142,12 @@ public class SelectBeanClient {
 
     }
 }</pre>
-<h3>ÀsŒ‹‰Ê</h3>
-<pre>DEBUG 2004-04-23 16:59:24,989 [main] SELECT empno, ename, job, mgr, hiredate, sal, comm, deptno<br />FROM emp WHERE empno = 7788<br />DEBUG 2004-04-23 16:59:26,452 [main] •¨—“I‚ÈƒRƒlƒNƒVƒ‡ƒ“‚ğæ“¾‚µ‚Ü‚µ‚½<br />DEBUG 2004-04-23 16:59:26,452 [main] ˜_—“I‚ÈƒRƒlƒNƒVƒ‡ƒ“‚ğæ“¾‚µ‚Ü‚µ‚½<br />DEBUG 2004-04-23 16:59:26,792 [main] ˜_—“I‚ÈƒRƒlƒNƒVƒ‡ƒ“‚ğ•Â‚¶‚Ü‚µ‚½<br />7788, SCOTT, ANALYST, 7566, 1982-12-09 00:00:00.0, 3000.0, 0.0, 20<br />DEBUG 2004-04-23 16:59:26,802 [main] •¨—“I‚ÈƒRƒlƒNƒVƒ‡ƒ“‚ğ•Â‚¶‚Ü‚µ‚½<br />
+<h3>å®Ÿè¡Œçµæœ</h3>
+<pre>DEBUG 2004-04-23 16:59:24,989 [main] SELECT empno, ename, job, mgr, hiredate, sal, comm, deptno<br />FROM emp WHERE empno = 7788<br />DEBUG 2004-04-23 16:59:26,452 [main] ç‰©ç†çš„ãªã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—ã—ã¾ã—ãŸ<br />DEBUG 2004-04-23 16:59:26,452 [main] è«–ç†çš„ãªã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—ã—ã¾ã—ãŸ<br />DEBUG 2004-04-23 16:59:26,792 [main] è«–ç†çš„ãªã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚’é–‰ã˜ã¾ã—ãŸ<br />7788, SCOTT, ANALYST, 7566, 1982-12-09 00:00:00.0, 3000.0, 0.0, 20<br />DEBUG 2004-04-23 16:59:26,802 [main] ç‰©ç†çš„ãªã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚’é–‰ã˜ã¾ã—ãŸ<br />
 </pre>
 
-<h2><a name="MapListResultSetHandler">ŒŸõˆ—(MapList)</a></h2>
-<p>•¡”Œ‚ÌMap‚ğæ“¾‚·‚é‚±‚Æ‚à‚Å‚«‚Ü‚·BResultSetHandler‚É‚ÍMapListResultSetHandler‚ğg‚¢‚Ü‚·B</p>
+<h2><a name="MapListResultSetHandler">æ¤œç´¢å‡¦ç†(MapList)</a></h2>
+<p>è¤‡æ•°ä»¶ã®Mapã‚’å–å¾—ã™ã‚‹ã“ã¨ã‚‚ã§ãã¾ã™ã€‚ResultSetHandlerã«ã¯MapListResultSetHandlerã‚’ä½¿ã„ã¾ã™ã€‚</p>
 <h3>examples/jdbc/SelectMapList.dicon</h3>
 <pre>&lt;components&gt;<br />    &lt;include path=&quot;j2ee.dicon&quot;/&gt;<br />    &lt;component name=&quot;selectMapListHandler&quot;<br />        class=&quot;org.seasar.extension.jdbc.impl.BasicSelectHandler&quot;&gt;<br />        &lt;property name=&quot;sql&quot;&gt;<br />&quot;SELECT empno, ename, job, mgr, hiredate, sal, comm, deptno FROM emp&quot;<br />        &lt;/property&gt;<br />        &lt;property name=&quot;resultSetHandler&quot;&gt;<br />            &lt;component class=&quot;org.seasar.extension.jdbc.impl.MapListResultSetHandler&quot;/&gt;<br />        &lt;/property&gt;<br />    &lt;/component&gt;<br />&lt;/components&gt;
 </pre>
@@ -183,9 +183,9 @@ public class SelectMapListClient {
     }
 }
 </pre>
-<h3>ÀsŒ‹‰Ê</h3>
+<h3>å®Ÿè¡Œçµæœ</h3>
 <pre>DEBUG 2004-04-23 18:27:08,748 [main] SELECT empno, ename, job, mgr, hiredate, sal, comm, deptno
-  FROM emp<br />DEBUG 2004-04-23 18:27:10,150 [main] •¨—“I‚ÈƒRƒlƒNƒVƒ‡ƒ“‚ğæ“¾‚µ‚Ü‚µ‚½<br />DEBUG 2004-04-23 18:27:10,150 [main] ˜_—“I‚ÈƒRƒlƒNƒVƒ‡ƒ“‚ğæ“¾‚µ‚Ü‚µ‚½<br />DEBUG 2004-04-23 18:27:11,032 [main] ˜_—“I‚ÈƒRƒlƒNƒVƒ‡ƒ“‚ğ•Â‚¶‚Ü‚µ‚½<br />{empno=7369, ename=SMITH, job=CLERK, mgr=7902, hiredate=1980-12-17 00:00:00.0, sal=800,
+  FROM emp<br />DEBUG 2004-04-23 18:27:10,150 [main] ç‰©ç†çš„ãªã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—ã—ã¾ã—ãŸ<br />DEBUG 2004-04-23 18:27:10,150 [main] è«–ç†çš„ãªã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—ã—ã¾ã—ãŸ<br />DEBUG 2004-04-23 18:27:11,032 [main] è«–ç†çš„ãªã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚’é–‰ã˜ã¾ã—ãŸ<br />{empno=7369, ename=SMITH, job=CLERK, mgr=7902, hiredate=1980-12-17 00:00:00.0, sal=800,
   comm=null, deptno=20}<br />{empno=7499, ename=ALLEN, job=SALESMAN, mgr=7698, hiredate=1981-02-20 00:00:00.0, sal=1600,
   comm=300, deptno=30}<br />{empno=7521, ename=WARD, job=SALESMAN, mgr=7698, hiredate=1981-02-22 00:00:00.0, sal=1250,
   comm=500, deptno=30}<br />{empno=7566, ename=JONES, job=MANAGER, mgr=7839, hiredate=1981-04-02 00:00:00.0, sal=2975,
@@ -199,11 +199,11 @@ public class SelectMapListClient {
   comm=null, deptno=20}<br />{empno=7900, ename=JAMES, job=CLERK, mgr=7698, hiredate=1981-12-03 00:00:00.0, sal=950,
   comm=null, deptno=30}<br />{empno=7902, ename=FORD, job=ANALYST, mgr=7566, hiredate=1981-12-03 00:00:00.0, sal=3000,
   comm=null, deptno=20}<br />{empno=7934, ename=MILLER, job=CLERK, mgr=7782, hiredate=1982-01-23 00:00:00.0, sal=1300,
-  comm=555, deptno=10}<br />DEBUG 2004-04-23 18:27:11,142 [main] •¨—“I‚ÈƒRƒlƒNƒVƒ‡ƒ“‚ğ•Â‚¶‚Ü‚µ‚½<br />
+  comm=555, deptno=10}<br />DEBUG 2004-04-23 18:27:11,142 [main] ç‰©ç†çš„ãªã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚’é–‰ã˜ã¾ã—ãŸ<br />
 </pre>
 
-<h2><a name="MapResultSetHandler">ŒŸõˆ—(Map)</a></h2>
-<p>1Œ‚ÌMap‚ğæ“¾‚·‚é‚±‚Æ‚à‚Å‚«‚Ü‚·BResultSetHandler‚É‚ÍMapResultSetHandler‚ğg‚¢‚Ü‚·B</p>
+<h2><a name="MapResultSetHandler">æ¤œç´¢å‡¦ç†(Map)</a></h2>
+<p>1ä»¶ã®Mapã‚’å–å¾—ã™ã‚‹ã“ã¨ã‚‚ã§ãã¾ã™ã€‚ResultSetHandlerã«ã¯MapResultSetHandlerã‚’ä½¿ã„ã¾ã™ã€‚</p>
 <h3>examples/jdbc/SelectMap.dicon</h3>
 <pre>&lt;components&gt;<br />    &lt;include path=&quot;j2ee.dicon&quot;/&gt;<br />    &lt;component name=&quot;selectMapListHandler&quot;<br />        class=&quot;org.seasar.extension.jdbc.impl.BasicSelectHandler&quot;&gt;<br />        &lt;property name=&quot;sql&quot;&gt;<br />&quot;SELECT empno, ename, job, mgr, hiredate, sal, comm, deptno<br />FROM emp WHERE empno = ?&quot;<br />        &lt;/property&gt;<br />        &lt;property name=&quot;resultSetHandler&quot;&gt;<br />            &lt;component class=&quot;org.seasar.extension.jdbc.impl.MapResultSetHandler&quot;/&gt;<br />        &lt;/property&gt;<br />    &lt;/component&gt;<br />&lt;/components&gt;
 </pre>
@@ -237,27 +237,27 @@ public class SelectMapClient {
 
     }
 }</pre>
-<h3>ÀsŒ‹‰Ê</h3>
-<pre>DEBUG 2004-04-23 18:59:52,652 [main] SELECT empno, ename, job, mgr, hiredate, sal, comm, deptno<br />FROM emp WHERE empno = 7788<br />DEBUG 2004-04-23 18:59:53,924 [main] •¨—“I‚ÈƒRƒlƒNƒVƒ‡ƒ“‚ğæ“¾‚µ‚Ü‚µ‚½<br />DEBUG 2004-04-23 18:59:53,924 [main] ˜_—“I‚ÈƒRƒlƒNƒVƒ‡ƒ“‚ğæ“¾‚µ‚Ü‚µ‚½<br />DEBUG 2004-04-23 18:59:54,235 [main] ˜_—“I‚ÈƒRƒlƒNƒVƒ‡ƒ“‚ğ•Â‚¶‚Ü‚µ‚½<br />{empno=7788, ename=SCOTT, job=ANALYST, mgr=7566, hiredate=1982-12-09 00:00:00.0, sal=3000,
-  comm=null,deptno=20}<br />DEBUG 2004-04-23 18:59:54,255 [main] •¨—“I‚ÈƒRƒlƒNƒVƒ‡ƒ“‚ğ•Â‚¶‚Ü‚µ‚½</pre>
+<h3>å®Ÿè¡Œçµæœ</h3>
+<pre>DEBUG 2004-04-23 18:59:52,652 [main] SELECT empno, ename, job, mgr, hiredate, sal, comm, deptno<br />FROM emp WHERE empno = 7788<br />DEBUG 2004-04-23 18:59:53,924 [main] ç‰©ç†çš„ãªã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—ã—ã¾ã—ãŸ<br />DEBUG 2004-04-23 18:59:53,924 [main] è«–ç†çš„ãªã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—ã—ã¾ã—ãŸ<br />DEBUG 2004-04-23 18:59:54,235 [main] è«–ç†çš„ãªã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚’é–‰ã˜ã¾ã—ãŸ<br />{empno=7788, ename=SCOTT, job=ANALYST, mgr=7566, hiredate=1982-12-09 00:00:00.0, sal=3000,
+  comm=null,deptno=20}<br />DEBUG 2004-04-23 18:59:54,255 [main] ç‰©ç†çš„ãªã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚’é–‰ã˜ã¾ã—ãŸ</pre>
 
-<h2><a name="BasicUpdateHandler">XVˆ—</a></h2>
-<p>XV‚·‚é‚½‚ß‚É‚ÍBasicUpdateHandler‚ğg‚¢‚Ü‚·BŸ‚Ì‚æ‚¤‚ÈƒvƒƒpƒeƒB‚ª—pˆÓ‚³‚ê‚Ä‚¢‚Ü‚·B</p>
+<h2><a name="BasicUpdateHandler">æ›´æ–°å‡¦ç†</a></h2>
+<p>æ›´æ–°ã™ã‚‹ãŸã‚ã«ã¯BasicUpdateHandlerã‚’ä½¿ã„ã¾ã™ã€‚æ¬¡ã®ã‚ˆã†ãªãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãŒç”¨æ„ã•ã‚Œã¦ã„ã¾ã™ã€‚</p>
 <h3>org.seasar.extension.jdbc.impl.BasicUpdateHandler</h3>
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
-<th width="96">ƒvƒƒpƒeƒB</th>
-<th width="167">à–¾</th>
-<th width="461">S2Container‚Å‚Ìİ’è—á</th>
+<th width="96">ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£</th>
+<th width="167">èª¬æ˜</th>
+<th width="461">S2Containerã§ã®è¨­å®šä¾‹</th>
 </tr>
 <tr>
 <td>dataSource</td>
 <td>DataSource</td>
-<td>’Êí©“®“I‚Éİ’è‚³‚ê‚Ü‚·B</td>
+<td>é€šå¸¸è‡ªå‹•çš„ã«è¨­å®šã•ã‚Œã¾ã™ã€‚</td>
 </tr>
 <tr>
-<td>‚“q‚Œ</td>
-<td>Às‚µ‚½‚¢SQL•¶</td>
+<td>ï½“qï½Œ</td>
+<td>å®Ÿè¡Œã—ãŸã„SQLæ–‡</td>
 <td>&quot;UPDATE emp SET ename = ? WHERE empno = ?&quot;</td>
 </tr>
 </table>
@@ -291,33 +291,33 @@ public class UpdateClient {
 
     }
 }</pre>
-<h3>ÀsŒ‹‰Ê</h3>
-<pre>DEBUG 2004-04-23 19:18:40,134 [main] UPDATE emp SET ename = 'SCOTT' WHERE empno = 7788<br />DEBUG 2004-04-23 19:18:41,455 [main] •¨—“I‚ÈƒRƒlƒNƒVƒ‡ƒ“‚ğæ“¾‚µ‚Ü‚µ‚½<br />DEBUG 2004-04-23 19:18:41,455 [main] ˜_—“I‚ÈƒRƒlƒNƒVƒ‡ƒ“‚ğæ“¾‚µ‚Ü‚µ‚½<br />DEBUG 2004-04-23 19:18:41,766 [main] ˜_—“I‚ÈƒRƒlƒNƒVƒ‡ƒ“‚ğ•Â‚¶‚Ü‚µ‚½<br />1<br />DEBUG 2004-04-23 19:18:41,776 [main] •¨—“I‚ÈƒRƒlƒNƒVƒ‡ƒ“‚ğ•Â‚¶‚Ü‚µ‚½<br />
+<h3>å®Ÿè¡Œçµæœ</h3>
+<pre>DEBUG 2004-04-23 19:18:40,134 [main] UPDATE emp SET ename = 'SCOTT' WHERE empno = 7788<br />DEBUG 2004-04-23 19:18:41,455 [main] ç‰©ç†çš„ãªã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—ã—ã¾ã—ãŸ<br />DEBUG 2004-04-23 19:18:41,455 [main] è«–ç†çš„ãªã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—ã—ã¾ã—ãŸ<br />DEBUG 2004-04-23 19:18:41,766 [main] è«–ç†çš„ãªã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚’é–‰ã˜ã¾ã—ãŸ<br />1<br />DEBUG 2004-04-23 19:18:41,776 [main] ç‰©ç†çš„ãªã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚’é–‰ã˜ã¾ã—ãŸ<br />
 </pre>
 
-<h2><a name="BasicBatchHandler">ƒoƒbƒ`XVˆ—</a></h2>
-<p>•¡”Œ‚Ìƒf[ƒ^‚ğˆê“x‚Éƒoƒbƒ`XV‚·‚é‚½‚ß‚É‚ÍBasicBatchHandler‚ğg‚¢‚Ü‚·BBatchHandler.execute(List argsList)‚Ìˆø”‚ÍObject[]‚ğƒŠƒXƒg‚É‚Â‚ß‚½‚à‚Ì‚Å‚·BŸ‚Ì‚æ‚¤‚ÈƒvƒƒpƒeƒB‚ª—pˆÓ‚³‚ê‚Ä‚¢‚Ü‚·B</p>
+<h2><a name="BasicBatchHandler">ãƒãƒƒãƒæ›´æ–°å‡¦ç†</a></h2>
+<p>è¤‡æ•°ä»¶ã®ãƒ‡ãƒ¼ã‚¿ã‚’ä¸€åº¦ã«ãƒãƒƒãƒæ›´æ–°ã™ã‚‹ãŸã‚ã«ã¯BasicBatchHandlerã‚’ä½¿ã„ã¾ã™ã€‚BatchHandler.execute(List argsList)ã®å¼•æ•°ã¯Object[]ã‚’ãƒªã‚¹ãƒˆã«ã¤ã‚ãŸã‚‚ã®ã§ã™ã€‚æ¬¡ã®ã‚ˆã†ãªãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãŒç”¨æ„ã•ã‚Œã¦ã„ã¾ã™ã€‚</p>
 <h3>org.seasar.extension.jdbc.impl.BasicBatchHandler</h3>
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
-<th width="96">ƒvƒƒpƒeƒB</th>
-<th width="167">à–¾</th>
-<th width="461">S2Container‚Å‚Ìİ’è—á</th>
+<th width="96">ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£</th>
+<th width="167">èª¬æ˜</th>
+<th width="461">S2Containerã§ã®è¨­å®šä¾‹</th>
 </tr>
 <tr>
 <td>dataSource</td>
 <td>DataSource</td>
-<td>’Êí©“®“I‚Éİ’è‚³‚ê‚Ü‚·B</td>
+<td>é€šå¸¸è‡ªå‹•çš„ã«è¨­å®šã•ã‚Œã¾ã™ã€‚</td>
 </tr>
 <tr>
-<td>‚“q‚Œ</td>
-<td>Às‚µ‚½‚¢SQL•¶</td>
+<td>ï½“qï½Œ</td>
+<td>å®Ÿè¡Œã—ãŸã„SQLæ–‡</td>
 <td>&quot;UPDATE emp SET ename = ? WHERE empno = ?&quot;</td>
 </tr>
 <tr>
 <td>batchSize</td>
-<td>1“x‚Éˆ—‚·‚éƒf[ƒ^”</td>
-<td>İ’è‚µ‚È‚©‚Á‚½ê‡‚Íƒoƒbƒ`‚ÌŒ”‚ª©“®“I‚Éİ’è‚³‚ê‚Ü‚·B</td>
+<td>1åº¦ã«å‡¦ç†ã™ã‚‹ãƒ‡ãƒ¼ã‚¿æ•°</td>
+<td>è¨­å®šã—ãªã‹ã£ãŸå ´åˆã¯ãƒãƒƒãƒã®ä»¶æ•°ãŒè‡ªå‹•çš„ã«è¨­å®šã•ã‚Œã¾ã™ã€‚</td>
 </tr>
 </table>
 <h3>examples/jdbc/Batch.dicon</h3>
@@ -355,24 +355,24 @@ public class BatchClient {
 
     }
 }</pre>
-<h3>ÀsŒ‹‰Ê</h3>
-<pre>DEBUG 2004-04-23 20:12:38,680 [main] •¨—“I‚ÈƒRƒlƒNƒVƒ‡ƒ“‚ğæ“¾‚µ‚Ü‚µ‚½<br />DEBUG 2004-04-23 20:12:38,710 [main] ˜_—“I‚ÈƒRƒlƒNƒVƒ‡ƒ“‚ğæ“¾‚µ‚Ü‚µ‚½<br />DEBUG 2004-04-23 20:12:38,761 [main] UPDATE emp SET ename = 'SMITH' WHERE empno = 7369<br />DEBUG 2004-04-23 20:12:38,941 [main] UPDATE emp SET ename = 'SCOTT' WHERE empno = 7788<br />DEBUG 2004-04-23 20:12:38,971 [main] ˜_—“I‚ÈƒRƒlƒNƒVƒ‡ƒ“‚ğ•Â‚¶‚Ü‚µ‚½<br />2<br />DEBUG 2004-04-23 20:12:38,981 [main] •¨—“I‚ÈƒRƒlƒNƒVƒ‡ƒ“‚ğ•Â‚¶‚Ü‚µ‚½<br />
+<h3>å®Ÿè¡Œçµæœ</h3>
+<pre>DEBUG 2004-04-23 20:12:38,680 [main] ç‰©ç†çš„ãªã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—ã—ã¾ã—ãŸ<br />DEBUG 2004-04-23 20:12:38,710 [main] è«–ç†çš„ãªã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—ã—ã¾ã—ãŸ<br />DEBUG 2004-04-23 20:12:38,761 [main] UPDATE emp SET ename = 'SMITH' WHERE empno = 7369<br />DEBUG 2004-04-23 20:12:38,941 [main] UPDATE emp SET ename = 'SCOTT' WHERE empno = 7788<br />DEBUG 2004-04-23 20:12:38,971 [main] è«–ç†çš„ãªã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚’é–‰ã˜ã¾ã—ãŸ<br />2<br />DEBUG 2004-04-23 20:12:38,981 [main] ç‰©ç†çš„ãªã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚’é–‰ã˜ã¾ã—ãŸ<br />
 </pre>
 
-<h2><a name="OracleUnicode">Oracle‚ÌUnicode–â‘è</a></h2>
-<p>Oracle‚ÌJDBC Driver‚ÍAUnicode‚Ìƒ}ƒbƒsƒ“ƒO‚Éˆê•”–â‘è‚ª‚ ‚èA`‚ª‰»‚¯‚Ä‚µ‚Ü‚¢‚Ü‚·B‚±‚Ì–â‘è‚É‘Îˆ‚·‚é‚É‚ÍAj2ee.dicon‚ÌResultSetFactory‚Ìİ’è‚ğ•ÏX‚µ‚Ü‚·B’Êí‚Í‰º‹L‚Ì‚æ‚¤‚É‚È‚Á‚Ä‚¢‚Ü‚·B</p>
+<h2><a name="OracleUnicode">Oracleã®Unicodeå•é¡Œ</a></h2>
+<p>Oracleã®JDBC Driverã¯ã€Unicodeã®ãƒãƒƒãƒ”ãƒ³ã‚°ã«ä¸€éƒ¨å•é¡ŒãŒã‚ã‚Šã€ï½ãŒåŒ–ã‘ã¦ã—ã¾ã„ã¾ã™ã€‚ã“ã®å•é¡Œã«å¯¾å‡¦ã™ã‚‹ã«ã¯ã€j2ee.diconã®ResultSetFactoryã®è¨­å®šã‚’å¤‰æ›´ã—ã¾ã™ã€‚é€šå¸¸ã¯ä¸‹è¨˜ã®ã‚ˆã†ã«ãªã£ã¦ã„ã¾ã™ã€‚</p>
 <pre>&lt;component class=&quot;org.seasar.extension.jdbc.impl.BasicResultSetFactory&quot;/&gt;
 &lt;!--<br>&lt;component class=&quot;org.seasar.extension.jdbc.impl.OracleResultSetFactory&quot;/&gt;<br>--&gt;</pre>
-<p>BasicResultSetFactory‚Ì•”•ª‚ğƒRƒƒ“ƒgƒAƒEƒg‚µA‚©‚í‚è‚É’¼‚®‰º‚ÌOracleResultSetFactory‚Ì•”•ª‚ÌƒRƒƒ“ƒg‚ğ‚Í‚¸‚µ—LŒø‚É‚µ‚Ü‚·B</p>
+<p>BasicResultSetFactoryã®éƒ¨åˆ†ã‚’ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆã—ã€ã‹ã‚ã‚Šã«ç›´ãä¸‹ã®OracleResultSetFactoryã®éƒ¨åˆ†ã®ã‚³ãƒ¡ãƒ³ãƒˆã‚’ã¯ãšã—æœ‰åŠ¹ã«ã—ã¾ã™ã€‚</p>
 <pre>
 &lt;!--<br>&lt;component class=&quot;org.seasar.extension.jdbc.impl.BasicResultSetFactory&quot;/&gt;<br>--&gt;<br>&lt;component class=&quot;org.seasar.extension.jdbc.impl.OracleResultSetFactory&quot;/&gt;
 </pre>
 
-<h2><a name="BooleanToInt">Boolean‚Ìˆµ‚¢</a></h2>
-<p>Oracle‚Ì‚æ‚¤‚ÉbooleanŒ^‚É‘Î‰‚µ‚Ä‚¢‚È‚¢RDBMS‚à‚ ‚è‚Ü‚·B‚±‚Ì–â‘è‚É‘Îˆ‚·‚é‚É‚ÍAj2ee.dicon‚ÌCallableStatementFactory‚Ìİ’è‚ğ•ÏX‚µ‚Ü‚·B’Êí‚Í‰º‹L‚Ì‚æ‚¤‚É‚È‚Á‚Ä‚¢‚Ü‚·B</p>
+<h2><a name="BooleanToInt">Booleanã®æ‰±ã„</a></h2>
+<p>Oracleã®ã‚ˆã†ã«booleanå‹ã«å¯¾å¿œã—ã¦ã„ãªã„RDBMSã‚‚ã‚ã‚Šã¾ã™ã€‚ã“ã®å•é¡Œã«å¯¾å‡¦ã™ã‚‹ã«ã¯ã€j2ee.diconã®CallableStatementFactoryã®è¨­å®šã‚’å¤‰æ›´ã—ã¾ã™ã€‚é€šå¸¸ã¯ä¸‹è¨˜ã®ã‚ˆã†ã«ãªã£ã¦ã„ã¾ã™ã€‚</p>
 <pre>&lt;component class=&quot;org.seasar.extension.jdbc.impl.BasicCallableStatementFactory&quot;/&gt;
 &lt;!--<br>&lt;component class=&quot;org.seasar.extension.jdbc.impl.BooleanToIntCallableStatementFactory&quot;/&gt;<br>--&gt;</pre>
-<p>BasicCallableStatementFactory‚Ì•”•ª‚ğƒRƒƒ“ƒgƒAƒEƒg‚µA‚©‚í‚è‚ÉBooleanToIntCallableStatementFactory‚Ì•”•ª‚ÌƒRƒƒ“ƒg‚ğ‚Í‚¸‚µ—LŒø‚É‚µ‚Ü‚·B</p>
+<p>BasicCallableStatementFactoryã®éƒ¨åˆ†ã‚’ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆã—ã€ã‹ã‚ã‚Šã«BooleanToIntCallableStatementFactoryã®éƒ¨åˆ†ã®ã‚³ãƒ¡ãƒ³ãƒˆã‚’ã¯ãšã—æœ‰åŠ¹ã«ã—ã¾ã™ã€‚</p>
 <pre>
 &lt;!--<br>&lt;component class=&quot;org.seasar.extension.jdbc.impl.BasicCallableStatementFactory&quot;/&gt;<br>--&gt;<br>&lt;component class=&quot;org.seasar.extension.jdbc.impl.BooleanToIntCallableStatementFactory&quot;/&gt;
 </pre>

@@ -3,7 +3,7 @@
 <!-- don't edit start -->
 <head>
 <title>Seasar - DI Container with AOP - </title>
-<meta http-equiv="Content-Type" content="text/html; charset=MS932C">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <link href="seasar_b.css" type="text/css" rel="stylesheet" media="screen"><link href="seasar_p.css" type="text/css" rel="stylesheet" media="print"><script src="seasar_b.js" type="text/JavaScript" language="JavaScript"></script>
 </head><body onload="preload('ja')"><table width="100%" border="0" cellspacing="0" cellpadding="0" align="left" height="100%"><tr>
@@ -24,81 +24,81 @@
 <tr align="left" valign="top"><td width="14"><img height="14" width="14" src="images/spacer.gif" alt=""></td><td width="740" class="main">
 <!-- don't edit end -->
 <!-- document start -->
-<p>�{�h�L�������g��<code>S2.4.0</code>�ɂ��ċL�q���Ă��܂��D���o�[�W�����ɂ��Ă͊Y���o�[�W�����̔z�z�t�@�C���Ɋ܂܂�Ă���h�L�������g���Q�Ƃ��Ă��������D</p>
-<p>S2DBCP�̋@�\���g���āA�R�l�N�V�����v�[�����O�������ł��܂��B<a href="tx.html">JTA</a>�ƘA������̂ŁA�g�����U�N�V�������ɃR�l�N�V�������擾������Ƃ������Ƃ����x���s���Ă��A�g�����U�N�V�����͈ێ�����܂��BJDBC�ōs���Ă����悤�ȃg�����U�N�V�������ێ������������߂ɕ����̃N���X�ŃR�l�N�V�����������܂��悤�Ȃ��Ƃ͂����K�v�Ȃ��Ȃ�܂��B<a href="tx.html">S2Tx</a>���g���΁A�g�����U�N�V������<a href="aop.html#Aspect">Aspect</a>�Ŏ����I�ɏ������邱�Ƃ��ł��܂��B</p>
-<h2><a name="Setup">�Z�b�g�A�b�v</a></h2>
-<p>XADataSource�AConnectionPool�̐ݒ�������Ȃ��܂��BJDBC Driver��XADataSource�̋@�\��񋟂��Ă���ꍇ�́A ��������̂܂܎g���܂����A�񋟂���Ă��Ȃ��ꍇ�AS2�ŗp�ӂ��Ă���XADataSourceImpl���g���āAXA�̋@�\���G�~�����[�g���܂��B</p>
+<p>本ドキュメントは<code>S2.4.0</code>について記述しています．旧バージョンについては該当バージョンの配布ファイルに含まれているドキュメントを参照してください．</p>
+<p>S2DBCPの機能を使って、コネクションプーリングを実現できます。<a href="tx.html">JTA</a>と連動するので、トランザクション中にコネクションを取得し閉じるということを何度か行っても、トランザクションは維持されます。JDBCで行っていたようなトランザクションを維持したいがために複数のクラスでコネクションを持ちまわるようなことはもう必要なくなります。<a href="tx.html">S2Tx</a>を使えば、トランザクションも<a href="aop.html#Aspect">Aspect</a>で自動的に処理することができます。</p>
+<h2><a name="Setup">セットアップ</a></h2>
+<p>XADataSource、ConnectionPoolの設定をおこないます。JDBC DriverがXADataSourceの機能を提供している場合は、 それをそのまま使えますが、提供されていない場合、S2で用意しているXADataSourceImplを使って、XAの機能をエミュレートします。</p>
 <h3>org.seasar.extension.dbcp.impl.XADataSourceImpl</h3>
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
-<th width="96">�v���p�e�B</th>
-<th width="167">����</th>
-<th width="468">��</th>
+<th width="96">プロパティ</th>
+<th width="167">説明</th>
+<th width="468">例</th>
 </tr>
 <tr>
 <td><code>driverClassName</code></td>
-<td>JDBC Driver�̃N���X�� </td>
+<td>JDBC Driverのクラス名 </td>
 <td><code>&quot;oracle.jdbc.driver.OracleDriver&quot;</code></td>
 </tr>
 <tr>
 <td><code>URL</code></td>
-<td>RDBMS�ŗL��URL</td>
+<td>RDBMS固有のURL</td>
 <td><code>&quot;jdbc:oracle:thin:@xxx:1521:yyy&quot;</code></td>
 </tr>
 <tr>
 <td><code>user</code></td>
-<td>���[�U��</td>
+<td>ユーザ名</td>
 <td><code>&quot;hoge&quot;</code></td>
 </tr>
 <tr>
 <td><code>password</code></td>
-<td>�p�X���[�h</td>
+<td>パスワード</td>
 <td><code>&quot;password&quot;</code></td>
 </tr>
 </table>
 <h3>org.seasar.extension.dbcp.impl.ConnectionPoolImpl</h3>
 <table border="1">
 <tr bgcolor="#d1f3f4" align="center">
-<th width="118">�v���p�e�B</th>
-<th width="289">����</th>
-<th width="186">��</th>
+<th width="118">プロパティ</th>
+<th width="289">説明</th>
+<th width="186">例</th>
 </tr>
 <tr>
 <td><code>XADataSource</code></td>
-<td><p>XADataSource�̃C���X�^���X��ݒ肵�܂��BS2Container�Őݒ肷��ꍇ�́AXADataSource�̃R���|�[�l���g����ݒ肵�܂��B<br>
-�K�{�ł��B</p></td>
+<td><p>XADataSourceのインスタンスを設定します。S2Containerで設定する場合は、XADataSourceのコンポーネント名を設定します。<br>
+必須です。</p></td>
 <td><code>xaDataSource</code></td>
 </tr>
 <tr>
 <td><code>transactionManager</code></td>
-<td>TransactionManager�̃C���X�^���X��ݒ肵�܂��BS2Container�Őݒ肷��ꍇ�́ATransactionManager�̃R���|�[�l���g����ݒ肵�܂��B<br>�K�{�ł��B</td>
+<td>TransactionManagerのインスタンスを設定します。S2Containerで設定する場合は、TransactionManagerのコンポーネント名を設定します。<br>必須です。</td>
 <td><code>transactionManager</code></td>
 </tr>
 <tr>
 <td><code>timeout</code></td>
-<td>�v�[���ɖ߂��ꂽ�R�l�N�V�����������Ŏw�肳�ꂽ�b���ȏ㖢�g�p�������ꍇ�A�����I�ɃN���[�Y����Ĕj������܂��B<br>
-�f�t�H���g��600(10��)�ł��B</td>
+<td>プールに戻されたコネクションがここで指定された秒数以上未使用だった場合、物理的にクローズされて破棄されます。<br>
+デフォルトは600(10分)です。</td>
 <td><code>600</code></td>
 </tr>
 <tr>
 <td><code>maxPoolSize</code></td>
-<td>�����ɃA�N�e�B�u�ɂȂ�� �R�l�N�V�����̐����w�肵�܂��B ���̐��𒴂���v��������ƁA�R�l�N�V�������v�[���ɕԂ����܂�
-���̗v���̓u���b�N����܂��B <br>
-0��ݒ肷��ƃR�l�N�V�����̓v�[�����ꂸ�A�R�l�N�V�����̎擾�v���̓u���b�N����܂���B<br>
-�f�t�H���g��10�ł��B</td>
+<td>同時にアクティブになれる コネクションの数を指定します。 この数を超える要求があると、コネクションがプールに返されるまで
+その要求はブロックされます。 <br>
+0を設定するとコネクションはプールされず、コネクションの取得要求はブロックされません。<br>
+デフォルトは10です。</td>
 <td><code>10</code></td>
 </tr>
 <tr>
 <td><code>allowLocalTx</code></td>
-<td>JTA�ɂ���Đ��䂳��Ȃ��AJDBC�̃��[�J���g�����U�N�V������������ (<code>true</code>) ���Ȃ� (<code>false</code>) ���w�肵�܂��B<br>
-<code>false</code>���w�肷��ƁAJTA�ɂ��g�����U�N�V�������J�n����Ă��Ȃ���ԂŃR�l�N�V�����̎擾���s��ꂽ�ꍇ�ɗ�O
-(<code>java.lang.IllegalStateException</code>) ���X���[����܂��B<br>
-�J������<code>false</code>���w�肷��ƁA<a href="tx.html">S2Tx</a>���񋟂���g�����U�N�V�����E�C���^�[�Z�v�^�̐ݒ�R����m���Ɍ��o���邱�Ƃ��ł��܂��B<br>
-�f�t�H���g��<code>true</code>�ł��B</td>
+<td>JTAによって制御されない、JDBCのローカルトランザクションを許可する (<code>true</code>) しない (<code>false</code>) を指定します。<br>
+<code>false</code>を指定すると、JTAによるトランザクションが開始されていない状態でコネクションの取得が行われた場合に例外
+(<code>java.lang.IllegalStateException</code>) がスローされます。<br>
+開発時に<code>false</code>を指定すると、<a href="tx.html">S2Tx</a>が提供するトランザクション・インターセプタの設定漏れを確実に検出することができます。<br>
+デフォルトは<code>true</code>です。</td>
 <td><code>true</code></td>
 </tr>
 </table>
-<p>�R���|�[�l���g�̐ݒ�͈ȉ��̂悤�ɂȂ�܂��B���ɍ��킹�ď��������Ă��������B</p>
+<p>コンポーネントの設定は以下のようになります。環境に合わせて書き換えてください。</p>
 <h3>jdbc.dicon</h3>
 <pre>&lt;components namespace=&quot;jdbc&quot;&gt;
     &lt;include path=&quot;jta.dicon&quot;/&gt;
@@ -233,13 +233,13 @@ public class EmployeeClient {
         container.init();<br />        try {<br />            EmployeeService service = (EmployeeService)<br />            container.getComponent(EmployeeService.class);<br />            System.out.println(service.getEmployeeName(7788));<br />        } catch (SQLException ex) {<br />            ex.printStackTrace();<br />        } finally {<br />            container.destroy();<br />        }
     }
 }</pre>
-<h3>���s����</h3>
+<h3>実行結果</h3>
 <pre>
 DEBUG 2004-03-21 12:51:35,653 [main] Transaction.begin()
 DEBUG 2004-03-21 12:51:37,075 [main] Transaction.commit()
 SCOTT</pre>
 <p>
-����܂ŁAJTA��JTA�ƘA�������R�l�N�V�����v�[���ɑ΂��āA�~���������Ȃ��Ɗ����Ă��������APOJO�ł���ȂɊȒP�ɗ��p�ł���Ƃ������Ƃ��������Ă����������Ǝv���܂��B
+これまで、JTAやJTAと連動したコネクションプールに対して、敷居が高いなぁと感じていた方も、POJOでこんなに簡単に利用できるということが分かっていただけたと思います。
 </p>
 
 <!-- document end -->
