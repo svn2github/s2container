@@ -7,6 +7,11 @@
 				<exclude name="**/build/**"/>
 				<exclude name="**/target/**"/>
 			</zipfileset>
+			<zipfileset prefix="diigu-core/lib" dir="target">
+				<include name="diigu-core-${ver}.jar"/>
+				<include name="diigu-core-${ver}-sources.jar"/>
+				<include name="diigu-core-${ver}-javadoc.jar"/>
+			</zipfileset>
 		</zip>
 	</target>
 </project>
