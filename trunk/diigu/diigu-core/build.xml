@@ -1,0 +1,12 @@
+<project name="diigu-core" default="dist" basedir=".">
+	<property name="ver" value="1.0.0"/>
+
+	<target name="dist">
+		<zip zipfile="target/Diigu-Core-${ver}.zip">
+			<zipfileset prefix="diigu-core" dir=".">
+				<exclude name="**/build/**"/>
+				<exclude name="**/target/**"/>
+			</zipfileset>
+		</zip>
+	</target>
+</project>
