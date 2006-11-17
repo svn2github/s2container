@@ -85,6 +85,7 @@
       <plugin>
         <groupId>org.seasar.container</groupId>
         <artifactId>diigu-maven-plugin</artifactId>
+        <version>1.0.0</version>
         <!--
         <version>0.0.1</version>
         -->
@@ -129,15 +130,12 @@
     <dependency>
       <groupId>org.seasar.container</groupId>
       <artifactId>s2-extension</artifactId>
-      <version>2.4.0-rc-2</version>
-      <type>jar</type>
-      <scope>compile</scope>
+      <version>2.4.4</version>
     </dependency>
     <dependency>
       <groupId>org.seasar.container</groupId>
       <artifactId>diigu-core</artifactId>
-      <version>0.0.2</version>
-      <type>jar</type>
+      <version>1.0.0</version>
     </dependency>
   </dependencies>
   <distributionManagement>
