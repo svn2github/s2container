@@ -30,20 +30,32 @@
             class="org.seasar.diigu.eclipse.preferences.DiiguClassPropertyPage"
             id="diiguClassPropertyPage"
             name="Diigu"
-            objectClass="org.eclipse.jdt.core.ICompilationUnit"/>
+            objectClass="org.eclipse.jdt.core.ICompilationUnit">
+         <filter
+               name="projectNature"
+               value="org.seasar.diigu.eclipse.diiguNature"/>
+      </page>
       <page
             adaptable="true"
             class="org.seasar.diigu.eclipse.preferences.DiiguClassPropertyPage"
             id="diiguClassPropertyPage"
             name="Diigu"
             nameFilter="*.java"
-            objectClass="org.eclipse.core.resources.IFile"/>
+            objectClass="org.eclipse.core.resources.IFile">
+         <filter
+               name="projectNature"
+               value="org.seasar.diigu.eclipse.diiguNature"/>
+      </page>
       <page
             adaptable="true"
             class="org.seasar.diigu.eclipse.preferences.DiiguClassPropertyPage"
             id="diiguClassPropertyPage.type"
             name="Diigu"
-            objectClass="org.eclipse.jdt.core.IType"/>
+            objectClass="org.eclipse.jdt.core.IType">
+         <filter
+               name="projectNature"
+               value="org.seasar.diigu.eclipse.diiguNature"/>
+      </page>
    </extension>
    <extension
          id="diiguMarker"
@@ -65,5 +77,9 @@
          name="Diigu Startup Worker"
          point="org.eclipse.ui.startup">
       <startup class="org.seasar.diigu.eclipse.startup.DiiguStartup"/>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer class="org.seasar.diigu.eclipse.preferences.PreferenceInitializer"/>
    </extension>
 </plugin>

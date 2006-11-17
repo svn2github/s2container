@@ -25,7 +25,6 @@ import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaCore;
-import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -66,7 +65,7 @@ public class DiiguClassPropertyPage extends PropertyPage {
         IAdaptable adaptable = getElement();
         if (adaptable != null) {
             String expression = "";
-            String msg = "not ";
+            boolean target = false;
             boolean enhanced = false;
             EnhanceProperty p = getEnhanceProperty(adaptable);
             if (p.type != null) {
@@ -74,9 +73,7 @@ public class DiiguClassPropertyPage extends PropertyPage {
                         .getJavaProject().getProject());
                 if (nature != null) {
                     String s = p.type.getFullyQualifiedName();
-                    if (nature.getSelectExpression().matcher(s).matches()) {
-                        msg = "";
-                    }
+                    target = nature.getSelectExpression().matcher(s).matches();
                     expression = nature.getSelectExpression().pattern();
                     enhanced = p.enhanced;
                 }
@@ -89,7 +86,8 @@ public class DiiguClassPropertyPage extends PropertyPage {
 
             label = new Label(composite, SWT.NONE);
             label = new Label(composite, SWT.NONE);
-            label.setText(NLS.bind(Messages.ENHANCE_TARGET, msg));
+            label.setText(target ? Messages.ENHANCE_TARGET
+                    : Messages.ENHANCE_NOT_TARGET);
 
             label = new Label(composite, SWT.NONE);
             label.setText(Messages.ENHANCE_STATUS);

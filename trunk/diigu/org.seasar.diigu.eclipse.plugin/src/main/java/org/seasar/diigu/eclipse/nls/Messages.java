@@ -33,23 +33,19 @@ public class Messages extends NLS {
 
     public static String SELECT_EXPRESSION;
 
-    public static String TEST_EXPRESSION;
-
     public static String ENHANCE_FULLBUILD;
 
     public static String ENHANCE_INCREMENTALBUILD;
 
-    public static String SELECT_EXPRESSION_CHANGED;
-
     public static String ENHANCE_ERROR;
-
-    public static String ANALYZE_DEPENDENCY;
 
     public static String CLASS_FILE_NOT_FOUND;
 
     public static String REBUILD_PROJECT;
 
     public static String ENHANCE_TARGET;
+
+    public static String ENHANCE_NOT_TARGET;
 
     public static String ENHANCE_STATUS;
 

@@ -15,6 +15,7 @@
  */
 package org.seasar.diigu.eclipse.startup;
 
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.jdt.core.ElementChangedEvent;
 import org.eclipse.jdt.core.IElementChangedListener;
@@ -23,8 +24,10 @@ import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.ui.IStartup;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
+import org.seasar.diigu.eclipse.builder.DiiguNature;
 import org.seasar.diigu.eclipse.nls.Messages;
 import org.seasar.diigu.eclipse.operation.NameEnhanceJob;
+import org.seasar.diigu.eclipse.util.ProjectUtils;
 
 /**
  * @author taichi
@@ -40,9 +43,14 @@ public class DiiguStartup implements IStartup {
                 IResourceDelta[] ary = children[i].getResourceDeltas();
                 for (int j = 0; ary != null && j < ary.length; j++) {
                     final IResourceDelta delta = ary[j];
-                    NameEnhanceJob job = new NameEnhanceJob(
-                            Messages.ENHANCE_INCREMENTALBUILD, delta);
-                    job.schedule(3L);
+                    IResource r = delta.getResource();
+                    if (r != null
+                            && ProjectUtils.hasNature(r.getProject(),
+                                    DiiguNature.NATURE_ID)) {
+                        NameEnhanceJob job = new NameEnhanceJob(
+                                Messages.ENHANCE_INCREMENTALBUILD, delta);
+                        job.schedule(3L);
+                    }
                 }
             }
         }

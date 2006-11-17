@@ -19,21 +19,12 @@ import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectNature;
-import org.eclipse.core.resources.IncrementalProjectBuilder;
 import org.eclipse.core.resources.ProjectScope;
-import org.eclipse.core.resources.WorkspaceJob;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.jface.util.IPropertyChangeListener;
-import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.ui.preferences.ScopedPreferenceStore;
 import org.seasar.diigu.eclipse.Constants;
 import org.seasar.diigu.eclipse.DiiguPlugin;
-import org.seasar.diigu.eclipse.nls.Messages;
 
 public class DiiguNature implements IProjectNature {
 
@@ -43,8 +34,6 @@ public class DiiguNature implements IProjectNature {
     public static final String NATURE_ID = "org.seasar.diigu.eclipse.diiguNature";
 
     private IProject project;
-
-    private IPreferenceStore store;
 
     private Pattern selectExpression;
 
@@ -64,10 +53,6 @@ public class DiiguNature implements IProjectNature {
     public void deconfigure() throws CoreException {
     }
 
-    public IPreferenceStore getPreferenceStore() {
-        return this.store;
-    }
-
     /*
      * (non-Javadoc)
      * 
@@ -84,47 +69,10 @@ public class DiiguNature implements IProjectNature {
      */
     public void setProject(IProject project) {
         this.project = project;
-        setUpPreferenceStore();
-    }
-
-    protected void setUpPreferenceStore() {
-        this.store = createPreferenceStore(getProject());
-        this.selectExpression = Pattern.compile(this.store
-                .getString(Constants.CONFIG_SELECT_EXPRESSION));
-        this.store.addPropertyChangeListener(new IPropertyChangeListener() {
-            public void propertyChange(PropertyChangeEvent event) {
-                if (Constants.CONFIG_SELECT_EXPRESSION.equals(event
-                        .getProperty())) {
-                    Pattern oldOne = DiiguNature.this.selectExpression;
-                    DiiguNature.this.selectExpression = Pattern
-                            .compile((String) event.getNewValue());
-
-                    if (oldOne == null
-                            || DiiguNature.this.selectExpression.pattern()
-                                    .equals(oldOne.pattern()) == false) {
-                        Job job = new WorkspaceJob(
-                                Messages.SELECT_EXPRESSION_CHANGED) {
-                            public IStatus runInWorkspace(
-                                    IProgressMonitor monitor)
-                                    throws CoreException {
-                                getProject().build(
-                                        IncrementalProjectBuilder.CLEAN_BUILD,
-                                        monitor);
-                                return Status.OK_STATUS;
-                            }
-                        };
-                        job.schedule();
-                    }
-                }
-            }
-        });
-    }
-
-    public static IPreferenceStore createPreferenceStore(IProject project) {
         IPreferenceStore store = new ScopedPreferenceStore(new ProjectScope(
                 project), DiiguPlugin.PLUGIN_ID);
-        store.setDefault(Constants.CONFIG_SELECT_EXPRESSION, ".*Dao");
-        return store;
+        this.selectExpression = Pattern.compile(store
+                .getString(Constants.CONFIG_SELECT_EXPRESSION));
     }
 
     public Pattern getSelectExpression() {
@@ -144,5 +92,4 @@ public class DiiguNature implements IProjectNature {
         }
         return null;
     }
-
 }

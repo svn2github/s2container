@@ -16,10 +16,9 @@
 package org.seasar.diigu.eclipse.preferences;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.ProjectScope;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.jdt.core.IJavaProject;
-import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -30,10 +29,12 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.PropertyPage;
+import org.eclipse.ui.preferences.ScopedPreferenceStore;
 import org.seasar.diigu.eclipse.Constants;
 import org.seasar.diigu.eclipse.DiiguPlugin;
 import org.seasar.diigu.eclipse.builder.DiiguNature;
 import org.seasar.diigu.eclipse.nls.Messages;
+import org.seasar.diigu.eclipse.operation.NameEnhanceJob;
 import org.seasar.diigu.eclipse.util.ProjectUtils;
 
 /**
@@ -70,7 +71,6 @@ public class DiiguProjectPreferencePage extends PropertyPage {
         data = new GridData(GridData.FILL_HORIZONTAL);
         this.selectExpression.setLayoutData(data);
 
-        setUpPreferenceStore();
         setUpStoredValue();
 
         return composite;
@@ -91,33 +91,26 @@ public class DiiguProjectPreferencePage extends PropertyPage {
         return composite;
     }
 
-    protected void setUpPreferenceStore() {
-        IProject project = getSelectedProject();
-        if (project != null) {
-            DiiguNature nature = DiiguNature.getInstance(project);
-            if (nature != null) {
-                setPreferenceStore(nature.getPreferenceStore());
-            } else {
-                setPreferenceStore(DiiguNature.createPreferenceStore(project));
-            }
-        }
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.eclipse.jface.preference.PreferencePage#doGetPreferenceStore()
+     */
+    protected IPreferenceStore doGetPreferenceStore() {
+        return new ScopedPreferenceStore(
+                new ProjectScope(getSelectedProject()), DiiguPlugin.PLUGIN_ID);
     }
 
     /**
      * @return
      */
     private IProject getSelectedProject() {
-        IAdaptable adaptor = getElement();
+        IAdaptable a = getElement();
         IProject project = null;
-        if (adaptor instanceof IJavaProject) {
-            IJavaProject javap = (IJavaProject) adaptor;
-            project = javap.getProject();
-        } else if (adaptor instanceof IProject) {
-            IProject p = (IProject) adaptor;
-            IJavaProject javap = JavaCore.create(p);
-            if (javap.exists()) {
-                project = p;
-            }
+        if (a instanceof IProject) {
+            project = (IProject) a;
+        } else {
+            project = (IProject) a.getAdapter(IProject.class);
         }
         return project;
     }
@@ -159,19 +152,18 @@ public class DiiguProjectPreferencePage extends PropertyPage {
             if (project != null) {
                 if (this.useBuilder.getSelection()) {
                     ProjectUtils.addNature(project, DiiguNature.NATURE_ID);
-                    DiiguNature nature = DiiguNature.getInstance(project);
-                    if (nature != null) {
-                        setPreferenceStore(nature.getPreferenceStore());
-                    }
                 } else {
                     ProjectUtils.removeNature(project, DiiguNature.NATURE_ID);
                 }
             }
             IPreferenceStore store = getPreferenceStore();
-            if (store != null) {
-                store.setValue(Constants.CONFIG_SELECT_EXPRESSION,
-                        this.selectExpression.getText());
+            String s = this.selectExpression.getText();
+            if (s != null && 0 < s.length()) {
+                store.setValue(Constants.CONFIG_SELECT_EXPRESSION, s);
             }
+            NameEnhanceJob job = new NameEnhanceJob(Messages.ENHANCE_FULLBUILD,
+                    getSelectedProject());
+            job.schedule();
             return true;
         } catch (CoreException e) {
             DiiguPlugin.log(e);

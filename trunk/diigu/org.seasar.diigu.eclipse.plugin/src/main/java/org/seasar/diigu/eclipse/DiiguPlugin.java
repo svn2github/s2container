@@ -15,15 +15,14 @@
  */
 package org.seasar.diigu.eclipse;
 
-import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;
 import org.seasar.diigu.eclipse.util.LogUtil;
 
 /**
  * The main plugin class to be used in the desktop.
  */
-public class DiiguPlugin extends AbstractUIPlugin {
+public class DiiguPlugin extends Plugin {
 
     public static final String PLUGIN_ID = Constants.PLUGIN_ID;
 
@@ -57,19 +56,6 @@ public class DiiguPlugin extends AbstractUIPlugin {
      */
     public static DiiguPlugin getDefault() {
         return plugin;
-    }
-
-    /**
-     * Returns an image descriptor for the image file at the given plug-in
-     * relative path.
-     * 
-     * @param path
-     *            the path
-     * @return the image descriptor
-     */
-    public static ImageDescriptor getImageDescriptor(String path) {
-        return AbstractUIPlugin.imageDescriptorFromPlugin("org.seasar.diigu",
-                path);
     }
 
     public static void log(Throwable throwable) {
