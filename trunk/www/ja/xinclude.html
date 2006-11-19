@@ -1,5 +1,5 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <!-- don't edit start -->
 <head>
 <title>Seasar - DI Container with AOP - </title>
@@ -44,15 +44,15 @@ font-size : 10pt;
 <h1>XInclude</h1>
 <h2>目次</h2>
 <ul>
-<li><a href="#what">XInclude とは</a></li>
+<li><a href="#about">XInclude とは</a></li>
 <li><a href="#requisite">前提</a></li>
 <li><a href="#usage">XInclude の使い方</a></li>
 <li><a href="#difference"><code>&lt;include&gt;</code> との違い</a></li>
 <li><a href="#when">いつ XInclude を使うか</a></li>
-<li><a href="#"></a></li>
+<li></li>
 </ul>
 
-<h2><a name="what">XInclude とは</a></h2>
+<h2><a name="about">XInclude とは</a></h2>
 <p>
 <a href="http://www.w3.org/TR/xinclude/">XInclude (XML Inclusion)</a> は，複数の XML ドキュメントを一つの XML ドキュメントに統合するための仕様です．
 Seasar2.4 で導入された XInclude のサポートにより，複数の dicon ファイルを一つの dicon ファイルのように扱うことが可能になります．
@@ -71,7 +71,7 @@ J2SE1.4 で XInclude を利用するには，Xerces (2.7.0 以降) と組み合�
 XInclude を使って他の dicon ファイルを取り込むには，次のように記述します．
 </p>
 <pre>
-&lt;?xml version=&quo;1.0&quot; encoding="UTF-8"?&lt;
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&lt;
 &lt;!DOCTYPE components PUBLIC <strong>&quot;-//SEASAR//DTD S2Container 2.4//EN&quot;</strong>
     <strong>&quot;http://www.seasar.org/dtd/components24.dtd&quot;</strong>
 &gt;
@@ -96,29 +96,24 @@ XInclude を使って他の dicon ファイルを取り込むには，次のよ�
 <code>foo.dicon</code> と <code>bar.dicon</code> が次の内容だった場合，
 </p>
 <h4><code>foo.dicon</code></h4>
-<pre>
-&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;!DOCTYPE components PUBLIC &quot;-//SEASAR//DTD S2Container 2.4//EN&quot;
-    &quot;http://www.seasar.org/dtd/components24.dtd&quot;>
+    &quot;http://www.seasar.org/dtd/components24.dtd&quot;&gt;
 &lt;components&gt;
     &lt;component name=&quot;foo1&quot;&gt;&quot;Foo1&quot;&lt;/component&gt;
     &lt;component name=&quot;foo2&quot;&gt;&quot;Foo2&quot;&lt;/component&gt;
-&lt;/components&gt;
-</pre>
+&lt;/components&gt;</pre>
 <h4><code>bar.dicon</code></h4>
-<pre>
-&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;!DOCTYPE components PUBLIC &quot;-//SEASAR//DTD S2Container 2.4//EN&quot;
-    &quot;http://www.seasar.org/dtd/components24.dtd&quot;>
+    &quot;http://www.seasar.org/dtd/components24.dtd&quot;&gt;
 &lt;components&gt;
     &lt;component name=&quot;bar1&quot;&gt;&quot;Bar1&quot;&lt;/component&gt;
     &lt;component name=&quot;bar2&quot;&gt;&quot;Bar2&quot;&lt;/component&gt;
-&lt;/components&gt;
-</pre>
+&lt;/components&gt;</pre>
 <p>
 最初に示したdicon は次のように記述した場合と同じになります．
-<pre>
-&lt;?xml version=&quo;1.0&quot; encoding="UTF-8"?&lt;
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;!DOCTYPE components PUBLIC &quot;-//SEASAR//DTD S2Container 2.4//EN&quot;
     &quot;http://www.seasar.org/dtd/components24.dtd&quot;
 &gt;
@@ -129,8 +124,7 @@ XInclude を使って他の dicon ファイルを取り込むには，次のよ�
     &lt;component name=&quot;foo2&quot;&gt;&quot;Foo2&quot;&lt;/component&gt;
     &lt;component name=&quot;bar1&quot;&gt;&quot;Bar1&quot;&lt;/component&gt;
     &lt;component name=&quot;bar2&quot;&gt;&quot;Bar2&quot;&lt;/component&gt;
-&lt;/components&gt;
-</pre>
+&lt;/components&gt;</pre>
 
 <h2><a name="difference">&lt;include&gt; との違い</a></h2>
 <p>
@@ -140,8 +134,7 @@ Seasar2 では，以前から dicon ファイルを分割することができ�
 <p>
 次のように &lt;include&gt; を利用すると，それぞれの dicon ファイルを読み込んだ S2 コンテナが合計 3 つインスタンス化されます．
 </p>
-<pre>
-&lt;?xml version=&quo;1.0&quot; encoding="UTF-8"?&lt;
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;!DOCTYPE components PUBLIC &quot;-//SEASAR//DTD S2Container 2.4//EN&quot;
     &quot;http://www.seasar.org/dtd/components24.dtd&quot;
 &gt;
