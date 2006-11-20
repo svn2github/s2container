@@ -77,7 +77,7 @@ font-size : 10pt;
               <dd>EmployeeとDepartmentの二つ．EmployeeはDepartmentを参照します．<br />
               <img src="images/dxo_employeeDepartment.png" width="511" height="98" />
               
-              <dt>変換後のJavaBeans
+              <dt>変換先のJavaBeans
               <dd>EmployeePage．EmployeePageはEmployeeとDepartmentの両方のプロパティを持っています．<br />
               <img src="images/dxo_employeePage.png" width="163" height="100" />
               
@@ -85,7 +85,7 @@ font-size : 10pt;
               <dd>EmployeeDxo．EmployeeとDepartmentをEmployeePageに変換するDXOのJavaインタフェースです．
             </dl>
             
-            <p>S2Dxoは，上記２つのJavaBeansに対して，以下の図のような変換を行います．<br />
+            <p>S2Dxoは，上記3つのJavaBeansに対して，以下の図のような変換を行います．<br />
               <img src="images/dxo_s2dxo.png" width="520" height="300" /></p>
             
             <h5>Employee.java</h5>
@@ -128,7 +128,7 @@ public class Department {
     }
 }</pre>
             <h5>EmployeePage.java</h5>
-            <p>変換後のJavaBeansです．Employeeのプロパティenameに加えて，Departmentのプロパティdnameも持っています．toString()メソッドではこの二つのプロパティを文字列化しています．</p>
+            <p>変換先のJavaBeansです．Employeeのプロパティenameに加えて，Departmentのプロパティdnameも持っています．toString()メソッドではこの二つのプロパティを文字列化しています．</p>
             <pre>package examples.dxo;
 
 public class EmployeePage {
@@ -216,8 +216,8 @@ public class DxoMain {
             <p>DXOには変換を行うメソッドを定義します．メソッド名は自由ですが，慣例として<code>convert</code>で始めます．</p>
             <p>DXOのメソッドは次の2つの形式のいずれかにすることができます．</p>
             <ul>
-              <li> <var>変換後型</var> <var>メソッド名</var>(<var>変換前型</var>)
-              <li>void <var>メソッド名</var>(<var>変換前型</var>, <var>変換後型</var>)
+              <li><var>変換先型</var> <var>メソッド名</var>(<var>変換元型</var>)
+              <li>void <var>メソッド名</var>(<var>変換元型</var>, <var>変換先型</var>)
             </ul>
             <p>戻り値が変換後型の場合はS2Dxoが変換後のインスタンスを生成して返します．戻り値型がvoidの場合は第2引数で受け取ったインスタンスを更新します．</p>
             <p>変換前及び変換後の型の組み合わせは次のものがサポートされています．</p>
@@ -628,7 +628,7 @@ public class EmployeePage {
     EmployeePage convert(Employee employee);
 }</pre>
 
-<p>DXOインタフェースがメソッドをオーバーロードしている場合は，引数型の被修飾名をアンダースコア区切りで並べて指定することもできます．</p>
+<p>DXOインタフェースがメソッドをオーバーロードしている場合は，引数型の非修飾名をアンダースコア区切りで並べて指定することもできます．</p>
 <pre>public interface BarDxo {
     String convert_Employee_CONVERSION_RULE = &quot;ename : name, dname : department.name&quot;;
     EmployeePage convert(Employee employee);
@@ -665,7 +665,131 @@ public interface FooDxo {
     EmployeePage convert(Employee employee);
 }</pre>
 <h3><a name="formatDate">日付・時刻のフォーマット</a></h3>
-<p>工事中</p>
+<p><code>java.util.Date</code>や<code>java.util.Calendar</code>などと<code>String</code>との相互変換を行う場合には，フォーマットパターンを指定することができます．フォーマットパターンは<code>java.text.SimpleDateFormat</code>が解釈することができるパターン文字列で，DXOインタフェースまたはそのメソッドにアノテーションで指定することができます．アノテーションが指定されたメソッドで行われる変換の際に，JavaBeansのプロパティに<code>java.util.Date</code>や<code>java.util.Calendar</code>などと<code>String</code>との変換が必要になると，指定されたフォーマットパターンが使われます．フォーマットパターンが指定されなかった場合は，デフォルトロケールのデフォルトパターンが使われます．</p>
+<h4>定数アノテーション</h4>
+<p>定数アノテーションでは，DXOインタフェースの文字列定数としてフォーマットパターンを指定します．定数名は次のいずれかで，最初に見つかったものが適用されます．</p>
+<ol>
+<li><code><var>methodName</var>[_<var>parameterType</var> ...]_<var>patternName</var></code><br>
+指定された名前と引数並びを持つメソッドに固有のフォーマットパターンを指定します．
+<li><code><var>methodName</var>_<var>patternName</var></code><br>
+指定された名前を持つメソッドに固有のフォーマットパターンを指定します．
+<li><code><var>patternName</var></code><br>
+DXOインタフェース内の全メソッドに適用されるフォーマットパターンを指定します．
+</ol>
+<p><code><var>patternName</var></code>は次のいずれかです．</p>
+<table border="1">
+<tbody>
+<tr>
+<th>パターン名</th>
+<th>適用される型</th>
+</tr>
+<tr>
+<td rowspan="3"><code>DATE_PATTERN</code></td>
+<td><code>java.util.Calendar</code></td>
+</tr>
+<tr>
+<td><code>java.util.Date</code></td>
+</tr>
+<tr>
+<td><code>java.sql.Date</code></td>
+</tr>
+<tr>
+<td><code>TIME_PATTERN</code></td>
+<td><code>java.sql.Time</code></td>
+</tr>
+<tr>
+<td><code>TIMESTAMP_PATTERN</code></td>
+<td><code>java.sql.Timestamp</code></td>
+</tr>
+</tbody>
+</table>
+<p>次のようになります．</p>
+<pre>public interface FooDxo {
+    String DATE_PATTERN = &quot;yyyy-MM-dd&quot;;
+    String TIME_PATTERN = &quot;HH:mm:ss.SSS&quot;;
+    String TIMESTAMP_PATTERN = &quot;yyyy-MM-dd HH:mm:ss&quot;;
+
+    String convert_DATE_PATTERN = &quot;yyyy/MM/dd&quot;;
+    String convert_Foo_TIME_PATTERN = &quot;HH:mm:ss&quot;;
+    String convert2_TIMESTAMP_PATTERN = &quot;yyyy/MM/dd HH:mm:ss.SSS&quot;;
+
+    Bar convert(Foo foo);
+    Foo convert(Bar bar);
+    Bar convert2(Foo foo);
+}</pre>
+<p>上の例では，次の表のように定数アノテーションが適用されます．</p>
+<table border="1">
+<tbody>
+<tr>
+<th>メソッド</th>
+<th><code>DATE_PATTERN</code></th>
+<th><code>TIME_PATTERN</code></th>
+<th><code>TIMESTAMP_PATTERN</code></th>
+</tr>
+<tr>
+<td><code>convert(Foo)</code></td>
+<td><code>convert_DATE_PATTERN</code></td>
+<td><code>convert_Foo_TIME_PATTERN</code></td>
+<td><code>TIMESTAMP_PATTERN</code></td>
+</tr>
+<tr>
+<td><code>convert(Bar)</code></td>
+<td><code>convert_DATE_PATTERN</code></td>
+<td><code>TIME_PATTERN</code></td>
+<td><code>TIMESTAMP_PATTERN</code></td>
+</tr>
+<tr>
+<td><code>convert2(Foo)</code></td>
+<td><code>DATE_PATTERN</code></td>
+<td><code>TIME_PATTERN</code></td>
+<td><code>TIMESTAMP_PATTERN</code></td>
+</tr>
+</tbody>
+</table>
+<h4>Tigerアノテーション</h4>
+<p>Tigerアノテーションでは，DXOのメソッドまたはインタフェースのアノテーションとして指定します．</p>
+<table border="1">
+<tbody>
+<tr>
+<th>アノテーション</th>
+<th>適用される型</th>
+</tr>
+<tr>
+<td rowspan="3"><code>org.seasar.extension.dxo.DatePattern</code></td>
+<td><code>java.util.Calendar</code></td>
+</tr>
+<tr>
+<td><code>java.util.Date</code></td>
+</tr>
+<tr>
+<td><code>java.sql.Date</code></td>
+</tr>
+<tr>
+<td><code>org.seasar.extension.dxo.TimePattern</code></td>
+<td><code>java.sql.Time</code></td>
+</tr>
+<tr>
+<td><code>org.seasar.extension.dxo.TimestampPattern</code></td>
+<td><code>java.sql.Timestamp</code></td>
+</tr>
+</tbody>
+</table>
+<p>次のようになります．</p>
+<pre>@DatePattern(&quot;yyyy-MM-dd&quot;)
+@TimePattern(&quot;HH:mm:ss.SSS&quot;)
+@TimestampPattern(&quot;yyyy-MM-dd HH:mm:ss&quot;)
+public interface FooDxo {
+    @DatePattern(&quot;yyyy/MM/dd&quot;)
+    @TimePattern(&quot;HH:mm:ss&quot;)
+    Bar convert(Foo foo);
+
+    @DatePattern(&quot;yyyy/MM/dd&quot;)
+    Foo convert(Bar bar);
+
+    @TimestampPattern(&quot;yyyy/MM/dd HH:mm:ss.SSS&quot;)
+    Bar convert2(Foo foo);
+}</pre>
+<p>上の例では，定数アノテーションの例と同じになるようにフォーマットパターンを指定しています．</p>
 <h3><a name="customConverter">独自のコンバータ</a></h3>
 <p>工事中</p>
 <!-- document end -->
