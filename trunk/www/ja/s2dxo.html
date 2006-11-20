@@ -74,12 +74,20 @@ font-size : 10pt;
             <p>さっそく試してみましょう．登場人物は次のようになります．</p>
             <dl>
               <dt>変換元のJavaBeans
-              <dd>EmployeeとDepartmentの二つ．EmployeeはDepartmentを参照します．
+              <dd>EmployeeとDepartmentの二つ．EmployeeはDepartmentを参照します．<br />
+              <img src="images/dxo_employeeDepartment.png" width="511" height="98" />
+              
               <dt>変換後のJavaBeans
-              <dd>EmployeePage．EmployeePageはEmployeeとDepartmentの両方のプロパティを持っています．
+              <dd>EmployeePage．EmployeePageはEmployeeとDepartmentの両方のプロパティを持っています．<br />
+              <img src="images/dxo_employeePage.png" width="163" height="100" />
+              
               <dt>変換を行うDXO
               <dd>EmployeeDxo．EmployeeとDepartmentをEmployeePageに変換するDXOのJavaインタフェースです．
             </dl>
+            
+            <p>S2Dxoは，上記２つのJavaBeansに対して，以下の図のような変換を行います．<br />
+              <img src="images/dxo_s2dxo.png" width="520" height="300" /></p>
+            
             <h5>Employee.java</h5>
             <p>変換元のJavaBeansです．Departmentを参照します．</p>
             <pre>package examples.dxo;
