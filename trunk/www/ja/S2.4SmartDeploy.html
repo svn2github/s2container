@@ -467,6 +467,12 @@ env.txtに設定を書き込むことで、環境を操作することができ�
 <br>
 
 <h2><a name="HotDeploySample">HOT deployサンプルプログラム</a></h2>
+
+<dl>
+<dt>頻繁に Seasar 関連プロダクトを取り上げてくださる MYCOM ジャーナルを参照しています。</dt>
+<dt>http://journal.mycom.co.jp/articles/2006/11/16/seasar/</dt>
+</dl>
+
 <p>サンプルプログラムで作成するファイルは以下の通り</p>
 
 <pre>
@@ -679,7 +685,8 @@ Web アプリの場合は HotdeployServletFilter に HotdeployUtil#start() と s
 <pre>
 DEBUG 2006-11-21 17:16:17,050 [main] BEGIN org.example.service.impl.PrintServiceImpl#print()
 DEBUG 2006-11-21 17:16:17,050 [main] BEGIN org.example.service.impl.MessageServiceImpl#getMessage()
-DEBUG 2006-11-21 17:16:17,050 [main] END org.example.service.impl.MessageServiceImpl#getMessage() : Hello HOT deploy
+DEBUG 2006-11-21 17:16:17,050 [main] END org.example.service.impl.MessageServiceImpl#getMessage() 
+: Hello HOT deploy
 Hello HOT deploy
 DEBUG 2006-11-21 17:16:17,050 [main] END org.example.service.impl.PrintServiceImpl#print() : null
 //・・・for()ループの設定により３回繰り返される
