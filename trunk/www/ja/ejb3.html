@@ -37,7 +37,8 @@
 				  <li><a href="#StatelessAnnotation">Statelessアノテーション</a></li>
 				  <li><a href="#StatefulAnnotation">Statefulアノテーション</a></li>
 				  <li><a href="#EJBAnnotation">EJBアノテーション</a></li>
-				  <li><a href="#TransactionManagementAnnotation">TransactionManagementアノテーション</a></li>
+<li><a href="#ResourceAnnotation">Resouceアノテーション</a></li>
+<li><a href="#TransactionManagementAnnotation">TransactionManagementアノテーション</a></li>
 				  <li><a href="#TransactionAttributeAnnotation">TransactionAttributeアノテーション</a></li>
                   <li><a href="#InterceptorsAnnotation">Interceptorsアノテーション</a></li>
                   <li><a href="#ExcludeClassInterceptorsAnnotation">ExcludeClassInterceptorsアノテーション</a></li>
@@ -221,18 +222,25 @@ public class Xxx {
 Statless、Statefulアノテーションのname属性で付けた名前をbeanName属性に指定することができます。
 beanName属性は､インターフェースを実装したオブジェクトが複数存在する場合にのみ使うようにしてください。
 </p>
-<pre>
-@EJB
-public void setAaa(Aaa aaa) {
-    ...
-}
+<p>EJBアノテーションはフィールドまたはsetterメソッドに指定することができます．フィールドに指定された場合でbeanName属性が指定されなかった場合は，フィールド名がEJB3コンポーネント名として使用されます．</p>
+<pre>@EJB
+private Aaa aaa;
 
-@EJB(beanName="bbb2")
+@EJB(beanName=&quot;bbb2&quot;)
 public void setBbb(Bbb bbb) {
     ...
-}
-</pre>
+}</pre>
+<h3><a name="ResourceAnnotation">Resourceアノテーション</a></h3>
+<p>Resourceアノテーションによって､DataSourceやDAO等のコンポーネントを参照することができます。 コンポーネントの名前をname属性に指定することができます。
+name属性は､インターフェースを実装したオブジェクトが複数存在する場合にのみ使うようにしてください。</p>
+<p>Resourceアノテーションはフィールドまたはsetterメソッドに指定することができます．フィールドに指定された場合でname属性が指定されなかった場合は，フィールド名がコンポーネント名として使用されます．</p>
+<pre>@Resource
+private EmployeeDao employeeDao;
 
+@Resource(name=&quot;fooDataSource&quot;)
+private void setDataSource(DataSource ds) {
+    ...
+}</pre>
 <h3><a name="TransactionManagementAnnotation">TransactionManagementアノテーション</a></h3>
 <p>
 TransactionManagementアノテーションにより、コンテナ管理トランザクション(CMT)とBean管理トランザクション(BMT)を使い分けることができます。<br>
