@@ -3,8 +3,8 @@
 <!-- don't edit start -->
 <head>
 <title>Seasar - DI Container with AOP -</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
 <link href="seasar_b.css" type="text/css" rel="stylesheet" media="screen" />
 <link href="seasar_p.css" type="text/css" rel="stylesheet" media="print" />
 <script src="seasar_b.js" type="text/JavaScript" language="JavaScript">
@@ -285,7 +285,7 @@ publi interface FooDxo {
 <pre>
 public interface FooDxo {
     ToBean convertBeanToBean(FromBean fromBean);
-    void convertBeanToBeanBean(FromBean[] fromBeans, ToBean[] toBeans);
+    void convertBeanToBean(FromBean[] fromBeans, ToBean[] toBeans);
 
     Map convertBeanToMap(FromBean fromBean);
     void convertBeanToMap(FromBean[] fromBeans, Map[] toMaps);
@@ -347,6 +347,12 @@ public interface BarDxo {
     List&lt;ToBean&gt; convert(List&lt;Map&gt; fromMaps);
 }
 </pre>
+<p>Mapの型引数を指定することもできます．キーの型はStringまたはStringを代入可能な型のみ有効です．値の型は任意の型を指定することができます．変換元の値が型引数で指定された型に代入できない場合は型変換が行われます．</p>
+<p>例えば次のようになります．</p>
+<pre>public interface BarDxo {
+    Map&lt;String, String&gt; convert(FromBean fromBean);
+    List&lt;Map&lt;String, String&gt; convert(FromBean[] fromBeans);
+}</pre>
 <h3><a name="applyInterceptor" id="applyInterceptor">インターセプタの適用</a></h3>
 <p>DXOインタフェース／クラスにはS2Dxoの提供するインターセプタを適用します．</p>
 <pre>
