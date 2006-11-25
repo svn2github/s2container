@@ -3,8 +3,8 @@
 <!-- don't edit start -->
 <head>
 <title>Seasar - DI Container with AOP -</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
 <link href="seasar_b.css" type="text/css" rel="stylesheet" media="screen" />
 <link href="seasar_p.css" type="text/css" rel="stylesheet" media="print" />
 <script src="seasar_b.js" type="text/JavaScript" language="JavaScript">
@@ -75,11 +75,12 @@ font-size : 10pt;
 <li><a href="#indexing">インデックスによるアクセス</a></li>
 <li><a href="#collection">コレクションの操作</a></li>
 <li><a href="#chained">カンマ演算子とチェーン</a></li>
+<li><a href="#others">その他の演算子</a></li>
 </ul>
 <h2><a name="overview" id="overview">概要</a></h2>
 <p>OGNL (<b>O</b>bject <b>G</b>raph <b>N</b>avigation <b>L</b>anguage) は，Javaオブジェクトのプロパティにアクセスしたりメソッドを呼び出したりすることの出来る，Javaによく似た式言語です．<br />
 Seasar2では，diconファイルの&lt;property&gt;要素の他，&lt;component&gt;要素・&lt;initMethod&gt;要素・&lt;destroyMethod&gt;要素・&lt;arg&gt;要素・&lt;meta&gt;要素にOGNL式を記述することが出来ます．<br />
-OGNLの詳細は<a href="http://www.ognl.org/">こちら</a>を参照してください．</p>
+OGNLの詳細は<a href="http://www.ognl.org/">OGNL Tecnologyのサイト</a>を参照してください．</p>
 <h2><a name="literal" id="literal">リテラル</a></h2>
 <h3>Java標準のリテラル</h3>
 <p>OGNLでは，Java言語で定められているリテラルをそのまま記述することが出来ます．</p>
@@ -403,6 +404,8 @@ OGNLの詳細は<a href="http://www.ognl.org/">こちら</a>を参照してく�
     &lt;initMethod&gt;<b>#self.( add("one"), add("two"), add("three") )</b>&lt;/initMethod&gt;
 &lt;/component&gt;
 </pre>
+<h2><a name="others">その他の演算子</a></h2>
+<p>その他，Javaの演算子の多くを利用することができます．詳細は「<a href="http://www.ognl.org/">OGNL Technology</a>」の「<a href="http://www.ognl.org/2.6.7/Documentation/html/LanguageGuide/apa.html#N10644">OGNL Language Reference</a>」を参照してください．</p>
 <!-- document end -->
 <!-- don't edit start -->
 </td>
