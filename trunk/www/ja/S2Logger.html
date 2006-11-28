@@ -40,130 +40,108 @@
 <td width="14"><img height="14" width="14" src="images/spacer.gif" alt="" /></td>
 <td width="740" class="main"><!-- don't edit end -->
 <!-- document start -->
-<h1>Loggerクラス</h1>
+<h1>Loggerクラス</h1> 
+
 <p>S2Containerの中にはlog4jをラップした便利なLoggerクラスがあります。</p>
+
 <h2>目次</h2>
+
 <ul>
-<li><a href="#mainClass">主要クラス</a></li>
-<li><a href="#propertieFile">プロパティファイル</a></li>
-<li style="list-style: none">
-<ul>
-<li><a href="#propertiesNaming">メッセージの命名規約</a></li>
-<li><a href="#propertiesKind">メッセージ種別</a></li>
+	<li><a href="#mainClass">主要クラス</a></li>
+	<li><a href="#propertieFile">プロパティファイル</a>
+	<ul>
+		<li><a href="#propertiesNaming">メッセージの命名規約</a></li>
+		<li><a href="#propertiesKind">メッセージ種別</a></li>
+	</ul></li>
+	<li><a href="#logMethod">log()メソッド</a>
+	<ul>
+		<li><a href="#useLogMethod">log()メソッドの使用例</a></li>
+	</ul></li>
 </ul>
-</li>
-<li><a href="#logMethod">log()メソッド</a></li>
-<li style="list-style: none">
+
+<br>
+<h2><a name="mainClass">主要クラス</a></h2>
 <ul>
-<li><a href="#useLogMethod">log()メソッドの使用例</a></li>
-</ul>
-</li>
-</ul>
-<br />
-<h2><a name="mainClass" id="mainClass">主要クラス</a></h2>
-<ul>
-<li>org.seasar.framework.log.Logger</li>
-<li style="list-style: none">
+<li>org.seasar.framework.log.Logger</li> 
 <dl>
 <dt>Commons Loggingをラップしたクラス(Log4jはCommons Loggingで設定)</dt>
-<dt>内部的には次のMessageFormatterを利用している</dt>
+<dt>内部的には次のMessageFormatterを利用している </dt>
 </dl>
-</li>
 <li>org.seasar.framework.message.MessageFormatter</li>
-<li style="list-style: none">
-<dl>
+<dl> 
 <dt>java.text.MessageFormatと</dt>
-<dt>(S2.3)java.util.ResourceBundle</dt>
-<dt>(S2.4)org.seasar.framework.message.MessageResourceBundleを内部で利用している</dt>
+<dt>(S2.3)java.util.ResourceBundle</dt> 
+<dt>(S2.4)org.seasar.framework.message.MessageResourceBundleを内部で利用している </dt>
 <dt>以下はSMART deploy対応のメッセージバンドルを定義しているクラス</dt>
 </dl>
-</li>
 <li>org.seasar.framework.message.MessageResourceBundle</li>
 <li>org.seasar.framework.message.MessageResourceBundleFacade</li>
 <li>org.seasar.framework.message.MessageResourceBundleFactory</li>
 </ul>
-<br />
-<h2><a name="propertieFile" id="propertieFile">プロパティファイル</a></h2>
+<br>
+
+<h2><a name="propertieFile">プロパティファイル</a></h2>
 <p>Loggerの出力メッセージを定義するファイルです。</p>
 <ul>
 <li>XXXMessages.properties</li>
-<li style="list-style: none">
-<dl>
+<dl> 
 <dt>「XXX」がシステム名になる。</dt>
 </dl>
-</li>
-<li>XXXMessages_ja.properties</li>
-<li style="list-style: none">
+<li>XXXMessages_ja.properties</li> 
 <dl>
 <dt>日本語対応する場合は、ロケールに合わせたプロパティファイルを用意する。</dt>
 </dl>
-</li>
 </ul>
-<br />
+<br>
+
 <h4>例：SSRMessages.properties</h4>
 <p>以下はS2Containerで使用しているメッセージ用プロパティファイルです。</p>
+
 <pre>
 ESSR0001={0} not found
-ESSR0002=&lt;{0}&gt; expected:&lt;{1}&gt; but actual:&lt;{2}&gt;
-ESSR0003=&lt;{0}&gt; unexpected:&lt;{1}&gt;
+ESSR0002=<{0}> expected:<{1}> but actual:<{2}>
+ESSR0003=<{0}> unexpected:<{1}>
 ESSR0004={0} not found from {1}
 ESSR0007={0} should not be null or empty
 </pre>
-<br />
-<h4><a name="propertiesNaming" id="propertiesNaming">メッセージの命名規約</a></h4>
+<br>
+
+<h4><a name="propertiesNaming">メッセージの命名規約</a></h4>
 <p>メッセージ[　ESSR0001={0} not found　]は次の規則に沿って作られています。</p>
 <pre>
 メッセージ種別(1字)　＋　システム名　＋　連番(4桁)　＝　メッセージ内容
 </pre>
-<br />
-<h4><a name="propertiesKind" id="propertiesKind">メッセージ種別</a></h4>
+<br>
+
+<h4><a name="propertiesKind">メッセージ種別</a></h4>
 <p>メッセージの頭１文字はそのメッセージの種別を表しています。</p>
 <table border="1" width="40%">
-<tr bgcolor="#D1F3F4" align="center">
-<th>メッセージ種別</th>
-<th>表記(１字)</th>
-</tr>
-<tr align="center">
-<td>FATAL</td>
-<td>F</td>
-</tr>
-<tr align="center">
-<td>ERROR</td>
-<td>E</td>
-</tr>
-<tr align="center">
-<td>WARN</td>
-<td>W</td>
-</tr>
-<tr align="center">
-<td>INFO</td>
-<td>I</td>
-</tr>
-<tr align="center">
-<td>DEBUG</td>
-<td>D</td>
-</tr>
+<tr bgcolor="#d1f3f4" align="center"><th>メッセージ種別</th><th>表記(１字)</th></tr>
+<tr align="center"><td>FATAL</td><td>F</td></tr>
+<tr align="center"><td>ERROR</td><td>E</td></tr>
+<tr align="center"><td>WARN</td><td>W</td></tr>
+<tr align="center"><td>INFO</td><td>I</td></tr>
+<tr align="center"><td>DEBUG</td><td>D</td></tr>
 </table>
-<br />
-<h2><a name="logMethod" id="logMethod">log()メソッド</a></h2>
+<br>
+
+<h2><a name="logMethod">log()メソッド</a></h2>
 <p>org.seasar.framework.log.Loggerのlog()メソッドは2種類あります。</p>
+
 <ul>
-<li>public final void log(String messageCode, Object[] args)</li>
-<li style="list-style: none">
+<li>public final void log(String messageCode, Object[] args) </li>
 <dl>
-<dt>内部的には次のlog()メソッドの第3引き数をnullにして呼び出す</dt>
+<dt>内部的には次のlog()メソッドの第3引き数をnullにして呼び出す </dt>
 </dl>
-</li>
-<li>public final void log(String messageCode, Object[] args, Throwable throwable)</li>
-<li style="list-style: none">
+<li>public final void log(String messageCode, Object[] args, Throwable throwable) </li>
 <dl>
 <dt>3つの引数を持つlog()メソッドは、内部でメッセージコードからメッセージ種別を判別し、対応するCommons Loggingのメソッド</dt>
 <dt>（debug, info, warn, error, fatal）を呼び出します。</dt>
 </dl>
-</li>
 </ul>
-<br />
-<h4><a name="useLogMethod" id="useLogMethod">log()メソッドの使用例</a></h4>
+<br>
+
+<h4><a name="useLogMethod">log()メソッドの使用例</a></h4>
 <p>org.seasar.framework.log.Logger.getLogger()メソッドでLoggerクラスのインスタンスを取得します。</p>
 <pre>
     logger.log("DRMI0001", new Object[] { Integer.toString(this.registryPort) });
@@ -172,6 +150,8 @@ ESSR0007={0} should not be null or empty
 <pre>
 DEBUG 2005-06-01 00:44:49,616 [main] RMIレジストリをポート 1108 で作成しました。
 </pre>
+
+
 <!-- document end -->
 <!-- don't edit start --></td>
 <td width="14"><img height="14" width="14" src="images/spacer.gif" alt="" /></td>
