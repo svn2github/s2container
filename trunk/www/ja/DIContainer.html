@@ -80,7 +80,6 @@
 <li><a href="#ComponentAutoRegister">コンポーネントの自動登録</a></li>
 <li><a href="#AspectAutoRegister">アスペクトの自動登録</a></li>
 <li><a href="#MetaAutoRegister">メタデータの自動登録</a></li>
-<li><a href="#Hotswap">Hotswap</a></li>
 </ul>
 </li>
 <li><a href="#DefReference">S2Containerタグリファレンス</a>
@@ -391,7 +390,7 @@ DEBUG 2005-10-12 16:00:08,103 [main] END examples.di.impl.GreetingClientImpl#exe
 </pre>
 <p>たいていの場合､自動登録と自動バインディングの仕組みでうまくいくでしょう。 自動登録したくないコンポーネントがある場合には､自動登録コンポーネントに用意されているaddIgnoreClassPatternメソッドで、 自動登録の対象外にすることができます。</p>
 <p>自動バインディングしたくないプロパティがある場合は､<a href="#BindingAnnotation">Bindingアノテーション</a>を使い､ 設定ファイルを使わずに、細かい調整をすることもできます。</p>
-<p><a href="#Hotswap">Hotswap</a>を使えば､アプリケーションの稼動中にクラスファイルを書き換えて､ 直ぐにその結果を試すことができます。いちいち、アプリケーションを再起動しなくてもよくなるので､ 開発効率を大きく向上させることができます。</p>
+<p><a href="S2.4SmartDeploy.html">HOT deploy</a>を使えば､アプリケーションの稼動中にクラスファイルを書き換えて､ 直ぐにその結果を試すことができます。いちいち、アプリケーションを再起動しなくてもよくなるので､ 開発効率を大きく向上させることができます。</p>
 <p>これで、S2Containerの高度な使い方をマスターすることができました。後は､必要に応じてマニュアルを参照すると良いでしょう。</p>
 <h2><a name="S2ContainerReference" id="S2ContainerReference">S2Containerリファレンス</a></h2>
 <h3><a name="CreateFile" id="CreateFile"><b>作成すべきファイル</b></a></h3>
@@ -1184,88 +1183,7 @@ END java.util.Date#getTime() : 0
 &lt;/component&gt;
 </pre>
 <p>この例では、hogeという名前のメタデータが他のコンポーネント定義に自動登録されます。</p>
-<h3><a name="Hotswap" id="Hotswap">Hotswap</a></h3>
-<p>従来、ソースコードを書き換えてコンパイルした場合､コンパイル後の機能を試すためには､ アプリケーション(正確にはClassLoader)を再起動する必要がありました。 アプリケーションサーバ上で､アプリケーションを再起動するのは､非常に時間がかかるものです。 「かったるい」と思っていた方も多くいることでしょう。</p>
-<p>Seasar2では、アプリケーションを稼動させたまま､クラスファイルを置き換えて、 即座に試すことのできる<b>Hotswap</b>機能を実現しています。 これであの「イライラ」からも解放されます。余分な待ち時間が無いので生産性を向上させることもできます。それでは、試してみましょう。</p>
-<h4>Greeting.java</h4>
-<pre>
-package examples.hotswap;
 
-public interface Greeting {
-
-    String greet();
-}
-</pre>
-<h4>GreetingImpl.java</h4>
-<pre>
-package examples.hotswap.impl;
-
-import examples.hotswap.Greeting;
-
-public class GreetingImpl implements Greeting {
-
-    public String greet() {
-        return "Hello";
-    }
-}
-</pre>
-<h4>hotswap.dicon</h4>
-<pre>
-&lt;components&gt;<br />    &lt;component class="examples.hotswap.impl.GreetingImpl"/&gt;<br />&lt;/components&gt;
-</pre>
-<p>ここまでは､特に変わったところはありません。ポイントはこれからです。 s2container.diconを使って、hotswapモードに切り替えます。</p>
-<h4>s2container.dicon</h4>
-<pre>
-&lt;components&gt;<br />    &lt;component<br />      class="org.seasar.framework.container.factory.S2ContainerFactory$DefaultProvider"&gt;<br />        &lt;property name="hotswapMode"&gt;true&lt;/property&gt;<br />    &lt;/component&gt;<br />&lt;/components&gt;<br />
-</pre>
-<p>s2container.diconはクラスパスの通っているルートのディレクトリに置いておけば､自動で認識されます。 S2ContainerFactory#configure()を使って明示的に指定することもできます。</p>
-<h4>GreetingMain.dicon</h4>
-<pre>
-package examples.hotswap.main;
-
-import org.seasar.framework.container.S2Container;
-import org.seasar.framework.container.factory.S2ContainerFactory;
-
-import examples.hotswap.Greeting;
-
-public class GreetingMain {
-
-    private static final String CONFIGURE_PATH =
-        "examples/hotswap/dicon/s2container.dicon";
-
-    private static final String PATH =
-        "examples/hotswap/dicon/hotswap.dicon";
-
-    public static void main(String[] args) throws Exception {
-        S2ContainerFactory.configure(CONFIGURE_PATH);
-        S2Container container = S2ContainerFactory.create(PATH);
-        System.out.println("hotswapMode:" + container.isHotswapMode());
-        container.init();
-        try {
-            Greeting greeting = (Greeting) container
-                    .getComponent(Greeting.class);
-            System.out.println(greeting.greet());
-            System.out.println("Let's modify GreetingImpl, then press ENTER.");
-            System.in.read();
-            System.out.println("after modify");
-            System.out.println(greeting.greet());
-        } finally {
-            container.destroy();
-        }
-    }
-}
-</pre>
-<p>hotswapを使うためには､S2Container#init()を呼び出す必要があります。 実行すると"Hello"と表示された後に､プログラムが停止するので､ GreetingImpl#greet()が"Hello2"を返すように修正してコンパイルします。 その後､コンソールにフォーカスを当ててENTERキーを押してください。 同じインスタンスなのにかかわらず、classファイルが入れ替わっていることがわかります。 これは、<a href="#InstanceMode">インスタンスモード</a>がsingletonの場合の例ですが､ <a href="#InstanceMode">インスタンスモード</a>がprototypeの場合は､S2Container#getComponent()のタイミングでクラスが入れ替わります。</p>
-<h4>実行結果</h4>
-<pre>
-hotswapMode:true
-Hello
-Let's modify GreetingImpl, then press ENTER.
-
-after modify
-Hello2
-</pre>
-<p>hotswapを使うためには､コンポーネントがインターフェースを提供し､ コンポーネントの利用者側は､インターフェース経由でコンポーネントを利用する必要があります。 <a href="#InstanceMode">インスタンスモード</a>がrequest、sessionの場合は､ そのコンポーネントが他のコンポーネントから参照されていない場合には､ インターフェースなしでもhotswapを利用することができます。</p>
 <h2><a name="DefReference" id="DefReference">S2Containerタグリファレンス</a></h2>
 <h3><a name="DOCTYPE" id="DOCTYPE">DOCTYPE</a></h3>
 <p>DOCTYPEは、XML宣言の次に指定します。下記のように指定してください。</p>
