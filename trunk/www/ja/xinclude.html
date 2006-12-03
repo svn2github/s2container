@@ -3,8 +3,8 @@
 <!-- don't edit start -->
 <head>
 <title>Seasar - DI Container with AOP -</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
 <link href="seasar_b.css" type="text/css" rel="stylesheet" media="screen" />
 <link href="seasar_p.css" type="text/css" rel="stylesheet" media="print" />
 <script src="seasar_b.js" type="text/JavaScript" language="JavaScript">
@@ -77,22 +77,21 @@ Java5 にバンドルされている XML パーサは XInclude に対応して�
 J2SE1.4 にバンドルされている XML パーサは XInclude に対応していません． J2SE1.4 で XInclude を利用するには，Xerces (2.7.0 以降) と組み合わせて使用してください．</p>
 <h2><a name="usage" id="usage">XInclude の使い方</a></h2>
 <p>XInclude を使って他の dicon ファイルを取り込むには，次のように記述します．</p>
-<pre>
-&lt;?xml version="1.0" encoding="UTF-8"?&lt;
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;!DOCTYPE components PUBLIC <strong>"-//SEASAR//DTD S2Container 2.4//EN"</strong>
     <strong>"http://www.seasar.org/dtd/components24.dtd"</strong>
 &gt;
 &lt;components
     <strong>xmlns:xi="http://www.w3.org/2001/XInclude"</strong>
 &gt;
-    <strong>&lt;xi:include href="foo.dicon"/&gt;</strong>
-    <strong>&lt;xi:include href="bar.dicon"/&gt;</strong>
+    <strong>&lt;xi:include href="/foo.dicon"/&gt;</strong>
+    <strong>&lt;xi:include href="/bar.dicon"/&gt;</strong>
 &lt;/components&gt;
 </pre>
 <ul>
 <li>文書型宣言で Seasar2.4 の DTD を指定します．</li>
 <li><code>&lt;components&gt;</code> 要素で XInclude の名前空間を宣言します．</li>
-<li><code>&lt;components&gt;</code> 要素の内容に <code>&lt;xi:include&gt;</code> 要素を記述します．<code>href</code> 属性で取り込む dicon ファイルのパスを指定します．</li>
+<li><code>&lt;components&gt;</code> 要素の内容に <code>&lt;xi:include&gt;</code> 要素を記述します．<code>href</code> 属性で取り込む dicon ファイルのパスを指定します．<strong>パスの先頭は必ずスラッシュ ('/') にしてください．</strong></li>
 </ul>
 <p>これにより，<code>foo.dicon</code> と <code>bar.dicon</code> の内容 (<code>&lt;components&gt;</code> 要素の子要素) が取り込まれます． <code>&lt;xi:include&gt;</code> 要素は <code>&lt;component&gt;</code> 要素と混在して記述することができます．</p>
 <p><code>foo.dicon</code> と <code>bar.dicon</code> が次の内容だった場合，</p>
