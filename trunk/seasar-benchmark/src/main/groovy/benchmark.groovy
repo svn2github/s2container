@@ -1,6 +1,6 @@
 import benchmark.main.BenchmarkMain
 
-memorySize = "1024M"
+memorySize = "512M"
 permSize = "384M"
 repeatCount = 5
 

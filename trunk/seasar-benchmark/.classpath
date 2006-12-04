@@ -6,24 +6,24 @@
 	<classpathentry output="target/test-classes" kind="src" path="src/test/resources"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/many-beans.jar"/>
-	<classpathentry kind="lib" path="lib/seasar-2.4.0-beta-1/aopalliance-1.0.jar"/>
-	<classpathentry kind="lib" path="lib/seasar-2.4.0-beta-1/commons-logging-1.0.4.jar"/>
-	<classpathentry kind="lib" path="lib/seasar-2.4.0-beta-1/geronimo-j2ee_1.4_spec-1.0.jar"/>
-	<classpathentry kind="lib" path="lib/seasar-2.4.0-beta-1/geronimo-jta_1.0.1B_spec-1.0.jar"/>
-	<classpathentry kind="lib" path="lib/seasar-2.4.0-beta-1/hsqldb-1.8.0.1.jar"/>
-	<classpathentry kind="lib" path="lib/seasar-2.4.0-beta-1/javassist-3.0.jar"/>
-	<classpathentry kind="lib" path="lib/seasar-2.4.0-beta-1/junit-3.8.1.jar"/>
-	<classpathentry kind="lib" path="lib/seasar-2.4.0-beta-1/log4j-1.2.13.jar"/>
-	<classpathentry kind="lib" path="lib/seasar-2.4.0-beta-1/ognl-2.6.7.jar"/>
-	<classpathentry kind="lib" path="lib/seasar-2.4.0-beta-1/poi-2.5.1-final-20040804.jar"/>
-	<classpathentry kind="lib" path="lib/seasar-2.4.0-beta-1/s2-extension-2.4.0-beta-1.jar"/>
-	<classpathentry kind="lib" path="lib/seasar-2.4.0-beta-1/s2-framework-2.4.0-beta-1.jar"/>
-	<classpathentry kind="lib" path="lib/spring-framework-2.0-m3/spring-aop.jar"/>
-	<classpathentry kind="lib" path="lib/spring-framework-2.0-m3/spring-beans.jar"/>
-	<classpathentry kind="lib" path="lib/spring-framework-2.0-m3/spring-context.jar"/>
-	<classpathentry kind="lib" path="lib/spring-framework-2.0-m3/spring-core.jar"/>
-	<classpathentry kind="lib" path="lib/spring-framework-2.0-m3/spring-support.jar"/>
-	<classpathentry kind="lib" path="lib/spring-framework-2.0-m3/cglib-nodep-2.1_3.jar"/>
+	<classpathentry kind="lib" path="lib/seasar-2.4.5/aopalliance-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/seasar-2.4.5/commons-logging-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/seasar-2.4.5/geronimo-j2ee_1.4_spec-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/seasar-2.4.5/geronimo-jta_1.0.1B_spec-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/seasar-2.4.5/hsqldb-1.8.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/seasar-2.4.5/javassist-3.3.ga.jar"/>
+	<classpathentry kind="lib" path="lib/seasar-2.4.5/junit-3.8.2.jar"/>
+	<classpathentry kind="lib" path="lib/seasar-2.4.5/log4j-1.2.13.jar"/>
+	<classpathentry kind="lib" path="lib/seasar-2.4.5/ognl-2.6.7.jar"/>
+	<classpathentry kind="lib" path="lib/seasar-2.4.5/poi-2.5.1-final-20040804.jar"/>
+	<classpathentry kind="lib" path="lib/seasar-2.4.5/s2-extension-2.4.5.jar"/>
+	<classpathentry kind="lib" path="lib/seasar-2.4.5/s2-framework-2.4.5.jar"/>
+	<classpathentry kind="lib" path="lib/spring-framework-2.0/spring-aop.jar"/>
+	<classpathentry kind="lib" path="lib/spring-framework-2.0/spring-beans.jar"/>
+	<classpathentry kind="lib" path="lib/spring-framework-2.0/spring-context.jar"/>
+	<classpathentry kind="lib" path="lib/spring-framework-2.0/spring-core.jar"/>
+	<classpathentry kind="lib" path="lib/spring-framework-2.0/spring-support.jar"/>
+	<classpathentry kind="lib" path="lib/spring-framework-2.0/cglib-nodep-2.1_3.jar"/>
 	<classpathentry kind="lib" path="lib/commons-cli-1.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
