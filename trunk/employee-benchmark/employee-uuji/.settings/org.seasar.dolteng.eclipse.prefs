@@ -1,0 +1,11 @@
+#Tue Dec 05 14:26:39 JST 2006
+DaoType=Uuji
+DefaultDaoPackage=org.seasar.employee.uuji.dao
+DefaultDtoPackage=org.seasar.employee.uuji.dto
+DefaultEntityPackage=org.seasar.employee.uuji.entity
+DefaultResourcePath=/employee-uuji/src/main/resources
+DefaultSrcPath=/employee-uuji/src/main/java
+DefaultWebPackage=org.seasar.employee.uuji.web
+ServletPath=/employee-uuji
+WebContentsRoot=src/main/webapp/
+eclipse.preferences.version=1
