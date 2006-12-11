@@ -110,6 +110,7 @@ font-size : 10pt;
 <li><code><a href="#std-customizer.dicon">std-customizer.dicon</a></code>
 </ul>
 </li>
+<li><a href="#customize">標準diconのカスタマイズ</a></li>
 </ul>
 <h2><a name="about" id="about">概要</a></h2>
 <p>Seasr2は標準的なdiconファイルをJarファイルに含めて提供しています．これらのdiconファイルはクラスパス上に配置しなくてもインクルードするだけで利用可能です．</p>
@@ -582,7 +583,12 @@ S2Hibernate-JPA・S2TopLink-JPAから利用されます．
 <p><code>std-customizer.dicon</code>は通常<code>default-customizer.dicon</code>からインクルードされます．利用者は<code>customizer.dicon</code>から<code>default-customizer.dicon</code>をインクルードすることにより，<code>std-customizer.dicon</code>に定義されたCustomizerを利用することができます．</p>
 <h4>定義</h4>
 <p><code>std-customizer.dicon</code>の最新版の定義内容を以下に示します (リリース済みの内容とは異なる場合があります)．</p>
-<iframe src="http://svn.seasar.org/browse/trunk/seasar2/s2-framework/src/main/resources/std-customizer.dicon?root=s2container&view=co" width="100%" scrolling="AUTO"></iframe><!-- document end --><!-- document end -->
+<iframe src="http://svn.seasar.org/browse/trunk/seasar2/s2-framework/src/main/resources/std-customizer.dicon?root=s2container&view=co" width="100%" scrolling="AUTO"></iframe>
+<h2><a name="customize">標準diconのカスタマイズ</a></h2>
+<p>標準diconは必要に応じてカスタマイズして利用することができます．</p>
+<p>標準diconのカスタマイズは，変更したdiconファイルをJarファイルより優先されるクラスパス上に配置してください．Webアプリケーションでは<code>WEB-INF/classes</code>直下に置くことができます．</p>
+<p>カスタマイズしたdiconをアプリケーションのJarファイルに含むことは推奨しません．Webアプリケーションの場合，<code>WEB-INF/lib</code>にある複数のJarファイルがどのような順序でクラスパスに設定されるかはServlet仕様では未定義であり，同名のdiconファイルがどのJarから読み込まれるか制御できないことに注意してください．</p>
+<!-- document end --><!-- document end -->
 <!-- don't edit start --></td>
 <td width="14"><img height="14" width="14" src="images/spacer.gif" alt=""></td>
 </tr>
