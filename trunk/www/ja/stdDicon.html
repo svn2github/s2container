@@ -111,6 +111,17 @@ font-size : 10pt;
 </ul>
 </li>
 <li><a href="#customize">標準diconのカスタマイズ</a></li>
+<li><a href="#userDefined">利用者が作成するdiconファイル</a>
+<ul>
+<li><code><a href="#app.dicon">app.dicon</a></code>
+<li><code><a href="#app-aop.dicon">app-aop.dicon</a></code>
+<li><code><a href="#jdbc.dicon">jdbc.dicon</a></code>
+<li><code><a href="#s2container.dicon">s2container.dicon</a></code>
+<li><code><a href="#convention.dicon">convention.dicon</a></code>
+<li><code><a href="#creator.dicon">creator.dicon</a></code>
+<li><code><a href="#customizer.dicon">customizer.dicon</a></code>
+</ul>
+</li>
 </ul>
 <h2><a name="about" id="about">概要</a></h2>
 <p>Seasr2は標準的なdiconファイルをJarファイルに含めて提供しています．これらのdiconファイルはクラスパス上に配置しなくてもインクルードするだけで利用可能です．</p>
@@ -586,8 +597,86 @@ S2Hibernate-JPA・S2TopLink-JPAから利用されます．
 <iframe src="http://svn.seasar.org/browse/trunk/seasar2/s2-framework/src/main/resources/std-customizer.dicon?root=s2container&view=co" width="100%" scrolling="AUTO"></iframe>
 <h2><a name="customize">標準diconのカスタマイズ</a></h2>
 <p>標準diconは必要に応じてカスタマイズして利用することができます．</p>
-<p>標準diconのカスタマイズは，変更したdiconファイルをJarファイルより優先されるクラスパス上に配置してください．Webアプリケーションでは<code>WEB-INF/classes</code>直下に置くことができます．</p>
+<p>標準diconのカスタマイズは，変更したdiconファイルをJarファイルより優先されるクラスパス上に配置してください．Webアプリケーションでは通常<code>WEB-INF/classes</code>直下に配置します．</p>
 <p>カスタマイズしたdiconをアプリケーションのJarファイルに含むことは推奨しません．Webアプリケーションの場合，<code>WEB-INF/lib</code>にある複数のJarファイルがどのような順序でクラスパスに設定されるかはServlet仕様では未定義であり，同名のdiconファイルがどのJarから読み込まれるか制御できないことに注意してください．</p>
+<h2><a name="userDefined">利用者が作成するdiconファイル</a></h2>
+<p>一般的なアプリケーションで利用者が作成する主なdiconファイルを以下に示します．</p>
+<ul>
+<li><code>app.dicon</code>
+<li><code>app-aop.dicon</code>
+<li><code>jdbc.dicon</code>
+<li><code>s2container.dicon</code>
+<li><code>convention.dicon</code>
+<li><code>creator.dicon</code>
+<li><code>customizer.dicon</code>
+</ul>
+<p>上記以外に利用するプロダクトによって必要となるdiconファイルがある場合があります．詳細は利用するプロダクトのドキュメントを参照してください．</p>
+<h3><code><a name="app.dicon">app.dicon</a></code></h3>
+<p>アプリケーションを構成するルートとなるdiconファイルです．</p>
+<h4>名前空間</h4>
+<p>通常名前空間は必要ありません．</p>
+<h4>依存するdicon</h4>
+<p>必要に応じて<code>app.dicon</code>や<code>j2ee.dicon</code>など他のdiconファイルをインクルードします．</p>
+<h3><code><a name="app-aop.dicon">app-aop.dicon</a></code></h3>
+<p>アプリケーション固有のアスペクトを定義するdiconファイルで，アプリケーションで独自のインターセプタを利用する場合に必要となります．</p>
+<h4>名前空間</h4>
+<p>通常名前空間は必要ありません．</p>
+<h4>依存するdicon</h4>
+<p><code>app-aop.dicon</code>は通常<code>aop.dicon</code>をインクルードします．</p>
+<h4>利用方法</h4>
+<p><code>app-aop.dicon</code>は通常<code>app.dicon</code>からインクルードされます．</p>
+<h3><code><a name="jdbc.dicon">jdbc.dicon</a></code></h3>
+<p><code>jdbc.dicon</code>はJDBCデータソースを定義するdiconファイルで，S2JDBCやS2Dao・Uuji・Kuina-Daoなどを利用してRDBMSにアクセスする場合に必要となります．</p>
+<p>通常はSeasar2配布ファイルの<code>resources/jdbc.dicon</code>を利用者の環境に合わせて修正して利用してください．</p>
+<h4>名前空間</h4>
+<p><code>jdbc</code></p>
+<h4>依存するdicon</h4>
+<p>UujiまたはKuina-Daoを利用する場合は<code>jdbc.dicon</code>から<code>jdbc-extension.dicon</code>をインクルードしてください．</p>
+<h4>利用方法</h4>
+<p><code>jdbc.dicon</code>は<code>j2ee.dicon</code>からインクルードされます．RDBMSを利用しない場合でも，<code>j2ee.dicon</code>を利用する場合は<code>jdbc.dicon</code>が必要になります．このような場合は<code>&lt;component&gt;</code>要素がない，空のdiconファイルを<code>jdbc.dicon</code>として用意してください．</p>
+<h3><code><a name="s2container.dicon">s2container.dicon</a></code></h3>
+<p><code>s2container.dicon</code>はS2コンテナをカスタマイズするための設定を定義するdiconファイルで，SMART deployを利用する場合に必要となります．</p>
+<h4>名前空間</h4>
+<p>通常名前空間は必要ありません．</p>
+<h4>依存するdicon</h4>
+<p>SMART deployを利用する場合，<code>s2container.dicon</code>からは<code>hotdeploy.dicon・warmdeploy.dicon・cooldeploy.dicon</code>のいずれか一つあるいは二つをインクルードします．二つをインクルードする場合は条件インクルードを利用します．利用例は<code><a href="#hotdeploy.dicon">hotdeploy.dicon</a>・<a href="#warmdeploy.dicon">warmdeploy.dicon</a>・<a href="#cooldeploy.dicon">cooldeploy.dicon</a></code>の項目を参照してください．</p>
+<h4>利用方法</h4>
+<p><code>s2container.dicon</code>はS2コンテナをカスタマイズするためのルートとなるdiconファイルで，他のdiconファイルからはインクルードされません．<code>app.dicon</code>とは別のコンテナ階層を構築します．</p>
+<h3><code><a name="convention.dicon">convention.dicon</a></code></h3>
+<p><code>convention.dicon</code>はアプリケーションのネーミング規約を定義するdiconファイルで，SMART deployを利用する場合に必要となります．</p>
+<p>通常はSeasar2配布ファイルの<code>resources/convention.dicon</code>を利用者の環境に合わせて修正して利用してください．</p>
+<h4>名前空間</h4>
+<p>通常名前空間は必要ありません．</p>
+<h4>利用方法</h4>
+<p><code>convention.dicon</code>は<code>hotdeploy.dicon・warmdeploy.dicon・cooldeploy-autoregister.dicon</code>などからインクルードされます．</p>
+<h4>定義</h4>
+<p>Seasar2配布ファイルの<code>resource/convention.dicon</code>の最新版の定義内容を以下に示します (リリース済みの内容とは異なる場合があります)．</p>
+<iframe src="http://svn.seasar.org/browse/trunk/seasar2/s2-framework/src/test/resources/convention.dicon?root=s2container&view=co" width="100%" scrolling="AUTO"></iframe>
+<h3><code><a name="creator.dicon">creator.dicon</a></code></h3>
+<p><code>creator.dicon</code>はネーミング規約に基づいてコンポーネント定義を作成するCreatorを定義するdiconファイルで，SMART deployを利用する場合に必要となります．</p>
+<p>通常はSeasar2配布ファイルの<code>resources/creator.dicon</code>を利用者の環境に合わせて修正して利用してください．</p>
+<h4>名前空間</h4>
+<p>通常名前空間は必要ありません．</p>
+<h4>依存するdicon</h4>
+<p>通常<code>creator.dicon</code>は<code>convention.dicon・customizer.dicon</code>をインクルードします．</p>
+<h4>利用方法</h4>
+<p><code>creator.dicon</code>は<code>hotdeploy.dicon・warmdeploy.dicon・cooldeploy-autoregister.dicon</code>などからインクルードされます．</p>
+<h4>定義</h4>
+<p>Seasar2配布ファイルの<code>resource/cretor.dicon</code>の最新版の定義内容を以下に示します (リリース済みの内容とは異なる場合があります)．</p>
+<iframe src="http://svn.seasar.org/browse/trunk/seasar2/s2-framework/src/test/resources/creator.dicon?root=s2container&view=co" width="100%" scrolling="AUTO"></iframe>
+<h3><code><a name="customizer.dicon">customizer.dicon</a></code></h3>
+<p><code>customizer.dicon</code>はCreatorが作成したコンポーネント定義をカスタマイズするCustomizerを定義するdiconファイルで，SMART deployを利用する場合に必要となります．</p>
+<p>通常はSeasar2配布ファイルの<code>resources/customizer.dicon</code>を利用者の環境に合わせて修正して利用してください．</p>
+<h4>名前空間</h4>
+<p>通常名前空間は必要ありません．</p>
+<p><code>customizer.dicon</code>は<code>hotdeploy.dicon・warmdeploy.dicon・cooldeploy-autoregister.dicon</code>などからインクルードされます．</p>
+<h4>依存するdicon</h4>
+<p><code>customizer.dicon</code>は通常<code><a href="#default-customizer.dicon">default-customizer.dicon</a></code>をインクルードします．</p>
+<h4>利用方法</h4>
+<p><code>customizer.dicon</code>は<code>hotdeploy.dicon・warmdeploy.dicon・cooldeploy-autoregister.dicon</code>などからインクルードされます．</p>
+<h4>定義</h4>
+<p>Seasar2配布ファイルの<code>resource/customizer.dicon</code>の最新版の定義内容を以下に示します (リリース済みの内容とは異なる場合があります)．</p>
+<iframe src="http://svn.seasar.org/browse/trunk/seasar2/s2-framework/src/test/resources/customizer.dicon?root=s2container&view=co" width="100%" scrolling="AUTO"></iframe>
 <!-- document end -->
 <!-- don't edit start --></td>
 <td width="14"><img height="14" width="14" src="images/spacer.gif" alt=""></td>
