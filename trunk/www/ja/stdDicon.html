@@ -634,6 +634,9 @@ S2Hibernate-JPA・S2TopLink-JPAから利用されます．
 <p>UujiまたはKuina-Daoを利用する場合は<code>jdbc.dicon</code>から<code>jdbc-extension.dicon</code>をインクルードしてください．</p>
 <h4>利用方法</h4>
 <p><code>jdbc.dicon</code>は<code>j2ee.dicon</code>からインクルードされます．RDBMSを利用しない場合でも，<code>j2ee.dicon</code>を利用する場合は<code>jdbc.dicon</code>が必要になります．このような場合は<code>&lt;component&gt;</code>要素がない，空のdiconファイルを<code>jdbc.dicon</code>として用意してください．</p>
+<h4>定義</h4>
+<p>Seasar2配布ファイルの<code>resource/jdbc.dicon</code>の最新版の定義内容を以下に示します (リリース済みの内容とは異なる場合があります)．</p>
+<iframe src="http://svn.seasar.org/browse/trunk/seasar2/s2-extension/src/test/resources/jdbc.dicon?root=s2container&view=co" width="100%" scrolling="AUTO"></iframe>
 <h3><code><a name="s2container.dicon">s2container.dicon</a></code></h3>
 <p><code>s2container.dicon</code>はS2コンテナをカスタマイズするための設定を定義するdiconファイルで，SMART deployを利用する場合に必要となります．</p>
 <h4>名前空間</h4>
