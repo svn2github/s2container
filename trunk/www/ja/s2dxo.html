@@ -677,16 +677,17 @@ public interface FooDxo {
     EmployeePage convert(Employee employee);
 }
 </pre>
-<p>DXOインタフェースがメソッドをオーバーロードしている場合は，引数型の非修飾名をアンダースコア区切りで並べて指定することもできます．</p>
-<pre>
-public interface BarDxo {
-    String convert_Employee_CONVERSION_RULE = "ename : name, dname : department.name";
+<p>DXOインタフェースがメソッドをオーバーロードしている場合は，引数型の非修飾名をアンダースコア区切りで並べて指定することもできます．引数型が配列型の場合は配列要素の型名の後ろに'$'を付加します．'$'は配列の次元と同じ数だけ並べます．</p>
+<pre>public interface BarDxo {
+    String convert_Employee_CONVERSION_RULE = &quot;ename : name&quot;;
     EmployeePage convert(Employee employee);
 
+    String convert_Employee$_CONVERSION_RULE = &quot;ename : name, dname : department.name&quot;;
+    EmployeePage[] convert(Employee[] employees);
+
     DepartmentPage convert(Department department);
-}
-</pre>
-<p>この場合，変換ルールは<code>convert(Employee)</code>メソッドにのみ適用され，<code>convert(Department)</code>には適用されません．</p>
+}</pre>
+<p>この場合，最初の変換ルールは<code>convert(Employee)</code>メソッドにのみ適用され，2番目の変換ルールはconvert(Employee[])メソッドにのみ適用されます．<code>convert(Department)</code>メソッドにはどちらの変換ルールも適用されません．</p>
 <p>引数型の指定されない変換ルールは，同じ名前のメソッド全てに適用されます．引数型を伴う変換ルールと引数型のない変換ルールが混在する場合は，引数型の一致する変換ルールのあるメソッドはその変換ルールが，引数型の一致する変換ルールがないメソッドは引数型を伴わない変換ルールが適用されます．</p>
 <h4>Tigerアノテーション</h4>
 <p>Tigerアノテーションでは，DXOメソッドのアノテーションとして次のように指定します．</p>
