@@ -67,7 +67,13 @@ public class ClassPattern {
     }
 
     public boolean isAppliedPackageName(String pName) {
-        return pName == null ? packageName == null : pName
-                .startsWith(packageName);
+        if (pName == null || packageName == null) {
+            return pName == packageName;
+        }
+        return appendDelimiter(pName).startsWith(appendDelimiter(packageName));
+    }
+
+    protected static String appendDelimiter(final String name) {
+        return name.endsWith(".") ? name : name + ".";
     }
 }
