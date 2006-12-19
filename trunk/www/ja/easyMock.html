@@ -91,6 +91,7 @@ font-size : 10pt;
 <p>Seasar2ではEasyMock2.2をサポートしています．EasyMock Class Extensionはサポートしていません．</p>
 <p>EasyMock2.2はJava5で導入されたGenericsを使用しているため，J2SE1.4では利用できません．</p>
 <p>Seasar2のEasyMockサポートを利用するにはS2-Tigerが必要です．</p>
+<p>Seasar2のEasyMockサポートはJUnit3とJUnit4の両方をサポートします．</p>
 <h3><a name="story">EasyMockを使ったテストの流れ</a></h3>
 <p>EasyMockを使ったテストの流れを以下に示します．</p>
 <ul>
@@ -102,13 +103,24 @@ font-size : 10pt;
 <p>モックとインタラクションする「replay」モードのコードが本来のテストコードになります．</p>
 <p>Seasar2のEasyMockサポートもこの流れに沿ったテストを支援します．</p>
 <h2><a name="testClass">テストクラス</a></h2>
-<p>EasyMockを使ったテストのために次の二つの抽象クラスが提供されています．</p>
+
+<h3>JUnit3</h3>
+<p>JUnit3でEasyMockを使ったテストを行うために，次の二つの抽象クラスが提供されています．</p>
 <dl>
 <dt><code>org.seasar.framework.unit.EasyMockTestCase</code>
 <dd><code>junit.framework.TestCase</code>の派生クラスで，S2コンテナを利用しない場合に使用します．
 <dt><code>org.seasar.framework.unit.S2EasyMockTestCase</code>
 <dd><code>org.seasar.framework.unit.S2TestCase</code>の派生クラスで，S2コンテナを利用する場合に使用します．
 </dl>
+<pre>public class HogeTest extends S2EasyMockTestCase {
+    ・・・
+}</pre>
+<h3>JUnit4</h3>
+<p>JUnit4でEasyMockを使ったテストを行うには，<a href="S2JUnit4.html">S2JUnit4</a>のRunnerを使用します．</p>
+<pre>@RunWith(Seasar2.class)
+public class HogeTest {
+    ・・・
+}</pre>
 <h2><a name="createMock">モックの作成</a></h2>
 <h3><a name="annotationCreate">アノテーションによるモックの作成</a></h3>
 <p>モックを作成するにはテストクラスのフィールドに<code>@EasyMock</code>アノテーションを指定します．</p>
