@@ -88,10 +88,12 @@ font-size : 10pt;
 <p><a href="http://www.easymock.org/">EasyMock</a>はモックを利用したテストのためのフレームワークです．モックの振る舞いを設定するのにメソッド名などを文字列で指定するのではなく，インタフェースのメソッド呼び出しで指定することができるため，タイプミスを防げる・エディタの入力補完を利用できる・リファクタリングに追従しやすいなどのメリットがあります．</p>
 <p>Seasar2のEasyMockサポートを使うとEasyMockを利用するための定型的なコードの記述を減少することができるため，モックを使ったテストがより簡単になります．</p>
 <h3><a name="requisite" id="requisite">前提条件</a></h3>
-<p>Seasar2ではEasyMock2.2をサポートしています．EasyMock Class Extensionはサポートしていません．</p>
-<p>EasyMock2.2はJava5で導入されたGenericsを使用しているため，J2SE1.4では利用できません．</p>
-<p>Seasar2のEasyMockサポートを利用するにはS2-Tigerが必要です．</p>
-<p>Seasar2のEasyMockサポートはJUnit3とJUnit4の両方をサポートします．</p>
+<ul>
+<li>Seasar2ではEasyMock2.2をサポートしています．</li>
+<li>EasyMock Class Extensionはサポートしていません．</li>
+<li>EasyMock2.2はJava5で導入されたGenericsを使用しているため，J2SE1.4では利用できません．</li>
+<li>Seasar2のEasyMockサポートを利用するにはS2-Tigerが必要です．</li>
+</ul>
 <h3><a name="story">EasyMockを使ったテストの流れ</a></h3>
 <p>EasyMockを使ったテストの流れを以下に示します．</p>
 <ul>
@@ -103,7 +105,7 @@ font-size : 10pt;
 <p>モックとインタラクションする「replay」モードのコードが本来のテストコードになります．</p>
 <p>Seasar2のEasyMockサポートもこの流れに沿ったテストを支援します．</p>
 <h2><a name="testClass">テストクラス</a></h2>
-
+<p>Seasar2のEasyMockサポートはJUnit3とJUnit4の両方をサポートします．</p>
 <h3>JUnit3</h3>
 <p>JUnit3でEasyMockを使ったテストを行うために，次の二つの抽象クラスが提供されています．</p>
 <dl>
@@ -144,7 +146,7 @@ public class HogeTest {
 デフォルトモードのモックは指定されていないメソッドが呼び出されると例外をスローしますが，メソッドの呼び出し順は無視します．
 <dt><code>STRICT</code>
 <dd>Strictモードのモックを作成します．<br>
-Strictモードのモックは指定された通りの順でメソッドが呼び出されないと例外をスローします．
+Strictモードのモックは指定されていないメソッドが呼び出されると例外をスローします．指定されたメソッドであっても，指定された通りの順でメソッドが呼び出されないと例外をスローします．
 <dt><code>NICE</code>
 <dd>Niceモードのモックを作成します．Niceモードのモックは指定されていないメソッド呼び出しが行われても例外をスローしません．
 </dl>
@@ -158,7 +160,7 @@ Strictモードのモックは指定された通りの順でメソッドが呼�
 <p>モックのコンポーネント名はフィールド名となります．</p>
 <p>モックの登録はS2コンテナの初期化前に行われるため，登録されたモックは他のコンポーネントにDIされる対象となります．モックに対するDIは行われません．</p>
 <h3><a name="explicitCreate">明示的にモックを作成する</a></h3>
-<p><code>@EasyMock</code>アノテーションを使わず，<code>setUp()</code>メソッドまたは<code>setUpXxx()</code>メソッド (<code>S2EasyMockTestCase</code>のサブクラスのみ) の中で明示的にモックを作成することもできます．それには以下のメソッドを使用します．</p>
+<p>JUnit3では，<code>@EasyMock</code>アノテーションを使わず，<code>setUp()</code>メソッドまたは<code>setUpXxx()</code>メソッド (<code>S2EasyMockTestCase</code>のサブクラスのみ) の中で明示的にモックを作成することもできます．それには以下のメソッドを使用します．</p>
 <ul>
 <li><code>T createMock(Class&lt;T&gt;)</code>
 <li><code>T createStrictMock(Class&lt;T&gt;)</code>
