@@ -284,10 +284,10 @@ instance属性がsingleton以外でないと正しく動作しないInterceptor�
 <p>org.seasar.framework.aop.intertype.PropertyInterType</p>
 <h5>説明</h5>
 <p>フィールドに対するsetter / getterメソッドを追加するInterTypeです。<br />
-PropertyInterTypeを使うには、S2TigerまたはS2Backport175が必要です。</p>
+PropertyInterTypeを使うには、S2Tigerが必要です。</p>
 <h5>注意点</h5>
 <p>privateのフィールドに対するgetter / setterは作成されません。<br />
-フィールドはprotectedにしてください。</p>
+フィールドはprotectedにしてください(public でも可)。</p>
 <pre>
 &lt;component class="Hoge"&gt;
     &lt;interType&gt;
