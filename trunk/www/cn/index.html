@@ -1,0 +1,891 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cn" lang="cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312"/>
+<meta http-equiv="Content-Language" content="cn" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="keywords" content="Seasar2, S2Container, DI, AOP, Dependency Injection, Aspect Oriented Programming, The Seasar Foundation, OSS, 开放源代码软件, Java, 框架" />
+<meta name="description" content="我们Seasar项目组是以开放源代码的组成方式，为开发者提供一个能够实现从容开发产品的环境，从而帮助使用者和开发者一起分享欢喜和快乐，这是我们的宗旨与目标。" />
+<title>The Seasar Project</title>
+<link rel="stylesheet" type="text/css" href="http://www.seasar.org/theme/main.css" media="screen,projection" />
+<link rel="stylesheet" type="text/css" href="http://www.seasar.org/theme/print.css" media="print" />
+</head>
+
+<body>
+
+<div id="wrapper">
+
+<div id="header">
+
+<div class="line"><span class="hide">spacer</span></div>
+
+<div id="logo"><h1 id="h01" class="hide">The Seasar Project</h1><img src="http://www.seasar.org/images/seasar_logo_blue.gif" alt="The Seasar Project" width="390" height="180" /></div>
+
+<div id="tool">
+
+<h2><a href="http://search.seasar.org/">Site Search</a></h2>
+
+<form id="search" name="search" action="http://search.seasar.org/">
+<div>
+	<input id="search_phrase" type="text" name="phrase" size="20" />
+	<input type="hidden" name="perpage" value="30" />
+	<input type="hidden" name="enc" value="Shift-JIS" />
+	<input id="search_go" type="submit" value="检索" />
+</div>
+</form>
+
+<h2>Seasar Banner</h2>
+
+<p><a href="http://www.seasar.org/images/seasar_banner.gif"><img src="http://www.seasar.org/images/seasar_banner.gif" alt="Seasar Banner" title="Seasar Banner" width="146" height="33" /></a></p>
+
+</div>
+
+<div id="navi">
+<p><a href="./en/index.html">English</a> | <a href="http://www.seasar.org/index.html">Japanese</a> | Chinese (中文文档正在逐步译制中……)
+</p>
+</div>
+
+</div><!-- header -->
+
+<div id="contents_left">
+
+<h2>菜单</h2>
+
+<ul>
+	<li><a href="./wiki/">新闻 &amp; Wiki</a></li>
+	<li><a href="http://ml.seasar.org/">邮件列表</a></li>
+	<li><a href="https://www.seasar.org/issues/">问题追踪</a></li>
+	<li><a href="https://www.seasar.org/svn/">SVN Repository</a></li>
+	<li><a href="http://svn.seasar.org/browse/">SVN Repository 浏览</a></li>
+	<li><a href="./feed/">RSS Feed</a></li>
+	<li><a href="./license/">许可证</a></li>
+	<li><a href="https://www.seasar.org/members/">会员网页</a></li>
+</ul>
+
+<ul>
+	<li><a href="http://event.seasar.org/">活动</a></li>
+	<li><a href="http://www.seasarfoundation.org/">基金会</a></li>
+	<li><a href="http://server.seasar.org/">服务小组</a></li>
+	<li><a href="./resources.html">各类资源代码</a></li>
+</ul>
+
+<h2>Java 项目</h2>
+
+<h3>S2Container.Java</h3>
+
+<ul>
+	<li><a href="http://s2container.seasar.org/ja/">Seasar2 (S2Container)</a></li>
+</ul>
+
+<h3>Presentation.Java</h3>
+
+<ul>
+	<li><a href="http://mayaa.seasar.org/">Mayaa</a></li>
+	<li><a href="./s2flex.html">S2Flex</a></li>
+	<li><a href="http://s2jsf.seasar.org/ja/">S2JSF</a></li>
+	<li><a href="./S2OpenAMF.html">S2OpenAMF</a></li>
+	<li><a href="http://s2struts.seasar.org/ja/">S2Struts</a></li>
+	<li><a href="./s2tapestry.html">S2Tapestry</a></li>
+	<li><a href="http://teeda.seasar.org/ja/">Teeda</a></li>
+</ul>
+
+<h3>Persistence.Java</h3>
+
+<ul>
+	<li><a href="http://kuina.seasar.org/">Kuina</a></li>
+	<li><a href="http://s2dao.seasar.org/ja/index.html">S2Dao</a></li>
+	<li><a href="http://s2dxo.seasar.org/">S2Dxo</a></li>
+	<li><a href="http://s2hibernate.seasar.org/ja/index.html">S2Hibernate</a></li>
+</ul>
+
+<h3>Communication.Java</h3>
+
+<ul>
+	<li><a href="http://s2axis.seasar.org/ja/">S2Axis</a></li>
+	<li><a href="http://s2remoting.seasar.org/ja/">S2Remoting</a></li>
+	<li><a href="http://s2rmi.seasar.org/ja/">S2RMI</a></li>
+</ul>
+
+<h3>Tools.Java</h3>
+
+<ul>
+	<li><a href="http://kijimuna.seasar.org/">Kijimuna</a></li>
+	<li><a href="./s2jsfplugin.html">S2JSF插件</a></li>
+</ul>
+
+<h3>AllInOne.Java</h3>
+
+<ul>
+	<li><a href="http://allinone.seasar.org/">AllInOne</a></li>
+	<li><a href="http://chura.seasar.org/">Chura</a></li>
+</ul>
+
+<h3>Sandbox.Java</h3>
+
+<ul>
+	<li><a href="http://akabana.sandbox.seasar.org/">Akabana</a></li>
+	<li><a href="http://cadhelin.sandbox.seasar.org/">Cadhelin</a></li>
+	<li><a href="http://cubby.sandbox.seasar.org/">Cubby</a></li>
+	<li><a href="http://dbflute.sandbox.seasar.org/ja/">DBFlute</a></li>
+	<li><a href="http://dblauncher.sandbox.seasar.org/">DbLauncher</a></li>
+	<li><a href="http://eclipsecommon.sandbox.seasar.org/">Seasar Eclipse Common</a></li>
+	<li><a href="http://kikainekomocker.sandbox.seasar.org/">机器猫莫卡</a></li>
+	<li><a href="http://kvasir.sandbox.seasar.org/">Kvasir/Sora</a></li>
+	<li><a href="http://nadejako.sandbox.seasar.org/">纳德加考</a></li>
+	<li><a href="http://maihime.sandbox.seasar.org/ja/">舞姬</a></li>
+	<li><a href="http://maven-backport175.sandbox.seasar.org/">maven-backport175-plugin</a></li>
+	<li><a href="http://mistral.sandbox.seasar.org/">Mistral</a></li>
+	<li><a href="http://s2ana.sandbox.seasar.org/ja/index.html">S2AnA</a></li>
+	<li><a href="http://s2buri.sandbox.seasar.org/">S2Buri</a></li>
+	<li><a href="http://s2coffee.sandbox.seasar.org/">S2Coffee</a></li>
+	<li><a href="http://s2continuations.sandbox.seasar.org/">S2Continuations</a></li>
+	<li><a href="http://s2dao-codegen.sandbox.seasar.org/">S2Dao-CodeGen</a></li>
+	<li><a href="http://s2daoplugin.sandbox.seasar.org/">S2DaoPlugin</a></li>
+	<li><a href="http://s2directory.sandbox.seasar.org/">S2Directory</a></li>
+	<li><a href="http://s2ebi.sandbox.seasar.org/">S2Ebi</a></li>
+	<li><a href="http://s2flex2.sandbox.seasar.org/ja/">S2Flex2</a></li>
+	<li><a href="http://s2hessian.sandbox.seasar.org/">S2Hessian</a></li>
+	<li><a href="http://s2javelin.sandbox.seasar.org/s2javelin.html">S2Javelin</a></li>
+	<li><a href="http://s2jca.sandbox.seasar.org/ja/">S2JCA</a></li>
+	<li><a href="http://s2jcr.sandbox.seasar.org/ja/index.html">S2JCR</a></li>
+	<li><a href="http://s2jface.sandbox.seasar.org/">S2JFace</a></li>
+	<li><a href="http://s2jms.sandbox.seasar.org/ja/">S2JMS</a></li>
+	<li><a href="http://s2javelin.sandbox.seasar.org/s2jmxjavelin.html">S2JmxJavelin</a></li>
+	<li><a href="http://s2kestrel.sandbox.seasar.org/">S2Kestrel</a></li>
+	<li><a href="http://s2laszlo.sandbox.seasar.org/">S2Laszlo</a></li>
+	<li><a href="http://s2mai.sandbox.seasar.org/">S2Mai</a></li>
+	<li><a href="http://s2portlet.sandbox.seasar.org/ja/index.html">S2Portlet</a></li>
+	<li><a href="http://s2sao.sandbox.seasar.org/">S2Sao</a></li>
+	<li><a href="http://s2sqlmap.sandbox.seasar.org/">S2SqlMap</a></li>
+	<li><a href="http://s2toplink.sandbox.seasar.org/">S2TopLink</a></li>
+	<li><a href="http://s2velocity.sandbox.seasar.org/">S2Velocity</a></li>
+	<li><a href="http://s2xwork.sandbox.seasar.org/">S2XWork</a></li>
+	<li><a href="http://seasar-genapp.sandbox.seasar.org/">Seasar-genapp</a></li>
+	<li><a href="http://tuigwaa.sandbox.seasar.org/">Tuigwaa</a></li>
+</ul>
+
+<h2>.NET 项目</h2>
+
+<h3>Seasar.NET</h3>
+
+<ul>
+	<li><a href="http://s2container.net.seasar.org/ja/">S2Container.NET</a></li>
+	<li><a href="http://s2dao.net.seasar.org/ja/">S2Dao.NET</a></li>
+</ul>
+
+<h3>Sandbox.NET</h3>
+
+<ul>
+	<li><a href="http://henshimosql.net.sandbox.seasar.org/">Henshimosql.NET</a></li>
+	<li><a href="http://kurohoppy.net.sandbox.seasar.org/">Kurohoppy.NET</a></li>
+	<li><a href="http://controls.net.sandbox.seasar.org/">Seasar.Controls.NET</a></li>
+	<li><a href="http://s2remoting.net.sandbox.seasar.org/">S2Remoting.NET</a></li>
+</ul>
+
+<h2>PHP 项目</h2>
+
+<h3>Seasar.PHP</h3>
+
+<ul>
+	<li><a href="http://s2container.php5.seasar.org/">S2Container.PHP5</a></li>
+	<li><a href="http://s2dao.php5.seasar.org/">S2Dao.PHP5</a></li>
+</ul>
+
+<h3>Sandbox.PHP</h3>
+
+<ul>
+	<li><a href="http://kunit.jp/maple/">Maple.PHP</a></li>
+	<li><a href="http://s2base.php5.sandbox.seasar.org/">S2Base.PHP5</a></li>
+</ul>
+
+
+<h2>其它的项目</h2>
+
+<ul>
+	<li><a href="./wiki/index.php?SeasarJavadocProject">JavaDoc</a></li>
+	<li><a href="./wiki/index.php?cmd=read&page=S2i18n">i18n</a></li>
+</ul>
+
+<h2>非官方网站链接</h2>
+
+<ul>
+	<li><a href="http://www.wikiroom.com/oreju/?%A5%B7%A1%BC%A5%B5%A1%BC%A5%B5%A5%F3%A5%D7%A5%EB%A5%D7%A5%ED%A5%B8%A5%A7%A5%AF%A5%C8">Sample</a></li>
+	<li><a href="http://d.hatena.ne.jp/s2committer/">Committer Antenna</a></li>
+</ul>
+
+
+</div><!-- contents_left -->
+
+<div id="contents_center">
+
+<div id="article">
+
+<div class="section">
+<h2 id="h02">欢迎光临Seasar项目组</h2>
+<p>　我们Seasar项目组是以基于开放源代码的组成方式，通过为开发者提供一个能够实现从容开发产品的环境，从而帮助用户和开发者一起分享欢喜和快乐，这是我们的活动宗旨。 </p>
+</div>
+
+<div class="section">
+<h2 id="h03">Seasar2</h2>
+<p>支持DI (Dependency Injection) 和AOP (Aspect Oriented Programming)的轻量级容器、<strong>Seasar2</strong> (S2Container) 的信息敬请参照<a href="http://s2container.seasar.org/cn/">Seasar2 产品网页</a></p>
+</div>
+
+<div class="section">
+<h2 id="h04">最新新闻</h2>
+
+<div class="news">
+<ul>
+	<li><a href="./wiki/">最新信息</a>
+	<ul>
+		<!-- 如果发表新的消息，请保留相同行数，将最末一行消除 -->
+		<li>2007/01/22 <a href="http://www.seasar.org/wiki/index.php?SeasarWhatsNew%2F2007-01-22#jd81fec3">S2Dao 1.0.40 发布。</a></li>
+		<li>2007/01/22 <a href="http://www.seasar.org/wiki/index.php?SeasarWhatsNew%2F2007-01-22#r8c286f0">DBFlute 0.4.0 发布。</a></li>
+		<li>2007/01/20 <a href="http://www.seasar.org/wiki/index.php?SeasarWhatsNew%2F2007-01-20#ue8f02c1">Gusuku 0.1 发布。</a></li>
+		<li>2007/01/15 <a href="http://www.seasar.org/wiki/index.php?SeasarWhatsNew%2F2007-01-15#cdc6a90b">Dolteng 0.16.1 发布。</a></li>
+		<li>2007/01/15 <a href="http://www.seasar.org/wiki/index.php?SeasarWhatsNew%2F2007-01-15#s5040487">S2Container.NET 1.2.8 发布。</a></li>
+		<li>2007/01/15 <a href="http://www.seasar.org/wiki/index.php?SeasarWhatsNew%2F2007-01-15#rc3b32e4">S2Dao.NET 1.0.3 发布。</a></li>
+		<li>2007/01/14 <a href="http://www.seasar.org/wiki/index.php?SeasarWhatsNew%2F2007-01-14#je0ea2f8">Kuina-Dao 1.0.0-rc1 发布。</a></li>
+		<li>2007/01/14 <a href="http://www.seasar.org/wiki/index.php?SeasarWhatsNew%2F2007-01-14#d75d6148">S2TopLink-JPA 1.0.0-rc1 发布。</a></li>
+		<li>2007/01/14 <a href="http://www.seasar.org/wiki/index.php?SeasarWhatsNew%2F2007-01-14#x8c6f213">S2Hibernate-JPA 1.0.0-rc1 发布。</a></li>
+		<li>2007/01/13 <a href="http://www.seasar.org/wiki/index.php?SeasarWhatsNew%2F2007-01-13#icbc2836">Golf V0.1 发布。</a></li>
+		<!-- 这里框外信息 (请不要消除) -->
+		<li>2006/10/16 <a href="http://www.javaworld.jp/methodology_and_design/-/50609.html">基于Seasar2的JSF实装「Teeda」第2回</a></li>
+		<li>2006/10/09 <a href="http://www.javaworld.jp/methodology_and_design/-/50190.html">基于Seasar2的JSF时装「Teeda」第1回</a></li>
+		<li>2006/08/09 <a HREF="http://www.amazon.co.jp/gp/product/4774128554/">用Seasar2学习DI和AOP アスペクト指向によるJava开发</a>发售</li>
+		<li>2006/02/25 <a href="./book_info.htm"> 「Seasar入门 ～初识DI＆AOP～」发售</a></li>
+	</ul>
+	</li>
+</ul>
+</div>
+</div>
+
+<div class="section">
+<h2 id="h05"><a name="products"></a>产品一览</h2>
+
+<p>栏目导航的快捷连接</p>
+<ul>
+	<li><a href="#java">Java 项目</a>: [<a href="#s2container.java">S2Container.Java</a>] [<a href="#presentaion.java">Presentation.Java</a>] [<a href="#persistence.java">Persistence.Java</a>] [<a href="#communication.java">Communication.Java</a>] [<a href="#tools.java">Tools.Java</a>] [<a href="#allinone.java">AllInOne.Java</a>] [<a href="#sandbox.java">Sandbox.Java</a>]</li>
+	<li><a href="#dotnet">.NET 项目</a>: [<a href="#seasar.net">Seasar.NET</a>] [<a href="#sandbox.net">Sandbox.NET</a>]</li>
+	<li><a href="#php">PHP 项目/a>: [<a href="#seasar.php">Seasar.PHP</a>] [<a href="#sandbox.php">Sandbox.PHP</a>]</li>
+</ul>
+
+<h3><a name="java"></a>Java 项目</h3>
+<h4><a name="s2container.java">S2Container.Java</a></h4>
+
+<table class="list">
+<colgroup>
+<col span="1" width="120" valign="top" align="left" />
+<col span="1" width="*" valign="top" align="left" />
+<col span="1" width="50" valign="top" align="center" />
+</colgroup>
+<tbody>
+<tr>
+	<th>产品</th>
+	<th>说明</th>
+	<th>Resources</th>
+</tr>
+<tr class="a">
+	<td><a href="http://s2container.seasar.org/cn/">Seasar2<br>(S2Container)</a></td>
+	<td>支持DI (Dependency Injection) 和AOP (Aspect Oriented Programming)的轻量级容器</td>
+	<td><a href="http://s2container.seasar.org/ja/"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://s2container.seasar.org/ja/#download"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+</tbody>
+</table>
+<!--<p><a href="versions.html">※ 有关于S2和S2Dao以及S2JSF的版本相关联的</a></p>-->
+
+<h4><a name="presentaion.java">Presentation.Java</a>: 支持Web应用的设计层的Java项目</h4>
+
+<table class="list">
+<colgroup>
+<col span="1" width="120" valign="top" align="left" />
+<col span="1" width="*" valign="top" align="left" />
+<col span="1" width="50" valign="top" align="center" />
+</colgroup>
+<tbody>
+<tr>
+	<th>产品</th>
+	<th>说明</th>
+	<th>Resources</th>
+</tr>
+<tr class="a">
+	<td><a href="http://mayaa.seasar.org/">Mayaa</a></td>
+	<td>基于HTML的模版文件，据此而形成的WEB前台服务引擎</td>
+	<td><a href="http://mayaa.seasar.org/documentation/index.html"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://mayaa.seasar.org/downloads/index.html"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+<tr class="b">
+	<td><a href="s2flex.html">S2Flex</a></td>
+	<td>支持在Flash播放器中用Flex调用S2Container组件的软件库</td>
+	<td><a href="s2flex.html"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://sourceforge.jp/projects/seasar/files/?release_id=12489#12489"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+<tr class="a">
+	<td><a href="http://s2jsf.seasar.org/ja/">S2JSF</a></td>
+	<td>提供基于HTML的模版引擎，基于JSF的软件框架</td>
+	<td><a href="http://s2jsf.seasar.org/ja/"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://s2jsf.seasar.org/ja/#download"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+<tr class="b">
+	<td><a href="S2OpenAMF.html">S2OpenAMF</a></td>
+	<td>支持在Flash播放器中用Flash Remoting调用S2Container组件的软件库</td>
+	<td><a href="S2OpenAMF.html"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://sourceforge.jp/projects/seasar/files/?release_id=14580#14580"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+<tr class="a">
+	<td><a href="http://s2struts.seasar.org/ja/">S2Struts</a></td>
+	<td>在Struts中调用S2Container组件的软件库</td>
+	<td><a href="http://s2struts.seasar.org/ja/"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://s2struts.seasar.org/ja/#download"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+<tr class="b">
+	<td><a href="s2tapestry.html">S2Tapestry</a></td>
+	<td>在Tapestry中S2Container组件的软件库</td>
+	<td><a href="s2tapestry.html"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://sourceforge.jp/projects/seasar/files/?release_id=15348#15348"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+<tr class="a">
+	<td><a href="http://teeda.seasar.org/ja/">Teeda</a></td>
+	<td>在JSF实装和DI及AOP机能的基础上提供扩张机能的软件</td>
+	<td><a href="http://teeda.seasar.org/ja/"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://teeda.seasar.org/ja/#download"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+</tbody>
+</table>
+
+<h4><a name="persistence.java">Persistence.Java</a>: 支持永续化的Java产品</h4>
+
+<table class="list">
+<colgroup>
+<col span="1" width="120" valign="top" align="left" />
+<col span="1" width="*" valign="top" align="left" />
+<col span="1" width="50" valign="top" align="center" />
+</colgroup>
+<tbody>
+<tr>
+	<th>产品</th>
+	<th>说明</th>
+	<th>Resources</th>
+</tr>
+<tr class="a">
+	<td>Kuina</a></td>
+	<td>JPA (Java Persistence API) 软件框架</td>
+	<td>准备中</td>
+</tr>
+<tr class="b">
+	<td><a href="http://s2dao.seasar.org/ja/index.html">S2Dao</a></td>
+	<td>无须用XML定义映射及实装代码的O/R Mapping 软件框架</td>
+	<td><a href="http://s2dao.seasar.org/ja/"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://s2dao.seasar.org/ja/#download"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+<tr class="a">
+	<td><a href="http://s2dxo.seasar.org/">S2Dxo</a></td>
+	<td>支持设计层模型和域模型互相变换的软件库</td>
+	<td><!-- a><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" />
+		<img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a --></td>
+</tr>
+<tr class="b">
+	<td><a href="http://s2hibernate.seasar.org/ja/index.html">S2Hibernate</a></td>
+	<td>通过S2Container的业务处理(transaction)控制和组合来使用Hibernate为目的的软件库</td>
+	<td><a href="http://s2hibernate.seasar.org/ja/"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://s2hibernate.seasar.org/ja/#download"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+</tbody>
+</table>
+
+<h4><a name="communication.java">Communication.Java</a>: 支持分散处理的Java产品</h4>
+
+<table class="list">
+<colgroup>
+<col span="1" width="120" valign="top" align="left" />
+<col span="1" width="*" valign="top" align="left" />
+<col span="1" width="50" valign="top" align="center" />
+</colgroup>
+<tbody>
+<tr>
+	<th>产品</th>
+	<th>说明</th>
+	<th>Resources</th>
+</tr>
+<tr class="a">
+	<td><a href="http://s2axis.seasar.org/ja/">S2Axis</a></td>
+	<td>支持在用Axis远程调用S2Container组件的软件库</td>
+	<td><a href="http://s2axis.seasar.org/ja/"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://s2axis.seasar.org/ja/#download"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+<tr class="b">
+	<td><a href="http://s2remoting.seasar.org/ja/">S2Remoting</a></td>
+	<td>用S2Container进行远程调用的通用基盘软件库</td>
+	<td><a href="http://s2remoting.seasar.org/ja/"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://s2remoting.seasar.org/ja/#download"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+<tr class="a">
+	<td><a href="http://s2rmi.seasar.org/ja/">S2RMI</a></td>
+	<td>支持用RMI远程调用S2Container组件的软件库</td>
+	<td><a href="http://s2rmi.seasar.org/ja/"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://s2rmi.seasar.org/ja/#download"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+</tbody>
+</table>
+
+<h4><a name="tools.java">Tools.Java</a> (<a href="./updates.html">Eclipse Update Site</a>): 用于开发Java产品的开发工具 </h4>
+
+<table class="list">
+<colgroup>
+<col span="1" width="120" valign="top" align="left" />
+<col span="1" width="*" valign="top" align="left" />
+<col span="1" width="80" valign="top" align="center" />
+</colgroup>
+<tbody>
+<tr>
+	<th>产品</th>
+	<th>说明</th>
+	<th>Resources</th>
+</tr>
+<tr class="a">
+	<td><a href="http://kijimuna.seasar.org/">Kijimuna</a></td>
+	<td>针对S2Container组件的定义文件(dicon文件)进行编辑/查错等的Eclipse插件</td>
+	<td><a href="http://kijimuna.seasar.org/"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+	<a href="http://kijimuna.seasar.org/#download"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a>
+  <a href="./updates.html"><img src="http://www.seasar.org/images/icon_update.gif" width="20" height="24" alt="eclipse plugin update site" title="eclipse plugin update site" /></a></td>
+</tr>
+<tr class="b">
+	<td><a href="s2jsfplugin.html">S2JSF插件</a></td>
+	<td>针对以S2JSF为基础的模版(HTML)进行编辑/查错的Eclipse插件</td>
+	<td><a href="s2jsfplugin.html"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="./updates.html"><img src="http://www.seasar.org/images/icon_update.gif" width="20" height="24" alt="eclipse plugin update site" title="eclipse plugin update site" /></a></td>
+</tr>
+</tbody>
+</table>
+
+<h4><a name="allinone.java">AllInOne.Java</a>: 开发Java产品用的工具 </h4>
+
+<table class="list">
+<colgroup>
+<col span="1" width="120" valign="top" align="left" />
+<col span="1" width="*" valign="top" align="left" />
+<col span="1" width="80" valign="top" align="center" />
+</colgroup>
+<tbody>
+<tr>
+	<th>产品</th>
+	<th>产品</th>
+	<th>Resources</th>
+</tr>
+<tr class="a">
+	<td><a href="http://allinone.seasar.org/">AllInOne</a></td>
+	<td>仅此一件就可完成所有开发的软件框架箱</td>
+	<td><!-- a><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" />
+		<img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a --></td>
+</tr>
+<tr class="b">
+	<td><a href="http://chura.seasar.org/">Chura</a></td>
+	<td>让应用EJB3、JSF、JPA的开发效率产生飞跃提升的All in One软件包</td>
+	<td><!-- a><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" />
+		<img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a --></td>
+</tr>
+</tbody>
+</table>
+
+<h4><a name="sandbox.java">Sandbox.Java</a>: 正在开发的Java产品</h4>
+
+<table class="list">
+<colgroup>
+<col span="1" width="120" valign="top" align="left" />
+<col span="1" width="*" valign="top" align="left" />
+<col span="1" width="50" valign="top" align="center" />
+</colgroup>
+<tbody>
+<tr>
+	<th>产品</th>
+	<th>说明</th>
+	<th>Resources</th>
+</tr>
+<tr class="a">
+	<td><a href="http://akabana.sandbox.seasar.org/">Akabana</a></td>
+	<td>以S2 2.4, S2Flex2为中心、将同RIA有关的软件库集成到一起的项目</td>
+	<td><!-- a><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" />
+		<img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a --></td>
+</tr>
+<tr class="b">
+	<td><a href="http://cadhelin.sandbox.seasar.org/">Cadhelin</a></td>
+	<td>可以在Controller类中定义复数个Action方法，支持PRG模式的设计层软件框架</td>
+	<td><!-- a><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" />
+		<img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a --></td>
+</tr>
+<tr class="a">
+	<td><a href="http://cubby.sandbox.seasar.org/">Cubby</a></td>
+	<td>基于JSP的网络应用程序软件框架</td>
+	<td><!-- a><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" />
+		<img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a --></td>
+</tr>
+<tr class="b">
+	<td><a href="http://dbflute.sandbox.seasar.org/ja/">DBFlute</a></td>
+	<td>自动生成“Dao”和“Entity”，使用“S2Dao”的支持工具</td>
+	<td><a href="http://dbflute.sandbox.seasar.org/ja/"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://dbflute.sandbox.seasar.org/ja/"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+<tr class="a">
+	<td><a href="http://dblauncher.sandbox.seasar.org/">DbLauncher</a></td>
+	<td>Eclipse 3.1 以上、进行H2等的DB起动的插件</td>
+	<td><!-- a><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" />
+		<img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a --></td>
+</tr>
+<tr class="b">
+	<td><a href="http://eclipsecommon.sandbox.seasar.org/">Seasar Eclipse Common</a></td>
+	<td>开发Eclipse 插件时可以用到的utility软件库</td>
+	<td><!-- a><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" />
+		<img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a --></td>
+</tr>
+<tr class="a">
+	<td><a href="http://kikainekomocker.sandbox.seasar.org/">机器猫莫卡</a></td>
+	<td>在测试代码中生成模拟类的生成工具</td>
+	<td><!-- a><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" />
+		<img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a --></td>
+</tr>
+<tr class="b">
+	<td><a href="http://kvasir.sandbox.seasar.org/">Kvasir/Sora</a></td>
+	<td>pluggable的应用程序平台</td>
+	<td><a href="http://kvasir.sandbox.seasar.org/"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://kvasir.sandbox.seasar.org/index.html#download"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+<tr class="a">
+	<td><a href="http://nadejako.sandbox.seasar.org/">なでじゃこ</a></td>
+	<td>参照日文版成语言「なでしこ」而创作的脚本语言</td>
+	<td><!-- a><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" />
+		<img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a --></td>
+</tr>
+<tr class="b">
+	<td><a href="http://maihime.sandbox.seasar.org/ja/">舞姬</a></td>
+	<td>快速启动Tomcat的Eclipse插件</td>
+	<td><a href="http://maihime.sandbox.seasar.org/ja/"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://eclipse.seasar.org/updates/3.1/"><img src="http://www.seasar.org/images/icon_update.gif" width="20" height="24" alt="eclipse plugin update site" title="eclipse plugin update site" /></a></td>
+</tr>
+<tr class="a">
+	<td><a href="http://maven-backport175.sandbox.seasar.org/">maven-backport175-plugin</a></td>
+	<td>以使用Backport175为目的的Maven2插件</td>
+	<td><a href="http://maven-backport175.sandbox.seasar.org/"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+	<!-- a><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a --></td>
+</tr>
+<tr class="b">
+	<td><a href="http://mistral.sandbox.seasar.org/">Mistral</a></td>
+	<td>基于Web应用的简单BTS</td>
+	<td><!-- a><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" />
+		<img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a --></td>
+</tr>
+<tr class="a">
+	<td><a href="http://s2ana.sandbox.seasar.org/ja/index.html">S2AnA</a></td>
+	<td>用S2Container进行认证 (Authentication)和承认 (Authorization) 软件库</td>
+	<td><a href="http://s2ana.sandbox.seasar.org/ja/index.html"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://s2ana.sandbox.seasar.org/ja/#download"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+<tr class="b">
+	<td><a href="http://s2buri.sandbox.seasar.org/">S2Buri</a></td>
+	<td>管理WorkState的软件</td>
+	<td><a href="http://s2buri.sandbox.seasar.org/"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://s2buri.sandbox.seasar.org/#download"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+<tr class="a">
+	<td><a href="http://s2coffee.sandbox.seasar.org/">S2Coffee</a></td>
+	<td>Tuigwaa和S2Buri共通软件库</td>
+	<td><!-- a><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" />
+		<img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a --></td>
+</tr>
+<tr class="b">
+	<td><a href="http://s2continuations.sandbox.seasar.org/">S2Continuations</a></td>
+	<td>在S2Container中实现"继续"的插件</td>
+	<td><!-- a><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" />
+		<img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a --></td>
+</tr>
+<tr class="a">
+	<td><a href="http://s2dao-codegen.sandbox.seasar.org/">S2Dao-CodeGen</a></td>
+	<td>对应数据库表而自动生成DTO、DAO、dicon的工具</td>
+	<td><a href="http://s2dao-codegen.sandbox.seasar.org/"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://s2dao-codegen.sandbox.seasar.org/download"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+<tr class="b">
+	<td><a href="http://s2daoplugin.sandbox.seasar.org/">S2DaoPlugin</a></td>
+	<td>针对S2Dao开发的Eclipse支援插件</td>
+	<td><a href="http://s2daoplugin.sandbox.seasar.org/"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://eclipse.seasar.org/updates/3.1beta/"><img src="http://www.seasar.org/images/icon_update.gif" width="20" height="24" alt="eclipse plugin update site" title="eclipse plugin update site" /></a></td>
+</tr>
+<tr class="a">
+	<td><a href="http://s2directory.sandbox.seasar.org/">S2Directory</a></td>
+	<td>以目录服务器的连接简单化为目的的组件管理机能和，将目录服务器的entry属性及对象联结的O/D
+Mapping (Object / Directory Mapping) 软件框架</td>
+	<td><a href="http://s2directory.sandbox.seasar.org/"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://s2directory.sandbox.seasar.org/downloads/"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+<tr class="b">
+	<td><a href="http://s2ebi.sandbox.seasar.org/">S2Ebi</a></td>
+	<td>进行Easy(简单) Business(商用) Imperative(规则) 等一系列处理的软件库</td>
+	<td><!-- a><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" />
+		<img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a --></td>
+</tr>
+<tr class="a">
+	<td><a href="http://s2flex2.sandbox.seasar.org/ja/">S2Flex2</a></td>
+	<td>支持Flex2和S2Container联手运用的软件库</td>
+	<td><a href="http://s2flex2.sandbox.seasar.org/ja/"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://s2flex2.sandbox.seasar.org/ja/#download"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+<tr class="b">
+	<td><a href="http://s2hessian.sandbox.seasar.org/">S2Hessian</a></td>
+	<td>用Hessian/Burlap远程调用S2Container的软件库</td>
+	<td><a href="http://s2hessian.sandbox.seasar.org/"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<!-- a><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a --></td>
+</tr>
+<tr class="a">
+	<td><a href="http://s2javelin.sandbox.seasar.org/s2javelin.html">S2Javelin</a></td>
+	<td>利用S2Container的AOP结构、输出在S2Container上的应用程序中的动作日志的工具</td>
+	<td><a href="http://s2javelin.sandbox.seasar.org/s2javelin.html"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://s2javelin.sandbox.seasar.org/s2javelin.html#download"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+<tr class="b">
+	<td><a href="http://s2jca.sandbox.seasar.org/ja/">S2JCA</a></td>
+	<td>JCA (J2EE Connector Architecture)标准的resource adapter得以使用的JCA Application Server Facilities 实装</td>
+	<td><a href="http://s2jca.sandbox.seasar.org/ja/"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://s2jca.sandbox.seasar.org/ja/#download"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+<tr class="a">
+	<td><a href="http://s2jcr.sandbox.seasar.org/ja/index.html">S2JCR</a></td>
+	<td>用Seasar取得JSR 170 (Java Content Repository)并加以应用为目的的软件库</td>
+	<td><a href="http://s2jcr.sandbox.seasar.org/ja/index.html"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://s2jcr.sandbox.seasar.org/ja/#download"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+<tr class="b">
+	<td><a href="http://s2jface.sandbox.seasar.org/">S2JFace</a></td>
+	<td>根据Eclipse中使用的SWT/JFace使得将画面用XML记述成为可能、可以简单地实现从GUI调用Seasar组件的软件库</td>
+	<td><!-- a><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" />
+		<img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a --></td>
+</tr>
+<tr class="a">
+	<td><a href="http://s2jms.sandbox.seasar.org/ja/">S2JMS</a></td>
+	<td>使非同步消息更加容易的收发为目的的软件库、还有让收信消息绑定在S2Container组件上的软件框架</td>
+	<td><a href="http://s2jms.sandbox.seasar.org/ja/"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://s2jms.sandbox.seasar.org/ja/#download"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+<tr class="b">
+	<td><a href="http://s2javelin.sandbox.seasar.org/s2jmxjavelin.html">S2JmxJavelin</a></td>
+	<td>利用S2Container的AOP结构、S2Container上的应用程序的动作经由JMX而公开的工具</td>
+	<td><a href="http://s2javelin.sandbox.seasar.org/s2jmxjavelin.html"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://s2javelin.sandbox.seasar.org/s2jmxjavelin.html#download"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+<tr class="a">
+	<td><a href="http://s2kestrel.sandbox.seasar.org/">S2Kestrel</a></td>
+	<td>S2Container的J2SE1.3对应版</td>
+	<td><a href="http://s2kestrel.sandbox.seasar.org/"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://s2kestrel.sandbox.seasar.org/#download"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+<tr class="b">
+	<td><a href="http://s2laszlo.sandbox.seasar.org/">S2Laszlo</a></td>
+	<td>在Flash播放器中用Laszlo调用S2Container组件的软件库</td>
+	<td><!-- a><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" />
+		<img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a --></td>
+</tr>
+<tr class="a">
+	<td><a href="http://s2mai.sandbox.seasar.org/">S2Mai</a></td>
+	<td>使用AOP发送电子邮件的软件库</td>
+	<td><!-- a><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" />
+		<img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a --></td>
+</tr>
+<tr class="b">
+	<td><a href="http://s2portlet.sandbox.seasar.org/ja/index.html">S2Portlet</a></td>
+	<td>为了在JSR 168标准的Portlet上使用S2Container的软件库</td>
+	<td><a href="http://s2portlet.sandbox.seasar.org/ja/index.html"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://s2portlet.sandbox.seasar.org/ja/#download"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+<tr class="a">
+	<td><a href="http://s2sao.sandbox.seasar.org/">S2Sao</a></td>
+	<td>使用AOP执行JavaScript逻辑的软件库</td>
+	<td><!-- a><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" />
+		<img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a --></td>
+</tr>
+<tr class="b">
+	<td><a href="http://s2sqlmap.sandbox.seasar.org/">S2SqlMap</a></td>
+	<td>iBATIS SQL Maps的对应软件库</td>
+	<td><a href="http://s2sqlmap.sandbox.seasar.org/"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://s2sqlmap.sandbox.seasar.org/downloads.html"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+<tr class="a">
+	<td><a href="http://s2toplink.sandbox.seasar.org/">S2TopLink</a></td>
+	<td>用S2Container transacting的控制和组合来使用TopLink的软件库</td>
+	<td><!-- a><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" />
+		<img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a --></td>
+</tr>
+<tr class="b">
+	<td><a href="http://s2velocity.sandbox.seasar.org/">S2Velocity</a></td>
+	<td>让Velocity和Seasar联合协作的组件</td>
+	<td><a href="http://s2velocity.sandbox.seasar.org/"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://s2velocity.sandbox.seasar.org/#download"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+<tr class="a">
+	<td><a href="http://s2xwork.sandbox.seasar.org/">S2XWork</a></td>
+	<td>让泛用命令模式软件框架XWork和S2Container联合协作的软件库</td>
+	<td><a href="http://s2xwork.sandbox.seasar.org/"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://s2xwork.sandbox.seasar.org/#doc1_32"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+<tr class="b">
+	<td><a href="http://seasar-genapp.sandbox.seasar.org/">Seasar-genapp</a></td>
+	<td>利用S2Container开发，生成项目雏形的Maven插件</td>
+	<td><!-- a><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" />
+		<img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a --></td>
+</tr>
+<tr class="a">
+	<td><a href="http://tuigwaa.sandbox.seasar.org/">Tuigwaa</a></td>
+	<td>不懂得HTML标签的人，无需专门知识和特别的环境仅需浏览器就可以制作同数据库联动的Web应用程序的工具</td>
+	<td><a href="http://tuigwaa.sandbox.seasar.org/"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://tuigwaa.sandbox.seasar.org/start/download.html"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+</tbody>
+</table>
+
+<h3><a name="dotnet"></a>.NET项目</h3>
+
+<h4><a name="seasar.net">Seasar.NET</a></h4>
+
+<table class="list">
+<colgroup>
+<col span="1" width="120" valign="top" align="left" />
+<col span="1" width="*" valign="top" align="left" />
+<col span="1" width="50" valign="top" align="center" />
+</colgroup>
+<tbody>
+<tr>
+	<th>产品</th>
+	<th>说明</th>
+	<th>Resources</th>
+</tr>
+<tr class="a">
+	<td><a href="http://s2container.net.seasar.org/ja/">S2Container.NET</a></td>
+	<td>支持在.NET Framework中运作DI和AOP的轻量级软件容器</td>
+	<td><a href="http://s2container.net.seasar.org/ja/"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://s2container.net.seasar.org/ja/#download"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+<tr class="b">
+	<td><a href="http://s2dao.net.seasar.org/ja/">S2Dao.NET</a></td>
+	<td>无须在XML中记述映射信息的O/R映射软件框架</td>
+	<td><a href="http://s2dao.net.seasar.org/ja/"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://s2dao.net.seasar.org/ja/#download"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+</tbody>
+</table>
+
+<h4><a name="sandbox.net">Sandbox.NET</a>: 开发中.NET项目</h4>
+
+<table class="list">
+<colgroup>
+<col span="1" width="120" valign="top" align="left" />
+<col span="1" width="*" valign="top" align="left" />
+<col span="1" width="50" valign="top" align="center" />
+</colgroup>
+<tbody>
+<tr>
+	<th>产品</th>
+	<th>说明</th>
+	<th>Resources</th>
+</tr>
+<tr class="a">
+	<td><a href="http://henshimosql.net.sandbox.seasar.org/">Henshimosql.NET</a></td>
+	<td>经由.NET Framework Data Provider执行SQL、并可以确认结果的Windows应用程序</td>
+	<td><a href="http://henshimosql.net.sandbox.seasar.org/"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<!-- a><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a --></td>
+</tr>
+<tr class="b">
+	<td><a href="http://kurohoppy.net.sandbox.seasar.org/">Kurohoppy.NET</a></td>
+	<td>把从Web服务取得的数据映射到DataSet的组件</td>
+	<td><a href="http://kurohoppy.net.sandbox.seasar.org/"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<!-- a><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a --></td>
+</tr>
+<tr class="a">
+	<td><a href="http://controls.net.sandbox.seasar.org/">Seasar.Controls.NET</a></td>
+	<td>在.NET Framework中运行的并包含了非常便利的控制方法的软件库</td>
+	<td><a href="http://controls.net.sandbox.seasar.org/"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://controls.net.sandbox.seasar.org/#download"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+<tr class="b">
+	<td><a href="http://s2remoting.net.sandbox.seasar.org/">S2Remoting.NET</a></td>
+	<td>实现了分散化组件的软件库</td>
+	<td><a href="http://s2remoting.net.sandbox.seasar.org/"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://s2remoting.net.sandbox.seasar.org/#download"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+</tbody>
+</table>
+
+<h3><a name="php"></a>PHP项目</h3>
+
+
+<h4><a name="seasar.php">Seasar.PHP</a></h4>
+
+<table class="list">
+<colgroup>
+<col span="1" width="120" valign="top" align="left" />
+<col span="1" width="*" valign="top" align="left" />
+<col span="1" width="50" valign="top" align="center" />
+</colgroup>
+<tbody>
+<tr>
+	<th>产品</th>
+	<th>说明</th>
+	<th>Resources</th>
+</tr>
+<tr class="a">
+	<td><a href="http://s2container.php5.seasar.org/">S2Container.PHP5</a></td>
+	<td>支持DI (Dependency Injection) 和AOP (Aspect Oriented Programming) 的S2 PHP5 版容器</td>
+	<td><a href="http://s2container.php5.seasar.org/"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://s2container.php5.seasar.org/#download"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+<tr class="b">
+	<td><a href="http://s2dao.php5.seasar.org/">S2Dao.PHP5</a></td>
+	<td>无须在XML中记述映射信息的O/R映射软件框架</td>
+	<td><a href="http://s2dao.php5.seasar.org/"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://s2dao.php5.seasar.org/#download"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+</tbody>
+</table>
+
+<h4><a name="sandbox.php">Sandbox.PHP</a>: 开发中的PHP产品</h4>
+
+<table class="list">
+<colgroup>
+<col span="1" width="120" valign="top" align="left" />
+<col span="1" width="*" valign="top" align="left" />
+<col span="1" width="50" valign="top" align="center" />
+</colgroup>
+<tbody>
+<tr>
+	<th>产品</th>
+	<th>说明</th>
+	<th>Resources</th>
+</tr>
+<tr class="a">
+	<td><a href="http://kunit.jp/maple/">Maple.PHP</a></td>
+	<td>使用PHP制作更有效率的Web应用程序为目的的软件框架</td>
+	<td><a href="http://kunit.jp/maple/about.html"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://kunit.jp/maple/download.html"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+<tr class="b">
+	<td><a href="http://s2base.php5.sandbox.seasar.org/">S2Base.PHP5</a></td>
+	<td>支持用S2Container.PHP5 和 S2Dao.PHP5 开发的命令行支援工具</td>
+	<td><a href="http://s2base.php5.sandbox.seasar.org/"><img src="http://www.seasar.org/images/icon_doc.gif" width="20" height="24" alt="documents" title="documents" /></a>
+		<a href="http://s2base.php5.sandbox.seasar.org/#download"><img src="http://www.seasar.org/images/icon_down.gif" width="20" height="24" alt="downloads" title="downloads" /></a></td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+</div><!-- article -->
+
+</div><!-- contents_center -->
+
+<div id="footer">
+<address>&copy; Copyright The Seasar Foundation and the others 2004-2006, all rights reserved.</address>
+<div class="line"><span class="hide">spacer</span></div>
+</div><!-- footer -->
+
+</div><!-- wrapper -->
+
+</body>
+</html>
