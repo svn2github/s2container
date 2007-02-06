@@ -331,10 +331,12 @@ env.txtに設定を書き込むことで、環境を操作することができ�
 <tr><td align="center">dao</td><td>任意の名前＋Dao</td><td>データベースにアクセスするためのインターフェースです。インターフェースにメソッドを書いておくだけで、データアクセスのロジックは、アスペクトが自動生成します。実装部分を作る必要はありません。Daoについての詳しい説明はS2Daoをご覧下さい。</td></tr>
 <tr><td align="center">dxo</td><td>任意の名前＋Dxo</td><td>サブアプリケーションの中のDxoとは別に、複数のサブアプリケーションで共通に使われるDxoです。</td></tr>
 <tr><td align="center">logic</td><td>任意の名前＋Logic</td><td>アプリケーションの業務処理を行うインターフェースです。実装クラスはLogic.Implに作成します。エンタープライズシステムの場合、Logicは複雑な構成になります。Pageクラスだけで管理出来ない処理やサブアプリケーション共通の処理を、個別パッケージで管理するために使用します。</td></tr>
-<tr><td align="center">validator</td><td>任意の名前+Validator</td><td>アプリケーションで入力されるRDBMSへのデータを検証するクラスです。JSFのvalidatorと同じものです。独自実装が必要な場合に使用します。</td></tr>
+<tr><td align="center">validator</td><td>任意の名前＋Validator</td><td>アプリケーションで入力されるRDBMSへのデータを検証するクラスです。JSFのvalidatorと同じものです。独自実装が必要な場合に使用します。</td></tr>
 <tr><td align="center">converter</td><td>任意の名前＋Converter</td><td>データ型の変換フォーマット等、入出力のフィルターを定義するクラスです。JSFのconverterと同じものです。独自実装が必要な場合に使用します。</td></tr>
-<tr><td align="center">interceptor</td><td>任意の名前+Interceptor</td><td>アスペクトの振る舞いを記述するクラスです。独自のinterceptorを実装する場合に使用します。interceptorについての詳しい説明はS2Aopをご覧下さい。</td></tr>
-<tr><td align="center">helper</td><td>任意の名前+Helper</td><td>プレゼンテーションのモデルとしてPageクラスの持つデータを保管して、オブジェクト層との相互変換を行う為のオブジェクトの入れ物です。基本モデルを選択した場合、Dtoは使いませんが、必要に応じて使用することは可能です。</td></tr>
+<tr><td align="center">interceptor</td><td>任意の名前＋Interceptor</td><td>アスペクトの振る舞いを記述するクラスです。独自のinterceptorを実装する場合に使用します。interceptorについての詳しい説明はS2Aopをご覧下さい。</td></tr>
+<tr><td align="center">dto</td><td>任意の名前＋dto</td><td>プレゼンテーションのモデルとしてPageクラスの持つデータを保管して、オブジェクト層との相互変換を行う為のオブジェクトの入れ物です。基本モデルを選択した場合、Dtoは使いませんが、必要に応じて使用することは可能です</td></tr>
+<tr><td align="center">util</td><td>任意の名前＋Util</td><td>アプリケーションで処理されない手続き型の汎用的な処理のクラスです。staticなメソッドの集まりです。</td></tr>
+<tr><td align="center">helper</td><td>任意の名前＋Helper</td><td>アプリケーションで処理されない追加的な処理のクラスです。instanceなメソッドの集まりです。</td></tr>
 </table>
 
 <h3><a name="SamplePackage">パッケージ構成サンプル</a></h3>
@@ -739,6 +741,9 @@ DEBUG 2006-11-21 17:16:17,050 [main] END org.example.service.impl.PrintServiceIm
 </pre>
 <p>testクラスのfor（）ループの中にブレークポイントを仕掛けて、実行途中にMessageServiceImpl.java内のメッセージを変更した場合、
 HOT deployによって、その変更が実行結果に反映されることを確認できる。</p>
+
+
+
 <!-- document end -->
 <!-- don't edit start --></td>
 <td width="14"><img height="14" width="14" src="images/spacer.gif" alt="" /></td>
