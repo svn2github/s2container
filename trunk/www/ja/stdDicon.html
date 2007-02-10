@@ -124,67 +124,9 @@ font-size : 10pt;
 </li>
 </ul>
 <h2><a name="about" id="about">概要</a></h2>
-<p>Seasr2は標準的なdiconファイルをJarファイルに含めて提供しています．これらのdiconファイルはクラスパス上に配置しなくてもインクルードするだけで利用可能です．</p>
+<p>Seasar2は，多くのアプリケーションで再利用可能なdiconファイルを複数提供しています．アプリケーションはこれらの標準diconを必要に応じて利用することができます．標準diconはSeasar2のJarファイルに含まれているため，diconファイルをクラスパス上に配置しなくてもインクルードするだけで利用することができます．</p>
 <p>このドキュメントでは，これらの標準diconファイルについて説明します．</p>
 <h2><a name="list">標準dicon一覧</a></h2>
-<h3><a name="jar">Jar別一覧</a></h3>
-<p>Seasar2のJarファイル毎に含んでいる標準diconを以下に示します．</p>
-<table border="1">
-<tbody>
-<tr>
-<th>Jarファイル</th>
-<th>diconファイル</th>
-</tr>
-<tr>
-<td rowspan="7"><code>s2-framework</code></td>
-<td><code>aop.dicon</code></td>
-</tr>
-<tr>
-<td><code>cooldeploy.dicon</code></td>
-</tr>
-<tr>
-<td><code>cooldeploy-autoregister.dicon</code></td>
-</tr>
-<tr>
-<td><code>default-customizer.dicon</code></td>
-</tr>
-<tr>
-<td><code>hotdeploy.dicon</code></td>
-</tr>
-<tr>
-<td><code>std-customizer.dicon</code></td>
-</tr>
-<tr>
-<td><code>warmdeploy.dicon</code></td>
-</tr>
-<tr>
-<td rowspan="5"><code>s2-extension</code></td>
-<td><code>dxo.dicon</code></td>
-</tr>
-<tr>
-<td><code>ejbtx.dicon</code></td>
-</tr>
-<tr>
-<td><code>j2ee.dicon</code></td>
-</tr>
-<tr>
-<td><code>jdbc-extension.dicon</code></td>
-</tr>
-<tr>
-<td><code>jta.dicon</code></td>
-</tr>
-<tr>
-<td rowspan="3"><code>s2-tiger</code></td>
-<td><code>ejb3tx.dicon</code></td>
-</tr>
-<tr>
-<td><code>javaee5.dicon</code></td>
-</tr>
-<tr>
-<td><code>jpa-support.dicon</code></td>
-</tr>
-</tbody>
-</table>
 <h3><a name="category">カテゴリ別一覧</a></h3>
 <p>標準diconのカテゴリ別一覧を以下に示します．</p>
 <table border="1">
@@ -196,104 +138,162 @@ font-size : 10pt;
 </tr>
 <tr>
 <td>AOPサポート</td>
-<td><code>aop.dicon</code></td>
+<td><code><a href="#aop.dicon">aop.dicon</a></code></td>
 <td><code>s2-framework</code></td>
 </tr>
 <tr>
 <td rowspan="3">J2EEサポート</td>
-<td><code>j2ee.dicon</code></td>
+<td><code><a href="#j2ee.dicon">j2ee.dicon</a></code></td>
 <td><code>s2-extension</code></td>
 </tr>
 <tr>
-<td><code>jta.dicon</code></td>
+<td><code><a href="#jta.dicon">jta.dicon</a></code></td>
 <td><code>s2-extension</code></td>
 </tr>
 <tr>
-<td><code>ejbtx.dicon</code></td>
+<td><code><a href="#ejbtx.dicon">ejbtx.dicon</a></code></td>
 <td><code>s2-extension</code></td>
 </tr>
 <tr>
 <td rowspan="3">JavaEE5サポート</td>
-<td><code>javaee5.dicon</code></td>
+<td><code><a href="#javaee5.dicon">javaee5.dicon</a></code></td>
 <td><code>s2-tiger</code></td>
 </tr>
 <tr>
-<td><code>ejb3tx.dicon</code></td>
+<td><code><a href="#ejb3tx.dicon">ejb3tx.dicon</a></code></td>
 <td><code>s2-tiger</code></td>
 </tr>
 <tr>
-<td><code>jpa-support.dicon</code></td>
+<td><code><a href="#jpa-support.dicon">jpa-support.dicon</a></code></td>
 <td><code>s2-tiger</code></td>
 </tr>
 <tr>
 <td>Daoサポート</td>
-<td><code>jdbc-extension.dicon</code></td>
+<td><code><a href="#jdbc-extension.dicon">jdbc-extension.dicon</a></code></td>
 <td><code>s2-extension</code></td>
 </tr>
 <tr>
 <td>Dxoサポート</td>
-<td><code>dxo.dicon</code></td>
+<td><code><a href="#dxo.dicon">dxo.dicon</a></code></td>
 <td><code>s2-extension</code></td>
 </tr>
 <tr>
 <td rowspan="6">SMART deployサポート</td>
-<td><code>hotdeploy.dicon</code></td>
+<td><code><a href="#hotdeploy.dicon">hotdeploy.dicon</a></code></td>
 <td><code>s2-framework</code></td>
 </tr>
 <tr>
-<td><code>warmdeploy.dicon</code></td>
+<td><code><a href="#warmdeploy.dicon">warmdeploy.dicon</a></code></td>
 <td><code>s2-framework</code></td>
 </tr>
 <tr>
-<td><code>cooldeploy.dicon</code></td>
+<td><code><a href="#cooldeploy.dicon">cooldeploy.dicon</a></code></td>
 <td><code>s2-framework</code></td>
 </tr>
 <tr>
-<td><code>cooldeploy-autoregister.dicon</code></td>
+<td><code><a href="#cooldeploy-autoregister.dicon">cooldeploy-autoregister.dicon</a></code></td>
 <td><code>s2-framework</code></td>
 </tr>
 <tr>
-<td><code>default-customizer.dicon</code></td>
+<td><code><a href="#default-customizer.dicon">default-customizer.dicon</a></code></td>
 <td><code>s2-framework</code></td>
 </tr>
 <tr>
-<td><code>std-customizer.dicon</code></td>
+<td><code><a href="#std-customizer.dicon">std-customizer.dicon</a></code></td>
 <td><code>s2-framework</code></td>
 </tr>
 </tbody>
 </table>
+<h3><a name="jar">Jar別一覧</a></h3>
+<p>標準diconを含んでいるSeasar2のJarファイル別の一覧を以下に示します．</p>
+<table border="1">
+<tbody>
+<tr>
+<th>Jarファイル</th>
+<th>diconファイル</th>
+</tr>
+<tr>
+<td rowspan="7"><code>s2-framework</code></td>
+<td><code><a href="#aop.dicon">aop.dicon</a></code></td>
+</tr>
+<tr>
+<td><code><a href="#cooldeploy.dicon">cooldeploy.dicon</a></code></td>
+</tr>
+<tr>
+<td><code><a href="#cooldeploy-autoregister.dicon">cooldeploy-autoregister.dicon</a></code></td>
+</tr>
+<tr>
+<td><code><a href="#default-customizer.dicon">default-customizer.dicon</a></code></td>
+</tr>
+<tr>
+<td><code><a href="#hotdeploy.dicon">hotdeploy.dicon</a></code></td>
+</tr>
+<tr>
+<td><code><a href="#std-customizer.dicon">std-customizer.dicon</a></code></td>
+</tr>
+<tr>
+<td><code><a href="#warmdeploy.dicon">warmdeploy.dicon</a></code></td>
+</tr>
+<tr>
+<td rowspan="5"><code>s2-extension</code></td>
+<td><code><a href="#dxo.dicon">dxo.dicon</a></code></td>
+</tr>
+<tr>
+<td><code><a href="#ejbtx.dicon">ejbtx.dicon</a></code></td>
+</tr>
+<tr>
+<td><code><a href="#j2ee.dicon">j2ee.dicon</a></code></td>
+</tr>
+<tr>
+<td><code><a href="#jdbc-extension.dicon">jdbc-extension.dicon</a></code></td>
+</tr>
+<tr>
+<td><code><a href="#jta.dicon">jta.dicon</a></code></td>
+</tr>
+<tr>
+<td rowspan="3"><code>s2-tiger</code></td>
+<td><code><a href="#ejb3tx.dicon">ejb3tx.dicon</a></code></td>
+</tr>
+<tr>
+<td><code><a href="#javaee5.dicon">javaee5.dicon</a></code></td>
+</tr>
+<tr>
+<td><code><a href="#jpa-support.dicon">jpa-support.dicon</a></code></td>
+</tr>
+</tbody>
+</table>
 <h2><a name="include">インクルード関係</a></h2>
-<p>標準diconが他のdiconからどのようにインクルードされるか，他のdiconをどのようにインクルードするかを以下に示します．斜体はSeasr2のJarには含まれていないdiconです．</p>
+<p>標準diconが他のdiconからどのようにインクルードされるか，他のdiconをどのようにインクルードするかを以下に示します．斜体はSeasar2のJarには含まれていない，非標準のdiconです．</p>
 <ul>
 <li><var><code>app.dicon</code></var>
 <ul>
-<li><code>aop.dicon</code>
-<li><code>j2ee.dicon</code>
+<li><code><a href="#aop.dicon">aop.dicon</a></code>
+<li><code><a href="#j2ee.dicon">j2ee.dicon</a></code>
 <ul>
-<li><code>jta.dicon</code>
+<li><code><a href="#jta.dicon">jta.dicon</a></code>
 <li><var><code>jdbc.dicon</code></var>
 <ul>
-<li><code>jdbc-extension.dicon</code>
+<li><code><a href="#jdbc-extension.dicon">jdbc-extension.dicon</a></code>
 <ul>
 <li><var><code>convenction.dicon</code></var>
 </ul>
 </ul>
 </ul>
-<li><code>ejbtx.dicon</code>
-<li><code>javaee5.dicon</code>
+<li><code><a href="#ejbtx.dicon">ejbtx.dicon</a></code>
+<li><code><a href="#javaee5.dicon">javaee5.dicon</a></code>
 <ul>
-<li><code>j2ee.dicon</code>
-<li><code>jpa-support.dicon</code>
+<li><code><a href="#j2ee.dicon">j2ee.dicon</a></code>
+<li><code><a href="#jpa-support.dicon">jpa-support.dicon</a></code>
 <ul>
-<li><code>j2ee.dicon</code>
+<li><code><a href="#j2ee.dicon">j2ee.dicon</a></code>
 </ul>
-<li><code>ejb3tx.dicon</code>
+<li><code><a href="#ejb3tx.dicon">ejb3tx.dicon</a></code>
 <ul>
-<li><code>j2ee.dicon</code>
+<li><code><a href="#j2ee.dicon">j2ee.dicon</a></code>
 </ul>
 </ul>
-<li><code>dxo.dicon</code>
-<li><code>cooldeploy-autoregister.dicon</code> (明示的にインクルードする必要はありません)
+<li><code><a href="#dxo.dicon">dxo.dicon</a></code>
+<li><code><a href="#cooldeploy-autoregister.dicon">cooldeploy-autoregister.dicon</a></code> (明示的にインクルードする必要はありません)
 <ul>
 <li><var><code>convention.dicon</code></var>
 <li><var><code>creator.dicon</code></var>
@@ -302,27 +302,27 @@ font-size : 10pt;
 </ul>
 <li><var><code>s2container.dicon</code></var>
 <ul>
-<li><code>hotdeploy.dicon</code>
+<li><code><a href="#hotdeploy.dicon">hotdeploy.dicon</a></code>
 <ul>
 <li><var><code>convention.dicon</code></var>
 <li><var><code>creator.dicon</code></var>
 <li><var><code>customizer.dicon</code></var>
 </ul>
-<li><code>warmdeploy.dicon</code>
+<li><code><a href="#warmdeploy.dicon">warmdeploy.dicon</a></code>
 <ul>
 <li><var><code>convention.dicon</code></var>
 <li><var><code>creator.dicon</code></var>
 <li><var><code>customizer.dicon</code></var>
 </ul>
-<li><code>cooldeploy.dicon</code>
+<li><code><a href="#cooldeploy.dicon">cooldeploy.dicon</a></code>
 </ul>
 <li><var><code>convention.dicon</code></var>
 <li><var><code>creator.dicon</code></var>
 <li><var><code>customizer.dicon</code></var>
 <ul>
-<li><code>default-customizer.dicon</code>
+<li><code><a href="#default-customizer.dicon">default-customizer.dicon</a></code>
 <ul>
-<li><code>std-customizer.dicon</code>
+<li><code><a href="#std-customizer.dicon">std-customizer.dicon</a></code>
 </ul>
 </ul>
 </ul>
@@ -339,7 +339,7 @@ font-size : 10pt;
 <p><code>aop.dicon</code>は通常<code>app.dicon</code>でインクルードして利用します．</p>
 <h4>定義</h4>
 <p><code>aop.dicon</code>の最新版の定義内容を以下に示します (リリース済みの内容とは異なる場合があります)．</p>
-<iframe src="http://svn.seasar.org/browse/trunk/seasar2/s2-framework/src/main/resources/aop.dicon?root=s2container&view=co" width="100%" scrolling="AUTO"></iframe>
+<iframe src="https://www.seasar.org/svn/s2container/trunk/seasar2/s2-framework/src/main/resources/aop.dicon" width="100%" scrolling="AUTO"></iframe>
 <h2><a name="j2ee">J2EEサポート</a></h2>
 <p>J2EE 1.4の機能を利用するための標準diconファイルについて説明します．</p>
 <h3><code><a name="j2ee.dicon">j2ee.dicon</a></code></h3>
@@ -360,7 +360,7 @@ Seasar2のJarファイルには含まれていません．Seasar2配布ファイ
 <p><code>j2ee.dicon</code>は通常<code>app.dicon</code>でインクルードして利用します．</p>
 <h4>定義</h4>
 <p><code>j2ee.dicon</code>の最新版の定義内容を以下に示します (リリース済みの内容とは異なる場合があります)．</p>
-<iframe src="http://svn.seasar.org/browse/trunk/seasar2/s2-extension/src/main/resources/j2ee.dicon?root=s2container&view=co" width="100%" scrolling="AUTO"></iframe>
+<iframe src="https://www.seasar.org/svn/s2container/trunk/seasar2/s2-extension/src/main/resources/j2ee.dicon" width="100%" scrolling="AUTO"></iframe>
 <h3><code><a name="jta.dicon">jta.dicon</a></code></h3>
 <p><code>jta.dicon</code>はJTA (Java Transaction API) を利用するためのdiconファイルです．</p>
 <p>標準の<code>jta.dicon</code>はSeasar2の提供するJTA実装を利用するように設定されています．アプリケーションサーバの提供するJTA実装を利用する場合は「<a href="SabaJTAandDBCP.html">アプリケーションサーバのJTAとコネクションプールを使う</a>」を参照してください．</p>
@@ -372,7 +372,7 @@ Seasar2のJarファイルには含まれていません．Seasar2配布ファイ
 <p><code>jta.dicon</code>は通常<code>j2ee.dicon</code>からインクルードされます．<code>j2ee.dicon</code>をインクルードしていれば利用者が直接インクルードする必要はありません．</p>
 <h4>定義</h4>
 <p><code>jta.dicon</code>の最新版の定義内容を以下に示します (リリース済みの内容とは異なる場合があります)．</p>
-<iframe src="http://svn.seasar.org/browse/trunk/seasar2/s2-extension/src/main/resources/jta.dicon?root=s2container&view=co" width="100%" scrolling="AUTO"></iframe>
+<iframe src="https://www.seasar.org/svn/s2container/trunk/seasar2/s2-extension/src/main/resources/jta.dicon" width="100%" scrolling="AUTO"></iframe>
 <h3><code><a name="ejbtx.dicon">ejbtx.dicon</a></code></h3>
 <p><code>ejbtx.dicon</code>はEJB 2.x互換の宣言的トランザクションを利用するためのdiconファイルです．</p>
 <p>EJB 2.x互換の宣言的トランザクションについては「<a href="tx.html">トランザクションの自動制御</a>」－「<a href="tx.html#EJBTx">EJB互換のAdvice</a>」を参照してください．</p>
@@ -388,7 +388,7 @@ Seasar2のJarファイルには含まれていません．Seasar2配布ファイ
 <p><code>ejbtx.dicon</code>は通常<code>app.dicon</code>からインクルードして利用します．</p>
 <h4>定義</h4>
 <p><code>ejbtx.dicon</code>の最新版の定義内容を以下に示します (リリース済みの内容とは異なる場合があります)．</p>
-<iframe src="http://svn.seasar.org/browse/trunk/seasar2/s2-extension/src/main/resources/ejbtx.dicon?root=s2container&view=co" width="100%" scrolling="AUTO"></iframe>
+<iframe src="https://www.seasar.org/svn/s2container/trunk/seasar2/s2-extension/src/main/resources/ejbtx.dicon" width="100%" scrolling="AUTO"></iframe>
 <h2><a name="javaee5">JavaEE5サポート</a></h2>
 <p>JavaEE 5.0の機能を利用するための標準diconファイルについて説明します．</p>
 <h3><code><a name="javaee5.dicon">javaee5.dicon</a></code></h3>
@@ -411,7 +411,7 @@ S2Hibernate-JPA・S2TopLink-JPAから利用されます．
 <p><code>javaee5.dicon</code>は通常<code>app.dicon</code>でインクルードして利用します．</p>
 <h4>定義</h4>
 <p><code>javaee5.dicon</code>の最新版の定義内容を以下に示します (リリース済みの内容とは異なる場合があります)．</p>
-<iframe src="http://svn.seasar.org/browse/trunk/s2-tiger/src/main/resources/javaee5.dicon?root=s2container&view=co" width="100%" scrolling="AUTO"></iframe>
+<iframe src="https://www.seasar.org/svn/s2container/trunk/s2-tiger/src/main/resources/javaee5.dicon" width="100%" scrolling="AUTO"></iframe>
 <h3><code><a name="jpa-support.dicon">jpa-support.dicon</a></code></h3>
 <p><code>jpa-support.dicon</code>はSeasar2のJPAサポート機能を利用するためのdiconファイルです．</p>
 <p>S2Hibernate-JPA・S2TopLink-JPAから利用されます．</p>
@@ -427,7 +427,7 @@ S2Hibernate-JPA・S2TopLink-JPAから利用されます．
 <p><code>jpa-support.dicon</code>は通常<code>javaee5.dicon</code>からインクルードされます．<code>javaee5.dicon</code>をインクルードしていれば利用者が直接インクルードする必要はありません．</p>
 <h4>定義</h4>
 <p><code>javaee5.dicon</code>の最新版の定義内容を以下に示します (リリース済みの内容とは異なる場合があります)．</p>
-<iframe src="http://svn.seasar.org/browse/trunk/s2-tiger/src/main/resources/jpa-support.dicon?root=s2container&view=co" width="100%" scrolling="AUTO"></iframe>
+<iframe src="https://www.seasar.org/svn/s2container/trunk/s2-tiger/src/main/resources/jpa-support.dicon" width="100%" scrolling="AUTO"></iframe>
 <h3><code><a name="ejb3tx.dicon">ejb3tx.dicon</a></code></h3>
 <p><code>ejb3tx.dicon</code>はEJB3の宣言的トランザクションを利用するためのdiconファイルです．</p>
 <p>EJB3の宣言的トランザクションについては「<a href="ejb3.html">EJB3.0 Simplified API</a>」を参照してください．</p>
@@ -443,7 +443,7 @@ S2Hibernate-JPA・S2TopLink-JPAから利用されます．
 <p><code>ejb3tx.dicon</code>は通常<code>javaee5.dicon</code>からインクルードされます．<code>javaee5.dicon</code>をインクルードしていれば利用者が直接インクルードする必要はありません．</p>
 <h4>定義</h4>
 <p><code>ejb3tx.dicon</code>の最新版の定義内容を以下に示します (リリース済みの内容とは異なる場合があります)．</p>
-<iframe src="http://svn.seasar.org/browse/trunk/s2-tiger/src/main/resources/ejb3tx.dicon?root=s2container&view=co" width="100%" scrolling="AUTO"></iframe>
+<iframe src="https://www.seasar.org/svn/s2container/trunk/s2-tiger/src/main/resources/ejb3tx.dicon" width="100%" scrolling="AUTO"></iframe>
 <h2><a name="dao">Daoサポート</a></h2>
 <p>Daoをサポートするための標準diconファイルについて説明します．</p>
 <h3><code><a name="jdbc-extension.dicon">jdbc-extension.dicon</a></code></h3>
@@ -457,7 +457,7 @@ S2Hibernate-JPA・S2TopLink-JPAから利用されます．
 <p><code>jdbc-extension.dicon</code>は通常<code>jdbc.dicon</code>でインクルードして利用します．UujiおよびKuina-Daoを利用しない場合はインクルードする必要はありません．</p>
 <h4>定義</h4>
 <p><code>jdbc-extension.dicon</code>の最新版の定義内容を以下に示します (リリース済みの内容とは異なる場合があります)．</p>
-<iframe src="http://svn.seasar.org/browse/trunk/seasar2/s2-extension/src/main/resources/jdbc-extension.dicon?root=s2container&view=co" width="100%" scrolling="AUTO"></iframe>
+<iframe src="https://www.seasar.org/svn/s2container/trunk/seasar2/s2-extension/src/main/resources/jdbc-extension.dicon" width="100%" scrolling="AUTO"></iframe>
 <h2><a name="dxo">Dxoサポート</a></h2>
 <p>S2Dxoを利用するための標準diconファイルについて説明します．</p>
 <h3><code><a name="dxo.dicon">dxo.dicon</a></code></h3>
@@ -471,7 +471,7 @@ S2Hibernate-JPA・S2TopLink-JPAから利用されます．
 <p><code>dxo.dicon</code>は通常<code>app.dicon</code>でインクルードして利用します．</p>
 <h4>定義</h4>
 <p><code>dxo.dicon</code>の最新版の定義内容を以下に示します (リリース済みの内容とは異なる場合があります)．</p>
-<iframe src="http://svn.seasar.org/browse/trunk/seasar2/s2-extension/src/main/resources/dxo.dicon?root=s2container&view=co" width="100%" scrolling="AUTO"></iframe>
+<iframe src="https://www.seasar.org/svn/s2container/trunk/seasar2/s2-extension/src/main/resources/dxo.dicon" width="100%" scrolling="AUTO"></iframe>
 <h2><a name="smartdeploy">SMART deployサポート</a></h2>
 <p>SMART deployを利用するための標準diconファイルについて説明します．</p>
 <h3><code><a name="hotdeploy.dicon">hotdeploy.dicon</a></code></h3>
@@ -500,7 +500,7 @@ S2Hibernate-JPA・S2TopLink-JPAから利用されます．
 &lt;/components&gt;</pre>
 <h4>定義</h4>
 <p><code>hotdeploy.dicon</code>の最新版の定義内容を以下に示します (リリース済みの内容とは異なる場合があります)．</p>
-<iframe src="http://svn.seasar.org/browse/trunk/seasar2/s2-framework/src/main/resources/hotdeploy.dicon?root=s2container&view=co" width="100%" scrolling="AUTO"></iframe>
+<iframe src="https://www.seasar.org/svn/s2container/trunk/seasar2/s2-framework/src/main/resources/hotdeploy.dicon" width="100%" scrolling="AUTO"></iframe>
 <h3><code><a name="warmdeploy.dicon">warmdeploy.dicon</a></code></h3>
 <p><code>warmdeploy.dicon</code>はSMART deployの一種であるWARM deployを利用するためのdiconファイルです．</p>
 <p>WARM deployについては「<a href="S2.4SmartDeploy.html">SMART deploy</a>」－「<a href="S2.4SmartDeploy.html#WarmDeploy">WARM deploy</a>」を参照してください．</p>
@@ -527,7 +527,7 @@ S2Hibernate-JPA・S2TopLink-JPAから利用されます．
 &lt;/components&gt;</pre>
 <h4>定義</h4>
 <p><code>warmdeploy.dicon</code>の最新版の定義内容を以下に示します (リリース済みの内容とは異なる場合があります)．</p>
-<iframe src="http://svn.seasar.org/browse/trunk/seasar2/s2-framework/src/main/resources/warmdeploy.dicon?root=s2container&view=co" width="100%" scrolling="AUTO"></iframe>
+<iframe src="https://www.seasar.org/svn/s2container/trunk/seasar2/s2-framework/src/main/resources/warmdeploy.dicon" width="100%" scrolling="AUTO"></iframe>
 <h3><code><a name="cooldeploy.dicon">cooldeploy.dicon</a></code></h3>
 <p><code>cooldeploy.dicon</code>はSMART deployの一種であるCOOL deployを利用するためのdiconファイルです．</p>
 <p>COOL deployについては「<a href="S2.4SmartDeploy.html">SMART deploy</a>」－「<a href="S2.4SmartDeploy.html#CoolDeploy">COOL deploy</a>」を参照してください．</p>
@@ -546,7 +546,7 @@ S2Hibernate-JPA・S2TopLink-JPAから利用されます．
 &lt;/components&gt;</pre>
 <h4>定義</h4>
 <p><code>cooldeploy.dicon</code>の最新版の定義内容を以下に示します (リリース済みの内容とは異なる場合があります)．</p>
-<iframe src="http://svn.seasar.org/browse/trunk/seasar2/s2-framework/src/main/resources/cooldeploy.dicon?root=s2container&view=co" width="100%" scrolling="AUTO"></iframe>
+<iframe src="https://www.seasar.org/svn/s2container/trunk/seasar2/s2-framework/src/main/resources/cooldeploy.dicon" width="100%" scrolling="AUTO"></iframe>
 <h3><code><a name="cooldeploy-autoregister.dicon">cooldeploy-autoregister.dicon</a></code></h3>
 <p><code>cooldeploy-autoregister.dicon</code>はSMART deployの一種であるCOOL deployを利用するためのdiconファイルです．</p>
 <p>COOL deployについては「<a href="S2.4SmartDeploy.html">SMART deploy</a>」－「<a href="S2.4SmartDeploy.html#CoolDeploy">COOL deploy</a>」を参照してください．</p>
@@ -566,7 +566,7 @@ S2Hibernate-JPA・S2TopLink-JPAから利用されます．
 <p><code>cooldeploy-autoregister.dicon</code>は通常<code>cooldeploy.dicon</code>に設定されたコンポーネントによって<code>app.dicon</code>にインクルード要素が追加されます．利用者が直接インクルードする必要はありません．</p>
 <h4>定義</h4>
 <p><code>cooldeploy-autoregister.dicon</code>の最新版の定義内容を以下に示します (リリース済みの内容とは異なる場合があります)．</p>
-<iframe src="http://svn.seasar.org/browse/trunk/seasar2/s2-framework/src/main/resources/cooldeploy-autoregister.dicon?root=s2container&view=co" width="100%" scrolling="AUTO"></iframe>
+<iframe src="https://www.seasar.org/svn/s2container/trunk/seasar2/s2-framework/src/main/resources/cooldeploy-autoregister.dicon" width="100%" scrolling="AUTO"></iframe>
 <h3><code><a name="default-customizer.dicon">default-customizer.dicon</a></code></h3>
 <p><code>default-customizer.dicon</code>はSMART deployで使用されるCustomizerのデフォルトを定義したdiconファイルです．</p>
 <p><code>default-customizer.dicon</code>に定義されているCustomizerは全て空の内容になっており，何もカスタマイズしません．</p>
@@ -582,7 +582,7 @@ S2Hibernate-JPA・S2TopLink-JPAから利用されます．
 <p><code>default-customizer.dicon</code>は通常<code>customizer.dicon</code>からインクルードして利用します．利用者が独自にコンポーネント定義をカスタマイズしたいCustomizerを<code>customizer.dicon</code>に定義することで，<code>default-customizer.dicon</code>の設定を上書きすることができます (<code>default-customizer.dicon</code>に定義されたコンポーネントよりも<code>customizer.dicon</code>に定義されたコンポーネントが優先的に使用されます)．</p>
 <h4>定義</h4>
 <p><code>default-customizer.dicon</code>の最新版の定義内容を以下に示します (リリース済みの内容とは異なる場合があります)．</p>
-<iframe src="http://svn.seasar.org/browse/trunk/seasar2/s2-framework/src/main/resources/default-customizer.dicon?root=s2container&view=co" width="100%" scrolling="AUTO"></iframe>
+<iframe src="https://www.seasar.org/svn/s2container/trunk/seasar2/s2-framework/src/main/resources/default-customizer.dicon" width="100%" scrolling="AUTO"></iframe>
 <h3><code><a name="std-customizer.dicon">std-customizer.dicon</a></code></h3>
 <p><code>std-customizer.dicon</code>はSMART deployで使用される標準的なCustomizerを定義したdiconファイルです．</p>
 <p><code>default-customizer.dicon</code>に定義されているCustomizerは<code>customizer.dicon</code>で定義されるCustomizerChainに組み込まれるコンポーネントを提供します．</p>
@@ -594,7 +594,7 @@ S2Hibernate-JPA・S2TopLink-JPAから利用されます．
 <p><code>std-customizer.dicon</code>は通常<code>default-customizer.dicon</code>からインクルードされます．利用者は<code>customizer.dicon</code>から<code>default-customizer.dicon</code>をインクルードすることにより，<code>std-customizer.dicon</code>に定義されたCustomizerを利用することができます．</p>
 <h4>定義</h4>
 <p><code>std-customizer.dicon</code>の最新版の定義内容を以下に示します (リリース済みの内容とは異なる場合があります)．</p>
-<iframe src="http://svn.seasar.org/browse/trunk/seasar2/s2-framework/src/main/resources/std-customizer.dicon?root=s2container&view=co" width="100%" scrolling="AUTO"></iframe>
+<iframe src="https://www.seasar.org/svn/s2container/trunk/seasar2/s2-framework/src/main/resources/std-customizer.dicon" width="100%" scrolling="AUTO"></iframe>
 <h2><a name="customize">標準diconのカスタマイズ</a></h2>
 <p>標準diconは必要に応じてカスタマイズして利用することができます．</p>
 <p>標準diconのカスタマイズは，変更したdiconファイルをJarファイルより優先されるクラスパス上に配置してください．Webアプリケーションでは通常<code>WEB-INF/classes</code>直下に配置します．</p>
@@ -636,7 +636,7 @@ S2Hibernate-JPA・S2TopLink-JPAから利用されます．
 <p><code>jdbc.dicon</code>は<code>j2ee.dicon</code>からインクルードされます．RDBMSを利用しない場合でも，<code>j2ee.dicon</code>を利用する場合は<code>jdbc.dicon</code>が必要になります．このような場合は<code>&lt;component&gt;</code>要素がない，空のdiconファイルを<code>jdbc.dicon</code>として用意してください．</p>
 <h4>定義</h4>
 <p>Seasar2配布ファイルの<code>resource/jdbc.dicon</code>の最新版の定義内容を以下に示します (リリース済みの内容とは異なる場合があります)．</p>
-<iframe src="http://svn.seasar.org/browse/trunk/seasar2/s2-extension/src/test/resources/jdbc.dicon?root=s2container&view=co" width="100%" scrolling="AUTO"></iframe>
+<iframe src="https://www.seasar.org/svn/s2container/trunk/seasar2/s2-extension/src/test/resources/jdbc.dicon" width="100%" scrolling="AUTO"></iframe>
 <h3><code><a name="s2container.dicon">s2container.dicon</a></code></h3>
 <p><code>s2container.dicon</code>はS2コンテナをカスタマイズするための設定を定義するdiconファイルで，SMART deployを利用する場合に必要となります．</p>
 <h4>名前空間</h4>
@@ -654,7 +654,7 @@ S2Hibernate-JPA・S2TopLink-JPAから利用されます．
 <p><code>convention.dicon</code>は<code>hotdeploy.dicon・warmdeploy.dicon・cooldeploy-autoregister.dicon</code>などからインクルードされます．</p>
 <h4>定義</h4>
 <p>Seasar2配布ファイルの<code>resource/convention.dicon</code>の最新版の定義内容を以下に示します (リリース済みの内容とは異なる場合があります)．</p>
-<iframe src="http://svn.seasar.org/browse/trunk/seasar2/s2-framework/src/test/resources/convention.dicon?root=s2container&view=co" width="100%" scrolling="AUTO"></iframe>
+<iframe src="https://www.seasar.org/svn/s2container/trunk/seasar2/s2-framework/src/test/resources/convention.dicon" width="100%" scrolling="AUTO"></iframe>
 <h3><code><a name="creator.dicon">creator.dicon</a></code></h3>
 <p><code>creator.dicon</code>はネーミング規約に基づいてコンポーネント定義を作成するCreatorを定義するdiconファイルで，SMART deployを利用する場合に必要となります．</p>
 <p>通常はSeasar2配布ファイルの<code>resources/creator.dicon</code>を利用者の環境に合わせて修正して利用してください．</p>
@@ -666,7 +666,7 @@ S2Hibernate-JPA・S2TopLink-JPAから利用されます．
 <p><code>creator.dicon</code>は<code>hotdeploy.dicon・warmdeploy.dicon・cooldeploy-autoregister.dicon</code>などからインクルードされます．</p>
 <h4>定義</h4>
 <p>Seasar2配布ファイルの<code>resource/cretor.dicon</code>の最新版の定義内容を以下に示します (リリース済みの内容とは異なる場合があります)．</p>
-<iframe src="http://svn.seasar.org/browse/trunk/seasar2/s2-framework/src/test/resources/creator.dicon?root=s2container&view=co" width="100%" scrolling="AUTO"></iframe>
+<iframe src="https://www.seasar.org/svn/s2container/trunk/seasar2/s2-framework/src/test/resources/creator.dicon" width="100%" scrolling="AUTO"></iframe>
 <h3><code><a name="customizer.dicon">customizer.dicon</a></code></h3>
 <p><code>customizer.dicon</code>はCreatorが作成したコンポーネント定義をカスタマイズするCustomizerを定義するdiconファイルで，SMART deployを利用する場合に必要となります．</p>
 <p>通常はSeasar2配布ファイルの<code>resources/customizer.dicon</code>を利用者の環境に合わせて修正して利用してください．</p>
@@ -679,7 +679,7 @@ S2Hibernate-JPA・S2TopLink-JPAから利用されます．
 <p><code>customizer.dicon</code>は<code>hotdeploy.dicon・warmdeploy.dicon・cooldeploy-autoregister.dicon</code>などからインクルードされます．</p>
 <h4>定義</h4>
 <p>Seasar2配布ファイルの<code>resource/customizer.dicon</code>の最新版の定義内容を以下に示します (リリース済みの内容とは異なる場合があります)．</p>
-<iframe src="http://svn.seasar.org/browse/trunk/seasar2/s2-framework/src/test/resources/customizer.dicon?root=s2container&view=co" width="100%" scrolling="AUTO"></iframe>
+<iframe src="https://www.seasar.org/svn/s2container/trunk/seasar2/s2-framework/src/test/resources/customizer.dicon" width="100%" scrolling="AUTO"></iframe>
 <!-- document end -->
 <!-- don't edit start --></td>
 <td width="14"><img height="14" width="14" src="images/spacer.gif" alt=""></td>
