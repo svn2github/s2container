@@ -3,35 +3,49 @@ package org.seasar.employee.spring2.entity;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Version;
+
+@Entity
 public class Emp {
 
-	private Long id;
+	@Id
+	@GeneratedValue
+	private long id;
 
+	@Column(name="EMP_NO")
 	private Integer empNo;
 
+	@Column(name="EMP_NAME")
 	private String empName;
 
+	@Column(name="MGR_ID")
 	private Integer mgrId;
 
 	private Date hiredate;
 
 	private BigDecimal sal;
 
+	@Column(name="DEPT_ID")
 	private Integer deptId;
 
+	@Version
+	@Column(name="VERSION_NO")
 	private Integer versionNo;
 
 	public Emp() {
 	}
 
-	public Long getId() {
+	public long getId() {
 		return this.id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
-
 	public Integer getEmpNo() {
 		return this.empNo;
 	}
@@ -39,7 +53,6 @@ public class Emp {
 	public void setEmpNo(Integer empno) {
 		this.empNo = empno;
 	}
-
 	public String getEmpName() {
 		return this.empName;
 	}
@@ -47,7 +60,6 @@ public class Emp {
 	public void setEmpName(String empname) {
 		this.empName = empname;
 	}
-
 	public Integer getMgrId() {
 		return this.mgrId;
 	}
@@ -55,7 +67,6 @@ public class Emp {
 	public void setMgrId(Integer mgrid) {
 		this.mgrId = mgrid;
 	}
-
 	public Date getHiredate() {
 		return this.hiredate;
 	}
@@ -63,7 +74,6 @@ public class Emp {
 	public void setHiredate(Date hiredate) {
 		this.hiredate = hiredate;
 	}
-
 	public BigDecimal getSal() {
 		return this.sal;
 	}
@@ -71,7 +81,6 @@ public class Emp {
 	public void setSal(BigDecimal sal) {
 		this.sal = sal;
 	}
-
 	public Integer getDeptId() {
 		return this.deptId;
 	}
@@ -79,7 +88,6 @@ public class Emp {
 	public void setDeptId(Integer deptid) {
 		this.deptId = deptid;
 	}
-
 	public Integer getVersionNo() {
 		return this.versionNo;
 	}

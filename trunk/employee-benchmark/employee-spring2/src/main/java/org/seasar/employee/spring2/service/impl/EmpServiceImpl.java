@@ -5,10 +5,7 @@ package org.seasar.employee.spring2.service.impl;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-
+import org.seasar.employee.spring2.dao.EmpDao;
 import org.seasar.employee.spring2.entity.Emp;
 import org.seasar.employee.spring2.service.EmpService;
 import org.springframework.stereotype.Repository;
@@ -22,33 +19,27 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class EmpServiceImpl implements EmpService {
 
-	@PersistenceContext
-	private EntityManager em;
+	private EmpDao dao;
 
 	public boolean contains(Emp emp) {
-		return em.contains(emp);
+		return dao.contains(emp);
 	}
 
 	public Emp find(Long id, Integer versionNo) {
-		Query q = em
-				.createNamedQuery("SELECT emp FROM Emp AS emp WHERE ((emp.id = :id) AND (emp.versionNo = :versionNo))");
-		q.setParameter("id", id);
-		q.setParameter("versionNo", versionNo);
-		return (Emp) q.getSingleResult();
+		return dao.findById(id, versionNo);
 	}
 
-	@SuppressWarnings("unchecked")
 	public List<Emp> findAll() {
-		return em.createQuery("SELECT emp FROM Emp AS emp").getResultList();
+		return dao.findAll();
 	}
 
 	public void persist(Emp emp) {
-		em.persist(emp);
+		dao.persist(emp);
 	}
 
 	public void remove(Long id, Integer versionNo) {
-		Emp e = find(id, versionNo);
-		em.remove(e);
+		Emp emp = dao.findById(id, versionNo);
+		dao.remove(emp);
 	}
 
 	public void update(Emp emp) {
@@ -59,6 +50,20 @@ public class EmpServiceImpl implements EmpService {
 		e.setHiredate(emp.getHiredate());
 		e.setSal(emp.getSal());
 		e.setDeptId(emp.getDeptId());
+	}
+
+	/**
+	 * @return the dao
+	 */
+	public EmpDao getDao() {
+		return dao;
+	}
+
+	/**
+	 * @param dao the dao to set
+	 */
+	public void setDao(EmpDao dao) {
+		this.dao = dao;
 	}
 
 }
