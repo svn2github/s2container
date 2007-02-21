@@ -50,11 +50,9 @@
             <basic name="deptId">
                 <column name="DEPT_ID"/>
             </basic>
-            <basic name="versionNo">
-                <column name="VERSION_NO"/>
-            </basic>
+            <version name="versionNo">
+                <column name="VERSION_NO" />
+            </version>
         </attributes>
     </entity>
-
-
 </entity-mappings>

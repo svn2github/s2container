@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.seasar.employee.spring2.entity.Emp;
 import org.seasar.employee.spring2.service.EmpService;
@@ -15,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author taichi
- *
+ * 
  */
 @Repository
 @Transactional
@@ -24,47 +25,40 @@ public class EmpServiceImpl implements EmpService {
 	@PersistenceContext
 	private EntityManager em;
 
-	/* (non-Javadoc)
-	 * @see org.seasar.employee.spring2.service.EmpService#findAll()
-	 */
+	public boolean contains(Emp emp) {
+		return em.contains(emp);
+	}
+
+	public Emp find(Long id, Integer versionNo) {
+		Query q = em
+				.createNamedQuery("SELECT emp FROM Emp AS emp WHERE ((emp.id = :id) AND (emp.versionNo = :versionNo))");
+		q.setParameter("id", id);
+		q.setParameter("versionNo", versionNo);
+		return (Emp) q.getSingleResult();
+	}
+
 	@SuppressWarnings("unchecked")
 	public List<Emp> findAll() {
-		return em.createNativeQuery("SELECT emp FROM Emp AS emp",Emp.class).getResultList();
+		return em.createQuery("SELECT emp FROM Emp AS emp").getResultList();
 	}
 
-	/* (non-Javadoc)
-	 * @see org.seasar.employee.spring2.service.EmpService#find(java.lang.Integer)
-	 */
-	public Emp find(Integer id) {
-		return em.find(Emp.class,id);
-	}
-
-	/* (non-Javadoc)
-	 * @see org.seasar.employee.spring2.service.EmpService#persist(org.seasar.employee.spring2.entity.Emp)
-	 */
 	public void persist(Emp emp) {
 		em.persist(emp);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.seasar.employee.spring2.service.EmpService#merge(org.seasar.employee.spring2.entity.Emp)
-	 */
-	public Emp merge(Emp emp) {
-		return em.merge(emp);
+	public void remove(Long id, Integer versionNo) {
+		Emp e = find(id, versionNo);
+		em.remove(e);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.seasar.employee.spring2.service.EmpService#remove(java.lang.Integer)
-	 */
-	public void remove(Integer id) {
-		em.remove(id);
-	}
-
-	/* (non-Javadoc)
-	 * @see org.seasar.employee.spring2.service.EmpService#contains(org.seasar.employee.spring2.entity.Emp)
-	 */
-	public boolean contains(Emp emp) {
-		return em.contains(emp);
+	public void update(Emp emp) {
+		Emp e = find(emp.getId(), emp.getVersionNo());
+		e.setEmpNo(emp.getEmpNo());
+		e.setEmpName(emp.getEmpName());
+		e.setMgrId(emp.getMgrId());
+		e.setHiredate(emp.getHiredate());
+		e.setSal(emp.getSal());
+		e.setDeptId(emp.getDeptId());
 	}
 
 }

@@ -3,9 +3,9 @@ package org.seasar.employee.spring2.entity;
 import java.math.BigDecimal;
 import java.util.Date;
 
-
 public class Emp {
-	private Integer id;
+
+	private Long id;
 
 	private Integer empNo;
 
@@ -19,18 +19,19 @@ public class Emp {
 
 	private Integer deptId;
 
-	private BigDecimal versionNo;
+	private Integer versionNo;
 
 	public Emp() {
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public Integer getEmpNo() {
 		return this.empNo;
 	}
@@ -38,6 +39,7 @@ public class Emp {
 	public void setEmpNo(Integer empno) {
 		this.empNo = empno;
 	}
+
 	public String getEmpName() {
 		return this.empName;
 	}
@@ -45,6 +47,7 @@ public class Emp {
 	public void setEmpName(String empname) {
 		this.empName = empname;
 	}
+
 	public Integer getMgrId() {
 		return this.mgrId;
 	}
@@ -52,6 +55,7 @@ public class Emp {
 	public void setMgrId(Integer mgrid) {
 		this.mgrId = mgrid;
 	}
+
 	public Date getHiredate() {
 		return this.hiredate;
 	}
@@ -59,6 +63,7 @@ public class Emp {
 	public void setHiredate(Date hiredate) {
 		this.hiredate = hiredate;
 	}
+
 	public BigDecimal getSal() {
 		return this.sal;
 	}
@@ -66,6 +71,7 @@ public class Emp {
 	public void setSal(BigDecimal sal) {
 		this.sal = sal;
 	}
+
 	public Integer getDeptId() {
 		return this.deptId;
 	}
@@ -73,11 +79,12 @@ public class Emp {
 	public void setDeptId(Integer deptid) {
 		this.deptId = deptid;
 	}
-	public BigDecimal getVersionNo() {
+
+	public Integer getVersionNo() {
 		return this.versionNo;
 	}
 
-	public void setVersionNo(BigDecimal versionno) {
+	public void setVersionNo(Integer versionno) {
 		this.versionNo = versionno;
 	}
 }

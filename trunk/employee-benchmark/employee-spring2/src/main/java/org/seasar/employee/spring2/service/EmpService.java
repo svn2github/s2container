@@ -8,16 +8,16 @@ import org.seasar.employee.spring2.entity.Emp;
  * @author taichi
  */
 public interface EmpService {
-	
+
 	public List<Emp> findAll();
 	
-	public Emp find(Integer id);
+	public Emp find(Long id,Integer versionNo);
 	
 	public void persist(Emp emp);
 
-	public Emp merge(Emp emp);
+	public void update(Emp emp);
 	
-	public void remove(Integer id);
+	public void remove(Long id,Integer versionNo);
 
 	public boolean contains(Emp emp);
 
