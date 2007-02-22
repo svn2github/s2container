@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence>
+	<persistence-unit name="persistenceUnit" transaction-type="JTA">
+		<!--  for test -->
+		<jta-data-source>dataSourceProxy</jta-data-source>
+		<!-- for production -->
+		<!--
+		<jta-data-source>jdbc/dataSource</jta-data-source>
+		-->
+
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<exclude-unlisted-classes/>
+		<properties>
+			<!-- for test -->
+			<property name="hibernate.transaction.manager_lookup_class" value="org.seasar.hibernate.jpa.transaction.S2TransactionManagerLookupForTest"/>
+			<!-- for production -->
+			<!--
+			<property name="hibernate.transaction.manager_lookup_class" value="org.seasar.hibernate.jpa.transaction.S2TransactionManagerLookup"/>
+			-->
+
+			<property name="hibernate.jndi.class" value="org.seasar.extension.j2ee.JndiContextFactory"/>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+			<property name="hibernate.show_sql" value="true"/>
+			<property name="hibernate.format_sql" value="true"/>
+			<property name="hibernate.use_sql_comments" value="false"/>
+		</properties>
+	</persistence-unit>
+</persistence>
