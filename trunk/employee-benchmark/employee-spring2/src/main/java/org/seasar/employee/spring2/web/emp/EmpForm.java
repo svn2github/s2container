@@ -31,6 +31,17 @@ public class EmpForm extends ValidatorForm {
 
 	private String versionNo;
 
+	public void clear()	 {
+		id = "";
+		empNo = "";
+		empName = "";
+		mgrId = "";
+		hiredate = "";
+		sal = "";
+		deptId = "";
+		versionNo = "0";
+	}
+
 	public String getCrudType() {
 		return crudType;
 	}

@@ -1,52 +1,66 @@
 <%@ include file="/WEB-INF/jsp/includes.jsp" 
 %><%@ include file="/WEB-INF/jsp/header.jsp" 
-%><form id="EmpConfirmForm"><input type="hidden" name="crudType" value="<c:out value="${emp.crudType}"/>" />
-<spring:bind path="emp"><div>
-<span id="messages"><c:out value="${status.errorMessage}"/></span>
-</div></spring:bind><spring:nestedPath path="emp">
+%><form id="EmpConfirmForm"><html:hidden property="crudType"/>
+<div>
+<span id="messages"></span>
+</div>
 <table class="tablebg">
-<spring:bind path="id"><tr>
-    <td><label id="idLabel">id</label></td>
-	<td><c:out value="${status.value}"/><input type="hidden" name="id" value="<c:out value="${status.value}"/>" /></td>
-	<td><span id="errorMessages"><c:out value="${status.errorMessage}"/></span></td>
-</tr></spring:bind>
-<spring:bind path="empNo"><tr>
+<tr>
+    <td><div id="isNotCreate-idLabel"><label id="idLabel">id</label></div></td>
+	<td><div id="isNotCreate-idHidden">
+			<span id="id">id</span><input type="hidden" id="id-hidden" />
+		</div></td>
+	<td><span id="idMessage"></span></td>
+</tr>
+<tr>
     <td><label id="empNoLabel">empNo</label></td>
-	<td><c:out value="${status.value}"/><input type="hidden" name="empNo" value="<c:out value="${status.value}"/>" /></td>
-	<td><span id="errorMessages"><c:out value="${status.errorMessage}"/></span></td>
-</tr></spring:bind>
-<spring:bind path="empName"><tr>
+	<td><span id="empNo">empNo</span><input type="hidden" id="empNo-hidden" /></td>
+	<td><span id="empNoMessage"></span></td>
+</tr>
+<tr>
     <td><label id="empNameLabel">empName</label></td>
-	<td><c:out value="${status.value}"/><input type="hidden" name="empName" value="<c:out value="${status.value}"/>" /></td>
-	<td><span id="errorMessages"><c:out value="${status.errorMessage}"/></span></td>
-</tr></spring:bind>
-<spring:bind path="mgrId"><tr>
+	<td><span id="empName">empName</span><input type="hidden" id="empName-hidden" /></td>
+	<td><span id="empNameMessage"></span></td>
+</tr>
+<tr>
     <td><label id="mgrIdLabel">mgrId</label></td>
-	<td><c:out value="${status.value}"/><input type="hidden" name="mgrId" value="<c:out value="${status.value}"/>" /></td>
-	<td><span id="errorMessages"><c:out value="${status.errorMessage}"/></span></td>
-</tr></spring:bind>
-<spring:bind path="hiredate"><tr>
+	<td><span id="mgrId">mgrId</span><input type="hidden" id="mgrId-hidden" /></td>
+	<td><span id="mgrIdMessage"></span></td>
+</tr>
+<tr>
     <td><label id="hiredateLabel">hiredate</label></td>
-	<td><fmt:formatDate value="${status.value}" pattern="yyyy-MM-dd"/><input type="hidden" name="hiredate" value="<c:out value="${status.value}"/>" /></td>
-	<td><span id="errorMessages"><c:out value="${status.errorMessage}"/></span></td>
-</tr></spring:bind>
-<spring:bind path="sal"><tr>
+	<td><span id="hiredate">hiredate</span><input type="hidden" id="hiredate-hidden" /></td>
+	<td><span id="hiredateMessage"></span></td>
+</tr>
+<tr>
     <td><label id="salLabel">sal</label></td>
-	<td><c:out value="${status.value}"/><input type="hidden" name="sal" value="<c:out value="${status.value}"/>" /></td>
-	<td><span id="errorMessages"><c:out value="${status.errorMessage}"/></span></td>
-</tr></spring:bind>
-<spring:bind path="deptId"><tr>
+	<td><span id="sal">sal</span><input type="hidden" id="sal-hidden" /></td>
+	<td><span id="salMessage"></span></td>
+</tr>
+<tr>
     <td><label id="deptIdLabel">deptId</label></td>
-	<td><c:out value="${status.value}"/><input type="hidden" name="deptId" value="<c:out value="${status.value}"/>" /></td>
-	<td><span id="errorMessages"><c:out value="${status.errorMessage}"/></span></td>
-</tr></spring:bind>
-<spring:bind path="versionNo"><tr>
-    <td><label id="versionNoLabel">versionNo</label></td>
-	<td><c:out value="${status.value}"/><input type="hidden" name="versionNo" value="<c:out value="${status.value}"/>" /></td>
-	<td><span id="errorMessages"><c:out value="${status.errorMessage}"/></span></td>
-</tr></spring:bind>
-</table></spring:nestedPath>
-<input type="submit" value="Previous" />
-<c:if test="${emp.isNotRead}"><input type="submit" value="Finish" /></c:if>
-</form>
-<%@ include file="/WEB-INF/jsp/footer.jsp" %>
+	<td><span id="deptId">deptId</span><input type="hidden" id="deptId-hidden" /></td>
+	<td><span id="deptIdMessage"></span></td>
+</tr>
+<tr>
+    <td><div id="isNotCreate-versionNoLabel"><label id="versionNoLabel">versionNo</label></div></td>
+	<td><div id="isNotCreate-versionNoHidden">
+			<span id="versionNo">versionNo</span><input type="hidden" id="versionNo-hidden" />
+		</div></td>
+	<td><span id="versionNoMessage"></span></td>
+</tr>
+</table>
+<div id="isComeFromList">
+	<input type="button" id="jumpEmpList" value="Previous" 
+		onclick="location.href='EmpList.html'"
+	/>
+</div>
+<div id="isNotComeFromList">
+	<input type="button" id="jumpEmpEdit" value="Previous"
+		onclick="location.href='EmpEdit.html'" style="display: none;"/>
+</div>
+<div id="isNotRead">
+<div id="isCreate"><input type="button" id="doCreate" value="Finish" onclick="location.href='DeptList.html'" /></div>
+<div id="isNotCreate"><input type="button" id="doUpdate" value="Finish" onclick="location.href='DeptList.html'" style="display: none;"/></div>
+</div>
+</form><%@ include file="/WEB-INF/jsp/footer.jsp" %>

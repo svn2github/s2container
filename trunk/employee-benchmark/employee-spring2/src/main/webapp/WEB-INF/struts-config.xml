@@ -22,7 +22,9 @@
 
 	<!-- =========================================== Global Forward Definitions -->
 
-	<global-forwards></global-forwards>
+	<global-forwards>
+		<forward name="fail" path="/empList.do" />
+	</global-forwards>
 
 	<!-- =========================================== Action Mapping Definitions -->
 
@@ -31,11 +33,6 @@
 			type="org.springframework.web.struts.DelegatingActionProxy"
 			name="EmpListForm" scope="request">
 			<forward name="success" path="/WEB-INF/jsp/empList.jsp" />
-		</action>
-		<action path="/empInquire"
-			type="org.springframework.web.struts.DelegatingActionProxy"
-			name="EmpForm" scope="request" input="/empList" validate="true">
-			<forward name="success" path="/WEB-INF/jsp/empInquire.jsp" />
 		</action>
 		<action path="/empEdit"
 			type="org.springframework.web.struts.DelegatingActionProxy"

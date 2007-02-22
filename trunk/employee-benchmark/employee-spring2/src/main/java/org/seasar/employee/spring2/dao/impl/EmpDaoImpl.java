@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.persistence.LockModeType;
+import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
 
 import org.seasar.employee.spring2.dao.EmpDao;
 import org.seasar.employee.spring2.entity.Emp;
@@ -52,7 +54,12 @@ public class EmpDaoImpl extends JpaDaoSupport implements EmpDao {
 				.findByNamedParams(
 						"SELECT emp FROM Emp AS emp WHERE ((emp.id = :id) AND (emp.versionNo = :versionNo))",
 						m);
-		return l.isEmpty() ? null : (Emp) l.get(0);
+		if(l.isEmpty()) {
+			throw new NoResultException();
+		} else if (1 < l.size()) {
+			throw new NonUniqueResultException();
+		}
+		return (Emp) l.get(0);
 	}
 
 	/*

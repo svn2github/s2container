@@ -1,7 +1,6 @@
 <%@ include file="/WEB-INF/jsp/includes.jsp" 
 %><%@ include file="/WEB-INF/jsp/header.jsp" %>
-<html:form action="/empEdit"><html:submit>Create</html:submit></html:form><br/>
-<html:form action="/empList">
+<html:form action="/empEdit"><input type="hidden" name="crudType" value="0"/><html:submit>Create</html:submit></html:form>
 <table id="empGridXY" height="200px" border="1">
 	<colgroup>
 		<col span="1" width="60px" class="T_leftFixed" />
@@ -19,22 +18,20 @@
 			<th><br/></th>
 		</tr>
 	</thead>
-	<tbody><c:forEach var="empItem" items="${EmpListForm.empItems}">
-		<tr class="row_even">
-			<td class="right"><html:text name="empItem" property="id" indexed="true"/></td>
-			<td class="right"><html:text name="empItem" property="empNo" indexed="true"/></td>
-			<td><html:text name="empItem" property="empName" indexed="true"/></td>
-			<td class="right"><html:text name="empItem" property="mgrId" indexed="true"/></td>
-			<td><html:text name="empItem" property="hiredate" indexed="true"/></td>
-			<td class="right"><html:text name="empItem" property="sal" indexed="true"/></td>
-			<td class="right"><html:text name="empItem" property="deptId" indexed="true"/></td>
-			<td class="right"><html:text name="empItem" property="versionNo" indexed="true"/></td>
-			<td><a href="/empEdit?crudType=2&id=id&versionNo=versionNo">Edit</a>
-			<a href="/empConfirm?crudType=3&id=id&versionNo=versionNo">Delete</a>
-			<a href="/empConfirm?crudType=1&id=id&versionNo=versionNo">Inquire</a>
+	<tbody><c:forEach var="empItem" items="${EmpListForm.empItems}" varStatus="status">
+		<c:choose><c:when test="${status.index % 2 == 1 }"><tr class="row_odd"></c:when><c:otherwise><tr class="row_even"></c:otherwise></c:choose>
+			<td class="right"><bean:write name="empItem" property="id" /></td>
+			<td class="right"><bean:write name="empItem" property="empNo" /></td>
+			<td><bean:write name="empItem" property="empName" /></td>
+			<td class="right"><bean:write name="empItem" property="mgrId" /></td>
+			<td><bean:write name="empItem" property="hiredate" /></td>
+			<td class="right"><bean:write name="empItem" property="sal" /></td>
+			<td class="right"><bean:write name="empItem" property="deptId" /></td>
+			<td class="right"><bean:write name="empItem" property="versionNo" /></td>
+			<td><a href="empEdit.do?crudType=2&id=<bean:write name="empItem" property="id"/>&versionNo=<bean:write name="empItem" property="versionNo"/>">Edit</a>
+			<a href="empConfirm.do?crudType=3&id=<bean:write name="empItem" property="id"/>&versionNo=<bean:write name="empItem" property="versionNo"/>">Delete</a>
+			<a href="empConfirm.do?crudType=1&id=<bean:write name="empItem" property="id"/>&versionNo=<bean:write name="empItem" property="versionNo"/>">Inquire</a>
 			</td>
 		</tr>
 	</c:forEach></tbody>
-</table>
-</html:form>
-<%@ include file="/WEB-INF/jsp/footer.jsp" %>
+</table><%@ include file="/WEB-INF/jsp/footer.jsp" %>
