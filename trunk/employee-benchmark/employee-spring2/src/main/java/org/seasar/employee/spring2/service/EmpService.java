@@ -2,23 +2,21 @@ package org.seasar.employee.spring2.service;
 
 import java.util.List;
 
-import org.seasar.employee.spring2.entity.Emp;
+import org.seasar.employee.spring2.web.emp.EmpForm;
 
 /**
  * @author taichi
  */
 public interface EmpService {
 
-	public List<Emp> findAll();
-	
-	public Emp find(Long id,Integer versionNo);
-	
-	public void persist(Emp emp);
+	public List<EmpForm> findAll();
 
-	public void update(Emp emp);
-	
-	public void remove(Long id,Integer versionNo);
+	public EmpForm find(Long id, Integer versionNo);
 
-	public boolean contains(Emp emp);
+	public void persist(EmpForm emp);
+
+	public void update(EmpForm emp);
+
+	public void remove(Long id, Integer versionNo);
 
 }

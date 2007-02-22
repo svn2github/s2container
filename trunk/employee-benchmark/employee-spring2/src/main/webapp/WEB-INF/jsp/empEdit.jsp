@@ -1,9 +1,6 @@
 <%@ include file="/WEB-INF/jsp/includes.jsp" 
 %><%@ include file="/WEB-INF/jsp/header.jsp" 
-%><html:form action="/empConfirm">
-<div>
-<span id="messages"></span><html:hidden property="crudType"/>
-</div>
+%><html:form action="/empConfirm"><html:hidden property="crudType"/>
 <table class="tablebg">
 <logic:notEqual name="EmpForm" property="crudType" value="0">
 <tr>
@@ -18,7 +15,7 @@
 <tr>
     <td><label id="empNoLabel">empNo</label></td>
 	<td><html:text property="empNo"/></td>
-	<td><html:errors property="empNo"/></td>
+	<td><html:errors property="empNo" /></td>
 </tr>
 <tr>
     <td><label id="empNameLabel">empName</label></td>
@@ -32,7 +29,7 @@
 </tr>
 <tr>
     <td><label id="hiredateLabel">hiredate</label></td>
-	<td><html:text property="hiredate" styleClass="T_date"/></td>
+	<td><layout:date property="hiredate" layout="false" patternKey="yyyy/MM/dd"/></td>
 	<td><html:errors property="hiredate"/></td>
 </tr>
 <tr>

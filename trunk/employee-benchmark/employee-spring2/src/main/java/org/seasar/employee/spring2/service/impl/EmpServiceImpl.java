@@ -3,11 +3,18 @@
  */
 package org.seasar.employee.spring2.service.impl;
 
+import java.lang.reflect.InvocationTargetException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.seasar.employee.spring2.dao.EmpDao;
 import org.seasar.employee.spring2.entity.Emp;
 import org.seasar.employee.spring2.service.EmpService;
+import org.seasar.employee.spring2.web.emp.EmpForm;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,19 +28,62 @@ public class EmpServiceImpl implements EmpService {
 
 	private EmpDao dao;
 
-	public boolean contains(Emp emp) {
-		return dao.contains(emp);
+	public EmpForm find(Long id, Integer versionNo) {
+		Emp e = dao.findById(id, versionNo);
+		return toForm(e);
 	}
 
-	public Emp find(Long id, Integer versionNo) {
-		return dao.findById(id, versionNo);
+	private EmpForm toForm(Emp e) {
+		EmpForm form = new EmpForm();
+		copy(e, form);
+		return form;
 	}
 
-	public List<Emp> findAll() {
-		return dao.findAll();
+	private void copy(Emp emp, EmpForm form) {
+		copyProperties(emp, form);
+		form.setHiredate(toString(emp.getHiredate()));
 	}
 
-	public void persist(Emp emp) {
+	private void copy(EmpForm form, Emp emp) {
+		copyProperties(form, emp);
+		emp.setHiredate(toDate(form.getHiredate()));
+	}
+
+	private void copyProperties(Object src, Object dest) {
+		try {
+			BeanUtils.copyProperties(dest, src);
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private static final String FORMAT = "yyyy/MM/dd";
+
+	private Date toDate(String s) {
+		try {
+			return new SimpleDateFormat(FORMAT).parse(s);
+		} catch (ParseException e) {
+			return null;
+		}
+	}
+
+	private String toString(Date d) {
+		return new SimpleDateFormat(FORMAT).format(d);
+	}
+
+	public List<EmpForm> findAll() {
+		List<Emp> all = dao.findAll();
+		List<EmpForm> forms = new ArrayList<EmpForm>(all.size());
+		for (Emp e : all) {
+			forms.add(toForm(e));
+		}
+		return forms;
+	}
+
+	public void persist(EmpForm form) {
+		Emp emp = null;
 		dao.persist(emp);
 	}
 
@@ -42,14 +92,10 @@ public class EmpServiceImpl implements EmpService {
 		dao.remove(emp);
 	}
 
-	public void update(Emp emp) {
-		Emp e = find(emp.getId(), emp.getVersionNo());
-		e.setEmpNo(emp.getEmpNo());
-		e.setEmpName(emp.getEmpName());
-		e.setMgrId(emp.getMgrId());
-		e.setHiredate(emp.getHiredate());
-		e.setSal(emp.getSal());
-		e.setDeptId(emp.getDeptId());
+	public void update(EmpForm form) {
+		Emp e = dao.findById(new Long(form.getId()), new Integer(form
+				.getVersionNo()));
+		copy(form, e);
 	}
 
 	/**
@@ -60,7 +106,8 @@ public class EmpServiceImpl implements EmpService {
 	}
 
 	/**
-	 * @param dao the dao to set
+	 * @param dao
+	 *            the dao to set
 	 */
 	public void setDao(EmpDao dao) {
 		this.dao = dao;

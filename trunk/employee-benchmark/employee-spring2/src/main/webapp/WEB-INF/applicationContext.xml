@@ -9,12 +9,6 @@
 			<ref bean="service" />
 		</property>
 	</bean>
-	<bean name="/empInquire"
-		class="org.seasar.employee.spring2.web.emp.EmpInquireAction">
-		<property name="service">
-			<ref bean="service" />
-		</property>
-	</bean>
 	<bean name="/empEdit"
 		class="org.seasar.employee.spring2.web.emp.EmpEditAction">
 		<property name="service">

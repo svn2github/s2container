@@ -9,11 +9,9 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.seasar.employee.spring2.entity.Emp;
 import org.seasar.employee.spring2.web.CrudType;
 
 /**
@@ -36,8 +34,8 @@ public class EmpEditAction extends AbstractEmpAction {
 		if(CrudType.CREATE.equals(form.getCrudType())) {
 			form.clear();
 		} else if(NOT_CREATE.contains(form.getCrudType())) {
-			Emp e = getService().find(new Long(form.getId()), new Integer(form.getVersionNo()));
-			BeanUtils.copyProperties(form, e);
+			EmpForm e = getService().find(new Long(form.getId()), new Integer(form.getVersionNo()));
+			req.setAttribute("EmpForm", e);
 		} else {
 			return am.findForward("fail");
 		}

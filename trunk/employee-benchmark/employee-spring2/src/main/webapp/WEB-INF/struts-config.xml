@@ -36,12 +36,12 @@
 		</action>
 		<action path="/empEdit"
 			type="org.springframework.web.struts.DelegatingActionProxy"
-			name="EmpForm" scope="request" input="/empList" validate="true">
+			name="EmpForm" scope="request" input="/empList.do" validate="false">
 			<forward name="success" path="/WEB-INF/jsp/empEdit.jsp" />
 		</action>
 		<action path="/empConfirm"
 			type="org.springframework.web.struts.DelegatingActionProxy"
-			name="EmpForm" scope="request" input="empEdit.jsp" validate="true">
+			name="EmpForm" scope="request" input="/WEB-INF/jsp/empEdit.jsp" validate="true">
 			<forward name="success" path="/WEB-INF/jsp/empConfirm.jsp" />
 		</action>
 		<action path="/empFinish"
@@ -56,7 +56,7 @@
 
 	<!-- ======================================== Message Resources Definitions -->
 
-	<message-resources parameter="MessageResources" />
+	<message-resources parameter="messages" />
 
 
 	<!-- =============================================== Plug Ins Configuration -->
