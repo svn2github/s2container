@@ -3,14 +3,7 @@
  */
 package org.seasar.employee.spring2.web.emp;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.commons.lang.StringUtils;
-import org.apache.struts.action.ActionErrors;
-import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionMessage;
 import org.apache.struts.validator.ValidatorForm;
-import org.seasar.employee.spring2.web.CrudType;
 
 /**
  * @author taichi
@@ -119,31 +112,5 @@ public class EmpForm extends ValidatorForm {
 
 	public void setVersionNo(String versionNo) {
 		this.versionNo = versionNo;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.apache.struts.action.ActionForm#validate(org.apache.struts.action.ActionMapping,
-	 *      javax.servlet.http.HttpServletRequest)
-	 */
-	@Override
-	public ActionErrors validate(ActionMapping am, HttpServletRequest req) {
-		ActionErrors errors = new ActionErrors();
-		if(CrudType.CREATE.equals(getCrudType()) == false) {
-			if(StringUtils.isEmpty(getId())) {
-				ActionMessage msg = new ActionMessage("errors.required","id");
-				errors.add("id", msg);
-			}
-			if(StringUtils.isEmpty(getVersionNo())) {
-				ActionMessage msg = new ActionMessage("errors.required","versionNo");
-				errors.add("versionNo", msg);
-			}
-		}
-		if(StringUtils.isEmpty(getEmpNo())) {
-			ActionMessage msg = new ActionMessage("errors.required","empNo");
-			errors.add("empNo", msg);
-		}
-		return errors;
 	}
 }

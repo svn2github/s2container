@@ -24,20 +24,47 @@
     <formset>
 
         <!-- An example form -->
-        <form name="logonForm">
+        <form name="EmpForm">
             <field
-                property="username"
-                depends="required">
-                    <arg key="logonForm.username"/>
+                property="id"
+                depends="integer">
+                    <arg key="EmpForm.id"/>
             </field>
             <field
-                property="password"
-                depends="required,mask">
-                    <arg key="logonForm.password"/>
-                    <var>
-                        <var-name>mask</var-name>
-                        <var-value>^[0-9a-zA-Z]*$</var-value>
-                    </var>
+                property="empNo"
+                depends="required">
+                    <arg key="EmpForm.empNo"/>
+            </field>
+            <field
+                property="empNo"
+                depends="integer">
+                    <arg key="EmpForm.empNo"/>
+            </field>
+            <field
+                property="mgrId"
+                depends="integer">
+                    <arg key="EmpForm.mgrId"/>
+            </field>
+            <field
+                property="hiredate"
+                depends="date">
+                    <arg key="EmpForm.hiredate"/>
+                    <var><var-name>datePattern</var-name><var-value>yyyy/MM/dd</var-value></var>
+            </field>
+            <field
+                property="sal"
+                depends="double">
+                    <arg key="EmpForm.sal"/>
+            </field>
+            <field
+                property="deptId"
+                depends="integer">
+                    <arg key="EmpForm.deptId"/>
+            </field>
+            <field
+                property="versionNo"
+                depends="integer">
+                    <arg key="EmpForm.versionNo"/>
             </field>
         </form>
 

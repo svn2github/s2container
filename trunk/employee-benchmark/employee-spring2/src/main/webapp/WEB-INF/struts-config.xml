@@ -41,7 +41,7 @@
 		</action>
 		<action path="/empConfirm"
 			type="org.springframework.web.struts.DelegatingActionProxy"
-			name="EmpForm" scope="request" input="/WEB-INF/jsp/empEdit.jsp" validate="true">
+			name="EmpForm" scope="request" input="/WEB-INF/jsp/empEdit.jsp" validate="false">
 			<forward name="success" path="/WEB-INF/jsp/empConfirm.jsp" />
 		</action>
 		<action path="/empFinish"

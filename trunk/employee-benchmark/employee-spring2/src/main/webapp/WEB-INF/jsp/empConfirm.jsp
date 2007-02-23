@@ -1,66 +1,81 @@
-<%@ include file="/WEB-INF/jsp/includes.jsp" 
-%><%@ include file="/WEB-INF/jsp/header.jsp" 
-%><form id="EmpConfirmForm"><html:hidden property="crudType"/>
-<div>
-<span id="messages"></span>
-</div>
-<table class="tablebg">
-<tr>
-    <td><div id="isNotCreate-idLabel"><label id="idLabel">id</label></div></td>
-	<td><div id="isNotCreate-idHidden">
-			<span id="id">id</span><input type="hidden" id="id-hidden" />
-		</div></td>
-	<td><span id="idMessage"></span></td>
-</tr>
-<tr>
-    <td><label id="empNoLabel">empNo</label></td>
-	<td><span id="empNo">empNo</span><input type="hidden" id="empNo-hidden" /></td>
-	<td><span id="empNoMessage"></span></td>
-</tr>
-<tr>
-    <td><label id="empNameLabel">empName</label></td>
-	<td><span id="empName">empName</span><input type="hidden" id="empName-hidden" /></td>
-	<td><span id="empNameMessage"></span></td>
-</tr>
-<tr>
-    <td><label id="mgrIdLabel">mgrId</label></td>
-	<td><span id="mgrId">mgrId</span><input type="hidden" id="mgrId-hidden" /></td>
-	<td><span id="mgrIdMessage"></span></td>
-</tr>
-<tr>
-    <td><label id="hiredateLabel">hiredate</label></td>
-	<td><span id="hiredate">hiredate</span><input type="hidden" id="hiredate-hidden" /></td>
-	<td><span id="hiredateMessage"></span></td>
-</tr>
-<tr>
-    <td><label id="salLabel">sal</label></td>
-	<td><span id="sal">sal</span><input type="hidden" id="sal-hidden" /></td>
-	<td><span id="salMessage"></span></td>
-</tr>
-<tr>
-    <td><label id="deptIdLabel">deptId</label></td>
-	<td><span id="deptId">deptId</span><input type="hidden" id="deptId-hidden" /></td>
-	<td><span id="deptIdMessage"></span></td>
-</tr>
-<tr>
-    <td><div id="isNotCreate-versionNoLabel"><label id="versionNoLabel">versionNo</label></div></td>
-	<td><div id="isNotCreate-versionNoHidden">
-			<span id="versionNo">versionNo</span><input type="hidden" id="versionNo-hidden" />
-		</div></td>
-	<td><span id="versionNoMessage"></span></td>
-</tr>
-</table>
-<div id="isComeFromList">
-	<input type="button" id="jumpEmpList" value="Previous" 
-		onclick="location.href='EmpList.html'"
-	/>
-</div>
-<div id="isNotComeFromList">
-	<input type="button" id="jumpEmpEdit" value="Previous"
-		onclick="location.href='EmpEdit.html'" style="display: none;"/>
-</div>
-<div id="isNotRead">
-<div id="isCreate"><input type="button" id="doCreate" value="Finish" onclick="location.href='DeptList.html'" /></div>
-<div id="isNotCreate"><input type="button" id="doUpdate" value="Finish" onclick="location.href='DeptList.html'" style="display: none;"/></div>
-</div>
-</form><%@ include file="/WEB-INF/jsp/footer.jsp" %>
+<%@ include file="/WEB-INF/jsp/includes.jsp"%>
+<%@ include file="/WEB-INF/jsp/header.jsp"%>
+<html:form action="/empFinish">
+	<html:hidden property="crudType" />
+	<table class="tablebg">
+		<logic:notEqual name="EmpForm" property="crudType" value="0">
+			<tr>
+				<td><label id="idLabel">id</label></td>
+				<td><bean:write name="EmpForm" property="id" /><html:hidden
+					property="id" /></td>
+				<td><html:errors property="id" /></td>
+			</tr>
+		</logic:notEqual>
+		<tr>
+			<td><label id="empNoLabel">empNo</label></td>
+			<td><bean:write name="EmpForm" property="empNo" /><html:hidden
+				property="empNo" /></td>
+			<td><html:errors property="empNo" /></td>
+		</tr>
+		<tr>
+			<td><label id="empNameLabel">empName</label></td>
+			<td><bean:write name="EmpForm" property="empNo" /><html:hidden
+				property="empNo" /></td>
+			<td><html:errors property="empName" /></td>
+		</tr>
+		<tr>
+			<td><label id="mgrIdLabel">mgrId</label></td>
+			<td><bean:write name="EmpForm" property="mgrId" /><html:hidden
+				property="mgrId" /></td>
+			<td><html:errors property="mgrId" /></td>
+		</tr>
+		<tr>
+			<td><label id="hiredateLabel">hiredate</label></td>
+			<td><bean:write name="EmpForm" property="hiredate" /><html:hidden
+				property="hiredate" /></td>
+			<td><html:errors property="hiredate" /></td>
+		</tr>
+		<tr>
+			<td><label id="salLabel">sal</label></td>
+			<td><bean:write name="EmpForm" property="sal" /><html:hidden
+				property="sal" /></td>
+			<td><html:errors property="sal" /></td>
+		</tr>
+		<tr>
+			<td><label id="deptIdLabel">deptId</label></td>
+			<td><bean:write name="EmpForm" property="deptId" /><html:hidden
+				property="deptId" /></td>
+			<td><span id="deptIdMessage"></span></td>
+		</tr>
+		<logic:notEqual name="EmpForm" property="crudType" value="0">
+			<tr>
+				<td><label id="versionNoLabel">versionNo</label></td>
+				<td><bean:write name="EmpForm" property="versionNo" /><html:hidden
+					property="versionNo" /></td>
+				<td><html:errors property="versionNo" /></td>
+			</tr>
+		</logic:notEqual>
+	</table>
+	<input type="button" value="Previous"
+		onclick="forms['previus'].submit()" />
+	<logic:notEqual name="EmpForm" property="crudType" value="1">
+		<html:submit>
+			<logic:equal name="EmpForm" property="crudType" value="0">Finish</logic:equal>
+			<logic:equal name="EmpForm" property="crudType" value="2">Update</logic:equal>
+			<logic:equal name="EmpForm" property="crudType" value="3">Delete</logic:equal>
+		</html:submit>
+	</logic:notEqual>
+</html:form>
+<logic:equal name="EmpForm" property="crudType" value="0">
+	<html:form action="/empEdit" styleId="previus" />
+</logic:equal>
+<logic:equal name="EmpForm" property="crudType" value="1">
+	<html:form action="/empList" styleId="previus" />
+</logic:equal>
+<logic:equal name="EmpForm" property="crudType" value="2">
+	<html:form action="/empEdit" styleId="previus" />
+</logic:equal>
+<logic:equal name="EmpForm" property="crudType" value="3">
+	<html:form action="/empList" styleId="previus" />
+</logic:equal>
+<%@ include file="/WEB-INF/jsp/footer.jsp"%>

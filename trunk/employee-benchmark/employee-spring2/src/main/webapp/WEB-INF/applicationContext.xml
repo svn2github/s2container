@@ -5,27 +5,19 @@
 
 	<bean name="/empList"
 		class="org.seasar.employee.spring2.web.emp.EmpListAction">
-		<property name="service">
-			<ref bean="service" />
-		</property>
+		<property name="service" ref="service" />
 	</bean>
 	<bean name="/empEdit"
 		class="org.seasar.employee.spring2.web.emp.EmpEditAction">
-		<property name="service">
-			<ref bean="service" />
-		</property>
+		<property name="service" ref="service" />
 	</bean>
 	<bean name="/empConfirm"
 		class="org.seasar.employee.spring2.web.emp.EmpConfirmAction">
-		<property name="service">
-			<ref bean="service" />
-		</property>
+		<property name="service" ref="service" />
 	</bean>
 	<bean name="/empFinish"
 		class="org.seasar.employee.spring2.web.emp.EmpFinishAction">
-		<property name="service">
-			<ref bean="service" />
-		</property>
+		<property name="service" ref="service" />
 	</bean>
 
 </beans>
