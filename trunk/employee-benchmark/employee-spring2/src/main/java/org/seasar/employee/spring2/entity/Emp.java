@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Version;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+
 @Entity
 public class Emp {
 
@@ -94,5 +96,13 @@ public class Emp {
 
 	public void setVersionNo(Integer versionno) {
 		this.versionNo = versionno;
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this);
 	}
 }

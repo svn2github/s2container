@@ -29,8 +29,8 @@
 			<td class="right"><bean:write name="empItem" property="deptId" /></td>
 			<td class="right"><bean:write name="empItem" property="versionNo" /></td>
 			<td><a href="empEdit.do?crudType=2&id=<bean:write name="empItem" property="id"/>&versionNo=<bean:write name="empItem" property="versionNo"/>">Edit</a>
-			<a href="empConfirm.do?crudType=3&id=<bean:write name="empItem" property="id"/>&versionNo=<bean:write name="empItem" property="versionNo"/>">Delete</a>
-			<a href="empConfirm.do?crudType=1&id=<bean:write name="empItem" property="id"/>&versionNo=<bean:write name="empItem" property="versionNo"/>">Inquire</a>
+			<a href="empInquire.do?crudType=3&id=<bean:write name="empItem" property="id"/>&versionNo=<bean:write name="empItem" property="versionNo"/>">Delete</a>
+			<a href="empInquire.do?crudType=1&id=<bean:write name="empItem" property="id"/>&versionNo=<bean:write name="empItem" property="versionNo"/>">Inquire</a>
 			</td>
 		</tr>
 	</c:forEach></tbody>

@@ -7,20 +7,20 @@
 			<tr>
 				<td><label id="idLabel">id</label></td>
 				<td><bean:write name="EmpForm" property="id" /><html:hidden
-					property="id" /></td>
+					property="id" /><html:hidden property="id" /></td>
 				<td><html:errors property="id" /></td>
 			</tr>
 		</logic:notEqual>
 		<tr>
 			<td><label id="empNoLabel">empNo</label></td>
 			<td><bean:write name="EmpForm" property="empNo" /><html:hidden
-				property="empNo" /></td>
+				property="empNo" /><html:hidden property="empNo" /></td>
 			<td><html:errors property="empNo" /></td>
 		</tr>
 		<tr>
 			<td><label id="empNameLabel">empName</label></td>
-			<td><bean:write name="EmpForm" property="empNo" /><html:hidden
-				property="empNo" /></td>
+			<td><bean:write name="EmpForm" property="empName" /><html:hidden
+				property="empName" /></td>
 			<td><html:errors property="empName" /></td>
 		</tr>
 		<tr>
@@ -77,5 +77,4 @@
 </logic:equal>
 <logic:equal name="EmpForm" property="crudType" value="3">
 	<html:form action="/empList" styleId="previus" />
-</logic:equal>
-<%@ include file="/WEB-INF/jsp/footer.jsp"%>
+</logic:equal><%@ include file="/WEB-INF/jsp/footer.jsp"%>

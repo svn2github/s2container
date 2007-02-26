@@ -11,6 +11,8 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.ConvertUtils;
+import org.apache.commons.beanutils.Converter;
 import org.seasar.employee.spring2.dao.EmpDao;
 import org.seasar.employee.spring2.entity.Emp;
 import org.seasar.employee.spring2.service.EmpService;
@@ -27,6 +29,14 @@ import org.springframework.transaction.annotation.Transactional;
 public class EmpServiceImpl implements EmpService {
 
 	private EmpDao dao;
+	
+	static {
+		ConvertUtils.register(new Converter() {
+			public Object convert(Class type, Object value) {
+				return null;
+			}
+		}, Date.class);
+	}
 
 	public EmpForm find(Long id, Integer versionNo) {
 		Emp e = dao.findById(id, versionNo);
@@ -61,7 +71,7 @@ public class EmpServiceImpl implements EmpService {
 
 	private static final String FORMAT = "yyyy/MM/dd";
 
-	private Date toDate(String s) {
+	private static Date toDate(String s) {
 		try {
 			return new SimpleDateFormat(FORMAT).parse(s);
 		} catch (ParseException e) {
@@ -69,7 +79,7 @@ public class EmpServiceImpl implements EmpService {
 		}
 	}
 
-	private String toString(Date d) {
+	private static String toString(Date d) {
 		return new SimpleDateFormat(FORMAT).format(d);
 	}
 
@@ -83,7 +93,8 @@ public class EmpServiceImpl implements EmpService {
 	}
 
 	public void persist(EmpForm form) {
-		Emp emp = null;
+		Emp emp = new Emp();
+		copy(form, emp);
 		dao.persist(emp);
 	}
 

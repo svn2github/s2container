@@ -39,6 +39,11 @@
 			name="EmpForm" scope="request" input="/empList.do" validate="false">
 			<forward name="success" path="/WEB-INF/jsp/empEdit.jsp" />
 		</action>
+		<action path="/empInquire"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			name="EmpForm" scope="request" input="/empList.do" validate="false">
+			<forward name="success" path="/WEB-INF/jsp/empConfirm.jsp" />
+		</action>
 		<action path="/empConfirm"
 			type="org.springframework.web.struts.DelegatingActionProxy"
 			name="EmpForm" scope="request" input="/WEB-INF/jsp/empEdit.jsp" validate="false">
@@ -47,7 +52,7 @@
 		<action path="/empFinish"
 			type="org.springframework.web.struts.DelegatingActionProxy"
 			name="EmpForm" scope="request" input="empConfirm.jsp" validate="true">
-			<forward name="success" path="/WEB-INF/jsp/empList.jsp" />
+			<forward name="success" path="/empList.do" />
 		</action>
 	</action-mappings>
 

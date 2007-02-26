@@ -35,6 +35,7 @@ public class EmpEditAction extends AbstractEmpAction {
 			form.clear();
 		} else if(NOT_CREATE.contains(form.getCrudType())) {
 			EmpForm e = getService().find(new Long(form.getId()), new Integer(form.getVersionNo()));
+			e.setCrudType(form.getCrudType());
 			req.setAttribute("EmpForm", e);
 		} else {
 			return am.findForward("fail");
