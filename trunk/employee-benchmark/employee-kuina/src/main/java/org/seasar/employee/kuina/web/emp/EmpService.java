@@ -2,19 +2,20 @@ package org.seasar.employee.kuina.web.emp;
 
 import java.util.List;
 
+import org.seasar.employee.kuina.dto.EmpDto;
 import org.seasar.employee.kuina.entity.Emp;
 
 public interface EmpService {
 
-	public List<Emp> findAll();
+	public List<EmpDto> findAll();
 
-	public Emp find(long id, Integer versionNo);
+	public void findAndCopy(AbstractEmpPage page);
 
 	public void persist(AbstractEmpPage page);
 
 	public void update(AbstractEmpPage page);
 
-	public void remove(long id, Integer versionNo);
+	public void remove(AbstractEmpPage page);
 
 	public boolean contains(Emp emp);
 

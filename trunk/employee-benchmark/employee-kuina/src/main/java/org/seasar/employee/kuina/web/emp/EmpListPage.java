@@ -1,18 +1,16 @@
 package org.seasar.employee.kuina.web.emp;
 
-import java.util.List;
-import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
+import org.seasar.employee.kuina.dto.EmpDto;
+import org.seasar.employee.kuina.web.CrudType;
 import org.seasar.teeda.extension.annotation.convert.DateTimeConverter;
 import org.seasar.teeda.extension.annotation.takeover.TakeOver;
 
-import org.seasar.employee.kuina.entity.Emp;
-import org.seasar.employee.kuina.web.CrudType;
-
 public class EmpListPage extends AbstractEmpPage {
 	
-	private List<Emp> empItems;
+	private List<EmpDto> empItems;
 	
 	private int empIndex;
 	
@@ -47,11 +45,11 @@ public class EmpListPage extends AbstractEmpPage {
 		return super.getHiredate();
 	}
 
-	public List<Emp> getEmpItems() {
+	public List<EmpDto> getEmpItems() {
 		return this.empItems;
 	}
 
-	public void setEmpItems(List<Emp> items) {
+	public void setEmpItems(List<EmpDto> items) {
 		this.empItems = items;
 	}
 	

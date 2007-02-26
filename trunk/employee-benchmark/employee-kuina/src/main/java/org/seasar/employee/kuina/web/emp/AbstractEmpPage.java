@@ -9,8 +9,6 @@ public abstract class AbstractEmpPage extends AbstractCrudPage {
 
 	private EmpService empService;
 	
-	private EmpDxo empDxo;
-	
 	private long id;
 
 	private Integer empNo;
@@ -93,13 +91,5 @@ public abstract class AbstractEmpPage extends AbstractCrudPage {
 
 	public void setEmpService(EmpService empService) {
 		this.empService = empService;
-	}
-
-	public EmpDxo getEmpDxo() {
-		return this.empDxo;
-	}
-
-	public void setEmpDxo(EmpDxo empDxo) {
-		this.empDxo = empDxo;
 	}
 }

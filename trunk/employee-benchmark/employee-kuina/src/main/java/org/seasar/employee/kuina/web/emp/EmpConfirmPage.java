@@ -1,36 +1,28 @@
 package org.seasar.employee.kuina.web.emp;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
+import org.seasar.employee.kuina.web.CrudType;
 import org.seasar.teeda.extension.annotation.convert.DateTimeConverter;
 import org.seasar.teeda.extension.annotation.takeover.TakeOver;
 import org.seasar.teeda.extension.annotation.takeover.TakeOverType;
 import org.seasar.teeda.extension.annotation.validator.Required;
-import org.seasar.teeda.core.exception.AppFacesException;
 import org.seasar.teeda.extension.util.LabelHelper;
 
-import org.seasar.employee.kuina.entity.Emp;
-import org.seasar.employee.kuina.web.CrudType;
-
 public class EmpConfirmPage extends AbstractEmpPage {
-	
+
 	private LabelHelper labelHelper;
-	
+
 	public EmpConfirmPage() {
 	}
-	
+
 	public String initialize() {
-		if(isComeFromList()) {
-			Emp data = getEmpService().find(getId(), getVersionNo());
-			if(data == null) {
-				throw new AppFacesException("E0000001");
-			}
-			getEmpDxo().convert(data ,this);
+		if (isComeFromList()) {
+			getEmpService().findAndCopy(this);
 		}
 		return null;
 	}
-	
+
 	public String prerender() {
 		return null;
 	}
@@ -43,21 +35,22 @@ public class EmpConfirmPage extends AbstractEmpPage {
 
 	@TakeOver(type = TakeOverType.NEVER)
 	public String doUpdate() {
-		switch(getCrudType()) {
-			case CrudType.UPDATE:
-				getEmpService().update(this);
-				break;
-			case CrudType.DELETE:
-				getEmpService().remove(getId(), getVersionNo());
-				break;
-			default:
-				break;
+		switch (getCrudType()) {
+		case CrudType.UPDATE:
+			getEmpService().update(this);
+			break;
+		case CrudType.DELETE:
+			getEmpService().remove(this);
+			break;
+		default:
+			break;
 		}
 		return "empList";
 	}
-	
+
 	public boolean isComeFromList() {
-		return getCrudType() == CrudType.READ || getCrudType() == CrudType.DELETE;
+		return getCrudType() == CrudType.READ
+				|| getCrudType() == CrudType.DELETE;
 	}
 
 	@Override
@@ -87,11 +80,11 @@ public class EmpConfirmPage extends AbstractEmpPage {
 	public void setLabelHelper(LabelHelper labelHelper) {
 		this.labelHelper = labelHelper;
 	}
-	
+
 	public LabelHelper getLabelHelper() {
 		return this.labelHelper;
 	}
-	
+
 	public String getDoFinishValue() {
 		return getLabelHelper().getLabelValue(CrudType.toString(getCrudType()));
 	}
