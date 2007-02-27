@@ -33,7 +33,10 @@ public class EmpConfirmAction extends AbstractEmpAction {
 		EmpForm form = (EmpForm) af;
 		if(CrudType.CREATE.equals(form.getCrudType())) {
 			ActionMessages msgs = form.validate(am, req);
-			saveMessages(req, msgs);
+			if(0 < msgs.size()) {
+				saveErrors(req, msgs);
+				return am.findForward("toEdit");
+			}
 		} else {
 			ActionMessages msgs = new ActionMessages();
 			if (StringUtils.isEmpty(form.getId())) {
@@ -46,7 +49,7 @@ public class EmpConfirmAction extends AbstractEmpAction {
 				msgs.add("versionNo", msg);
 			}
 			if(0 < msgs.size()) {
-				saveMessages(req, msgs);
+				saveErrors(req, msgs);
 			}
 		}
 		return am.findForward("success");

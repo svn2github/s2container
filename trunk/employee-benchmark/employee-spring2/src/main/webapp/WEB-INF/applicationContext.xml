@@ -11,6 +11,10 @@
 		class="org.seasar.employee.spring2.web.emp.EmpEditAction">
 		<property name="service" ref="service" />
 	</bean>
+	<bean name="/empEditBack"
+		class="org.seasar.employee.spring2.web.emp.EmpEditBackAction">
+		<property name="service" ref="service" />
+	</bean>
 	<bean name="/empInquire"
 		class="org.seasar.employee.spring2.web.emp.EmpEditAction">
 		<property name="service" ref="service" />

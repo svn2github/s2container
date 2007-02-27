@@ -57,7 +57,7 @@
 		</logic:notEqual>
 	</table>
 	<input type="button" value="Previous"
-		onclick="forms['previus'].submit()" />
+		onclick="forms['EmpForm'].action=forms['previus'].action;forms['EmpForm'].submit()" />
 	<logic:notEqual name="EmpForm" property="crudType" value="1">
 		<html:submit>
 			<logic:equal name="EmpForm" property="crudType" value="0">Finish</logic:equal>
@@ -67,14 +67,11 @@
 	</logic:notEqual>
 </html:form>
 <logic:equal name="EmpForm" property="crudType" value="0">
-	<html:form action="/empEdit" styleId="previus" />
-</logic:equal>
-<logic:equal name="EmpForm" property="crudType" value="1">
+	<html:form action="/empEditBack" styleId="previus" />
+</logic:equal><logic:equal name="EmpForm" property="crudType" value="1">
 	<html:form action="/empList" styleId="previus" />
-</logic:equal>
-<logic:equal name="EmpForm" property="crudType" value="2">
-	<html:form action="/empEdit" styleId="previus" />
-</logic:equal>
-<logic:equal name="EmpForm" property="crudType" value="3">
+</logic:equal><logic:equal name="EmpForm" property="crudType" value="2">
+	<html:form action="/empEditBack" styleId="previus" />
+</logic:equal><logic:equal name="EmpForm" property="crudType" value="3">
 	<html:form action="/empList" styleId="previus" />
 </logic:equal><%@ include file="/WEB-INF/jsp/footer.jsp"%>
