@@ -7,14 +7,14 @@
 			<tr>
 				<td><label id="idLabel">id</label></td>
 				<td><bean:write name="EmpForm" property="id" /><html:hidden
-					property="id" /><html:hidden property="id" /></td>
+					property="id" /></td>
 				<td><html:errors property="id" /></td>
 			</tr>
 		</logic:notEqual>
 		<tr>
 			<td><label id="empNoLabel">empNo</label></td>
 			<td><bean:write name="EmpForm" property="empNo" /><html:hidden
-				property="empNo" /><html:hidden property="empNo" /></td>
+				property="empNo" /></td>
 			<td><html:errors property="empNo" /></td>
 		</tr>
 		<tr>
