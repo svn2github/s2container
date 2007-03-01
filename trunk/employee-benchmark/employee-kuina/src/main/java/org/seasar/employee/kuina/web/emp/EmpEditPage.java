@@ -1,6 +1,8 @@
 package org.seasar.employee.kuina.web.emp;
 
 import org.seasar.employee.kuina.web.CrudType;
+import org.seasar.teeda.extension.annotation.takeover.TakeOver;
+import org.seasar.teeda.extension.annotation.takeover.TakeOverType;
 import org.seasar.teeda.extension.annotation.validator.Required;
 
 public class EmpEditPage extends AbstractEmpPage {
@@ -17,6 +19,11 @@ public class EmpEditPage extends AbstractEmpPage {
 
 	public String prerender() {
 		return null;
+	}
+	
+	@TakeOver(type=TakeOverType.NEVER)
+	public String doPrevius() {
+		return "empList";
 	}
 
 	@Override
