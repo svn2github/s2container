@@ -39,7 +39,7 @@
 				<property name="databasePlatform"
 					value="org.hibernate.dialect.H2Dialect" />
 				<property name="generateDdl" value="false" />
-				<property name="showSql" value="true" />
+				<property name="showSql" value="false" />
 			</bean>
 		</property>
 	</bean>
