@@ -26,7 +26,7 @@ public class EmpListPage extends AbstractEmpPage {
 		return null;
 	}
 	
-	public String getEmpRowClass() {
+	public String getRowClass() {
 		if (getEmpIndex() % 2 == 0) {
 			return "row_even";
 		}

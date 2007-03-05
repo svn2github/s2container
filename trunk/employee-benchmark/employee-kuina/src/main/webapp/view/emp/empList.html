@@ -8,10 +8,7 @@
 <body>
 <form id="EmpListForm">
 <input type="button" id="goEmpEdit" value="Create" onclick="location.href='empEdit.html'"/><br/>
-<table id="empGridXY" height="200px" border="1">
-	<colgroup>
-		<col span="1" width="60px" class="T_leftFixed" />
-	</colgroup>
+<table>
 	<thead>
 		<tr height="50px">
 			<th class="right"><label id="idLabel">id</label></th>
@@ -25,8 +22,8 @@
 			<th><br/></th>
 		</tr>
 	</thead>
-	<tbody>
-		<tr class="row_even">
+	<div id="empItems">
+		<tr id="row" class="row_even">
 			<td class="right"><span id="id">id</span></td>
 			<td class="right"><span id="empNo">empNo</span></td>
 			<td><span id="empName">empName</span></td>
@@ -40,7 +37,7 @@
 			<a id="goEmpConfirm-confirm" href="empConfirm.html?fixed_crudType=1&id=id&versionNo=versionNo">Inquire</a>
 			</td>
 		</tr>
-	</tbody>
+	</div>
 </table>
 </form>
 </body></html>
