@@ -18,9 +18,9 @@ package examples.tx;
 import org.seasar.framework.container.S2Container;
 import org.seasar.framework.container.factory.S2ContainerFactory;
 
-public class HogeClient {
+public class HogeMain {
 
-	private static final String PATH = "examples/tx/HogeClient.dicon";
+	private static final String PATH = "examples/tx/HogeMain.dicon";
 
 	public static void main(String[] args) {
 		S2Container container = S2ContainerFactory.create(PATH);

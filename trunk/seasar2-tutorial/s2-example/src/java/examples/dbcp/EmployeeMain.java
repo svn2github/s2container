@@ -20,9 +20,9 @@ import java.sql.SQLException;
 import org.seasar.framework.container.S2Container;
 import org.seasar.framework.container.factory.S2ContainerFactory;
 
-public class EmployeeClient {
+public class EmployeeMain {
 
-	private static final String PATH = "examples/dbcp/Employee.dicon";
+	private static final String PATH = "examples/dbcp/EmployeeMain.dicon";
 
 	public static void main(String[] args) {
 		S2Container container = S2ContainerFactory.create(PATH);
@@ -36,6 +36,5 @@ public class EmployeeClient {
 		} finally {
 			container.destroy();
 		}
-
 	}
 }
