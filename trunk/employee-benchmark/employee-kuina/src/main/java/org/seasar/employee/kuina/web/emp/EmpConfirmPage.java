@@ -85,7 +85,11 @@ public class EmpConfirmPage extends AbstractEmpPage {
 		return this.labelHelper;
 	}
 
-	public String getDoFinishValue() {
+	public String getDoCreateValue() {
+		return getLabelHelper().getLabelValue(CrudType.toString(getCrudType()));
+	}
+	
+	public String getDoUpdateValue() {
 		return getLabelHelper().getLabelValue(CrudType.toString(getCrudType()));
 	}
 
