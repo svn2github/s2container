@@ -25,7 +25,7 @@ public class EmpServiceImpl implements EmpService {
 	}
 
 	public List<EmpDto> findAll() {
-		return getEmpDxo().convert(getEmpDao().findAll());
+		return getEmpDxo().convert(getEmpDao().findAll("id"));
 	}
 
 	public void findAndCopy(AbstractEmpPage page) {

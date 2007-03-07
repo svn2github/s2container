@@ -37,7 +37,8 @@ public class EmpDaoImpl extends JpaDaoSupport implements EmpDao {
 	 * @see org.seasar.employee.spring2.dao.EmpDao#findAll()
 	 */
 	public List<Emp> findAll() {
-		return getJpaTemplate().find("SELECT emp FROM Emp AS emp");
+		return getJpaTemplate().find(
+				"SELECT emp FROM Emp AS emp ORDER BY emp.id");
 	}
 
 	/*
@@ -54,7 +55,7 @@ public class EmpDaoImpl extends JpaDaoSupport implements EmpDao {
 				.findByNamedParams(
 						"SELECT emp FROM Emp AS emp WHERE ((emp.id = :id) AND (emp.versionNo = :versionNo))",
 						m);
-		if(l.isEmpty()) {
+		if (l.isEmpty()) {
 			throw new NoResultException();
 		} else if (1 < l.size()) {
 			throw new NonUniqueResultException();

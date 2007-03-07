@@ -6,14 +6,14 @@ import org.seasar.employee.kuina.entity.Emp;
 
 public interface EmpDao {
 
-	public List<Emp> findAll();
-	
-	public Emp findById(long id,Integer versionNo);
-	
+	public List<Emp> findAll(String orderby);
+
+	public Emp findById(long id, Integer versionNo);
+
 	public void persist(Emp emp);
 
 	public Emp merge(Emp emp);
-	
+
 	public void remove(Emp emp);
 
 	public boolean contains(Emp emp);
