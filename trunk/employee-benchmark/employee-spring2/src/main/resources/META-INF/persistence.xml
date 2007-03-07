@@ -5,8 +5,9 @@
 
 	<persistence-unit name="Employee" transaction-type="RESOURCE_LOCAL">
 		<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
 			<property name="hibernate.show_sql" value="false"/>
-			<property name="hibernate.format_sql" value="true"/>
+			<property name="hibernate.format_sql" value="true"/>		
 			<property name="hibernate.use_sql_comments" value="false"/>
         </properties>
 	</persistence-unit>
