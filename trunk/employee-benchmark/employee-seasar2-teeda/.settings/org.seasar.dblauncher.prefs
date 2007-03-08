@@ -1,4 +1,4 @@
-#Wed Feb 21 17:12:13 JST 2007
-baseDir=/employee-kuina/src/main/webapp/WEB-INF/classes/data
+#Thu Mar 08 14:59:09 JST 2007
+baseDir=/employee-seasar2-teeda/src/main/webapp/WEB-INF/classes/data
 eclipse.preferences.version=1
 initDB=/employee-kuina/src/main/resources/data
