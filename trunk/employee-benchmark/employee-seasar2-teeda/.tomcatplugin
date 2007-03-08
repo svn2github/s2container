@@ -5,7 +5,7 @@
     <reloadable>false</reloadable>
     <redirectLogger>true</redirectLogger>
     <updateXml>true</updateXml>
-    <warLocation>c:\employee-seasar2-strtus.war</warLocation>
+    <warLocation>c:\employee-seasar2-teeda.war</warLocation>
     <extraInfo></extraInfo>
-    <webPath>/employee-seasar2-strtus</webPath>
+    <webPath>/employee-seasar2-teeda</webPath>
 </tomcatProjectProperties>
