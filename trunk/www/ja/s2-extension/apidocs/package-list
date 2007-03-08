@@ -11,6 +11,8 @@ org.seasar.extension.datasource
 org.seasar.extension.datasource.impl
 org.seasar.extension.dbcp
 org.seasar.extension.dbcp.impl
+org.seasar.extension.dbsession
+org.seasar.extension.dbsession.impl
 org.seasar.extension.dxo
 org.seasar.extension.dxo.annotation
 org.seasar.extension.dxo.annotation.impl
