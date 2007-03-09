@@ -23,7 +23,6 @@ public class EmpEditPage extends AbstractEmpPage {
 	private boolean initialized;
 
 	public EmpEditPage() {
-		setupRequestParams();
 	}
 
 	public Integer getDeptId() {
@@ -99,6 +98,7 @@ public class EmpEditPage extends AbstractEmpPage {
 	}
 
 	private void initialize() {
+		setupRequestParams();
 		if (getCrudType() == CrudType.CREATE) {
 			return;
 		}

@@ -20,12 +20,13 @@ public class EmpConfirmPage extends AbstractEmpPage {
 
 	private Integer versionNo;
 
+	private boolean initialized;
+
 	public EmpConfirmPage() {
-		setupRequestParams();
-		initialize();
 	}
 
 	public Integer getDeptId() {
+		initializeIfNecessary();
 		return deptId;
 	}
 
@@ -34,6 +35,7 @@ public class EmpConfirmPage extends AbstractEmpPage {
 	}
 
 	public String getEmpName() {
+		initializeIfNecessary();
 		return empName;
 	}
 
@@ -42,6 +44,7 @@ public class EmpConfirmPage extends AbstractEmpPage {
 	}
 
 	public Integer getEmpNo() {
+		initializeIfNecessary();
 		return empNo;
 	}
 
@@ -50,6 +53,7 @@ public class EmpConfirmPage extends AbstractEmpPage {
 	}
 
 	public String getHiredate() {
+		initializeIfNecessary();
 		return hiredate;
 	}
 
@@ -58,6 +62,7 @@ public class EmpConfirmPage extends AbstractEmpPage {
 	}
 
 	public long getId() {
+		initializeIfNecessary();
 		return id;
 	}
 
@@ -66,6 +71,7 @@ public class EmpConfirmPage extends AbstractEmpPage {
 	}
 
 	public Integer getMgrId() {
+		initializeIfNecessary();
 		return mgrId;
 	}
 
@@ -74,6 +80,7 @@ public class EmpConfirmPage extends AbstractEmpPage {
 	}
 
 	public BigDecimal getSal() {
+		initializeIfNecessary();
 		return sal;
 	}
 
@@ -82,6 +89,7 @@ public class EmpConfirmPage extends AbstractEmpPage {
 	}
 
 	public Integer getVersionNo() {
+		initializeIfNecessary();
 		return versionNo;
 	}
 
@@ -90,6 +98,7 @@ public class EmpConfirmPage extends AbstractEmpPage {
 	}
 
 	private void initialize() {
+		setupRequestParams();
 		EmpDto emp = getRequestValue(EmpDto.class);
 		this.id = emp.getId();
 		this.empNo = emp.getEmpNo();
@@ -99,6 +108,13 @@ public class EmpConfirmPage extends AbstractEmpPage {
 		this.mgrId = emp.getMgrId();
 		this.deptId = emp.getDeptId();
 		this.versionNo = emp.getVersionNo();
+	}
+
+	private void initializeIfNecessary() {
+		if (initialized) {
+			return;
+		}
+		initialize();
 	}
 
 	public String doPrevious() {

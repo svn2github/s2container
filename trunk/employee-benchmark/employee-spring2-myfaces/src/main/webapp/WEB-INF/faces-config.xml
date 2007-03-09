@@ -51,7 +51,7 @@
 	<navigation-rule>
 		<from-view-id>/empEdit.jsp</from-view-id>
 		<navigation-case>
-			<from-outcome>empEdit\</from-outcome>
+			<from-outcome>empConfirm</from-outcome>
 			<to-view-id>/empConfirm.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>
