@@ -5,43 +5,81 @@
 	"http://java.sun.com/dtd/web-app_2_3.dtd">
 
 <web-app>
-    <filter>
-        <filter-name>encodingfilter</filter-name>
-        <filter-class>org.seasar.extension.filter.EncodingFilter</filter-class>
-        <init-param>
-            <param-name>encoding</param-name>
-            <param-value>UTF-8</param-value>
-        </init-param>
-    </filter>
+	<filter>
+		<filter-name>encodingfilter</filter-name>
+		<filter-class>
+			org.seasar.extension.filter.EncodingFilter
+		</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
 
-    <filter>
-        <filter-name>s2filter</filter-name>
-        <filter-class>org.seasar.framework.container.filter.S2ContainerFilter</filter-class>
-    </filter>
+	<filter>
+		<filter-name>s2filter</filter-name>
+		<filter-class>
+			org.seasar.framework.container.filter.S2ContainerFilter
+		</filter-class>
+	</filter>
 
-    <filter>
-        <filter-name>hotdeployfilter</filter-name>
-        <filter-class>org.seasar.framework.container.hotdeploy.HotdeployFilter</filter-class>
-    </filter>
+	<filter>
+		<filter-name>hotdeployfilter</filter-name>
+		<filter-class>
+			org.seasar.framework.container.hotdeploy.HotdeployFilter
+		</filter-class>
+	</filter>
 
-    <filter-mapping>
-        <filter-name>encodingfilter</filter-name>
-        <url-pattern>*.do</url-pattern>
-    </filter-mapping>
-    
-    <filter-mapping>
-        <filter-name>s2filter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
+	<filter>
+		<filter-name>s2strutshotdeployfilter</filter-name>
+		<filter-class>
+			org.seasar.struts.hotdeploy.filter.S2StrutsHotdeployFilter
+		</filter-class>
+	</filter>
 
-    <filter-mapping>
-        <filter-name>hotdeployfilter</filter-name>
-        <url-pattern>/*</url-pattern>
-        <!--
-        <dispatcher>REQUEST</dispatcher>
-        <dispatcher>FORWARD</dispatcher>
-         -->
-    </filter-mapping>
+	<filter>
+		<filter-name>s2strutsfilter</filter-name>
+		<filter-class>
+			org.seasar.struts.filter.S2StrutsFilter
+		</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>encodingfilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>s2filter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>hotdeployfilter</filter-name>
+		<url-pattern>/*</url-pattern>
+		<!--
+			<dispatcher>REQUEST</dispatcher>
+			<dispatcher>FORWARD</dispatcher>
+		-->
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>s2strutshotdeployfilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>s2strutsfilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<servlet>
+		<servlet-name>s2container</servlet-name>
+		<servlet-class>
+			org.seasar.framework.container.servlet.S2ContainerServlet
+		</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
 
 	<servlet>
 		<servlet-name>action</servlet-name>
@@ -51,6 +89,16 @@
 		<init-param>
 			<param-name>config</param-name>
 			<param-value>/WEB-INF/struts-config.xml</param-value>
+		</init-param>
+		<init-param>
+			<param-name>chainConfig</param-name>
+			<param-value>
+				s2struts-chain-config.xml,
+				org/apache/struts/chain/chain-config.xml
+			</param-value>
+			<!--
+				<param-value>s2struts-chain-config.xml, org/apache/struts/tiles/chain-config.xml</param-value>
+			-->
 		</init-param>
 		<init-param>
 			<param-name>debug</param-name>
@@ -66,6 +114,11 @@
 	<servlet-mapping>
 		<servlet-name>action</servlet-name>
 		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>s2container</servlet-name>
+		<url-pattern>/s2container</url-pattern>
 	</servlet-mapping>
 
 	<session-config>

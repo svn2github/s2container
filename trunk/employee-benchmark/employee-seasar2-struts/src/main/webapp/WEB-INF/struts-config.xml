@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="Shift_JIS" ?>
 
 <!DOCTYPE struts-config PUBLIC
-					"-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
-					"http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+          "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+          "http://struts.apache.org/dtds/struts-config_1_3.dtd">
 
 <struts-config>
 
@@ -10,9 +10,9 @@
 
 	<form-beans>
 		<form-bean name="EmpListForm"
-			type="org.seasar.employee.spring2.web.emp.EmpListForm" />
+			type="org.seasar.employee.strtus.web.emp.EmpListForm" />
 		<form-bean name="EmpForm"
-			type="org.seasar.employee.spring2.web.emp.EmpForm" />
+			type="org.seasar.employee.strtus.web.emp.EmpForm" />
 	</form-beans>
 
 
@@ -30,41 +30,42 @@
 
 	<action-mappings>
 		<action path="/empList"
-			type="org.seasar.struts.action.ProxyAction"
-			name="EmpListForm" scope="request">
+			type="org.seasar.struts.action.ProxyAction" name="EmpListForm"
+			scope="request">
 			<forward name="success" path="/WEB-INF/jsp/empList.jsp" />
 		</action>
 		<action path="/empEdit"
-			type="org.seasar.struts.action.ProxyAction"
-			name="EmpForm" scope="request" input="/empList.do" validate="false">
+			type="org.seasar.struts.action.ProxyAction" name="EmpForm"
+			scope="request" input="/empList.do" validate="false">
 			<forward name="success" path="/WEB-INF/jsp/empEdit.jsp" />
 		</action>
 		<action path="/empEditBack"
-			type="org.seasar.struts.action.ProxyAction"
-			name="EmpForm" scope="request" input="/empList.do" validate="false">
+			type="org.seasar.struts.action.ProxyAction" name="EmpForm"
+			scope="request" input="/empList.do" validate="false">
 			<forward name="success" path="/WEB-INF/jsp/empEdit.jsp" />
 		</action>
 		<action path="/empInquire"
-			type="org.seasar.struts.action.ProxyAction"
-			name="EmpForm" scope="request" input="/empList.do" validate="false">
+			type="org.seasar.struts.action.ProxyAction" name="EmpForm"
+			scope="request" input="/empList.do" validate="false">
 			<forward name="success" path="/WEB-INF/jsp/empConfirm.jsp" />
 		</action>
 		<action path="/empConfirm"
-			type="org.seasar.struts.action.ProxyAction"
-			name="EmpForm" scope="request" input="/WEB-INF/jsp/empEdit.jsp" validate="false">
+			type="org.seasar.struts.action.ProxyAction" name="EmpForm"
+			scope="request" input="/WEB-INF/jsp/empEdit.jsp" validate="false">
 			<forward name="toEdit" path="/WEB-INF/jsp/empEdit.jsp" />
 			<forward name="success" path="/WEB-INF/jsp/empConfirm.jsp" />
 		</action>
 		<action path="/empFinish"
-			type="org.seasar.struts.action.ProxyAction"
-			name="EmpForm" scope="request" input="/WEB-INF/jsp/empConfirm.jsp" validate="true">
+			type="org.seasar.struts.action.ProxyAction" name="EmpForm"
+			scope="request" input="/WEB-INF/jsp/empConfirm.jsp"
+			validate="true">
 			<forward name="success" path="/empList.do" />
 		</action>
 	</action-mappings>
 
 
 	<!-- ============================================= Controller Configuration -->
-    <controller catalog="s2struts"/>
+	<controller catalog="s2struts" />
 
 	<!-- ======================================== Message Resources Definitions -->
 
@@ -78,12 +79,14 @@
 		<set-property property="pathnames"
 			value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml" />
 	</plug-in>
-
-    <plug-in className="org.seasar.struts.lessconfig.plugin.AutoStrutsConfigRegisterPlugIn">
-        <set-property property="enableJar" value="false"/>
-        <set-property property="docRoot" value="/pages"/>
-    </plug-in>
-
-    <plug-in className="org.seasar.struts.hotdeploy.plugin.HotdeployPlugIn"/>
+	<!-- 
+		<plug-in
+		className="org.seasar.struts.lessconfig.plugin.AutoStrutsConfigRegisterPlugIn">
+		<set-property property="enableJar" value="false" />
+		<set-property property="docRoot" value="/WEB-INF/jsp" />
+		</plug-in>
+	-->
+	<plug-in
+		className="org.seasar.struts.hotdeploy.plugin.HotdeployPlugIn" />
 </struts-config>
 
