@@ -11,6 +11,50 @@
 			<value>#{service}</value>
 		</managed-property>
 	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>empEditPage</managed-bean-name>
+		<managed-bean-class>org.seasar.employee.spring2.web.emp.EmpEditPage</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>service</property-name>
+			<value>#{service}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>empConfirmPage</managed-bean-name>
+		<managed-bean-class>org.seasar.employee.spring2.web.emp.EmpConfirmPage</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>service</property-name>
+			<value>#{service}</value>
+		</managed-property>
+	</managed-bean>
+	
+	<navigation-rule>
+		<from-view-id>/empList.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>empEdit</from-outcome>
+			<to-view-id>/empEdit.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/empEdit.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>empList</from-outcome>
+			<to-view-id>/empList.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/empEdit.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>empEdit\</from-outcome>
+			<to-view-id>/empConfirm.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 	
 	<!--
     <application>

@@ -51,10 +51,12 @@ public class EmpServiceImpl implements EmpService {
 
 	private void copy(Emp emp, EmpDto dto) {
 		copyProperties(emp, dto);
+		dto.setHiredate(toString(emp.getHiredate()));
 	}
 
 	private void copy(EmpDto dto, Emp emp) {
 		copyProperties(dto, emp);
+		emp.setHiredate(toDate(dto.getHiredate()));
 	}
 
 	private void copyProperties(Object src, Object dest) {

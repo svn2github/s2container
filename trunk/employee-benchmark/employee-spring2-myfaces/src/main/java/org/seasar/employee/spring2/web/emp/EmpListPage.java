@@ -11,14 +11,12 @@ import java.util.List;
  */
 public class EmpListPage extends AbstractEmpPage {
 
-	private List<EmpDto> empItems;
-
 	public List<EmpDto> getEmpItems() {
 		return getService().findAll();
 	}
 
-	public void setEmpItems(List<EmpDto> empItems) {
-		this.empItems = empItems;
+	public String doCreate() {
+		return "empEdit";
 	}
 
 }

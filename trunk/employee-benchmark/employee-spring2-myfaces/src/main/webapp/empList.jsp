@@ -1,14 +1,16 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsf/html" prefix="h" %>
 <%@ taglib uri="http://java.sun.com/jsf/core" prefix="f" %>
+<%@ include file="/WEB-INF/jsp/header.jsp" %>
 
 <f:view>
 <html>
 <body>
 <h:form>
 
-<input type="hidden" name="crudType" value="0"/>
-<h:commandButton value="Create"/>
-<h:dataTable value="#{empListPage.empItems}" var="emp">
+<h:commandButton value="Create" action="#{empListPage.doCreate}"/>
+
+<h:dataTable value="#{empListPage.empItems}" var="emp" border="1" rowClasses="row_odd, row_even">
   <h:column>
     <f:facet name="header">
       <h:outputText value="id" />
@@ -51,6 +53,29 @@
     </f:facet>
     <h:outputText value="#{emp.versionNo}" />
   </h:column>    
+  <h:column>
+    <f:facet name="header">
+      <h:outputText value="" />
+    </f:facet>
+	<h:outputLink value="empEdit.jsf">
+	    <h:outputText value="Edit"/>
+	    <f:param id="editId" name="id" value="#{emp.id}"/>
+	    <f:param id="editVersionNo" name="versionNo" value="#{emp.versionNo}"/>
+	    <f:param id="editCrudType" name="crudType" value="2"/>
+	</h:outputLink>
+	<h:outputLink value="empEdit.jsf">
+	    <h:outputText value="Delete"/>
+	    <f:param id="deleteId" name="id" value="#{emp.id}"/>
+	    <f:param id="deleteVersionNo" name="versionNo" value="#{emp.versionNo}"/>
+	    <f:param id="deleteCrudType" name="crudType" value="3"/>
+	</h:outputLink>
+	<h:outputLink value="empEdit.jsf">
+	    <h:outputText value="Inquire"/>
+	    <f:param id="inquireId" name="id" value="#{emp.id}"/>
+	    <f:param id="inquireVersionNo" name="versionNo" value="#{emp.versionNo}"/>
+		<f:param id="inquireCrudType" name="crudType" value="1"/>	
+	</h:outputLink>
+  </h:column>   
 </h:dataTable>
 </h:form>
 <%@ include file="/WEB-INF/jsp/footer.jsp" %>

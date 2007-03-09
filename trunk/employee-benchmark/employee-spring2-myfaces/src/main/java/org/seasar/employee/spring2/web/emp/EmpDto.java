@@ -1,7 +1,6 @@
 package org.seasar.employee.spring2.web.emp;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 public class EmpDto {
 
@@ -13,7 +12,7 @@ public class EmpDto {
 
 	private Integer mgrId;
 
-	private Date hiredate;
+	private String hiredate;
 
 	private BigDecimal sal;
 
@@ -56,11 +55,11 @@ public class EmpDto {
 		this.mgrId = mgrid;
 	}
 
-	public Date getHiredate() {
+	public String getHiredate() {
 		return this.hiredate;
 	}
 
-	public void setHiredate(Date hiredate) {
+	public void setHiredate(String hiredate) {
 		this.hiredate = hiredate;
 	}
 

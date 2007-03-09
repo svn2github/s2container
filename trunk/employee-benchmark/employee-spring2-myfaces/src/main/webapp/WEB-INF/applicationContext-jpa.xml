@@ -68,7 +68,7 @@
 
 
 	<bean id="dao"
-		class="org.seasar.employee.spring2.dao.impl.EmpDaoImpl" scope="prototype">
+		class="org.seasar.employee.spring2.dao.impl.EmpDaoImpl">
 		<property name="entityManagerFactory"
 			ref="entityManagerFactory" />
 	</bean>
@@ -79,7 +79,7 @@
 		PersistenceExceptions will be auto-translated due to @Repository.
 	-->
 	<bean id="service"
-		class="org.seasar.employee.spring2.service.impl.EmpServiceImpl" scope="prototype">
+		class="org.seasar.employee.spring2.service.impl.EmpServiceImpl">
 		<property name="dao" ref="dao" />
 	</bean>
 
