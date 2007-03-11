@@ -16,7 +16,19 @@ public class EmpListPage extends AbstractEmpPage {
 	}
 
 	public String doCreate() {
-		return "empEdit";
+		addRequestValue("crudType", getCrudType());
+		return "empCreate";
+	}
+
+	public String doDetail() {
+		EmpDto emp = getService().find(getId(), getVersionNo());
+		addRequestValue(EmpDto.class, emp);
+		if (isUpdate()) {
+			addRequestValue("crudType", getCrudType());
+			return "empEdit";
+		}
+		addSessionValue("crudType", getCrudType());
+		return "empEditConfirm";
 	}
 
 }

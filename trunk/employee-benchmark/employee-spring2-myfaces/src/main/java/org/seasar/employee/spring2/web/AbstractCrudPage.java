@@ -1,17 +1,17 @@
-package org.seasar.employee.spring2.web.emp;
+package org.seasar.employee.spring2.web;
 
 public abstract class AbstractCrudPage {
 
-	private int crudType = 0;
+	private Integer crudType;
 
 	public AbstractCrudPage() {
 	}
 
-	public int getCrudType() {
-		return this.crudType;
+	public Integer getCrudType() {
+		return this.crudType != null ? this.crudType : 0;
 	}
 
-	public void setCrudType(int type) {
+	public void setCrudType(Integer type) {
 		this.crudType = type;
 	}
 

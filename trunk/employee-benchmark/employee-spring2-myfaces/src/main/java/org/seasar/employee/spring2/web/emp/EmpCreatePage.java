@@ -2,7 +2,7 @@ package org.seasar.employee.spring2.web.emp;
 
 import org.seasar.employee.spring2.util.BeanUtil;
 
-public class EmpEditPage extends AbstractEmpPage {
+public class EmpCreatePage extends AbstractEmpPage {
 
 	public String doPrevious() {
 		return "empList";
@@ -13,7 +13,7 @@ public class EmpEditPage extends AbstractEmpPage {
 		BeanUtil.copy(this, emp);
 		addRequestValue(EmpDto.class, emp);
 		addSessionValue("crudType", getCrudType());
-		return "empEditConfirm";
+		return "empCreateConfirm";
 	}
 
 }

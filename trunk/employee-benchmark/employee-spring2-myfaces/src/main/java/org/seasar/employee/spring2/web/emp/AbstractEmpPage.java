@@ -3,11 +3,14 @@
  */
 package org.seasar.employee.spring2.web.emp;
 
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIParameter;
+import java.math.BigDecimal;
+import java.util.Date;
+
 import javax.faces.context.FacesContext;
 
 import org.seasar.employee.spring2.service.EmpService;
+import org.seasar.employee.spring2.util.BeanUtil;
+import org.seasar.employee.spring2.web.AbstractCrudPage;
 
 /**
  * @author taedium
@@ -17,6 +20,90 @@ public abstract class AbstractEmpPage extends AbstractCrudPage {
 
 	private EmpService service;
 
+	private Long id;
+
+	private Integer empNo;
+
+	private String empName;
+
+	private Integer mgrId;
+
+	private Date hiredate;
+
+	private BigDecimal sal;
+
+	private Integer deptId;
+
+	private Integer versionNo;
+
+	public AbstractEmpPage() {
+		initializeIfNecessary();
+	}
+
+	public Integer getDeptId() {
+		return deptId;
+	}
+
+	public void setDeptId(Integer deptId) {
+		this.deptId = deptId;
+	}
+
+	public String getEmpName() {
+		return empName;
+	}
+
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
+
+	public Integer getEmpNo() {
+		return empNo;
+	}
+
+	public void setEmpNo(Integer empNo) {
+		this.empNo = empNo;
+	}
+
+	public Date getHiredate() {
+		return hiredate;
+	}
+
+	public void setHiredate(Date hiredate) {
+		this.hiredate = hiredate;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Integer getMgrId() {
+		return mgrId;
+	}
+
+	public void setMgrId(Integer mgrId) {
+		this.mgrId = mgrId;
+	}
+
+	public BigDecimal getSal() {
+		return sal;
+	}
+
+	public void setSal(BigDecimal sal) {
+		this.sal = sal;
+	}
+
+	public Integer getVersionNo() {
+		return versionNo;
+	}
+
+	public void setVersionNo(Integer versionNo) {
+		this.versionNo = versionNo;
+	}
+
 	public EmpService getService() {
 		return service;
 	}
@@ -25,14 +112,11 @@ public abstract class AbstractEmpPage extends AbstractCrudPage {
 		this.service = service;
 	}
 
-	protected String getRequestParameter(String name) {
-		return (String) FacesContext.getCurrentInstance().getExternalContext()
-				.getRequestParameterMap().get(name);
-	}
-
-	protected String getRequestParameter(String name, String defaultValue) {
-		String value = getRequestParameter(name);
-		return value != null ? value : defaultValue;
+	protected void initializeIfNecessary() {
+		EmpDto emp = getRequestValue(EmpDto.class);
+		if (emp != null) {
+			BeanUtil.copy(emp, this);
+		}
 	}
 
 	@SuppressWarnings("unchecked")
@@ -42,15 +126,31 @@ public abstract class AbstractEmpPage extends AbstractCrudPage {
 	}
 
 	@SuppressWarnings("unchecked")
+	protected void addRequestValue(String name, Object value) {
+		FacesContext.getCurrentInstance().getExternalContext().getRequestMap()
+				.put(name, value);
+	}
+
 	protected <T> T getRequestValue(Class<T> clazz) {
 		Object value = FacesContext.getCurrentInstance().getExternalContext()
 				.getRequestMap().get(clazz);
 		return clazz.cast(value);
 	}
 
-	protected Object getValue(UIComponent component, String id) {
-		UIParameter param = (UIParameter) component.findComponent(id);
-		return param.getValue();
+	@SuppressWarnings("unchecked")
+	protected void addSessionValue(Class<?> key, Object value) {
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
+				.put(key, value);
 	}
 
+	@SuppressWarnings("unchecked")
+	protected void addSessionValue(String name, Object value) {
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
+				.put(name, value);
+	}
+
+	protected void removeSession(String name) {
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
+				.remove(name);
+	}
 }

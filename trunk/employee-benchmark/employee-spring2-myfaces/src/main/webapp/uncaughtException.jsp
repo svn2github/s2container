@@ -1,9 +1,10 @@
-<%@ include file="/WEB-INF/jsp/includes.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsf/html" prefix="h" %>
+<%@ taglib uri="http://java.sun.com/jsf/core" prefix="f" %>
 <%@ include file="/WEB-INF/jsp/header.jsp" %>
 
 <H2>Internal error</H2>
 <P>
-
 <% 
 try {
 	// The Servlet spec guarantees this attribute will be available
@@ -20,6 +21,7 @@ try {
 			rootCause.printStackTrace(new java.io.PrintWriter(out)); 
 		}
 		else {
+		
 			// It's not a ServletException, so we'll just show it
 			exception.printStackTrace(new java.io.PrintWriter(out)); 
 		}

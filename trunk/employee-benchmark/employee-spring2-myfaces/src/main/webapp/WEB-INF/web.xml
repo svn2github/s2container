@@ -48,16 +48,6 @@
 			org.springframework.web.context.ContextLoaderListener
 		</listener-class>
 	</listener>
-	<listener>
-		<listener-class>
-			de.mindmatters.faces.spring.context.ContextLoaderListener
-		</listener-class>
-	</listener>
-	<listener>
-		<listener-class>
-			org.springframework.web.context.request.RequestContextListener
-		</listener-class>
-	</listener>
 	
     <filter-mapping>
         <filter-name>encodingfilter</filter-name>
@@ -84,7 +74,7 @@
 
 	<error-page>
 		<exception-type>java.lang.Exception</exception-type>
-		<location>/WEB-INF/jsp/uncaughtException.jsp</location>
+		<location>/uncaughtException.jsp</location>
 	</error-page>
 
 </web-app>
