@@ -1,11 +1,16 @@
 <%@ page contentType="text/html; charset=UTF-8" 
 %><%@ taglib uri="http://java.sun.com/jsf/html" prefix="h" 
 %><%@ taglib uri="http://java.sun.com/jsf/core" prefix="f" 
-%><%@ page import="org.seasar.employee.spring2.web.CrudType" 
 %><%@ include file="/WEB-INF/jsp/header.jsp" 
 %><f:view><html><body>
 <h:form>
 	<h:inputHidden value="#{empCreateConfirmPage.crudType}"/>
+	<h:inputHidden value="#{empCreateConfirmPage.empNo}"/>
+	<h:inputHidden value="#{empCreateConfirmPage.empName}"/>
+	<h:inputHidden value="#{empCreateConfirmPage.mgrId}"/>
+	<h:inputHidden value="#{empCreateConfirmPage.hiredate}"/>
+	<h:inputHidden value="#{empCreateConfirmPage.sal}"/>
+	<h:inputHidden value="#{empCreateConfirmPage.deptId}"/>
 	<table class="tablebg">
 		<tr>
 			<td><label id="empNoLabel">empNo</label></td>
@@ -38,7 +43,7 @@
 			<td></td>
 		</tr>
 	</table>	
-	<h:commandButton value="Previous" action="#{empCreateConfirmPage.doPrevious}"/><br/>
+	<h:commandButton value="Previous" action="#{empCreateConfirmPage.doPrevious}" immediate="true"/><br/>
 	<h:commandButton value="Create" action="#{empCreateConfirmPage.doCreate}"/>
 </h:form>
 <%@ include file="/WEB-INF/jsp/footer.jsp" 

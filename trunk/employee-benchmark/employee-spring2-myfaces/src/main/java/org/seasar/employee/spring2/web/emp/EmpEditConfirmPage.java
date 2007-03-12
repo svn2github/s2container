@@ -1,44 +1,33 @@
 package org.seasar.employee.spring2.web.emp;
 
+import java.util.Map;
+
+import javax.faces.context.FacesContext;
+
 import org.seasar.employee.spring2.util.BeanUtil;
 
 public class EmpEditConfirmPage extends AbstractEmpPage {
 
 	public String doPrevious() {
-		try {
-			EmpDto emp = new EmpDto();
-			BeanUtil.copy(this, emp);
-			addRequestValue(EmpDto.class, emp);
-			addRequestValue("crudType", getCrudType());
-			dispose();
-			return isUpdate() ? "empEdit" : "empList";
-		} finally {
-			dispose();
-		}
+		Map m = FacesContext.getCurrentInstance().getExternalContext()
+				.getRequestParameterMap();
+		EmpDto emp = new EmpDto();
+		BeanUtil.copy(this, emp);
+		addRequestValue(EmpDto.class, emp);
+		addRequestValue("crudType", getCrudType());
+		return isUpdate() ? "empEdit" : "empList";
 	}
 
 	public String doUpdate() {
-		try {
-			EmpDto emp = new EmpDto();
-			BeanUtil.copy(this, emp);
-			getService().update(emp);
-			return "empList";
-		} finally {
-			dispose();
-		}
+		EmpDto emp = new EmpDto();
+		BeanUtil.copy(this, emp);
+		getService().update(emp);
+		return "empList";
 	}
 
 	public String doDelete() {
-		try {
-			getService().remove(getId(), getVersionNo());
-			return "empList";
-		} finally {
-			dispose();
-		}
+		getService().remove(getId(), getVersionNo());
+		return "empList";
 	}
 
-	private void dispose() {
-		removeSession("empEditConfirmPage");
-		removeSession("crudType");
-	}
 }

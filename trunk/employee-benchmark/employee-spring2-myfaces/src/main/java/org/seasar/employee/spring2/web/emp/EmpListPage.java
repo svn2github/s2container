@@ -27,7 +27,7 @@ public class EmpListPage extends AbstractEmpPage {
 			addRequestValue("crudType", getCrudType());
 			return "empEdit";
 		}
-		addSessionValue("crudType", getCrudType());
+		addRequestValue("crudType", getCrudType());
 		return "empEditConfirm";
 	}
 

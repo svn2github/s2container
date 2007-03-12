@@ -45,15 +45,15 @@
 	<managed-bean>
 		<managed-bean-name>empCreateConfirmPage</managed-bean-name>
 		<managed-bean-class>org.seasar.employee.spring2.web.emp.EmpCreateConfirmPage</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>request</managed-bean-scope>
 		<managed-property>
 			<property-name>service</property-name>
 			<value>#{service}</value>
 		</managed-property>
 		<managed-property>
 			<property-name>crudType</property-name>
-			<value>#{sessionScope.crudType}</value>
-		</managed-property>		
+			<value>#{param.crudType != null ? params.crudType : requestScope.crudType}</value>
+		</managed-property>	
 	</managed-bean>
 	
 	<managed-bean>
@@ -73,15 +73,23 @@
 	<managed-bean>
 		<managed-bean-name>empEditConfirmPage</managed-bean-name>
 		<managed-bean-class>org.seasar.employee.spring2.web.emp.EmpEditConfirmPage</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>request</managed-bean-scope>
 		<managed-property>
 			<property-name>service</property-name>
 			<value>#{service}</value>
 		</managed-property>
 		<managed-property>
 			<property-name>crudType</property-name>
-			<value>#{sessionScope.crudType}</value>
-		</managed-property>		
+			<value>#{requestScope.crudType}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>empNo</property-name>
+			<value>#{requestScope.empNo}</value>
+		</managed-property>			
+		<managed-property>
+			<property-name>empNo</property-name>
+			<value>#{requestScope.empNo}</value>
+		</managed-property>			
 	</managed-bean>
 
 	<navigation-rule>

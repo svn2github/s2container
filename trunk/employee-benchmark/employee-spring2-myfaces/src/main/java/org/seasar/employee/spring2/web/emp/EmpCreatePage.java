@@ -12,7 +12,7 @@ public class EmpCreatePage extends AbstractEmpPage {
 		EmpDto emp = new EmpDto();
 		BeanUtil.copy(this, emp);
 		addRequestValue(EmpDto.class, emp);
-		addSessionValue("crudType", getCrudType());
+		addRequestValue("crudType", getCrudType());
 		return "empCreateConfirm";
 	}
 

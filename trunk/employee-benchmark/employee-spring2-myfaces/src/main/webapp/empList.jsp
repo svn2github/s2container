@@ -1,7 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" 
 %><%@ taglib uri="http://java.sun.com/jsf/html" prefix="h" 
 %><%@ taglib uri="http://java.sun.com/jsf/core" prefix="f" 
-%><%@ include file="/WEB-INF/jsp/header.jsp" %><f:view><html><body>
+%><%@ include file="/WEB-INF/jsp/header.jsp" 
+%><f:view><html><body>
 <h:form>
 <h:commandButton value="Create" action="#{empListPage.doCreate}"/>
 <h:dataTable value="#{empListPage.empItems}" var="emp" border="1" headerClass="header2" columnClasses="right, right, left, right, left, right, right, right " rowClasses="row_odd, row_even">

@@ -137,20 +137,4 @@ public abstract class AbstractEmpPage extends AbstractCrudPage {
 		return clazz.cast(value);
 	}
 
-	@SuppressWarnings("unchecked")
-	protected void addSessionValue(Class<?> key, Object value) {
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
-				.put(key, value);
-	}
-
-	@SuppressWarnings("unchecked")
-	protected void addSessionValue(String name, Object value) {
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
-				.put(name, value);
-	}
-
-	protected void removeSession(String name) {
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
-				.remove(name);
-	}
 }
