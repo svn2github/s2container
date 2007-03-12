@@ -43,7 +43,7 @@
 			<td></td>
 		</tr>
 	</table>	
-	<h:commandButton value="Previous" action="#{empCreateConfirmPage.doPrevious}" immediate="true"/><br/>
+	<h:commandButton value="Previous" action="#{empCreateConfirmPage.doPrevious}"/><br/>
 	<h:commandButton value="Create" action="#{empCreateConfirmPage.doCreate}"/>
 </h:form>
 <%@ include file="/WEB-INF/jsp/footer.jsp" 

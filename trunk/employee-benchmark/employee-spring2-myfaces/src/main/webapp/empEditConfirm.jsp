@@ -5,31 +5,33 @@
 %><f:view><html><head>
 <script type="text/javascript">
 <!--
-function hideButton() {
-	var crudType =document.all && document.all('crudType') || document.getElementById && document.getElementById('crudType');
-	var crudTypeValue = crudType.childNodes[0].value;
-	var updateButton=document.all && document.all('updateButton') || document.getElementById && document.getElementById('updateButton');
-	var deleteButton=document.all && document.all('deleteButton') || document.getElementById && document.getElementById('deleteButton');
-	if (crudTypeValue == 1) { 
-		hide(updateButton);
-		hide(deleteButton);
-	 } else if (crudTypeValue == 2) {
-		hide(deleteButton);
-	 } else if (crudTypeValue == 3) {
-		hide(updateButton);
+function displayButton() {
+	var crudType =document.all && document.all('form:crudType') || document.getElementById && document.getElementById('form:crudType');
+	var updateButton=document.all && document.all('form:updateButton') || document.getElementById && document.getElementById('form:updateButton');
+	var deleteButton=document.all && document.all('form:deleteButton') || document.getElementById && document.getElementById('form:deleteButton');
+	 if (crudType.value == 2) {
+		display(updateButton);
+	 } else if (crudType.value == 3) {
+		display(deleteButton);
 	 }
 }
-
-function hide(obj) {
-	if(obj && obj.style) obj.style.display='none';
+function display(obj) {
+	if(obj && obj.style) obj.style.display='';
 }
 //-->
 </script>
 </head>
-<body onload="hideButton();">
-<h:form>
-	<span id="crudType"><h:inputHidden value="#{empEditConfirmPage.crudType}"/></span>
+<body onload="displayButton();">
+<h:form id="form">
+	<h:inputHidden id="crudType" value="#{empEditConfirmPage.crudType}"/>
+	<h:inputHidden value="#{empEditConfirmPage.id}"/>
 	<h:inputHidden value="#{empEditConfirmPage.empNo}"/>
+	<h:inputHidden value="#{empEditConfirmPage.empName}"/>
+	<h:inputHidden value="#{empEditConfirmPage.mgrId}"/>
+	<h:inputHidden value="#{empEditConfirmPage.hiredate}"/>
+	<h:inputHidden value="#{empEditConfirmPage.sal}"/>
+	<h:inputHidden value="#{empEditConfirmPage.deptId}"/>
+	<h:inputHidden value="#{empEditConfirmPage.versionNo}"/>
 	<table class="tablebg">
 		<tr>
 			<td><label id="idLabel">id</label></td>
@@ -73,12 +75,8 @@ function hide(obj) {
 		</tr>
 	</table>
 	<h:commandButton value="Previous" action="#{empEditConfirmPage.doPrevious}"/>
-	<div id="updateButton">
-		<h:commandButton value="Update" action="#{empEditConfirmPage.doUpdate}"/>
-	</div>
-	<div id="deleteButton">
-		<h:commandButton value="Delete" action="#{empEditConfirmPage.doDelete}" />
-	<div>
+	<h:commandButton id="updateButton" value="Update" action="#{empEditConfirmPage.doUpdate}" style="display:none"/>
+	<h:commandButton id="deleteButton" value="Delete" action="#{empEditConfirmPage.doDelete}" style="display:none"/>
 </h:form>
 <%@ include file="/WEB-INF/jsp/footer.jsp" 
 %></body></html></f:view>

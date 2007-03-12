@@ -37,7 +37,7 @@ public abstract class AbstractEmpPage extends AbstractCrudPage {
 	private Integer versionNo;
 
 	public AbstractEmpPage() {
-		initializeIfNecessary();
+		initialize();
 	}
 
 	public Integer getDeptId() {
@@ -112,7 +112,7 @@ public abstract class AbstractEmpPage extends AbstractCrudPage {
 		this.service = service;
 	}
 
-	protected void initializeIfNecessary() {
+	protected void initialize() {
 		EmpDto emp = getRequestValue(EmpDto.class);
 		if (emp != null) {
 			BeanUtil.copy(emp, this);
@@ -135,6 +135,12 @@ public abstract class AbstractEmpPage extends AbstractCrudPage {
 		Object value = FacesContext.getCurrentInstance().getExternalContext()
 				.getRequestMap().get(clazz);
 		return clazz.cast(value);
+	}
+
+	protected EmpDto toDto() {
+		EmpDto emp = new EmpDto();
+		BeanUtil.copy(this, emp);
+		return emp;
 	}
 
 }

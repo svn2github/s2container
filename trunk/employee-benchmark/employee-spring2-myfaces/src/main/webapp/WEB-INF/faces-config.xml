@@ -52,7 +52,7 @@
 		</managed-property>
 		<managed-property>
 			<property-name>crudType</property-name>
-			<value>#{param.crudType != null ? params.crudType : requestScope.crudType}</value>
+			<value>#{prequestScope.crudType}</value>
 		</managed-property>	
 	</managed-bean>
 	
@@ -81,15 +81,7 @@
 		<managed-property>
 			<property-name>crudType</property-name>
 			<value>#{requestScope.crudType}</value>
-		</managed-property>
-		<managed-property>
-			<property-name>empNo</property-name>
-			<value>#{requestScope.empNo}</value>
-		</managed-property>			
-		<managed-property>
-			<property-name>empNo</property-name>
-			<value>#{requestScope.empNo}</value>
-		</managed-property>			
+		</managed-property>		
 	</managed-bean>
 
 	<navigation-rule>
