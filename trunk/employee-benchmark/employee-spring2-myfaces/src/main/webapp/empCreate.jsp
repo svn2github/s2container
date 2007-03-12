@@ -1,16 +1,11 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsf/html" prefix="h" %>
-<%@ taglib uri="http://java.sun.com/jsf/core" prefix="f" %>
-<%@ page import="org.seasar.employee.spring2.web.CrudType" %>
-<%@ include file="/WEB-INF/jsp/header.jsp" %>
-
-<f:view>
-<html>
-<body>
+<%@ page contentType="text/html; charset=UTF-8" 
+%><%@ taglib uri="http://java.sun.com/jsf/html" prefix="h" 
+%><%@ taglib uri="http://java.sun.com/jsf/core" prefix="f" 
+%><%@ page import="org.seasar.employee.spring2.web.CrudType" 
+%><%@ include file="/WEB-INF/jsp/header.jsp" 
+%><f:view><html><body>
 <h:form>
-
 	<h:inputHidden value="#{empCreatePage.crudType}"/>
-
 	<table class="tablebg">
 		<tr>
 			<td><label id="empNoLabel">empNo</label></td>
@@ -46,14 +41,9 @@
 			<td><h:inputText id="deptId" value="#{empCreatePage.deptId}"/></td>
 			<td><h:message for="deptId"/></td>
 		</tr>
-	</table>	
-	
-	<h:commandButton value="Previous" action="#{empCreatePage.doPrevious}" immediate="true"/>	
-	<br/>
+	</table>
+	<h:commandButton value="Previous" action="#{empCreatePage.doPrevious}" immediate="true"/><br/>
 	<h:commandButton value="Confirm" action="#{empCreatePage.doConfirm}"/>	
-	
 </h:form>
-<%@ include file="/WEB-INF/jsp/footer.jsp" %>
-</body>
-</html>
-</f:view>
+<%@ include file="/WEB-INF/jsp/footer.jsp" 
+%></body></html></f:view>
