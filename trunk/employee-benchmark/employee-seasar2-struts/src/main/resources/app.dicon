@@ -8,6 +8,5 @@
 	<include path="kuina-dao.dicon"/>
 	<include path="dxo.dicon"/>
 	<include condition="#ENV != 'ut'" path="s2struts.dicon"/>
-	<include condition="#ENV == 'ut'" path="s2struts-hotdeploy.dicon"/>
 
 </components>
