@@ -1,8 +1,9 @@
-<%@ page contentType="text/html; charset=UTF-8" 
+<%@page contentType="text/html; charset=UTF-8" 
 %><%@ taglib uri="http://java.sun.com/jsf/html" prefix="h" 
 %><%@ taglib uri="http://java.sun.com/jsf/core" prefix="f" 
-%><%@ include file="/WEB-INF/jsp/header.jsp" 
-%><f:view><html><body>
+%><f:view><html><f:subview id="headerView"
+><%@ include file="/WEB-INF/jsp/header.jsp" 
+%></f:subview><body>
 <h:form>
 	<h:inputHidden value="#{empCreateConfirmPage.crudType}"/>
 	<h:inputHidden value="#{empCreateConfirmPage.empNo}"/>
@@ -46,5 +47,4 @@
 	<h:commandButton value="Previous" action="#{empCreateConfirmPage.doPrevious}"/><br/>
 	<h:commandButton value="Create" action="#{empCreateConfirmPage.doCreate}"/>
 </h:form>
-<%@ include file="/WEB-INF/jsp/footer.jsp" 
-%></body></html></f:view>
+</body></html></f:view>

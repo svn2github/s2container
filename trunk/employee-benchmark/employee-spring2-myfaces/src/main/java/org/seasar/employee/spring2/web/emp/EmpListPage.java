@@ -23,12 +23,8 @@ public class EmpListPage extends AbstractEmpPage {
 	public String doDetail() {
 		EmpDto emp = getService().find(getId(), getVersionNo());
 		addRequestValue(EmpDto.class, emp);
-		if (isUpdate()) {
-			addRequestValue("crudType", getCrudType());
-			return "empEdit";
-		}
 		addRequestValue("crudType", getCrudType());
-		return "empEditConfirm";
+		return isUpdate() ? "empEdit" : "empEditConfirm";
 	}
 
 }

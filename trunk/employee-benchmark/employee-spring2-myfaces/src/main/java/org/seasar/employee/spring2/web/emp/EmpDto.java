@@ -3,6 +3,10 @@ package org.seasar.employee.spring2.web.emp;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * @author taedium
+ * 
+ */
 public class EmpDto {
 
 	private long id;

@@ -1,5 +1,9 @@
 package org.seasar.employee.spring2.web.emp;
 
+/**
+ * @author taedium
+ * 
+ */
 public class EmpEditConfirmPage extends AbstractEmpPage {
 
 	public String doPrevious() {

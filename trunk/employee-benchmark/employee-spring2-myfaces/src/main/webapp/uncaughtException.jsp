@@ -1,8 +1,7 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsf/html" prefix="h" %>
-<%@ taglib uri="http://java.sun.com/jsf/core" prefix="f" %>
+<html>
+<%@ include file="/WEB-INF/jsp/includes.jsp" %>
 <%@ include file="/WEB-INF/jsp/header.jsp" %>
-
+<body>
 <H2>Internal error</H2>
 <P>
 <% 
@@ -43,9 +42,8 @@ try {
 	ex.printStackTrace(new java.io.PrintWriter(out));
 }
 %>
-
 <P>
 <BR>
+</body></html>
 
 
-<%@ include file="/WEB-INF/jsp/footer.jsp" %>

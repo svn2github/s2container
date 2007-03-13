@@ -1,26 +1,29 @@
-<%@ page contentType="text/html; charset=UTF-8" 
+<%@page contentType="text/html; charset=UTF-8" 
 %><%@ taglib uri="http://java.sun.com/jsf/html" prefix="h" 
 %><%@ taglib uri="http://java.sun.com/jsf/core" prefix="f" 
-%><%@ include file="/WEB-INF/jsp/header.jsp" 
-%><f:view><html><head>
+%><f:view><html><f:subview id="headerView"
+><%@ include file="/WEB-INF/jsp/header.jsp" 
+%></f:subview>
 <script type="text/javascript">
 <!--
 function displayButton() {
-	var crudType =document.all && document.all('form:crudType') || document.getElementById && document.getElementById('form:crudType');
-	var updateButton=document.all && document.all('form:updateButton') || document.getElementById && document.getElementById('form:updateButton');
-	var deleteButton=document.all && document.all('form:deleteButton') || document.getElementById && document.getElementById('form:deleteButton');
-	 if (crudType.value == 2) {
+	if (!document.getElementById) {
+		return;
+	}
+	var crudType = document.getElementById('form:crudType');
+	var updateButton = document.getElementById('form:updateButton');
+	var deleteButton = document.getElementById('form:deleteButton');
+	if (crudType.value == 2) {
 		display(updateButton);
-	 } else if (crudType.value == 3) {
+	} else if (crudType.value == 3) {
 		display(deleteButton);
-	 }
+	}
 }
 function display(obj) {
 	if(obj && obj.style) obj.style.display='';
 }
 //-->
 </script>
-</head>
 <body onload="displayButton();">
 <h:form id="form">
 	<h:inputHidden id="crudType" value="#{empEditConfirmPage.crudType}"/>
@@ -74,9 +77,8 @@ function display(obj) {
 			<td></td>
 		</tr>
 	</table>
-	<h:commandButton value="Previous" action="#{empEditConfirmPage.doPrevious}"/>
+	<h:commandButton value="Previous" action="#{empEditConfirmPage.doPrevious}"/><br/>
 	<h:commandButton id="updateButton" value="Update" action="#{empEditConfirmPage.doUpdate}" style="display:none"/>
 	<h:commandButton id="deleteButton" value="Delete" action="#{empEditConfirmPage.doDelete}" style="display:none"/>
 </h:form>
-<%@ include file="/WEB-INF/jsp/footer.jsp" 
-%></body></html></f:view>
+</body></html></f:view>
