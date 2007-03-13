@@ -5,7 +5,7 @@
     <reloadable>true</reloadable>
     <redirectLogger>true</redirectLogger>
     <updateXml>true</updateXml>
-    <warLocation></warLocation>
+    <warLocation>C:\employee-spring2-myfaces.war</warLocation>
     <extraInfo></extraInfo>
     <webPath>/employee-spring2-myfaces</webPath>
 </tomcatProjectProperties>
