@@ -9,8 +9,6 @@
 		<jta-data-source>jdbc/dataSource</jta-data-source>
 
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<class>org.seasar.employee.kuina.entity.Emp</class>
-		<exclude-unlisted-classes/>
 		<properties>
 			<!-- for test -->
 			<!--
