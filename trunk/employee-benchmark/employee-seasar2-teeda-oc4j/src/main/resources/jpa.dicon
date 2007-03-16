@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.3//EN" 
+	"http://www.seasar.org/dtd/components23.dtd">
+<components>
+	<include path="javaee5.dicon"/>
+	<component class="org.seasar.framework.jpa.impl.JndiPersistenceUnitProvider">
+		<initMethod name="addJndiName" >
+			<arg>"persistenceUnit"</arg>
+			<arg>"employee-seasar2-teeda-oc4j/persistenceUnit"</arg>
+		</initMethod>
+	</component>
+
+	<component name="entityManagerFactory" class="javax.persistence.EntityManagerFactory">
+		jpa.persistenceUnitManager.getEntityManagerFactory("persistenceUnit")
+	</component>
+
+	<component name="entityManager" class="org.seasar.framework.jpa.impl.TxScopedEntityManagerProxy"/>
+
+	<component class="org.seasar.hibernate.jpa.metadata.HibernateEntityDescProvider"/>
+
+	<!-- for test -->
+	<component name="dataSourceProxy" class="org.seasar.extension.datasource.impl.SingletonDataSourceProxy"/>
+</components>
