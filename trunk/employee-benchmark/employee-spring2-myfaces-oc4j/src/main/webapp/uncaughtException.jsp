@@ -1,5 +1,4 @@
 <html>
-<%@ include file="/WEB-INF/jsp/includes.jsp" %>
 <%@ include file="/WEB-INF/jsp/header.jsp" %>
 <body>
 <H2>Internal error</H2>

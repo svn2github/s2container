@@ -4,10 +4,11 @@
 	version="1.0">
 
 	<persistence-unit name="persistenceUnit" transaction-type="JTA">
-		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<jta-data-source>jdbc/dataSource</jta-data-source>
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<properties>
-			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+			<property name="hibernate.transaction.manager_lookup_class" value="org.hibernate.transaction.OC4JTransactionManagerLookup"/>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle9Dialect"/>
 			<property name="hibernate.show_sql" value="false"/>
 			<property name="hibernate.format_sql" value="true"/>		
 			<property name="hibernate.use_sql_comments" value="false"/>
