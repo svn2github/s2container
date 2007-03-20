@@ -40,9 +40,9 @@
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/xercesImpl-2.6.2.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/xmlParserAPIs-2.6.2.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/xmlunit-1.0.jar" sourcepath="src/main/webapp/WEB-INF/lib/sources/xmlunit-1.0-sources.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/s2-extension-2.4.11-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/s2-framework-2.4.11-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/s2-tiger-2.4.11-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/s2-extension-2.4.12-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/s2-framework-2.4.12-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/s2-tiger-2.4.12-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/teeda-tiger-1.0.6-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/geronimo-jta_1.1_spec-1.0.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/teeda-ajax-1.0.7-SNAPSHOT.jar"/>
