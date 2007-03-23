@@ -15,9 +15,9 @@
  */
 package org.seasar3.bean;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
+
+import org.seasar3.util.ArrayMap;
 
 /**
  * A BeanDesc provides information about a "bean".
@@ -25,66 +25,112 @@ import java.lang.reflect.Method;
  * @author higa
  * 
  */
-public interface BeanDesc {
+public class BeanDesc {
 
-    Class getBeanClass();
+    private Class type;
 
-    boolean hasPropertyDesc(String propertyName);
+    private ArrayMap<String, PropertyDesc> propertyDescs = new ArrayMap<String, PropertyDesc>(
+            49);
 
-    PropertyDesc getPropertyDesc(String propertyName)
-            throws PropertyNotFoundRuntimeException;
+    private ArrayMap<String, Field> fields = new ArrayMap<String, Field>(49);
 
-    PropertyDesc getPropertyDesc(int index);
+    /**
+     * Returns bean type.
+     * 
+     * @return type
+     */
+    public Class getType() {
+        return type;
+    }
 
-    int getPropertyDescSize();
+    /**
+     * Sets bean type.
+     * 
+     * @param type
+     */
+    public void setType(Class type) {
+        this.type = type;
+    }
 
-    boolean hasField(String fieldName);
+    /**
+     * Returns the size of {@link PropertyDesc}s.
+     * 
+     * @return
+     */
+    public int getPropertyDescSize() {
+        return propertyDescs.size();
+    }
 
-    Field getField(String fieldName) throws FieldNotFoundRuntimeException;
+    /**
+     * Returns {@link PropertyDesc} for property name.
+     * 
+     * @param propertyName
+     * @return
+     */
+    public PropertyDesc getPropertyDesc(String propertyName) {
+        return propertyDescs.get(propertyName);
+    }
 
-    Field getField(int index);
+    /**
+     * Returns {@link PropertyDesc} for index.
+     * 
+     * @param index
+     * @return
+     */
+    public PropertyDesc getPropertyDesc(int index) {
+        return propertyDescs.get(index);
+    }
 
-    Object getFieldValue(String fieldName, Object target)
-            throws FieldNotFoundRuntimeException;
+    /**
+     * Adds {@link PropertyDesc}.
+     * 
+     * @param propertyDesc
+     */
+    public void addPropertyDesc(PropertyDesc propertyDesc) {
+        if (propertyDesc == null) {
+            throw new NullPointerException("propertyDesc");
+        }
+        propertyDescs.put(propertyDesc.getName(), propertyDesc);
+    }
 
-    int getFieldSize();
+    /**
+     * Returns size of {@link Field}s.
+     * 
+     * @return
+     */
+    public int getFieldSize() {
+        return fields.size();
+    }
 
-    Object newInstance(Object[] args)
-            throws ConstructorNotFoundRuntimeException;
+    /**
+     * Returns {@link Field} for field name.
+     * 
+     * @param fieldName
+     * @return
+     */
+    public Field getField(String fieldName) {
+        return fields.get(fieldName);
+    }
 
-    Constructor getSuitableConstructor(Object[] args)
-            throws ConstructorNotFoundRuntimeException;
+    /**
+     * Returns {@link Field} for index.
+     * 
+     * @param index
+     * @return
+     */
+    public Field getField(int index) {
+        return fields.get(index);
+    }
 
-    Constructor getConstructor(Class[] paramTypes);
-
-    String[] getConstructorParameterNames(final Class[] paramTypes);
-
-    String[] getConstructorParameterNames(Constructor constructor);
-
-    Object invoke(Object target, String methodName, Object[] args)
-            throws MethodNotFoundRuntimeException;
-
-    Method getMethod(String methodName);
-
-    Method getMethod(String methodName, Class[] paramTypes);
-
-    Method getMethodNoException(String methodName);
-
-    Method getMethodNoException(String methodName, Class[] paramTypes);
-
-    Method[] getMethods(String methodName)
-            throws MethodNotFoundRuntimeException;
-
-    boolean hasMethod(String methodName);
-
-    String[] getMethodNames();
-
-    String[] getMethodParameterNames(String methodName, final Class[] paramTypes);
-
-    String[] getMethodParameterNamesNoException(String methodName,
-            final Class[] paramTypes);
-
-    String[] getMethodParameterNames(Method method);
-
-    String[] getMethodParameterNamesNoException(Method method);
+    /**
+     * Adds {@link Field}.
+     * 
+     * @param field
+     */
+    public void addField(Field field) {
+        if (field == null) {
+            throw new NullPointerException("field");
+        }
+        fields.put(field.getName(), field);
+    }
 }

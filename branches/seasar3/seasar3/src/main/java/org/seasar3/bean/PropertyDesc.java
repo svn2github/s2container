@@ -15,6 +15,7 @@
  */
 package org.seasar3.bean;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 /**
@@ -32,6 +33,8 @@ public class PropertyDesc {
     private Method readMethod;
 
     private Method writeMethod;
+
+    private Field field;
 
     /**
      * Returns name.
@@ -103,5 +106,23 @@ public class PropertyDesc {
      */
     public void setWriteMethod(Method writeMethod) {
         this.writeMethod = writeMethod;
+    }
+
+    /**
+     * Returns field.
+     * 
+     * @return field
+     */
+    public Field getField() {
+        return field;
+    }
+
+    /**
+     * Sets field.
+     * 
+     * @param field
+     */
+    public void setField(Field field) {
+        this.field = field;
     }
 }
