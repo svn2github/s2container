@@ -27,7 +27,7 @@ import junit.framework.TestCase;
  */
 public class ArrayMapTest extends TestCase {
 
-    private ArrayMap map;
+    private ArrayMap<String, String> map;
 
     /**
      * Test method for {@link ArrayMap#size()}.
@@ -110,6 +110,12 @@ public class ArrayMapTest extends TestCase {
         map.put(null, "test5");
     }
 
+    /**
+     * Test method for {@link ArrayMap#remove(Object)} and
+     * {@link ArrayMap#remove(int)}.
+     * 
+     * @throws Exception
+     */
     public void testRemove() throws Exception {
         assertEquals("1", "test", map.remove("1"));
         assertEquals("2", 2, map.size());
@@ -117,8 +123,13 @@ public class ArrayMapTest extends TestCase {
         assertEquals("4", null, map.remove(0));
     }
 
+    /**
+     * Test method for {@link ArrayMap#remove(Object)}.
+     * 
+     * @throws Exception
+     */
     public void testRemove2() throws Exception {
-        Map m = new ArrayMap();
+        Map<String, String> m = new ArrayMap<String, String>();
         m.put("1", "d");
         m.remove("1");
         assertEquals("1", false, m.containsKey("1"));
@@ -127,16 +138,26 @@ public class ArrayMapTest extends TestCase {
         assertEquals("2", false, m.containsKey("1"));
     }
 
+    /**
+     * Test method for {@link ArrayMap#remove(Object)}.
+     * 
+     * @throws Exception
+     */
     public void testRemove3() throws Exception {
-        Map m = new ArrayMap();
+        Map<MyKey, String> m = new ArrayMap<MyKey, String>();
         m.put(new MyKey("1"), "d");
         m.put(new MyKey("2"), "d");
         m.remove(new MyKey("1"));
         assertEquals("1", false, m.containsKey(new MyKey("1")));
     }
 
+    /**
+     * Test method for {@link ArrayMap#remove(Object)}.
+     * 
+     * @throws Exception
+     */
     public void testRemove4() throws Exception {
-        ArrayMap m = new ArrayMap();
+        ArrayMap<String, String> m = new ArrayMap<String, String>();
         m.put("1", "d");
         m.put("2", "d");
         System.out.println("remove before:" + m);
@@ -149,8 +170,13 @@ public class ArrayMapTest extends TestCase {
         assertEquals("5", "d", m.get(0));
     }
 
+    /**
+     * Test method for {@link ArrayMap#putAll(Map)}.
+     * 
+     * @throws Exception
+     */
     public void testPutAll() throws Exception {
-        Map m = new HashMap();
+        Map<String, String> m = new HashMap<String, String>();
         m.put("3", "test3");
         m.put("4", "test4");
         map.putAll(m);
@@ -159,23 +185,44 @@ public class ArrayMapTest extends TestCase {
         assertEquals("3", 5, map.size());
     }
 
+    /**
+     * Test method for {@link ArrayMap#equals(Object)}.
+     * 
+     * @throws Exception
+     */
+    @SuppressWarnings("unchecked")
     public void testEqaulas() throws Exception {
-        Map copy = (ArrayMap) map.clone();
+        Map<String, String> copy = (ArrayMap<String, String>) map.clone();
         assertTrue("1", map.equals(copy));
         assertTrue("2", !map.equals(null));
         map.put("3", "test3");
         assertTrue("3", !map.equals(copy));
     }
 
+    /**
+     * Test method for {@link ArrayMap#toString()}.
+     * 
+     * @throws Exception
+     */
     public void testToString() throws Exception {
         assertNotNull("1", map.toString());
     }
 
+    /**
+     * Test method for {@link ArrayMap#clear()}.
+     * 
+     * @throws Exception
+     */
     public void testClear() throws Exception {
         map.clear();
         assertEquals("1", 0, map.size());
     }
 
+    /**
+     * Test method for {@link ArrayMap#entrySet()}.
+     * 
+     * @throws Exception
+     */
     public void testEntrySet() throws Exception {
         Iterator i = map.entrySet().iterator();
         assertEquals("1", null, ((Map.Entry) i.next()).getKey());
@@ -184,7 +231,7 @@ public class ArrayMapTest extends TestCase {
     }
 
     protected void setUp() throws Exception {
-        map = new ArrayMap();
+        map = new ArrayMap<String, String>();
         map.put(null, null);
         map.put("1", "test");
         map.put("2", "test2");
