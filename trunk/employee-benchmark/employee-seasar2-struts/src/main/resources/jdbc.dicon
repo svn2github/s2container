@@ -120,7 +120,7 @@
 	<component name="connectionPool"
 		class="org.seasar.extension.dbcp.impl.ConnectionPoolImpl">
 		<property name="timeout">600</property>
-		<property name="maxPoolSize">10</property>
+		<property name="maxPoolSize">50</property>
 		<property name="allowLocalTx">true</property>
 		<destroyMethod name="close"/>
 	</component>
