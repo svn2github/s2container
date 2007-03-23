@@ -81,7 +81,7 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
      * 
      * @param map
      */
-    public ArrayMap(Map map) {
+    public ArrayMap(Map<? extends K, ? extends V> map) {
         this((int) (map.size() / LOAD_FACTOR) + 1);
         putAll(map);
     }
@@ -388,7 +388,7 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
         for (int i = 0; i < size; i++) {
             Object key = in.readObject();
             Object value = in.readObject();
-            put((K) key, (V)value);
+            put((K) key, (V) value);
         }
     }
 
