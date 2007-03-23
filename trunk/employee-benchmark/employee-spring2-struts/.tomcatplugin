@@ -5,7 +5,7 @@
     <reloadable>true</reloadable>
     <redirectLogger>true</redirectLogger>
     <updateXml>true</updateXml>
-    <warLocation>employee-spring2</warLocation>
+    <warLocation>C:\employee-spring2-struts.war</warLocation>
     <extraInfo></extraInfo>
-    <webPath>/employee-spring2</webPath>
+    <webPath>/employee-spring2-struts</webPath>
 </tomcatProjectProperties>
