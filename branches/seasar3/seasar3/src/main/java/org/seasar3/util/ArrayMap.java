@@ -52,7 +52,7 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
 
     private transient int size = 0;
 
-    private transient Set entrySet = null;
+    private transient Set<Map.Entry<K, V>> entrySet = null;
 
     /**
      * Creates new {@link ArrayMap}.
@@ -66,13 +66,12 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
      * 
      * @param initialCapacity
      */
-    @SuppressWarnings("unchecked")
     public ArrayMap(int initialCapacity) {
         if (initialCapacity <= 0) {
             initialCapacity = INITIAL_CAPACITY;
         }
-        mapTable = new Entry[initialCapacity];
-        listTable = new Entry[initialCapacity];
+        mapTable = createArray(initialCapacity);
+        listTable = createArray(initialCapacity);
         threshold = (int) (initialCapacity * LOAD_FACTOR);
     }
 
@@ -122,17 +121,17 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
     }
 
     public boolean containsKey(final Object key) {
-        Entry[] tbl = mapTable;
+        Entry<K, V>[] tbl = mapTable;
         if (key != null) {
             int hashCode = key.hashCode();
             int index = (hashCode & 0x7FFFFFFF) % tbl.length;
-            for (Entry e = tbl[index]; e != null; e = e.next) {
+            for (Entry<K, V> e = tbl[index]; e != null; e = e.next) {
                 if (e.hashCode == hashCode && key.equals(e.key)) {
                     return true;
                 }
             }
         } else {
-            for (Entry e = tbl[0]; e != null; e = e.next) {
+            for (Entry<K, V> e = tbl[0]; e != null; e = e.next) {
                 if (e.key == null) {
                     return true;
                 }
@@ -309,11 +308,12 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
         return array;
     }
 
+    @SuppressWarnings("unchecked")
     public final boolean equals(Object o) {
         if (!getClass().isInstance(o)) {
             return false;
         }
-        ArrayMap e = (ArrayMap) o;
+        ArrayMap<K, V> e = (ArrayMap) o;
         if (size != e.size) {
             return false;
         }
@@ -325,21 +325,21 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
         return true;
     }
 
-    @SuppressWarnings("unchecked")
-    public final Set entrySet() {
+    public final Set<Map.Entry<K, V>> entrySet() {
         if (entrySet == null) {
-            entrySet = new AbstractSet() {
-                public Iterator iterator() {
+            entrySet = new AbstractSet<Map.Entry<K, V>>() {
+                public Iterator<Map.Entry<K, V>> iterator() {
                     return new ArrayMapIterator();
                 }
 
+                @SuppressWarnings("unchecked")
                 public boolean contains(Object o) {
                     if (!(o instanceof Entry)) {
                         return false;
                     }
-                    Entry entry = (Entry) o;
+                    Entry<K, V> entry = (Entry<K, V>) o;
                     int index = (entry.hashCode & 0x7FFFFFFF) % mapTable.length;
-                    for (Entry e = mapTable[index]; e != null; e = e.next) {
+                    for (Entry<K, V> e = mapTable[index]; e != null; e = e.next) {
                         if (e.equals(entry)) {
                             return true;
                         }
@@ -347,11 +347,12 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
                     return false;
                 }
 
+                @SuppressWarnings("unchecked")
                 public boolean remove(Object o) {
                     if (!(o instanceof Entry)) {
                         return false;
                     }
-                    Entry entry = (Entry) o;
+                    Entry<K, V> entry = (Entry) o;
                     return ArrayMap.this.remove(entry.key) != null;
                 }
 
@@ -381,19 +382,19 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
             ClassNotFoundException {
 
         int num = in.readInt();
-        mapTable = new Entry[num];
-        listTable = new Entry[num];
+        mapTable = createArray(num);
+        listTable = createArray(num);
         threshold = (int) (num * LOAD_FACTOR);
         int size = in.readInt();
         for (int i = 0; i < size; i++) {
-            Object key = in.readObject();
-            Object value = in.readObject();
-            put((K) key, (V) value);
+            K key = (K) in.readObject();
+            V value = (V) in.readObject();
+            put(key, value);
         }
     }
 
     public Object clone() {
-        ArrayMap copy = new ArrayMap();
+        ArrayMap<K, V> copy = new ArrayMap<K, V>();
         copy.threshold = threshold;
         copy.mapTable = mapTable;
         copy.listTable = listTable;
@@ -401,7 +402,7 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
         return copy;
     }
 
-    private final int indexOf(final Entry entry) {
+    private final int indexOf(final Entry<K, V> entry) {
         for (int i = 0; i < size; i++) {
             if (listTable[i] == entry) {
                 return i;
@@ -454,16 +455,16 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
 
     private final void ensureCapacity() {
         if (size >= threshold) {
-            Entry[] oldTable = listTable;
+            Entry<K, V>[] oldTable = listTable;
             int newCapacity = oldTable.length * 2 + 1;
-            Entry[] newMapTable = new Entry[newCapacity];
-            Entry[] newListTable = new Entry[newCapacity];
+            Entry<K, V>[] newMapTable = createArray(newCapacity);
+            Entry<K, V>[] newListTable = createArray(newCapacity);
             threshold = (int) (newCapacity * LOAD_FACTOR);
             System.arraycopy(oldTable, 0, newListTable, 0, size);
             for (int i = 0; i < size; i++) {
-                Entry old = oldTable[i];
+                Entry<K, V> old = oldTable[i];
                 int index = (old.hashCode & 0x7FFFFFFF) % newCapacity;
-                Entry e = old;
+                Entry<K, V> e = old;
                 old = old.next;
                 e.next = newMapTable[index];
                 newMapTable[index] = e;
@@ -479,8 +480,12 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
         return old;
     }
 
-    @SuppressWarnings("unused")
-    private class ArrayMapIterator implements Iterator {
+    @SuppressWarnings("unchecked")
+    private Entry<K, V>[] createArray(final int length) {
+        return new Entry[length];
+    }
+
+    private class ArrayMapIterator implements Iterator<Map.Entry<K, V>> {
 
         private int current = 0;
 
@@ -490,9 +495,9 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
             return current != size;
         }
 
-        public Object next() {
+        public Map.Entry<K, V> next() {
             try {
-                Object n = listTable[current];
+                Entry<K, V> n = listTable[current];
                 last = current++;
                 return n;
             } catch (IndexOutOfBoundsException e) {
@@ -533,7 +538,7 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
          * @param next
          */
         public Entry(final int hashCode, final K key, final V value,
-                final Entry next) {
+                final Entry<K, V> next) {
 
             this.hashCode = hashCode;
             this.key = key;
@@ -568,7 +573,7 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
             if (this == o) {
                 return true;
             }
-            Entry e = (Entry) o;
+            Entry<?, ?> e = (Entry<?, ?>) o;
             return (key != null ? key.equals(e.key) : e.key == null)
                     && (value != null ? value.equals(e.value) : e.value == null);
         }
