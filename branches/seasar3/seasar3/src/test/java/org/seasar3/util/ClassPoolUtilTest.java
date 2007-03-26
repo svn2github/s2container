@@ -92,10 +92,10 @@ public class ClassPoolUtilTest extends TestCase {
      * Test method for {@link ClassPoolUtil#toCtClass(ClassPool, Class)}.
      * 
      */
-    public void testToCtClassForArray() {
+    public void testToCtClassArray() {
         ClassPool classPool = new ClassPool();
         classPool.appendSystemPath();
-        assertNotNull(ClassPoolUtil.toCtClass(classPool,
+        assertNotNull(ClassPoolUtil.toCtClassArray(classPool,
                 new Class[] { String.class }));
     }
 

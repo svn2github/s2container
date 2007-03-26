@@ -35,6 +35,10 @@ public final class ClassUtil {
      * @param <T>
      * @param type
      * @return
+     * @throws InstantiationRuntimeException
+     *             if InstantiationException occurred.
+     * @throws IllegalAccessRuntimeException
+     *             if IllegalAccessException occurred.
      */
     public static <T> T newInstance(Class<? extends T> type) {
         try {

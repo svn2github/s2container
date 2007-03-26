@@ -17,6 +17,9 @@ package org.seasar3.util;
 
 import javassist.ClassPool;
 import javassist.CtClass;
+import javassist.CtConstructor;
+import javassist.CtMethod;
+import javassist.CtNewConstructor;
 import javassist.NotFoundException;
 import junit.framework.TestCase;
 
@@ -56,5 +59,55 @@ public class CtClassUtilTest extends TestCase {
         CtClass ctClass = ClassPoolUtil.get(classPool, getClass().getName());
         CtClassUtil.setSuperclass(classPool, ctClass, getClass().getName());
         assertEquals(getClass().getName(), ctClass.getSuperclass().getName());
+    }
+
+    /**
+     * Test method for
+     * {@link CtClassUtil#addConstructor(CtClass, javassist.CtConstructor)}.
+     * 
+     * @throws Exception
+     * 
+     */
+    public void testAddConstuctor() throws Exception {
+        ClassPool classPool = new ClassPool();
+        classPool.appendSystemPath();
+
+        CtClass ctClass = ClassPoolUtil.get(classPool, getClass().getName());
+        CtConstructor ctConstructor = CtNewConstructor.make(
+                new CtClass[] { classPool.get("int") }, null, ctClass);
+        CtClassUtil.addConstructor(ctClass, ctConstructor);
+    }
+
+    /**
+     * Test method for
+     * {@link CtClassUtil#getDeclaredMethod(CtClass, String, CtClass[])}.
+     * 
+     * @throws Exception
+     * 
+     */
+    public void testGetDeclaredMethod() throws Exception {
+        ClassPool classPool = new ClassPool();
+        classPool.appendSystemPath();
+
+        CtClass ctClass = ClassPoolUtil.get(classPool, getClass().getName());
+        assertNotNull(CtClassUtil.getDeclaredMethod(ctClass,
+                "testGetDeclaredMethod", null));
+    }
+
+    /**
+     * Test method for
+     * {@link CtClassUtil#addMethod(CtClass, javassist.CtMethod)}.
+     * 
+     * @throws Exception
+     * 
+     */
+    public void testAddMethod() throws Exception {
+        ClassPool classPool = new ClassPool();
+        classPool.appendSystemPath();
+
+        CtClass ctClass = ClassPoolUtil.get(classPool, getClass().getName());
+        CtMethod ctMethod = CtNewMethodUtil
+                .make("public void foo(){}", ctClass);
+        CtClassUtil.addMethod(ctClass, ctMethod);
     }
 }

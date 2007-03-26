@@ -31,6 +31,7 @@ import org.seasar3.exception.NotFoundRuntimeException;
  * 
  * @author koichik
  * @author higa
+ * @version 3.0
  */
 
 public final class ClassPoolUtil {
@@ -55,7 +56,7 @@ public final class ClassPoolUtil {
      * Returns cached class pool by {@link ClassLoader}.
      * 
      * @param classLoader
-     * @return
+     * @return <code>ClassPool</code>
      */
     public static ClassPool getClassPool(ClassLoader classLoader) {
         if (classLoader == null) {
@@ -75,7 +76,7 @@ public final class ClassPoolUtil {
      * 
      * @param classPool
      * @param type
-     * @return
+     * @return <code>CtClass</code>
      * @see #get(ClassPool, String)
      */
     public static CtClass toCtClass(ClassPool classPool, Class type) {
@@ -93,9 +94,9 @@ public final class ClassPoolUtil {
      * 
      * @param classPool
      * @param classes
-     * @return
+     * @return array of <code>CtClass</code>
      */
-    public static CtClass[] toCtClass(ClassPool classPool, Class[] classes) {
+    public static CtClass[] toCtClassArray(ClassPool classPool, Class[] classes) {
         if (classes == null) {
             return null;
         }
@@ -112,6 +113,10 @@ public final class ClassPoolUtil {
      * @param classPool
      * @param className
      * @return
+     * @throws NullPointerException
+     *             if classPool is null and className is null.
+     * @throws NotFoundRuntimeException
+     *             if NotFoundException occurred.
      */
     public static CtClass get(ClassPool classPool, String className) {
         if (classPool == null) {
@@ -134,7 +139,12 @@ public final class ClassPoolUtil {
      * @param originalClassName
      * @param newClassName
      * 
-     * @return
+     * @return <code>CtClass</code>
+     * @throws NullPointerException
+     *             if classPool is null and originalClassName is null and
+     *             newClassName is null.
+     * @throws NotFoundRuntimeException
+     *             if NotFoundException occurred.
      */
     public static CtClass getAndRename(ClassPool classPool,
             String originalClassName, String newClassName) {

@@ -15,22 +15,15 @@
  */
 package org.seasar3.aop;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-
-import javassist.CannotCompileException;
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtConstructor;
 import javassist.CtMethod;
-import javassist.CtNewConstructor;
-import javassist.CtNewMethod;
-import javassist.NotFoundException;
 
-import org.seasar3.exception.CannotCompileRuntimeException;
-import org.seasar3.exception.NotFoundRuntimeException;
 import org.seasar3.util.ClassPoolUtil;
+import org.seasar3.util.CtClassUtil;
+import org.seasar3.util.CtNewConstructorUtil;
+import org.seasar3.util.CtNewMethodUtil;
 
 /**
  * A base class to generate {@link Class}.
@@ -61,98 +54,91 @@ public class ClassGenerator {
         this.ctClass = ctClass;
     }
 
-    protected CtClass toCtClass(Class type) {
+    /**
+     * Converts {@link Class} to <code>CtClass</code>
+     * 
+     * @param type
+     * @return <code>CtClass</code>
+     * @see ClassPoolUtil#toCtClass(ClassPool, Class)
+     */
+    public CtClass toCtClass(Class type) {
         return ClassPoolUtil.toCtClass(classPool, type);
     }
 
-    protected CtClass[] toCtClass(Class[] types) {
-        return ClassPoolUtil.toCtClass(classPool, types);
+    /**
+     * Converts array of {@link Class} to array of <code>CtClass</code>
+     * 
+     * @param types
+     * @return array of <code>CtClass</code>
+     * @see ClassPoolUtil#toCtClass(ClassPool, Class[])
+     */
+    public CtClass[] toCtClassArray(Class[] types) {
+        return ClassPoolUtil.toCtClassArray(classPool, types);
     }
 
-    protected void setInterface(Class interfaceType) {
+    /**
+     * Sets interface.
+     * 
+     * @param interfaceType
+     */
+    public void setInterface(Class interfaceType) {
         ctClass.setInterfaces(new CtClass[] { toCtClass(interfaceType) });
     }
 
-    protected void setInterfaces(Class[] interfaces) {
-        ctClass.setInterfaces(toCtClass(interfaces));
+    /**
+     * Sets interfaces.
+     * 
+     * @param interfaces
+     */
+    public void setInterfaces(Class[] interfaces) {
+        ctClass.setInterfaces(toCtClassArray(interfaces));
     }
 
-    protected CtConstructor createDefaultConstructor() {
-        try {
-            CtConstructor ctConstructor = CtNewConstructor
-                    .defaultConstructor(ctClass);
-            ctClass.addConstructor(ctConstructor);
-            return ctConstructor;
-        } catch (final CannotCompileException e) {
-            throw new CannotCompileRuntimeException(e);
-        }
+    /**
+     * Creates default constructor.
+     * 
+     * @return <code>CtConstructor</code>
+     */
+    public CtConstructor createDefaultConstructor() {
+        CtConstructor ctConstructor = CtNewConstructorUtil
+                .defaultConstructor(ctClass);
+        CtClassUtil.addConstructor(ctClass, ctConstructor);
+        return ctConstructor;
     }
 
-    protected CtConstructor createConstructor(Constructor constructor) {
-        return createConstructor(toCtClass(constructor.getParameterTypes()),
-                toCtClass(constructor.getExceptionTypes()));
+    /**
+     * Creates constructor.
+     * 
+     * @param parameterTypes
+     * @param exceptionTypes
+     * @return
+     */
+    public CtConstructor createConstructor(Class[] parameterTypes,
+            Class[] exceptionTypes) {
+        CtConstructor ctConstructor = CtNewConstructorUtil.make(
+                toCtClassArray(parameterTypes), toCtClassArray(exceptionTypes),
+                ctClass);
+        CtClassUtil.addConstructor(ctClass, ctConstructor);
+        return ctConstructor;
     }
 
-    protected CtConstructor createConstructor(CtClass[] parameterTypes,
-            CtClass[] exceptionTypes) {
-        try {
-            final CtConstructor ctConstructor = CtNewConstructor.make(
-                    parameterTypes, exceptionTypes, ctClass);
-            ctClass.addConstructor(ctConstructor);
-            return ctConstructor;
-        } catch (final CannotCompileException e) {
-            throw new CannotCompileRuntimeException(e);
-        }
+    /**
+     * Gets declared method.
+     * 
+     * @param methodName
+     * @param parameterTypes
+     * @return
+     * @see CtClassUtil#getDeclaredMethod(CtClass, String, CtClass[])
+     */
+    public CtMethod getDeclaredMethod(String methodName,
+            CtClass[] parameterTypes) {
+        return CtClassUtil.getDeclaredMethod(ctClass, methodName,
+                parameterTypes);
     }
 
-    protected CtMethod getDeclaredMethod(String name, CtClass[] argTypes) {
-        try {
-            return ctClass.getDeclaredMethod(name, argTypes);
-        } catch (final NotFoundException e) {
-            throw new NotFoundRuntimeException(name, e);
-        }
-    }
-
-    protected CtMethod createMethod(final CtClass clazz, final String src) {
-        try {
-            final CtMethod ctMethod = CtNewMethod.make(src, clazz);
-            clazz.addMethod(ctMethod);
-            return ctMethod;
-        } catch (final CannotCompileException e) {
-            throw new CannotCompileRuntimeException(e);
-        }
-    }
-
-    protected CtMethod createMethod(final CtClass clazz, final Method method,
-            final String body) {
-        return createMethod(clazz, method.getModifiers(), method
-                .getReturnType(), method.getName(), method.getParameterTypes(),
-                method.getExceptionTypes(), body);
-    }
-
-    protected CtMethod createMethod(final CtClass clazz, final int modifier,
-            final Class returnType, final String methodName,
-            final Class[] parameterTypes, final Class[] exceptionTypes,
-            final String body) {
-        try {
-            final CtMethod ctMethod = CtNewMethod.make(modifier
-                    & ~(Modifier.ABSTRACT | Modifier.NATIVE),
-                    toCtClass(returnType), methodName,
-                    toCtClass(parameterTypes), toCtClass(exceptionTypes), body,
-                    clazz);
-            clazz.addMethod(ctMethod);
-            ctMethod.setBody(body);
-            return ctMethod;
-        } catch (final CannotCompileException e) {
-            throw new CannotCompileRuntimeException(e);
-        }
-    }
-
-    protected void setMethodBody(final CtMethod method, final String src) {
-        try {
-            method.setBody(src);
-        } catch (final CannotCompileException e) {
-            throw new CannotCompileRuntimeException(e);
-        }
+    protected CtMethod createMethod(String src) {
+        CtMethod ctMethod = CtNewMethodUtil.make(src, ctClass);
+        CtClassUtil.addMethod(ctClass, ctMethod);
+        return ctMethod;
     }
 }
