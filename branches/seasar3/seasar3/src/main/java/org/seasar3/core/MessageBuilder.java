@@ -22,7 +22,7 @@ import java.util.Locale;
  * A class building for message.
  * 
  * @author higa
- * 
+ * @since 3.0
  */
 public abstract class MessageBuilder {
 

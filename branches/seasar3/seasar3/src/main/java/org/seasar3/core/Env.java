@@ -54,6 +54,7 @@ import java.util.Properties;
  * </p>
  * 
  * @author higa
+ * @since 3.0
  */
 public final class Env {
 

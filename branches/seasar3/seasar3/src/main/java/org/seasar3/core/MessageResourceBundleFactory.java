@@ -23,7 +23,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * A factory class for {@link MessageResourceBundle}.
  * 
  * @author higa
- * 
+ * @since 3.0
  */
 public abstract class MessageResourceBundleFactory {
 

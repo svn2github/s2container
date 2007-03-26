@@ -13,27 +13,36 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar3.core;
+package org.seasar3.util;
 
-import java.util.Locale;
+import org.seasar3.exception.IllegalAccessRuntimeException;
+import org.seasar3.exception.InstantiationRuntimeException;
 
 /**
- * A provider interface for {@link MessageResourceBundle}.
+ * Utility for {@link Class}.
  * 
  * @author higa
  * @since 3.0
  */
-public interface MessageResourceBundleFactoryProvider {
+public final class ClassUtil {
+
+    private ClassUtil() {
+    }
 
     /**
-     * Returns message bundle. If message bundle does not exist, returns null.
+     * Creates a new instance.
      * 
-     * @param locale
-     * @param messageBundleName
-     *            such as aaa.foo(WEB-INF/class/aaa/foo.properties)
-     * @return bundle message bundle
-     * @throws NullPointerException
-     *             if locale is null and messageBundleName is null.
+     * @param <T>
+     * @param type
+     * @return
      */
-    MessageResourceBundle getBundle(Locale locale, String messageBundleName);
+    public static <T> T newInstance(Class<? extends T> type) {
+        try {
+            return type.newInstance();
+        } catch (InstantiationException e) {
+            throw new InstantiationRuntimeException(type, e);
+        } catch (IllegalAccessException e) {
+            throw new IllegalAccessRuntimeException(type, e);
+        }
+    }
 }

@@ -33,7 +33,7 @@ import java.util.Set;
  * @author higa
  * @param <K>
  * @param <V>
- * 
+ * @since 3.0
  */
 public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
         Cloneable, Externalizable {

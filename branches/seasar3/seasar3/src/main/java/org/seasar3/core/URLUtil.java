@@ -24,7 +24,7 @@ import java.net.URLConnection;
  * Utility class for {@link URL}.
  * 
  * @author higa
- * 
+ * @since 3.0
  */
 public abstract class URLUtil {
 

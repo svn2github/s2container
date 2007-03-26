@@ -20,6 +20,7 @@ package org.seasar3.core;
  * 
  * @author shot
  * @author higa
+ * @since 3.0
  */
 public interface MessageResourceBundle {
 

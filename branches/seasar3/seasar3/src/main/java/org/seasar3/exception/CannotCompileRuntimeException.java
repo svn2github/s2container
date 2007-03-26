@@ -9,31 +9,32 @@
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar3.core;
+package org.seasar3.exception;
 
-import java.util.Locale;
+import javassist.CannotCompileException;
+
+import org.seasar3.core.SRuntimeException;
 
 /**
- * A provider interface for {@link MessageResourceBundle}.
+ * Wrapper runtime exception for <code>javassist.CannotCompileException</code>.
  * 
  * @author higa
  * @since 3.0
  */
-public interface MessageResourceBundleFactoryProvider {
+public class CannotCompileRuntimeException extends SRuntimeException {
+
+    static final long serialVersionUID = 1L;
 
     /**
-     * Returns message bundle. If message bundle does not exist, returns null.
+     * Creates new {@link CannotCompileRuntimeException}.
      * 
-     * @param locale
-     * @param messageBundleName
-     *            such as aaa.foo(WEB-INF/class/aaa/foo.properties)
-     * @return bundle message bundle
-     * @throws NullPointerException
-     *             if locale is null and messageBundleName is null.
+     * @param cause
      */
-    MessageResourceBundle getBundle(Locale locale, String messageBundleName);
+    public CannotCompileRuntimeException(CannotCompileException cause) {
+        super(cause, "ES30004", cause.getMessage());
+    }
 }

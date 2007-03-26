@@ -19,7 +19,7 @@ package org.seasar3.core;
  * A base exception class of Seasar3.
  * 
  * @author higa
- * 
+ * @since 3.0
  */
 public class SRuntimeException extends RuntimeException {
 

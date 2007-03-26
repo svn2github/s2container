@@ -26,7 +26,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * Default implementation for {@link MessageResourceBundleFactoryProvider}.
  * 
  * @author higa
- * 
+ * @since 3.0
  */
 public class DefaultMessageResourceBundleFactoryProvider implements
         MessageResourceBundleFactoryProvider {

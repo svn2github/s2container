@@ -21,7 +21,7 @@ import java.io.File;
  * A class caching {@link DefaultMessageResourceBundle}.
  * 
  * @author higa
- * 
+ * @since 3.0
  */
 public class DefaultMessageResourceBundleCache {
 

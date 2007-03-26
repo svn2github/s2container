@@ -13,27 +13,27 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar3.core;
-
-import java.util.Locale;
+package org.seasar3.lookup;
 
 /**
- * A provider interface for {@link MessageResourceBundle}.
- * 
  * @author higa
- * @since 3.0
+ * 
  */
-public interface MessageResourceBundleFactoryProvider {
+public class Client {
+
+    private Service service;
 
     /**
-     * Returns message bundle. If message bundle does not exist, returns null.
-     * 
-     * @param locale
-     * @param messageBundleName
-     *            such as aaa.foo(WEB-INF/class/aaa/foo.properties)
-     * @return bundle message bundle
-     * @throws NullPointerException
-     *             if locale is null and messageBundleName is null.
+     * @param service
      */
-    MessageResourceBundle getBundle(Locale locale, String messageBundleName);
+    public Client(Service service) {
+        this.service = service;
+    }
+
+    /**
+     * @return
+     */
+    public String go() {
+        return service.go();
+    }
 }

@@ -17,12 +17,12 @@ package org.seasar3.core;
 
 import java.util.Properties;
 
-
 /**
  * Default implementation for {@link MessageResourceBundleFactoryProvider}
  * 
  * @author shot
  * @author higa
+ * @since 3.0
  */
 public class DefaultMessageResourceBundle implements MessageResourceBundle {
 

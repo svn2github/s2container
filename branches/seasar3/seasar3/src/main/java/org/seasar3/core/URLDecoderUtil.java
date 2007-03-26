@@ -22,7 +22,7 @@ import java.net.URLDecoder;
  * Utility class for {@link URLDecoder}.
  * 
  * @author higa
- * 
+ * @since 3.0
  */
 public abstract class URLDecoderUtil {
 

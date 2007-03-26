@@ -24,7 +24,7 @@ import java.util.Properties;
  * Utility class for {@link Properties}.
  * 
  * @author higa
- * 
+ * @since 3.0
  */
 public abstract class PropertiesUtil {
 

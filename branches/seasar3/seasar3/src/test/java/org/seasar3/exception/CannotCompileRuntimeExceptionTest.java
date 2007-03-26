@@ -13,27 +13,25 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar3.core;
+package org.seasar3.exception;
 
-import java.util.Locale;
+import javassist.CannotCompileException;
+import junit.framework.TestCase;
 
 /**
- * A provider interface for {@link MessageResourceBundle}.
- * 
  * @author higa
- * @since 3.0
+ * 
  */
-public interface MessageResourceBundleFactoryProvider {
+public class CannotCompileRuntimeExceptionTest extends TestCase {
 
     /**
-     * Returns message bundle. If message bundle does not exist, returns null.
-     * 
-     * @param locale
-     * @param messageBundleName
-     *            such as aaa.foo(WEB-INF/class/aaa/foo.properties)
-     * @return bundle message bundle
-     * @throws NullPointerException
-     *             if locale is null and messageBundleName is null.
+     * Test method for
+     * {@link CannotCompileRuntimeException#CannotCompileRuntimeException(CannotCompileException)}.
      */
-    MessageResourceBundle getBundle(Locale locale, String messageBundleName);
+    public void testCannotCompileRuntimeException() {
+        CannotCompileException e = new CannotCompileException("hoge");
+        CannotCompileRuntimeException re = new CannotCompileRuntimeException(e);
+        System.out.println(re);
+        assertEquals(e, re.getCause());
+    }
 }
