@@ -16,6 +16,7 @@
 package org.seasar3.aop;
 
 import java.io.Serializable;
+import java.lang.reflect.Method;
 
 import javassist.ClassPool;
 import javassist.CtClass;
@@ -98,10 +99,29 @@ public class ClassGeneratorTest extends TestCase {
     }
 
     /**
+     * Test method for
+     * {@link ClassGenerator#getDeclaredMethod(java.lang.reflect.Method)}.
+     * 
+     * @throws Exception
+     */
+    public void testGetDeclaredMethodForReflectMethod() throws Exception {
+        Method m = getClass().getDeclaredMethod("testGetDeclaredMethod",
+                (Class[]) null);
+        assertNotNull(generator.getDeclaredMethod(m));
+    }
+
+    /**
      * Test method for {@link ClassGenerator#createMethod(String)}.
      */
     public void testCreateMethod() {
         assertNotNull(generator.createMethod("public void foo(){}"));
+    }
+
+    /**
+     * Test method for {@link ClassGenerator#generate()}.
+     */
+    public void testGenarate() {
+        assertNotNull(generator.generate());
     }
 
     private static class Hoge {

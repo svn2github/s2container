@@ -41,24 +41,24 @@ public class S3 {
      * singleton.
      * 
      * @param <T>
-     * @param configType
+     * @param configClass
      * @return configuration object
      */
     @SuppressWarnings("unchecked")
-    public static final <T> T lookup(Class<? extends T> configType) {
-        if (configType == null) {
-            throw new NullPointerException("configType");
+    public static final <T> T lookup(Class<? extends T> configClass) {
+        if (configClass == null) {
+            throw new NullPointerException("configClass");
         }
-        String name = configType.getName();
+        String name = configClass.getName();
         Class dest = overrides.get(name);
         if (dest != null) {
-            configType = dest;
+            configClass = dest;
         }
         T config = (T) configs.get(name);
         if (config != null) {
             return config;
         }
-        config = ClassUtil.newInstance(configType);
+        config = ClassUtil.newInstance(configClass);
         T config2 = (T) configs.putIfAbsent(name, config);
         return config2 != null ? config2 : config;
     }
@@ -72,7 +72,7 @@ public class S3 {
      * @param dest
      * @return
      */
-    public static <T> T override(Class<T> src, Class<? extends T> dest) {
+    public static <T> void override(Class<T> src, Class<? extends T> dest) {
         if (src == null) {
             throw new NullPointerException("src");
         }
@@ -80,7 +80,6 @@ public class S3 {
             throw new NullPointerException("dest");
         }
         overrides.put(src.getName(), dest);
-        return null;
     }
 
     /**

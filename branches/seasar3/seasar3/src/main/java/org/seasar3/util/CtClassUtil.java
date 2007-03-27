@@ -119,8 +119,24 @@ public final class CtClassUtil {
             String methodName, CtClass[] parameterTypes) {
         try {
             return ctClass.getDeclaredMethod(methodName, parameterTypes);
-        } catch (final NotFoundException e) {
+        } catch (NotFoundException e) {
             throw new NotFoundRuntimeException(methodName, e);
+        }
+    }
+
+    /**
+     * Converts <code>CtClass</code> to {@link Class}.
+     * 
+     * @param ctClass
+     * @return {@link Class}
+     * @throws CannotCompileRuntimeException
+     *             if CannotCompileException occurred.
+     */
+    public static Class toClass(CtClass ctClass) {
+        try {
+            return ctClass.toClass();
+        } catch (CannotCompileException e) {
+            throw new CannotCompileRuntimeException(e);
         }
     }
 }

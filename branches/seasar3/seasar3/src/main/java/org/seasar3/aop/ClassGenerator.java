@@ -15,6 +15,8 @@
  */
 package org.seasar3.aop;
 
+import java.lang.reflect.Method;
+
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtConstructor;
@@ -55,34 +57,52 @@ public class ClassGenerator {
     }
 
     /**
+     * Gets <code>ClassPool</code>.
+     * 
+     * @return
+     */
+    public ClassPool getClassPool() {
+        return classPool;
+    }
+
+    /**
+     * Gets <code>CtClass</code>.
+     * 
+     * @return
+     */
+    public CtClass getCtClass() {
+        return ctClass;
+    }
+
+    /**
      * Converts {@link Class} to <code>CtClass</code>
      * 
-     * @param type
+     * @param clazz
      * @return <code>CtClass</code>
      * @see ClassPoolUtil#toCtClass(ClassPool, Class)
      */
-    public CtClass toCtClass(Class type) {
-        return ClassPoolUtil.toCtClass(classPool, type);
+    public CtClass toCtClass(Class<?> clazz) {
+        return ClassPoolUtil.toCtClass(classPool, clazz);
     }
 
     /**
      * Converts array of {@link Class} to array of <code>CtClass</code>
      * 
-     * @param types
+     * @param classes
      * @return array of <code>CtClass</code>
      * @see ClassPoolUtil#toCtClass(ClassPool, Class[])
      */
-    public CtClass[] toCtClassArray(Class[] types) {
-        return ClassPoolUtil.toCtClassArray(classPool, types);
+    public CtClass[] toCtClassArray(Class[] classes) {
+        return ClassPoolUtil.toCtClassArray(classPool, classes);
     }
 
     /**
      * Sets interface.
      * 
-     * @param interfaceType
+     * @param interfaceClass
      */
-    public void setInterface(Class interfaceType) {
-        ctClass.setInterfaces(new CtClass[] { toCtClass(interfaceType) });
+    public void setInterface(Class interfaceClass) {
+        ctClass.setInterfaces(new CtClass[] { toCtClass(interfaceClass) });
     }
 
     /**
@@ -109,15 +129,15 @@ public class ClassGenerator {
     /**
      * Creates constructor.
      * 
-     * @param parameterTypes
-     * @param exceptionTypes
+     * @param parameterClasses
+     * @param exceptionClasses
      * @return
      */
-    public CtConstructor createConstructor(Class[] parameterTypes,
-            Class[] exceptionTypes) {
+    public CtConstructor createConstructor(Class[] parameterClasses,
+            Class[] exceptionClasses) {
         CtConstructor ctConstructor = CtNewConstructorUtil.make(
-                toCtClassArray(parameterTypes), toCtClassArray(exceptionTypes),
-                ctClass);
+                toCtClassArray(parameterClasses),
+                toCtClassArray(exceptionClasses), ctClass);
         CtClassUtil.addConstructor(ctClass, ctConstructor);
         return ctConstructor;
     }
@@ -125,20 +145,47 @@ public class ClassGenerator {
     /**
      * Gets declared method.
      * 
+     * @param method
+     * @return
+     * @see {@link #getDeclaredMethod(String, CtClass[])}
+     */
+    public CtMethod getDeclaredMethod(Method method) {
+        return getDeclaredMethod(method.getName(), toCtClassArray(method
+                .getParameterTypes()));
+    }
+
+    /**
+     * Gets declared method.
+     * 
      * @param methodName
-     * @param parameterTypes
+     * @param parameterClasses
      * @return
      * @see CtClassUtil#getDeclaredMethod(CtClass, String, CtClass[])
      */
     public CtMethod getDeclaredMethod(String methodName,
-            CtClass[] parameterTypes) {
+            CtClass[] parameterClasses) {
         return CtClassUtil.getDeclaredMethod(ctClass, methodName,
-                parameterTypes);
+                parameterClasses);
     }
 
-    protected CtMethod createMethod(String src) {
+    /**
+     * Creates <code>CtMethod</code>.
+     * 
+     * @param src
+     * @return
+     */
+    public CtMethod createMethod(String src) {
         CtMethod ctMethod = CtNewMethodUtil.make(src, ctClass);
         CtClassUtil.addMethod(ctClass, ctMethod);
         return ctMethod;
+    }
+
+    /**
+     * Generates {@link Class}.
+     * 
+     * @return
+     */
+    public Class generate() {
+        return CtClassUtil.toClass(ctClass);
     }
 }

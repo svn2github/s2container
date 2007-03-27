@@ -32,7 +32,7 @@ public class S3Test extends TestCase {
     /**
      * Test method for {@link S3#lookup(Class)}.
      */
-    public void testLookupForConfigTypeIsNull() {
+    public void testLookupForConfigClassIsNull() {
         try {
             S3.lookup(null);
             fail();

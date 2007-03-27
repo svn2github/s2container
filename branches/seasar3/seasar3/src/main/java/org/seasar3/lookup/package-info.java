@@ -16,5 +16,6 @@
 
 /**
  * Seasar3 is a super lightweight dependency injection and lookup framework.
+ * @see {@link S3}
  */
 package org.seasar3.lookup;

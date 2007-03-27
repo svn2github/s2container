@@ -15,24 +15,22 @@
  */
 package org.seasar3.lookup;
 
+import java.lang.reflect.Method;
+
+import org.seasar3.aop.ClassGenerator;
+
 /**
+ * A customizer class that makes component singleton.
+ * 
  * @author higa
  * 
  */
-public class MyConfig {
+public class SingletonCustomizer implements ConfigurationCustomizer<Singleton> {
 
-    /**
-     * @return
-     */
-    @Singleton
-    public Service service() {
-        return new ServiceImpl();
+    public void customize(ClassGenerator generator, Method method,
+            Singleton annotation) {
+        // TODO Auto-generated method stub
+
     }
 
-    /**
-     * @return
-     */
-    public Client client() {
-        return new Client(service());
-    }
 }

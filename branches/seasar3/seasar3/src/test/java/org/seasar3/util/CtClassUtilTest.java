@@ -110,4 +110,19 @@ public class CtClassUtilTest extends TestCase {
                 .make("public void foo(){}", ctClass);
         CtClassUtil.addMethod(ctClass, ctMethod);
     }
+
+    /**
+     * Test method for {@link CtClassUtil#toClass(CtClass)}.
+     * 
+     * @throws Exception
+     * 
+     */
+    public void testToClass() throws Exception {
+        ClassPool classPool = new ClassPool();
+        classPool.appendSystemPath();
+
+        CtClass ctClass = ClassPoolUtil.get(classPool, getClass().getName());
+        ctClass.setName(getClass().getName() + System.currentTimeMillis());
+        assertNotNull(CtClassUtil.toClass(ctClass));
+    }
 }
