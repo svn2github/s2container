@@ -33,6 +33,8 @@ public class SingletonCustomizerTest extends TestCase {
 
     private ClassGenerator generator;
 
+    private SingletonCustomizer customizer = new SingletonCustomizer();
+
     @Override
     protected void setUp() throws Exception {
         ClassPool classPool = ClassPoolUtil.getClassPool();
@@ -51,11 +53,31 @@ public class SingletonCustomizerTest extends TestCase {
      */
     public void testCustomize() throws Exception {
         Method m = MyConfig.class.getDeclaredMethod("service", (Class[]) null);
-        SingletonCustomizer customizer = new SingletonCustomizer();
         customizer.customize(generator, m, null);
         Class clazz = generator.generate();
         MyConfig config = (MyConfig) clazz.newInstance();
         assertSame(config.service(), config.service());
     }
 
+    /**
+     * Test method for {@link SingletonCustomizer#createField(ClassGenerator)}.
+     * 
+     * @throws Exception
+     */
+    public void testCreateField() throws Exception {
+        assertNotNull(customizer.createField(generator));
+    }
+
+    /**
+     * Test method for {@link SingletonCustomizer#createMethodBody(Method)}.
+     * 
+     * @throws Exception
+     */
+    public void testCreateMethodBody() throws Exception {
+        Method m = MyConfig.class.getDeclaredMethod("service", (Class[]) null);
+        String body = customizer.createMethodBody(m);
+        System.out.println(body);
+        String expected = "{Object ret = $$SINGLETON_VALUES.get(\"service\");if (ret != null) return ret;ret = super.service();$$SINGLETON_VALUES.put(\"service\",ret);return ret;}";
+        assertEquals(expected, body);
+    }
 }

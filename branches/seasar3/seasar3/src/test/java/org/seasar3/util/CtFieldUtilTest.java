@@ -13,22 +13,29 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar3.lookup;
+package org.seasar3.util;
 
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
-
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
+import javassist.ClassPool;
+import javassist.CtClass;
+import junit.framework.TestCase;
 
 /**
- * An annotation for singleton.
- * 
  * @author higa
  * 
  */
-@Target( { ElementType.TYPE, ElementType.METHOD })
-@Retention(RUNTIME)
-public @interface Singleton {
+public class CtFieldUtilTest extends TestCase {
 
+    /**
+     * Test method for {@link CtFieldUtil#make(String, CtClass)}.
+     * 
+     * @throws Exception
+     */
+    public void testMake() throws Exception {
+        ClassPool classPool = new ClassPool();
+        classPool.appendSystemPath();
+
+        CtClass ctClass = ClassPoolUtil.get(classPool, getClass().getName());
+        String body = "private int aaa;";
+        assertNotNull(CtFieldUtil.make(body, ctClass));
+    }
 }

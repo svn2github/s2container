@@ -18,6 +18,7 @@ package org.seasar3.util;
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtConstructor;
+import javassist.CtField;
 import javassist.CtMethod;
 import javassist.CtNewConstructor;
 import javassist.NotFoundException;
@@ -109,6 +110,21 @@ public class CtClassUtilTest extends TestCase {
         CtMethod ctMethod = CtNewMethodUtil
                 .make("public void foo(){}", ctClass);
         CtClassUtil.addMethod(ctClass, ctMethod);
+    }
+
+    /**
+     * Test method for {@link CtClassUtil#addField(CtClass, javassist.CtField)}.
+     * 
+     * @throws Exception
+     * 
+     */
+    public void testAddField() throws Exception {
+        ClassPool classPool = new ClassPool();
+        classPool.appendSystemPath();
+
+        CtClass ctClass = ClassPoolUtil.get(classPool, getClass().getName());
+        CtField ctField = CtFieldUtil.make("private int aaa;", ctClass);
+        CtClassUtil.addField(ctClass, ctField);
     }
 
     /**

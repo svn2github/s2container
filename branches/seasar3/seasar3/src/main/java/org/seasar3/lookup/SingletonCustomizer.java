@@ -17,6 +17,9 @@ package org.seasar3.lookup;
 
 import java.lang.reflect.Method;
 
+import javassist.CtField;
+import javassist.CtMethod;
+
 import org.seasar3.aop.ClassGenerator;
 
 /**
@@ -27,10 +30,32 @@ import org.seasar3.aop.ClassGenerator;
  */
 public class SingletonCustomizer implements ConfigurationCustomizer<Singleton> {
 
+    private static final String FIELD_NAME = "$$SINGLETON_VALUES";
+
+    private static final String FIELD_SRC = "protected java.util.Map "
+            + FIELD_NAME + " = new java.util.concurrent.ConcurrentHashMap(37);";
+
     public void customize(ClassGenerator generator, Method method,
             Singleton annotation) {
-        // TODO Auto-generated method stub
-
+        createField(generator);
+        CtMethod ctMethod = generator.getDeclaredMethod(method);
+        generator.setMethodBody(ctMethod, createMethodBody(method));
     }
 
+    protected CtField createField(ClassGenerator generator) {
+        return generator.createField(FIELD_SRC);
+    }
+
+    protected String createMethodBody(Method method) {
+        String methodName = method.getName();
+        StringBuilder sb = new StringBuilder(400);
+        sb.append("{Object ret = " + FIELD_NAME + ".get(\"").append(methodName)
+                .append("\");");
+        sb.append("if (ret != null) return ret;");
+        sb.append("ret = super." + methodName + "();");
+        sb.append(FIELD_NAME).append(".put(\"").append(methodName).append(
+                "\",ret);");
+        sb.append("return ret;}");
+        return sb.toString();
+    }
 }

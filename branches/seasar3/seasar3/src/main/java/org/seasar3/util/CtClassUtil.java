@@ -19,6 +19,7 @@ import javassist.CannotCompileException;
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtConstructor;
+import javassist.CtField;
 import javassist.CtMethod;
 import javassist.NotFoundException;
 
@@ -100,6 +101,22 @@ public final class CtClassUtil {
     public static void addMethod(CtClass ctClass, CtMethod ctMethod) {
         try {
             ctClass.addMethod(ctMethod);
+        } catch (CannotCompileException e) {
+            throw new CannotCompileRuntimeException(e);
+        }
+    }
+
+    /**
+     * Adds field.
+     * 
+     * @param ctClass
+     * @param ctField
+     * @throws CannotCompileRuntimeException
+     *             if CannotCompileException occurred.
+     */
+    public static void addField(CtClass ctClass, CtField ctField) {
+        try {
+            ctClass.addField(ctField);
         } catch (CannotCompileException e) {
             throw new CannotCompileRuntimeException(e);
         }

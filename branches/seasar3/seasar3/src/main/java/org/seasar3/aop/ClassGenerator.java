@@ -20,10 +20,13 @@ import java.lang.reflect.Method;
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtConstructor;
+import javassist.CtField;
 import javassist.CtMethod;
 
 import org.seasar3.util.ClassPoolUtil;
 import org.seasar3.util.CtClassUtil;
+import org.seasar3.util.CtFieldUtil;
+import org.seasar3.util.CtMethodUtil;
 import org.seasar3.util.CtNewConstructorUtil;
 import org.seasar3.util.CtNewMethodUtil;
 
@@ -178,6 +181,28 @@ public class ClassGenerator {
         CtMethod ctMethod = CtNewMethodUtil.make(src, ctClass);
         CtClassUtil.addMethod(ctClass, ctMethod);
         return ctMethod;
+    }
+
+    /**
+     * Creates <code>CtField</code>.
+     * 
+     * @param src
+     * @return
+     */
+    public CtField createField(String src) {
+        CtField ctField = CtFieldUtil.make(src, ctClass);
+        CtClassUtil.addField(ctClass, ctField);
+        return ctField;
+    }
+
+    /**
+     * Sets method body.
+     * 
+     * @param ctMethod
+     * @param body
+     */
+    public void setMethodBody(CtMethod ctMethod, String body) {
+        CtMethodUtil.setBody(ctMethod, body);
     }
 
     /**

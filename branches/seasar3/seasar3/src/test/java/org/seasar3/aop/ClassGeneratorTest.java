@@ -118,6 +118,13 @@ public class ClassGeneratorTest extends TestCase {
     }
 
     /**
+     * Test method for {@link ClassGenerator#createField(String)}.
+     */
+    public void testCreateField() {
+        assertNotNull(generator.createField("private int aaa;"));
+    }
+
+    /**
      * Test method for {@link ClassGenerator#generate()}.
      */
     public void testGenarate() {
