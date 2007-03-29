@@ -11,11 +11,6 @@
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/commons-lang-2.1.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/commons-logging-1.0.4.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/dom4j-1.6.1.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/ehcache-1.2.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/ejb3-persistence-3.0.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/geronimo-ejb_2.1_spec-1.0.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/geronimo-j2ee_1.4_spec-1.0.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/geronimo-jta_1.1_spec-1.0.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/hibernate-3.2.1.ga.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/hibernate-annotations-3.2.1.ga.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/hibernate-entitymanager-3.2.1.ga.jar"/>
@@ -25,7 +20,6 @@
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/log4j-1.2.13.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/lucene-core-2.0.0.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/ognl-2.6.7.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/poi-2.5.1-final-20040804.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/rhino-1.6r2.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/teeda-ajax-1.0.7-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/teeda-core-1.0.7-SNAPSHOT.jar"/>
@@ -40,5 +34,6 @@
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/s2hibernate-jpa-1.0.0-rc2-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/s2-tiger-2.4.12-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/kuina-dao-1.0.0-rc2-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/ehcache-1.2.jar"/>
 	<classpathentry kind="output" path="target/test-classes"/>
 </classpath>
