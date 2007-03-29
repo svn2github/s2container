@@ -4,4 +4,11 @@
 <components>
 	<include condition="#ENV == 'ut'" path="hotdeploy.dicon"/>
 	<include condition="#ENV != 'ut'" path="cooldeploy.dicon"/>
+
+	<component class="org.seasar.framework.container.factory.SimplePathResolver">
+		<initMethod name="addRealPath">
+			<arg>"jta.dicon"</arg>
+			<arg>"oc4j-jta.dicon"</arg>
+		</initMethod>
+	</component>
 </components>
