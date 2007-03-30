@@ -4,7 +4,7 @@
 	<property name="maven.build.output" value="${maven.build.directory}/classes"/>
 	
 	<path id="build.classpath">
-		<fileset dir="lib/seasar-2.4.5">
+		<fileset dir="lib/seasar-2.4">
 			<include name="*.jar"/>
 		</fileset>
 		<fileset dir="lib/spring-framework-2.0">
