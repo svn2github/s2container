@@ -13,22 +13,29 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar3.lookup;
+package org.seasar3.exception;
 
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
-
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+import junit.framework.TestCase;
+
+import org.seasar3.lookup.ConfigurationCustomization;
+
 /**
- * An annotation for singleton.
- * 
  * @author higa
  * 
  */
-@Target( { ElementType.TYPE, ElementType.METHOD })
-@Retention(RUNTIME)
-@ConfigurationCustomization
-public @interface Singleton {
+public class NotAnnotatedExceptionTest extends TestCase {
+
+    /**
+     * Test method for
+     * {@link NotAnnotatedException#NotAnnotatedException(Class, Class)}.
+     */
+    public void testNotAnnotatedException() {
+        NotAnnotatedException e = new NotAnnotatedException(Target.class,
+                ConfigurationCustomization.class);
+        System.out.println(e);
+        assertEquals(Target.class, e.getTargetClass());
+        assertEquals(ConfigurationCustomization.class, e.getAnnotationClass());
+    }
 }

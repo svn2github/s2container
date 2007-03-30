@@ -30,32 +30,68 @@ import org.seasar3.aop.ClassGenerator;
  */
 public class SingletonCustomizer implements ConfigurationCustomizer<Singleton> {
 
-    private static final String FIELD_NAME = "$$SINGLETON_VALUES";
+    private static final String LOCK_FIELD_PREFIX = "$$SINGLETON_LOCK_";
 
-    private static final String FIELD_SRC = "protected java.util.Map "
-            + FIELD_NAME + " = new java.util.concurrent.ConcurrentHashMap(37);";
+    private static final String LOCK_FIELD_SRC = "private static Object ";
+
+    private static final String LOCK_FIELD_SRC2 = " = new Object();";
+
+    private static final String FIELD_PREFIX = "$$SINGLETON_VALUE_";
+
+    private static final String FIELD_SRC = "private volatile Object ";
+
+    private static final String FIELD_SRC2 = ";";
 
     public void customize(ClassGenerator generator, Method method,
             Singleton annotation) {
-        createField(generator);
+        String methodName = method.getName();
+        createLockField(generator, methodName);
+        createField(generator, methodName);
         CtMethod ctMethod = generator.getDeclaredMethod(method);
-        generator.setMethodBody(ctMethod, createMethodBody(method));
+        generator.setMethodBody(ctMethod, createMethodBody(methodName));
     }
 
     protected CtField createField(ClassGenerator generator) {
         return generator.createField(FIELD_SRC);
     }
 
-    protected String createMethodBody(Method method) {
-        String methodName = method.getName();
+    protected String createMethodBody(String methodName) {
         StringBuilder sb = new StringBuilder(400);
-        sb.append("{Object ret = " + FIELD_NAME + ".get(\"").append(methodName)
-                .append("\");");
-        sb.append("if (ret != null) return ret;");
-        sb.append("ret = super." + methodName + "();");
-        sb.append(FIELD_NAME).append(".put(\"").append(methodName).append(
-                "\",ret);");
-        sb.append("return ret;}");
+        String lockFieldName = getLockFieldName(methodName);
+        String fieldName = getFieldName(methodName);
+        sb.append("{if (").append(fieldName).append(" == null) {");
+        sb.append("  synchronized (").append(lockFieldName).append(") {");
+        sb.append("   if (").append(fieldName).append(" == null) ");
+        sb.append(fieldName).append(" = super.").append(methodName).append(
+                "();");
+        sb.append("  }");
+        sb.append(" }");
+        sb.append(" return ").append(fieldName).append(";}");
         return sb.toString();
+    }
+
+    protected String getLockFieldName(String methodName) {
+        return LOCK_FIELD_PREFIX + methodName;
+    }
+
+    protected String getLockFieldSrc(String methodName) {
+        return LOCK_FIELD_SRC + getLockFieldName(methodName) + LOCK_FIELD_SRC2;
+    }
+
+    protected CtField createLockField(ClassGenerator generator,
+            String methodName) {
+        return generator.createField(getLockFieldSrc(methodName));
+    }
+
+    protected String getFieldName(String methodName) {
+        return FIELD_PREFIX + methodName;
+    }
+
+    protected String getFieldSrc(String methodName) {
+        return FIELD_SRC + getFieldName(methodName) + FIELD_SRC2;
+    }
+
+    protected CtField createField(ClassGenerator generator, String methodName) {
+        return generator.createField(getFieldSrc(methodName));
     }
 }

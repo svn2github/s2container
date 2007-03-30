@@ -27,8 +27,7 @@ import java.lang.annotation.Target;
  * @author higa
  * 
  */
-@Target( { ElementType.TYPE, ElementType.METHOD })
+@Target( { ElementType.TYPE })
 @Retention(RUNTIME)
-@ConfigurationCustomization
-public @interface Singleton {
+public @interface ConfigurationCustomization {
 }

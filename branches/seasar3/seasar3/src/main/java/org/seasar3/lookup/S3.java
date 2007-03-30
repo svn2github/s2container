@@ -15,8 +15,12 @@
  */
 package org.seasar3.lookup;
 
+import java.lang.annotation.Annotation;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.seasar3.exception.NotAnnotatedException;
 import org.seasar3.util.ClassUtil;
 
 /**
@@ -33,7 +37,19 @@ public class S3 {
     private static ConcurrentHashMap<String, Class> overrides = new ConcurrentHashMap<String, Class>(
             17);
 
+    private static Map<Class<? extends Annotation>, ConfigurationCustomizer> customizers = new HashMap<Class<? extends Annotation>, ConfigurationCustomizer>(
+            17);
+
+    static {
+        initialize();
+    }
+
     private S3() {
+    }
+
+    private static void initialize() {
+        customizers.put(Singleton.class, new SingletonCustomizer());
+        customizers.put(Prototype.class, new PrototypeCustomizer());
     }
 
     /**
@@ -80,6 +96,19 @@ public class S3 {
             throw new NullPointerException("dest");
         }
         overrides.put(src.getName(), dest);
+    }
+
+    public static void setConfigurationCustomizer(
+            Class<? extends Annotation> annotation,
+            ConfigurationCustomizer customizer) {
+        if (annotation == null) {
+            throw new NullPointerException("annotation");
+        }
+        if (annotation.getAnnotation(ConfigurationCustomization.class) == null) {
+            throw new NotAnnotatedException(annotation.getClass(),
+                    ConfigurationCustomization.class);
+        }
+        customizers.put(annotation, customizer);
     }
 
     /**

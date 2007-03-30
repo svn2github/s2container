@@ -15,20 +15,20 @@
  */
 package org.seasar3.lookup;
 
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
+import org.seasar3.aop.ClassGenerator;
 
 /**
- * An annotation for singleton.
+ * A customizer class that makes component prototype.
  * 
  * @author higa
  * 
  */
-@Target( { ElementType.TYPE, ElementType.METHOD })
-@Retention(RUNTIME)
-@ConfigurationCustomization
-public @interface Singleton {
+public class PrototypeCustomizer implements ConfigurationCustomizer {
+
+    public void customize(ClassGenerator generator, Method method,
+            Annotation annotation) {
+    }
 }

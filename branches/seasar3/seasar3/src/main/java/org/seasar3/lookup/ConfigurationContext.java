@@ -17,9 +17,11 @@ package org.seasar3.lookup;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
- * A context class for configuration.
+ * A context class for configuration. We have not used this class yet.
  * 
  * @author higa
  * 
@@ -31,6 +33,8 @@ public class ConfigurationContext {
     private Method[] methods;
 
     private Annotation[] annotations;
+
+    private Map<String, Object> sharedValues = new HashMap<String, Object>();
 
     /**
      * Creates new <code>ConfigurationContext</code>
@@ -65,5 +69,25 @@ public class ConfigurationContext {
      */
     public Method[] getMethods() {
         return methods;
+    }
+
+    /**
+     * Returns the shared value for key.
+     * 
+     * @param key
+     * @return the shared value
+     */
+    public Object getSharedValue(String key) {
+        return sharedValues.get(key);
+    }
+
+    /**
+     * Sets the shared value.
+     * 
+     * @param key
+     * @param value
+     */
+    public void setSharedValue(String key, Object value) {
+        sharedValues.put(key, value);
     }
 }

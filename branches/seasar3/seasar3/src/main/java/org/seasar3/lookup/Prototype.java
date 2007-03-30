@@ -22,7 +22,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 /**
- * An annotation for singleton.
+ * An annotation for prototype.
  * 
  * @author higa
  * 
@@ -30,5 +30,5 @@ import java.lang.annotation.Target;
 @Target( { ElementType.TYPE, ElementType.METHOD })
 @Retention(RUNTIME)
 @ConfigurationCustomization
-public @interface Singleton {
+public @interface Prototype {
 }

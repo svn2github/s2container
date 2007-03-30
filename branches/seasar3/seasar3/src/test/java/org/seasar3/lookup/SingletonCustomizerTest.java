@@ -60,24 +60,75 @@ public class SingletonCustomizerTest extends TestCase {
     }
 
     /**
-     * Test method for {@link SingletonCustomizer#createField(ClassGenerator)}.
-     * 
-     * @throws Exception
-     */
-    public void testCreateField() throws Exception {
-        assertNotNull(customizer.createField(generator));
-    }
-
-    /**
      * Test method for {@link SingletonCustomizer#createMethodBody(Method)}.
      * 
      * @throws Exception
      */
     public void testCreateMethodBody() throws Exception {
-        Method m = MyConfig.class.getDeclaredMethod("service", (Class[]) null);
-        String body = customizer.createMethodBody(m);
+        String body = customizer.createMethodBody("service");
         System.out.println(body);
-        String expected = "{Object ret = $$SINGLETON_VALUES.get(\"service\");if (ret != null) return ret;ret = super.service();$$SINGLETON_VALUES.put(\"service\",ret);return ret;}";
+        String expected = "{if ($$SINGLETON_VALUE_service == null) {  synchronized ($$SINGLETON_LOCK_service) {   if ($$SINGLETON_VALUE_service == null) $$SINGLETON_VALUE_service = super.service();  } } return $$SINGLETON_VALUE_service;}";
         assertEquals(expected, body);
+    }
+
+    /**
+     * Test method for {@link SingletonCustomizer#getLockFieldName(String)}.
+     * 
+     * @throws Exception
+     */
+    public void testGetLockFieldName() throws Exception {
+        assertEquals("$$SINGLETON_LOCK_service", customizer
+                .getLockFieldName("service"));
+    }
+
+    /**
+     * Test method for {@link SingletonCustomizer#getLockFieldSrc(String)}.
+     * 
+     * @throws Exception
+     */
+    public void testGetLockFieldSrc() throws Exception {
+        assertEquals(
+                "private static Object $$SINGLETON_LOCK_service = new Object();",
+                customizer.getLockFieldSrc("service"));
+    }
+
+    /**
+     * Test method for
+     * {@link SingletonCustomizer#createLockField(ClassGenerator, String)}.
+     * 
+     * @throws Exception
+     */
+    public void testCreateLockField() throws Exception {
+        assertNotNull(customizer.createLockField(generator, "service"));
+    }
+
+    /**
+     * Test method for {@link SingletonCustomizer#getFieldName(String)}.
+     * 
+     * @throws Exception
+     */
+    public void testGetFieldName() throws Exception {
+        assertEquals("$$SINGLETON_VALUE_service", customizer
+                .getFieldName("service"));
+    }
+
+    /**
+     * Test method for {@link SingletonCustomizer#getFieldSrc(String)}.
+     * 
+     * @throws Exception
+     */
+    public void testGetFieldSrc() throws Exception {
+        assertEquals("private volatile Object $$SINGLETON_VALUE_service;",
+                customizer.getFieldSrc("service"));
+    }
+
+    /**
+     * Test method for
+     * {@link SingletonCustomizer#createField(ClassGenerator, String)}.
+     * 
+     * @throws Exception
+     */
+    public void testCreateField() throws Exception {
+        assertNotNull(customizer.createField(generator, "service"));
     }
 }
