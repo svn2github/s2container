@@ -22,13 +22,12 @@ import javassist.CtField;
 import javassist.CtMethod;
 import javassist.CtNewConstructor;
 import javassist.NotFoundException;
-import junit.framework.TestCase;
 
 /**
  * @author higa
  * 
  */
-public class CtClassUtilTest extends TestCase {
+public class CtClassUtilTest extends JavassistTestCase {
 
     /**
      * Test method for {@link CtClassUtil#create(ClassPool, String, String)}.
@@ -37,8 +36,6 @@ public class CtClassUtilTest extends TestCase {
      * 
      */
     public void testCreate() throws NotFoundException {
-        ClassPool classPool = new ClassPool();
-        classPool.appendSystemPath();
         CtClass ctClass = CtClassUtil.create(classPool, getClass().getName(),
                 "Hoge");
         assertNotNull(ctClass);
@@ -54,9 +51,6 @@ public class CtClassUtilTest extends TestCase {
      * 
      */
     public void testSetSuperclass() throws NotFoundException {
-        ClassPool classPool = new ClassPool();
-        classPool.appendSystemPath();
-
         CtClass ctClass = ClassPoolUtil.get(classPool, getClass().getName());
         CtClassUtil.setSuperclass(classPool, ctClass, getClass().getName());
         assertEquals(getClass().getName(), ctClass.getSuperclass().getName());
@@ -70,9 +64,6 @@ public class CtClassUtilTest extends TestCase {
      * 
      */
     public void testAddConstuctor() throws Exception {
-        ClassPool classPool = new ClassPool();
-        classPool.appendSystemPath();
-
         CtClass ctClass = ClassPoolUtil.get(classPool, getClass().getName());
         CtConstructor ctConstructor = CtNewConstructor.make(
                 new CtClass[] { classPool.get("int") }, null, ctClass);
@@ -87,9 +78,6 @@ public class CtClassUtilTest extends TestCase {
      * 
      */
     public void testGetDeclaredMethod() throws Exception {
-        ClassPool classPool = new ClassPool();
-        classPool.appendSystemPath();
-
         CtClass ctClass = ClassPoolUtil.get(classPool, getClass().getName());
         assertNotNull(CtClassUtil.getDeclaredMethod(ctClass,
                 "testGetDeclaredMethod", null));
@@ -103,9 +91,6 @@ public class CtClassUtilTest extends TestCase {
      * 
      */
     public void testAddMethod() throws Exception {
-        ClassPool classPool = new ClassPool();
-        classPool.appendSystemPath();
-
         CtClass ctClass = ClassPoolUtil.get(classPool, getClass().getName());
         CtMethod ctMethod = CtNewMethodUtil
                 .make("public void foo(){}", ctClass);
@@ -119,9 +104,6 @@ public class CtClassUtilTest extends TestCase {
      * 
      */
     public void testAddField() throws Exception {
-        ClassPool classPool = new ClassPool();
-        classPool.appendSystemPath();
-
         CtClass ctClass = ClassPoolUtil.get(classPool, getClass().getName());
         CtField ctField = CtFieldUtil.make("private int aaa;", ctClass);
         CtClassUtil.addField(ctClass, ctField);
@@ -134,9 +116,6 @@ public class CtClassUtilTest extends TestCase {
      * 
      */
     public void testToClass() throws Exception {
-        ClassPool classPool = new ClassPool();
-        classPool.appendSystemPath();
-
         CtClass ctClass = ClassPoolUtil.get(classPool, getClass().getName());
         ctClass.setName(getClass().getName() + System.currentTimeMillis());
         assertNotNull(CtClassUtil.toClass(ctClass));

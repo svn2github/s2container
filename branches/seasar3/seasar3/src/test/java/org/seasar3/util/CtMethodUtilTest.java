@@ -15,16 +15,14 @@
  */
 package org.seasar3.util;
 
-import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtMethod;
-import junit.framework.TestCase;
 
 /**
  * @author higa
  * 
  */
-public class CtMethodUtilTest extends TestCase {
+public class CtMethodUtilTest extends JavassistTestCase {
 
     /**
      * Test method for {@link CtMethodUtil#setBody(CtMethod, String)}.
@@ -32,9 +30,6 @@ public class CtMethodUtilTest extends TestCase {
      * @throws Exception
      */
     public void testSetBody() throws Exception {
-        ClassPool classPool = new ClassPool();
-        classPool.appendSystemPath();
-
         CtClass ctClass = ClassPoolUtil.get(classPool, getClass().getName());
         String src = "public void foo() {}";
         CtMethod ctMethod = CtNewMethodUtil.make(src, ctClass);

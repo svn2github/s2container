@@ -15,15 +15,13 @@
  */
 package org.seasar3.util;
 
-import javassist.ClassPool;
 import javassist.CtClass;
-import junit.framework.TestCase;
 
 /**
  * @author higa
  * 
  */
-public class CtFieldUtilTest extends TestCase {
+public class CtFieldUtilTest extends JavassistTestCase {
 
     /**
      * Test method for {@link CtFieldUtil#make(String, CtClass)}.
@@ -31,9 +29,6 @@ public class CtFieldUtilTest extends TestCase {
      * @throws Exception
      */
     public void testMake() throws Exception {
-        ClassPool classPool = new ClassPool();
-        classPool.appendSystemPath();
-
         CtClass ctClass = ClassPoolUtil.get(classPool, getClass().getName());
         String body = "private int aaa;";
         assertNotNull(CtFieldUtil.make(body, ctClass));

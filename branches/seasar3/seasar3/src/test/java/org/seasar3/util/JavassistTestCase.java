@@ -15,22 +15,22 @@
  */
 package org.seasar3.util;
 
-import javassist.CtClass;
+import javassist.ClassPool;
+import javassist.LoaderClassPath;
+import junit.framework.TestCase;
 
 /**
  * @author higa
  * 
  */
-public class CtNewMethodUtilTest extends JavassistTestCase {
+public abstract class JavassistTestCase extends TestCase {
 
-    /**
-     * Test method for {@link CtNewMethodUtil#make(String, CtClass)}.
-     * 
-     * @throws Exception
-     */
-    public void testMake() throws Exception {
-        CtClass ctClass = ClassPoolUtil.get(classPool, getClass().getName());
-        String body = "public void foo() {}";
-        assertNotNull(CtNewMethodUtil.make(body, ctClass));
+    protected ClassPool classPool;
+
+    @Override
+    protected void setUp() throws Exception {
+        classPool = new ClassPool();
+        classPool.appendClassPath(new LoaderClassPath(Thread.currentThread()
+                .getContextClassLoader()));
     }
 }

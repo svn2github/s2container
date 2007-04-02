@@ -15,24 +15,19 @@
  */
 package org.seasar3.util;
 
-import javassist.ClassPool;
 import javassist.CtClass;
-import junit.framework.TestCase;
 
 /**
  * @author higa
  * 
  */
-public class CtNewConstructorUtilTest extends TestCase {
+public class CtNewConstructorUtilTest extends JavassistTestCase {
 
     /**
      * Test method for
      * {@link CtNewConstructorUtil#defaultConstructor(javassist.CtClass)}.
      */
     public void testDefaultConstructor() {
-        ClassPool classPool = new ClassPool();
-        classPool.appendSystemPath();
-
         CtClass ctClass = ClassPoolUtil.get(classPool, getClass().getName());
         assertNotNull(CtNewConstructorUtil.defaultConstructor(ctClass));
     }
@@ -44,9 +39,6 @@ public class CtNewConstructorUtilTest extends TestCase {
      * @throws Exception
      */
     public void testMake() throws Exception {
-        ClassPool classPool = new ClassPool();
-        classPool.appendSystemPath();
-
         CtClass ctClass = ClassPoolUtil.get(classPool, getClass().getName());
         CtClass[] paramTypes = new CtClass[] { classPool.get("int") };
         assertNotNull(CtNewConstructorUtil.make(paramTypes, null, ctClass));

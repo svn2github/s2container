@@ -18,13 +18,12 @@ package org.seasar3.util;
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.NotFoundException;
-import junit.framework.TestCase;
 
 /**
  * @author higa
  * 
  */
-public class ClassPoolUtilTest extends TestCase {
+public class ClassPoolUtilTest extends JavassistTestCase {
 
     /**
      * Test method for {@link ClassPoolUtil#get(ClassPool, String)}.
@@ -32,8 +31,6 @@ public class ClassPoolUtilTest extends TestCase {
      * @throws Exception
      */
     public void testGet() {
-        ClassPool classPool = new ClassPool();
-        classPool.appendSystemPath();
         assertNotNull(ClassPoolUtil.get(classPool, getClass().getName()));
     }
 
@@ -41,8 +38,6 @@ public class ClassPoolUtilTest extends TestCase {
      * Test method for {@link ClassPoolUtil#get(ClassPool, String)}.
      */
     public void testGetForIllegalClassName() {
-        ClassPool classPool = new ClassPool();
-        classPool.appendSystemPath();
         try {
             ClassPoolUtil.get(classPool, "...");
             fail();
@@ -56,8 +51,6 @@ public class ClassPoolUtilTest extends TestCase {
      * 
      */
     public void testGetForArray() {
-        ClassPool classPool = new ClassPool();
-        classPool.appendSystemPath();
         assertNotNull(ClassPoolUtil.get(classPool, new Object[0].getClass()
                 .getName()));
     }
@@ -83,8 +76,6 @@ public class ClassPoolUtilTest extends TestCase {
      * 
      */
     public void testToCtClass() {
-        ClassPool classPool = new ClassPool();
-        classPool.appendSystemPath();
         assertNotNull(ClassPoolUtil.toCtClass(classPool, getClass()));
     }
 
@@ -93,8 +84,6 @@ public class ClassPoolUtilTest extends TestCase {
      * 
      */
     public void testToCtClassArray() {
-        ClassPool classPool = new ClassPool();
-        classPool.appendSystemPath();
         assertNotNull(ClassPoolUtil.toCtClassArray(classPool,
                 new Class[] { String.class }));
     }
@@ -107,8 +96,6 @@ public class ClassPoolUtilTest extends TestCase {
      * 
      */
     public void testGetAndRename() throws NotFoundException {
-        ClassPool classPool = new ClassPool();
-        classPool.appendSystemPath();
         CtClass ctClass = ClassPoolUtil.getAndRename(classPool, getClass()
                 .getName(), "Hoge");
         assertNotNull(ctClass);
