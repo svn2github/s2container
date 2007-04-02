@@ -15,6 +15,8 @@
  */
 package org.seasar3.util;
 
+import java.lang.reflect.Modifier;
+
 import javassist.CannotCompileException;
 import javassist.CtClass;
 import javassist.CtMethod;
@@ -47,6 +49,33 @@ public final class CtNewMethodUtil {
     public static CtMethod make(String body, CtClass ctClass) {
         try {
             return CtNewMethod.make(body, ctClass);
+        } catch (CannotCompileException e) {
+            throw new CannotCompileRuntimeException(e);
+        }
+    }
+
+    /**
+     * Creates new method.
+     * 
+     * @param modifier
+     * @param returnType
+     * @param methodName
+     * @param parameterTypes
+     * @param exceptionTypes
+     * @param body
+     * @param ctClass
+     * 
+     * @return <code>CtMethod</code>
+     * @throws CannotCompileRuntimeException
+     *             if CannotCompileException occurred.
+     */
+    public static CtMethod make(int modifier, CtClass returnType,
+            String methodName, CtClass[] parameterTypes,
+            CtClass[] exceptionTypes, String body, CtClass ctClass) {
+        try {
+            return CtNewMethod.make(modifier
+                    & ~(Modifier.ABSTRACT | Modifier.NATIVE), returnType,
+                    methodName, parameterTypes, exceptionTypes, body, ctClass);
         } catch (CannotCompileException e) {
             throw new CannotCompileRuntimeException(e);
         }

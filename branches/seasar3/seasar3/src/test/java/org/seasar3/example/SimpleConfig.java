@@ -32,9 +32,16 @@ public class SimpleConfig {
      * @return <code>Greeting</code>
      */
     @Singleton
-    public Greeting greet() {
+    public Greeting greeting() {
         GreetingImpl greeting = new GreetingImpl();
         greeting.setName(name());
         return greeting;
+    }
+
+    /**
+     * @return <code>Client</code>
+     */
+    public Client client() {
+        return new Client(greeting());
     }
 }

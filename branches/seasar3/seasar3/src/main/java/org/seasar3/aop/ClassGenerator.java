@@ -16,6 +16,7 @@
 package org.seasar3.aop;
 
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 
 import javassist.ClassPool;
 import javassist.CtClass;
@@ -180,6 +181,23 @@ public class ClassGenerator {
      */
     public CtMethod createMethod(String src) {
         CtMethod ctMethod = CtNewMethodUtil.make(src, ctClass);
+        CtClassUtil.addMethod(ctClass, ctMethod);
+        return ctMethod;
+    }
+
+    /**
+     * Creates <code>CtMethod</code>.
+     * 
+     * @param method
+     * @param src
+     * @return
+     */
+    public CtMethod createMethod(Method method, String src) {
+        CtMethod ctMethod = CtNewMethodUtil.make(method.getModifiers()
+                & ~(Modifier.ABSTRACT | Modifier.NATIVE), toCtClass(method
+                .getReturnType()), method.getName(), toCtClassArray(method
+                .getParameterTypes()), toCtClassArray(method
+                .getExceptionTypes()), src, ctClass);
         CtClassUtil.addMethod(ctClass, ctMethod);
         return ctMethod;
     }

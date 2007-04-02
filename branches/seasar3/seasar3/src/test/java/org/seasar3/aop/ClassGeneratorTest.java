@@ -94,8 +94,8 @@ public class ClassGeneratorTest extends TestCase {
      * {@link ClassGenerator#getDeclaredMethod(String, CtClass[])}.
      */
     public void testGetDeclaredMethod() {
-        assertNotNull(generator
-                .getDeclaredMethod("testGetDeclaredMethod", null));
+        generator.createMethod("public void foo(){}");
+        assertNotNull(generator.getDeclaredMethod("foo", null));
     }
 
     /**
@@ -107,6 +107,7 @@ public class ClassGeneratorTest extends TestCase {
     public void testGetDeclaredMethodForReflectMethod() throws Exception {
         Method m = getClass().getDeclaredMethod("testGetDeclaredMethod",
                 (Class[]) null);
+        generator.createMethod(m, "{}");
         assertNotNull(generator.getDeclaredMethod(m));
     }
 
@@ -115,6 +116,17 @@ public class ClassGeneratorTest extends TestCase {
      */
     public void testCreateMethod() {
         assertNotNull(generator.createMethod("public void foo(){}"));
+    }
+
+    /**
+     * Test method for {@link ClassGenerator#createMethod(Method, String)}.
+     * 
+     * @throws Exception
+     */
+    public void testCreateMethodFromMethod() throws Exception {
+        Method m = getClass().getDeclaredMethod("testGetDeclaredMethod",
+                (Class[]) null);
+        assertNotNull(generator.createMethod(m, "{}"));
     }
 
     /**

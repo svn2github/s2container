@@ -18,7 +18,6 @@ package org.seasar3.lookup;
 import java.lang.reflect.Method;
 
 import javassist.CtField;
-import javassist.CtMethod;
 
 import org.seasar3.aop.ClassGenerator;
 
@@ -46,8 +45,7 @@ public class SingletonCustomizer implements ConfigurationCustomizer {
         String methodName = method.getName();
         createLockField(generator, methodName);
         createField(generator, methodName);
-        CtMethod ctMethod = generator.getDeclaredMethod(method);
-        generator.setMethodBody(ctMethod, createMethodBody(methodName));
+        generator.createMethod(method, createMethodBody(methodName));
     }
 
     protected CtField createField(ClassGenerator generator) {

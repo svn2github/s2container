@@ -15,25 +15,38 @@
  */
 package org.seasar3.example;
 
+import org.seasar3.lookup.S3;
+
 /**
  * @author higa
  * 
  */
-public class Client {
+public class SimpleConfigMain {
 
-    private Greeting greeting;
+    private static SimpleConfig config;
 
     /**
-     * @param greeting
+     * @param args
      */
-    public Client(Greeting greeting) {
-        this.greeting = greeting;
+    public static void main(String[] args) {
+        config = S3.lookup(SimpleConfig.class);
+        testClient();
+        testSingleton();
+        testPrototype();
     }
 
-    /**
-     * 
-     */
-    public void execute() {
-        System.out.println(greeting.greet());
+    private static void testClient() {
+        Client client = config.client();
+        client.execute();
+    }
+
+    private static void testSingleton() {
+        System.out.println("greeting is singleton:"
+                + (config.greeting() == config.greeting()));
+    }
+
+    private static void testPrototype() {
+        System.out.println("client is prototype:"
+                + (config.client() != config.client()));
     }
 }

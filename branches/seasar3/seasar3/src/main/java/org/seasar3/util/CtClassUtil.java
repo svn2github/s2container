@@ -48,9 +48,8 @@ public final class CtClassUtil {
      */
     public static CtClass create(ClassPool classPool, String originalClassName,
             String newClassName) {
-        CtClass ctClass = ClassPoolUtil.getAndRename(classPool,
-                originalClassName, newClassName);
-        setSuperclass(classPool, ctClass, originalClassName);
+        CtClass parentCtClass = ClassPoolUtil.get(classPool, originalClassName);
+        CtClass ctClass = classPool.makeClass(newClassName, parentCtClass);
         return ctClass;
     }
 

@@ -15,25 +15,26 @@
  */
 package org.seasar3.example;
 
+import org.seasar3.lookup.S3;
+
 /**
  * @author higa
  * 
  */
-public class Client {
+public class SimpleMockConfigMain {
 
-    private Greeting greeting;
+    private static SimpleConfig config;
 
     /**
-     * @param greeting
+     * @param args
      */
-    public Client(Greeting greeting) {
-        this.greeting = greeting;
+    public static void main(String[] args) {
+        config = S3.lookup(SimpleMockConfig.class);
+        testClient();
     }
 
-    /**
-     * 
-     */
-    public void execute() {
-        System.out.println(greeting.greet());
+    private static void testClient() {
+        Client client = config.client();
+        client.execute();
     }
 }

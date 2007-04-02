@@ -19,21 +19,14 @@ package org.seasar3.example;
  * @author higa
  * 
  */
-public class Client {
+public class SimpleMockConfig extends SimpleConfig {
 
-    private Greeting greeting;
-
-    /**
-     * @param greeting
-     */
-    public Client(Greeting greeting) {
-        this.greeting = greeting;
-    }
-
-    /**
-     * 
-     */
-    public void execute() {
-        System.out.println(greeting.greet());
+    @Override
+    public Greeting greeting() {
+        return new Greeting() {
+            public String greet() {
+                return "mock";
+            }
+        };
     }
 }

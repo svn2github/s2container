@@ -15,6 +15,8 @@
  */
 package org.seasar3.util;
 
+import java.lang.reflect.Modifier;
+
 import javassist.CtClass;
 
 /**
@@ -32,5 +34,18 @@ public class CtNewMethodUtilTest extends JavassistTestCase {
         CtClass ctClass = ClassPoolUtil.get(classPool, getClass().getName());
         String body = "public void foo() {}";
         assertNotNull(CtNewMethodUtil.make(body, ctClass));
+    }
+
+    /**
+     * Test method for
+     * {@link CtNewMethodUtil#make(int, CtClass, String, CtClass[], CtClass[], String, CtClass)}.
+     * 
+     * @throws Exception
+     */
+    public void testMakeForDetail() throws Exception {
+        CtClass ctClass = ClassPoolUtil.get(classPool, getClass().getName());
+        CtClass returnType = ClassPoolUtil.get(classPool, "void");
+        assertNotNull(CtNewMethodUtil.make(Modifier.PUBLIC, returnType, "hoge",
+                null, null, "{}", ctClass));
     }
 }
