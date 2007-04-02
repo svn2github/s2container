@@ -35,6 +35,7 @@ import org.seasar3.util.CtNewMethodUtil;
  * 
  * @author koichik
  * @author higa
+ * @param <T>
  */
 public class ClassGenerator {
 
@@ -208,9 +209,11 @@ public class ClassGenerator {
     /**
      * Generates {@link Class}.
      * 
-     * @return
+     * @return generated class
      */
     public Class generate() {
-        return CtClassUtil.toClass(ctClass);
+        Class clazz = CtClassUtil.toClass(ctClass);
+        ctClass.detach();
+        return clazz;
     }
 }

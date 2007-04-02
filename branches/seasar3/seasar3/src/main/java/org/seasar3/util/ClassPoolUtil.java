@@ -77,6 +77,8 @@ public final class ClassPoolUtil {
      * @param classPool
      * @param type
      * @return <code>CtClass</code>
+     * @throws NullPointerException
+     *             if classPool is null.
      * @see #get(ClassPool, String)
      */
     public static CtClass toCtClass(ClassPool classPool, Class type) {

@@ -15,7 +15,6 @@
  */
 package org.seasar3.lookup;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
 import org.seasar3.aop.ClassGenerator;
@@ -28,7 +27,6 @@ import org.seasar3.aop.ClassGenerator;
  */
 public class PrototypeCustomizer implements ConfigurationCustomizer {
 
-    public void customize(ClassGenerator generator, Method method,
-            Annotation annotation) {
+    public void customize(ClassGenerator generator, Method method) {
     }
 }

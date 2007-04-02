@@ -16,12 +16,22 @@
 package org.seasar3.lookup;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import javassist.ClassPool;
+import javassist.CtClass;
+
+import org.seasar3.aop.ClassGenerator;
+import org.seasar3.exception.MultipleConfigurationAnnotationsException;
 import org.seasar3.exception.NotAnnotatedException;
+import org.seasar3.util.ClassPoolUtil;
 import org.seasar3.util.ClassUtil;
+import org.seasar3.util.CtClassUtil;
 
 /**
  * A S3 provides "lookup" function.
@@ -40,6 +50,10 @@ public class S3 {
     private static Map<Class<? extends Annotation>, ConfigurationCustomizer> customizers = new HashMap<Class<? extends Annotation>, ConfigurationCustomizer>(
             17);
 
+    private static Object sequenceLock = new Object();
+
+    private static int sequence = 0;
+
     static {
         initialize();
     }
@@ -47,7 +61,7 @@ public class S3 {
     private S3() {
     }
 
-    private static void initialize() {
+    protected static void initialize() {
         customizers.put(Singleton.class, new SingletonCustomizer());
         customizers.put(Prototype.class, new PrototypeCustomizer());
     }
@@ -74,9 +88,85 @@ public class S3 {
         if (config != null) {
             return config;
         }
-        config = ClassUtil.newInstance(configClass);
+        config = createConfiguration(configClass);
         T config2 = (T) configs.putIfAbsent(name, config);
         return config2 != null ? config2 : config;
+    }
+
+    @SuppressWarnings("unchecked")
+    protected static <T> T createConfiguration(Class<? extends T> clazz) {
+        String originalClassName = clazz.getName();
+        String newClassName = createNewConfigurationClassName(originalClassName);
+        ClassPool classPool = ClassPoolUtil.getClassPool();
+        CtClass ctClass = CtClassUtil.create(classPool, originalClassName,
+                newClassName);
+        ClassGenerator generator = new ClassGenerator(classPool, ctClass);
+        Class<? extends Annotation> defaultAnnotationClass = findConfiguratoinAnnotationClass(clazz);
+        Method[] methods = clazz.getMethods();
+        for (Method method : methods) {
+            if (method.getDeclaringClass() == Object.class) {
+                continue;
+            }
+            Class<? extends Annotation> annotationClass = findConfiguratoinAnnotationClass(method);
+            if (annotationClass == null) {
+                annotationClass = defaultAnnotationClass;
+            }
+            if (annotationClass != null) {
+                ConfigurationCustomizer customizer = getConfigurationCustomizer(annotationClass);
+                if (customizer != null) {
+                    customizer.customize(generator, method);
+                }
+            }
+        }
+        Class<? extends T> configClass = generator.generate();
+        return ClassUtil.newInstance(configClass);
+    }
+
+    protected static String createNewConfigurationClassName(String className) {
+        synchronized (sequenceLock) {
+            return "$$" + className + "$$" + ++sequence;
+        }
+    }
+
+    protected static Class<? extends Annotation> findConfiguratoinAnnotationClass(
+            Class<?> clazz) {
+        Annotation[] annotations = clazz.getAnnotations();
+        List<Class<? extends Annotation>> classes = findConfiguratoinAnnotationClasses(annotations);
+        if (classes.size() > 1) {
+            throw new MultipleConfigurationAnnotationsException(clazz
+                    .toString(), classes);
+        }
+        if (classes.size() == 1) {
+            return classes.get(0);
+        }
+        return null;
+    }
+
+    protected static Class<? extends Annotation> findConfiguratoinAnnotationClass(
+            Method method) {
+        Annotation[] annotations = method.getAnnotations();
+        List<Class<? extends Annotation>> classes = findConfiguratoinAnnotationClasses(annotations);
+        if (classes.size() > 1) {
+            throw new MultipleConfigurationAnnotationsException(method
+                    .toString(), classes);
+        }
+        if (classes.size() == 1) {
+            return classes.get(0);
+        }
+        return null;
+    }
+
+    protected static List<Class<? extends Annotation>> findConfiguratoinAnnotationClasses(
+            Annotation[] annotations) {
+        List<Class<? extends Annotation>> classes = new ArrayList<Class<? extends Annotation>>();
+        for (Annotation annotation : annotations) {
+            Class<? extends Annotation> annotationType = annotation
+                    .annotationType();
+            if (annotationType.getAnnotation(ConfigurationCustomization.class) != null) {
+                classes.add(annotationType);
+            }
+        }
+        return classes;
     }
 
     /**
@@ -98,17 +188,41 @@ public class S3 {
         overrides.put(src.getName(), dest);
     }
 
-    public static void setConfigurationCustomizer(
-            Class<? extends Annotation> annotation,
-            ConfigurationCustomizer customizer) {
-        if (annotation == null) {
-            throw new NullPointerException("annotation");
+    /**
+     * Returns {@link ConfigurationCustomizer}.
+     * 
+     * @param annotationClass
+     * @return <code>ConfigurationCustomizer</code>
+     */
+    public static ConfigurationCustomizer getConfigurationCustomizer(
+            Class<? extends Annotation> annotationClass) {
+        if (annotationClass == null) {
+            throw new NullPointerException("annotationClass");
         }
-        if (annotation.getAnnotation(ConfigurationCustomization.class) == null) {
-            throw new NotAnnotatedException(annotation.getClass(),
+        return customizers.get(annotationClass);
+    }
+
+    /**
+     * Sets {@link ConfigurationCustomizer}.
+     * 
+     * @param annotationClass
+     * @param customizer
+     * @throws NotAnnotatedException
+     *             if annotationClass is null.
+     * @throws NotAnnotatedException
+     *             if annotationClass is not annotated by specific annotation.
+     */
+    public static void setConfigurationCustomizer(
+            Class<? extends Annotation> annotationClass,
+            ConfigurationCustomizer customizer) {
+        if (annotationClass == null) {
+            throw new NullPointerException("annotationClass");
+        }
+        if (annotationClass.getAnnotation(ConfigurationCustomization.class) == null) {
+            throw new NotAnnotatedException(annotationClass,
                     ConfigurationCustomization.class);
         }
-        customizers.put(annotation, customizer);
+        customizers.put(annotationClass, customizer);
     }
 
     /**
@@ -117,5 +231,6 @@ public class S3 {
     public static final void dispose() {
         configs.clear();
         overrides.clear();
+        initialize();
     }
 }

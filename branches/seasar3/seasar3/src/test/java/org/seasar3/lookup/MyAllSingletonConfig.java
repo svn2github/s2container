@@ -15,22 +15,24 @@
  */
 package org.seasar3.lookup;
 
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
-
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Inherited;
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
-
 /**
- * An annotation for prototype.
- * 
  * @author higa
  * 
  */
-@Target( { ElementType.TYPE, ElementType.METHOD })
-@Retention(RUNTIME)
-@Inherited
-@ConfigurationCustomization
-public @interface Prototype {
+@Singleton
+public class MyAllSingletonConfig {
+
+    /**
+     * @return
+     */
+    public Service service() {
+        return new ServiceImpl();
+    }
+
+    /**
+     * @return
+     */
+    public Client client() {
+        return new Client(service());
+    }
 }

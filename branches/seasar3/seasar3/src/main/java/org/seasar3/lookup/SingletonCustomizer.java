@@ -28,7 +28,7 @@ import org.seasar3.aop.ClassGenerator;
  * @author higa
  * 
  */
-public class SingletonCustomizer implements ConfigurationCustomizer<Singleton> {
+public class SingletonCustomizer implements ConfigurationCustomizer {
 
     private static final String LOCK_FIELD_PREFIX = "$$SINGLETON_LOCK_";
 
@@ -42,8 +42,7 @@ public class SingletonCustomizer implements ConfigurationCustomizer<Singleton> {
 
     private static final String FIELD_SRC2 = ";";
 
-    public void customize(ClassGenerator generator, Method method,
-            Singleton annotation) {
+    public void customize(ClassGenerator generator, Method method) {
         String methodName = method.getName();
         createLockField(generator, methodName);
         createField(generator, methodName);
@@ -66,7 +65,7 @@ public class SingletonCustomizer implements ConfigurationCustomizer<Singleton> {
                 "();");
         sb.append("  }");
         sb.append(" }");
-        sb.append(" return ").append(fieldName).append(";}");
+        sb.append(" return ($r) ").append(fieldName).append(";}");
         return sb.toString();
     }
 

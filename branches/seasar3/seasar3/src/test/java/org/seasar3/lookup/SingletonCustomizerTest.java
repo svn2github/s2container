@@ -37,10 +37,13 @@ public class SingletonCustomizerTest extends TestCase {
 
     @Override
     protected void setUp() throws Exception {
+        setUpGenerator(MyConfig.class.getName());
+    }
+
+    protected void setUpGenerator(String className) throws Exception {
         ClassPool classPool = ClassPoolUtil.getClassPool();
-        CtClass ctClass = CtClassUtil.create(classPool, MyConfig.class
-                .getName(), MyConfig.class.getName()
-                + System.currentTimeMillis());
+        CtClass ctClass = CtClassUtil.create(classPool, className, className
+                + System.nanoTime());
         generator = new ClassGenerator(classPool, ctClass);
 
     }
@@ -53,10 +56,26 @@ public class SingletonCustomizerTest extends TestCase {
      */
     public void testCustomize() throws Exception {
         Method m = MyConfig.class.getDeclaredMethod("service", (Class[]) null);
-        customizer.customize(generator, m, null);
+        customizer.customize(generator, m);
         Class clazz = generator.generate();
         MyConfig config = (MyConfig) clazz.newInstance();
         assertSame(config.service(), config.service());
+    }
+
+    /**
+     * Test method for
+     * {@link SingletonCustomizer#customize(ClassGenerator, Method, org.seasar3.lookup.Singleton)}.
+     * 
+     * @throws Exception
+     */
+    public void testCustomizeForConstant() throws Exception {
+        setUpGenerator(MyConstantConfig.class.getName());
+        Method m = MyConstantConfig.class.getDeclaredMethod("aaa",
+                (Class[]) null);
+        customizer.customize(generator, m);
+        Class clazz = generator.generate();
+        MyConstantConfig config = (MyConstantConfig) clazz.newInstance();
+        assertEquals(new Integer(1), config.aaa());
     }
 
     /**
@@ -67,7 +86,7 @@ public class SingletonCustomizerTest extends TestCase {
     public void testCreateMethodBody() throws Exception {
         String body = customizer.createMethodBody("service");
         System.out.println(body);
-        String expected = "{if ($$SINGLETON_VALUE_service == null) {  synchronized ($$SINGLETON_LOCK_service) {   if ($$SINGLETON_VALUE_service == null) $$SINGLETON_VALUE_service = super.service();  } } return $$SINGLETON_VALUE_service;}";
+        String expected = "{if ($$SINGLETON_VALUE_service == null) {  synchronized ($$SINGLETON_LOCK_service) {   if ($$SINGLETON_VALUE_service == null) $$SINGLETON_VALUE_service = super.service();  } } return ($r) $$SINGLETON_VALUE_service;}";
         assertEquals(expected, body);
     }
 

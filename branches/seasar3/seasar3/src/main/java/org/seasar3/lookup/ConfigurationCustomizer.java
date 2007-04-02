@@ -15,7 +15,6 @@
  */
 package org.seasar3.lookup;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
 import org.seasar3.aop.ClassGenerator;
@@ -24,17 +23,15 @@ import org.seasar3.aop.ClassGenerator;
  * An interface to customize configuration class.
  * 
  * @author higa
- * @param <T>
  * 
  */
-public interface ConfigurationCustomizer<T extends Annotation> {
+public interface ConfigurationCustomizer {
 
     /**
      * Customizes configuration class using generator.
      * 
      * @param generator
      * @param method
-     * @param annotation
      */
-    void customize(ClassGenerator generator, Method method, T annotation);
+    void customize(ClassGenerator generator, Method method);
 }

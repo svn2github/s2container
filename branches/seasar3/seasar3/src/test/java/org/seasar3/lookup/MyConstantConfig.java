@@ -15,22 +15,18 @@
  */
 package org.seasar3.lookup;
 
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
-
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Inherited;
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
+import org.seasar3.core.Env;
 
 /**
- * An annotation for prototype.
- * 
  * @author higa
  * 
  */
-@Target( { ElementType.TYPE, ElementType.METHOD })
-@Retention(RUNTIME)
-@Inherited
-@ConfigurationCustomization
-public @interface Prototype {
+public class MyConstantConfig {
+
+    /**
+     * @return
+     */
+    public Integer aaa() {
+        return Env.getIntegerValue("aaa");
+    }
 }
