@@ -409,7 +409,7 @@ public interface BarDxo {
 </tr>
 <tr>
 <td>boolean/Boolean</td>
-<td rowspan="3"><code>byte/Byte</code><br />
+<td rowspan="4"><code>byte/Byte</code><br />
 <code>short/Short</code><br />
 <code>int/Integer</code><br />
 <code>long/Long</code><br />
@@ -428,6 +428,11 @@ BigDecimal/BigIntegerへの変換は，変換元を文字列化したものを�
 <tr>
 <td>String</td>
 <td>文字列の表現する数値と同等の値に変換します．</td>
+</tr>
+<tr>
+<td>Enum</td>
+<td>列挙定数の序数に変換します．<br />
+序数への変換は<code>Enum#ordinal()</code>で行われます．</td>
 </tr>
 <tr>
 <td><code>char/Character</code></td>
@@ -637,6 +642,15 @@ BigDecimal/BigIntegerへの変換は，変換元を文字列化したものを�
 <td>JavaBeans</td>
 <td>変換元JavaBeansを変換先JavaBeansに変換します．<br />
 変換元JavaBeansのプロパティは変換先JavaBeansの対応するプロパティに変換されます．</td>
+</tr>
+<tr>
+<td>Number</td>
+<td rowspan="2"><code>Enum</code>のサブクラス</td>
+<td>変換元の数値を序数とする列挙定数に変換します．</td>
+</tr>
+<tr>
+<td>その他任意の型</td>
+<td>変換元の文字列表現を名前とする列挙定数に変換します．</td>
 </tr>
 </tbody>
 </table>
