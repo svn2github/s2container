@@ -1,14 +1,8 @@
-javax.annotation
-javax.annotation.security
-javax.ejb
-javax.interceptor
-javax.persistence
-javax.persistence.spi
 org.seasar.extension.dxo.annotation
 org.seasar.extension.dxo.annotation.impl
+org.seasar.extension.dxo.converter.impl
 org.seasar.extension.dxo.util
 org.seasar.extension.persistence
-org.seasar.extension.persistence.annotation
 org.seasar.extension.persistence.dialect
 org.seasar.extension.persistence.exception
 org.seasar.extension.persistence.factory
