@@ -9,7 +9,7 @@
   <artifactId>s2-container-project</artifactId>
   <packaging>pom</packaging>
   <name>Seasar2</name>
-  <version>2.3.19-SNAPSHOT</version>
+  <version>2.3.19</version>
   <description>DI Container with AOP</description>
   <url>http://s2container.seasar.org/</url>
   <issueManagement>
@@ -166,6 +166,12 @@
       </plugin>
       -->
     </plugins>
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.wagon</groupId>
+        <artifactId>wagon-webdav</artifactId>
+      </extension>
+    </extensions>
   </build>
   <modules>
     <module>s2-framework</module>
@@ -214,13 +220,13 @@
       <uniqueVersion>false</uniqueVersion>
       <id>maven.seasar.org</id>
       <name>The Seasar Foundation Maven2 Repository</name>
-      <url>scp://maven.seasar.org/home/groups/maven/maven/maven2</url>
+      <url>dav:https://www.seasar.org/maven/maven2</url>
     </repository>
     <snapshotRepository>
       <uniqueVersion>true</uniqueVersion>
       <id>maven.seasar.org</id>
       <name>The Seasar Foundation Maven2 Snapshot Repository</name>
-      <url>scp://maven.seasar.org/home/groups/maven/maven/maven2-snapshot</url>
+      <url>dav:https://www.seasar.org/maven/maven2-snapshot</url>
     </snapshotRepository>
   </distributionManagement>
 </project>
