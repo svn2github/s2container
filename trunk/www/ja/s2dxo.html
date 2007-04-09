@@ -408,7 +408,7 @@ public interface BarDxo {
 <td>変換元を文字列化し，それが<code>"yes"</code>，<code>"y"</code>，<code>"true"</code>，<code>"on"</code>，<code>"1"</code>のいずれかであれば<code>true</code>，そうでなければ<code>false</code>に変換します．</td>
 </tr>
 <tr>
-<td>boolean/Boolean</td>
+<td><code>boolean/Boolean</code></td>
 <td rowspan="4"><code>byte/Byte</code><br />
 <code>short/Short</code><br />
 <code>int/Integer</code><br />
@@ -420,17 +420,17 @@ public interface BarDxo {
 <td>変換元が<code>true</code>なら<code>1</code>，そうでなければ<code>0</code>に変換します．</td>
 </tr>
 <tr>
-<td>Number</td>
+<td><code>Number</code></td>
 <td>同等の値に変換します．<br />
 プリミティブ型への変換は，<code>Number#<var>xxx</var>Value()</code>で行われます．<br />
 BigDecimal/BigIntegerへの変換は，変換元を文字列化したものをコンストラクタ引数に渡すことで行われます．</td>
 </tr>
 <tr>
-<td>String</td>
+<td><code>String</code></td>
 <td>文字列の表現する数値と同等の値に変換します．</td>
 </tr>
 <tr>
-<td>Enum</td>
+<td><code>Enum</code>のサブクラス</td>
 <td>列挙定数の序数に変換します (S2-Tigerが必要です)．<br />
 序数への変換は<code>Enum#ordinal()</code>で行われます．</td>
 </tr>
@@ -440,15 +440,20 @@ BigDecimal/BigIntegerへの変換は，変換元を文字列化したものを�
 <td>-</td>
 </tr>
 <tr>
-<td>String</td>
-<td rowspan="6"><code>String</code></td>
-<td>-</td>
+<td><code>String</code></td>
+                  <td rowspan="7"><code>String</code></td>
+                  <td>-</td>
 </tr>
 <tr>
 <td><code>char[]</code></td>
 <td>変換元を文字シーケンスとして持つ<code>String</code>に変換します．</td>
 </tr>
-<tr>
+                <tr>
+                  <td><code>Enum</code>のサブクラス</td>
+                  <td>列挙定数の名前に変換します (S2-Tigerが必要です)．<br>
+                  列挙定数への変換は<code>Enum#name()</code>で行われます．</td>
+                </tr>
+                <tr>
 <td><code>java.util.Calender</code><br />
 <code>java.util.Date</code><br />
 <code>java.sql.Date</code></td>
@@ -475,7 +480,7 @@ BigDecimal/BigIntegerへの変換は，変換元を文字列化したものを�
 <td>-</td>
 </tr>
 <tr>
-<td>String</td>
+<td><code>String</code></td>
 <td>変換元の持つ文字配列に変換します．</td>
 </tr>
 <tr>
@@ -644,13 +649,15 @@ BigDecimal/BigIntegerへの変換は，変換元を文字列化したものを�
 変換元JavaBeansのプロパティは変換先JavaBeansの対応するプロパティに変換されます．</td>
 </tr>
 <tr>
-<td>Number</td>
+<td><code>Number</code></td>
 <td rowspan="2"><code>Enum</code>のサブクラス</td>
-<td>変換元の数値を序数とする列挙定数に変換します (S2-Tigerが必要です)．</td>
+<td>変換元の数値を序数とする列挙定数に変換します (S2-Tigerが必要です)．<br>
+                  変換は<code>Class#getEnumConstants()</code>が返す配列を使って行われます．</td>
 </tr>
 <tr>
 <td>その他任意の型</td>
-<td>変換元の文字列表現を名前とする列挙定数に変換します (S2-Tigerが必要です)．</td>
+<td>変換元の文字列表現を名前とする列挙定数に変換します (S2-Tigerが必要です)．<br>
+                  変換は<code>Enum#valueOf(Class, String)</code>で行われます．</td>
 </tr>
 </tbody>
 </table>
