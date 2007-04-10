@@ -51,7 +51,7 @@
 <li>lib/javassist-3.3.ga.jar</li>
 <li>lib/ognl-2.6.7.jar</li>
 <li>lib/s2-framework-2.x.x.jar</li>
-<li>lib/geronimo-j2ee_1.4_spec-1.0.jar (下記参照)</li>
+<li>lib/geronimo-j2ee_1.4_spec-1.0.jar (オプション，下記参照)</li>
 <li>lib/portlet-api-1.0.jar (オプション)</li>
 <li>lib/log4j-1.2.13.jar (オプション)</li>
 <li>resources/log4j.properties (オプション)</li>
@@ -63,8 +63,8 @@
 <li>lib/junit-3.8.2.jar</li>
 <li>lib/poi-2.5-final-20040804.jar</li>
 <li>lib/s2-extension-2.x.x.jar</li>
-<li>lib/geronimo-jta_1.1_spec-1.0.jar (下記参照)</li>
-<li>lib/geronimo-ejb_2.1_spec-1.0.jar (下記参照)</li>
+<li>lib/geronimo-jta_1.1_spec-1.0.jar (オプション，下記参照)</li>
+<li>lib/geronimo-ejb_2.1_spec-1.0.jar (オプション，下記参照)</li>
 <li>resources/jdbc.dicon</li>
 </ul>
 <p>アプリケーションの実行環境により、J2EE関連Jarファイルのいずれが必要になるかが異なります。</p>
@@ -112,10 +112,10 @@
             Seasar2の設定の上に、さらに以下のファイルを追加でCLASSPATHに含める必要があります。</p>
 <ul>
 <li>lib/s2-tiger-x.x.x.jar</li>
-              <li>lib/geronimo-annotation_1.0_spec-1.0.jar (下記参照)</li>
-              <li>lib/geronimo-ejb_3.0_spec-1.0.jar (下記参照)</li>
-              <li>lib/geronimo-interceptor_3.0_spec-1.0.jar (下記参照)</li>
-              <li>lib/geronimo-jpa_3.0_spec-1.0.jar (下記参照)</li>
+              <li>lib/geronimo-annotation_1.0_spec-1.0.jar (オプション，下記参照)</li>
+              <li>lib/geronimo-ejb_3.0_spec-1.0.jar (オプション，下記参照)</li>
+              <li>lib/geronimo-interceptor_3.0_spec-1.0.jar (オプション，下記参照)</li>
+              <li>lib/geronimo-jpa_3.0_spec-1.0.jar (オプション，下記参照)</li>
             </ul>
             <p>オプションのJarファイルは、EJB3やJPAのサポート機能をJavaEE5対応でない環境で使う場合に必要となります。詳細は以下の表を参照してください。</p>
             <table border="1">
@@ -135,31 +135,26 @@
                 <tr>
 <td>Servlet2.4対応のWebコンテナ<br>
                   (Tomcat5.x等)</td>
-<td>要<br>
-                  (EJB3，JPAを使う場合)</td>
-                  <td>要<br>
-                  (EJB3を使う場合)</td>
-                  <td>要<br>
-                  (EJB3，JPAを使う場合)</td>
+<td>要</td>
+                  <td>要</td>
+                  <td>要</td>
 <td>要<br>
                   (JPAを使う場合)</td>
 </tr>
                 <tr>
                   <td>Servlet2.5対応のWebコンテナ<br>
-                  (Tomcat6.x等)</td>
+                  (Tomcat6)</td>
                   <td>不要</td>
-                  <td>不要</td>
-                  <td>不要</td>
-                  <td>不要</td>
+                  <td>要</td>
+                  <td>要</td>
+                  <td>要<br>
+                  (JPAを使う場合)</td>
                 </tr>
                 <tr>
 <td>J2EE1.4対応のAPサーバ</td>
-<td>要<br>
-                  (EJB3，JPAを使う場合)</td>
-                  <td>要<br>
-                  (EJB3を使う場合)</td>
-                  <td>要<br>
-                  (EJB3，JPAを使う場合)</td>
+<td>要</td>
+                  <td>要</td>
+                  <td>要</td>
 <td>要<br>
                   (JPAを使う場合)</td>
 </tr>
@@ -172,12 +167,9 @@
                 </tr>
                 <tr>
 <td>スタンドアロン</td>
-<td>要<br>
-                  (EJB3，JPAを使う場合)</td>
-                  <td>要<br>
-                  (EJB3を使う場合)</td>
-                  <td>要<br>
-                  (EJB3，JPAを使う場合)</td>
+<td>要</td>
+                  <td>要</td>
+                  <td>要</td>
 <td>要<br>
                   (JPAを使う場合)</td>
 </tr>
