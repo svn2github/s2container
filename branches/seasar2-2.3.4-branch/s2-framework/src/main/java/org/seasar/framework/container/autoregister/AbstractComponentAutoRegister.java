@@ -15,6 +15,9 @@
  */
 package org.seasar.framework.container.autoregister;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.seasar.framework.container.AutoBindingDef;
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.InstanceDef;
@@ -75,6 +78,7 @@ public abstract class AbstractComponentAutoRegister extends
             if (cp.isAppliedPackageName(packageName)
                     && cp.isAppliedShortClassName(shortClassName)) {
                 register(packageName, shortClassName);
+                return;
             }
         }
     }
@@ -96,4 +100,42 @@ public abstract class AbstractComponentAutoRegister extends
         annoHandler.appendInitMethod(cd);
         getContainer().register(cd);
     }
+
+    /**
+     * コンポーネントを検索する対象となるパッケージの配列を返します。
+     * <p>
+     * コンポーネントを検索する対象のパッケージは<code>ClassPattern</code>に設定されたパッケージ名から
+     * 重複やサブパッケージを除いたものになります。 例えば<code>ClassPattern</code>に<code>aaa, aaa.bbb, bbb</code>が指定された場合、
+     * <code>aaa.bbb</code>は<code>aaa</code>のサブパッケージなので取り除かれ、
+     * <code>aaa, bbb</code>が検索対象のパッケージとなります。
+     * </p>
+     * 
+     * @return コンポーネントを検索する対象となるパッケージの配列
+     */
+    protected String[] getTargetPackages() {
+        final List result = new ArrayList();
+        for (int i = 0; i < getClassPatternSize(); ++i) {
+            final String packageName = getClassPattern(i).getPackageName();
+            boolean append = true;
+            for (int j = 0; j < result.size(); ++j) {
+                final String root = (String) result.get(j);
+                if (packageName.equals(root)) {
+                    append = false;
+                    break;
+                } else if (packageName.startsWith(root)) {
+                    append = false;
+                    break;
+                } else if (root.startsWith(packageName)) {
+                    result.set(j, packageName);
+                    append = false;
+                    break;
+                }
+            }
+            if (append) {
+                result.add(packageName);
+            }
+        }
+        return (String[]) result.toArray(new String[result.size()]);
+    }
+
 }
