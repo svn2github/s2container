@@ -17,8 +17,8 @@ package org.seasar.diigu.eclipse.preferences;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ProjectScope;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.jface.preference.IPersistentPreferenceStore;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -156,16 +156,17 @@ public class DiiguProjectPreferencePage extends PropertyPage {
                     ProjectUtils.removeNature(project, DiiguNature.NATURE_ID);
                 }
             }
-            IPreferenceStore store = getPreferenceStore();
+            IPersistentPreferenceStore store = (IPersistentPreferenceStore) getPreferenceStore();
             String s = this.selectExpression.getText();
             if (s != null && 0 < s.length()) {
                 store.setValue(Constants.CONFIG_SELECT_EXPRESSION, s);
             }
+            store.save();
             NameEnhanceJob job = new NameEnhanceJob(Messages.ENHANCE_FULLBUILD,
                     getSelectedProject());
             job.schedule();
             return true;
-        } catch (CoreException e) {
+        } catch (Exception e) {
             DiiguPlugin.log(e);
             return false;
         }
