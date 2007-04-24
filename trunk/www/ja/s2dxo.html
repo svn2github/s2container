@@ -368,18 +368,18 @@ public interface BarDxo {
 &lt;/component&gt;
 </pre>
 <p>SMART deployを使用する場合は，<code>app.dicon</code>で<code>dxo.dicon</code>をインクルードし，<code>customizer.dicon</code>に記述されている<code>dxoCustomizer</code>の設定を次のようにします．</p>
-<pre>
-&lt;component name="dxoCustomizer" class="org.seasar.framework.container.customizer.CustomizerChain"&gt;
-    &lt;initMethod name="addCustomizer"&gt;
+<pre>&lt;component name=&quot;dxoCustomizer&quot; class=&quot;org.seasar.framework.container.customizer.CustomizerChain&quot;&gt;
+    &lt;initMethod name=&quot;addCustomizer&quot;&gt;
         &lt;arg&gt;defaultCustomizer&lt;/arg&gt;
     &lt;/initMethod&gt;
-    &lt;initMethod name="addCustomizer"&gt;
-        &lt;component class="org.seasar.framework.container.customizer.AspectCustomizer"&gt;
-            &lt;property name="interceptorName"&gt;"dxo.interceptor"&lt;/property&gt;
-        &lt;/component&gt;
+    &lt;initMethod name=&quot;addCustomizer&quot;&gt;
+        &lt;arg&gt;
+            &lt;component class=&quot;org.seasar.framework.container.customizer.AspectCustomizer&quot;&gt;
+                &lt;property name=&quot;interceptorName&quot;&gt;&quot;dxo.interceptor&quot;&lt;/property&gt;
+            &lt;/component&gt;
+        &lt;/arg&gt;
     &lt;/initMethod&gt;
-&lt;/component&gt;
-</pre>
+&lt;/component&gt;</pre>
 <p>Customizerの詳細は「<a href="S2.4SmartDeploy.html">Seasr2.4の新機能－SMART deploy</a>」を参照してください．</p>
 <h2><a name="conversionRule" id="conversionRule">変換ルール</a></h2>
 <h3><a name="conversionBasics" id="conversionBasics">変換の基本</a></h3>
