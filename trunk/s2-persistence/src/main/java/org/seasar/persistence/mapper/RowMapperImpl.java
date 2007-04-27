@@ -15,8 +15,7 @@
  */
 package org.seasar.persistence.mapper;
 
-import org.seasar.framework.util.ClassUtil;
-import org.seasar.persistence.ColumnMapper;
+import org.seasar.persistence.ObjectMapper;
 import org.seasar.persistence.RowMapper;
 
 /**
@@ -25,35 +24,26 @@ import org.seasar.persistence.RowMapper;
  * @author higa
  * 
  */
-public class BeanRowMapper implements RowMapper {
+public class RowMapperImpl implements RowMapper {
 
-	private Class<?> beanClass;
-
-	private ColumnMapper[] columnMappers;
-
-	private Object target;
+	private ObjectMapper[] objectMappers;
 
 	/**
-	 * <code>BeanRowMapper</code>を作成します。
+	 * <code>RowMapperImpl</code>を作成します。
 	 * 
-	 * @param beanClass
-	 * @param columnMappers
+	 * @param objectMappers
 	 */
-	public BeanRowMapper(Class<?> beanClass, ColumnMapper[] columnMappers) {
-		this.beanClass = beanClass;
-		this.columnMappers = columnMappers;
+	public RowMapperImpl(ObjectMapper[] objectMappers) {
+		this.objectMappers = objectMappers;
 	}
 
-	public void enterRow() {
-		target = ClassUtil.newInstance(beanClass);
+	public void setValues(Object[] values) {
+		for (ObjectMapper objectMapper : objectMappers) {
+			objectMapper.setValues(values);
+		}
 	}
 
-	public Object leaveRow() {
-		return target;
+	public Object getTarget() {
+		return objectMappers[0].getTarget();
 	}
-
-	public void setValue(int index, Object value) {
-		columnMappers[index].setValue(target, value);
-	}
-
 }

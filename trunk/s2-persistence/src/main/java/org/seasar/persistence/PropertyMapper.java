@@ -16,24 +16,18 @@
 package org.seasar.persistence;
 
 /**
- * 結果セットの行をオブジェクトにマッピングするためのインターフェースです。
+ * ターゲットのプロパティをマッピングするためのインターフェースです。
  * 
  * @author higa
  * 
  */
-public interface RowMapper {
+public interface PropertyMapper {
 
 	/**
-	 * 列の値を設定します。
+	 * ターゲットに値を設定します。
 	 * 
-	 * @param value
+	 * @param target
+	 * @param values
 	 */
-	void setValues(Object[] value);
-
-	/**
-	 * <code>setValues()</code>の後に呼び出されます。
-	 * 
-	 * @return 行がマッピングされたオブジェクト
-	 */
-	Object getTarget();
+	void setValue(Object target, Object[] values);
 }

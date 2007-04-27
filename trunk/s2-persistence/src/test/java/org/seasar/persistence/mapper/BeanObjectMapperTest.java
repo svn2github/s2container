@@ -20,7 +20,6 @@ import java.util.HashMap;
 
 import junit.framework.TestCase;
 
-import org.seasar.persistence.ObjectMapper;
 import org.seasar.persistence.PropertyMapper;
 import org.seasar.persistence.entity.Employee;
 
@@ -28,12 +27,15 @@ import org.seasar.persistence.entity.Employee;
  * @author higa
  * 
  */
-public class BeanRowMapperTest extends TestCase {
+public class BeanObjectMapperTest extends TestCase {
 
-	private RowMapperImpl rowMapper;
-
-	@Override
-	protected void setUp() throws Exception {
+	/**
+	 * Test method for
+	 * {@link org.seasar.persistence.mapper.BeanObjectMapper#setValues(Object, Object[])}.
+	 * 
+	 * @throws Exception
+	 */
+	public void testSetValues() throws Exception {
 		Field field = Employee.class.getDeclaredField("id");
 		field.setAccessible(true);
 		FieldPropertyMapper propertyMapper = new FieldPropertyMapper(field, 0);
@@ -43,20 +45,38 @@ public class BeanRowMapperTest extends TestCase {
 		BeanObjectMapper objectMapper = new BeanObjectMapper(Employee.class,
 				new PropertyMapper[] { propertyMapper, propertyMapper2 },
 				new int[] { 0 }, new HashMap());
-		rowMapper = new RowMapperImpl(new ObjectMapper[] { objectMapper });
+		objectMapper.setValues(new Object[] { new Long(1), "SCOTT" });
+		Employee emp = (Employee) objectMapper.getTarget();
+		assertEquals(new Long(1), emp.getId());
+		assertEquals("SCOTT", emp.getEmployeeName());
+
+		objectMapper.setValues(new Object[] { new Long(1), "SCOTT" });
+		assertSame(emp, objectMapper.getTarget());
 	}
 
 	/**
 	 * Test method for
-	 * {@link org.seasar.extension.persistence.mapper.RowMapperImpl#setValues(Object[])}.
+	 * {@link org.seasar.persistence.mapper.BeanObjectMapper#setValues(Object, Object[])}.
 	 * 
 	 * @throws Exception
 	 */
-	public void testSetValues() throws Exception {
-		rowMapper.setValues(new Object[] { new Long(1), "SCOTT" });
-		Employee emp = (Employee) rowMapper.getTarget();
+	public void testSetValues_multikey() throws Exception {
+		Field field = Employee.class.getDeclaredField("id");
+		field.setAccessible(true);
+		FieldPropertyMapper propertyMapper = new FieldPropertyMapper(field, 0);
+		Field field2 = Employee.class.getDeclaredField("employeeName");
+		field2.setAccessible(true);
+		FieldPropertyMapper propertyMapper2 = new FieldPropertyMapper(field2, 1);
+		BeanObjectMapper objectMapper = new BeanObjectMapper(Employee.class,
+				new PropertyMapper[] { propertyMapper, propertyMapper2 },
+				new int[] { 0, 1 }, new HashMap());
+		objectMapper.setValues(new Object[] { new Long(1), "SCOTT" });
+		Employee emp = (Employee) objectMapper.getTarget();
 		assertEquals(new Long(1), emp.getId());
 		assertEquals("SCOTT", emp.getEmployeeName());
+
+		objectMapper.setValues(new Object[] { new Long(1), "SCOTT" });
+		assertSame(emp, objectMapper.getTarget());
 	}
 
 }

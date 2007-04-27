@@ -18,7 +18,7 @@ package org.seasar.persistence.mapper;
 import java.lang.reflect.Field;
 
 import org.seasar.framework.util.FieldUtil;
-import org.seasar.persistence.ColumnMapper;
+import org.seasar.persistence.PropertyMapper;
 
 /**
  * <code>Field</code>を使ってプロパティの値を設定するクラスです。
@@ -26,21 +26,25 @@ import org.seasar.persistence.ColumnMapper;
  * @author higa
  * 
  */
-public class FieldColumnMapper implements ColumnMapper {
+public class FieldPropertyMapper implements PropertyMapper {
 
 	protected Field field;
 
+	protected int propertyIndex;
+
 	/**
-	 * <code>FieldColumnMapper</code>を作成します。
+	 * <code>FieldPropertyMapper</code>を作成します。
 	 * 
 	 * @param field
+	 * @param propertyIndex
 	 */
-	public FieldColumnMapper(Field field) {
+	public FieldPropertyMapper(Field field, int propertyIndex) {
 		this.field = field;
+		this.propertyIndex = propertyIndex;
 	}
 
-	public void setValue(Object target, Object value) {
-		setFieldValue(target, value);
+	public void setValue(Object target, Object[] values) {
+		setFieldValue(target, values[propertyIndex]);
 	}
 
 	protected void setFieldValue(Object target, Object value) {

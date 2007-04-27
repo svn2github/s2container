@@ -29,16 +29,16 @@ public class FieldColumnMapperTest extends TestCase {
 
 	/**
 	 * Test method for
-	 * {@link org.seasar.extension.persistence.mapper.FieldColumnMapper#setValue(java.lang.Object, java.lang.Object)}.
+	 * {@link org.seasar.extension.persistence.mapper.FieldPropertyMapper#setValue(java.lang.Object, java.lang.Object[])}.
 	 * 
 	 * @throws Exception
 	 */
 	public void testSetValue() throws Exception {
 		Field field = Employee.class.getDeclaredField("id");
 		field.setAccessible(true);
-		FieldColumnMapper mapper = new FieldColumnMapper(field);
+		FieldPropertyMapper mapper = new FieldPropertyMapper(field, 0);
 		Employee emp = new Employee();
-		mapper.setValue(emp, new Long(1));
+		mapper.setValue(emp, new Object[] { new Long(1) });
 		assertEquals(new Long(1), emp.getId());
 	}
 
