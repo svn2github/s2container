@@ -15,14 +15,20 @@
  */
 package org.seasar.persistence.dialect;
 
+import org.seasar.persistence.DbmsDialect;
+
 /**
+ * Firebird用の方言を扱うクラスです。
+ * 
  * @author higa
  * 
  */
-public class FirebirdDialect extends StandardDialect {
+public class FirebirdDialect extends DbmsDialect {
 
-	@Override
-	public String getName() {
-		return "firebird";
+	/**
+	 * <code>FirebirdDialect</code>を作成します。
+	 */
+	public FirebirdDialect() {
+		name = "firebird";
 	}
 }

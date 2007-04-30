@@ -15,14 +15,20 @@
  */
 package org.seasar.persistence.dialect;
 
+import org.seasar.persistence.DbmsDialect;
+
 /**
+ * Postgre用の方言を扱うクラスです。
+ * 
  * @author higa
  * 
  */
-public class PostgreDialect extends StandardDialect {
+public class PostgreDialect extends DbmsDialect {
 
-	@Override
-	public String getName() {
-		return "postgre";
+	/**
+	 * <code>PostgreDialect</code>を作成します。
+	 */
+	public PostgreDialect() {
+		name = "postgre";
 	}
 }

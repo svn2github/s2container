@@ -15,14 +15,20 @@
  */
 package org.seasar.persistence.dialect;
 
+import org.seasar.persistence.DbmsDialect;
+
 /**
+ * Derby用の方言を扱うクラスです。
+ * 
  * @author higa
  * 
  */
-public class DerbyDialect extends StandardDialect {
+public class DerbyDialect extends DbmsDialect {
 
-	@Override
-	public String getName() {
-		return "derby";
+	/**
+	 * <code>DerbyDialect</code>を作成します。
+	 */
+	public DerbyDialect() {
+		name = "derby";
 	}
 }

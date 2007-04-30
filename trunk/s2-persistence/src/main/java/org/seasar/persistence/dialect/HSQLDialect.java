@@ -15,14 +15,20 @@
  */
 package org.seasar.persistence.dialect;
 
+import org.seasar.persistence.DbmsDialect;
+
 /**
+ * HSQL用の方言を扱うクラスです。
+ * 
  * @author higa
  * 
  */
-public class HSQLDialect extends StandardDialect {
+public class HSQLDialect extends DbmsDialect {
 
-	@Override
-	public String getName() {
-		return "hsql";
+	/**
+	 * <code>HSQLDialect</code>を作成します。
+	 */
+	public HSQLDialect() {
+		name = "hsql";
 	}
 }

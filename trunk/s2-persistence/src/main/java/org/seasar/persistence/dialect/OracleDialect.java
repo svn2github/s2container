@@ -15,14 +15,22 @@
  */
 package org.seasar.persistence.dialect;
 
+import org.seasar.persistence.DbmsDialect;
+
 /**
+ * Oracle用の方言を扱うクラスです。
+ * 
  * @author higa
  * 
  */
-public class OracleDialect extends StandardDialect {
+public class OracleDialect extends DbmsDialect {
 
-	@Override
-	public String getName() {
-		return "oracle";
+	/**
+	 * <code>OracleDialect</code>を作成します。
+	 */
+	public OracleDialect() {
+		name = "oracle";
+		supportsBooleanColumn = false;
+		hasFullWidthTildeBug = true;
 	}
 }

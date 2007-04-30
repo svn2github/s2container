@@ -15,14 +15,20 @@
  */
 package org.seasar.persistence.dialect;
 
+import org.seasar.persistence.DbmsDialect;
+
 /**
+ * MaxDB用の方言を扱うクラスです。
+ * 
  * @author higa
  * 
  */
-public class MaxDBDialect extends StandardDialect {
+public class MaxDBDialect extends DbmsDialect {
 
-	@Override
-	public String getName() {
-		return "maxdb";
+	/**
+	 * <code>MaxDBDialect</code>を作成します。
+	 */
+	public MaxDBDialect() {
+		name = "maxdb";
 	}
 }

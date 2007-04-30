@@ -15,14 +15,20 @@
  */
 package org.seasar.persistence.dialect;
 
+import org.seasar.persistence.DbmsDialect;
+
 /**
+ * MSSQL用の方言を扱うクラスです。
+ * 
  * @author higa
  * 
  */
-public class MSSQLDialect extends StandardDialect {
+public class MSSQLDialect extends DbmsDialect {
 
-	@Override
-	public String getName() {
-		return "mssql";
+	/**
+	 * <code>MSSQLDialect</code>を作成します。
+	 */
+	public MSSQLDialect() {
+		name = "mssql";
 	}
 }

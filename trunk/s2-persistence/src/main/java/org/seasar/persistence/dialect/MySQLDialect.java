@@ -15,14 +15,20 @@
  */
 package org.seasar.persistence.dialect;
 
+import org.seasar.persistence.DbmsDialect;
+
 /**
+ * MySQL用の方言を扱うクラスです。
+ * 
  * @author higa
  * 
  */
-public class MySQLDialect extends StandardDialect {
+public class MySQLDialect extends DbmsDialect {
 
-	@Override
-	public String getName() {
-		return "mysql";
+	/**
+	 * <code>MySQLDialect</code>を作成します。
+	 */
+	public MySQLDialect() {
+		name = "mysql";
 	}
 }

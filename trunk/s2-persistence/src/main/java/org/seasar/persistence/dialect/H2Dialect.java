@@ -15,14 +15,20 @@
  */
 package org.seasar.persistence.dialect;
 
+import org.seasar.persistence.DbmsDialect;
+
 /**
+ * H2用の方言を扱うクラスです。
+ * 
  * @author higa
  * 
  */
-public class H2Dialect extends StandardDialect {
+public class H2Dialect extends DbmsDialect {
 
-	@Override
-	public String getName() {
-		return "h2";
+	/**
+	 * <code>H2Dialect</code>を作成します。
+	 */
+	public H2Dialect() {
+		name = "h2";
 	}
 }

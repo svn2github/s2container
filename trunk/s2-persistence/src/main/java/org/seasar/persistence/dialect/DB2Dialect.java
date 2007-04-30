@@ -15,14 +15,20 @@
  */
 package org.seasar.persistence.dialect;
 
+import org.seasar.persistence.DbmsDialect;
+
 /**
+ * DB2用の方言を扱うクラスです。
+ * 
  * @author higa
  * 
  */
-public class DB2Dialect extends StandardDialect {
+public class DB2Dialect extends DbmsDialect {
 
-	@Override
-	public String getName() {
-		return "db2";
+	/**
+	 * <code>DB2Dialect</code>を作成します。
+	 */
+	public DB2Dialect() {
+		name = "db2";
 	}
 }
