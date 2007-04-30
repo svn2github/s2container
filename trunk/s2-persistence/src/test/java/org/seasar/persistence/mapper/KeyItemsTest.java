@@ -26,6 +26,9 @@ public class KeyItemsTest extends TestCase {
 	protected void tearDown() throws Exception {
 	}
 
+	/**
+	 * @throws Exception
+	 */
 	public void testEquals() throws Exception {
 		Object[] values = new Object[] { "1", "2" };
 		KeyItems items = new KeyItems(values);
@@ -34,6 +37,9 @@ public class KeyItemsTest extends TestCase {
 		assertFalse(new KeyItems(new Object[] { "1" }).equals(items));
 	}
 
+	/**
+	 * @throws Exception
+	 */
 	public void testHashCode() throws Exception {
 		Object[] values = new Object[] { "1", "2" };
 		KeyItems items = new KeyItems(values);

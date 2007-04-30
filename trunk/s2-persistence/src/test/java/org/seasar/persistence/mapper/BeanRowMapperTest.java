@@ -55,8 +55,8 @@ public class BeanRowMapperTest extends TestCase {
 	public void testSetValues() throws Exception {
 		rowMapper.setValues(new Object[] { new Long(1), "SCOTT" });
 		Employee emp = (Employee) rowMapper.getTarget();
-		assertEquals(new Long(1), emp.getId());
-		assertEquals("SCOTT", emp.getEmployeeName());
+		assertEquals(new Long(1), emp.id);
+		assertEquals("SCOTT", emp.employeeName);
 	}
 
 }

@@ -15,7 +15,6 @@
  */
 package org.seasar.persistence.entity;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -24,15 +23,23 @@ import java.util.List;
  */
 public class Department {
 
-	private Long departmentId;
+	/**
+	 * 
+	 */
+	public Long id;
 
-	private String departmentName;
+	/**
+	 * 
+	 */
+	public String departmentName;
 
-	private Integer departmentVersion;
+	/**
+	 * 
+	 */
+	public Integer version;
 
-	private Timestamp departmentInserted;
-
-	private Timestamp departmentUpdated;
-
-	private List<Employee> employees;
+	/**
+	 * 
+	 */
+	public List<Employee> employees;
 }

@@ -28,6 +28,14 @@ public class BeanObjectMapper implements ObjectMapper {
 
 	protected Object target;
 
+	/**
+	 * <code>BeanObjectMapper</code>を作成します。
+	 * 
+	 * @param beanClass
+	 * @param propertyMappers
+	 * @param idIndices
+	 * @param context
+	 */
 	public BeanObjectMapper(Class beanClass, PropertyMapper[] propertyMappers,
 			int[] idIndices, Map context) {
 		this.beanClass = beanClass;
@@ -37,10 +45,15 @@ public class BeanObjectMapper implements ObjectMapper {
 	}
 
 	public void setValues(Object[] values) {
-		Object key = getKey(values);
-		if (key != null) {
-			target = getCache(key);
-			if (target != null) {
+		Object key = null;
+		if (idIndices.length > 0) {
+			key = getKey(values);
+			if (key != null) {
+				target = getCache(key);
+				if (target != null) {
+					return;
+				}
+			} else {
 				return;
 			}
 		}
@@ -48,7 +61,9 @@ public class BeanObjectMapper implements ObjectMapper {
 		for (PropertyMapper propertyMapper : propertyMappers) {
 			propertyMapper.setValue(target, values);
 		}
-		setupCache(key);
+		if (key != null) {
+			setupCache(key);
+		}
 	}
 
 	public Object getTarget() {
@@ -56,15 +71,15 @@ public class BeanObjectMapper implements ObjectMapper {
 	}
 
 	protected Object getKey(Object[] values) {
-		if (idIndices.length == 0) {
-			return null;
-		}
 		if (idIndices.length == 1) {
 			return values[idIndices[0]];
 		} else {
 			Object[] objs = new Object[idIndices.length];
 			for (int i = 0; i < idIndices.length; i++) {
 				objs[i] = values[idIndices[i]];
+				if (objs[i] == null) {
+					return null;
+				}
 			}
 			return new KeyItems(objs);
 		}

@@ -39,7 +39,7 @@ public class FieldColumnMapperTest extends TestCase {
 		FieldPropertyMapper mapper = new FieldPropertyMapper(field, 0);
 		Employee emp = new Employee();
 		mapper.setValue(emp, new Object[] { new Long(1) });
-		assertEquals(new Long(1), emp.getId());
+		assertEquals(new Long(1), emp.id);
 	}
 
 }

@@ -27,15 +27,16 @@ public final class KeyItems {
 
 	private int hashCode;
 
+	/**
+	 * <code>KeyItems</code>を作成します。
+	 * 
+	 * @param values
+	 */
 	public KeyItems(Object[] values) {
 		this.values = values;
 		for (int i = 0; i < values.length; ++i) {
 			hashCode += values[i].hashCode();
 		}
-	}
-
-	public Object[] getValues() {
-		return values;
 	}
 
 	public int hashCode() {

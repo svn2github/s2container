@@ -47,8 +47,8 @@ public class BeanObjectMapperTest extends TestCase {
 				new int[] { 0 }, new HashMap());
 		objectMapper.setValues(new Object[] { new Long(1), "SCOTT" });
 		Employee emp = (Employee) objectMapper.getTarget();
-		assertEquals(new Long(1), emp.getId());
-		assertEquals("SCOTT", emp.getEmployeeName());
+		assertEquals(new Long(1), emp.id);
+		assertEquals("SCOTT", emp.employeeName);
 
 		objectMapper.setValues(new Object[] { new Long(1), "SCOTT" });
 		assertSame(emp, objectMapper.getTarget());
@@ -72,11 +72,10 @@ public class BeanObjectMapperTest extends TestCase {
 				new int[] { 0, 1 }, new HashMap());
 		objectMapper.setValues(new Object[] { new Long(1), "SCOTT" });
 		Employee emp = (Employee) objectMapper.getTarget();
-		assertEquals(new Long(1), emp.getId());
-		assertEquals("SCOTT", emp.getEmployeeName());
+		assertEquals(new Long(1), emp.id);
+		assertEquals("SCOTT", emp.employeeName);
 
 		objectMapper.setValues(new Object[] { new Long(1), "SCOTT" });
 		assertSame(emp, objectMapper.getTarget());
 	}
-
 }

@@ -28,7 +28,7 @@ public interface SelectGenerator {
 	 * 
 	 * @param entityMeta
 	 * @param criteria
-	 * @return <code>SqlExecution</code>
+	 * @return <code>SqlProcessor</code>
 	 */
-	SqlStatement generate(EntityMeta entityMeta, Object criteria);
+	SelectProcessor generate(EntityMeta entityMeta, Object criteria);
 }
