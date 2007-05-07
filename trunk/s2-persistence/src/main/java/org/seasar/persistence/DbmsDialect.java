@@ -29,6 +29,8 @@ public class DbmsDialect {
 
 	protected boolean hasFullWidthTildeBug = false;
 
+	protected boolean supportsResultSetScrollInsensitive = true;
+
 	/**
 	 * 名前を返します。
 	 * 
@@ -73,5 +75,25 @@ public class DbmsDialect {
 	 */
 	public void setHasFullWidthTildeBug(boolean hasFullWidthTildeBug) {
 		this.hasFullWidthTildeBug = hasFullWidthTildeBug;
+	}
+
+	/**
+	 * {@link java.sql.ResultSet}が{@link java.sql.ResultSet#TYPE_SCROLL_INSENSITIVE}をサポートするかどうかを返します。
+	 * 
+	 * @return supportsResultSetScrollInsensitive
+	 */
+	public boolean isSupportsResultSetScrollInsensitive() {
+		return supportsResultSetScrollInsensitive;
+	}
+
+	/**
+	 * supportsResultSetScrollInsensitiveがtrueの場合、 Pagingでカーソルの位置を操作する可能性があります。
+	 * PagingをネイティブにサポートしているDBMSでは、 insensitiveなResultSetは使いません。
+	 * 
+	 * @param supportsResultSetScrollInsensitive
+	 */
+	public void setSupportsResultSetScrollInsensitive(
+			boolean supportsResultSetScrollInsensitive) {
+		this.supportsResultSetScrollInsensitive = supportsResultSetScrollInsensitive;
 	}
 }

@@ -45,6 +45,11 @@ public class Employee {
 	/**
 	 * 
 	 */
+	public JobType job;
+
+	/**
+	 * 
+	 */
 	public BigDecimal salary;
 
 	/**
