@@ -9,5 +9,24 @@ package org.seasar.persistence.entity;
  */
 public enum JobType {
 
-	CLERK, SALESMAN, MANAGER, ANALYST, PRESIDENT
+	/**
+	 * 
+	 */
+	CLERK,
+	/**
+	 * 
+	 */
+	SALESMAN,
+	/**
+	 * 
+	 */
+	MANAGER,
+	/**
+	 * 
+	 */
+	ANALYST,
+	/**
+	 * 
+	 */
+	PRESIDENT
 }
