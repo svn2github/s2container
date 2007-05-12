@@ -15,25 +15,26 @@
  */
 package org.seasar.persistence;
 
+import java.sql.PreparedStatement;
+
 /**
- * 行の値をオブジェクトにマッピングするためのインターフェースです。
+ * {@link PreparedStatement}をプーリングするクラスです。
  * 
  * @author higa
  * 
  */
-public interface ObjectMapper {
+public interface PreparedStatementPool {
 
 	/**
-	 * ターゲットに値を設定します。
+	 * SQLに対応する{@link PreparedStatement}を返します。
 	 * 
-	 * @param values
+	 * @param sql
+	 * @return {@link PreparedStatement}
 	 */
-	void setValues(Object[] values);
+	PreparedStatement get(String sql);
 
 	/**
-	 * 現在処理中のターゲットを返します。
-	 * 
-	 * @return 現在処理中のターゲット
+	 * プーリングしている{@link PreparedStatement}をすべて閉じます。
 	 */
-	Object getTarget();
+	void close();
 }

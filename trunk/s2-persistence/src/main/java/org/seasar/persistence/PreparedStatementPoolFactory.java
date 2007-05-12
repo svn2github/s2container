@@ -16,24 +16,17 @@
 package org.seasar.persistence;
 
 /**
- * 行の値をオブジェクトにマッピングするためのインターフェースです。
+ * {@link PreparedStatementPool}を作成するインターフェースです。
  * 
  * @author higa
  * 
  */
-public interface ObjectMapper {
+public interface PreparedStatementPoolFactory {
 
 	/**
-	 * ターゲットに値を設定します。
+	 * {@link PreparedStatementPool}を作成します。
 	 * 
-	 * @param values
+	 * @return {@link PreparedStatementPool}
 	 */
-	void setValues(Object[] values);
-
-	/**
-	 * 現在処理中のターゲットを返します。
-	 * 
-	 * @return 現在処理中のターゲット
-	 */
-	Object getTarget();
+	PreparedStatementPool createPreparedStatementPool();
 }

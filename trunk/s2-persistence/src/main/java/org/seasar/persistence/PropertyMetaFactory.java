@@ -18,7 +18,7 @@ package org.seasar.persistence;
 import java.lang.reflect.Field;
 
 /**
- * <code>PropertyMeta</code>のファクトリです。
+ * {@link PropertyMeta}を作成するためのインターフェースです。
  * 
  * @author higa
  * 
@@ -26,10 +26,10 @@ import java.lang.reflect.Field;
 public interface PropertyMetaFactory {
 
 	/**
-	 * <code>PropertyMeta</code>を作成します。
+	 * {@link PropertyMeta}を作成します。
 	 * 
 	 * @param field
-	 * @return <code>PropertyMeta</code>
+	 * @return {@link PropertyMeta}
 	 */
 	PropertyMeta createPropertyMeta(Field field);
 }

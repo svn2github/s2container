@@ -16,7 +16,7 @@
 package org.seasar.persistence;
 
 /**
- * select文を作成するインターフェースです。
+ * {@link SelectProcessor}を作成するインターフェースです。
  * 
  * @author higa
  * 
@@ -28,7 +28,7 @@ public interface SelectGenerator {
 	 * 
 	 * @param entityMeta
 	 * @param criteria
-	 * @return <code>SqlProcessor</code>
+	 * @return {@link SelectProcessor}
 	 */
 	SelectProcessor generate(EntityMeta entityMeta, Object criteria);
 }

@@ -34,7 +34,7 @@ public class DbmsDialect {
 	/**
 	 * 名前を返します。
 	 * 
-	 * @return
+	 * @return name
 	 */
 	public String getName() {
 		return name;

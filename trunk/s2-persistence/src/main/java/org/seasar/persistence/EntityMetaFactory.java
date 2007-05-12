@@ -16,7 +16,7 @@
 package org.seasar.persistence;
 
 /**
- * <code>EntityMeta</code>のファクトリです。
+ * {@link EntityMeta}を作成するインターフェースです。
  * 
  * @author higa
  * 
@@ -24,10 +24,10 @@ package org.seasar.persistence;
 public interface EntityMetaFactory {
 
 	/**
-	 * <code>EntityMeta</code>を返します。
+	 * {@link EntityMeta}を返します。
 	 * 
 	 * @param entityClass
-	 * @return <code>EntityMeta</code>
+	 * @return {@link EntityMeta}
 	 * @throws NullPointerException
 	 *             entityClassがnullの場合。
 	 */

@@ -18,7 +18,7 @@ package org.seasar.persistence;
 import java.lang.reflect.Field;
 
 /**
- * <code>ColumnMeta</code>のファクトリです。
+ * {@link ColumnMeta}を作成するためのインターフェースです。
  * 
  * @author higa
  * 
@@ -26,10 +26,10 @@ import java.lang.reflect.Field;
 public interface ColumnMetaFactory {
 
 	/**
-	 * <code>ColumnMeta</code>を作成します。
+	 * {@link ColumnMeta}を作成します。
 	 * 
 	 * @param field
-	 * @return <code>ColumnMeta</code>
+	 * @return {@link ColumnMeta}
 	 */
 	ColumnMeta createColumnMeta(Field field);
 }

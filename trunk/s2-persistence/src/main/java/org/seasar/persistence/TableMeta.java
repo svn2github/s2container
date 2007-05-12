@@ -54,7 +54,7 @@ public class TableMeta {
 	/**
 	 * カタログを返します。
 	 * 
-	 * @return catalog.
+	 * @return catalog
 	 */
 	public String getCatalog() {
 		return catalog;
@@ -72,7 +72,7 @@ public class TableMeta {
 	/**
 	 * スキーマを返します。
 	 * 
-	 * @return schema.
+	 * @return schema
 	 */
 	public String getSchema() {
 		return schema;
