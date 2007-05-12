@@ -20,10 +20,10 @@ import junit.framework.TestCase;
 import org.seasar.framework.convention.impl.PersistenceConventionImpl;
 import org.seasar.persistence.dto.EmployeeDto;
 import org.seasar.persistence.exception.NoEntityRuntimeException;
-import org.seasar.persistence.factory.ColumnMetaFactoryImpl;
-import org.seasar.persistence.factory.EntityMetaFactoryImpl;
-import org.seasar.persistence.factory.PropertyMetaFactoryImpl;
-import org.seasar.persistence.factory.TableMetaFactoryImpl;
+import org.seasar.persistence.meta.ColumnMetaFactoryImpl;
+import org.seasar.persistence.meta.EntityMetaFactoryImpl;
+import org.seasar.persistence.meta.PropertyMetaFactoryImpl;
+import org.seasar.persistence.meta.TableMetaFactoryImpl;
 
 /**
  * @author higa

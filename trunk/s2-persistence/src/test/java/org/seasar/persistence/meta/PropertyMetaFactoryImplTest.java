@@ -13,7 +13,7 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.persistence.factory;
+package org.seasar.persistence.meta;
 
 import java.lang.reflect.Field;
 
@@ -24,6 +24,8 @@ import junit.framework.TestCase;
 import org.seasar.framework.convention.impl.PersistenceConventionImpl;
 import org.seasar.persistence.PropertyMeta;
 import org.seasar.persistence.entity.Employee;
+import org.seasar.persistence.meta.ColumnMetaFactoryImpl;
+import org.seasar.persistence.meta.PropertyMetaFactoryImpl;
 
 /**
  * @author higa

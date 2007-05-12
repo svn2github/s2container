@@ -13,51 +13,46 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.persistence.factory;
+package org.seasar.persistence.meta;
 
-import javax.persistence.Table;
+import java.lang.reflect.Field;
 
 import junit.framework.TestCase;
 
 import org.seasar.framework.convention.impl.PersistenceConventionImpl;
-import org.seasar.persistence.TableMeta;
+import org.seasar.persistence.ColumnMeta;
 import org.seasar.persistence.entity.Employee;
+import org.seasar.persistence.meta.ColumnMetaFactoryImpl;
 
 /**
  * @author higa
  * 
  */
-public class TableMetaFactoryImplTest extends TestCase {
+public class ColumnMetaFactoryImplTest extends TestCase {
 
-	private TableMetaFactoryImpl factory;
+	private ColumnMetaFactoryImpl factory;
 
 	@Override
 	protected void setUp() {
-		factory = new TableMetaFactoryImpl();
+		factory = new ColumnMetaFactoryImpl();
 		factory.setPersistenceConvention(new PersistenceConventionImpl());
 	}
 
 	/**
 	 * @throws Exception
 	 */
-	public void testCreateTableMeta() throws Exception {
-		TableMeta tableMeta = factory.createTableMeta(Employee.class,
-				"Employee");
-		assertEquals("EMPLOYEE", tableMeta.getName());
+	public void testCreateTableMeta_annotation() throws Exception {
+		Field field = Employee.class.getDeclaredField("id");
+		ColumnMeta columnMeta = factory.createColumnMeta(field);
+		assertEquals("EMP_ID", columnMeta.getName());
 	}
 
 	/**
 	 * @throws Exception
 	 */
-	public void testCreateTableMeta_annotable() throws Exception {
-		TableMeta tableMeta = factory.createTableMeta(Hoge.class, "Hoge");
-		assertEquals("aaa", tableMeta.getName());
-		assertEquals("bbb", tableMeta.getCatalog());
-		assertEquals("ccc", tableMeta.getSchema());
-	}
-
-	@Table(name = "aaa", catalog = "bbb", schema = "ccc")
-	private static class Hoge {
-
+	public void testCreateTableMeta_noannotation() throws Exception {
+		Field field = Employee.class.getDeclaredField("version");
+		ColumnMeta columnMeta = factory.createColumnMeta(field);
+		assertEquals("VERSION", columnMeta.getName());
 	}
 }

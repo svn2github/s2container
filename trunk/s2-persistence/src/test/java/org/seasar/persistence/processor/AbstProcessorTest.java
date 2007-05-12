@@ -13,25 +13,39 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.persistence.types;
+package org.seasar.persistence.processor;
 
 import junit.framework.TestCase;
 
-import org.seasar.framework.container.annotation.tiger.InstanceType;
+import org.seasar.extension.sql.SqlContext;
+import org.seasar.persistence.PreparedStatementPool;
 
 /**
  * @author higa
  * 
  */
-public class EnumTypeTest extends TestCase {
+public class AbstProcessorTest extends TestCase {
 
 	/**
 	 * Test method for
-	 * {@link org.seasar.persistence.types.EnumType#toEnum(java.lang.String)}.
+	 * {@link org.seasar.persistence.processor.AbstractProcessor#log(String)}.
 	 */
-	public void testToEnum() {
-		EnumType enumType = new EnumType(InstanceType.class);
-		assertEquals(InstanceType.SINGLETON, enumType
-				.toEnum(InstanceType.SINGLETON.name()));
+	public void testLog() {
+		AbstractProcessor processor = new MyProcessor(null, null, getClass());
+		processor.log("select * from emp");
+	}
+
+	private static class MyProcessor extends AbstractProcessor {
+
+		/**
+		 * @param psPool
+		 * @param sqlContext
+		 * @param daoClass
+		 */
+		public MyProcessor(PreparedStatementPool psPool, SqlContext sqlContext,
+				Class<?> daoClass) {
+			super(psPool, sqlContext, daoClass);
+		}
+
 	}
 }
