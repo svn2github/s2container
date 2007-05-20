@@ -69,6 +69,7 @@
 </li>
 <li><a href="#annotation">アノテーションの利用</a>
 <ul>
+<li><a href="#rootDiconAnnotation"><code>@RootDicon</code></a></li>
 <li><a href="#warmDeployAnnotation"><code>@WarmDeploy</code></a></li>
 <li><a href="#prerequisiteAnnotation"><code>@Prerequisite</code></a></li>
 <li><a href="#txBehaviorAnnotation"><code>@TxBehavior</code></a></li>
@@ -80,7 +81,8 @@
 </li>
 <li><a href="#s2junit4Settings">S2JUnit4の設定</a>
 <ul>
-<li><a href="#s2junit4Dicon">s2junit4.dicon</a></li>
+<li><a href="#s2junit4Dicon">デフォルトのs2junit4.dicon</a></li>
+<li><a href="#simpleS2junit4Dicon">シンプルなs2junit4.dicon</a></li>
 </ul>
 </li>
 <li><a href="#customization">S2JUnit4のカスタマイズ</a>
@@ -343,6 +345,17 @@ public class Hoge {
 <h2><a name="annotation">アノテーションの利用</a></h2>
     <p>
         アノテーションを利用することで、S2JUnit4のデフォルトの振る舞いの変更やモックの利用ができます。JUnit4のアノテーションはS2JUnit4においてもすべて利用可能です。以下ではSeasar2が提供するアノテーションについて説明します。</p>
+<h3><a name="rootDiconAnnotation"><code>@RootDicon</code></a></h3>
+<p>
+        ルートコンテナを明示的に指定したい場合に使用します。<code>@RootDicon</code>の<code>value</code>要素にはルートコンテナのdiconファイルのパスを指定します。
+    <code>@RootDicon</code>を使用する場合、<code>@RootDicon</code>に指定したdiconファイルを読み込んだコンテナがルートとなり、<code>s2junit4.dicon</code>を読み込んだコンテナがその子コンテナとなります。    
+    <code>@RootDicon</code>を使用しない場合、<code>s2junit4.dicon</code>を読み込んだコンテナがルートコンテナとなります。
+</p>
+<pre>@RootDicon("app.dicon")
+public void hoge() {
+    ...
+}
+</pre>
 <h3><a name="warmDeployAnnotation"><code>@WarmDeploy</code></a></h3>
 <p>
     WARM deployの適用を制御する場合に指定します。<code>@WarmDeploy</code>の<code>value</code>要素にはbooleanを指定します。<code>false</code>を指定するとWARM
@@ -443,8 +456,8 @@ public void hoge() {
 
 <h2><a name="s2junit4Settings">S2JUnit4の設定</a></h2>
     <p>
-        S2JUnit4を実行するには設定ファイルs2junit4.diconが必要です。s2junit4.diconでは、S2JUnit4の実行時に利用されるコンポーネントが定義されます。以下は、S2-Tigerのjarファイルに含まれるs2junit4.diconです。</p>
-<h3><a name="s2junit4Dicon">s2junit4.dicon</a></h3>
+        S2JUnit4を実行するには設定ファイルs2junit4.diconが必要です。s2junit4.diconでは、S2JUnit4の実行時に利用されるコンポーネントが定義されます。以下は、S2-Tigerの配布ファイルに含まれるs2junit4.diconです。</p>
+<h3><a name="s2junit4Dicon">デフォルトのs2junit4.dicon</a></h3>
 <pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN"
   "http://www.seasar.org/dtd/components24.dtd"&gt;
@@ -494,6 +507,30 @@ public void hoge() {
     org.seasar.framework.unit.TestDataPreparerの実装です。定義は必須ではありません。</dd><dd>このコンポーネントはExcelから読み取ったテストデータをデータベースに書き込みます。デフォルトでは事前データをもつExcelのパスが命名規則を用いて指定されています。</dd><dt style="text-indent: 1em"><b>org.seasar.framework.unit.impl.ExpectedReaderImpl</b></dt>
 <dd>
     org.seasar.framework.unit.ExpectedReaderの実装です。定義は必須ではありません。</dd><dd>このコンポーネントはExcelを読みDataSetを返します。デフォルトでは期待値をもつExcelのパスが命名規則を用いて指定されています。&nbsp;</dd></dl>
+
+<h3><a name="simpleS2junit4Dicon">シンプルなs2junit4.dicon</a></h3>
+<p>
+	上述の<code>org.seasar.framework.unit.impl.InternalTestContextImpl</code>はサーブレットAPIのモック機能を持つためServlet APIに依存しています。
+	しかし、この機能が不要な場合<code>org.seasar.framework.unit.impl.SimpleInternalTestContext</code>を代わりに使用できます。
+	このクラスはデフォルトでJTAとEJB3を利用しない設定になっているため、
+	<code>SimpleInternalTestContext</code>を使うとServlet、JTA、EJB3のjarファイルなしでシンプルにS2JUnit4を実行できるようになります。
+	その場合のs2junit4.diconの設定は次のようになります。
+</p>
+<pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN"
+  "http://www.seasar.org/dtd/components24.dtd"&gt;
+&lt;components namespace="s2junit4"&gt;
+
+  &lt;component name="context" class="org.seasar.framework.unit.impl.SimpleInternalTestContext"/&gt;
+
+  &lt;component class="org.seasar.framework.unit.impl.ConfigFileIncluderImpl"&gt;
+    &lt;initMethod name="addConfigFile"&gt;
+      &lt;arg&gt;context.testClassShortName + ".dicon"&lt;/arg&gt;
+    &lt;/initMethod&gt;
+  &lt;/component&gt;
+
+&lt;/components&gt;
+</pre>
 <h2><a name="customization">2JUnit4のカスタマイズ</a></h2>
 <p>
     s2junit4config.diconを使用することでS2JUnit4の内部的な振る舞いをカスタマイズできます（ここで使用するのはs2junit4.diconではなくs2junit4config.diconであることに注意してください）。s2junit4config.diconはCLASSPATHに含める必要があります。以下では、カスタマイズの例をいくつか紹介します。</p>
