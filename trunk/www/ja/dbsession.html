@@ -46,16 +46,37 @@
 その際にアプリケーションサーバのセッション機能は利用しません。
 クラスタリングをサポートしていないアプリケーションサーバを使って、
 セッションレプリケーションを実現できるのです。
-セッション情報はデータベースに書き出されます</p>
+セッション情報はデータベースに書き出されます。
+</p>
 <h2><a name="Setup">セットアップ</a></h2>
-<p>s2-xxx.zipのresources/dbsession.diconをクラスパスに通します。
-dbsession.diconのDbSessionStateManagerImplのdataSourceプロパティを適切に設定します。
+<p>
 セッション情報は、できる限り速度の速いデータベースに書き込んでください。
 インメモリデータベースなどを使うことを推奨します。
+</p>
+<h3>dbsession.dicon</h3>
+<p>s2-xxx.zipのresources/dbsession.diconをクラスパスに通します。
+dbsession.diconのDbSessionStateManagerImplのdataSourceプロパティを適切に設定します。
 dbsession.diconは、app.diconでincludeします。
 </p>
 <p>
-定義したデータソースに次のようなテーブル定義を追加します。
+セッション情報の値はバイトストリームとしてバッチ更新によりデータベースに書き込まれますが、
+RDBMSによってはバイトストリームを含む行のバッチ更新に制限があります。
+その場合、DbSessionStateManagerImplのbatchUpdateDisabledプロパティにtrueを設定し、
+バッチ更新を利用しないようにしてください。
+現在、バイトストリームを含む行のバッチ更新に制限があると判明しているRDBMSには
+以下のものがあります。
+</p>
+<ul>
+<li>Oracle Database 9i (ただし、9iのバージョンによってはこの対応が不要なものもあるかもしれません)</li>
+</ul>
+<h3>テーブル定義</h3>
+<p>
+定義したデータソースにテーブル定義を追加します。
+テーブル定義は使用するRDBMSごとに若干異なります
+</p>
+<p>
+HSQLDBを使用する場合次のように定義します。
+</p>
 <pre>
 CREATE MEMORY TABLE S2SESSION(
   SESSION_ID VARCHAR NOT NULL,
@@ -64,7 +85,29 @@ CREATE MEMORY TABLE S2SESSION(
   LAST_ACCESS TIMESTAMP,
   PRIMARY KEY(SESSION_ID,NAME))
 </pre>
+<p>
+Oracle Database 10g、DB2を使用する場合次のように定義します。
 </p>
+<pre>
+CREATE MEMORY TABLE S2SESSION(
+  SESSION_ID VARCHAR(255) NOT NULL,
+  NAME VARCHAR(255) NOT NULL,
+  VALUE BLOB,
+  LAST_ACCESS TIMESTAMP,
+  PRIMARY KEY(SESSION_ID,NAME))
+</pre>
+<p>
+Oracle Database 9iを使用する場合次のように定義します (ただし、9iのバージョンによっては10gと同じ定義で動作するかもしれません)。
+</p>
+<pre>
+CREATE MEMORY TABLE S2SESSION(
+  SESSION_ID VARCHAR(255) NOT NULL,
+  NAME VARCHAR(255) NOT NULL,
+  VALUE LONG RAW,
+  LAST_ACCESS TIMESTAMP,
+  PRIMARY KEY(SESSION_ID,NAME))
+</pre>
+<h3>Servlet Filter</h3>
 <p>
 web.xmlに次のようにfilterの設定を追加します。
 DbSessionFilterはfilterの中で最初に記述してください。
