@@ -2,10 +2,6 @@ org.seasar.extension.dxo.annotation
 org.seasar.extension.dxo.annotation.impl
 org.seasar.extension.dxo.converter.impl
 org.seasar.extension.dxo.util
-org.seasar.extension.persistence
-org.seasar.extension.persistence.dialect
-org.seasar.extension.persistence.exception
-org.seasar.extension.persistence.factory
 org.seasar.extension.tx.annotation
 org.seasar.framework.aop.annotation
 org.seasar.framework.aop.intertype
@@ -22,6 +18,7 @@ org.seasar.framework.container.factory.property
 org.seasar.framework.ejb
 org.seasar.framework.ejb.impl
 org.seasar.framework.ejb.tx
+org.seasar.framework.exception
 org.seasar.framework.jpa
 org.seasar.framework.jpa.autodetector
 org.seasar.framework.jpa.exception
