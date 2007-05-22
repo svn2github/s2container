@@ -11,8 +11,6 @@ org.seasar.extension.datasource
 org.seasar.extension.datasource.impl
 org.seasar.extension.dbcp
 org.seasar.extension.dbcp.impl
-org.seasar.extension.dbsession
-org.seasar.extension.dbsession.impl
 org.seasar.extension.dxo
 org.seasar.extension.dxo.annotation
 org.seasar.extension.dxo.annotation.impl
@@ -27,6 +25,8 @@ org.seasar.extension.dxo.meta
 org.seasar.extension.dxo.meta.impl
 org.seasar.extension.dxo.util
 org.seasar.extension.filter
+org.seasar.extension.httpsession
+org.seasar.extension.httpsession.impl
 org.seasar.extension.j2ee
 org.seasar.extension.jdbc
 org.seasar.extension.jdbc.impl
