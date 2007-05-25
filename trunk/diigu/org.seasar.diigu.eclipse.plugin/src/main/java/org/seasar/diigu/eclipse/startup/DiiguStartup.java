@@ -15,7 +15,6 @@
  */
 package org.seasar.diigu.eclipse.startup;
 
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.jdt.core.ElementChangedEvent;
 import org.eclipse.jdt.core.IElementChangedListener;
@@ -50,7 +49,8 @@ public class DiiguStartup implements IStartup {
          * @see org.seasar.diigu.eclipse.util.JavaElementDeltaAcceptor.Visitor#visit(org.eclipse.jdt.core.IJavaProject)
          */
         protected boolean visit(IJavaProject project) {
-            return DiiguNature.getInstance(project.getProject()) != null;
+            return ProjectUtils.hasNature(project.getProject(),
+                    DiiguNature.NATURE_ID);
         }
 
         /*
@@ -61,23 +61,15 @@ public class DiiguStartup implements IStartup {
         protected boolean postVisit(IJavaElementDelta delta) {
             IJavaElement e = delta.getElement();
             if (e.getElementType() == IJavaElement.JAVA_PROJECT) {
-                IJavaElementDelta[] children = delta.getAffectedChildren();
-                for (int i = 0; children != null && i < children.length; i++) {
-                    IResourceDelta[] ary = children[i].getResourceDeltas();
-                    for (int j = 0; ary != null && j < ary.length; j++) {
-                        final IResourceDelta d = ary[j];
-                        IResource r = d.getResource();
-                        if (r != null
-                                && ProjectUtils.hasNature(r.getProject(),
-                                        DiiguNature.NATURE_ID)) {
-                            NameEnhanceJob job = new NameEnhanceJob(
-                                    Messages.ENHANCE_INCREMENTALBUILD, d);
-                            job.schedule(3L);
-                        }
-                    }
+                IResourceDelta[] deltas = delta.getResourceDeltas();
+                for (int i = 0; i < deltas.length; i++) {
+                    NameEnhanceJob job = new NameEnhanceJob(
+                            Messages.ENHANCE_INCREMENTALBUILD, deltas[i]);
+                    job.schedule(3L);
                 }
+
             }
-            return false;
+            return true;
         }
     }
 
