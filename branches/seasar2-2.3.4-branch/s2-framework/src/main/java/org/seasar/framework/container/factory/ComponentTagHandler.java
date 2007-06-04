@@ -81,6 +81,7 @@ public class ComponentTagHandler extends TagHandler {
         AnnotationHandler annoHandler = AnnotationHandlerFactory
                 .getAnnotationHandler();
         annoHandler.appendInitMethod(componentDef);
+        annoHandler.appendDestroyMethod(componentDef);
         String expression = null;
         if (body != null) {
             expression = body.trim();

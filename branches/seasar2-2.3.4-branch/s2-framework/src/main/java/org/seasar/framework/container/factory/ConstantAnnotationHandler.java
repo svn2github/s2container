@@ -25,12 +25,15 @@ import org.seasar.framework.beans.factory.BeanDescFactory;
 import org.seasar.framework.container.AspectDef;
 import org.seasar.framework.container.AutoBindingDef;
 import org.seasar.framework.container.ComponentDef;
+import org.seasar.framework.container.DestroyMethodDef;
+import org.seasar.framework.container.IllegalDestroyMethodAnnotationRuntimeException;
 import org.seasar.framework.container.IllegalInitMethodAnnotationRuntimeException;
 import org.seasar.framework.container.InitMethodDef;
 import org.seasar.framework.container.InstanceDef;
 import org.seasar.framework.container.PropertyDef;
 import org.seasar.framework.container.assembler.AutoBindingDefFactory;
 import org.seasar.framework.container.deployer.InstanceDefFactory;
+import org.seasar.framework.container.impl.DestroyMethodDefImpl;
 import org.seasar.framework.container.impl.InitMethodDefImpl;
 import org.seasar.framework.exception.EmptyRuntimeException;
 import org.seasar.framework.util.FieldUtil;
@@ -201,4 +204,50 @@ public class ConstantAnnotationHandler extends AbstractAnnotationHandler {
         InitMethodDef initMethodDef = new InitMethodDefImpl(methodName);
         componentDef.addInitMethodDef(initMethodDef);
     }
+
+    public void appendDestroyMethod(ComponentDef componentDef) {
+        Class componentClass = componentDef.getComponentClass();
+        if (componentClass == null) {
+            return;
+        }
+        BeanDesc beanDesc = BeanDescFactory.getBeanDesc(componentClass);
+        if (!beanDesc.hasField(DESTROY_METHOD)) {
+            return;
+        }
+        String destroyMethodStr = (String) beanDesc.getFieldValue(
+                DESTROY_METHOD, null);
+        if (StringUtil.isEmpty(destroyMethodStr)) {
+            return;
+        }
+        String[] array = StringUtil.split(destroyMethodStr, ", ");
+        for (int i = 0; i < array.length; ++i) {
+            String methodName = array[i].trim();
+            if (!beanDesc.hasMethod(methodName)) {
+                throw new IllegalDestroyMethodAnnotationRuntimeException(
+                        componentClass, methodName);
+            }
+            Method[] methods = beanDesc.getMethods(methodName);
+            if (methods.length != 1
+                    || methods[0].getParameterTypes().length != 0) {
+                throw new IllegalDestroyMethodAnnotationRuntimeException(
+                        componentClass, methodName);
+            }
+            if (!isDestroyMethodRegisterable(componentDef, methodName)) {
+                continue;
+            }
+            appendDestroyMethod(componentDef, methodName);
+        }
+    }
+
+    protected void appendDestroyMethod(ComponentDef componentDef, Method method) {
+        DestroyMethodDef destroyMethodDef = new DestroyMethodDefImpl(method);
+        componentDef.addDestroyMethodDef(destroyMethodDef);
+    }
+
+    protected void appendDestroyMethod(ComponentDef componentDef,
+            String methodName) {
+        DestroyMethodDef destroyMethodDef = new DestroyMethodDefImpl(methodName);
+        componentDef.addDestroyMethodDef(destroyMethodDef);
+    }
+
 }

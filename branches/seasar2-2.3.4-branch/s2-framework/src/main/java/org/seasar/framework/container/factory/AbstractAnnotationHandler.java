@@ -15,16 +15,22 @@
  */
 package org.seasar.framework.container.factory;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.PropertyDesc;
 import org.seasar.framework.beans.factory.BeanDescFactory;
 import org.seasar.framework.container.AutoBindingDef;
 import org.seasar.framework.container.BindingTypeDef;
 import org.seasar.framework.container.ComponentDef;
+import org.seasar.framework.container.DestroyMethodDef;
 import org.seasar.framework.container.InitMethodDef;
 import org.seasar.framework.container.InstanceDef;
 import org.seasar.framework.container.PropertyDef;
+import org.seasar.framework.container.assembler.AutoBindingDefFactory;
 import org.seasar.framework.container.assembler.BindingTypeDefFactory;
+import org.seasar.framework.container.deployer.InstanceDefFactory;
 import org.seasar.framework.container.impl.ComponentDefImpl;
 import org.seasar.framework.container.impl.PropertyDefImpl;
 import org.seasar.framework.util.ClassUtil;
@@ -49,6 +55,8 @@ public abstract class AbstractAnnotationHandler implements AnnotationHandler {
     protected static final String ASPECT = "ASPECT";
 
     protected static final String INIT_METHOD = "INIT_METHOD";
+
+    protected static final String DESTROY_METHOD = "DESTROY_METHOD";
 
     protected static final String INTERCEPTOR = "interceptor";
 
@@ -84,6 +92,29 @@ public abstract class AbstractAnnotationHandler implements AnnotationHandler {
             }
             componentDef.addPropertyDef(propDef);
         }
+    }
+
+    protected InstanceDef getInstanceDef(String name,
+            InstanceDef defaultInstanceDef) {
+        InstanceDef instanceDef = getInstanceDef(name);
+        if (instanceDef != null) {
+            return instanceDef;
+        }
+        return defaultInstanceDef;
+    }
+
+    protected InstanceDef getInstanceDef(String name) {
+        if (StringUtil.isEmpty(name)) {
+            return null;
+        }
+        return InstanceDefFactory.getInstanceDef(name);
+    }
+
+    protected AutoBindingDef getAutoBindingDef(String name) {
+        if (StringUtil.isEmpty(name)) {
+            return null;
+        }
+        return AutoBindingDefFactory.getAutoBindingDef(name);
     }
 
     protected ComponentDef createComponentDefInternal(Class componentClass,
@@ -126,4 +157,25 @@ public abstract class AbstractAnnotationHandler implements AnnotationHandler {
         }
         return true;
     }
+
+    protected boolean isDestroyMethodRegisterable(ComponentDef cd,
+            String methodName) {
+        if (StringUtil.isEmpty(methodName)) {
+            return false;
+        }
+        for (int i = 0; i < cd.getDestroyMethodDefSize(); ++i) {
+            DestroyMethodDef other = cd.getDestroyMethodDef(i);
+            if (methodName.equals(other.getMethodName())
+                    && other.getArgDefSize() == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    protected boolean isFieldInjectionTarget(Field field) {
+        return !Modifier.isStatic(field.getModifiers())
+                && !Modifier.isFinal(field.getModifiers());
+    }
+
 }

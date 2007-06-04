@@ -15,6 +15,8 @@
  */
 package org.seasar.framework.container.impl;
 
+import java.lang.reflect.Method;
+
 import org.seasar.framework.container.DestroyMethodDef;
 
 /**
@@ -25,6 +27,10 @@ public class DestroyMethodDefImpl extends MethodDefImpl implements
         DestroyMethodDef {
 
     public DestroyMethodDefImpl() {
+    }
+
+    public DestroyMethodDefImpl(Method method) {
+        super(method.getName());
     }
 
     public DestroyMethodDefImpl(String methodName) {

@@ -21,6 +21,7 @@ import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.PropertyDesc;
 import org.seasar.framework.container.AutoBindingDef;
 import org.seasar.framework.container.ComponentDef;
+import org.seasar.framework.container.IllegalDestroyMethodAnnotationRuntimeException;
 import org.seasar.framework.container.IllegalInitMethodAnnotationRuntimeException;
 import org.seasar.framework.container.InstanceDef;
 import org.seasar.framework.container.PropertyDef;
@@ -28,6 +29,7 @@ import org.seasar.framework.container.annotation.tiger.Aspect;
 import org.seasar.framework.container.annotation.tiger.AutoBindingType;
 import org.seasar.framework.container.annotation.tiger.Binding;
 import org.seasar.framework.container.annotation.tiger.Component;
+import org.seasar.framework.container.annotation.tiger.DestroyMethod;
 import org.seasar.framework.container.annotation.tiger.InitMethod;
 import org.seasar.framework.container.annotation.tiger.InstanceType;
 import org.seasar.framework.container.assembler.AutoBindingDefFactory;
@@ -39,31 +41,33 @@ import org.seasar.framework.container.deployer.InstanceDefFactory;
  */
 public class TigerAnnotationHandler extends ConstantAnnotationHandler {
 
-    public ComponentDef createComponentDef(Class componentClass, InstanceDef defaultInstanceDef,
-            AutoBindingDef defaultAutoBindingDef) {
+    public ComponentDef createComponentDef(Class componentClass,
+        InstanceDef defaultInstanceDef, AutoBindingDef defaultAutoBindingDef) {
 
         Class<?> clazz = componentClass;
         Component component = clazz.getAnnotation(Component.class);
         if (component == null) {
             return super.createComponentDef(componentClass, defaultInstanceDef,
-                    defaultAutoBindingDef);
-        }
-        ComponentDef componentDef = createComponentDefInternal(componentClass, defaultInstanceDef,
                 defaultAutoBindingDef);
+        }
+        ComponentDef componentDef = createComponentDefInternal(componentClass,
+            defaultInstanceDef, defaultAutoBindingDef);
         componentDef.setComponentName(component.name());
         InstanceType instanceType = component.instance();
         if (instanceType != null) {
-            componentDef.setInstanceDef(InstanceDefFactory.getInstanceDef(instanceType.getName()));
+            componentDef.setInstanceDef(InstanceDefFactory
+                .getInstanceDef(instanceType.getName()));
         }
         AutoBindingType autoBindingType = component.autoBinding();
         if (autoBindingType != null) {
-            componentDef.setAutoBindingDef(AutoBindingDefFactory.getAutoBindingDef(autoBindingType
-                    .getName()));
+            componentDef.setAutoBindingDef(AutoBindingDefFactory
+                .getAutoBindingDef(autoBindingType.getName()));
         }
         return componentDef;
     }
 
-    public PropertyDef createPropertyDef(BeanDesc beanDesc, PropertyDesc propertyDesc) {
+    public PropertyDef createPropertyDef(BeanDesc beanDesc,
+        PropertyDesc propertyDesc) {
 
         if (!propertyDesc.hasWriteMethod()) {
             return super.createPropertyDef(beanDesc, propertyDesc);
@@ -110,8 +114,8 @@ public class TigerAnnotationHandler extends ConstantAnnotationHandler {
                 continue;
             }
             if (method.getParameterTypes().length != 0) {
-                throw new IllegalInitMethodAnnotationRuntimeException(componentClass, method
-                        .getName());
+                throw new IllegalInitMethodAnnotationRuntimeException(
+                    componentClass, method.getName());
             }
             if (!isInitMethodRegisterable(componentDef, method.getName())) {
                 continue;
@@ -120,4 +124,29 @@ public class TigerAnnotationHandler extends ConstantAnnotationHandler {
         }
         super.appendInitMethod(componentDef);
     }
+
+    public void appendDestroyMethod(ComponentDef componentDef) {
+        Class componentClass = componentDef.getComponentClass();
+        if (componentClass == null) {
+            return;
+        }
+        Method[] methods = componentClass.getMethods();
+        for (Method method : methods) {
+            DestroyMethod destroyMethod = method
+                .getAnnotation(DestroyMethod.class);
+            if (destroyMethod == null) {
+                continue;
+            }
+            if (method.getParameterTypes().length != 0) {
+                throw new IllegalDestroyMethodAnnotationRuntimeException(
+                    componentClass, method.getName());
+            }
+            if (!isDestroyMethodRegisterable(componentDef, method.getName())) {
+                continue;
+            }
+            appendDestroyMethod(componentDef, method.getName());
+        }
+        super.appendDestroyMethod(componentDef);
+    }
+
 }

@@ -40,6 +40,8 @@ public interface AnnotationHandler {
 
     public void appendAspect(ComponentDef componentDef);
 
+    public void appendDestroyMethod(ComponentDef componentDef);
+
     public void appendInitMethod(ComponentDef componentDef);
 
     public PropertyDef createPropertyDef(BeanDesc beanDesc,

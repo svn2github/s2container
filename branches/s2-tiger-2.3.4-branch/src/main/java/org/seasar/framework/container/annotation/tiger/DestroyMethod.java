@@ -1,5 +1,5 @@
 /*
- * Copyright 2004-2007 the Seasar Foundation and the Others.
+ * Copyright 2004-2006 the Seasar Foundation and the Others.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,25 +13,18 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.framework.container.factory;
+package org.seasar.framework.container.annotation.tiger;
 
-import org.seasar.framework.container.annotation.tiger.Aspect;
-import org.seasar.framework.container.annotation.tiger.DestroyMethod;
-import org.seasar.framework.container.annotation.tiger.InitMethod;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-@Aspect(value = "aop.traceInterceptor", pointcut = "getAaa")
-public class Hoge {
-
-    public String getAaa() {
-        return null;
-    }
-
-    @InitMethod
-    public void init() {
-    }
-
-    @DestroyMethod
-    public void destroy() {
-    }
-
+/**
+ * 
+ * @author koichik
+ */
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface DestroyMethod {
 }
