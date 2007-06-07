@@ -62,7 +62,7 @@ public class DiiguStartup implements IStartup {
             IJavaElement e = delta.getElement();
             if (e.getElementType() == IJavaElement.JAVA_PROJECT) {
                 IResourceDelta[] deltas = delta.getResourceDeltas();
-                for (int i = 0; i < deltas.length; i++) {
+                for (int i = 0; deltas != null && i < deltas.length; i++) {
                     NameEnhanceJob job = new NameEnhanceJob(
                             Messages.ENHANCE_INCREMENTALBUILD, deltas[i]);
                     job.schedule(3L);
