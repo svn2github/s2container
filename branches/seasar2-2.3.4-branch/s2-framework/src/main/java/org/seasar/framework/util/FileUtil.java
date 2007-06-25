@@ -17,6 +17,7 @@ package org.seasar.framework.util;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 import org.seasar.framework.exception.IORuntimeException;
 
@@ -37,6 +38,14 @@ public final class FileUtil {
         try {
             return file.getCanonicalPath();
         } catch (IOException e) {
+            throw new IORuntimeException(e);
+        }
+    }
+
+    public static URL toURL(final File file) {
+        try {
+            return file.toURL();
+        } catch (final IOException e) {
             throw new IORuntimeException(e);
         }
     }

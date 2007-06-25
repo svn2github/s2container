@@ -32,6 +32,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
 import org.seasar.framework.util.EnumerationAdapter;
+import org.seasar.framework.util.FileUtil;
 import org.seasar.framework.util.ResourceNotFoundRuntimeException;
 import org.seasar.framework.util.ResourceUtil;
 import org.seasar.framework.util.StringUtil;
@@ -101,6 +102,7 @@ public class MockServletContextImpl implements MockServletContext, Serializable 
      * @see javax.servlet.ServletContext#getResourcePaths(java.lang.String)
      */
     public Set getResourcePaths(String path) {
+        path = path.endsWith("/") ? path : path + "/";
         File src = ResourceUtil.getResourceAsFile(".");
         File root = src.getParentFile();
         if (root.getName().equalsIgnoreCase("WEB-INF")) {
@@ -118,11 +120,14 @@ public class MockServletContextImpl implements MockServletContext, Serializable 
             } while (!file.exists() && root != null);
         }
         if (file.isDirectory()) {
+            int len = file.getAbsolutePath().length() + 1;
             Set paths = new HashSet();
             File[] files = file.listFiles();
             if (files != null) {
                 for (int i = 0; i < files.length; ++i) {
-                    paths.add("file:/" + files[i].getAbsolutePath());
+                    paths.add(path
+                            + files[i].getAbsolutePath().substring(len)
+                                    .replace('\\', '/'));
                 }
                 return paths;
             }
@@ -135,6 +140,18 @@ public class MockServletContextImpl implements MockServletContext, Serializable 
      */
     public URL getResource(String path) throws MalformedURLException {
         path = adjustPath(path);
+        File src = ResourceUtil.getResourceAsFile(".");
+        File root = src.getParentFile();
+        if (root.getName().equalsIgnoreCase("WEB-INF")) {
+            root = root.getParentFile();
+        }
+        while (root != null) {
+            File file = new File(root, path);
+            if (file.exists()) {
+                return FileUtil.toURL(file);
+            }
+            root = root.getParentFile();
+        }
         if (ResourceUtil.isExist(path)) {
             return ResourceUtil.getResource(path);
         }
