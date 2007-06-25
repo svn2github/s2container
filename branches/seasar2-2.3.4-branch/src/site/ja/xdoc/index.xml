@@ -42,14 +42,6 @@
 				用意しています。
 				最初にお試しください
 			</p>
-			<h4>Flashによる<a name="demo" id="demo">デモ</a></h4>
-			<dl>
-				<dt><a href="demo/chura.html">3分でできるWebアプリケーション</a></dt>
-				<dd>
-					Seasar2を使えばテーブルをメンテナンスするだけの簡単なアプリケーションなら3分間もあれば作成できます。<br />
-					デモアプリケーションが動くまでを見てみましょう。
-				</dd>
-			</dl>
 		</section>
 		<section name="メーリングリスト">
 			<dl>

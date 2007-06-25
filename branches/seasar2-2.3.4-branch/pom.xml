@@ -5,41 +5,34 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
 >
   <modelVersion>4.0.0</modelVersion>
+
+  <!-- The Basics -->
   <groupId>org.seasar.container</groupId>
   <artifactId>s2-container-project</artifactId>
-  <packaging>pom</packaging>
-  <name>Seasar2</name>
   <version>2.3.20-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <modules>
+    <module>s2-framework</module>
+    <module>s2-extension</module>
+    <module>s2-dist</module>
+  </modules>
+
+  <!-- More Project Information -->
+  <name>Seasar2</name>
   <description>DI Container with AOP</description>
   <url>http://s2container.seasar.org/</url>
-  <issueManagement>
-    <system>JIRA</system>
-    <url><![CDATA[https://www.seasar.org/issues/browse/CONTAINER]]></url>
-  </issueManagement>
   <inceptionYear>2004</inceptionYear>
-  <mailingLists>
-    <mailingList>
-      <name>Seasar-user</name>
-      <subscribe>https://www.seasar.org/mailman/listinfo/seasar-user</subscribe>
-      <unsubscribe>https://www.seasar.org/mailman/listinfo/seasar-user</unsubscribe>
-      <post>seasar-user@ml.seasar.org</post>
-      <archive>https://www.seasar.org/mailman/listinfo/seasar-user</archive>
-    </mailingList>
-    <mailingList>
-      <name>Seasar-dev</name>
-      <subscribe>https://www.seasar.org/mailman/listinfo/seasar-dev</subscribe>
-      <unsubscribe>https://www.seasar.org/mailman/listinfo/seasar-dev</unsubscribe>
-      <post>seasar-dev@ml.seasar.org</post>
-      <archive>https://www.seasar.org/mailman/listinfo/seasar-dev</archive>
-    </mailingList>
-    <mailingList>
-      <name>Seasar-user-en</name>
-      <subscribe>https://www.seasar.org/mailman/listinfo/seasar-user-en</subscribe>
-      <unsubscribe>https://www.seasar.org/mailman/listinfo/seasar-user-en</unsubscribe>
-      <post>seasar-user-en@ml.seasar.org</post>
-      <archive>http://ml.seasar.org/archives/seasar-user-en/</archive>
-    </mailingList>
-  </mailingLists>
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <organization>
+    <name>The Seasar Foundation</name>
+    <url>http://www.seasar.org/</url>
+  </organization>
   <developers>
     <developer>
       <id>higa</id>
@@ -104,22 +97,67 @@
       <name>ERIGUCHI On</name>
     </contributor>
   </contributors>
-  <licenses>
-    <license>
-      <name>The Apache Software License, Version 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-      <distribution>repo</distribution>
-    </license>
-  </licenses>
+
+  <!-- Environment Settings -->
+  <issueManagement>
+    <system>JIRA</system>
+    <url><![CDATA[https://www.seasar.org/issues/browse/CONTAINER]]></url>
+  </issueManagement>
+  <mailingLists>
+    <mailingList>
+      <name>Seasar-user</name>
+      <subscribe>https://www.seasar.org/mailman/listinfo/seasar-user</subscribe>
+      <unsubscribe>https://www.seasar.org/mailman/listinfo/seasar-user</unsubscribe>
+      <post>seasar-user@ml.seasar.org</post>
+      <archive>https://www.seasar.org/mailman/listinfo/seasar-user</archive>
+    </mailingList>
+    <mailingList>
+      <name>Seasar-dev</name>
+      <subscribe>https://www.seasar.org/mailman/listinfo/seasar-dev</subscribe>
+      <unsubscribe>https://www.seasar.org/mailman/listinfo/seasar-dev</unsubscribe>
+      <post>seasar-dev@ml.seasar.org</post>
+      <archive>https://www.seasar.org/mailman/listinfo/seasar-dev</archive>
+    </mailingList>
+    <mailingList>
+      <name>Seasar-user-en</name>
+      <subscribe>https://www.seasar.org/mailman/listinfo/seasar-user-en</subscribe>
+      <unsubscribe>https://www.seasar.org/mailman/listinfo/seasar-user-en</unsubscribe>
+      <post>seasar-user-en@ml.seasar.org</post>
+      <archive>http://ml.seasar.org/archives/seasar-user-en/</archive>
+    </mailingList>
+  </mailingLists>
   <scm>
     <connection>scm:svn:https://www.seasar.org/svn/s2container/branches/seasar2-2.3.4-branch/</connection>
     <developerConnection>scm:svn:https://www.seasar.org/svn/s2container/branches/seasar2-2.3.4-branch/</developerConnection>
     <url>http://www.seasar.org/websvn/listing.php?repname=s2container</url>
   </scm>
-  <organization>
-    <name>The Seasar Foundation</name>
-    <url>http://www.seasar.org/</url>
-  </organization>
+  <repositories>
+    <repository>
+      <id>maven.seasar.org</id>
+      <name>The Seasar Foundation Maven2 Repository</name>
+      <url>http://maven.seasar.org/maven2</url>
+    </repository>
+  </repositories>
+  <distributionManagement>
+    <repository>
+      <uniqueVersion>false</uniqueVersion>
+      <id>maven.seasar.org</id>
+      <name>The Seasar Foundation Maven2 Repository</name>
+      <url>dav:https://www.seasar.org/maven/maven2</url>
+    </repository>
+    <snapshotRepository>
+      <uniqueVersion>true</uniqueVersion>
+      <id>maven.seasar.org</id>
+      <name>The Seasar Foundation Maven2 Snapshot Repository</name>
+      <url>dav:https://www.seasar.org/maven/maven2-snapshot</url>
+    </snapshotRepository>
+    <site>
+      <id>www.seasar.org</id>
+      <url>scp://www.seasar.org/home/groups/s2container/public_html/2.3/</url>
+    </site>
+  </distributionManagement>
+
+  <!-- Build Settings -->
   <build>
     <defaultGoal>validate</defaultGoal>
     <pluginManagement>
@@ -217,18 +255,8 @@
       </extension>
     </extensions>
   </build>
-  <modules>
-    <module>s2-framework</module>
-    <module>s2-extension</module>
-    <module>s2-dist</module>
-  </modules>
-  <repositories>
-    <repository>
-      <id>maven.seasar.org</id>
-      <name>The Seasar Foundation Maven2 Repository</name>
-      <url>http://maven.seasar.org/maven2</url>
-    </repository>
-  </repositories>
+
+  <!-- Dependency Settings -->
   <dependencies>
     <dependency>
       <groupId>hsqldb</groupId>
@@ -260,22 +288,4 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-  <distributionManagement>
-    <repository>
-      <uniqueVersion>false</uniqueVersion>
-      <id>maven.seasar.org</id>
-      <name>The Seasar Foundation Maven2 Repository</name>
-      <url>dav:https://www.seasar.org/maven/maven2</url>
-    </repository>
-    <snapshotRepository>
-      <uniqueVersion>true</uniqueVersion>
-      <id>maven.seasar.org</id>
-      <name>The Seasar Foundation Maven2 Snapshot Repository</name>
-      <url>dav:https://www.seasar.org/maven/maven2-snapshot</url>
-    </snapshotRepository>
-    <site>
-      <id>www.seasar.org</id>
-      <url>scp://www.seasar.org/home/groups/s2container/public_html/2.3/</url>
-    </site>
-  </distributionManagement>
 </project>
