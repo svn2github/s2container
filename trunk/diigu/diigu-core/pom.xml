@@ -4,18 +4,35 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
 >
   <modelVersion>4.0.0</modelVersion>
+
+  <!-- The Basics -->
   <groupId>org.seasar.container</groupId>
   <artifactId>diigu-core</artifactId>
+  <version>1.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
+
+  <!-- More Project Information -->
   <name>Diigu</name>
-  <version>1.0.0</version>
   <description></description>
   <url>http://s2container.seasar.org/</url>
+  <inceptionYear>2005</inceptionYear>
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <organization>
+    <name>The Seasar Foundation</name>
+    <url>http://www.seasar.org/</url>
+  </organization>
+
+  <!-- Environment Settings -->
   <issueManagement>
     <system>JIRA</system>
     <url><![CDATA[https://www.seasar.org/issues/browse/CONTAINER]]></url>
   </issueManagement>
-  <inceptionYear>2005</inceptionYear>
   <mailingLists>
     <mailingList>
       <name>Seasar-user</name>
@@ -39,22 +56,35 @@
       <archive>http://ml.seasar.org/archives/seasar-user-en/</archive>
     </mailingList>
   </mailingLists>
-  <licenses>
-    <license>
-      <name>The Apache Software License, Version 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-      <distribution>repo</distribution>
-    </license>
-  </licenses>
   <scm>
     <connection>scm:svn:https://www.seasar.org/svn/s2container/trunk/diigu/</connection>
     <developerConnection>scm:svn:https://www.seasar.org/svn/s2container/trunk/diigu/</developerConnection>
     <url>http://www.seasar.org/websvn/listing.php?repname=s2container</url>
   </scm>
-  <organization>
-    <name>The Seasar Foundation</name>
-    <url>http://www.seasar.org/</url>
-  </organization>
+  <repositories>
+    <repository>
+      <id>maven.seasar.org</id>
+      <name>The Seasar Foundation Maven2 Repository</name>
+      <url>http://maven.seasar.org/maven2</url>
+    </repository>
+  </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>maven.seasar.org</id>
+      <name>The Seasar Foundation Maven2 Repository</name>
+      <url>http://maven.seasar.org/maven2</url>
+    </pluginRepository>
+  </pluginRepositories>
+  <distributionManagement>
+    <repository>
+      <uniqueVersion>false</uniqueVersion>
+      <id>maven.seasar.org</id>
+      <name>The Seasar Foundation Maven2 Repository</name>
+      <url>scp://www.seasar.org/home/groups/s2container/maven/maven2</url>
+    </repository>
+  </distributionManagement>
+
+  <!-- Build Settings -->
   <build>
     <defaultGoal>validate</defaultGoal>
     <pluginManagement>
@@ -92,34 +122,28 @@
           <links>
           	<link>http://java.sun.com/j2se/1.5.0/ja/docs/ja/api/</link>
             <link>http://java.sun.com/j2ee/1.4/docs/api/</link>
+            <link>http://www.csg.is.titech.ac.jp/~chiba/javassist/html/</link>
           </links>
         </configuration>
         <executions>
           <execution>
-            <id>javadoc-jar</id>
-            <phase>package</phase>
+            <phase>site</phase>
             <goals>
-              <goal>jar</goal>
+              <goal>javadoc</goal>
             </goals>
           </execution>
         </executions>
       </plugin>
     </plugins>
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.wagon</groupId>
+        <artifactId>wagon-webdav</artifactId>
+      </extension>
+    </extensions>
   </build>
-  <repositories>
-    <repository>
-      <id>maven.seasar.org</id>
-      <name>The Seasar Foundation Maven2 Repository</name>
-      <url>http://maven.seasar.org/maven2</url>
-    </repository>
-  </repositories>
-  <pluginRepositories>
-    <pluginRepository>
-      <id>maven.seasar.org</id>
-      <name>The Seasar Foundation Maven2 Repository</name>
-      <url>http://maven.seasar.org/maven2</url>
-    </pluginRepository>
-  </pluginRepositories>
+
+  <!-- Dependency Settings -->
   <dependencies>
     <dependency>
       <groupId>com.sun</groupId>
@@ -131,17 +155,9 @@
     <dependency>
       <groupId>org.seasar.container</groupId>
       <artifactId>s2-framework</artifactId>
-      <version>2.4.0</version>
+      <version>2.4.13</version>
       <type>jar</type>
       <scope>provided</scope>
     </dependency>
   </dependencies>
-  <distributionManagement>
-    <repository>
-      <uniqueVersion>false</uniqueVersion>
-      <id>maven.seasar.org</id>
-      <name>The Seasar Foundation Maven2 Repository</name>
-      <url>scp://www.seasar.org/home/groups/s2container/maven/maven2</url>
-    </repository>
-  </distributionManagement>
 </project>

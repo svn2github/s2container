@@ -5,14 +5,29 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
 >
   <modelVersion>4.0.0</modelVersion>
+
+  <!-- The Basics -->
   <groupId>org.seasar.container</groupId>
   <artifactId>diigu-maven-plugin</artifactId>
-  <packaging>maven-plugin</packaging>
-  <name>Diigu Maven Plugin</name>
   <version>1.0.0</version>
+  <packaging>maven-plugin</packaging>
+
+  <!-- More Project Information -->
+  <name>Diigu Maven Plugin</name>
   <description>diigu maven2 enhancer</description>
   <url>http://s2container.seasar.org/</url>
   <inceptionYear>2006</inceptionYear>
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <organization>
+    <name>The Seasar Foundation</name>
+    <url>http://www.seasar.org/</url>
+  </organization>
   <developers>
     <developer>
       <id>manhole</id>
@@ -23,22 +38,44 @@
       <timezone>+9</timezone>
     </developer>
   </developers>
-  <licenses>
-    <license>
-      <name>The Apache Software License, Version 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-      <distribution>repo</distribution>
-    </license>
-  </licenses>
+
+  <!-- Environment Settings -->
   <scm>
     <connection>scm:svn:https://www.seasar.org/svn/s2container/trunk/diigu/diigu-maven-plugin/</connection>
     <developerConnection>scm:svn:https://www.seasar.org/svn/s2container/trunk/diigu/diigu-maven-plugin/</developerConnection>
     <url>http://www.seasar.org/websvn/listing.php?repname=s2container</url>
   </scm>
-  <organization>
-    <name>The Seasar Foundation</name>
-    <url>http://www.seasar.org/</url>
-  </organization>
+  <repositories>
+    <repository>
+      <id>maven.seasar.org</id>
+      <name>The Seasar Foundation Maven2 Repository</name>
+      <url>http://maven.seasar.org/maven2</url>
+    </repository>
+  </repositories>
+  <pluginRepositories>
+    <!--
+    <pluginRepository>
+      <id>Maven Snapshots</id>
+      <url>http://snapshots.maven.codehaus.org/maven2/</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+    </pluginRepository>
+    -->
+  </pluginRepositories>
+  <distributionManagement>
+    <repository>
+      <uniqueVersion>false</uniqueVersion>
+      <id>maven.seasar.org</id>
+      <name>The Seasar Foundation Maven2 Repository</name>
+      <url>scp://www.seasar.org/home/groups/s2container/maven/maven2</url>
+    </repository>
+  </distributionManagement>
+
+  <!-- Build Settings -->
   <build>
     <defaultGoal>validate</defaultGoal>
     <pluginManagement>
@@ -101,50 +138,6 @@
       </plugin>
     </plugins>
   </build>
-  <repositories>
-    <repository>
-      <id>maven.seasar.org</id>
-      <name>The Seasar Foundation Maven2 Repository</name>
-      <url>http://maven.seasar.org/maven2</url>
-    </repository>
-  </repositories>
-  <pluginRepositories>
-    <!--
-    <pluginRepository>
-      <id>Maven Snapshots</id>
-      <url>http://snapshots.maven.codehaus.org/maven2/</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-    </pluginRepository>
-    -->
-  </pluginRepositories>
-  <dependencies>
-    <dependency>
-      <groupId>org.seasar.container</groupId>
-      <artifactId>diigu-core</artifactId>
-      <version>1.0.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.maven</groupId>
-      <artifactId>maven-plugin-api</artifactId>
-      <version>2.0.4</version>
-    </dependency>
-    <dependency>
-      <groupId>ant</groupId>
-      <artifactId>ant</artifactId>
-      <version>1.6.5</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.maven</groupId>
-      <artifactId>maven-embedder</artifactId>
-      <version>2.0.4</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
   <reporting>
     <plugins>
       <plugin>
@@ -164,12 +157,29 @@
       </plugin>
     </plugins>
   </reporting>
-  <distributionManagement>
-    <repository>
-      <uniqueVersion>false</uniqueVersion>
-      <id>maven.seasar.org</id>
-      <name>The Seasar Foundation Maven2 Repository</name>
-      <url>scp://www.seasar.org/home/groups/s2container/maven/maven2</url>
-    </repository>
-  </distributionManagement>
+
+  <!-- Dependency Settings -->
+  <dependencies>
+    <dependency>
+      <groupId>org.seasar.container</groupId>
+      <artifactId>diigu-core</artifactId>
+      <version>1.0.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-plugin-api</artifactId>
+      <version>2.0.4</version>
+    </dependency>
+    <dependency>
+      <groupId>ant</groupId>
+      <artifactId>ant</artifactId>
+      <version>1.6.5</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-embedder</artifactId>
+      <version>2.0.4</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
 </project>
