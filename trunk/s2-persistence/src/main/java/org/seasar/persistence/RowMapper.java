@@ -26,9 +26,9 @@ public interface RowMapper {
 	/**
 	 * 列の値を設定します。
 	 * 
-	 * @param value
+	 * @param values
 	 */
-	void setValues(Object[] value);
+	void setValues(Object[] values);
 
 	/**
 	 * <code>setValues()</code>の後に呼び出されます。

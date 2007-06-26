@@ -19,11 +19,11 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import org.seasar.extension.jdbc.ValueType;
+import org.seasar.extension.jdbc.types.ValueTypes;
 import org.seasar.extension.sql.SqlContext;
 import org.seasar.framework.exception.SQLRuntimeException;
 import org.seasar.framework.log.Logger;
 import org.seasar.persistence.PreparedStatementPool;
-import org.seasar.persistence.types.ExtendedValueTypes;
 
 /**
  * Processorの抽象クラスです。
@@ -88,7 +88,7 @@ public abstract class AbstractProcessor {
 	protected ValueType[] getValueTypes(Class[] types) {
 		ValueType[] valueTypes = new ValueType[types.length];
 		for (int i = 0; i < valueTypes.length; i++) {
-			valueTypes[i] = ExtendedValueTypes.getValueType(types[i]);
+			valueTypes[i] = ValueTypes.getValueType(types[i]);
 		}
 		return valueTypes;
 	}

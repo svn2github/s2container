@@ -15,34 +15,28 @@
  */
 package org.seasar.persistence.processor;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.seasar.extension.sql.SqlContext;
 import org.seasar.framework.exception.SQLRuntimeException;
-import org.seasar.framework.util.PreparedStatementUtil;
-import org.seasar.framework.util.ResultSetUtil;
 import org.seasar.persistence.PreparedStatementPool;
 import org.seasar.persistence.ResultSetProcessor;
 import org.seasar.persistence.RowMapper;
 import org.seasar.persistence.SelectProcessor;
 
 /**
- * {@link SelectProcessor}の抽象クラスです。
+ * {@link List}を返す{@link SelectProcessor}です。
  * 
  * @author higa
  * 
  */
-public abstract class AbstractSelectProcessor extends AbstractProcessor
-		implements SelectProcessor {
-
-	protected ResultSetProcessor resultSetProcessor;
-
-	protected RowMapper rowMapper;
+public class ListSelectProcessor extends AbstractSelectProcessor {
 
 	/**
-	 * <code>AbstractSelectProcessor</code>を作成します。
+	 * {@link ListSelectProcessor}を作成します。
 	 * 
 	 * @param preparedStatementPool
 	 * @param sqlContext
@@ -50,37 +44,26 @@ public abstract class AbstractSelectProcessor extends AbstractProcessor
 	 * @param resultSetProcessor
 	 * @param rowMapper
 	 */
-	public AbstractSelectProcessor(PreparedStatementPool preparedStatementPool,
+	public ListSelectProcessor(PreparedStatementPool preparedStatementPool,
 			SqlContext sqlContext, Class<?> daoClass,
 			ResultSetProcessor resultSetProcessor, RowMapper rowMapper) {
-		super(preparedStatementPool, sqlContext, daoClass);
-		this.resultSetProcessor = resultSetProcessor;
-		this.rowMapper = rowMapper;
+		super(preparedStatementPool, sqlContext, daoClass, resultSetProcessor,
+				rowMapper);
 	}
 
-	public Object execute() {
-		logSql();
-		PreparedStatement ps = getPreparedStatement();
-		bindVariables(ps);
-		ResultSet rs = executeQuery(ps);
-		Object ret = null;
+	@SuppressWarnings("unchecked")
+	protected Object doSelect(ResultSet rs) {
+		List ret = new ArrayList();
 		try {
-			ret = doSelect(rs);
-		} finally {
-			ResultSetUtil.close(rs);
+			while (rs.next()) {
+				Object[] values = resultSetProcessor.getValues(rs);
+				rowMapper.setValues(values);
+				ret.add(rowMapper.getTarget());
+			}
+		} catch (SQLException e) {
+			throw new SQLRuntimeException(e);
 		}
 		return ret;
 	}
 
-	/**
-	 * @param rs
-	 * @return {@link ResultSet}をオブジェクトに変換した結果
-	 * @throws SQLRuntimeException
-	 *             {@link SQLException}が起こった場合。
-	 */
-	protected abstract Object doSelect(ResultSet rs) throws SQLRuntimeException;
-
-	protected ResultSet executeQuery(PreparedStatement ps) {
-		return PreparedStatementUtil.executeQuery(ps);
-	}
 }

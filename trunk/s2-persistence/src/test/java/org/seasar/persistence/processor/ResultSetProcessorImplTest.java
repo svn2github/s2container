@@ -19,9 +19,9 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import org.seasar.extension.jdbc.ValueType;
+import org.seasar.extension.jdbc.types.ValueTypes;
 import org.seasar.extension.unit.S2TestCase;
 import org.seasar.persistence.entity.JobType;
-import org.seasar.persistence.types.ExtendedValueTypes;
 
 /**
  * @author higa
@@ -41,9 +41,9 @@ public class ResultSetProcessorImplTest extends S2TestCase {
 	 */
 	public void testGetValues() throws Exception {
 		ValueType[] types = new ValueType[] {
-				ExtendedValueTypes.getValueType(Long.class),
-				ExtendedValueTypes.getValueType(String.class),
-				ExtendedValueTypes.getValueType(JobType.class) };
+				ValueTypes.getValueType(Long.class),
+				ValueTypes.getValueType(String.class),
+				ValueTypes.getValueType(JobType.class) };
 		ResultSetProcessorImpl processor = new ResultSetProcessorImpl(types);
 		Statement stmt = getConnection().createStatement();
 		Object[] values = null;
