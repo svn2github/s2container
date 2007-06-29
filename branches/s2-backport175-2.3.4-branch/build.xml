@@ -9,7 +9,7 @@
 			<property name="site" value="${basedir}/target/site"/>
 		</ant>
 		<mkdir dir="${zipDir}"/>
-		<zip zipfile="target/S2Backport175-${ver}.zip">
+		<zip zipfile="${zipDir}/S2Backport175-${ver}.zip">
 			<zipfileset prefix="s2-backport175" dir=".">
 				<exclude name="**/build/**"/>
 				<exclude name="**/target/**"/>
