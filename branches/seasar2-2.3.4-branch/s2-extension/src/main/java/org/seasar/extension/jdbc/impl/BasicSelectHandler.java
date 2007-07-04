@@ -30,7 +30,6 @@ import org.seasar.extension.jdbc.StatementFactory;
 import org.seasar.extension.jdbc.util.ConnectionUtil;
 import org.seasar.framework.exception.EmptyRuntimeException;
 import org.seasar.framework.exception.SQLRuntimeException;
-import org.seasar.framework.log.Logger;
 import org.seasar.framework.util.ResultSetUtil;
 import org.seasar.framework.util.StatementUtil;
 
@@ -39,8 +38,6 @@ import org.seasar.framework.util.StatementUtil;
  * 
  */
 public class BasicSelectHandler extends BasicHandler implements SelectHandler {
-
-    private static Logger logger_ = Logger.getLogger(BasicSelectHandler.class);
 
     private ResultSetFactory resultSetFactory_ = BasicResultSetFactory.INSTANCE;
 
@@ -112,9 +109,6 @@ public class BasicSelectHandler extends BasicHandler implements SelectHandler {
 
     public Object execute(Object[] args, Class[] argTypes)
             throws SQLRuntimeException {
-        if (logger_.isDebugEnabled()) {
-            logger_.debug(getCompleteSql(args));
-        }
         Connection con = getConnection();
         try {
             return execute(con, args, argTypes);
@@ -125,14 +119,16 @@ public class BasicSelectHandler extends BasicHandler implements SelectHandler {
         }
     }
 
-    protected Object execute(Connection connection, Object[] args,
-            Class[] argTypes) throws SQLException {
-
+    public Object execute(Connection connection, Object[] args, Class[] argTypes)
+            throws SQLException {
+        logSql(args, argTypes);
         PreparedStatement ps = null;
         try {
             ps = prepareStatement(connection);
             bindArgs(ps, args, argTypes);
             return execute(ps);
+        } catch (SQLException ex) {
+            throw new SQLRuntimeException(ex);
         } finally {
             StatementUtil.close(ps);
         }

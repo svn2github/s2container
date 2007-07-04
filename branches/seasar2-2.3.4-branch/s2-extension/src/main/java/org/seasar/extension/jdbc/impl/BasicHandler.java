@@ -23,12 +23,16 @@ import java.text.SimpleDateFormat;
 
 import javax.sql.DataSource;
 
+import org.seasar.extension.jdbc.SqlLog;
+import org.seasar.extension.jdbc.SqlLogRegistry;
+import org.seasar.extension.jdbc.SqlLogRegistryLocator;
 import org.seasar.extension.jdbc.StatementFactory;
 import org.seasar.extension.jdbc.ValueType;
 import org.seasar.extension.jdbc.types.ValueTypes;
 import org.seasar.extension.jdbc.util.DataSourceUtil;
 import org.seasar.framework.exception.EmptyRuntimeException;
 import org.seasar.framework.exception.SQLRuntimeException;
+import org.seasar.framework.log.Logger;
 
 /**
  * @author higa
@@ -36,11 +40,16 @@ import org.seasar.framework.exception.SQLRuntimeException;
  */
 public class BasicHandler {
 
+    private static Logger logger = Logger.getLogger(BasicHandler.class);
+
     private DataSource dataSource_;
 
     private String sql_;
 
     private StatementFactory statementFactory_ = BasicStatementFactory.INSTANCE;
+
+    private SqlLogRegistry sqlLogRegistry = SqlLogRegistryLocator
+            .getInstance();
 
     public BasicHandler() {
     }
@@ -185,5 +194,22 @@ public class BasicHandler {
 
     protected ValueType getValueType(Class clazz) {
         return ValueTypes.getValueType(clazz);
+    }
+
+    /**
+     * SQLをログ出力します。
+     * 
+     * @param args
+     *            SQLにバインドされる値の配列
+     * @param argTypes
+     *            SQLにバインドされる値の型の配列
+     */
+    protected void logSql(Object[] args, Object[] argTypes) {
+        String completeSql = getCompleteSql(args);
+        if (logger.isDebugEnabled()) {
+            logger.debug(completeSql);
+        }
+        SqlLog sqlLog = new SqlLogImpl(getSql(), completeSql, args, argTypes);
+        sqlLogRegistry.add(sqlLog);
     }
 }
