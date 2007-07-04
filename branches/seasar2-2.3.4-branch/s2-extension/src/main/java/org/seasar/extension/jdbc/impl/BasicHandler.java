@@ -40,16 +40,15 @@ import org.seasar.framework.log.Logger;
  */
 public class BasicHandler {
 
-    private static Logger logger = Logger.getLogger(BasicHandler.class);
-
     private DataSource dataSource_;
 
     private String sql_;
 
     private StatementFactory statementFactory_ = BasicStatementFactory.INSTANCE;
 
-    private SqlLogRegistry sqlLogRegistry = SqlLogRegistryLocator
-            .getInstance();
+    private SqlLogRegistry sqlLogRegistry = SqlLogRegistryLocator.getInstance();
+
+    protected Class loggerClass = BasicHandler.class;
 
     public BasicHandler() {
     }
@@ -206,10 +205,19 @@ public class BasicHandler {
      */
     protected void logSql(Object[] args, Object[] argTypes) {
         String completeSql = getCompleteSql(args);
+        Logger logger = Logger.getLogger(loggerClass);
         if (logger.isDebugEnabled()) {
             logger.debug(completeSql);
         }
         SqlLog sqlLog = new SqlLogImpl(getSql(), completeSql, args, argTypes);
         sqlLogRegistry.add(sqlLog);
+    }
+
+    public Class getLoggerClass() {
+        return loggerClass;
+    }
+
+    public void setLoggerClass(Class loggerClass) {
+        this.loggerClass = loggerClass;
     }
 }
