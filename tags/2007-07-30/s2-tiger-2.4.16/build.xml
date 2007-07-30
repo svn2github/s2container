@@ -1,0 +1,33 @@
+<project name="s2-tiger" default="dist" basedir=".">
+	<tstamp>
+		<format property="releaseDate" pattern="yyyy-MM-dd" locale="ja,JP"/>
+	</tstamp>
+	<property name="zipDir" value="target/site/download/${releaseDate}"/>
+
+	<target name="dist">
+		<ant antfile="../seasar2/build.xml" target="fix-site">
+			<property name="site" value="${basedir}/target/site"/>
+		</ant>
+		<mkdir dir="${zipDir}"/>
+		<zip zipfile="${zipDir}/S2Tiger-${ver}.zip">
+			<zipfileset prefix="s2-tiger" dir=".">
+				<exclude name="**/build/**"/>
+				<exclude name="**/target/**"/>
+				<exclude name="**/site/**"/>
+			</zipfileset>
+			<zipfileset prefix="s2-tiger/lib" dir="target">
+				<include name="s2-tiger-${ver}.jar"/>
+				<include name="s2-tiger-${ver}-sources.jar"/>
+			</zipfileset>
+			<zipfileset prefix="s2-tiger/resources" dir="src/test/resources">
+				<include name="jdbc.dicon"/>
+				<include name="s2junit4.dicon"/>
+			</zipfileset>
+			<zipfileset prefix="s2-tiger/doc" dir="target/site">
+				<exclude name="**/download/**"/>
+				<exclude name="**/*.zip"/>
+			</zipfileset>
+		</zip>
+	</target>
+
+</project>
