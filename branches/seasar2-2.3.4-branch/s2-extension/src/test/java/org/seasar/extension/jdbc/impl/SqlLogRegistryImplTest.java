@@ -30,7 +30,7 @@ public class SqlLogRegistryImplTest extends S2TestCase {
 
     private Object[] bindArgs = new Object[] { new Integer(10) };
 
-    private Object[] bindArgTypes = new Object[] { Integer.class };
+    private Class[] bindArgTypes = new Class[] { Integer.class };
 
     private SqlLog sqlLog = new SqlLogImpl(rawSql, completeSql, bindArgs,
             bindArgTypes);
@@ -84,4 +84,14 @@ public class SqlLogRegistryImplTest extends S2TestCase {
         assertSame(sqlLog4, registry.get(1));
     }
 
+    /**
+     * 
+     * @throws Exception
+     */
+    public void testClear() throws Exception {
+        SqlLogRegistryImpl registry = new SqlLogRegistryImpl(3);
+        registry.add(sqlLog);
+        registry.clear();
+        assertTrue(registry.isEmpty());
+    }
 }
