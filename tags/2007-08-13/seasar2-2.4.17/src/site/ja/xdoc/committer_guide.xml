@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<document>
+	<properties>
+		<title>コミッタガイド</title>
+	</properties>
+	<body>
+		<section name="概要">
+			<p>
+				コミッタ向けの覚え書きです．
+			</p>
+		</section>
+
+		<section name="リリース準備">
+			<dl>
+				<dt>pom.xmlの修正・コミット</dt>
+				<dd>
+					<ul>
+						<li><p>seasar2/pom.xml</p></li>
+						<li><p>seasar2/s2-framework/pom.xml</p></li>
+						<li><p>seasar2/s2-extension/pom.xml</p></li>
+						<li><p>seasar2/s2-dist/pom.xml</p></li>
+						<li><p>s2-tiger/pom.xml</p></li>
+					</ul>
+				</dd>
+				<dt>ドキュメントの修正・コミット</dt>
+				<dd>
+					<ul>
+						<li><p>seasar2/src/site/resources/index.html</p></li>
+						<li><p>seasar2/src/site/resources/zh/index.html</p></li>
+						<li><p>seasar2/src/site/ja/xdoc/index.xml</p></li>
+						<li><p>seasar2/src/site/ja/xdoc/downloads.xml</p></li>
+					</ul>
+				</dd>
+			</dl>
+		</section>
+
+		<section name="リリース手順">
+			<dl>
+				<dt>Seasar2のビルド</dt>
+				<dd>
+<source>
+<kbd>cd seasar2</kbd>
+<kbd>mvn clean install</kbd>
+</source>
+				</dd>
+				<dt>S2-Tigerのビルド</dt>
+				<dd>
+<source>
+<kbd>cd s2-tiger</kbd>
+<kbd>mvn clean install</kbd>
+</source>
+				</dd>
+				<dt>Seasar2のデプロイ</dt>
+				<dd>
+<source>
+<kbd>cd seasar2</kbd>
+<kbd>mvn deploy -Dmaven.test.skip=true</kbd>
+</source>
+				</dd>
+				<dt>S2-Tigerのデプロイ</dt>
+				<dd>
+<source>
+<kbd>cd s2-tiger</kbd>
+<kbd>mvn deploy -Dmaven.test.skip=true</kbd>
+</source>
+				</dd>
+				<dt>Seasar2のサイトデプロイ</dt>
+				<dd>
+<source>
+<kbd>cd seasar2</kbd>
+<kbd>mvn site-deploy</kbd>
+</source>
+				</dd>
+				<dt>S2-Tigerのサイトデプロイ</dt>
+				<dd>
+<source>
+<kbd>cd s2-tiger</kbd>
+<kbd>mvn site-deploy</kbd>
+</source>
+				</dd>
+			</dl>
+		</section>
+	</body>
+</document>
