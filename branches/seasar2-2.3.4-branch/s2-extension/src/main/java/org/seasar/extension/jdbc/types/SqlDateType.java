@@ -15,47 +15,48 @@
  */
 package org.seasar.extension.jdbc.types;
 
+import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
-import org.seasar.extension.jdbc.ValueType;
 import org.seasar.framework.util.SqlDateConversionUtil;
 
 /**
  * @author higa
  * 
  */
-public class SqlDateType implements ValueType {
+public class SqlDateType extends AbstractValueType {
 
-    /**
-     * @see org.seasar.extension.jdbc.ValueType#getValue(java.sql.ResultSet,
-     *      int)
-     */
+    public SqlDateType() {
+        super(Types.DATE);
+    }
+
     public Object getValue(ResultSet resultSet, int index) throws SQLException {
         return resultSet.getDate(index);
     }
 
-    /**
-     * @see org.seasar.extension.jdbc.ValueType#getValue(java.sql.ResultSet,
-     *      java.lang.String)
-     */
     public Object getValue(ResultSet resultSet, String columnName)
             throws SQLException {
 
         return resultSet.getDate(columnName);
     }
 
-    /**
-     * @see org.seasar.extension.jdbc.ValueType#bindValue(java.sql.PreparedStatement,
-     *      int, java.lang.Object)
-     */
+    public Object getValue(CallableStatement cs, int index) throws SQLException {
+        return cs.getDate(index);
+    }
+
+    public Object getValue(CallableStatement cs, String parameterName)
+            throws SQLException {
+        return cs.getDate(parameterName);
+    }
+
     public void bindValue(PreparedStatement ps, int index, Object value)
             throws SQLException {
 
         if (value == null) {
-            ps.setNull(index, Types.DATE);
+            setNull(ps, index);
         } else {
             ps.setDate(index, SqlDateConversionUtil.toDate(value));
         }

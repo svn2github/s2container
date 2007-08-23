@@ -17,19 +17,24 @@ package org.seasar.extension.jdbc.types;
 
 import java.io.Reader;
 import java.io.StringReader;
+import java.sql.CallableStatement;
+import java.sql.Clob;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
-import org.seasar.extension.jdbc.ValueType;
 import org.seasar.framework.util.ReaderUtil;
 import org.seasar.framework.util.StringConversionUtil;
 
 /**
  * @author manhole
  */
-public class StringClobType implements ValueType {
+public class StringClobType extends AbstractValueType {
+
+    public StringClobType() {
+        super(Types.CLOB);
+    }
 
     public Object getValue(ResultSet resultSet, int index) throws SQLException {
         return convertToString(resultSet.getCharacterStream(index));
@@ -40,11 +45,27 @@ public class StringClobType implements ValueType {
         return convertToString(resultSet.getCharacterStream(columnName));
     }
 
+    public Object getValue(CallableStatement cs, int index) throws SQLException {
+        return convertToString(cs.getClob(index));
+    }
+
+    public Object getValue(CallableStatement cs, String parameterName)
+            throws SQLException {
+        return convertToString(cs.getClob(parameterName));
+    }
+
     private String convertToString(Reader reader) throws SQLException {
         if (reader == null) {
             return null;
         }
         return ReaderUtil.readText(reader);
+    }
+
+    private String convertToString(Clob clob) throws SQLException {
+        if (clob == null) {
+            return null;
+        }
+        return convertToString(clob.getCharacterStream());
     }
 
     public void bindValue(PreparedStatement ps, int index, Object value)

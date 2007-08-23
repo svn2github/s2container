@@ -15,48 +15,58 @@
  */
 package org.seasar.extension.jdbc.types;
 
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
-import org.seasar.extension.jdbc.ValueType;
 import org.seasar.framework.util.InputStreamUtil;
 
 /**
  * @author higa
  * 
  */
-public class BinaryStreamType implements ValueType {
+public class BinaryStreamType extends AbstractValueType {
 
-    /**
-     * @see org.seasar.extension.jdbc.ValueType#getValue(java.sql.ResultSet,
-     *      int)
-     */
+    public BinaryStreamType() {
+        super(Types.BINARY);
+    }
+
     public Object getValue(ResultSet resultSet, int index) throws SQLException {
         return resultSet.getBinaryStream(index);
     }
 
-    /**
-     * @see org.seasar.extension.jdbc.ValueType#getValue(java.sql.ResultSet,
-     *      java.lang.String)
-     */
     public Object getValue(ResultSet resultSet, String columnName)
             throws SQLException {
 
         return resultSet.getBinaryStream(columnName);
     }
 
-    /**
-     * @see org.seasar.extension.jdbc.ValueType#bindValue(java.sql.PreparedStatement,
-     *      int, java.lang.Object)
-     */
+    public Object getValue(CallableStatement cs, int index) throws SQLException {
+        return toBinaryStream(cs.getBytes(index));
+    }
+
+    public Object getValue(CallableStatement cs, String parameterName)
+            throws SQLException {
+
+        return toBinaryStream(cs.getBytes(parameterName));
+    }
+
+    private InputStream toBinaryStream(byte[] bytes) {
+        if (bytes == null) {
+            return null;
+        }
+        return new ByteArrayInputStream(bytes);
+    }
+
     public void bindValue(PreparedStatement ps, int index, Object value)
             throws SQLException {
 
         if (value == null) {
-            ps.setNull(index, Types.BINARY);
+            setNull(ps, index);
         } else if (value instanceof InputStream) {
             InputStream is = (InputStream) value;
             ps.setBinaryStream(index, is, InputStreamUtil.available(is));

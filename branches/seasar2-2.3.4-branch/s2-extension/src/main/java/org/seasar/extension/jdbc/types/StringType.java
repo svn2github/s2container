@@ -15,47 +15,48 @@
  */
 package org.seasar.extension.jdbc.types;
 
+import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
-import org.seasar.extension.jdbc.ValueType;
 import org.seasar.framework.util.StringConversionUtil;
 
 /**
  * @author higa
  * 
  */
-public class StringType implements ValueType {
+public class StringType extends AbstractValueType {
 
-    /**
-     * @see org.seasar.extension.jdbc.ValueType#getValue(java.sql.ResultSet,
-     *      int)
-     */
+    public StringType() {
+        super(Types.VARCHAR);
+    }
+
     public Object getValue(ResultSet resultSet, int index) throws SQLException {
         return resultSet.getString(index);
     }
 
-    /**
-     * @see org.seasar.extension.jdbc.ValueType#getValue(java.sql.ResultSet,
-     *      java.lang.String)
-     */
     public Object getValue(ResultSet resultSet, String columnName)
             throws SQLException {
 
         return resultSet.getString(columnName);
     }
 
-    /**
-     * @see org.seasar.extension.jdbc.ValueType#bindValue(java.sql.PreparedStatement,
-     *      int, java.lang.Object)
-     */
+    public Object getValue(CallableStatement cs, int index) throws SQLException {
+        return cs.getString(index);
+    }
+
+    public Object getValue(CallableStatement cs, String parameterName)
+            throws SQLException {
+        return cs.getString(parameterName);
+    }
+
     public void bindValue(PreparedStatement ps, int index, Object value)
             throws SQLException {
 
         if (value == null) {
-            ps.setNull(index, Types.VARCHAR);
+            setNull(ps, index);
         } else {
             ps.setString(index, StringConversionUtil.toString(value));
         }

@@ -18,31 +18,26 @@ package org.seasar.extension.jdbc.types;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.sql.Blob;
+import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
-import org.seasar.extension.jdbc.ValueType;
-
 /**
  * @author higa
  * 
  */
-public class BinaryType implements ValueType {
+public class BinaryType extends AbstractValueType {
 
-    /**
-     * @see org.seasar.extension.jdbc.ValueType#getValue(java.sql.ResultSet,
-     *      int)
-     */
+    public BinaryType() {
+        super(Types.BINARY);
+    }
+
     public Object getValue(ResultSet resultSet, int index) throws SQLException {
         return resultSet.getBytes(index);
     }
 
-    /**
-     * @see org.seasar.extension.jdbc.ValueType#getValue(java.sql.ResultSet,
-     *      java.lang.String)
-     */
     public Object getValue(ResultSet resultSet, String columnName)
             throws SQLException {
         try {
@@ -60,15 +55,39 @@ public class BinaryType implements ValueType {
         }
     }
 
-    /**
-     * @see org.seasar.extension.jdbc.ValueType#bindValue(java.sql.PreparedStatement,
-     *      int, java.lang.Object)
-     */
+    public Object getValue(CallableStatement cs, int index) throws SQLException {
+        try {
+            return toByteArray(cs.getBlob(index));
+        } catch (SQLException e) {
+            return cs.getBytes(index);
+        }
+    }
+
+    public Object getValue(CallableStatement cs, String parameterName)
+            throws SQLException {
+        try {
+            return toByteArray(cs.getBlob(parameterName));
+        } catch (SQLException e) {
+            return cs.getBytes(parameterName);
+        }
+    }
+
+    private byte[] toByteArray(Blob blob) throws SQLException {
+        if (blob == null) {
+            return null;
+        }
+        long l = blob.length();
+        if (Integer.MAX_VALUE < l) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
+        return blob.getBytes(1, (int) l);
+    }
+
     public void bindValue(PreparedStatement ps, int index, Object value)
             throws SQLException {
 
         if (value == null) {
-            ps.setNull(index, Types.BINARY);
+            setNull(ps, index);
         } else if (value instanceof byte[]) {
             byte[] ba = (byte[]) value;
             InputStream in = new ByteArrayInputStream(ba);
