@@ -62,4 +62,14 @@ public class ShortType extends AbstractValueType {
         }
     }
 
+    public void bindValue(CallableStatement cs, String parameterName,
+            Object value) throws SQLException {
+        if (value == null) {
+            setNull(cs, parameterName);
+        } else {
+            cs.setShort(parameterName, ShortConversionUtil
+                    .toPrimitiveShort(value));
+        }
+    }
+
 }

@@ -57,10 +57,18 @@ public class TimestampType extends AbstractValueType {
 
         if (value == null) {
             setNull(ps, index);
-            ;
         } else {
             ps.setTimestamp(index, TimestampConversionUtil.toTimestamp(value));
         }
     }
 
+    public void bindValue(CallableStatement cs, String parameterName,
+            Object value) throws SQLException {
+        if (value == null) {
+            setNull(cs, parameterName);
+        } else {
+            cs.setTimestamp(parameterName, TimestampConversionUtil
+                    .toTimestamp(value));
+        }
+    }
 }

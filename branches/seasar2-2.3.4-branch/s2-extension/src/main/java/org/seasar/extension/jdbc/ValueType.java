@@ -26,10 +26,31 @@ import java.sql.SQLException;
  */
 public interface ValueType {
 
-    public Object getValue(ResultSet resultSet, int index) throws SQLException;
+    /**
+     * カラムの値を返します。
+     * 
+     * @param resultSet
+     *            結果セット
+     * @param index
+     *            位置
+     * @return カラムの値
+     * @throws SQLException
+     *             SQL例外が発生した場合
+     */
+    Object getValue(ResultSet resultSet, int index) throws SQLException;
 
-    public Object getValue(ResultSet resultSet, String columnName)
-            throws SQLException;
+    /**
+     * カラムの値を返します。
+     * 
+     * @param resultSet
+     *            結果セット
+     * @param columnName
+     *            カラム名
+     * @return カラムの値
+     * @throws SQLException
+     *             SQL例外が発生した場合
+     */
+    Object getValue(ResultSet resultSet, String columnName) throws SQLException;
 
     /**
      * パラメータの値を返します。
@@ -71,6 +92,21 @@ public interface ValueType {
      *             SQL例外が発生した場合
      */
     void bindValue(PreparedStatement ps, int index, Object value)
+            throws SQLException;
+
+    /**
+     * 変数の値をバインドします。
+     * 
+     * @param cs
+     *            ストアドプロシージャを表す文
+     * @param parameterName
+     *            パラメータ名
+     * @param value
+     *            値
+     * @throws SQLException
+     *             SQL例外が発生した場合
+     */
+    void bindValue(CallableStatement cs, String parameterName, Object value)
             throws SQLException;
 
     /**

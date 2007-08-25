@@ -75,4 +75,19 @@ public class BinaryStreamType extends AbstractValueType {
         }
     }
 
+    public void bindValue(CallableStatement cs, String parameterName,
+            Object value) throws SQLException {
+
+        if (value == null) {
+            setNull(cs, parameterName);
+        } else if (value instanceof InputStream) {
+            InputStream is = (InputStream) value;
+            cs
+                    .setBinaryStream(parameterName, is, InputStreamUtil
+                            .available(is));
+        } else {
+            cs.setObject(parameterName, value);
+        }
+    }
+
 }

@@ -64,4 +64,15 @@ public class BigDecimalType extends AbstractValueType {
         }
     }
 
+    public void bindValue(CallableStatement cs, String parameterName,
+            Object value) throws SQLException {
+
+        if (value == null) {
+            setNull(cs, parameterName);
+        } else {
+            cs.setBigDecimal(parameterName, BigDecimalConversionUtil
+                    .toBigDecimal(value));
+        }
+    }
+
 }

@@ -62,4 +62,15 @@ public class LongType extends AbstractValueType {
         }
     }
 
+    public void bindValue(CallableStatement cs, String parameterName,
+            Object value) throws SQLException {
+        if (value == null) {
+            setNull(cs, parameterName);
+        } else {
+            cs
+                    .setLong(parameterName, LongConversionUtil
+                            .toPrimitiveLong(value));
+        }
+    }
+
 }

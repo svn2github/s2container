@@ -17,9 +17,11 @@ package org.seasar.extension.jdbc.impl;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 
 import org.seasar.extension.jdbc.ResultSetFactory;
 import org.seasar.framework.util.PreparedStatementUtil;
+import org.seasar.framework.util.StatementUtil;
 
 /**
  * @author higa
@@ -29,9 +31,10 @@ public class BasicResultSetFactory implements ResultSetFactory {
 
     public static final ResultSetFactory INSTANCE = new BasicResultSetFactory();
 
-    /**
-     * @see org.seasar.extension.jdbc.ResultSetFactory#createResultSet(java.sql.PreparedStatement)
-     */
+    public ResultSet getResultSet(Statement statement) {
+        return StatementUtil.getResultSet(statement);
+    }
+
     public ResultSet createResultSet(PreparedStatement ps) {
         return PreparedStatementUtil.executeQuery(ps);
     }

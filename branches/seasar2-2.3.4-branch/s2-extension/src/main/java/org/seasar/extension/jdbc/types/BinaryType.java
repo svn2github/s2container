@@ -97,4 +97,18 @@ public class BinaryType extends AbstractValueType {
         }
     }
 
+    public void bindValue(CallableStatement cs, String parameterName,
+            Object value) throws SQLException {
+
+        if (value == null) {
+            setNull(cs, parameterName);
+        } else if (value instanceof byte[]) {
+            byte[] ba = (byte[]) value;
+            InputStream in = new ByteArrayInputStream(ba);
+            cs.setBinaryStream(parameterName, in, ba.length);
+        } else {
+            cs.setObject(parameterName, value);
+        }
+    }
+
 }

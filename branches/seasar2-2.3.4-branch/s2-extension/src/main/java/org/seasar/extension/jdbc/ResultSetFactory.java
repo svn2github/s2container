@@ -17,6 +17,7 @@ package org.seasar.extension.jdbc;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 
 /**
  * @author higa
@@ -24,5 +25,22 @@ import java.sql.ResultSet;
  */
 public interface ResultSetFactory {
 
-    public ResultSet createResultSet(PreparedStatement ps);
+    /**
+     * 結果セットを返します。
+     * 
+     * @param statement
+     *            文
+     * @return 結果セット
+     */
+    ResultSet getResultSet(Statement statement);
+
+    /**
+     * 結果セットを作成します。
+     * 
+     * @param ps
+     *            準備された文
+     * @return 結果セット
+     */
+    ResultSet createResultSet(PreparedStatement ps);
+
 }
