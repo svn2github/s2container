@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<document>
+	<properties>
+		<title>ドキュメント</title>
+	</properties>
+	<body>
+		<section name="ドキュメント一覧">
+			<subsection name="ベーシック">
+				<ul>
+					<li><p><a href="setup.html">セットアップ</a></p></li>
+					<li><p><a href="DIContainer.html">DIContainer</a></p></li>
+					<li><p><a href="aop.html">AOP</a></p></li>
+					<li><p><a href="tx.html">トランザクションの自動制御</a></p></li>
+					<li><p><a href="dbcp.html">コネクションプーリング</a></p></li>
+					<li><p><a href="SabaJTAandDBCP.html">アプリケーションサーバのJTAとコネクションプールを使う</a></p></li>
+					<li><p><a href="s2jdbc.html">S2JDBC</a></p></li>
+					<li><p><a href="S2Unit.html">S2Unit</a></p></li>
+					<li><p><a href="testtech.html">テスト技法</a></p></li>
+					<li><p><a href="ognl.html">OGNLガイド</a></p></li>
+				</ul>
+			</subsection>
+			<subsection name="FAQ">
+				<ul>
+					<li><p><a href="http://www.seasar.org/wiki/index.php?FAQ%2FS2Container">全般</a></p></li>
+					<li><p><a href="http://www.seasar.org/wiki/index.php?FAQ%2FS2AOP">S2AOP</a></p></li>
+				</ul>
+			</subsection>
+			<subsection name="その他">
+				<ul>
+					<li><p><a href="http://www.seasar.org/wiki/index.php?ChangeLog%2FSeasar">ChangeLog</a></p></li>
+		            <li><p><a href="http://www.seasar.org/wiki/index.php?SeasarUpdateOperationLog">移行ガイド</a></p></li>
+				</ul>
+			</subsection>
+		</section>
+	</body>
+</document>

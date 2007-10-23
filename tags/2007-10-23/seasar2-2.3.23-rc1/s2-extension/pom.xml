@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+>
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- The Basics -->
+  <artifactId>s2-extension</artifactId>
+  <packaging>jar</packaging>
+  <parent>
+    <groupId>org.seasar.container</groupId>
+    <artifactId>s2-container-project</artifactId>
+    <version>2.3.23-rc1</version>
+  </parent>
+
+  <!-- More Project Information -->
+  <name>Seasar2 Extension</name>
+  <url>http://s2container.seasar.org/</url>
+
+  <!-- Dependency Settings -->
+  <dependencies>
+    <dependency>
+      <groupId>org.seasar.container</groupId>
+      <artifactId>s2-framework</artifactId>
+      <version>${version}</version>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi</artifactId>
+      <version>3.0-FINAL</version>
+      <type>jar</type>
+      <exclusions>
+        <exclusion>
+          <artifactId>log4j</artifactId>
+          <groupId>log4j</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+  </dependencies>
+</project>
