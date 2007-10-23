@@ -1,0 +1,77 @@
+<project
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+>
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- The Basics -->
+  <artifactId>s2-backport175</artifactId>
+  <packaging>jar</packaging>
+  <parent>
+    <groupId>org.seasar.container</groupId>
+    <artifactId>s2-container-project</artifactId>
+    <version>2.3.23-rc1</version>
+    <relativePath>../seasar2</relativePath>
+  </parent>
+
+  <!-- More Project Information -->
+  <name>S2 Backport175</name>
+  <url>http://s2container.seasar.org/</url>
+
+  <!-- Environment Settings -->
+  <pluginRepositories>
+    <pluginRepository>
+      <id>maven.seasar.org</id>
+      <name>The Seasar Foundation Maven2 Repository</name>
+      <url>http://maven.seasar.org/maven2</url>
+    </pluginRepository>
+  </pluginRepositories>
+
+  <!-- Build Settings -->
+  <build>
+    <defaultGoal>validate</defaultGoal>
+    <plugins>
+      <plugin>
+        <groupId>org.seasar.maven.plugin.backport175</groupId>
+        <artifactId>maven-backport175-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>annotationc</goal>
+              <goal>testAnnotationc</goal>
+            </goals>
+            <configuration>
+              <!--
+              <verbose>true</verbose>
+              -->
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <!-- Dependency Settings -->
+  <dependencies>
+    <dependency>
+      <groupId>org.seasar.container</groupId>
+      <artifactId>s2-extension</artifactId>
+      <version>${version}</version>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>backport175</groupId>
+      <artifactId>backport175</artifactId>
+      <version>1.0</version>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.geronimo.specs</groupId>
+      <artifactId>geronimo-j2ee_1.4_spec</artifactId>
+      <version>1.0</version>
+      <type>jar</type>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+</project>
