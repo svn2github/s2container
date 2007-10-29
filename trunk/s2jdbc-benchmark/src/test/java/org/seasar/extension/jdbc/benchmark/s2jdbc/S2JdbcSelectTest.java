@@ -15,6 +15,7 @@
  */
 package org.seasar.extension.jdbc.benchmark.s2jdbc;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import org.seasar.extension.jdbc.JdbcManager;
@@ -45,9 +46,10 @@ public class S2JdbcSelectTest extends AbstractSelectTest {
         List<Employee> employees =
             jdbcManager.from(Employee.class).getResultList();
         long end = System.nanoTime();
-        assertEquals(10000, employees.size());
-        System.out.println(end - start + " nano");
         userTransaction.commit();
+        assertEquals(10000, employees.size());
+        DecimalFormat df = new DecimalFormat("#,##0");
+        System.out.printf("%14s (nanoTime)\n", df.format(end - start));
     }
 
     @Override

@@ -13,37 +13,39 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.extension.jdbc.benchmark.s2jdbc;
+package org.seasar.extension.jdbc.benchmark.s2dao;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Version;
+import org.seasar.dao.annotation.tiger.Bean;
+import org.seasar.dao.annotation.tiger.Column;
+import org.seasar.dao.annotation.tiger.Id;
+import org.seasar.dao.annotation.tiger.IdType;
 
 /**
  * @author taedium
  * 
  */
-@Entity
-public class Address {
+@Bean
+public class Department {
 
     /** */
-    @Id
-    @SequenceGenerator(name = "ADDRESS_SEQ_GEN")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ADDRESS_SEQ_GEN")
-    public Integer addressId;
+    @Id(value = IdType.SEQUENCE, sequenceName = "DEPARTMENT_SEQ")
+    @Column("DEPARTMENT_ID")
+    public Integer departmentId;
 
     /** */
-    public String street;
+    @Column("DEPARTMENT_NO")
+    public Integer departmentNo;
 
     /** */
-    @Version
-    public Integer version;
+    @Column("DEPARTMENT_NAME")
+    public String departmentName;
 
     /** */
-    @OneToOne(mappedBy = "address")
-    public Employee employee;
+    @Column("LOCATION")
+    public String location;
+
+    /** */
+    @Column("VERSION")
+    public Integer versionNo;
+
 }

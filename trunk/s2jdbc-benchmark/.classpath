@@ -36,5 +36,7 @@
 	<classpathentry kind="lib" path="lib/jboss-archive-browsing-5.0.0alpha-200607201-119.jar"/>
 	<classpathentry kind="lib" path="lib/lucene-core-2.0.0.jar"/>
 	<classpathentry kind="lib" path="lib/s2hibernate-jpa-1.0.1-rc1.jar"/>
+	<classpathentry kind="lib" path="lib/s2-dao-1.0.47-RC1.jar"/>
+	<classpathentry kind="lib" path="lib/s2-dao-tiger-1.0.47-RC1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

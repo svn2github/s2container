@@ -4,5 +4,6 @@
 <components>
 	<include path="aop.dicon"/>
 	<include path="s2jdbc.dicon"/>
-	<include path="jpa.dicon"/>	
+	<include path="jpa.dicon"/>
+	<include path="org/seasar/extension/jdbc/benchmark/s2dao/app-dao.dicon"/>
 </components>

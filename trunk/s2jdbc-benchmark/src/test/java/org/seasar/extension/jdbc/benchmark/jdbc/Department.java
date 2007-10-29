@@ -13,37 +13,28 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.extension.jdbc.benchmark.s2jdbc;
+package org.seasar.extension.jdbc.benchmark.jdbc;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Version;
 
 /**
  * @author taedium
  * 
  */
-@Entity
-public class Address {
+public class Department {
 
     /** */
-    @Id
-    @SequenceGenerator(name = "ADDRESS_SEQ_GEN")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ADDRESS_SEQ_GEN")
-    public Integer addressId;
+    public Integer departmentId;
 
     /** */
-    public String street;
+    public Integer departmentNo;
 
     /** */
-    @Version
+    public String departmentName;
+
+    /** */
+    public String location;
+
+    /** */
     public Integer version;
 
-    /** */
-    @OneToOne(mappedBy = "address")
-    public Employee employee;
 }

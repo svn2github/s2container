@@ -21,10 +21,13 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Version;
 
 /**
@@ -36,6 +39,8 @@ public class Employee {
 
     /** */
     @Id
+    @SequenceGenerator(name = "EMPLOYEE_SEQ_GEN")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EMPLOYEE_SEQ_GEN")
     @Column(name = "EMPLOYEE_ID")
     private Integer employeeId;
 
@@ -53,9 +58,11 @@ public class Employee {
     private Employee manager;
 
     /** */
+    @Column(name = "HIREDATE")
     private Date hiredate;
 
     /** */
+    @Column(name = "SALARY")
     private BigDecimal salary;
 
     /** */
@@ -70,6 +77,7 @@ public class Employee {
 
     /** */
     @Version
+    @Column(name = "VERSION")
     private Integer version;
 
     /**

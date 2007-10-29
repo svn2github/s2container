@@ -15,6 +15,7 @@
  */
 package org.seasar.extension.jdbc.benchmark.jpa;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -27,8 +28,6 @@ import org.seasar.framework.container.SingletonS2Container;
  * 
  */
 public class JpaSelectTest extends AbstractSelectTest {
-
-    private static final String JPQL = "select e from Employee e";
 
     private EntityManager entityManager;
 
@@ -45,11 +44,14 @@ public class JpaSelectTest extends AbstractSelectTest {
     public void test() throws Exception {
         userTransaction.begin();
         long start = System.nanoTime();
-        List<?> employees = entityManager.createQuery(JPQL).getResultList();
+        @SuppressWarnings("unchecked")
+        List<Employee> employees =
+            entityManager.createNamedQuery("JpaSelectTest").getResultList();
         long end = System.nanoTime();
-        assertEquals(10000, employees.size());
-        System.out.println(end - start + " nano");
         userTransaction.commit();
+        assertEquals(10000, employees.size());
+        DecimalFormat df = new DecimalFormat("#,##0");
+        System.out.printf("%14s (nanoTime)\n", df.format(end - start));
     }
 
     @Override

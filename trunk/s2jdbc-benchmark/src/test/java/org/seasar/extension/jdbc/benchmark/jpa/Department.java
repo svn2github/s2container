@@ -19,8 +19,11 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Version;
 
 /**
@@ -32,6 +35,8 @@ public class Department {
 
     /** */
     @Id
+    @SequenceGenerator(name = "DEPARTMENT_SEQ_GEN")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "DEPARTMENT_SEQ_GEN")
     @Column(name = "DEPARTMENT_ID")
     private Integer departmentId;
 
@@ -44,10 +49,12 @@ public class Department {
     private String departmentName;
 
     /** */
+    @Column(name = "LOCATION")
     private String location;
 
     /** */
     @Version
+    @Column(name = "VERSION")
     private Integer version;
 
     /** */

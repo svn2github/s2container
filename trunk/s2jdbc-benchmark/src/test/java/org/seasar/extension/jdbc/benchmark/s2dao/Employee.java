@@ -13,71 +13,57 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.extension.jdbc.benchmark.s2jdbc;
+package org.seasar.extension.jdbc.benchmark.s2dao;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Version;
+import org.seasar.dao.annotation.tiger.Bean;
+import org.seasar.dao.annotation.tiger.Column;
+import org.seasar.dao.annotation.tiger.Id;
+import org.seasar.dao.annotation.tiger.IdType;
 
 /**
  * @author taedium
  * 
  */
-@Entity
+@Bean
 public class Employee {
 
     /** */
-    @Id
-    @SequenceGenerator(name = "EMPLOYEE_SEQ_GEN")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EMPLOYEE_SEQ_GEN")
+    @Id(value = IdType.SEQUENCE, sequenceName = "EMPLOYEE_SEQ")
+    @Column("EMPLOYEE_ID")
     public Integer employeeId;
 
     /** */
+    @Column("EMPLOYEE_NO")
     public Integer employeeNo;
 
     /** */
+    @Column("EMPLOYEE_NAME")
     public String employeeName;
 
     /** */
+    @Column("MANAGER_ID")
     public Integer managerId;
 
     /** */
-    @ManyToOne
-    @JoinColumn(name = "MANAGER_ID", referencedColumnName = "EMPLOYEE_ID")
-    public Employee manager;
-
-    /** */
+    @Column("HIREDATE")
     public Date hiredate;
 
     /** */
+    @Column("SALARY")
     public BigDecimal salary;
 
     /** */
+    @Column("DEPARTMENT_ID")
     public Integer departmentId;
 
     /** */
-    @ManyToOne
-    @JoinColumn(name = "department_id", referencedColumnName = "DEPARTMENT_ID")
-    public Department department;
-
-    /** */
+    @Column("ADDRESS_ID")
     public Integer addressId;
 
     /** */
-    @OneToOne
-    @JoinColumn(name = "ADDRESS_ID", referencedColumnName = "ADDRESS_ID")
-    public Address address;
-
-    /** */
-    @Version
-    public Integer version;
+    @Column("VERSION")
+    public Integer versionNo;
 }

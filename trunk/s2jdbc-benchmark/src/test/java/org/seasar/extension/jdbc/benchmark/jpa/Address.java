@@ -17,8 +17,11 @@ package org.seasar.extension.jdbc.benchmark.jpa;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Version;
 
 /**
@@ -30,14 +33,18 @@ public class Address {
 
     /** */
     @Id
+    @SequenceGenerator(name = "ADDRESS_SEQ_GEN")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ADDRESS_SEQ_GEN")
     @Column(name = "ADDRESS_ID")
     private Integer addressId;
 
     /** */
+    @Column(name = "STREET")
     private String street;
 
     /** */
     @Version
+    @Column(name = "VERSION")
     private Integer version;
 
     /** */
