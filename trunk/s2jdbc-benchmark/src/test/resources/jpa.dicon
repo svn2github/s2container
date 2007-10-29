@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN" 
+	"http://www.seasar.org/dtd/components24.dtd">
+<components>
+	<include path="s2hibernate-jpa.dicon"/>
+
+	<component name="persistenceUnitProvider" class="org.seasar.framework.jpa.impl.ContainerPersistenceUnitProvider">
+		<property name="unitName">"persistenceUnit"</property>
+	</component>
+
+	<component name="entityManagerFactory" class="javax.persistence.EntityManagerFactory">
+		persistenceUnitProvider.entityManagerFactory
+	</component>
+
+	<component name="entityManager" class="org.seasar.framework.jpa.impl.TxScopedEntityManagerProxy"/>
+</components>
