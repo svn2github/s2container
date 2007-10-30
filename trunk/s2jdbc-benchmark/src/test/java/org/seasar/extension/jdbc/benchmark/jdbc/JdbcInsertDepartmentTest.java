@@ -63,24 +63,24 @@ public class JdbcInsertDepartmentTest extends BenchmarkTestCase implements
             departments.add(department);
         }
         begin();
-        for (Department department : departments) {
-            int id = getNextValue();
-            Connection con = dataSource.getConnection();
+        Connection con = dataSource.getConnection();
+        try {
+            PreparedStatement ps = con.prepareStatement(INSERT);
             try {
-                PreparedStatement ps = con.prepareStatement(INSERT);
-                ps.setInt(1, id);
-                ps.setInt(2, department.departmentNo);
-                ps.setString(3, department.departmentName);
-                ps.setString(4, department.location);
-                ps.setInt(5, department.version);
-                try {
+                for (Department department : departments) {
+                    int id = getNextValue();
+                    ps.setInt(1, id);
+                    ps.setInt(2, department.departmentNo);
+                    ps.setString(3, department.departmentName);
+                    ps.setString(4, department.location);
+                    ps.setInt(5, department.version);
                     ps.executeQuery();
-                } finally {
-                    ps.close();
                 }
             } finally {
-                con.close();
+                ps.close();
             }
+        } finally {
+            con.close();
         }
         end();
     }

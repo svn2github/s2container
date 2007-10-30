@@ -39,11 +39,14 @@ public abstract class BenchmarkTestCase extends TestCase {
 
     private static final String SQL = "select * from Employee";
 
-    private UserTransaction userTransaction;
+    /** */
+    protected UserTransaction userTransaction;
 
-    private long startTime;
+    /** */
+    protected long startTime;
 
-    private long endTime;
+    /** */
+    protected long endTime;
 
     @Override
     protected void setUp() throws Exception {

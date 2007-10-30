@@ -50,4 +50,10 @@ public interface EmployeeDao {
     @Query("order by employee_Id")
     List<Employee> selectPaging(PagerCondition condition);
 
+    /**
+     * 
+     * @param employee
+     * @return
+     */
+    int update(Employee employee);
 }
