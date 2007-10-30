@@ -18,6 +18,7 @@ package org.seasar.extension.jdbc.benchmark.s2dao;
 import java.util.List;
 
 import org.seasar.dao.annotation.tiger.S2Dao;
+import org.seasar.dao.annotation.tiger.Sql;
 
 /**
  * @author taedium
@@ -25,6 +26,13 @@ import org.seasar.dao.annotation.tiger.S2Dao;
  */
 @S2Dao(bean = Employee.class)
 public interface EmployeeDao {
+
+    /**
+     * 
+     * @return
+     */
+    @Sql("select * from dual")
+    Object initialize();
 
     /**
      * 

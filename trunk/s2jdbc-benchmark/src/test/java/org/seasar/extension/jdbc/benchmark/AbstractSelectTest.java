@@ -33,7 +33,7 @@ import org.seasar.framework.util.StatementUtil;
  * @author taedium
  * 
  */
-public class AbstractSelectTest extends TestCase {
+public abstract class AbstractSelectTest extends TestCase {
 
     private static final String SQL = "select * from Employee";
 

@@ -56,6 +56,7 @@ public class JdbcSelectTest extends AbstractSelectTest {
         try {
             PreparedStatement ps = con.prepareStatement(SQL);
             try {
+                ps.setFetchSize(100);
                 ResultSet rs = ps.executeQuery();
                 try {
                     while (rs.next()) {
@@ -84,7 +85,10 @@ public class JdbcSelectTest extends AbstractSelectTest {
         userTransaction.commit();
         assertEquals(10000, employees.size());
         DecimalFormat df = new DecimalFormat("#,##0");
-        System.out.printf("%14s (nanoTime)\n", df.format(end - start));
+        System.out.printf(
+            "%14s (nanoTime) : %s\n",
+            df.format(end - start),
+            getClass().getSimpleName());
     }
 
     @Override

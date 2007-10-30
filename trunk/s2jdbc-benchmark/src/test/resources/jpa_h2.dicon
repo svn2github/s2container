@@ -6,6 +6,9 @@
 
 	<component name="persistenceUnitProvider" class="org.seasar.framework.jpa.impl.ContainerPersistenceUnitProvider">
 		<property name="unitName">"persistenceUnit"</property>
+		<property name="properties">
+			#{"hibernate.dialect" : "org.hibernate.dialect.H2Dialect"}
+		</property>		
 	</component>
 
 	<component name="entityManagerFactory" class="javax.persistence.EntityManagerFactory">

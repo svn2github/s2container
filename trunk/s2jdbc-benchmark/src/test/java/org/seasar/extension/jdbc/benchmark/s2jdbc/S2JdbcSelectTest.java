@@ -49,7 +49,10 @@ public class S2JdbcSelectTest extends AbstractSelectTest {
         userTransaction.commit();
         assertEquals(10000, employees.size());
         DecimalFormat df = new DecimalFormat("#,##0");
-        System.out.printf("%14s (nanoTime)\n", df.format(end - start));
+        System.out.printf(
+            "%14s (nanoTime) : %s\n",
+            df.format(end - start),
+            getClass().getSimpleName());
     }
 
     @Override

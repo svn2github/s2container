@@ -12,7 +12,6 @@
 		<class>org.seasar.extension.jdbc.benchmark.jpa.Address</class>
 		<class>org.seasar.extension.jdbc.benchmark.jpa.Employee</class>
 		<properties>
-			<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle9Dialect"/>
 			<property name="hibernate.jndi.class" 
 				value="org.seasar.extension.j2ee.JndiContextFactory"/>
 			<property name="hibernate.transaction.manager_lookup_class" 
@@ -21,6 +20,7 @@
 			<property name="hibernate.format_sql" value="false"/>
 			<property name="hibernate.use_sql_comments" value="false"/>
 			<property name="hibernate.archive.autodetection" value=""/>
+			<property name="hibernate.jdbc.fetch_size" value="100"/>
 		</properties>
 	</persistence-unit>
 </persistence>

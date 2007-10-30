@@ -33,6 +33,7 @@ public class S2DaoSelectTest extends AbstractSelectTest {
     protected void setUp() throws Exception {
         super.setUp();
         employeeDao = SingletonS2Container.getComponent(EmployeeDao.class);
+        employeeDao.initialize();
     }
 
     /**
@@ -47,7 +48,10 @@ public class S2DaoSelectTest extends AbstractSelectTest {
         userTransaction.commit();
         assertEquals(10000, employees.size());
         DecimalFormat df = new DecimalFormat("#,##0");
-        System.out.printf("%14s (nanoTime)\n", df.format(end - start));
+        System.out.printf(
+            "%14s (nanoTime) : %s\n",
+            df.format(end - start),
+            getClass().getSimpleName());
     }
 
     @Override
