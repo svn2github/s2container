@@ -30,4 +30,9 @@
 			select distinct d from Department d left outer join fetch d.employees
 		</query>
 	</named-query>
+	<named-query name="JpaSelectEmployeePagingTest">
+		<query>
+			select e from Employee e order by e.employeeId
+		</query>
+	</named-query>
 </entity-mappings>
