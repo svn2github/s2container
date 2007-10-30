@@ -18,14 +18,16 @@ package org.seasar.extension.jdbc.benchmark.s2jdbc;
 import java.util.List;
 
 import org.seasar.extension.jdbc.JdbcManager;
-import org.seasar.extension.jdbc.benchmark.AbstractSelectAddressTestCase;
+import org.seasar.extension.jdbc.benchmark.BenchmarkTestCase;
+import org.seasar.extension.jdbc.benchmark.SelectAddress;
 import org.seasar.framework.container.SingletonS2Container;
 
 /**
  * @author taedium
  * 
  */
-public class S2JdbcSelectAddressTest extends AbstractSelectAddressTestCase {
+public class S2JdbcSelectAddressTest extends BenchmarkTestCase implements
+        SelectAddress {
 
     private JdbcManager jdbcManager;
 

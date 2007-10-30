@@ -19,14 +19,16 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import org.seasar.extension.jdbc.benchmark.AbstractSelectEmployeeTestCase;
+import org.seasar.extension.jdbc.benchmark.BenchmarkTestCase;
+import org.seasar.extension.jdbc.benchmark.SelectEmployee;
 import org.seasar.framework.container.SingletonS2Container;
 
 /**
  * @author taedium
  * 
  */
-public class JpaSelectEmployeeTest extends AbstractSelectEmployeeTestCase {
+public class JpaSelectEmployeeTest extends BenchmarkTestCase implements
+        SelectEmployee {
 
     private EntityManager entityManager;
 

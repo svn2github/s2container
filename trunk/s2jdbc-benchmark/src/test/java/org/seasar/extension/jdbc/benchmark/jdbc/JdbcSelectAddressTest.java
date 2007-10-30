@@ -23,14 +23,16 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import org.seasar.extension.jdbc.benchmark.AbstractSelectAddressTestCase;
+import org.seasar.extension.jdbc.benchmark.BenchmarkTestCase;
+import org.seasar.extension.jdbc.benchmark.SelectAddress;
 import org.seasar.framework.container.SingletonS2Container;
 
 /**
  * @author taedium
  * 
  */
-public class JdbcSelectAddressTest extends AbstractSelectAddressTestCase {
+public class JdbcSelectAddressTest extends BenchmarkTestCase implements
+        SelectAddress {
 
     private static final String SQL =
         "select T.address_id, T.street, T.version FROM Address T";

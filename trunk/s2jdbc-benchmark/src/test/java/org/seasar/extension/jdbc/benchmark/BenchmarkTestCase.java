@@ -17,11 +17,16 @@ package org.seasar.extension.jdbc.benchmark;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.text.DecimalFormat;
 
 import javax.sql.DataSource;
+import javax.transaction.UserTransaction;
+
+import junit.framework.TestCase;
 
 import org.seasar.extension.jdbc.util.ConnectionUtil;
 import org.seasar.framework.container.SingletonS2Container;
+import org.seasar.framework.container.factory.SingletonS2ContainerFactory;
 import org.seasar.framework.util.PreparedStatementUtil;
 import org.seasar.framework.util.StatementUtil;
 
@@ -29,13 +34,23 @@ import org.seasar.framework.util.StatementUtil;
  * @author taedium
  * 
  */
-public abstract class AbstractSelectEmployeeTestCase extends AbstractTestCase {
+public abstract class BenchmarkTestCase extends TestCase {
 
     private static final String SQL = "select * from Employee";
+
+    private UserTransaction userTransaction;
+
+    private long startTime;
+
+    private long endTime;
 
     @Override
     protected void setUp() throws Exception {
         super.setUp();
+        SingletonS2ContainerFactory.init();
+        userTransaction =
+            SingletonS2Container.getComponent(UserTransaction.class);
+
         DataSource dataSource =
             SingletonS2Container.getComponent(DataSource.class);
         Connection con = dataSource.getConnection();
@@ -51,4 +66,37 @@ public abstract class AbstractSelectEmployeeTestCase extends AbstractTestCase {
         }
     }
 
+    /**
+     * 
+     * @throws Exception
+     */
+    protected void begin() throws Exception {
+        userTransaction.begin();
+        startTime = System.nanoTime();
+    }
+
+    /**
+     * 
+     * @throws Exception
+     */
+    protected void end() throws Exception {
+        endTime = System.nanoTime();
+        userTransaction.rollback();
+    }
+
+    @Override
+    protected void tearDown() throws Exception {
+        printBenchmark();
+        SingletonS2ContainerFactory.destroy();
+        super.tearDown();
+    }
+
+    /**
+     * 
+     */
+    protected void printBenchmark() {
+        DecimalFormat df = new DecimalFormat("#,##0");
+        System.out.printf("%14s (nanoTime) : %s\n", df.format(endTime
+            - startTime), getClass().getSimpleName());
+    }
 }

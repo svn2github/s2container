@@ -15,4 +15,19 @@
 			select a from Address a
 		</query>
 	</named-query>
+	<named-query name="JpaSelectEmployeeFetchDepartmentTest">
+		<query>
+			select e from Employee e left outer join fetch e.department
+		</query>
+	</named-query>
+		<named-query name="JpaSelectEmployeeFetchAddressTest">
+		<query>
+			select e from Employee e left outer join fetch e.address
+		</query>
+	</named-query>
+	<named-query name="JpaSelectDepartmentFetchEmployeeTest">
+		<query>
+			select distinct d from Department d left outer join fetch d.employees
+		</query>
+	</named-query>
 </entity-mappings>

@@ -17,14 +17,16 @@ package org.seasar.extension.jdbc.benchmark.s2dao;
 
 import java.util.List;
 
-import org.seasar.extension.jdbc.benchmark.AbstractSelectEmployeeTestCase;
+import org.seasar.extension.jdbc.benchmark.BenchmarkTestCase;
+import org.seasar.extension.jdbc.benchmark.SelectAddress;
 import org.seasar.framework.container.SingletonS2Container;
 
 /**
  * @author taedium
  * 
  */
-public class S2DaoSelectAddressTest extends AbstractSelectEmployeeTestCase {
+public class S2DaoSelectAddressTest extends BenchmarkTestCase implements
+        SelectAddress {
 
     private AddressDao addressDao;
 

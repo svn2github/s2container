@@ -19,15 +19,15 @@ import java.util.List;
 
 import org.seasar.extension.jdbc.JdbcManager;
 import org.seasar.extension.jdbc.benchmark.BenchmarkTestCase;
-import org.seasar.extension.jdbc.benchmark.SelectEmployee;
+import org.seasar.extension.jdbc.benchmark.SelectEmployeeFetchAddress;
 import org.seasar.framework.container.SingletonS2Container;
 
 /**
  * @author taedium
  * 
  */
-public class S2JdbcSelectEmployeeTest extends BenchmarkTestCase implements
-        SelectEmployee {
+public class S2JdbcSelectEmployeeFetchAddressTest extends BenchmarkTestCase
+        implements SelectEmployeeFetchAddress {
 
     private JdbcManager jdbcManager;
 
@@ -44,7 +44,7 @@ public class S2JdbcSelectEmployeeTest extends BenchmarkTestCase implements
     public void test() throws Exception {
         begin();
         List<Employee> employees =
-            jdbcManager.from(Employee.class).getResultList();
+            jdbcManager.from(Employee.class).join("address").getResultList();
         end();
         assertEquals(10000, employees.size());
         assertNotNull(employees.get(0).employeeId);
@@ -56,6 +56,9 @@ public class S2JdbcSelectEmployeeTest extends BenchmarkTestCase implements
         assertNotNull(employees.get(0).departmentId);
         assertNotNull(employees.get(0).addressId);
         assertNotNull(employees.get(0).version);
+        assertNotNull(employees.get(0).address.addressId);
+        assertNotNull(employees.get(0).address.street);
+        assertNotNull(employees.get(0).address.version);
     }
 
     @Override

@@ -20,15 +20,15 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import org.seasar.extension.jdbc.benchmark.BenchmarkTestCase;
-import org.seasar.extension.jdbc.benchmark.SelectAddress;
+import org.seasar.extension.jdbc.benchmark.SelectEmployeeFetchDepartment;
 import org.seasar.framework.container.SingletonS2Container;
 
 /**
  * @author taedium
  * 
  */
-public class JpaSelectAddressTest extends BenchmarkTestCase implements
-        SelectAddress {
+public class JpaSelectEmployeeFetchDepartmentTest extends BenchmarkTestCase
+        implements SelectEmployeeFetchDepartment {
 
     private EntityManager entityManager;
 
@@ -45,16 +45,24 @@ public class JpaSelectAddressTest extends BenchmarkTestCase implements
     public void test() throws Exception {
         begin();
         @SuppressWarnings("unchecked")
-        List<Address> addresses =
-            entityManager
-                .createNamedQuery("JpaSelectAddressTest")
-                .getResultList();
+        List<Employee> employees =
+            entityManager.createNamedQuery(
+                "JpaSelectEmployeeFetchDepartmentTest").getResultList();
         end();
-        assertEquals(10000, addresses.size());
-        assertNotNull(addresses.get(0).getAddressId());
-        assertNotNull(addresses.get(0).getStreet());
-        assertNotNull(addresses.get(0).getVersion());
-        assertNotNull(addresses.get(0).getEmployee());
+        assertEquals(10000, employees.size());
+        assertNotNull(employees.get(0).getEmployeeId());
+        assertNotNull(employees.get(0).getEmployeeNo());
+        assertNotNull(employees.get(0).getEmployeeName());
+        assertNotNull(employees.get(0).getHiredate());
+        assertNotNull(employees.get(0).getSalary());
+        assertNotNull(employees.get(0).getVersion());
+        assertNotNull(employees.get(0).getManager());
+        assertNotNull(employees.get(0).getAddress());
+        assertNotNull(employees.get(0).getDepartment());
+        assertNotNull(employees.get(0).getDepartment().getDepartmentId());
+        assertNotNull(employees.get(0).getDepartment().getDepartmentNo());
+        assertNotNull(employees.get(0).getDepartment().getDepartmentName());
+        assertNotNull(employees.get(0).getDepartment().getVersion());
     }
 
     @Override

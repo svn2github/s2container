@@ -13,29 +13,28 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.extension.jdbc.benchmark.jpa;
+package org.seasar.extension.jdbc.benchmark.s2jdbc;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
+import org.seasar.extension.jdbc.JdbcManager;
 import org.seasar.extension.jdbc.benchmark.BenchmarkTestCase;
-import org.seasar.extension.jdbc.benchmark.SelectAddress;
+import org.seasar.extension.jdbc.benchmark.SelectDepartmentFetchEmployee;
 import org.seasar.framework.container.SingletonS2Container;
 
 /**
  * @author taedium
  * 
  */
-public class JpaSelectAddressTest extends BenchmarkTestCase implements
-        SelectAddress {
+public class S2JdbcSelectDepartmentFetchEmployeeTest extends BenchmarkTestCase
+        implements SelectDepartmentFetchEmployee {
 
-    private EntityManager entityManager;
+    private JdbcManager jdbcManager;
 
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        entityManager = SingletonS2Container.getComponent(EntityManager.class);
+        jdbcManager = SingletonS2Container.getComponent(JdbcManager.class);
     }
 
     /**
@@ -44,22 +43,23 @@ public class JpaSelectAddressTest extends BenchmarkTestCase implements
      */
     public void test() throws Exception {
         begin();
-        @SuppressWarnings("unchecked")
-        List<Address> addresses =
-            entityManager
-                .createNamedQuery("JpaSelectAddressTest")
+        List<Department> departments =
+            jdbcManager
+                .from(Department.class)
+                .join("employees")
                 .getResultList();
         end();
-        assertEquals(10000, addresses.size());
-        assertNotNull(addresses.get(0).getAddressId());
-        assertNotNull(addresses.get(0).getStreet());
-        assertNotNull(addresses.get(0).getVersion());
-        assertNotNull(addresses.get(0).getEmployee());
+        assertEquals(4, departments.size());
+        assertNotNull(departments.get(0).departmentId);
+        assertNotNull(departments.get(0).departmentNo);
+        assertNotNull(departments.get(0).departmentName);
+        assertNotNull(departments.get(0).version);
+        assertNotNull(departments.get(0).employees);
     }
 
     @Override
     protected void tearDown() throws Exception {
-        entityManager = null;
+        jdbcManager = null;
         super.tearDown();
     }
 }

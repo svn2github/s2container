@@ -23,14 +23,16 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import org.seasar.extension.jdbc.benchmark.AbstractSelectEmployeeTestCase;
+import org.seasar.extension.jdbc.benchmark.BenchmarkTestCase;
+import org.seasar.extension.jdbc.benchmark.SelectEmployee;
 import org.seasar.framework.container.SingletonS2Container;
 
 /**
  * @author taedium
  * 
  */
-public class JdbcSelectEmployeeTest extends AbstractSelectEmployeeTestCase {
+public class JdbcSelectEmployeeTest extends BenchmarkTestCase implements
+        SelectEmployee {
 
     private static final String SQL =
         "select T.employee_id, T.employee_no, T.employee_name, T.manager_id, T.hiredate, T.salary, T.department_id, T.address_id, T.version FROM Employee T";
