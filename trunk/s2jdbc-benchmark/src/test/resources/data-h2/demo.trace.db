@@ -1,0 +1,48 @@
+10-30 11:46:02 jdbc[2]: Connection not closed
+java.lang.Exception: Stack Trace
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:939)
+	at org.h2.Driver.connect(Driver.java:52)
+	at java.sql.DriverManager.getConnection(DriverManager.java:512)
+	at java.sql.DriverManager.getConnection(DriverManager.java:140)
+	at org.h2.util.JdbcUtils.getConnection(JdbcUtils.java:88)
+	at org.h2.server.web.WebServer.getConnection(WebServer.java:472)
+	at org.h2.server.web.WebThread$1LoginTask.run(WebThread.java:960)
+	at java.lang.Thread.run(Thread.java:534)
+10-30 11:46:14 jdbc[3]: SQLException
+org.h2.jdbc.JdbcSQLException: —ñ DUMMY ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ
+Column DUMMY not found; SQL statement:
+select dummy from dual [42S22-60]
+	at org.h2.message.Message.getSQLException(Message.java:84)
+	at org.h2.message.Message.getSQLException(Message.java:88)
+	at org.h2.message.Message.getSQLException(Message.java:66)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:122)
+	at org.h2.command.dml.Select.prepare(Select.java:470)
+	at org.h2.command.Parser.prepareCommand(Parser.java:205)
+	at org.h2.engine.Session.prepareLocal(Session.java:172)
+	at org.h2.engine.Session.prepareCommand(Session.java:154)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:971)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:144)
+	at org.h2.server.web.WebThread.getResult(WebThread.java:1387)
+	at org.h2.server.web.WebThread.query(WebThread.java:1049)
+	at org.h2.server.web.WebThread.process(WebThread.java:375)
+	at org.h2.server.web.WebThread.processRequest(WebThread.java:131)
+	at org.h2.server.web.WebThread.run(WebThread.java:158)
+10-30 11:49:17 jdbc[3]: SQLException
+org.h2.jdbc.JdbcSQLException: —ñ DUMMY ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ
+Column DUMMY not found; SQL statement:
+select dummy from dual [42S22-60]
+	at org.h2.message.Message.getSQLException(Message.java:84)
+	at org.h2.message.Message.getSQLException(Message.java:88)
+	at org.h2.message.Message.getSQLException(Message.java:66)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:122)
+	at org.h2.command.dml.Select.prepare(Select.java:470)
+	at org.h2.command.Parser.prepareCommand(Parser.java:205)
+	at org.h2.engine.Session.prepareLocal(Session.java:172)
+	at org.h2.engine.Session.prepareCommand(Session.java:154)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:971)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:144)
+	at org.h2.server.web.WebThread.getResult(WebThread.java:1387)
+	at org.h2.server.web.WebThread.query(WebThread.java:1049)
+	at org.h2.server.web.WebThread.process(WebThread.java:375)
+	at org.h2.server.web.WebThread.processRequest(WebThread.java:131)
+	at org.h2.server.web.WebThread.run(WebThread.java:158)
