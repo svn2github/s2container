@@ -13,27 +13,26 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.extension.jdbc.benchmark.s2jdbc;
+package org.seasar.extension.jdbc.benchmark.s2dao;
 
-import java.text.DecimalFormat;
 import java.util.List;
 
-import org.seasar.extension.jdbc.JdbcManager;
-import org.seasar.extension.jdbc.benchmark.AbstractSelectTest;
+import org.seasar.extension.jdbc.benchmark.AbstractSelectEmployeeTestCase;
 import org.seasar.framework.container.SingletonS2Container;
 
 /**
  * @author taedium
  * 
  */
-public class S2JdbcSelectTest extends AbstractSelectTest {
+public class S2DaoSelectEmployeeTest extends AbstractSelectEmployeeTestCase {
 
-    private JdbcManager jdbcManager;
+    private EmployeeDao employeeDao;
 
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        jdbcManager = SingletonS2Container.getComponent(JdbcManager.class);
+        employeeDao = SingletonS2Container.getComponent(EmployeeDao.class);
+        employeeDao.initialize();
     }
 
     /**
@@ -41,23 +40,24 @@ public class S2JdbcSelectTest extends AbstractSelectTest {
      * @throws Exception
      */
     public void test() throws Exception {
-        userTransaction.begin();
-        long start = System.nanoTime();
-        List<Employee> employees =
-            jdbcManager.from(Employee.class).getResultList();
-        long end = System.nanoTime();
-        userTransaction.commit();
+        begin();
+        List<Employee> employees = employeeDao.select();
+        end();
         assertEquals(10000, employees.size());
-        DecimalFormat df = new DecimalFormat("#,##0");
-        System.out.printf(
-            "%14s (nanoTime) : %s\n",
-            df.format(end - start),
-            getClass().getSimpleName());
+        assertNotNull(employees.get(0).employeeId);
+        assertNotNull(employees.get(0).employeeNo);
+        assertNotNull(employees.get(0).employeeName);
+        assertNotNull(employees.get(0).managerId);
+        assertNotNull(employees.get(0).hiredate);
+        assertNotNull(employees.get(0).salary);
+        assertNotNull(employees.get(0).departmentId);
+        assertNotNull(employees.get(0).addressId);
+        assertNotNull(employees.get(0).versionNo);
     }
 
     @Override
     protected void tearDown() throws Exception {
-        jdbcManager = null;
+        employeeDao = null;
         super.tearDown();
     }
 }

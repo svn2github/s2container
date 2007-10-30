@@ -13,27 +13,27 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.extension.jdbc.benchmark.s2dao;
+package org.seasar.extension.jdbc.benchmark.jpa;
 
-import java.text.DecimalFormat;
 import java.util.List;
 
-import org.seasar.extension.jdbc.benchmark.AbstractSelectTest;
+import javax.persistence.EntityManager;
+
+import org.seasar.extension.jdbc.benchmark.AbstractSelectAddressTestCase;
 import org.seasar.framework.container.SingletonS2Container;
 
 /**
  * @author taedium
  * 
  */
-public class S2DaoSelectTest extends AbstractSelectTest {
+public class JpaSelectAddressTest extends AbstractSelectAddressTestCase {
 
-    private EmployeeDao employeeDao;
+    private EntityManager entityManager;
 
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        employeeDao = SingletonS2Container.getComponent(EmployeeDao.class);
-        employeeDao.initialize();
+        entityManager = SingletonS2Container.getComponent(EntityManager.class);
     }
 
     /**
@@ -41,22 +41,23 @@ public class S2DaoSelectTest extends AbstractSelectTest {
      * @throws Exception
      */
     public void test() throws Exception {
-        userTransaction.begin();
-        long start = System.nanoTime();
-        List<Employee> employees = employeeDao.select();
-        long end = System.nanoTime();
-        userTransaction.commit();
-        assertEquals(10000, employees.size());
-        DecimalFormat df = new DecimalFormat("#,##0");
-        System.out.printf(
-            "%14s (nanoTime) : %s\n",
-            df.format(end - start),
-            getClass().getSimpleName());
+        begin();
+        @SuppressWarnings("unchecked")
+        List<Address> addresses =
+            entityManager
+                .createNamedQuery("JpaSelectAddressTest")
+                .getResultList();
+        end();
+        assertEquals(10000, addresses.size());
+        assertNotNull(addresses.get(0).getAddressId());
+        assertNotNull(addresses.get(0).getStreet());
+        assertNotNull(addresses.get(0).getVersion());
+        assertNotNull(addresses.get(0).getEmployee());
     }
 
     @Override
     protected void tearDown() throws Exception {
-        employeeDao = null;
+        entityManager = null;
         super.tearDown();
     }
 }

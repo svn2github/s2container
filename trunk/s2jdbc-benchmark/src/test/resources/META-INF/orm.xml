@@ -5,9 +5,14 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_1_0.xsd"
 	version="1.0"
 >
-	<named-query name="JpaSelectTest">
+	<named-query name="JpaSelectEmployeeTest">
 		<query>
 			select e from Employee e
+		</query>
+	</named-query>
+	<named-query name="JpaSelectAddressTest">
+		<query>
+			select a from Address a
 		</query>
 	</named-query>
 </entity-mappings>

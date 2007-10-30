@@ -19,13 +19,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 
 import javax.sql.DataSource;
-import javax.transaction.UserTransaction;
-
-import junit.framework.TestCase;
 
 import org.seasar.extension.jdbc.util.ConnectionUtil;
 import org.seasar.framework.container.SingletonS2Container;
-import org.seasar.framework.container.factory.SingletonS2ContainerFactory;
 import org.seasar.framework.util.PreparedStatementUtil;
 import org.seasar.framework.util.StatementUtil;
 
@@ -33,19 +29,13 @@ import org.seasar.framework.util.StatementUtil;
  * @author taedium
  * 
  */
-public abstract class AbstractSelectTest extends TestCase {
+public abstract class AbstractSelectEmployeeTestCase extends AbstractTestCase {
 
     private static final String SQL = "select * from Employee";
-
-    /** */
-    protected UserTransaction userTransaction;
 
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        SingletonS2ContainerFactory.init();
-        userTransaction =
-            SingletonS2Container.getComponent(UserTransaction.class);
         DataSource dataSource =
             SingletonS2Container.getComponent(DataSource.class);
         Connection con = dataSource.getConnection();
@@ -61,9 +51,4 @@ public abstract class AbstractSelectTest extends TestCase {
         }
     }
 
-    @Override
-    protected void tearDown() throws Exception {
-        SingletonS2ContainerFactory.destroy();
-        super.tearDown();
-    }
 }

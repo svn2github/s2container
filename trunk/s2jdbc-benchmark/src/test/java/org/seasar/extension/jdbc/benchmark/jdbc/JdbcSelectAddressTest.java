@@ -18,23 +18,22 @@ package org.seasar.extension.jdbc.benchmark.jdbc;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
 
-import org.seasar.extension.jdbc.benchmark.AbstractSelectTest;
+import org.seasar.extension.jdbc.benchmark.AbstractSelectAddressTestCase;
 import org.seasar.framework.container.SingletonS2Container;
 
 /**
  * @author taedium
  * 
  */
-public class JdbcSelectTest extends AbstractSelectTest {
+public class JdbcSelectAddressTest extends AbstractSelectAddressTestCase {
 
     private static final String SQL =
-        "select T.employee_id, T.employee_no, T.employee_name, T.manager_id, T.hiredate, T.salary, T.department_id, T.address_id, T.version FROM Employee T";
+        "select T.address_id, T.street, T.version FROM Address T";
 
     private DataSource dataSource;
 
@@ -49,9 +48,8 @@ public class JdbcSelectTest extends AbstractSelectTest {
      * @throws Exception
      */
     public void test() throws Exception {
-        userTransaction.begin();
-        long start = System.nanoTime();
-        List<Employee> employees = new ArrayList<Employee>(10000);
+        begin();
+        List<Address> addresses = new ArrayList<Address>(10000);
         Connection con = dataSource.getConnection();
         try {
             PreparedStatement ps = con.prepareStatement(SQL);
@@ -60,17 +58,11 @@ public class JdbcSelectTest extends AbstractSelectTest {
                 ResultSet rs = ps.executeQuery();
                 try {
                     while (rs.next()) {
-                        Employee employee = new Employee();
-                        employee.employeeId = rs.getInt(1);
-                        employee.employeeNo = rs.getInt(2);
-                        employee.employeeName = rs.getString(3);
-                        employee.managerId = rs.getInt(4);
-                        employee.hiredate = rs.getTimestamp(5);
-                        employee.salary = rs.getBigDecimal(6);
-                        employee.departmentId = rs.getInt(7);
-                        employee.addressId = rs.getInt(8);
-                        employee.version = rs.getInt(9);
-                        employees.add(employee);
+                        Address address = new Address();
+                        address.addressId = rs.getInt(1);
+                        address.street = rs.getString(2);
+                        address.version = rs.getInt(3);
+                        addresses.add(address);
                     }
                 } finally {
                     rs.close();
@@ -81,14 +73,11 @@ public class JdbcSelectTest extends AbstractSelectTest {
         } finally {
             con.close();
         }
-        long end = System.nanoTime();
-        userTransaction.commit();
-        assertEquals(10000, employees.size());
-        DecimalFormat df = new DecimalFormat("#,##0");
-        System.out.printf(
-            "%14s (nanoTime) : %s\n",
-            df.format(end - start),
-            getClass().getSimpleName());
+        end();
+        assertEquals(10000, addresses.size());
+        assertNotNull(addresses.get(0).addressId);
+        assertNotNull(addresses.get(0).street);
+        assertNotNull(addresses.get(0).version);
     }
 
     @Override

@@ -15,19 +15,18 @@
  */
 package org.seasar.extension.jdbc.benchmark.jpa;
 
-import java.text.DecimalFormat;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import org.seasar.extension.jdbc.benchmark.AbstractSelectTest;
+import org.seasar.extension.jdbc.benchmark.AbstractSelectEmployeeTestCase;
 import org.seasar.framework.container.SingletonS2Container;
 
 /**
  * @author taedium
  * 
  */
-public class JpaSelectTest extends AbstractSelectTest {
+public class JpaSelectEmployeeTest extends AbstractSelectEmployeeTestCase {
 
     private EntityManager entityManager;
 
@@ -42,19 +41,23 @@ public class JpaSelectTest extends AbstractSelectTest {
      * @throws Exception
      */
     public void test() throws Exception {
-        userTransaction.begin();
-        long start = System.nanoTime();
+        begin();
         @SuppressWarnings("unchecked")
         List<Employee> employees =
-            entityManager.createNamedQuery("JpaSelectTest").getResultList();
-        long end = System.nanoTime();
-        userTransaction.commit();
+            entityManager
+                .createNamedQuery("JpaSelectEmployeeTest")
+                .getResultList();
+        end();
         assertEquals(10000, employees.size());
-        DecimalFormat df = new DecimalFormat("#,##0");
-        System.out.printf(
-            "%14s (nanoTime) : %s\n",
-            df.format(end - start),
-            getClass().getSimpleName());
+        assertNotNull(employees.get(0).getEmployeeId());
+        assertNotNull(employees.get(0).getEmployeeNo());
+        assertNotNull(employees.get(0).getEmployeeName());
+        assertNotNull(employees.get(0).getHiredate());
+        assertNotNull(employees.get(0).getSalary());
+        assertNotNull(employees.get(0).getVersion());
+        assertNotNull(employees.get(0).getManager());
+        assertNotNull(employees.get(0).getAddress());
+        assertNotNull(employees.get(0).getDepartment());
     }
 
     @Override
