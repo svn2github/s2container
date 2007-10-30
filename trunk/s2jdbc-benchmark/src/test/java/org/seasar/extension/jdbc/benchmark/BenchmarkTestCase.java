@@ -24,6 +24,7 @@ import javax.transaction.UserTransaction;
 
 import junit.framework.TestCase;
 
+import org.seasar.extension.jdbc.SqlLogRegistryLocator;
 import org.seasar.extension.jdbc.util.ConnectionUtil;
 import org.seasar.framework.container.SingletonS2Container;
 import org.seasar.framework.container.factory.SingletonS2ContainerFactory;
@@ -48,6 +49,7 @@ public abstract class BenchmarkTestCase extends TestCase {
     protected void setUp() throws Exception {
         super.setUp();
         SingletonS2ContainerFactory.init();
+        SqlLogRegistryLocator.setInstance(null);
         userTransaction =
             SingletonS2Container.getComponent(UserTransaction.class);
 
@@ -87,6 +89,7 @@ public abstract class BenchmarkTestCase extends TestCase {
     @Override
     protected void tearDown() throws Exception {
         printBenchmark();
+        userTransaction = null;
         SingletonS2ContainerFactory.destroy();
         super.tearDown();
     }

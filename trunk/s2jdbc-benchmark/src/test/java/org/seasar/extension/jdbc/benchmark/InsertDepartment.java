@@ -13,41 +13,11 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.extension.jdbc.benchmark.s2dao;
-
-import java.util.List;
-
-import org.seasar.dao.annotation.tiger.Query;
-import org.seasar.dao.annotation.tiger.S2Dao;
-import org.seasar.dao.annotation.tiger.Sql;
-import org.seasar.dao.pager.PagerCondition;
+package org.seasar.extension.jdbc.benchmark;
 
 /**
  * @author taedium
  * 
  */
-@S2Dao(bean = Employee.class)
-public interface EmployeeDao {
-
-    /**
-     * 
-     * @return
-     */
-    @Sql("select * from dual")
-    Object initialize();
-
-    /**
-     * 
-     * @return
-     */
-    List<Employee> select();
-
-    /**
-     * 
-     * @param condition
-     * @return
-     */
-    @Query("order by employee_Id")
-    List<Employee> selectPaging(PagerCondition condition);
-
+public interface InsertDepartment {
 }

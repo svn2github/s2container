@@ -15,19 +15,15 @@
  */
 package org.seasar.extension.jdbc.benchmark.s2dao;
 
-import java.util.List;
-
-import org.seasar.dao.annotation.tiger.Query;
 import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.dao.annotation.tiger.Sql;
-import org.seasar.dao.pager.PagerCondition;
 
 /**
  * @author taedium
  * 
  */
-@S2Dao(bean = Employee.class)
-public interface EmployeeDao {
+@S2Dao(bean = Department.class)
+public interface DepartmentDao {
 
     /**
      * 
@@ -38,16 +34,22 @@ public interface EmployeeDao {
 
     /**
      * 
+     * @param department
      * @return
      */
-    List<Employee> select();
+    int insert(Department department);
 
     /**
      * 
-     * @param condition
+     * @param department
      * @return
      */
-    @Query("order by employee_Id")
-    List<Employee> selectPaging(PagerCondition condition);
+    int update(Department department);
 
+    /**
+     * 
+     * @param department
+     * @return
+     */
+    int delete(Department department);
 }

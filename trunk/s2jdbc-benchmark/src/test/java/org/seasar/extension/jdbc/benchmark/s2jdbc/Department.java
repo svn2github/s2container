@@ -34,7 +34,7 @@ public class Department {
 
     /** */
     @Id
-    @SequenceGenerator(name = "DEPARTMENT_SEQ_GEN")
+    @SequenceGenerator(name = "DEPARTMENT_SEQ_GEN", sequenceName = "DEPARTMENT_SEQ")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "DEPARTMENT_SEQ_GEN")
     public Integer departmentId;
 
