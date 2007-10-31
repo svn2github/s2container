@@ -48,9 +48,11 @@ public class S2JdbcUpdateTest extends BenchmarkTestCase implements
                 .orderBy("employeeId")
                 .getResultList();
         assertEquals(10000, employees.size());
-        begin();
         for (Employee employee : employees) {
             employee.employeeName = "HOGE";
+        }
+        begin();
+        for (Employee employee : employees) {
             jdbcManager.update(employee).execute();
         }
         end();

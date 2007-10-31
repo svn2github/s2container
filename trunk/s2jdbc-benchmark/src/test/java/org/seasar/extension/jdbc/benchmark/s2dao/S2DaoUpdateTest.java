@@ -44,9 +44,11 @@ public class S2DaoUpdateTest extends BenchmarkTestCase implements
     public void test() throws Exception {
         List<Employee> employees = employeeDao.select();
         assertEquals(10000, employees.size());
-        begin();
         for (Employee employee : employees) {
             employee.employeeName = "HOGE";
+        }
+        begin();
+        for (Employee employee : employees) {
             employeeDao.update(employee);
         }
         end();

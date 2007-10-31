@@ -13,28 +13,28 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.extension.jdbc.benchmark.jpa;
+package org.seasar.extension.jdbc.benchmark.s2dao;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
+import org.seasar.extension.jdbc.benchmark.BatchDeleteBenchmark;
 import org.seasar.extension.jdbc.benchmark.BenchmarkTestCase;
-import org.seasar.extension.jdbc.benchmark.UpdateBenchmark;
 import org.seasar.framework.container.SingletonS2Container;
 
 /**
  * @author taedium
  * 
  */
-public class JpaUpdateTest extends BenchmarkTestCase implements UpdateBenchmark {
+public class S2DaoBatchDeleteTest extends BenchmarkTestCase implements
+        BatchDeleteBenchmark {
 
-    private EntityManager entityManager;
+    private EmployeeDao employeeDao;
 
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        entityManager = SingletonS2Container.getComponent(EntityManager.class);
+        employeeDao = SingletonS2Container.getComponent(EmployeeDao.class);
+        employeeDao.initialize();
     }
 
     /**
@@ -42,24 +42,16 @@ public class JpaUpdateTest extends BenchmarkTestCase implements UpdateBenchmark 
      * @throws Exception
      */
     public void test() throws Exception {
-        userTransaction.begin();
-        @SuppressWarnings("unchecked")
-        List<Employee> employees =
-            entityManager.createQuery(
-                "select e from Employee e order by employeeId").getResultList();
+        List<Employee> employees = employeeDao.select();
         assertEquals(10000, employees.size());
-        for (Employee employee : employees) {
-            employee.setEmployeeName("HOGE");
-        }
-        startTime = System.nanoTime();
-        entityManager.flush();
-        endTime = System.nanoTime();
-        userTransaction.rollback();
+        begin();
+        employeeDao.deleteBatch(employees);
+        end();
     }
 
     @Override
     protected void tearDown() throws Exception {
-        entityManager = null;
+        employeeDao = null;
         super.tearDown();
     }
 }

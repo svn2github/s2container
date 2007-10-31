@@ -13,28 +13,29 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.extension.jdbc.benchmark.jpa;
+package org.seasar.extension.jdbc.benchmark.s2dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
+import org.seasar.extension.jdbc.benchmark.BatchInsertBenchmark;
 import org.seasar.extension.jdbc.benchmark.BenchmarkTestCase;
-import org.seasar.extension.jdbc.benchmark.UpdateBenchmark;
 import org.seasar.framework.container.SingletonS2Container;
 
 /**
  * @author taedium
  * 
  */
-public class JpaUpdateTest extends BenchmarkTestCase implements UpdateBenchmark {
+public class S2DaoBatchInsertTest extends BenchmarkTestCase implements
+        BatchInsertBenchmark {
 
-    private EntityManager entityManager;
+    private DepartmentDao departmentDao;
 
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        entityManager = SingletonS2Container.getComponent(EntityManager.class);
+        departmentDao = SingletonS2Container.getComponent(DepartmentDao.class);
+        departmentDao.initialize();
     }
 
     /**
@@ -42,24 +43,26 @@ public class JpaUpdateTest extends BenchmarkTestCase implements UpdateBenchmark 
      * @throws Exception
      */
     public void test() throws Exception {
-        userTransaction.begin();
-        @SuppressWarnings("unchecked")
-        List<Employee> employees =
-            entityManager.createQuery(
-                "select e from Employee e order by employeeId").getResultList();
-        assertEquals(10000, employees.size());
-        for (Employee employee : employees) {
-            employee.setEmployeeName("HOGE");
+        List<Department> departments = new ArrayList<Department>();
+        for (int i = 0; i < 10000; i++) {
+            Department department = new Department();
+            department.departmentNo = 90;
+            department.departmentName = "HOGE";
+            department.location = "FOO";
+            department.versionNo = 1;
+            departments.add(department);
         }
-        startTime = System.nanoTime();
-        entityManager.flush();
-        endTime = System.nanoTime();
-        userTransaction.rollback();
+        begin();
+        for (Department department : departments) {
+            department.departmentId = departmentDao.getSequenceNextValue();
+        }
+        departmentDao.insertBatch(departments);
+        end();
     }
 
     @Override
     protected void tearDown() throws Exception {
-        entityManager = null;
+        departmentDao = null;
         super.tearDown();
     }
 }

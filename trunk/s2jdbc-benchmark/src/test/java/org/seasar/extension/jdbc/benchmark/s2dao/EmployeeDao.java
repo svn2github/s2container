@@ -63,4 +63,18 @@ public interface EmployeeDao {
      * @return
      */
     int delete(Employee employee);
+
+    /**
+     * 
+     * @param employees
+     * @return
+     */
+    int[] updateBatch(List<Employee> employees);
+
+    /**
+     * 
+     * @param employees
+     * @return
+     */
+    int[] deleteBatch(List<Employee> employees);
 }

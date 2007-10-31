@@ -15,6 +15,8 @@
  */
 package org.seasar.extension.jdbc.benchmark.s2dao;
 
+import java.util.List;
+
 import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.dao.annotation.tiger.Sql;
 
@@ -39,4 +41,17 @@ public interface DepartmentDao {
      */
     int insert(Department department);
 
+    /**
+     * 
+     * @param departments
+     * @return
+     */
+    int[] insertBatch(List<Department> departments);
+
+    /**
+     * 
+     * @return
+     */
+    @Sql("select DEPARTMENT_SEQ.nextval from dual")
+    int getSequenceNextValue();
 }

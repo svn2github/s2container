@@ -24,16 +24,16 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.seasar.extension.jdbc.benchmark.BatchUpdateBenchmark;
 import org.seasar.extension.jdbc.benchmark.BenchmarkTestCase;
-import org.seasar.extension.jdbc.benchmark.UpdateBenchmark;
 import org.seasar.framework.container.SingletonS2Container;
 
 /**
  * @author taedium
  * 
  */
-public class JdbcUpdateTest extends BenchmarkTestCase implements
-        UpdateBenchmark {
+public class JdbcBatchUpdateTest extends BenchmarkTestCase implements
+        BatchUpdateBenchmark {
 
     private static final String SELECT =
         "select T.employee_id, T.employee_no, T.employee_name, T.manager_id, T.hiredate, T.salary, T.department_id, T.address_id, T.version FROM Employee T order by employee_Id";
@@ -72,8 +72,9 @@ public class JdbcUpdateTest extends BenchmarkTestCase implements
                     ps.setInt(7, employee.addressId);
                     ps.setInt(8, employee.employeeId);
                     ps.setInt(9, employee.version);
-                    ps.executeQuery();
+                    ps.addBatch();
                 }
+                ps.executeBatch();
             } finally {
                 ps.close();
             }
