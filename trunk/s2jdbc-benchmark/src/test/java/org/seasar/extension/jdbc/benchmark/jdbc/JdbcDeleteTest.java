@@ -18,28 +18,27 @@ package org.seasar.extension.jdbc.benchmark.jdbc;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
 
 import org.seasar.extension.jdbc.benchmark.BenchmarkTestCase;
-import org.seasar.extension.jdbc.benchmark.UpdateBenchmark;
+import org.seasar.extension.jdbc.benchmark.DeleteBenchmark;
 import org.seasar.framework.container.SingletonS2Container;
 
 /**
  * @author taedium
  * 
  */
-public class JdbcUpdateTest extends BenchmarkTestCase implements
-        UpdateBenchmark {
+public class JdbcDeleteTest extends BenchmarkTestCase implements
+        DeleteBenchmark {
 
     private static final String SELECT =
         "select T.employee_id, T.employee_no, T.employee_name, T.manager_id, T.hiredate, T.salary, T.department_id, T.address_id, T.version FROM Employee T order by employee_Id";
 
-    private static final String UPDATE =
-        "update Employee set employee_no = ?, employee_name = ?, manager_id = ?, hiredate = ?, salary = ?, department_id = ?, address_id = ? where employee_Id = ? and version = ?";
+    private static final String DELETE =
+        "delete from Employee where employee_Id = ? and version = ?";
 
     private DataSource dataSource;
 
@@ -59,19 +58,11 @@ public class JdbcUpdateTest extends BenchmarkTestCase implements
         begin();
         Connection con = dataSource.getConnection();
         try {
-            PreparedStatement ps = con.prepareStatement(UPDATE);
+            PreparedStatement ps = con.prepareStatement(DELETE);
             try {
                 for (Employee employee : employees) {
-                    ps.setInt(1, employee.employeeNo);
-                    ps.setString(2, employee.employeeName);
-                    ps.setInt(3, employee.managerId);
-                    ps.setTimestamp(4, new Timestamp(employee.hiredate
-                        .getTime()));
-                    ps.setBigDecimal(5, employee.salary);
-                    ps.setInt(6, employee.departmentId);
-                    ps.setInt(7, employee.addressId);
-                    ps.setInt(8, employee.employeeId);
-                    ps.setInt(9, employee.version);
+                    ps.setInt(1, employee.employeeId);
+                    ps.setInt(2, employee.version);
                     ps.executeQuery();
                 }
             } finally {

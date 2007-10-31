@@ -13,28 +13,28 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.extension.jdbc.benchmark.s2dao;
+package org.seasar.extension.jdbc.benchmark.s2jdbc;
 
 import java.util.List;
 
+import org.seasar.extension.jdbc.JdbcManager;
 import org.seasar.extension.jdbc.benchmark.BenchmarkTestCase;
-import org.seasar.extension.jdbc.benchmark.UpdateBenchmark;
+import org.seasar.extension.jdbc.benchmark.DeleteBenchmark;
 import org.seasar.framework.container.SingletonS2Container;
 
 /**
  * @author taedium
  * 
  */
-public class S2DaoUpdateTest extends BenchmarkTestCase implements
-        UpdateBenchmark {
+public class S2JdbcDeleteTest extends BenchmarkTestCase implements
+        DeleteBenchmark {
 
-    private EmployeeDao employeeDao;
+    private JdbcManager jdbcManager;
 
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        employeeDao = SingletonS2Container.getComponent(EmployeeDao.class);
-        employeeDao.initialize();
+        jdbcManager = SingletonS2Container.getComponent(JdbcManager.class);
     }
 
     /**
@@ -42,19 +42,22 @@ public class S2DaoUpdateTest extends BenchmarkTestCase implements
      * @throws Exception
      */
     public void test() throws Exception {
-        List<Employee> employees = employeeDao.select();
+        List<Employee> employees =
+            jdbcManager
+                .from(Employee.class)
+                .orderBy("employeeId")
+                .getResultList();
         assertEquals(10000, employees.size());
         begin();
         for (Employee employee : employees) {
-            employee.employeeName = "HOGE";
-            employeeDao.update(employee);
+            jdbcManager.delete(employee).execute();
         }
         end();
     }
 
     @Override
     protected void tearDown() throws Exception {
-        employeeDao = null;
+        jdbcManager = null;
         super.tearDown();
     }
 }

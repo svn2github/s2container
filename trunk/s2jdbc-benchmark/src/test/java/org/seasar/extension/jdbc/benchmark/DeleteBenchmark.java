@@ -13,30 +13,11 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.extension.jdbc.benchmark.s2dao;
-
-import org.seasar.dao.annotation.tiger.S2Dao;
-import org.seasar.dao.annotation.tiger.Sql;
+package org.seasar.extension.jdbc.benchmark;
 
 /**
  * @author taedium
  * 
  */
-@S2Dao(bean = Department.class)
-public interface DepartmentDao {
-
-    /**
-     * 
-     * @return
-     */
-    @Sql("select * from dual")
-    Object initialize();
-
-    /**
-     * 
-     * @param department
-     * @return
-     */
-    int insert(Department department);
-
+public interface DeleteBenchmark {
 }

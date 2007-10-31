@@ -56,4 +56,11 @@ public interface EmployeeDao {
      * @return
      */
     int update(Employee employee);
+
+    /**
+     * 
+     * @param employee
+     * @return
+     */
+    int delete(Employee employee);
 }

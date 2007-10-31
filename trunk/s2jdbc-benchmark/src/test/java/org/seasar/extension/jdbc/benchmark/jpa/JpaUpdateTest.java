@@ -27,8 +27,7 @@ import org.seasar.framework.container.SingletonS2Container;
  * @author taedium
  * 
  */
-public class JpaUpdateTest extends BenchmarkTestCase implements
-        UpdateBenchmark {
+public class JpaUpdateTest extends BenchmarkTestCase implements UpdateBenchmark {
 
     private EntityManager entityManager;
 
@@ -48,6 +47,7 @@ public class JpaUpdateTest extends BenchmarkTestCase implements
         List<Employee> employees =
             entityManager.createQuery(
                 "select e from Employee e order by employeeId").getResultList();
+        assertEquals(10000, employees.size());
         startTime = System.nanoTime();
         for (Employee employee : employees) {
             employee.setEmployeeName("HOGE");

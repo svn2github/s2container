@@ -18,15 +18,15 @@ package org.seasar.extension.jdbc.benchmark.s2dao;
 import java.util.List;
 
 import org.seasar.extension.jdbc.benchmark.BenchmarkTestCase;
-import org.seasar.extension.jdbc.benchmark.UpdateBenchmark;
+import org.seasar.extension.jdbc.benchmark.DeleteBenchmark;
 import org.seasar.framework.container.SingletonS2Container;
 
 /**
  * @author taedium
  * 
  */
-public class S2DaoUpdateTest extends BenchmarkTestCase implements
-        UpdateBenchmark {
+public class S2DaoDeleteTest extends BenchmarkTestCase implements
+        DeleteBenchmark {
 
     private EmployeeDao employeeDao;
 
@@ -46,8 +46,7 @@ public class S2DaoUpdateTest extends BenchmarkTestCase implements
         assertEquals(10000, employees.size());
         begin();
         for (Employee employee : employees) {
-            employee.employeeName = "HOGE";
-            employeeDao.update(employee);
+            employeeDao.delete(employee);
         }
         end();
     }
