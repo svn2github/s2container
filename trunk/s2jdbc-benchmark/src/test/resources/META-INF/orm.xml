@@ -5,32 +5,32 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_1_0.xsd"
 	version="1.0"
 >
-	<named-query name="JpaSelectEmployeeTest">
+	<named-query name="JpaSelectOwnerSideTest">
 		<query>
 			select e from Employee e
 		</query>
 	</named-query>
-	<named-query name="JpaSelectAddressTest">
+	<named-query name="JpaSelectInverseSideTest">
 		<query>
 			select a from Address a
 		</query>
 	</named-query>
-	<named-query name="JpaSelectEmployeeFetchDepartmentTest">
+	<named-query name="JpaSelectManyToOneFetchTest">
 		<query>
 			select e from Employee e left outer join fetch e.department
 		</query>
 	</named-query>
-		<named-query name="JpaSelectEmployeeFetchAddressTest">
+		<named-query name="JpaSelectOneToOneFetchTest">
 		<query>
 			select e from Employee e left outer join fetch e.address
 		</query>
 	</named-query>
-	<named-query name="JpaSelectDepartmentFetchEmployeeTest">
+	<named-query name="JpaSelectOneToManyFetchTest">
 		<query>
 			select distinct d from Department d left outer join fetch d.employees
 		</query>
 	</named-query>
-	<named-query name="JpaSelectEmployeePagingTest">
+	<named-query name="JpaPagingTest">
 		<query>
 			select e from Employee e order by e.employeeId
 		</query>
