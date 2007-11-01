@@ -17,6 +17,7 @@ package org.seasar.extension.jdbc.benchmark.s2jdbc;
 
 import java.util.List;
 
+import org.seasar.extension.jdbc.EntityMetaFactory;
 import org.seasar.extension.jdbc.JdbcManager;
 import org.seasar.extension.jdbc.benchmark.BenchmarkTestCase;
 import org.seasar.extension.jdbc.benchmark.SelectOneToOneFetchBenchmark;
@@ -26,8 +27,8 @@ import org.seasar.framework.container.SingletonS2Container;
  * @author taedium
  * 
  */
-public class S2JdbcSelectOneToOneFetchTest extends BenchmarkTestCase
-        implements SelectOneToOneFetchBenchmark {
+public class S2JdbcSelectOneToOneFetchTest extends BenchmarkTestCase implements
+        SelectOneToOneFetchBenchmark {
 
     private JdbcManager jdbcManager;
 
@@ -35,6 +36,9 @@ public class S2JdbcSelectOneToOneFetchTest extends BenchmarkTestCase
     protected void setUp() throws Exception {
         super.setUp();
         jdbcManager = SingletonS2Container.getComponent(JdbcManager.class);
+        EntityMetaFactory entityMetaFactory =
+            SingletonS2Container.getComponent(EntityMetaFactory.class);
+        entityMetaFactory.getEntityMeta(Employee.class);
     }
 
     /**
