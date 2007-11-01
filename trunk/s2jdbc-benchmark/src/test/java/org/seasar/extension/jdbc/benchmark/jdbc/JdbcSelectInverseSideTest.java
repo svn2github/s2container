@@ -87,4 +87,13 @@ public class JdbcSelectInverseSideTest extends BenchmarkTestCase implements
         dataSource = null;
         super.tearDown();
     }
+
+    /**
+     * 
+     * @param args
+     * @throws Exception
+     */
+    public static void main(String[] args) throws Exception {
+        BenchmarkTestCase.run(JdbcSelectInverseSideTest.class, args);
+    }
 }

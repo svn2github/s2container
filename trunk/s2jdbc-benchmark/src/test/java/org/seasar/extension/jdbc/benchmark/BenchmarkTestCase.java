@@ -15,14 +15,18 @@
  */
 package org.seasar.extension.jdbc.benchmark;
 
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.text.DecimalFormat;
+import java.util.Formatter;
 
 import javax.sql.DataSource;
 import javax.transaction.UserTransaction;
 
 import junit.framework.TestCase;
+import junit.textui.TestRunner;
 
 import org.seasar.extension.jdbc.SqlLogRegistryLocator;
 import org.seasar.extension.jdbc.util.ConnectionUtil;
@@ -38,6 +42,8 @@ import org.seasar.framework.util.StatementUtil;
 public abstract class BenchmarkTestCase extends TestCase {
 
     private static final String SQL = "select * from Employee";
+
+    private static String fileName;
 
     /** */
     protected UserTransaction userTransaction;
@@ -55,7 +61,14 @@ public abstract class BenchmarkTestCase extends TestCase {
         SqlLogRegistryLocator.setInstance(null);
         userTransaction =
             SingletonS2Container.getComponent(UserTransaction.class);
+        warmConnection();
+    }
 
+    /**
+     * 
+     * @throws Exception
+     */
+    protected void warmConnection() throws Exception {
         DataSource dataSource =
             SingletonS2Container.getComponent(DataSource.class);
         Connection con = dataSource.getConnection();
@@ -99,10 +112,36 @@ public abstract class BenchmarkTestCase extends TestCase {
 
     /**
      * 
+     * @throws Exception
      */
-    protected void printBenchmark() {
+    protected void printBenchmark() throws Exception {
         DecimalFormat df = new DecimalFormat("#,##0");
-        System.out.printf("%14s (nanoTime) : %s\n", df.format(endTime
-            - startTime), getClass().getSimpleName());
+        Formatter f = null;
+        try {
+            OutputStream os =
+                fileName != null ? new FileOutputStream(fileName, true)
+                    : System.out;
+            f = new Formatter(os);
+            f.format(
+                "%14s (nanoTime) : %s\n",
+                df.format(endTime - startTime),
+                getClass().getSimpleName());
+        } finally {
+            f.close();
+        }
+    }
+
+    /**
+     * 
+     * @param clazz
+     * @param args
+     * @throws Exception
+     */
+    protected static void run(Class<? extends BenchmarkTestCase> clazz,
+            String[] args) throws Exception {
+        if (args.length > 0 || args[0] != null) {
+            fileName = args[0];
+        }
+        TestRunner.main(new String[] { clazz.getName() });
     }
 }

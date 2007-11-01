@@ -57,4 +57,13 @@ public class S2DaoBatchUpdateTest extends BenchmarkTestCase implements
         employeeDao = null;
         super.tearDown();
     }
+
+    /**
+     * 
+     * @param args
+     * @throws Exception
+     */
+    public static void main(String[] args) throws Exception {
+        BenchmarkTestCase.run(S2DaoBatchUpdateTest.class, args);
+    }
 }

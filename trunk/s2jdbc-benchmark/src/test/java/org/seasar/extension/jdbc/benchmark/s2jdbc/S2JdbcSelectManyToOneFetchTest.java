@@ -72,4 +72,13 @@ public class S2JdbcSelectManyToOneFetchTest extends BenchmarkTestCase implements
         jdbcManager = null;
         super.tearDown();
     }
+
+    /**
+     * 
+     * @param args
+     * @throws Exception
+     */
+    public static void main(String[] args) throws Exception {
+        BenchmarkTestCase.run(S2JdbcSelectManyToOneFetchTest.class, args);
+    }
 }

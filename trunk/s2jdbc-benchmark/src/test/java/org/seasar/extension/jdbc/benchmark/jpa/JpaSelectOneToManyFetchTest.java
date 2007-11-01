@@ -63,4 +63,13 @@ public class JpaSelectOneToManyFetchTest extends BenchmarkTestCase implements
         entityManager = null;
         super.tearDown();
     }
+
+    /**
+     * 
+     * @param args
+     * @throws Exception
+     */
+    public static void main(String[] args) throws Exception {
+        BenchmarkTestCase.run(JpaSelectOneToManyFetchTest.class, args);
+    }
 }

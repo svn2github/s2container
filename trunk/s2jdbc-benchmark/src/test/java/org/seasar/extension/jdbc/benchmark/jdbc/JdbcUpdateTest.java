@@ -122,4 +122,13 @@ public class JdbcUpdateTest extends BenchmarkTestCase implements
         dataSource = null;
         super.tearDown();
     }
+
+    /**
+     * 
+     * @param args
+     * @throws Exception
+     */
+    public static void main(String[] args) throws Exception {
+        BenchmarkTestCase.run(JdbcUpdateTest.class, args);
+    }
 }

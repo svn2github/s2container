@@ -66,4 +66,13 @@ public class S2JdbcBatchInsertTest extends BenchmarkTestCase implements
         jdbcManager = null;
         super.tearDown();
     }
+
+    /**
+     * 
+     * @param args
+     * @throws Exception
+     */
+    public static void main(String[] args) throws Exception {
+        BenchmarkTestCase.run(S2JdbcBatchInsertTest.class, args);
+    }
 }

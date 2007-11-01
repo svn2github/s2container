@@ -28,8 +28,7 @@ import org.seasar.framework.container.SingletonS2Container;
  * @author taedium
  * 
  */
-public class JpaInsertTest extends BenchmarkTestCase implements
-        InsertBenchmark {
+public class JpaInsertTest extends BenchmarkTestCase implements InsertBenchmark {
 
     private EntityManager entityManager;
 
@@ -65,5 +64,14 @@ public class JpaInsertTest extends BenchmarkTestCase implements
     protected void tearDown() throws Exception {
         entityManager = null;
         super.tearDown();
+    }
+
+    /**
+     * 
+     * @param args
+     * @throws Exception
+     */
+    public static void main(String[] args) throws Exception {
+        BenchmarkTestCase.run(JpaInsertTest.class, args);
     }
 }

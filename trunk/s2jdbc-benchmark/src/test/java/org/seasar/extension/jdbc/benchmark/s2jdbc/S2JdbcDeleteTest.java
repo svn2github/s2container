@@ -64,4 +64,13 @@ public class S2JdbcDeleteTest extends BenchmarkTestCase implements
         jdbcManager = null;
         super.tearDown();
     }
+
+    /**
+     * 
+     * @param args
+     * @throws Exception
+     */
+    public static void main(String[] args) throws Exception {
+        BenchmarkTestCase.run(S2JdbcDeleteTest.class, args);
+    }
 }

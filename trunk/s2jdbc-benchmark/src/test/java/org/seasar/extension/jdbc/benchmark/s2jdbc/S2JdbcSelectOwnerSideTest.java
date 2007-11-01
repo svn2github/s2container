@@ -67,4 +67,13 @@ public class S2JdbcSelectOwnerSideTest extends BenchmarkTestCase implements
         jdbcManager = null;
         super.tearDown();
     }
+
+    /**
+     * 
+     * @param args
+     * @throws Exception
+     */
+    public static void main(String[] args) throws Exception {
+        BenchmarkTestCase.run(S2JdbcSelectOwnerSideTest.class, args);
+    }
 }

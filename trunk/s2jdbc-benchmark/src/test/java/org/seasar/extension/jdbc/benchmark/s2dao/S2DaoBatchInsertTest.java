@@ -65,4 +65,13 @@ public class S2DaoBatchInsertTest extends BenchmarkTestCase implements
         departmentDao = null;
         super.tearDown();
     }
+
+    /**
+     * 
+     * @param args
+     * @throws Exception
+     */
+    public static void main(String[] args) throws Exception {
+        BenchmarkTestCase.run(S2DaoBatchInsertTest.class, args);
+    }
 }

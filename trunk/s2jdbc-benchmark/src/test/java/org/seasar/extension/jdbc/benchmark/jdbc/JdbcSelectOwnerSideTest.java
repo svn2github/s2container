@@ -99,4 +99,13 @@ public class JdbcSelectOwnerSideTest extends BenchmarkTestCase implements
         dataSource = null;
         super.tearDown();
     }
+
+    /**
+     * 
+     * @param args
+     * @throws Exception
+     */
+    public static void main(String[] args) throws Exception {
+        BenchmarkTestCase.run(JdbcSelectOwnerSideTest.class, args);
+    }
 }

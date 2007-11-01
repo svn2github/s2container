@@ -68,4 +68,13 @@ public class JpaPagingTest extends BenchmarkTestCase implements PagingBenchmark 
         entityManager = null;
         super.tearDown();
     }
+
+    /**
+     * 
+     * @param args
+     * @throws Exception
+     */
+    public static void main(String[] args) throws Exception {
+        BenchmarkTestCase.run(JpaPagingTest.class, args);
+    }
 }

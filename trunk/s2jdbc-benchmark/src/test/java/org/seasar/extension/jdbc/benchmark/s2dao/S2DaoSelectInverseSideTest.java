@@ -56,4 +56,13 @@ public class S2DaoSelectInverseSideTest extends BenchmarkTestCase implements
         addressDao = null;
         super.tearDown();
     }
+
+    /**
+     * 
+     * @param args
+     * @throws Exception
+     */
+    public static void main(String[] args) throws Exception {
+        BenchmarkTestCase.run(S2DaoSelectInverseSideTest.class, args);
+    }
 }

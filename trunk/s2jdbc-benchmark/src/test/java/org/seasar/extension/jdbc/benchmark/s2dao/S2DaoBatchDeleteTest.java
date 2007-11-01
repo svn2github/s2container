@@ -54,4 +54,13 @@ public class S2DaoBatchDeleteTest extends BenchmarkTestCase implements
         employeeDao = null;
         super.tearDown();
     }
+
+    /**
+     * 
+     * @param args
+     * @throws Exception
+     */
+    public static void main(String[] args) throws Exception {
+        BenchmarkTestCase.run(S2DaoBatchDeleteTest.class, args);
+    }
 }
