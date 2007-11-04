@@ -8,7 +8,9 @@ if exist %FILE% (
 )
 
 for /F %%a in (testclasses.txt) do (
-	if not %%a == "" (
+	if "%%a" == "#" (
+		echo. >> %FILE%
+	) else (
 		for /L %%b in (1,1,5) do (
 			call :EXEC %%a
 		)

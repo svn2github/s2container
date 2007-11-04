@@ -29,13 +29,6 @@ public interface DepartmentDao {
 
     /**
      * 
-     * @return
-     */
-    @Sql("select * from dual")
-    Object initialize();
-
-    /**
-     * 
      * @param department
      * @return
      */

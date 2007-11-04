@@ -37,6 +37,14 @@ public class S2JdbcInsertTest extends BenchmarkTestCase implements
     protected void setUp() throws Exception {
         super.setUp();
         jdbcManager = SingletonS2Container.getComponent(JdbcManager.class);
+        initializeMeta();
+    }
+
+    /**
+     * 
+     * @throws Exception
+     */
+    protected void initializeMeta() throws Exception {
         EntityMetaFactory entityMetaFactory =
             SingletonS2Container.getComponent(EntityMetaFactory.class);
         entityMetaFactory.getEntityMeta(Employee.class);

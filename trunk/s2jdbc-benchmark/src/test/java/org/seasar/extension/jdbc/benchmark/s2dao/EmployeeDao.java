@@ -19,7 +19,6 @@ import java.util.List;
 
 import org.seasar.dao.annotation.tiger.Query;
 import org.seasar.dao.annotation.tiger.S2Dao;
-import org.seasar.dao.annotation.tiger.Sql;
 import org.seasar.dao.pager.PagerCondition;
 
 /**
@@ -28,13 +27,6 @@ import org.seasar.dao.pager.PagerCondition;
  */
 @S2Dao(bean = Employee.class)
 public interface EmployeeDao {
-
-    /**
-     * 
-     * @return
-     */
-    @Sql("select * from dual")
-    Object initialize();
 
     /**
      * 

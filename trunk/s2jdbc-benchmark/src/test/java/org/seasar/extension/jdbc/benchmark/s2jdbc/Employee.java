@@ -37,7 +37,7 @@ public class Employee {
 
     /** */
     @Id
-    @SequenceGenerator(name = "EMPLOYEE_SEQ_GEN")
+    @SequenceGenerator(name = "EMPLOYEE_SEQ_GEN", sequenceName = "EMPLOYEE_SEQ")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EMPLOYEE_SEQ_GEN")
     public Integer employeeId;
 

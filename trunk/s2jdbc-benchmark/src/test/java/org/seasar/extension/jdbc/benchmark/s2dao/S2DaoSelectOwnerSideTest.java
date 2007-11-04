@@ -17,6 +17,7 @@ package org.seasar.extension.jdbc.benchmark.s2dao;
 
 import java.util.List;
 
+import org.seasar.dao.DaoMetaDataFactory;
 import org.seasar.extension.jdbc.benchmark.BenchmarkTestCase;
 import org.seasar.extension.jdbc.benchmark.SelectOwnerSideBenchmark;
 import org.seasar.framework.container.SingletonS2Container;
@@ -34,7 +35,17 @@ public class S2DaoSelectOwnerSideTest extends BenchmarkTestCase implements
     protected void setUp() throws Exception {
         super.setUp();
         employeeDao = SingletonS2Container.getComponent(EmployeeDao.class);
-        employeeDao.initialize();
+        initializeMeta();
+    }
+
+    /**
+     * 
+     * @throws Exception
+     */
+    protected void initializeMeta() throws Exception {
+        DaoMetaDataFactory dmdf =
+            SingletonS2Container.getComponent(DaoMetaDataFactory.class);
+        dmdf.getDaoMetaData(EmployeeDao.class);
     }
 
     /**

@@ -32,7 +32,7 @@ public class Address {
 
     /** */
     @Id
-    @SequenceGenerator(name = "ADDRESS_SEQ_GEN")
+    @SequenceGenerator(name = "ADDRESS_SEQ_GEN", sequenceName = "ADDRESS_SEQ")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ADDRESS_SEQ_GEN")
     public Integer addressId;
 

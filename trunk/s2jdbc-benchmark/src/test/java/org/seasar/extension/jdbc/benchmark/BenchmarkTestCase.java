@@ -139,7 +139,7 @@ public abstract class BenchmarkTestCase extends TestCase {
      */
     protected static void run(Class<? extends BenchmarkTestCase> clazz,
             String[] args) throws Exception {
-        if (args.length > 0 || args[0] != null) {
+        if (args.length > 0 && args[0] != null) {
             fileName = args[0];
         }
         TestRunner.main(new String[] { clazz.getName() });
