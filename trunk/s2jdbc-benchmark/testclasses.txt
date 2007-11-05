@@ -48,3 +48,9 @@ org.seasar.extension.jdbc.benchmark.s2jdbc.S2JdbcBatchUpdateTest
 org.seasar.extension.jdbc.benchmark.jdbc.JdbcBatchDeleteTest
 org.seasar.extension.jdbc.benchmark.s2dao.S2DaoBatchDeleteTest
 org.seasar.extension.jdbc.benchmark.s2jdbc.S2JdbcBatchDeleteTest
+#
+org.seasar.extension.jdbc.benchmark.s2dao.S2DaoSqlSelectDtoTest
+org.seasar.extension.jdbc.benchmark.s2jdbc.S2JdbcSqlSelectDtoTest
+#
+org.seasar.extension.jdbc.benchmark.s2dao.S2DaoSqlFileSelectDtoTest
+org.seasar.extension.jdbc.benchmark.s2jdbc.S2JdbcSqlFileSelectDtoTest

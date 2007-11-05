@@ -11,7 +11,7 @@ for /F %%a in (testclasses.txt) do (
 	if "%%a" == "#" (
 		echo. >> %FILE%
 	) else (
-		for /L %%b in (1,1,5) do (
+		for /L %%b in (1,1,3) do (
 			call :EXEC %%a
 		)
 	)

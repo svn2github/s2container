@@ -19,6 +19,8 @@ import java.util.List;
 
 import org.seasar.dao.annotation.tiger.Query;
 import org.seasar.dao.annotation.tiger.S2Dao;
+import org.seasar.dao.annotation.tiger.Sql;
+import org.seasar.dao.annotation.tiger.SqlFile;
 import org.seasar.dao.pager.PagerCondition;
 
 /**
@@ -33,6 +35,22 @@ public interface EmployeeDao {
      * @return
      */
     List<Employee> select();
+
+    /**
+     * 
+     * @param employeeId
+     * @return
+     */
+    @Sql("select employee_id employeeId, employee_no employeeNo, employee_name employeeName, manager_id managerId, hiredate hiredate, salary salary, department_id departmentId, address_id addressId, version version from Employee")
+    List<Employee> selectBySql(int employeeId);
+
+    /**
+     * 
+     * @param employeeId
+     * @return
+     */
+    @SqlFile
+    List<Employee> selectBySqlFile();
 
     /**
      * 
