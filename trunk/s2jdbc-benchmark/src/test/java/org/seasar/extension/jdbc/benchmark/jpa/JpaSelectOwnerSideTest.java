@@ -57,7 +57,6 @@ public class JpaSelectOwnerSideTest extends BenchmarkTestCase implements
         assertNotNull(employees.get(0).getHiredate());
         assertNotNull(employees.get(0).getSalary());
         assertNotNull(employees.get(0).getVersion());
-        assertNotNull(employees.get(0).getManager());
         assertNotNull(employees.get(0).getAddress());
         assertNotNull(employees.get(0).getDepartment());
     }

@@ -26,6 +26,7 @@ import javax.sql.DataSource;
 import org.seasar.extension.jdbc.benchmark.BenchmarkTestCase;
 import org.seasar.extension.jdbc.benchmark.PagingBenchmark;
 import org.seasar.framework.container.SingletonS2Container;
+import org.seasar.framework.env.Env;
 
 /**
  * @author taedium
@@ -34,8 +35,11 @@ import org.seasar.framework.container.SingletonS2Container;
 public class JdbcPagingTest extends BenchmarkTestCase implements
         PagingBenchmark {
 
-    private static final String SQL =
+    private static final String ORACLE_SQL =
         "select * from ( select temp_.*, rownum rownum_ from ( select T.employee_id, T.employee_no, T.employee_name, T.manager_id, T.hiredate, T.salary, T.department_id, T.address_id, T.version FROM Employee T order by T.employee_id ) temp_ where rownum <= ? ) where rownum_ > ?";
+
+    private static final String H2_SQL =
+        "select T.employee_id, T.employee_no, T.employee_name, T.manager_id, T.hiredate, T.salary, T.department_id, T.address_id, T.version FROM Employee T order by T.employee_id limit ? offset ?";
 
     private DataSource dataSource;
 
@@ -50,11 +54,12 @@ public class JdbcPagingTest extends BenchmarkTestCase implements
      * @throws Exception
      */
     public void test() throws Exception {
+        String sql = getSql();
         begin();
         List<Employee> employees = new ArrayList<Employee>(10000);
         Connection con = dataSource.getConnection();
         try {
-            PreparedStatement ps = con.prepareStatement(SQL);
+            PreparedStatement ps = con.prepareStatement(sql);
             try {
                 ps.setFetchSize(100);
                 ps.setInt(1, 10000);
@@ -94,6 +99,15 @@ public class JdbcPagingTest extends BenchmarkTestCase implements
         assertNotNull(employees.get(0).departmentId);
         assertNotNull(employees.get(0).addressId);
         assertNotNull(employees.get(0).version);
+    }
+
+    private String getSql() {
+        if (Env.getValue().equals("oracle")) {
+            return ORACLE_SQL;
+        } else if (Env.getValue().equals("h2")) {
+            return H2_SQL;
+        }
+        throw new IllegalStateException("illegal env value.");
     }
 
     @Override

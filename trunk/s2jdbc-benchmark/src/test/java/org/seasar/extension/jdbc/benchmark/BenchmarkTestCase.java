@@ -126,8 +126,11 @@ public abstract class BenchmarkTestCase extends TestCase {
                 "%14s (nanoTime) : %s\n",
                 df.format(endTime - startTime),
                 getClass().getSimpleName());
+            f.flush();
         } finally {
-            f.close();
+            if (fileName != null) {
+                f.close();
+            }
         }
     }
 

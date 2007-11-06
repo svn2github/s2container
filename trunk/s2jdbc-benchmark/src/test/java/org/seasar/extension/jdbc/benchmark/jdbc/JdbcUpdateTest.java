@@ -72,7 +72,7 @@ public class JdbcUpdateTest extends BenchmarkTestCase implements
                     ps.setInt(7, employee.addressId);
                     ps.setInt(8, employee.employeeId);
                     ps.setInt(9, employee.version);
-                    ps.executeQuery();
+                    ps.executeUpdate();
                 }
             } finally {
                 ps.close();

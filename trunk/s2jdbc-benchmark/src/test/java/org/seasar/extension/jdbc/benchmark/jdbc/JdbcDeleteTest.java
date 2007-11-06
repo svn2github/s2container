@@ -63,7 +63,7 @@ public class JdbcDeleteTest extends BenchmarkTestCase implements
                 for (Employee employee : employees) {
                     ps.setInt(1, employee.employeeId);
                     ps.setInt(2, employee.version);
-                    ps.executeQuery();
+                    ps.executeUpdate();
                 }
             } finally {
                 ps.close();

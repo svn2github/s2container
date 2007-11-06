@@ -74,7 +74,7 @@ public class JdbcInsertTest extends BenchmarkTestCase implements
                     ps.setString(3, department.departmentName);
                     ps.setString(4, department.location);
                     ps.setInt(5, department.version);
-                    ps.executeQuery();
+                    ps.executeUpdate();
                 }
             } finally {
                 ps.close();
