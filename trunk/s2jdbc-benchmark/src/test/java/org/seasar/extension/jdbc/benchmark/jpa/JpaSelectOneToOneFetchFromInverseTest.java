@@ -20,15 +20,15 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import org.seasar.extension.jdbc.benchmark.BenchmarkTestCase;
-import org.seasar.extension.jdbc.benchmark.SelectInverseSideBenchmark;
+import org.seasar.extension.jdbc.benchmark.SelectOneToOneFetchFromInverseBenchmark;
 import org.seasar.framework.container.SingletonS2Container;
 
 /**
  * @author taedium
  * 
  */
-public class JpaSelectInverseSideTest extends BenchmarkTestCase implements
-        SelectInverseSideBenchmark {
+public class JpaSelectOneToOneFetchFromInverseTest extends BenchmarkTestCase
+        implements SelectOneToOneFetchFromInverseBenchmark {
 
     private EntityManager entityManager;
 
@@ -46,15 +46,21 @@ public class JpaSelectInverseSideTest extends BenchmarkTestCase implements
         begin();
         @SuppressWarnings("unchecked")
         List<Address> addresses =
-            entityManager
-                .createNamedQuery("JpaSelectInverseSideTest")
-                .getResultList();
+            entityManager.createNamedQuery(
+                "JpaSelectOneToOneFetchFromInverseTest").getResultList();
         end();
         assertEquals(10000, addresses.size());
         assertNotNull(addresses.get(0).getAddressId());
         assertNotNull(addresses.get(0).getStreet());
         assertNotNull(addresses.get(0).getVersion());
-        assertNotNull(addresses.get(0).getEmployee());
+        assertNotNull(addresses.get(0).getEmployee().getEmployeeId());
+        assertNotNull(addresses.get(0).getEmployee().getEmployeeNo());
+        assertNotNull(addresses.get(0).getEmployee().getEmployeeName());
+        assertNotNull(addresses.get(0).getEmployee().getHiredate());
+        assertNotNull(addresses.get(0).getEmployee().getSalary());
+        assertNotNull(addresses.get(0).getEmployee().getVersion());
+        assertNotNull(addresses.get(0).getEmployee().getAddress());
+        assertNotNull(addresses.get(0).getEmployee().getDepartment());
     }
 
     @Override
@@ -69,6 +75,7 @@ public class JpaSelectInverseSideTest extends BenchmarkTestCase implements
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-        BenchmarkTestCase.run(JpaSelectInverseSideTest.class, args);
+        BenchmarkTestCase
+            .run(JpaSelectOneToOneFetchFromInverseTest.class, args);
     }
 }

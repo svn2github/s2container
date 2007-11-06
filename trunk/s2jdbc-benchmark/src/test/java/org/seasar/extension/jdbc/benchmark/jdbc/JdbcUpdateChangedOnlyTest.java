@@ -24,18 +24,21 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.seasar.extension.jdbc.benchmark.BenchmarkTestCase;
-import org.seasar.extension.jdbc.benchmark.SelectOwnerSideBenchmark;
+import org.seasar.extension.jdbc.benchmark.UpdateChangedOnlyBenchmark;
 import org.seasar.framework.container.SingletonS2Container;
 
 /**
  * @author taedium
  * 
  */
-public class JdbcSelectOwnerSideTest extends BenchmarkTestCase implements
-        SelectOwnerSideBenchmark {
+public class JdbcUpdateChangedOnlyTest extends BenchmarkTestCase implements
+        UpdateChangedOnlyBenchmark {
 
-    private static final String SQL =
-        "select T.employee_id, T.employee_no, T.employee_name, T.manager_id, T.hiredate, T.salary, T.department_id, T.address_id, T.version FROM Employee T";
+    private static final String SELECT =
+        "select T.employee_id, T.employee_no, T.employee_name, T.manager_id, T.hiredate, T.salary, T.department_id, T.address_id, T.version FROM Employee T order by employee_Id";
+
+    private static final String UPDATE =
+        "update Employee set employee_name = ? where employee_Id = ? and version = ?";
 
     private DataSource dataSource;
 
@@ -50,11 +53,34 @@ public class JdbcSelectOwnerSideTest extends BenchmarkTestCase implements
      * @throws Exception
      */
     public void test() throws Exception {
+        List<Employee> employees = select();
+        assertEquals(10000, employees.size());
         begin();
+        Connection con = dataSource.getConnection();
+        try {
+            PreparedStatement ps = con.prepareStatement(UPDATE);
+            try {
+                for (int i = 0; i < employees.size(); i++) {
+                    Employee employee = employees.get(i);
+                    ps.setString(1, "HOGE");
+                    ps.setInt(2, employee.employeeId);
+                    ps.setInt(3, employee.version);
+                    ps.executeUpdate();
+                }
+            } finally {
+                ps.close();
+            }
+        } finally {
+            con.close();
+        }
+        end();
+    }
+
+    private List<Employee> select() throws Exception {
         List<Employee> employees = new ArrayList<Employee>(10000);
         Connection con = dataSource.getConnection();
         try {
-            PreparedStatement ps = con.prepareStatement(SQL);
+            PreparedStatement ps = con.prepareStatement(SELECT);
             try {
                 ps.setFetchSize(100);
                 ResultSet rs = ps.executeQuery();
@@ -81,17 +107,7 @@ public class JdbcSelectOwnerSideTest extends BenchmarkTestCase implements
         } finally {
             con.close();
         }
-        end();
-        assertEquals(10000, employees.size());
-        assertNotNull(employees.get(0).employeeId);
-        assertNotNull(employees.get(0).employeeNo);
-        assertNotNull(employees.get(0).employeeName);
-        assertNotNull(employees.get(0).managerId);
-        assertNotNull(employees.get(0).hiredate);
-        assertNotNull(employees.get(0).salary);
-        assertNotNull(employees.get(0).departmentId);
-        assertNotNull(employees.get(0).addressId);
-        assertNotNull(employees.get(0).version);
+        return employees;
     }
 
     @Override
@@ -106,6 +122,6 @@ public class JdbcSelectOwnerSideTest extends BenchmarkTestCase implements
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-        BenchmarkTestCase.run(JdbcSelectOwnerSideTest.class, args);
+        BenchmarkTestCase.run(JdbcUpdateChangedOnlyTest.class, args);
     }
 }

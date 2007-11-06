@@ -24,15 +24,15 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.seasar.extension.jdbc.benchmark.BenchmarkTestCase;
-import org.seasar.extension.jdbc.benchmark.SelectInverseSideBenchmark;
+import org.seasar.extension.jdbc.benchmark.SelectInverseBenchmark;
 import org.seasar.framework.container.SingletonS2Container;
 
 /**
  * @author taedium
  * 
  */
-public class JdbcSelectInverseSideTest extends BenchmarkTestCase implements
-        SelectInverseSideBenchmark {
+public class JdbcSelectInverseTest extends BenchmarkTestCase implements
+        SelectInverseBenchmark {
 
     private static final String SQL =
         "select T.address_id, T.street, T.version FROM Address T";
@@ -94,6 +94,6 @@ public class JdbcSelectInverseSideTest extends BenchmarkTestCase implements
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-        BenchmarkTestCase.run(JdbcSelectInverseSideTest.class, args);
+        BenchmarkTestCase.run(JdbcSelectInverseTest.class, args);
     }
 }

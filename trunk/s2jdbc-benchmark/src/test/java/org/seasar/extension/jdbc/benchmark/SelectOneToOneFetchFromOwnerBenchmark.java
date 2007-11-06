@@ -19,5 +19,5 @@ package org.seasar.extension.jdbc.benchmark;
  * @author taedium
  * 
  */
-public interface SelectOwnerSideBenchmark {
+public interface SelectOneToOneFetchFromOwnerBenchmark {
 }

@@ -20,15 +20,15 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import org.seasar.extension.jdbc.benchmark.BenchmarkTestCase;
-import org.seasar.extension.jdbc.benchmark.SelectOwnerSideBenchmark;
+import org.seasar.extension.jdbc.benchmark.SelectOwnerBenchmark;
 import org.seasar.framework.container.SingletonS2Container;
 
 /**
  * @author taedium
  * 
  */
-public class JpaSelectOwnerSideTest extends BenchmarkTestCase implements
-        SelectOwnerSideBenchmark {
+public class JpaSelectOwnerTest extends BenchmarkTestCase implements
+        SelectOwnerBenchmark {
 
     private EntityManager entityManager;
 
@@ -47,7 +47,7 @@ public class JpaSelectOwnerSideTest extends BenchmarkTestCase implements
         @SuppressWarnings("unchecked")
         List<Employee> employees =
             entityManager
-                .createNamedQuery("JpaSelectOwnerSideTest")
+                .createNamedQuery("JpaSelectOwnerTest")
                 .getResultList();
         end();
         assertEquals(10000, employees.size());
@@ -73,6 +73,6 @@ public class JpaSelectOwnerSideTest extends BenchmarkTestCase implements
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-        BenchmarkTestCase.run(JpaSelectOwnerSideTest.class, args);
+        BenchmarkTestCase.run(JpaSelectOwnerTest.class, args);
     }
 }

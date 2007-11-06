@@ -15,11 +15,9 @@
  */
 package org.seasar.extension.jdbc.benchmark;
 
-
 /**
  * @author taedium
- *
+ * 
  */
-public interface SelectInverseSideBenchmark {
-
+public interface SelectOwnerBenchmark {
 }

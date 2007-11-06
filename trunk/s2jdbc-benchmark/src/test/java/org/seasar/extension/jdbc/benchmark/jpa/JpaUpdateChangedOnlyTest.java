@@ -20,15 +20,15 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import org.seasar.extension.jdbc.benchmark.BenchmarkTestCase;
-import org.seasar.extension.jdbc.benchmark.SelectOneToOneFetchBenchmark;
+import org.seasar.extension.jdbc.benchmark.UpdateChangedOnlyBenchmark;
 import org.seasar.framework.container.SingletonS2Container;
 
 /**
  * @author taedium
  * 
  */
-public class JpaSelectOneToOneFetchTest extends BenchmarkTestCase implements
-        SelectOneToOneFetchBenchmark {
+public class JpaUpdateChangedOnlyTest extends BenchmarkTestCase implements
+        UpdateChangedOnlyBenchmark {
 
     private EntityManager entityManager;
 
@@ -43,25 +43,20 @@ public class JpaSelectOneToOneFetchTest extends BenchmarkTestCase implements
      * @throws Exception
      */
     public void test() throws Exception {
-        begin();
+        userTransaction.begin();
         @SuppressWarnings("unchecked")
-        List<Employee> employees =
+        List<Employee2> employees =
             entityManager
-                .createNamedQuery("JpaSelectOneToOneFetchTest")
+                .createQuery("select e from Employee2 e order by employeeId")
                 .getResultList();
-        end();
         assertEquals(10000, employees.size());
-        assertNotNull(employees.get(0).getEmployeeId());
-        assertNotNull(employees.get(0).getEmployeeNo());
-        assertNotNull(employees.get(0).getEmployeeName());
-        assertNotNull(employees.get(0).getHiredate());
-        assertNotNull(employees.get(0).getSalary());
-        assertNotNull(employees.get(0).getVersion());
-        assertNotNull(employees.get(0).getAddress());
-        assertNotNull(employees.get(0).getDepartment());
-        assertNotNull(employees.get(0).getAddress().getAddressId());
-        assertNotNull(employees.get(0).getAddress().getStreet());
-        assertNotNull(employees.get(0).getAddress().getVersion());
+        for (int i = 0; i < employees.size(); i++) {
+            employees.get(i).setEmployeeName("HOGE");
+        }
+        startTime = System.nanoTime();
+        entityManager.flush();
+        endTime = System.nanoTime();
+        userTransaction.rollback();
     }
 
     @Override
@@ -76,6 +71,6 @@ public class JpaSelectOneToOneFetchTest extends BenchmarkTestCase implements
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-        BenchmarkTestCase.run(JpaSelectOneToOneFetchTest.class, args);
+        BenchmarkTestCase.run(JpaUpdateChangedOnlyTest.class, args);
     }
 }

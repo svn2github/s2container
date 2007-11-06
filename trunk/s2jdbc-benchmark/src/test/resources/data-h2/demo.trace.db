@@ -46,3 +46,25 @@ select dummy from dual [42S22-60]
 	at org.h2.server.web.WebThread.process(WebThread.java:375)
 	at org.h2.server.web.WebThread.processRequest(WebThread.java:131)
 	at org.h2.server.web.WebThread.run(WebThread.java:158)
+11-06 17:26:14 jdbc[2]: SQLException
+org.h2.jdbc.JdbcSQLException: SQLステートメントに文法エラーがあります DROP ADDRESS_SEQ[*] ; 期待されるステートメント TABLE, INDEX, USER, SEQUENCE, CONSTANT, TRIGGER, VIEW, ROLE, ALIAS, SCHEMA, ALL, DOMAIN, TYPE, DATATYPE, AGGREGATE
+Syntax error in SQL statement DROP ADDRESS_SEQ[*] ; expected TABLE, INDEX, USER, SEQUENCE, CONSTANT, TRIGGER, VIEW, ROLE, ALIAS, SCHEMA, ALL, DOMAIN, TYPE, DATATYPE, AGGREGATE; SQL statement:
+drop address_seq [42001-60]
+	at org.h2.message.Message.getSQLException(Message.java:84)
+	at org.h2.message.Message.getSQLException(Message.java:88)
+	at org.h2.message.Message.getSyntaxError(Message.java:98)
+	at org.h2.command.Parser.getSyntaxError(Parser.java:449)
+	at org.h2.command.Parser.parseDrop(Parser.java:1055)
+	at org.h2.command.Parser.parsePrepared(Parser.java:306)
+	at org.h2.command.Parser.parse(Parser.java:260)
+	at org.h2.command.Parser.parse(Parser.java:236)
+	at org.h2.command.Parser.prepareCommand(Parser.java:204)
+	at org.h2.engine.Session.prepareLocal(Session.java:172)
+	at org.h2.engine.Session.prepareCommand(Session.java:154)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:971)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:144)
+	at org.h2.server.web.WebThread.getResult(WebThread.java:1387)
+	at org.h2.server.web.WebThread.query(WebThread.java:1049)
+	at org.h2.server.web.WebThread.process(WebThread.java:375)
+	at org.h2.server.web.WebThread.processRequest(WebThread.java:131)
+	at org.h2.server.web.WebThread.run(WebThread.java:158)

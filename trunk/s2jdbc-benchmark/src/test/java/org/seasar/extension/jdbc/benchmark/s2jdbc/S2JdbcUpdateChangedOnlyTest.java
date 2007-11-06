@@ -15,20 +15,21 @@
  */
 package org.seasar.extension.jdbc.benchmark.s2jdbc;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.seasar.extension.jdbc.EntityMetaFactory;
 import org.seasar.extension.jdbc.JdbcManager;
 import org.seasar.extension.jdbc.benchmark.BenchmarkTestCase;
-import org.seasar.extension.jdbc.benchmark.SelectOneToOneFetchBenchmark;
+import org.seasar.extension.jdbc.benchmark.UpdateChangedOnlyBenchmark;
 import org.seasar.framework.container.SingletonS2Container;
 
 /**
  * @author taedium
  * 
  */
-public class S2JdbcSelectOneToOneFetchTest extends BenchmarkTestCase implements
-        SelectOneToOneFetchBenchmark {
+public class S2JdbcUpdateChangedOnlyTest extends BenchmarkTestCase implements
+        UpdateChangedOnlyBenchmark {
 
     private JdbcManager jdbcManager;
 
@@ -54,23 +55,34 @@ public class S2JdbcSelectOneToOneFetchTest extends BenchmarkTestCase implements
      * @throws Exception
      */
     public void test() throws Exception {
-        begin();
         List<Employee> employees =
-            jdbcManager.from(Employee.class).join("address").getResultList();
-        end();
+            jdbcManager
+                .from(Employee.class)
+                .orderBy("employeeId")
+                .getResultList();
         assertEquals(10000, employees.size());
-        assertNotNull(employees.get(0).employeeId);
-        assertNotNull(employees.get(0).employeeNo);
-        assertNotNull(employees.get(0).employeeName);
-        assertNotNull(employees.get(0).managerId);
-        assertNotNull(employees.get(0).hiredate);
-        assertNotNull(employees.get(0).salary);
-        assertNotNull(employees.get(0).departmentId);
-        assertNotNull(employees.get(0).addressId);
-        assertNotNull(employees.get(0).version);
-        assertNotNull(employees.get(0).address.addressId);
-        assertNotNull(employees.get(0).address.street);
-        assertNotNull(employees.get(0).address.version);
+        List<Employee> befores = new ArrayList<Employee>();
+        for (Employee employee : employees) {
+            Employee before = new Employee();
+            before.employeeId = employee.employeeId;
+            before.employeeNo = employee.employeeNo;
+            before.employeeName = employee.employeeName;
+            before.managerId = employee.managerId;
+            before.hiredate = employee.hiredate;
+            before.salary = employee.salary;
+            before.departmentId = employee.departmentId;
+            before.addressId = employee.addressId;
+            befores.add(before);
+            employee.employeeName = "HOGE";
+        }
+        begin();
+        for (int i = 0; i < employees.size(); i++) {
+            jdbcManager
+                .update(employees.get(i))
+                .changedFrom(befores.get(i))
+                .execute();
+        }
+        end();
     }
 
     @Override
@@ -85,6 +97,6 @@ public class S2JdbcSelectOneToOneFetchTest extends BenchmarkTestCase implements
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-        BenchmarkTestCase.run(S2JdbcSelectOneToOneFetchTest.class, args);
+        BenchmarkTestCase.run(S2JdbcUpdateChangedOnlyTest.class, args);
     }
 }

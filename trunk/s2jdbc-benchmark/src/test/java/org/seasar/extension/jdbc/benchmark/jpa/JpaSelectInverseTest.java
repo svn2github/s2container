@@ -13,39 +13,29 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.extension.jdbc.benchmark.s2dao;
+package org.seasar.extension.jdbc.benchmark.jpa;
 
 import java.util.List;
 
-import org.seasar.dao.DaoMetaDataFactory;
+import javax.persistence.EntityManager;
+
 import org.seasar.extension.jdbc.benchmark.BenchmarkTestCase;
-import org.seasar.extension.jdbc.benchmark.SelectInverseSideBenchmark;
+import org.seasar.extension.jdbc.benchmark.SelectInverseBenchmark;
 import org.seasar.framework.container.SingletonS2Container;
 
 /**
  * @author taedium
  * 
  */
-public class S2DaoSelectInverseSideTest extends BenchmarkTestCase implements
-        SelectInverseSideBenchmark {
+public class JpaSelectInverseTest extends BenchmarkTestCase implements
+        SelectInverseBenchmark {
 
-    private AddressDao addressDao;
+    private EntityManager entityManager;
 
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        addressDao = SingletonS2Container.getComponent(AddressDao.class);
-        initializeMeta();
-    }
-
-    /**
-     * 
-     * @throws Exception
-     */
-    protected void initializeMeta() throws Exception {
-        DaoMetaDataFactory dmdf =
-            SingletonS2Container.getComponent(DaoMetaDataFactory.class);
-        dmdf.getDaoMetaData(AddressDao.class);
+        entityManager = SingletonS2Container.getComponent(EntityManager.class);
     }
 
     /**
@@ -54,17 +44,22 @@ public class S2DaoSelectInverseSideTest extends BenchmarkTestCase implements
      */
     public void test() throws Exception {
         begin();
-        List<Address> addresses = addressDao.select();
+        @SuppressWarnings("unchecked")
+        List<Address> addresses =
+            entityManager
+                .createNamedQuery("JpaSelectInverseTest")
+                .getResultList();
         end();
         assertEquals(10000, addresses.size());
-        assertNotNull(addresses.get(0).addressId);
-        assertNotNull(addresses.get(0).street);
-        assertNotNull(addresses.get(0).versionNo);
+        assertNotNull(addresses.get(0).getAddressId());
+        assertNotNull(addresses.get(0).getStreet());
+        assertNotNull(addresses.get(0).getVersion());
+        assertNotNull(addresses.get(0).getEmployee());
     }
 
     @Override
     protected void tearDown() throws Exception {
-        addressDao = null;
+        entityManager = null;
         super.tearDown();
     }
 
@@ -74,6 +69,6 @@ public class S2DaoSelectInverseSideTest extends BenchmarkTestCase implements
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-        BenchmarkTestCase.run(S2DaoSelectInverseSideTest.class, args);
+        BenchmarkTestCase.run(JpaSelectInverseTest.class, args);
     }
 }

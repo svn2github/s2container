@@ -20,15 +20,15 @@ import java.util.List;
 import org.seasar.extension.jdbc.EntityMetaFactory;
 import org.seasar.extension.jdbc.JdbcManager;
 import org.seasar.extension.jdbc.benchmark.BenchmarkTestCase;
-import org.seasar.extension.jdbc.benchmark.SelectInverseSideBenchmark;
+import org.seasar.extension.jdbc.benchmark.SelectInverseBenchmark;
 import org.seasar.framework.container.SingletonS2Container;
 
 /**
  * @author taedium
  * 
  */
-public class S2JdbcSelectInverseSideTest extends BenchmarkTestCase implements
-        SelectInverseSideBenchmark {
+public class S2JdbcSelectInverseTest extends BenchmarkTestCase implements
+        SelectInverseBenchmark {
 
     private JdbcManager jdbcManager;
 
@@ -76,6 +76,6 @@ public class S2JdbcSelectInverseSideTest extends BenchmarkTestCase implements
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-        BenchmarkTestCase.run(S2JdbcSelectInverseSideTest.class, args);
+        BenchmarkTestCase.run(S2JdbcSelectInverseTest.class, args);
     }
 }

@@ -11,6 +11,7 @@
 		<class>org.seasar.extension.jdbc.benchmark.jpa.Department</class>
 		<class>org.seasar.extension.jdbc.benchmark.jpa.Address</class>
 		<class>org.seasar.extension.jdbc.benchmark.jpa.Employee</class>
+		<class>org.seasar.extension.jdbc.benchmark.jpa.Employee2</class>
 		<properties>
 			<property name="hibernate.jndi.class" 
 				value="org.seasar.extension.j2ee.JndiContextFactory"/>

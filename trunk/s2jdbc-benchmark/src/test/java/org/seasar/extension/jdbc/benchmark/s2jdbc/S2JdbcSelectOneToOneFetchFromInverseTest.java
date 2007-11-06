@@ -13,28 +13,29 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.extension.jdbc.benchmark.s2dao;
+package org.seasar.extension.jdbc.benchmark.s2jdbc;
 
 import java.util.List;
 
-import org.seasar.dao.DaoMetaDataFactory;
+import org.seasar.extension.jdbc.EntityMetaFactory;
+import org.seasar.extension.jdbc.JdbcManager;
 import org.seasar.extension.jdbc.benchmark.BenchmarkTestCase;
-import org.seasar.extension.jdbc.benchmark.SelectOwnerSideBenchmark;
+import org.seasar.extension.jdbc.benchmark.SelectOneToOneFetchFromInverseBenchmark;
 import org.seasar.framework.container.SingletonS2Container;
 
 /**
  * @author taedium
  * 
  */
-public class S2DaoSelectOwnerSideTest extends BenchmarkTestCase implements
-        SelectOwnerSideBenchmark {
+public class S2JdbcSelectOneToOneFetchFromInverseTest extends BenchmarkTestCase
+        implements SelectOneToOneFetchFromInverseBenchmark {
 
-    private EmployeeDao employeeDao;
+    private JdbcManager jdbcManager;
 
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        employeeDao = SingletonS2Container.getComponent(EmployeeDao.class);
+        jdbcManager = SingletonS2Container.getComponent(JdbcManager.class);
         initializeMeta();
     }
 
@@ -43,9 +44,9 @@ public class S2DaoSelectOwnerSideTest extends BenchmarkTestCase implements
      * @throws Exception
      */
     protected void initializeMeta() throws Exception {
-        DaoMetaDataFactory dmdf =
-            SingletonS2Container.getComponent(DaoMetaDataFactory.class);
-        dmdf.getDaoMetaData(EmployeeDao.class);
+        EntityMetaFactory entityMetaFactory =
+            SingletonS2Container.getComponent(EntityMetaFactory.class);
+        entityMetaFactory.getEntityMeta(Employee.class);
     }
 
     /**
@@ -54,7 +55,8 @@ public class S2DaoSelectOwnerSideTest extends BenchmarkTestCase implements
      */
     public void test() throws Exception {
         begin();
-        List<Employee> employees = employeeDao.select();
+        List<Employee> employees =
+            jdbcManager.from(Employee.class).join("address").getResultList();
         end();
         assertEquals(10000, employees.size());
         assertNotNull(employees.get(0).employeeId);
@@ -65,12 +67,15 @@ public class S2DaoSelectOwnerSideTest extends BenchmarkTestCase implements
         assertNotNull(employees.get(0).salary);
         assertNotNull(employees.get(0).departmentId);
         assertNotNull(employees.get(0).addressId);
-        assertNotNull(employees.get(0).versionNo);
+        assertNotNull(employees.get(0).version);
+        assertNotNull(employees.get(0).address.addressId);
+        assertNotNull(employees.get(0).address.street);
+        assertNotNull(employees.get(0).address.version);
     }
 
     @Override
     protected void tearDown() throws Exception {
-        employeeDao = null;
+        jdbcManager = null;
         super.tearDown();
     }
 
@@ -80,6 +85,8 @@ public class S2DaoSelectOwnerSideTest extends BenchmarkTestCase implements
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-        BenchmarkTestCase.run(S2DaoSelectOwnerSideTest.class, args);
+        BenchmarkTestCase.run(
+            S2JdbcSelectOneToOneFetchFromInverseTest.class,
+            args);
     }
 }
