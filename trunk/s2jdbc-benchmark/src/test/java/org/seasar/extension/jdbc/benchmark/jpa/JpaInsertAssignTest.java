@@ -15,22 +15,25 @@
  */
 package org.seasar.extension.jdbc.benchmark.jpa;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 
 import org.seasar.extension.jdbc.benchmark.BenchmarkTestCase;
-import org.seasar.extension.jdbc.benchmark.UpdateChangedOnlyBenchmark;
+import org.seasar.extension.jdbc.benchmark.InsertAssignBenchmark;
 import org.seasar.framework.container.SingletonS2Container;
 
 /**
  * @author taedium
  * 
  */
-public class JpaUpdateChangedOnlyTest extends BenchmarkTestCase implements
-        UpdateChangedOnlyBenchmark {
+public class JpaInsertAssignTest extends BenchmarkTestCase implements
+        InsertAssignBenchmark {
 
     private EntityManager entityManager;
+
+    private int id = 5;
 
     @Override
     protected void setUp() throws Exception {
@@ -43,20 +46,22 @@ public class JpaUpdateChangedOnlyTest extends BenchmarkTestCase implements
      * @throws Exception
      */
     public void test() throws Exception {
-        userTransaction.begin();
-        @SuppressWarnings("unchecked")
-        List<Employee3> employees =
-            entityManager
-                .createQuery("select e from Employee3 e order by employeeId")
-                .getResultList();
-        assertEquals(10000, employees.size());
-        for (int i = 0; i < employees.size(); i++) {
-            employees.get(i).setEmployeeName("HOGE");
+        List<Department2> departments = new ArrayList<Department2>();
+        for (int i = 0; i < 10000; i++) {
+            Department2 department = new Department2();
+            department.setDepartmentId(id++);
+            department.setDepartmentNo(90);
+            department.setDepartmentName("HOGE");
+            department.setLocation("FOO");
+            department.setVersion(1);
+            departments.add(department);
         }
-        startTime = System.nanoTime();
+        begin();
+        for (Department2 department : departments) {
+            entityManager.persist(department);
+        }
         entityManager.flush();
-        endTime = System.nanoTime();
-        userTransaction.rollback();
+        end();
     }
 
     @Override
@@ -71,6 +76,6 @@ public class JpaUpdateChangedOnlyTest extends BenchmarkTestCase implements
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-        BenchmarkTestCase.run(JpaUpdateChangedOnlyTest.class, args);
+        BenchmarkTestCase.run(JpaInsertAssignTest.class, args);
     }
 }

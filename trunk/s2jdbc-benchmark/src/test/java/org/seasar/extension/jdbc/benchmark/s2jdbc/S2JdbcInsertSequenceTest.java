@@ -13,29 +13,30 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.extension.jdbc.benchmark.s2dao;
+package org.seasar.extension.jdbc.benchmark.s2jdbc;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.seasar.dao.DaoMetaDataFactory;
+import org.seasar.extension.jdbc.EntityMetaFactory;
+import org.seasar.extension.jdbc.JdbcManager;
 import org.seasar.extension.jdbc.benchmark.BenchmarkTestCase;
-import org.seasar.extension.jdbc.benchmark.InsertBenchmark;
+import org.seasar.extension.jdbc.benchmark.InsertSequenceBenchmark;
 import org.seasar.framework.container.SingletonS2Container;
 
 /**
  * @author taedium
  * 
  */
-public class S2DaoInsertTest extends BenchmarkTestCase implements
-        InsertBenchmark {
+public class S2JdbcInsertSequenceTest extends BenchmarkTestCase implements
+        InsertSequenceBenchmark {
 
-    private DepartmentDao departmentDao;
+    private JdbcManager jdbcManager;
 
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        departmentDao = SingletonS2Container.getComponent(DepartmentDao.class);
+        jdbcManager = SingletonS2Container.getComponent(JdbcManager.class);
         initializeMeta();
     }
 
@@ -44,9 +45,9 @@ public class S2DaoInsertTest extends BenchmarkTestCase implements
      * @throws Exception
      */
     protected void initializeMeta() throws Exception {
-        DaoMetaDataFactory dmdf =
-            SingletonS2Container.getComponent(DaoMetaDataFactory.class);
-        dmdf.getDaoMetaData(DepartmentDao.class);
+        EntityMetaFactory entityMetaFactory =
+            SingletonS2Container.getComponent(EntityMetaFactory.class);
+        entityMetaFactory.getEntityMeta(Employee.class);
     }
 
     /**
@@ -60,19 +61,19 @@ public class S2DaoInsertTest extends BenchmarkTestCase implements
             department.departmentNo = 90;
             department.departmentName = "HOGE";
             department.location = "FOO";
-            department.versionNo = 1;
+            department.version = 1;
             departments.add(department);
         }
         begin();
         for (Department department : departments) {
-            departmentDao.insert(department);
+            jdbcManager.insert(department).execute();
         }
         end();
     }
 
     @Override
     protected void tearDown() throws Exception {
-        departmentDao = null;
+        jdbcManager = null;
         super.tearDown();
     }
 
@@ -82,6 +83,6 @@ public class S2DaoInsertTest extends BenchmarkTestCase implements
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-        BenchmarkTestCase.run(S2DaoInsertTest.class, args);
+        BenchmarkTestCase.run(S2JdbcInsertSequenceTest.class, args);
     }
 }

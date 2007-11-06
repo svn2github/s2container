@@ -17,30 +17,28 @@ package org.seasar.extension.jdbc.benchmark.jdbc;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
 
-import org.seasar.extension.jdbc.benchmark.BatchInsertBenchmark;
 import org.seasar.extension.jdbc.benchmark.BenchmarkTestCase;
+import org.seasar.extension.jdbc.benchmark.InsertAssignBenchmark;
 import org.seasar.framework.container.SingletonS2Container;
 
 /**
  * @author taedium
  * 
  */
-public class JdbcBatchInsertTest extends BenchmarkTestCase implements
-        BatchInsertBenchmark {
-
-    private static final String NEXTVAL =
-        "select DEPARTMENT_SEQ.nextval from dual";
+public class JdbcInsertAssignTest extends BenchmarkTestCase implements
+        InsertAssignBenchmark {
 
     private static final String INSERT =
         "insert into Department (department_id, department_no, department_name, location, version) values (?, ?, ?, ?, ?)";
 
     private DataSource dataSource;
+
+    private int id = 5;
 
     @Override
     protected void setUp() throws Exception {
@@ -68,15 +66,13 @@ public class JdbcBatchInsertTest extends BenchmarkTestCase implements
             PreparedStatement ps = con.prepareStatement(INSERT);
             try {
                 for (Department department : departments) {
-                    int id = getNextValue();
-                    ps.setInt(1, id);
+                    ps.setInt(1, id++);
                     ps.setInt(2, department.departmentNo);
                     ps.setString(3, department.departmentName);
                     ps.setString(4, department.location);
                     ps.setInt(5, department.version);
-                    ps.addBatch();
+                    ps.executeUpdate();
                 }
-                ps.executeBatch();
             } finally {
                 ps.close();
             }
@@ -84,28 +80,6 @@ public class JdbcBatchInsertTest extends BenchmarkTestCase implements
             con.close();
         }
         end();
-    }
-
-    private int getNextValue() throws Exception {
-        Connection con = dataSource.getConnection();
-        try {
-            PreparedStatement ps = con.prepareStatement(NEXTVAL);
-            try {
-                ResultSet rs = ps.executeQuery();
-                try {
-                    if (rs.next()) {
-                        return rs.getInt(1);
-                    }
-                } finally {
-                    rs.close();
-                }
-            } finally {
-                ps.close();
-            }
-        } finally {
-            con.close();
-        }
-        throw new IllegalStateException();
     }
 
     @Override
@@ -120,6 +94,6 @@ public class JdbcBatchInsertTest extends BenchmarkTestCase implements
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-        BenchmarkTestCase.run(JdbcBatchInsertTest.class, args);
+        BenchmarkTestCase.run(JdbcInsertAssignTest.class, args);
     }
 }

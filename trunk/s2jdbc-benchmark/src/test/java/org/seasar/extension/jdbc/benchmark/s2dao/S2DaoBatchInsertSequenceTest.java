@@ -13,30 +13,31 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.extension.jdbc.benchmark.s2jdbc;
+package org.seasar.extension.jdbc.benchmark.s2dao;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.seasar.extension.jdbc.EntityMetaFactory;
-import org.seasar.extension.jdbc.JdbcManager;
+import org.seasar.dao.DaoMetaDataFactory;
+import org.seasar.extension.jdbc.benchmark.BatchInsertSequenceBenchmark;
 import org.seasar.extension.jdbc.benchmark.BenchmarkTestCase;
-import org.seasar.extension.jdbc.benchmark.InsertBenchmark;
 import org.seasar.framework.container.SingletonS2Container;
 
 /**
  * @author taedium
  * 
  */
-public class S2JdbcInsertTest extends BenchmarkTestCase implements
-        InsertBenchmark {
+public class S2DaoBatchInsertSequenceTest extends BenchmarkTestCase implements
+        BatchInsertSequenceBenchmark {
 
-    private JdbcManager jdbcManager;
+    private Department2Dao departmentDao;
+
+    private int id = 5;
 
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        jdbcManager = SingletonS2Container.getComponent(JdbcManager.class);
+        departmentDao = SingletonS2Container.getComponent(Department2Dao.class);
         initializeMeta();
     }
 
@@ -45,9 +46,9 @@ public class S2JdbcInsertTest extends BenchmarkTestCase implements
      * @throws Exception
      */
     protected void initializeMeta() throws Exception {
-        EntityMetaFactory entityMetaFactory =
-            SingletonS2Container.getComponent(EntityMetaFactory.class);
-        entityMetaFactory.getEntityMeta(Employee.class);
+        DaoMetaDataFactory dmdf =
+            SingletonS2Container.getComponent(DaoMetaDataFactory.class);
+        dmdf.getDaoMetaData(DepartmentDao.class);
     }
 
     /**
@@ -55,25 +56,24 @@ public class S2JdbcInsertTest extends BenchmarkTestCase implements
      * @throws Exception
      */
     public void test() throws Exception {
-        List<Department> departments = new ArrayList<Department>();
+        List<Department2> departments = new ArrayList<Department2>();
         for (int i = 0; i < 10000; i++) {
-            Department department = new Department();
+            Department2 department = new Department2();
+            department.departmentId = id++;
             department.departmentNo = 90;
             department.departmentName = "HOGE";
             department.location = "FOO";
-            department.version = 1;
+            department.versionNo = 1;
             departments.add(department);
         }
         begin();
-        for (Department department : departments) {
-            jdbcManager.insert(department).execute();
-        }
+        departmentDao.insertBatch(departments);
         end();
     }
 
     @Override
     protected void tearDown() throws Exception {
-        jdbcManager = null;
+        departmentDao = null;
         super.tearDown();
     }
 
@@ -83,6 +83,6 @@ public class S2JdbcInsertTest extends BenchmarkTestCase implements
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-        BenchmarkTestCase.run(S2JdbcInsertTest.class, args);
+        BenchmarkTestCase.run(S2DaoBatchInsertSequenceTest.class, args);
     }
 }

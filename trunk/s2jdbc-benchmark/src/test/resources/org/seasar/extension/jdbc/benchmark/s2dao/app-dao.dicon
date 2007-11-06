@@ -12,4 +12,7 @@
 	<component class="org.seasar.extension.jdbc.benchmark.s2dao.DepartmentDao">
 		<aspect>dao.interceptor</aspect>
 	</component>
+	<component class="org.seasar.extension.jdbc.benchmark.s2dao.Department2Dao">
+		<aspect>dao.interceptor</aspect>
+	</component>
 </components>

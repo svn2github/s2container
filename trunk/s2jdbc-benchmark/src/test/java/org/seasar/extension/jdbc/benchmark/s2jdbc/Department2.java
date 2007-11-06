@@ -13,11 +13,42 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.extension.jdbc.benchmark;
+package org.seasar.extension.jdbc.benchmark.s2jdbc;
+
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Version;
 
 /**
  * @author taedium
  * 
  */
-public interface BatchInsertBenchmark {
+@Entity
+@Table(name = "DEPARTMENT")
+public class Department2 {
+
+    /** */
+    @Id
+    public Integer departmentId;
+
+    /** */
+    public Integer departmentNo;
+
+    /** */
+    public String departmentName;
+
+    /** */
+    public String location;
+
+    /** */
+    @Version
+    public Integer version;
+
+    /** */
+    @OneToMany(mappedBy = "department")
+    public List<Employee2> employees;
 }

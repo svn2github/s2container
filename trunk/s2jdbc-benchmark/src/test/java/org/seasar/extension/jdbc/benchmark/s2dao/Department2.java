@@ -13,11 +13,36 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.extension.jdbc.benchmark;
+package org.seasar.extension.jdbc.benchmark.s2dao;
+
+import org.seasar.dao.annotation.tiger.Bean;
+import org.seasar.dao.annotation.tiger.Column;
 
 /**
  * @author taedium
  * 
  */
-public interface InsertBenchmark {
+@Bean(table = "DEPARTMENT")
+public class Department2 {
+
+    /** */
+    @Column("DEPARTMENT_ID")
+    public Integer departmentId;
+
+    /** */
+    @Column("DEPARTMENT_NO")
+    public Integer departmentNo;
+
+    /** */
+    @Column("DEPARTMENT_NAME")
+    public String departmentName;
+
+    /** */
+    @Column("LOCATION")
+    public String location;
+
+    /** */
+    @Column("VERSION")
+    public Integer versionNo;
+
 }

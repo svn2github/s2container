@@ -23,16 +23,16 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.seasar.extension.jdbc.benchmark.BatchInsertSequenceBenchmark;
 import org.seasar.extension.jdbc.benchmark.BenchmarkTestCase;
-import org.seasar.extension.jdbc.benchmark.InsertBenchmark;
 import org.seasar.framework.container.SingletonS2Container;
 
 /**
  * @author taedium
  * 
  */
-public class JdbcInsertTest extends BenchmarkTestCase implements
-        InsertBenchmark {
+public class JdbcBatchInsertSequenceTest extends BenchmarkTestCase implements
+        BatchInsertSequenceBenchmark {
 
     private static final String NEXTVAL =
         "select DEPARTMENT_SEQ.nextval from dual";
@@ -74,8 +74,9 @@ public class JdbcInsertTest extends BenchmarkTestCase implements
                     ps.setString(3, department.departmentName);
                     ps.setString(4, department.location);
                     ps.setInt(5, department.version);
-                    ps.executeUpdate();
+                    ps.addBatch();
                 }
+                ps.executeBatch();
             } finally {
                 ps.close();
             }
@@ -119,6 +120,6 @@ public class JdbcInsertTest extends BenchmarkTestCase implements
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-        BenchmarkTestCase.run(JdbcInsertTest.class, args);
+        BenchmarkTestCase.run(JdbcBatchInsertSequenceTest.class, args);
     }
 }

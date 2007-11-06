@@ -13,14 +13,13 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.extension.jdbc.benchmark.s2jdbc;
+package org.seasar.extension.jdbc.benchmark.s2dao;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.seasar.extension.jdbc.EntityMetaFactory;
-import org.seasar.extension.jdbc.JdbcManager;
-import org.seasar.extension.jdbc.benchmark.BatchInsertBenchmark;
+import org.seasar.dao.DaoMetaDataFactory;
+import org.seasar.extension.jdbc.benchmark.BatchInsertAssignBenchmark;
 import org.seasar.extension.jdbc.benchmark.BenchmarkTestCase;
 import org.seasar.framework.container.SingletonS2Container;
 
@@ -28,15 +27,15 @@ import org.seasar.framework.container.SingletonS2Container;
  * @author taedium
  * 
  */
-public class S2JdbcBatchInsertTest extends BenchmarkTestCase implements
-        BatchInsertBenchmark {
+public class S2DaoBatchInsertAssignTest extends BenchmarkTestCase implements
+        BatchInsertAssignBenchmark {
 
-    private JdbcManager jdbcManager;
+    private DepartmentDao departmentDao;
 
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        jdbcManager = SingletonS2Container.getComponent(JdbcManager.class);
+        departmentDao = SingletonS2Container.getComponent(DepartmentDao.class);
         initializeMeta();
     }
 
@@ -45,9 +44,9 @@ public class S2JdbcBatchInsertTest extends BenchmarkTestCase implements
      * @throws Exception
      */
     protected void initializeMeta() throws Exception {
-        EntityMetaFactory entityMetaFactory =
-            SingletonS2Container.getComponent(EntityMetaFactory.class);
-        entityMetaFactory.getEntityMeta(Employee.class);
+        DaoMetaDataFactory dmdf =
+            SingletonS2Container.getComponent(DaoMetaDataFactory.class);
+        dmdf.getDaoMetaData(DepartmentDao.class);
     }
 
     /**
@@ -61,17 +60,20 @@ public class S2JdbcBatchInsertTest extends BenchmarkTestCase implements
             department.departmentNo = 90;
             department.departmentName = "HOGE";
             department.location = "FOO";
-            department.version = 1;
+            department.versionNo = 1;
             departments.add(department);
         }
         begin();
-        jdbcManager.insertBatch(departments).execute();
+        for (Department department : departments) {
+            department.departmentId = departmentDao.getSequenceNextValue();
+        }
+        departmentDao.insertBatch(departments);
         end();
     }
 
     @Override
     protected void tearDown() throws Exception {
-        jdbcManager = null;
+        departmentDao = null;
         super.tearDown();
     }
 
@@ -81,6 +83,6 @@ public class S2JdbcBatchInsertTest extends BenchmarkTestCase implements
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-        BenchmarkTestCase.run(S2JdbcBatchInsertTest.class, args);
+        BenchmarkTestCase.run(S2DaoBatchInsertAssignTest.class, args);
     }
 }

@@ -21,14 +21,14 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import org.seasar.extension.jdbc.benchmark.BenchmarkTestCase;
-import org.seasar.extension.jdbc.benchmark.InsertBenchmark;
+import org.seasar.extension.jdbc.benchmark.InsertSequenceBenchmark;
 import org.seasar.framework.container.SingletonS2Container;
 
 /**
  * @author taedium
  * 
  */
-public class JpaInsertTest extends BenchmarkTestCase implements InsertBenchmark {
+public class JpaInsertSequenceTest extends BenchmarkTestCase implements InsertSequenceBenchmark {
 
     private EntityManager entityManager;
 
@@ -72,6 +72,6 @@ public class JpaInsertTest extends BenchmarkTestCase implements InsertBenchmark 
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-        BenchmarkTestCase.run(JpaInsertTest.class, args);
+        BenchmarkTestCase.run(JpaInsertSequenceTest.class, args);
     }
 }

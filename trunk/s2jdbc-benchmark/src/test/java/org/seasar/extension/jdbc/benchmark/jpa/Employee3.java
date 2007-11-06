@@ -21,13 +21,10 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
@@ -37,12 +34,11 @@ import javax.persistence.Version;
  */
 @Entity
 @Table(name = "EMPLOYEE")
-public class Employee2 {
+@org.hibernate.annotations.Entity(dynamicUpdate = true)
+public class Employee3 {
 
     /** */
     @Id
-    @SequenceGenerator(name = "EMPLOYEE_SEQ_GEN", sequenceName = "EMPLOYEE_SEQ")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EMPLOYEE_SEQ_GEN")
     @Column(name = "EMPLOYEE_ID")
     private Integer employeeId;
 
@@ -57,7 +53,7 @@ public class Employee2 {
     /** */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MANAGER_ID", referencedColumnName = "EMPLOYEE_ID")
-    private Employee2 manager;
+    private Employee3 manager;
 
     /** */
     @Column(name = "HIREDATE")
@@ -70,12 +66,12 @@ public class Employee2 {
     /** */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id", referencedColumnName = "DEPARTMENT_ID")
-    private Department2 department;
+    private Department3 department;
 
     /** */
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ADDRESS_ID", referencedColumnName = "ADDRESS_ID")
-    private Address2 address;
+    private Address3 address;
 
     /** */
     @Version
@@ -130,7 +126,7 @@ public class Employee2 {
     /**
      * @return Returns the manager.
      */
-    public Employee2 getManager() {
+    public Employee3 getManager() {
         return manager;
     }
 
@@ -138,7 +134,7 @@ public class Employee2 {
      * @param manager
      *            The manager to set.
      */
-    public void setManager(Employee2 manager) {
+    public void setManager(Employee3 manager) {
         this.manager = manager;
     }
 
@@ -175,7 +171,7 @@ public class Employee2 {
     /**
      * @return Returns the department.
      */
-    public Department2 getDepartment() {
+    public Department3 getDepartment() {
         return department;
     }
 
@@ -183,14 +179,14 @@ public class Employee2 {
      * @param department
      *            The department to set.
      */
-    public void setDepartment(Department2 department) {
+    public void setDepartment(Department3 department) {
         this.department = department;
     }
 
     /**
      * @return Returns the address.
      */
-    public Address2 getAddress() {
+    public Address3 getAddress() {
         return address;
     }
 
@@ -198,7 +194,7 @@ public class Employee2 {
      * @param address
      *            The address to set.
      */
-    public void setAddress(Address2 address) {
+    public void setAddress(Address3 address) {
         this.address = address;
     }
 
