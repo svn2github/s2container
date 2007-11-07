@@ -63,12 +63,4 @@ public class JpaUpdateTest extends BenchmarkTestCase implements UpdateBenchmark 
         super.tearDown();
     }
 
-    /**
-     * 
-     * @param args
-     * @throws Exception
-     */
-    public static void main(String[] args) throws Exception {
-        BenchmarkTestCase.run(JpaUpdateTest.class, args);
-    }
 }

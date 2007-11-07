@@ -70,12 +70,4 @@ public class JpaInsertAssignTest extends BenchmarkTestCase implements
         super.tearDown();
     }
 
-    /**
-     * 
-     * @param args
-     * @throws Exception
-     */
-    public static void main(String[] args) throws Exception {
-        BenchmarkTestCase.run(JpaInsertAssignTest.class, args);
-    }
 }

@@ -79,12 +79,4 @@ public class S2DaoInsertAssignTest extends BenchmarkTestCase implements
         super.tearDown();
     }
 
-    /**
-     * 
-     * @param args
-     * @throws Exception
-     */
-    public static void main(String[] args) throws Exception {
-        BenchmarkTestCase.run(S2DaoInsertAssignTest.class, args);
-    }
 }

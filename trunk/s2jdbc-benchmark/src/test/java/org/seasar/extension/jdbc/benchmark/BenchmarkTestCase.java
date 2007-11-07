@@ -32,7 +32,6 @@ import org.seasar.extension.jdbc.SqlLogRegistryLocator;
 import org.seasar.extension.jdbc.util.ConnectionUtil;
 import org.seasar.framework.container.SingletonS2Container;
 import org.seasar.framework.container.factory.SingletonS2ContainerFactory;
-import org.seasar.framework.env.Env;
 import org.seasar.framework.util.PreparedStatementUtil;
 import org.seasar.framework.util.StatementUtil;
 
@@ -142,48 +141,14 @@ public abstract class BenchmarkTestCase extends TestCase {
      * @param args
      * @throws Exception
      */
-    protected static void run(Class<? extends BenchmarkTestCase> clazz,
-            String[] args) throws Exception {
-        if (args.length > 0 && args[0] != null) {
-            fileName = args[0];
-        }
-        TestRunner.main(new String[] { clazz.getName() });
-    }
-
-    /**
-     * 
-     * @param args
-     * @throws Exception
-     */
     public static void main(String[] args) throws Exception {
-        String fileName = null;
-        if (args.length > 0 && args[0] != null) {
-            fileName = args[0];
+        if (args.length == 0) {
+            throw new IllegalArgumentException("no className");
         }
-        Formatter f = null;
-        try {
-            OutputStream os =
-                fileName != null ? new FileOutputStream(fileName, true)
-                    : System.out;
-            f = new Formatter(os);
-            f.format("%s=%s\n", "ENV value(RDBMS)", Env.getValue());
-            f.format("%s=%s\n", getPropertyKeyValue("java.runtime.name"));
-            f.format("%s=%s\n", getPropertyKeyValue("java.vm.version"));
-            f.format("%s=%s\n", getPropertyKeyValue("java.vm.vendor"));
-            f.format("%s=%s\n", getPropertyKeyValue("java.version"));
-            f.format("%s=%s\n", getPropertyKeyValue("os.name"));
-            f.format("%s=%s\n", getPropertyKeyValue("os.arch"));
-            f.format("%s=%s\n", getPropertyKeyValue("java.class.path"));
-            f.format("\n");
-            f.flush();
-        } finally {
-            if (fileName != null) {
-                f.close();
-            }
+        String className = args[0];
+        if (args.length > 1) {
+            fileName = args[1];
         }
-    }
-
-    private static Object[] getPropertyKeyValue(String key) {
-        return new Object[] { key, System.getProperty(key) };
+        TestRunner.main(new String[] { className });
     }
 }

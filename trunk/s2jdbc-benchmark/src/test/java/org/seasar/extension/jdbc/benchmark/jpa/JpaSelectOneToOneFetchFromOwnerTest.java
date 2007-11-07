@@ -69,12 +69,4 @@ public class JpaSelectOneToOneFetchFromOwnerTest extends BenchmarkTestCase
         super.tearDown();
     }
 
-    /**
-     * 
-     * @param args
-     * @throws Exception
-     */
-    public static void main(String[] args) throws Exception {
-        BenchmarkTestCase.run(JpaSelectOneToOneFetchFromOwnerTest.class, args);
-    }
 }

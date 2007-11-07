@@ -74,12 +74,4 @@ public class S2DaoSelectOwnerTest extends BenchmarkTestCase implements
         super.tearDown();
     }
 
-    /**
-     * 
-     * @param args
-     * @throws Exception
-     */
-    public static void main(String[] args) throws Exception {
-        BenchmarkTestCase.run(S2DaoSelectOwnerTest.class, args);
-    }
 }

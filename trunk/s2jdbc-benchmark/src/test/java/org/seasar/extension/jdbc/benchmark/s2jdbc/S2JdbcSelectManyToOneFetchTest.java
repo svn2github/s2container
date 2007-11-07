@@ -81,12 +81,4 @@ public class S2JdbcSelectManyToOneFetchTest extends BenchmarkTestCase implements
         super.tearDown();
     }
 
-    /**
-     * 
-     * @param args
-     * @throws Exception
-     */
-    public static void main(String[] args) throws Exception {
-        BenchmarkTestCase.run(S2JdbcSelectManyToOneFetchTest.class, args);
-    }
 }

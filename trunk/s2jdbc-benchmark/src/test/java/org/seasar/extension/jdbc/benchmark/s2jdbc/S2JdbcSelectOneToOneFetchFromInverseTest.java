@@ -79,14 +79,4 @@ public class S2JdbcSelectOneToOneFetchFromInverseTest extends BenchmarkTestCase
         super.tearDown();
     }
 
-    /**
-     * 
-     * @param args
-     * @throws Exception
-     */
-    public static void main(String[] args) throws Exception {
-        BenchmarkTestCase.run(
-            S2JdbcSelectOneToOneFetchFromInverseTest.class,
-            args);
-    }
 }

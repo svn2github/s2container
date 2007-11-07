@@ -63,12 +63,4 @@ public class JpaDeleteTest extends BenchmarkTestCase implements DeleteBenchmark 
         super.tearDown();
     }
 
-    /**
-     * 
-     * @param args
-     * @throws Exception
-     */
-    public static void main(String[] args) throws Exception {
-        BenchmarkTestCase.run(JpaDeleteTest.class, args);
-    }
 }

@@ -69,12 +69,4 @@ public class JpaPagingTest extends BenchmarkTestCase implements PagingBenchmark 
         super.tearDown();
     }
 
-    /**
-     * 
-     * @param args
-     * @throws Exception
-     */
-    public static void main(String[] args) throws Exception {
-        BenchmarkTestCase.run(JpaPagingTest.class, args);
-    }
 }

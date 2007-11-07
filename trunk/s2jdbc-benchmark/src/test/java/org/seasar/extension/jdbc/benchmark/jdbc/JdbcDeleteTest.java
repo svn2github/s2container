@@ -114,12 +114,4 @@ public class JdbcDeleteTest extends BenchmarkTestCase implements
         super.tearDown();
     }
 
-    /**
-     * 
-     * @param args
-     * @throws Exception
-     */
-    public static void main(String[] args) throws Exception {
-        BenchmarkTestCase.run(JdbcDeleteTest.class, args);
-    }
 }

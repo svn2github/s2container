@@ -72,7 +72,7 @@ public class BenchmarkTestScanner {
      */
     public static void main(String[] args) {
         if (args.length == 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("no fileName");
         }
         String fileName = args[0];
         scan();

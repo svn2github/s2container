@@ -91,12 +91,4 @@ public class S2JdbcUpdateChangedOnlyTest extends BenchmarkTestCase implements
         super.tearDown();
     }
 
-    /**
-     * 
-     * @param args
-     * @throws Exception
-     */
-    public static void main(String[] args) throws Exception {
-        BenchmarkTestCase.run(S2JdbcUpdateChangedOnlyTest.class, args);
-    }
 }

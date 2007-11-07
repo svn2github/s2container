@@ -63,12 +63,4 @@ public class JpaSelectInverseTest extends BenchmarkTestCase implements
         super.tearDown();
     }
 
-    /**
-     * 
-     * @param args
-     * @throws Exception
-     */
-    public static void main(String[] args) throws Exception {
-        BenchmarkTestCase.run(JpaSelectInverseTest.class, args);
-    }
 }
