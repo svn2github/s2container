@@ -32,6 +32,7 @@ import org.seasar.extension.jdbc.SqlLogRegistryLocator;
 import org.seasar.extension.jdbc.util.ConnectionUtil;
 import org.seasar.framework.container.SingletonS2Container;
 import org.seasar.framework.container.factory.SingletonS2ContainerFactory;
+import org.seasar.framework.env.Env;
 import org.seasar.framework.util.PreparedStatementUtil;
 import org.seasar.framework.util.StatementUtil;
 
@@ -146,5 +147,42 @@ public abstract class BenchmarkTestCase extends TestCase {
             fileName = args[0];
         }
         TestRunner.main(new String[] { clazz.getName() });
+    }
+
+    /**
+     * 
+     * @param args
+     * @throws Exception
+     */
+    public static void main(String[] args) throws Exception {
+        String fileName = null;
+        if (args.length > 0 && args[0] != null) {
+            fileName = args[0];
+        }
+        Formatter f = null;
+        try {
+            OutputStream os =
+                fileName != null ? new FileOutputStream(fileName, true)
+                    : System.out;
+            f = new Formatter(os);
+            f.format("%s=%s\n", "ENV value(RDBMS)", Env.getValue());
+            f.format("%s=%s\n", getPropertyKeyValue("java.runtime.name"));
+            f.format("%s=%s\n", getPropertyKeyValue("java.vm.version"));
+            f.format("%s=%s\n", getPropertyKeyValue("java.vm.vendor"));
+            f.format("%s=%s\n", getPropertyKeyValue("java.version"));
+            f.format("%s=%s\n", getPropertyKeyValue("os.name"));
+            f.format("%s=%s\n", getPropertyKeyValue("os.arch"));
+            f.format("%s=%s\n", getPropertyKeyValue("java.class.path"));
+            f.format("\n");
+            f.flush();
+        } finally {
+            if (fileName != null) {
+                f.close();
+            }
+        }
+    }
+
+    private static String[] getPropertyKeyValue(String key) {
+        return new String[] { key, System.getProperty(key) };
     }
 }
