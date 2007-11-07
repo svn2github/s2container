@@ -182,7 +182,7 @@ public abstract class BenchmarkTestCase extends TestCase {
         }
     }
 
-    private static String[] getPropertyKeyValue(String key) {
-        return new String[] { key, System.getProperty(key) };
+    private static Object[] getPropertyKeyValue(String key) {
+        return new Object[] { key, System.getProperty(key) };
     }
 }
