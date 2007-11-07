@@ -30,14 +30,12 @@ import org.seasar.framework.container.SingletonS2Container;
 public class S2DaoBatchInsertSequenceTest extends BenchmarkTestCase implements
         BatchInsertSequenceBenchmark {
 
-    private Department2Dao departmentDao;
-
-    private int id = 5;
+    private DepartmentDao departmentDao;
 
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        departmentDao = SingletonS2Container.getComponent(Department2Dao.class);
+        departmentDao = SingletonS2Container.getComponent(DepartmentDao.class);
         initializeMeta();
     }
 
@@ -56,10 +54,9 @@ public class S2DaoBatchInsertSequenceTest extends BenchmarkTestCase implements
      * @throws Exception
      */
     public void test() throws Exception {
-        List<Department2> departments = new ArrayList<Department2>();
+        List<Department> departments = new ArrayList<Department>();
         for (int i = 0; i < 10000; i++) {
-            Department2 department = new Department2();
-            department.departmentId = id++;
+            Department department = new Department();
             department.departmentNo = 90;
             department.departmentName = "HOGE";
             department.location = "FOO";
@@ -67,6 +64,9 @@ public class S2DaoBatchInsertSequenceTest extends BenchmarkTestCase implements
             departments.add(department);
         }
         begin();
+        for (Department department : departments) {
+            department.departmentId = departmentDao.getSequenceNextValue();
+        }
         departmentDao.insertBatch(departments);
         end();
     }
@@ -83,6 +83,6 @@ public class S2DaoBatchInsertSequenceTest extends BenchmarkTestCase implements
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-        BenchmarkTestCase.run(S2DaoBatchInsertSequenceTest.class, args);
+        BenchmarkTestCase.run(S2DaoBatchInsertAssignTest.class, args);
     }
 }

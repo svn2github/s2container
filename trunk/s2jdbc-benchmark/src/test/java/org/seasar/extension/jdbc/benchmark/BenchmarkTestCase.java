@@ -133,6 +133,7 @@ public abstract class BenchmarkTestCase extends TestCase {
                 f.close();
             }
         }
+        System.out.println("\n" + getClass().getName());
     }
 
     /**
