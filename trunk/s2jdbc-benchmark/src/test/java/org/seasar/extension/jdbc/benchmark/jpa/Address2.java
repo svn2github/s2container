@@ -17,6 +17,7 @@ package org.seasar.extension.jdbc.benchmark.jpa;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -45,7 +46,7 @@ public class Address2 {
     private Integer version;
 
     /** */
-    @OneToOne(mappedBy = "address")
+    @OneToOne(mappedBy = "address", fetch = FetchType.LAZY)
     private Employee2 employee;
 
     /**
