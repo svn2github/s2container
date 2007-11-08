@@ -1,0 +1,195 @@
+ENV value(RDBMS)=h2
+java.runtime.name=Java(TM) 2 Runtime Environment, Standard Edition
+java.vm.version=1.5.0_13-b05
+java.vm.vendor=Sun Microsystems Inc.
+java.version=1.5.0_13
+os.name=Windows XP
+os.arch=x86
+java.class.path=build\classes;lib\aopalliance-1.0.jar;lib\commons-logging-1.1.jar;lib\easymock-2.2.jar;lib\geronimo-annotation_1.0_spec-1.0.jar;lib\geronimo-ejb_3.0_spec-1.0.jar;lib\geronimo-interceptor_3.0_spec-1.0.jar;lib\geronimo-jpa_3.0_spec-1.0.jar;lib\geronimo-jta_1.1_spec-1.0.jar;lib\geronimo-j2ee_1.4_spec-1.0.jar;lib\hsqldb-1.8.0.1.jar;lib\javassist-3.4.ga.jar;lib\junit-4.3.1.jar;lib\junit-addons-1.4.jar;lib\log4j-1.2.13.jar;lib\ognl-2.6.9-patch-20070908.jar;lib\poi-3.0-FINAL.jar;lib\portlet-api-1.0.jar;lib\s2-extension-2.4.18-rc2-SNAPSHOT.jar;lib\s2-framework-2.4.18-rc2-SNAPSHOT.jar;lib\s2-tiger-2.4.18-rc2-SNAPSHOT.jar;lib\ojdbc5.jar;lib\antlr-2.7.6.jar;lib\commons-collections-2.1.1.jar;lib\dom4j-1.6.1.jar;lib\ehcache-1.2.jar;lib\hibernate-3.2.3.ga.jar;lib\hibernate-annotations-3.2.1.ga.jar;lib\hibernate-entitymanager-3.2.1.ga.jar;lib\jboss-archive-browsing-5.0.0alpha-200607201-119.jar;lib\lucene-core-2.0.0.jar;lib\s2hibernate-jpa-1.0.1-rc1.jar;lib\s2-dao-1.0.47-RC1.jar;lib\s2-dao-tiger-1.0.47-RC1.jar;lib\h2-1.0.60.jar;lib\db2jcc.jar;lib\db2jcc_license_cu.jar
+
+   209,813,278 (nanoTime) : JdbcSelectOwnerTest
+   211,768,899 (nanoTime) : JdbcSelectOwnerTest
+   210,962,762 (nanoTime) : JdbcSelectOwnerTest
+ 1,166,281,931 (nanoTime) : JpaSelectOwnerTest
+ 1,140,394,266 (nanoTime) : JpaSelectOwnerTest
+ 1,140,010,406 (nanoTime) : JpaSelectOwnerTest
+   367,988,377 (nanoTime) : S2DaoSelectOwnerTest
+   365,040,700 (nanoTime) : S2DaoSelectOwnerTest
+   364,920,568 (nanoTime) : S2DaoSelectOwnerTest
+   269,370,244 (nanoTime) : S2JdbcSelectOwnerTest
+   269,767,711 (nanoTime) : S2JdbcSelectOwnerTest
+   269,927,106 (nanoTime) : S2JdbcSelectOwnerTest
+ 
+   231,459,721 (nanoTime) : JdbcSelectInverseTest
+   230,460,576 (nanoTime) : JdbcSelectInverseTest
+   231,390,740 (nanoTime) : JdbcSelectInverseTest
+ 2,889,910,832 (nanoTime) : JpaSelectInverseTest
+ 2,887,094,853 (nanoTime) : JpaSelectInverseTest
+ 2,891,777,034 (nanoTime) : JpaSelectInverseTest
+   251,184,206 (nanoTime) : S2DaoSelectInverseTest
+   250,925,031 (nanoTime) : S2DaoSelectInverseTest
+   251,031,422 (nanoTime) : S2DaoSelectInverseTest
+   226,800,329 (nanoTime) : S2JdbcSelectInverseTest
+   222,213,093 (nanoTime) : S2JdbcSelectInverseTest
+   227,693,742 (nanoTime) : S2JdbcSelectInverseTest
+ 
+ 1,202,825,547 (nanoTime) : JpaSelectManyToOneFetchTest
+ 1,204,424,953 (nanoTime) : JpaSelectManyToOneFetchTest
+ 1,202,367,197 (nanoTime) : JpaSelectManyToOneFetchTest
+   495,423,151 (nanoTime) : S2JdbcSelectManyToOneFetchTest
+   496,577,245 (nanoTime) : S2JdbcSelectManyToOneFetchTest
+   502,121,601 (nanoTime) : S2JdbcSelectManyToOneFetchTest
+ 
+ 1,402,733,978 (nanoTime) : JpaSelectOneToManyFetchTest
+ 1,321,235,126 (nanoTime) : JpaSelectOneToManyFetchTest
+ 1,344,611,348 (nanoTime) : JpaSelectOneToManyFetchTest
+   703,453,210 (nanoTime) : S2JdbcSelectOneToManyFetchTest
+   704,441,479 (nanoTime) : S2JdbcSelectOneToManyFetchTest
+   702,263,486 (nanoTime) : S2JdbcSelectOneToManyFetchTest
+ 
+ 3,002,448,814 (nanoTime) : JpaSelectOneToOneFetchFromOwnerTest
+ 3,024,219,926 (nanoTime) : JpaSelectOneToOneFetchFromOwnerTest
+ 3,020,294,399 (nanoTime) : JpaSelectOneToOneFetchFromOwnerTest
+   644,784,525 (nanoTime) : S2JdbcSelectOneToOneFetchFromOwnerTest
+   645,597,747 (nanoTime) : S2JdbcSelectOneToOneFetchFromOwnerTest
+   644,061,972 (nanoTime) : S2JdbcSelectOneToOneFetchFromOwnerTest
+ 
+ 1,628,423,743 (nanoTime) : JpaSelectOneToOneFetchFromInverseTest
+ 1,634,645,837 (nanoTime) : JpaSelectOneToOneFetchFromInverseTest
+ 1,633,244,331 (nanoTime) : JpaSelectOneToOneFetchFromInverseTest
+   639,808,461 (nanoTime) : S2JdbcSelectOneToOneFetchFromInverseTest
+   642,733,003 (nanoTime) : S2JdbcSelectOneToOneFetchFromInverseTest
+   642,110,087 (nanoTime) : S2JdbcSelectOneToOneFetchFromInverseTest
+ 
+    63,113,786 (nanoTime) : JdbcPagingTest
+    63,754,181 (nanoTime) : JdbcPagingTest
+    63,967,032 (nanoTime) : JdbcPagingTest
+   274,951,985 (nanoTime) : JpaPagingTest
+   275,180,873 (nanoTime) : JpaPagingTest
+   275,120,690 (nanoTime) : JpaPagingTest
+   101,343,830 (nanoTime) : S2DaoPagingTest
+   100,103,116 (nanoTime) : S2DaoPagingTest
+   101,780,272 (nanoTime) : S2DaoPagingTest
+    86,843,537 (nanoTime) : S2JdbcPagingTest
+    87,544,125 (nanoTime) : S2JdbcPagingTest
+   137,714,753 (nanoTime) : S2JdbcPagingTest
+ 
+ 1,417,697,096 (nanoTime) : JdbcInsertSequenceTest
+ 1,346,166,927 (nanoTime) : JdbcInsertSequenceTest
+ 1,342,248,361 (nanoTime) : JdbcInsertSequenceTest
+ 1,246,603,138 (nanoTime) : JpaInsertSequenceTest
+ 1,266,497,800 (nanoTime) : JpaInsertSequenceTest
+ 1,261,832,191 (nanoTime) : JpaInsertSequenceTest
+ 1,470,866,228 (nanoTime) : S2DaoInsertSequenceTest
+ 1,468,499,260 (nanoTime) : S2DaoInsertSequenceTest
+ 1,467,230,770 (nanoTime) : S2DaoInsertSequenceTest
+   680,426,022 (nanoTime) : S2JdbcInsertSequenceTest
+   679,724,706 (nanoTime) : S2JdbcInsertSequenceTest
+   679,394,153 (nanoTime) : S2JdbcInsertSequenceTest
+ 
+   358,625,286 (nanoTime) : JdbcInsertAssignTest
+   366,161,859 (nanoTime) : JdbcInsertAssignTest
+   373,366,897 (nanoTime) : JdbcInsertAssignTest
+ 1,238,267,129 (nanoTime) : JpaInsertAssignTest
+ 1,274,893,960 (nanoTime) : JpaInsertAssignTest
+ 1,266,081,033 (nanoTime) : JpaInsertAssignTest
+ 1,032,778,194 (nanoTime) : S2DaoInsertAssignTest
+ 1,031,738,502 (nanoTime) : S2DaoInsertAssignTest
+ 1,031,347,053 (nanoTime) : S2DaoInsertAssignTest
+   622,886,757 (nanoTime) : S2JdbcInsertAssignTest
+   620,117,756 (nanoTime) : S2JdbcInsertAssignTest
+   622,286,191 (nanoTime) : S2JdbcInsertAssignTest
+ 
+ 1,195,146,070 (nanoTime) : JdbcUpdateTest
+ 1,228,263,974 (nanoTime) : JdbcUpdateTest
+ 1,219,323,264 (nanoTime) : JdbcUpdateTest
+ 2,478,633,923 (nanoTime) : JpaUpdateTest
+ 2,448,435,780 (nanoTime) : JpaUpdateTest
+ 2,465,344,589 (nanoTime) : JpaUpdateTest
+ 2,335,330,482 (nanoTime) : S2DaoUpdateTest
+ 2,348,127,699 (nanoTime) : S2DaoUpdateTest
+ 2,325,402,433 (nanoTime) : S2DaoUpdateTest
+ 1,705,540,417 (nanoTime) : S2JdbcUpdateTest
+ 1,702,067,686 (nanoTime) : S2JdbcUpdateTest
+ 1,700,711,987 (nanoTime) : S2JdbcUpdateTest
+ 
+   935,444,943 (nanoTime) : JdbcUpdateChangedOnlyTest
+   990,411,718 (nanoTime) : JdbcUpdateChangedOnlyTest
+   987,221,252 (nanoTime) : JdbcUpdateChangedOnlyTest
+ 2,111,997,632 (nanoTime) : JpaUpdateChangedOnlyTest
+ 2,121,299,426 (nanoTime) : JpaUpdateChangedOnlyTest
+ 2,094,897,339 (nanoTime) : JpaUpdateChangedOnlyTest
+ 1,948,577,535 (nanoTime) : S2DaoUpdateChangedOnlyTest
+ 1,977,043,206 (nanoTime) : S2DaoUpdateChangedOnlyTest
+ 1,952,548,048 (nanoTime) : S2DaoUpdateChangedOnlyTest
+ 1,408,093,963 (nanoTime) : S2JdbcUpdateChangedOnlyTest
+ 1,442,577,059 (nanoTime) : S2JdbcUpdateChangedOnlyTest
+ 1,403,606,044 (nanoTime) : S2JdbcUpdateChangedOnlyTest
+ 
+ 1,183,731,167 (nanoTime) : JdbcDeleteTest
+   464,468,756 (nanoTime) : JdbcDeleteTest
+   465,983,212 (nanoTime) : JdbcDeleteTest
+ 2,989,883,309 (nanoTime) : JpaDeleteTest
+ 3,029,981,783 (nanoTime) : JpaDeleteTest
+ 3,022,291,534 (nanoTime) : JpaDeleteTest
+ 1,154,274,382 (nanoTime) : S2DaoDeleteTest
+ 1,120,785,612 (nanoTime) : S2DaoDeleteTest
+ 1,146,846,539 (nanoTime) : S2DaoDeleteTest
+   736,323,216 (nanoTime) : S2JdbcDeleteTest
+   738,948,488 (nanoTime) : S2JdbcDeleteTest
+   741,458,811 (nanoTime) : S2JdbcDeleteTest
+ 
+ 1,295,333,417 (nanoTime) : JdbcBatchInsertSequenceTest
+ 1,315,681,108 (nanoTime) : JdbcBatchInsertSequenceTest
+ 1,297,364,212 (nanoTime) : JdbcBatchInsertSequenceTest
+ 1,165,154,281 (nanoTime) : S2DaoBatchInsertSequenceTest
+ 1,281,435,166 (nanoTime) : S2DaoBatchInsertSequenceTest
+ 1,278,572,398 (nanoTime) : S2DaoBatchInsertSequenceTest
+   573,944,075 (nanoTime) : S2JdbcBatchInsertSequenceTest
+   580,290,058 (nanoTime) : S2JdbcBatchInsertSequenceTest
+   572,353,852 (nanoTime) : S2JdbcBatchInsertSequenceTest
+ 
+   357,986,366 (nanoTime) : JdbcBatchInsertAssignTest
+   357,313,583 (nanoTime) : JdbcBatchInsertAssignTest
+   336,255,769 (nanoTime) : JdbcBatchInsertAssignTest
+   411,396,950 (nanoTime) : S2DaoBatchInsertAssignTest
+   411,925,658 (nanoTime) : S2DaoBatchInsertAssignTest
+   410,421,468 (nanoTime) : S2DaoBatchInsertAssignTest
+   521,077,064 (nanoTime) : S2JdbcBatchInsertAssignTest
+   523,300,922 (nanoTime) : S2JdbcBatchInsertAssignTest
+   521,169,230 (nanoTime) : S2JdbcBatchInsertAssignTest
+ 
+ 1,317,182,231 (nanoTime) : JdbcBatchUpdateTest
+ 1,321,970,724 (nanoTime) : JdbcBatchUpdateTest
+ 1,330,390,129 (nanoTime) : JdbcBatchUpdateTest
+ 1,449,026,698 (nanoTime) : S2DaoBatchUpdateTest
+ 1,450,066,102 (nanoTime) : S2DaoBatchUpdateTest
+ 1,453,035,016 (nanoTime) : S2DaoBatchUpdateTest
+ 1,469,586,856 (nanoTime) : S2JdbcBatchUpdateTest
+ 1,465,609,085 (nanoTime) : S2JdbcBatchUpdateTest
+ 1,465,296,697 (nanoTime) : S2JdbcBatchUpdateTest
+ 
+   724,892,006 (nanoTime) : JdbcBatchDeleteTest
+   462,762,854 (nanoTime) : JdbcBatchDeleteTest
+   466,127,064 (nanoTime) : JdbcBatchDeleteTest
+   560,029,588 (nanoTime) : S2DaoBatchDeleteTest
+   556,103,492 (nanoTime) : S2DaoBatchDeleteTest
+   555,443,745 (nanoTime) : S2DaoBatchDeleteTest
+   661,290,090 (nanoTime) : S2JdbcBatchDeleteTest
+   659,284,990 (nanoTime) : S2JdbcBatchDeleteTest
+   657,398,879 (nanoTime) : S2JdbcBatchDeleteTest
+ 
+   387,996,977 (nanoTime) : S2DaoSqlSelectDtoTest
+   388,643,672 (nanoTime) : S2DaoSqlSelectDtoTest
+   389,332,650 (nanoTime) : S2DaoSqlSelectDtoTest
+   283,292,181 (nanoTime) : S2JdbcSqlSelectDtoTest
+   280,920,124 (nanoTime) : S2JdbcSqlSelectDtoTest
+   283,594,133 (nanoTime) : S2JdbcSqlSelectDtoTest
+ 
+   390,422,603 (nanoTime) : S2DaoSqlFileSelectDtoTest
+   391,614,648 (nanoTime) : S2DaoSqlFileSelectDtoTest
+   390,900,734 (nanoTime) : S2DaoSqlFileSelectDtoTest
+   296,812,315 (nanoTime) : S2JdbcSqlFileSelectDtoTest
+   295,787,750 (nanoTime) : S2JdbcSqlFileSelectDtoTest
+   296,714,886 (nanoTime) : S2JdbcSqlFileSelectDtoTest
+ 
