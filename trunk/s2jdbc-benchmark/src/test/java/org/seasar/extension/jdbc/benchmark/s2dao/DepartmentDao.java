@@ -19,6 +19,7 @@ import java.util.List;
 
 import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.dao.annotation.tiger.Sql;
+import org.seasar.dao.annotation.tiger.Sqls;
 
 /**
  * @author taedium
@@ -45,6 +46,7 @@ public interface DepartmentDao {
      * 
      * @return
      */
-    @Sql("select DEPARTMENT_SEQ.nextval from dual")
+    @Sqls( { @Sql("select DEPARTMENT_SEQ.nextval from dual"),
+        @Sql(value = "values nextval for DEPARTMENT_SEQ", dbms = "db2") })
     int getSequenceNextValue();
 }

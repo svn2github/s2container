@@ -41,6 +41,9 @@ public class JdbcPagingTest extends BenchmarkTestCase implements
     private static final String H2_SQL =
         "select T.employee_id, T.employee_no, T.employee_name, T.manager_id, T.hiredate, T.salary, T.department_id, T.address_id, T.version FROM Employee T order by T.employee_id limit ? offset ?";
 
+    private static final String DB_SQL =
+        "select * from ( select temp_.*, rownumber() over(order by temp_.EMPLOYEE_ID) as rownumber_ from ( select T1_.EMPLOYEE_ID, T1_.EMPLOYEE_NO, T1_.EMPLOYEE_NAME, T1_.MANAGER_ID, T1_.HIREDATE, T1_.SALARY, T1_.DEPARTMENT_ID, T1_.ADDRESS_ID, T1_.VERSION from EMPLOYEE T1_ ) as temp_ ) as temp2_ where rownumber_ <= ? and rownumber_ > ?";
+
     private DataSource dataSource;
 
     @Override
@@ -106,6 +109,8 @@ public class JdbcPagingTest extends BenchmarkTestCase implements
             return ORACLE_SQL;
         } else if (Env.getValue().equals("h2")) {
             return H2_SQL;
+        } else if (Env.getValue().equals("db2")) {
+            return DB_SQL;
         }
         throw new IllegalStateException("illegal env value.");
     }

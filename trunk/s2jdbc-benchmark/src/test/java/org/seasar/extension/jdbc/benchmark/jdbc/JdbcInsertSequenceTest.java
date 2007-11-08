@@ -26,6 +26,7 @@ import javax.sql.DataSource;
 import org.seasar.extension.jdbc.benchmark.BenchmarkTestCase;
 import org.seasar.extension.jdbc.benchmark.InsertSequenceBenchmark;
 import org.seasar.framework.container.SingletonS2Container;
+import org.seasar.framework.env.Env;
 
 /**
  * @author taedium
@@ -36,6 +37,9 @@ public class JdbcInsertSequenceTest extends BenchmarkTestCase implements
 
     private static final String NEXTVAL =
         "select DEPARTMENT_SEQ.nextval from dual";
+
+    private static final String NEXTVAL_DB2 =
+        "values nextval for DEPARTMENT_SEQ";
 
     private static final String INSERT =
         "insert into Department (department_id, department_no, department_name, location, version) values (?, ?, ?, ?, ?)";
@@ -88,7 +92,8 @@ public class JdbcInsertSequenceTest extends BenchmarkTestCase implements
     private int getNextValue() throws Exception {
         Connection con = dataSource.getConnection();
         try {
-            PreparedStatement ps = con.prepareStatement(NEXTVAL);
+            PreparedStatement ps =
+                con.prepareStatement(getSequenceNextValString());
             try {
                 ResultSet rs = ps.executeQuery();
                 try {
@@ -105,6 +110,13 @@ public class JdbcInsertSequenceTest extends BenchmarkTestCase implements
             con.close();
         }
         throw new IllegalStateException();
+    }
+
+    private String getSequenceNextValString() {
+        if (Env.getValue().equals("db2")) {
+            return NEXTVAL_DB2;
+        }
+        return NEXTVAL;
     }
 
     @Override

@@ -49,7 +49,7 @@ public class S2JdbcBatchInsertAssignTest extends BenchmarkTestCase implements
     protected void initializeMeta() throws Exception {
         EntityMetaFactory entityMetaFactory =
             SingletonS2Container.getComponent(EntityMetaFactory.class);
-        entityMetaFactory.getEntityMeta(Employee.class);
+        entityMetaFactory.getEntityMeta(Employee2.class);
     }
 
     /**

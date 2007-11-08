@@ -49,7 +49,7 @@ public class S2JdbcInsertAssignTest extends BenchmarkTestCase implements
     protected void initializeMeta() throws Exception {
         EntityMetaFactory entityMetaFactory =
             SingletonS2Container.getComponent(EntityMetaFactory.class);
-        entityMetaFactory.getEntityMeta(Department2.class);
+        entityMetaFactory.getEntityMeta(Employee2.class);
     }
 
     /**
@@ -57,9 +57,9 @@ public class S2JdbcInsertAssignTest extends BenchmarkTestCase implements
      * @throws Exception
      */
     public void test() throws Exception {
-        List<Department> departments = new ArrayList<Department>();
+        List<Department2> departments = new ArrayList<Department2>();
         for (int i = 0; i < 10000; i++) {
-            Department department = new Department();
+            Department2 department = new Department2();
             department.departmentId = id++;
             department.departmentNo = 90;
             department.departmentName = "HOGE";
@@ -68,7 +68,7 @@ public class S2JdbcInsertAssignTest extends BenchmarkTestCase implements
             departments.add(department);
         }
         begin();
-        for (Department department : departments) {
+        for (Department2 department : departments) {
             jdbcManager.insert(department).execute();
         }
         end();
