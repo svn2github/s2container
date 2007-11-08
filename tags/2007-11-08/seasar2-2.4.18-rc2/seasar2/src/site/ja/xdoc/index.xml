@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<document>
+	<properties>
+		<title>Seasar2</title>
+	</properties>
+	<body>
+		<section name="Welcome">
+			<p>
+				「Javaを使った開発は生産性が低い」、最近そんな声をよく耳にします。
+				確かに、たくさん設定ファイルを書く必要があったり、
+				ソースコードを修正するたびにアプリケーションサーバを再起動する必要があったり、
+				面倒なことがいっぱいありました。
+			</p>
+			<p>
+				しかし、それは過去の話です。
+			</p>
+			<p>
+				Seasar2は、Javaを使った開発の生産性を高めるために開発されたフレームワークです。
+				設定ファイルを書く必要はほとんどありません。
+				また、ソースコードの修正をアプリケーションサーバの再起動なしに
+				<b>HOT</b>に認識することができます。
+			</p>
+			<p>
+				Seasar2の生産性の高さは、<a href="http://capsctrl.que.jp/kdmsnr/wiki/bliki/?FluentInterface">流れるようなインターフェース</a>を持つ
+				<a href="s2jdbc_abstract.html">S2JDBC</a>を見ていただくと実感できるのではないかと思います。
+			</p>
+			<source><![CDATA[
+List<Employee> results = jdbcManager.from(Employee.class)
+                             .join("department")
+                             .where("id in (? , ?)", 11, 22)
+                             .orderBy("name")
+                             .getResultList();
+]]></source>
+			<p>
+				流れるようにコーディングして、ほとんどのSQLを自動生成することができます。
+			</p>
+		</section>
+		<section name="メーリングリスト">
+			<dl>
+				<dt><a href="https://www.seasar.org/mailman/listinfo/seasar-user">seasar-user</a></dt>
+				<dd>Seasar2および関連プロダクトの利用者のためのメーリングリストです。<br />
+				Seasar2を利用していて疑問に思ったことや困ったこと、要望などはこちらへ。</dd>
+				<dt><a href="https://www.seasar.org/mailman/listinfo/seasar-dev">seasar-dev</a></dt>
+				<dd>Seasar2および関連プロダクト開発者のためのメーリングリストです。</dd>
+				<dt><a href="https://www.seasar.org/mailman/listinfo/seasar-javadoc">seasar-javadoc</a>
+					<a href="http://www.seasar.org/wiki/index.php?SeasarJavadocProject">(協力者募集中)</a></dt>
+				<dd>Seasar2および関連プロダクトにJavadocを記述するプロジェクトのためのメーリングリストです。</dd>
+			</dl>
+		</section>
+		<section name="トラッキング">
+			<dl>
+				<dt><a href="https://www.seasar.org/issues/browse/CONTAINER">JIRA</a></dt>
+				<dd>バグや問題の報告はこちらへ</dd>
+			</dl>
+		</section>
+		<section name="News">
+			<dl>
+				<dt>2007/11/08</dt>
+				<dd>
+					<div>Seasar2 2.4.18-rc2 をリリースしました． (<a href="downloads.html">ダウンロード</a>)</div>
+				</dd>
+				<dt>2007/10/23</dt>
+				<dd>
+					<div>Seasar2 2.4.18-rc1 をリリースしました． (<a href="downloads.html">ダウンロード</a>)</div>
+					<div>Seasar2 2.3.23-rc1 をリリースしました． (<a href="downloads.html">ダウンロード</a>)</div>
+				</dd>
+				<dt>2007/08/13</dt>
+				<dd>
+					<div>Seasar2 2.4.17 をリリースしました． (<a href="downloads.html">ダウンロード</a>)</div>
+					<div>Seasar2 2.3.22 をリリースしました． (<a href="downloads.html">ダウンロード</a>)</div>
+				</dd>
+				<dt>2007/07/30</dt>
+				<dd>
+					<div>Seasar2 2.4.16 をリリースしました． (<a href="downloads.html">ダウンロード</a>)</div>
+				</dd>
+				<dt>2007/07/11</dt>
+				<dd>
+					<div>Seasar2 2.4.15 をリリースしました． (<a href="downloads.html">ダウンロード</a>)</div>
+					<div>Seasar2 2.3.21 をリリースしました． (<a href="downloads.html">ダウンロード</a>)</div>
+				</dd>
+				<dt>2007/06/29</dt>
+				<dd>
+					<div>Seasar2 2.4.14 をリリースしました． (<a href="downloads.html">ダウンロード</a>)</div>
+					<div>Seasar2 2.3.20 をリリースしました． (<a href="downloads.html">ダウンロード</a>)</div>
+				</dd>
+			</dl>
+		</section>
+	</body>
+</document>
