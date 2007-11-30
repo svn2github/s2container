@@ -1,1 +1,0 @@
-update Department set location = 'hoge' where department_id = 1
