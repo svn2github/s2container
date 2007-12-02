@@ -58,7 +58,7 @@ public class S2JdbcSelectOneToManyFetchTest extends BenchmarkTestCase implements
         List<Department> departments =
             jdbcManager
                 .from(Department.class)
-                .join("employees")
+                .leftOuterJoin("employees")
                 .getResultList();
         end();
         assertEquals(4, departments.size());

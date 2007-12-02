@@ -20,9 +20,6 @@
 	<classpathentry kind="lib" path="lib/ognl-2.6.9-patch-20070908.jar"/>
 	<classpathentry kind="lib" path="lib/poi-3.0-FINAL.jar"/>
 	<classpathentry kind="lib" path="lib/portlet-api-1.0.jar"/>
-	<classpathentry kind="lib" path="lib/s2-extension-2.4.18-rc2-SNAPSHOT.jar" sourcepath="lib/source/s2-extension-2.4.18-rc2-SNAPSHOT-sources.jar"/>
-	<classpathentry kind="lib" path="lib/s2-framework-2.4.18-rc2-SNAPSHOT.jar" sourcepath="lib/s2-framework-2.4.18-rc2-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="lib/s2-tiger-2.4.18-rc2-SNAPSHOT.jar" sourcepath="lib/source/s2-tiger-2.4.18-rc2-SNAPSHOT-sources.jar"/>
 	<classpathentry kind="lib" path="lib/ojdbc5.jar"/>
 	<classpathentry kind="lib" path="lib/antlr-2.7.6.jar"/>
 	<classpathentry kind="lib" path="lib/commons-collections-2.1.1.jar"/>
@@ -36,8 +33,11 @@
 	<classpathentry kind="lib" path="lib/s2hibernate-jpa-1.0.1-rc1.jar"/>
 	<classpathentry kind="lib" path="lib/s2-dao-1.0.47-RC1.jar" sourcepath="lib/source/s2-dao-1.0.47-RC1-sources.jar"/>
 	<classpathentry kind="lib" path="lib/s2-dao-tiger-1.0.47-RC1.jar" sourcepath="lib/source/s2-dao-tiger-1.0.47-RC1-sources.jar"/>
-	<classpathentry kind="lib" path="lib/h2-1.0.60.jar"/>
 	<classpathentry kind="lib" path="lib/db2jcc_license_cu.jar"/>
 	<classpathentry kind="lib" path="lib/db2jcc.jar"/>
+	<classpathentry kind="lib" path="lib/s2-extension-2.4.18-rc3.jar" sourcepath="lib/source/s2-extension-2.4.18-rc3-sources.jar"/>
+	<classpathentry kind="lib" path="lib/s2-framework-2.4.18-rc3.jar" sourcepath="lib/source/s2-framework-2.4.18-rc3-sources.jar"/>
+	<classpathentry kind="lib" path="lib/s2-tiger-2.4.18-rc3.jar" sourcepath="lib/source/s2-tiger-2.4.18-rc3-sources.jar"/>
+	<classpathentry kind="lib" path="lib/h2-1.0.62.jar" sourcepath="lib/source/h2-1.0.62-source.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

@@ -56,7 +56,10 @@ public class S2JdbcSelectOneToOneFetchFromOwnerTest extends BenchmarkTestCase
     public void test() throws Exception {
         begin();
         List<Address> addresses =
-            jdbcManager.from(Address.class).join("employee").getResultList();
+            jdbcManager
+                .from(Address.class)
+                .leftOuterJoin("employee")
+                .getResultList();
         end();
         assertEquals(10000, addresses.size());
         assertNotNull(addresses.get(0).addressId);
