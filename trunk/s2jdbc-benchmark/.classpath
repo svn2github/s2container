@@ -35,9 +35,9 @@
 	<classpathentry kind="lib" path="lib/s2-dao-tiger-1.0.47-RC1.jar" sourcepath="lib/source/s2-dao-tiger-1.0.47-RC1-sources.jar"/>
 	<classpathentry kind="lib" path="lib/db2jcc_license_cu.jar"/>
 	<classpathentry kind="lib" path="lib/db2jcc.jar"/>
-	<classpathentry kind="lib" path="lib/s2-extension-2.4.18-rc3.jar" sourcepath="lib/source/s2-extension-2.4.18-rc3-sources.jar"/>
-	<classpathentry kind="lib" path="lib/s2-framework-2.4.18-rc3.jar" sourcepath="lib/source/s2-framework-2.4.18-rc3-sources.jar"/>
-	<classpathentry kind="lib" path="lib/s2-tiger-2.4.18-rc3.jar" sourcepath="lib/source/s2-tiger-2.4.18-rc3-sources.jar"/>
+	<classpathentry kind="lib" path="lib/s2-extension-2.4.18-rc4.jar" sourcepath="lib/source/s2-extension-2.4.18-rc4-sources.jar"/>
+	<classpathentry kind="lib" path="lib/s2-framework-2.4.18-rc4.jar" sourcepath="lib/source/s2-framework-2.4.18-rc4-sources.jar"/>
+	<classpathentry kind="lib" path="lib/s2-tiger-2.4.18-rc4.jar" sourcepath="lib/source/s2-tiger-2.4.18-rc4-sources.jar"/>
 	<classpathentry kind="lib" path="lib/h2-1.0.62.jar" sourcepath="lib/source/h2-1.0.62-source.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
