@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="src" path="src/test/resources"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/aopalliance-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/commons-logging-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/easymock-2.2.jar"/>
+	<classpathentry kind="lib" path="lib/geronimo-annotation_1.0_spec-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/geronimo-ejb_3.0_spec-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/geronimo-interceptor_3.0_spec-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/geronimo-jpa_3.0_spec-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/geronimo-jta_1.1_spec-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/geronimo-j2ee_1.4_spec-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/hsqldb-1.8.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/javassist-3.4.ga.jar"/>
+	<classpathentry kind="lib" path="lib/junit-4.3.1.jar"/>
+	<classpathentry kind="lib" path="lib/junit-addons-1.4.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-1.2.13.jar"/>
+	<classpathentry kind="lib" path="lib/ognl-2.6.9-patch-20070908.jar"/>
+	<classpathentry kind="lib" path="lib/poi-3.0-FINAL.jar"/>
+	<classpathentry kind="lib" path="lib/portlet-api-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/ojdbc5.jar"/>
+	<classpathentry kind="lib" path="lib/antlr-2.7.6.jar"/>
+	<classpathentry kind="lib" path="lib/commons-collections-2.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="lib/ehcache-1.2.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate-3.2.3.ga.jar" sourcepath="lib/source/hibernate-3.2.3.ga-sources.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate-annotations-3.2.1.ga.jar" sourcepath="lib/source/hibernate-annotations-3.2.1.ga-sources.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate-entitymanager-3.2.1.ga.jar" sourcepath="lib/source/hibernate-entitymanager-3.2.1.ga-sources.jar"/>
+	<classpathentry kind="lib" path="lib/jboss-archive-browsing-5.0.0alpha-200607201-119.jar"/>
+	<classpathentry kind="lib" path="lib/lucene-core-2.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/s2hibernate-jpa-1.0.1-rc1.jar"/>
+	<classpathentry kind="lib" path="lib/s2-dao-1.0.47-RC1.jar" sourcepath="lib/source/s2-dao-1.0.47-RC1-sources.jar"/>
+	<classpathentry kind="lib" path="lib/s2-dao-tiger-1.0.47-RC1.jar" sourcepath="lib/source/s2-dao-tiger-1.0.47-RC1-sources.jar"/>
+	<classpathentry kind="lib" path="lib/db2jcc_license_cu.jar"/>
+	<classpathentry kind="lib" path="lib/db2jcc.jar"/>
+	<classpathentry kind="lib" path="lib/s2-extension-2.4.18.jar" sourcepath="lib/source/s2-extension-2.4.18-sources.jar"/>
+	<classpathentry kind="lib" path="lib/s2-framework-2.4.18.jar" sourcepath="lib/source/s2-framework-2.4.18-sources.jar"/>
+	<classpathentry kind="lib" path="lib/s2-tiger-2.4.18.jar" sourcepath="lib/source/s2-tiger-2.4.18-sources.jar"/>
+	<classpathentry kind="lib" path="lib/h2-1.0.62.jar" sourcepath="lib/source/h2-1.0.62-source.jar"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>
