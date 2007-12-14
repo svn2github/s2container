@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+>
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- The Basics -->
+  <artifactId>s2-framework</artifactId>
+  <packaging>jar</packaging>
+  <parent>
+    <groupId>org.seasar.container</groupId>
+    <artifactId>s2-container-project</artifactId>
+    <version>2.3.23</version>
+  </parent>
+
+  <!-- More Project Information -->
+  <name>Seasar2 Framework</name>
+  <url>http://s2container.seasar.org/</url>
+
+  <!-- Dependency Settings -->
+  <dependencies>
+    <dependency>
+      <groupId>aopalliance</groupId>
+      <artifactId>aopalliance</artifactId>
+      <version>1.0</version>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>1.0.4</version>
+      <type>jar</type>
+      <exclusions>
+        <exclusion>
+          <artifactId>avalon-framework</artifactId>
+          <groupId>avalon-framework</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>logkit</artifactId>
+          <groupId>logkit</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>log4j</artifactId>
+          <groupId>log4j</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>jboss</groupId>
+      <artifactId>javassist</artifactId>
+      <version>3.4.ga</version>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>junit-addons</groupId>
+      <artifactId>junit-addons</artifactId>
+      <version>1.4</version>
+      <type>jar</type>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>junit-addons</groupId>
+          <artifactId>junit-addons-runner</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>ognl</groupId>
+      <artifactId>ognl</artifactId>
+      <version>2.6.9-patch-20070624</version>
+      <type>jar</type>
+    </dependency>
+  </dependencies>
+</project>
