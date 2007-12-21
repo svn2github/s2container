@@ -1,0 +1,1 @@
+update Department set department_id = /*departmentId*/99 where department_id = /*departmentId2*/99
