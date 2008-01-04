@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<!-- don't edit start -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>JDBCの設定</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="seasar_b.css" type="text/css" rel="stylesheet" media="screen" />
+<link href="seasar_p.css" type="text/css" rel="stylesheet" media="print" />
+<script src="seasar_b.js" type="text/JavaScript" language="JavaScript">
+</script>
+</head>
+<body onload="preload('ja')">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="left" height="100%">
+<tr>
+<td align="left" valign="top" width="780">
+<table width="780" border="0" cellspacing="0" cellpadding="0" class="white">
+<tr>
+<td colspan="7"><img height="5" width="780" src="images/top01_b.gif" alt="" /></td>
+</tr>
+<tr>
+<td><img height="117" width="235" src="images/top02_b.gif" alt="Seasar" /></td>
+<td colspan="3"><img height="117" width="289" src="images/top03.gif" alt="DI Container with AOP" /></td>
+<td colspan="3"><img height="117" width="256" src="images/spacer.gif" alt="" /></td>
+</tr>
+<tr>
+<td rowspan="2"><img src="images/top04.gif" alt="" height="49" width="235" /></td>
+<td><a href="http://www.seasar.org/index.html"><img src="images/menu01_b_ja.gif" height="30" width="78" border="0" alt="" id="menu01" onmouseover="swap(1)" onmouseout="restore(1)" /></a></td>
+<td><a href="http://www.seasar.org/projects.html"><img src="images/menu02_b_ja.gif" height="30" width="101" border="0" alt="" id="menu02" onmouseover="swap(2)" onmouseout="restore(2)" /></a></td>
+<td><a href="http://www.seasar.org/products.html"><img src="images/menu03_b_ja.gif" height="30" width="110" border="0" alt="" id="menu03" onmouseover="swap(3)" onmouseout="restore(3)" /></a></td>
+<td><a href="http://www.seasar.org/resources.html"><img src="images/menu04_b_ja.gif" height="30" width="113" border="0" alt="" id="menu04" onmouseover="swap(4)" onmouseout="restore(4)" /></a></td>
+<td><img src="images/menu05_b_ja.gif" height="30" width="109" border="0" alt="" id="menu05" onmouseover="swap(5)" onmouseout="restore(5)" /></td>
+<td><img height="30" width="34" src="images/menu06.gif" alt="" /></td>
+</tr>
+<tr>
+<td colspan="6"><img height="19" width="545" src="images/spacer.gif" alt="" /></td>
+</tr>
+</table>
+<table width="780" border="0" cellspacing="0" cellpadding="0" class="white">
+<tr align="left" valign="top">
+<td width="14"><img height="14" width="14" src="images/spacer.gif" alt="" /></td>
+<td width="752" class="main"><!-- don't edit end -->
+<!-- document start -->
+<ul>
+<li><a href="#setup">セットアップ</a>
+<ul>
+<li><a href="#S2DBCP">S2DBCP</a></li>
+<li><a href="#GenericApplicationServer">一般的なアプリケーションサーバ</a></li>
+</ul>
+</li>
+</ul>
+<h2><a name="setup">セットアップ</a></h2>
+<p>Javaでデータベースにアクセスするには、データソースを経由したコネクションプールを使うのが一般的です。
+コネクションプールは通常、アプリケーションサーバが実装しますが、
+Tomcatのようなトランザクションと連動するコネクションプールの実装のないアプリケーションサーバ用に
+<a href="#S2DBCP">S2DBCP</a>を用意しています。
+</p>
+<p>
+データソースの設定は、jdbc.diconで行ないます。
+jdbc.diconはクラスパスの通っているディレクトリ、
+通常はWEB-INF/classesにおきます。
+</p>
+
+<h3><a name="S2DBCP">S2DBCP</a></h2>
+<p>XADataSource、ConnectionPoolの設定をおこないます。
+JDBC DriverがXADataSourceの機能を提供している場合は、 それをそのまま使えますが、
+提供されていない場合、S2で用意しているXADataSourceImplを使って、XAの機能をエミュレートします。</p>
+<h4>org.seasar.extension.dbcp.impl.XADataSourceImpl</h4>
+<table border="1">
+<tr bgcolor="#D1F3F4" align="center">
+<th width="96">プロパティ</th>
+<th width="167">説明</th>
+<th width="468">例</th>
+</tr>
+<tr>
+<td><code>driverClassName</code></td>
+<td>JDBC Driverのクラス名</td>
+<td><code>"oracle.jdbc.driver.OracleDriver"</code></td>
+</tr>
+<tr>
+<td><code>URL</code></td>
+<td>RDBMS固有のURL</td>
+<td><code>"jdbc:oracle:thin:@xxx:1521:yyy"</code></td>
+</tr>
+<tr>
+<td><code>user</code></td>
+<td>ユーザ名</td>
+<td><code>"hoge"</code></td>
+</tr>
+<tr>
+<td><code>password</code></td>
+<td>パスワード</td>
+<td><code>"password"</code></td>
+</tr>
+<tr>
+<td><code>loginTimeout</code></td>
+<td>ログインタイムアウト時間 (秒単位)</td>
+<td><code>2</code></td>
+</tr>
+</table>
+
+<h4>org.seasar.extension.dbcp.impl.ConnectionPoolImpl</h4>
+<table border="1">
+<tr bgcolor="#D1F3F4" align="center">
+<th width="118">プロパティ</th>
+<th width="289">説明</th>
+<th width="186">例</th>
+</tr>
+<tr>
+<td><code>XADataSource</code></td>
+<td>
+XADataSourceのインスタンスを設定します。S2Containerで設定する場合は、XADataSourceのコンポーネント名を設定します。<br />
+必須です。
+</td>
+<td><code>xaDataSource</code></td>
+</tr>
+<tr>
+<td><code>transactionManager</code></td>
+<td>TransactionManagerのインスタンスを設定します。S2Containerで設定する場合は、TransactionManagerのコンポーネント名を設定します。<br />
+必須です。</td>
+<td><code>TransactionManager</code></td>
+</tr>
+<tr>
+<td><code>timeout</code></td>
+<td>プールに戻されたコネクションがここで指定された秒数以上未使用だった場合、物理的にクローズされて破棄されます。<br />
+デフォルトは600(10分)です。</td>
+<td><code>600</code></td>
+</tr>
+<tr>
+<td><code>maxPoolSize</code></td>
+<td>同時にアクティブになれる コネクションの数を指定します。 この数を超える要求があると、コネクションがプールに返されるまで その要求はブロックされます。<br />
+0を設定するとコネクションはプールされず、コネクションの取得要求はブロックされません。<br />
+デフォルトは10です。</td>
+<td><code>10</code></td>
+</tr>
+<tr>
+<td><code>allowLocalTx</code></td>
+<td>JTAによって制御されない、JDBCのローカルトランザクションを許可する (<code>true</code>) しない (<code>false</code>) を指定します。<br />
+<code>false</code>を指定すると、JTAによるトランザクションが開始されていない状態でコネクションの取得が行われた場合に例外 (<code>java.lang.IllegalStateException</code>) がスローされます。<br />
+開発時に<code>false</code>を指定すると、<a href="tx.html">S2Tx</a>が提供するトランザクション・インターセプタの設定漏れを確実に検出することができます。<br />
+デフォルトは<code>true</code>です。</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>validationQuery</code></td>
+<td>コネクションの死活を検証する際に使用するクエリを設定します。
+<code>null</code>もしくは空文字を指定した場合、検証は行われません。<br />
+デフォルトは<code>null</code>です。</td>
+<td><code>"select * from dual"</code></td>
+</tr>
+<tr>
+<td><code>validationInterval</code></td>
+<td>プールから取得されるコネクションがここに指定した間隔（ミリ秒）よりも長い間プールされていた場合、コネクションの死活を検証します。
+0以下の値を指定した場合、検証は行われません。<br />
+デフォルトは0です。</td>
+<td><code>10000</code></td>
+</tr>
+</table>
+<p>コンポーネントの設定は以下のようになります。環境に合わせて書き換えてください。</p>
+<h4>jdbc.dicon</h4>
+<pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt
+&lt;!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN" 
+	"http://www.seasar.org/dtd/components24.dtd"&gt
+&lt;components namespace="jdbc"&gt;
+    &lt;include path="jta.dicon"/&gt;
+    &lt;include path="jdbc-extension.dicon"/&gt;
+    
+    &lt;component class="org.seasar.extension.jdbc.impl.BasicResultSetFactory"/&gt;
+    &lt;component class="org.seasar.extension.jdbc.impl.ConfigurableStatementFactory"&gt;
+        &lt;arg>
+            &lt;component class="org.seasar.extension.jdbc.impl.BasicStatementFactory"/&gt;
+        &lt;/arg&gt;
+        &lt;property name="fetchSize"&gt;100&lt;/property&gt;
+        &lt;!--
+        &lt;property name="maxRows"&gt;100&lt;/property&gt;
+        --&gt;
+    &lt;/component&gt;
+
+    &lt;component name="xaDataSource"
+            class="org.seasar.extension.dbcp.impl.XADataSourceImpl"&gt;
+        &lt;property name="driverClassName"&gt;
+            "oracle.jdbc.driver.OracleDriver"
+        &lt;/property&gt;
+        &lt;property name="URL"&gt;
+            "jdbc:oracle:thin:@xxx:1521:yyy"
+        &lt;/property&gt;
+        &lt;property name="user"&gt;"aaa"&lt;/property&gt;
+        &lt;property name="password"&gt;"bbb"&lt;/property&gt;
+    &lt;/component&gt;
+    &lt;component name="connectionPool"
+            class="org.seasar.extension.dbcp.impl.ConnectionPoolImpl"&gt;
+        &lt;property name="timeout"&gt;600&lt;/property&gt;
+        &lt;property name="maxPoolSize"&gt;10&lt;/property&gt;
+        &lt;property name="allowLocalTx"&gt;true&lt;/property&gt;
+        &lt;property name="validationQuery"&gt;"select * from dual"&lt;/property&gt;
+        &lt;property name="validationInterval"&gt;10000&lt;/property&gt;
+        &lt;destroyMethod name="close"/&gt;
+    &lt;/component&gt;
+    &lt;component name="dataSource"
+       class="org.seasar.extension.dbcp.impl.DataSourceImpl"/&gt;
+&lt;/components&gt;
+</pre>
+
+<h3><a name="GenericApplicationServer">一般的なアプリケーションサーバ</a></h3>
+<p>一般的なアプリケーションサーバでは、JNDI経由(JndiResourceLocator)でデータソースを取得します。
+</p>
+<h4>jdbc.dicon</h4>
+<pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt
+&lt;!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN" 
+	"http://www.seasar.org/dtd/components24.dtd"&gt
+&lt;components namespace="jdbc"&gt;
+    &lt;include path="jta.dicon"/&gt;
+    &lt;include path="jdbc-extension.dicon"/&gt;
+    
+    &lt;component class="org.seasar.extension.jdbc.impl.BasicResultSetFactory"/&gt;
+    &lt;component class="org.seasar.extension.jdbc.impl.ConfigurableStatementFactory"&gt;
+        &lt;arg>
+            &lt;component class="org.seasar.extension.jdbc.impl.BasicStatementFactory"/&gt;
+        &lt;/arg&gt;
+        &lt;property name="fetchSize"&gt;100&lt;/property&gt;
+        &lt;!--
+        &lt;property name="maxRows"&gt;100&lt;/property&gt;
+        --&gt;
+    &lt;/component&gt;
+
+    &lt;component name="dataSource"
+            class="javax.sql.DataSource"&gt;
+        @org.seasar.extension.j2ee.JndiResourceLocator@lookup("JNDI名")
+    &lt;/component&gt;
+&lt;/components&gt;
+</pre>
+
+<!-- document end -->
+<!-- don't edit start --></td>
+<td width="14"><img height="14" width="14" src="images/spacer.gif" alt="" /></td>
+</tr>
+<tr>
+<td width="14"><img height="30" width="14" src="images/spacer.gif" alt="" /></td>
+<td width="766"><img height="30" width="592" src="images/spacer.gif" alt="" /></td>
+</tr>
+<tr>
+<td width="14"><img height="14" width="14" src="images/spacer.gif" alt="" /></td>
+<td width="766" class="copyright">Copyright© 2004-2005, The Seasar Foundation and the others. All rights reserved.</td>
+</tr>
+</table>
+</td>
+<td class="backright" align="left" valign="top">&nbsp;</td>
+</tr>
+<tr>
+<td class="backunder" align="left" valign="top" width="780" height="16">&nbsp;</td>
+<td class="backcorner" align="left" valign="top" height="16">&nbsp;</td>
+</tr>
+</table>
+<!-- don't edit end -->
+</body>
+</html>
