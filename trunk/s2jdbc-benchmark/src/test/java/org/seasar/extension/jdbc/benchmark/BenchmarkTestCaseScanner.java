@@ -15,10 +15,7 @@
  */
 package org.seasar.extension.jdbc.benchmark;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -34,7 +31,7 @@ import org.seasar.framework.util.ResourceUtil;
  * @author taedium
  * 
  */
-public class BenchmarkTestScanner {
+public class BenchmarkTestCaseScanner {
 
     @SuppressWarnings("unchecked")
     private static final List<Class<?>> benckmarkMarkers =
@@ -71,16 +68,12 @@ public class BenchmarkTestScanner {
      * @param args
      */
     public static void main(String[] args) {
-        if (args.length == 0) {
-            throw new IllegalArgumentException("no fileName");
-        }
-        String fileName = args[0];
         scan();
-        write(fileName);
+        write();
     }
 
     private static void scan() {
-        File dir = ResourceUtil.getBuildDir(BenchmarkTestScanner.class);
+        File dir = ResourceUtil.getBuildDir(BenchmarkTestCaseScanner.class);
         ClassTraversal.forEach(dir, new ClassTraversal.ClassHandler() {
 
             public void processClass(String packageName, String shortClassName) {
@@ -100,25 +93,12 @@ public class BenchmarkTestScanner {
      * 
      * @param fileName
      */
-    private static void write(String fileName) {
-        BufferedWriter out = null;
-        try {
-            out = new BufferedWriter(new FileWriter(fileName));
-            for (Set<String> classNames : scannedClassNameMap.values()) {
-                for (String className : classNames) {
-                    out.write(className);
-                    out.newLine();
-                }
-                out.write("#");
-                out.newLine();
+    private static void write() {
+        for (Set<String> classNames : scannedClassNameMap.values()) {
+            for (String className : classNames) {
+                System.out.println(className);
             }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } finally {
-            try {
-                out.close();
-            } catch (IOException ignore) {
-            }
+            System.out.println("#");
         }
     }
 }

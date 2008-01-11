@@ -104,10 +104,10 @@ public abstract class BenchmarkTestCase extends TestCase {
 
     @Override
     protected void tearDown() throws Exception {
-        printBenchmark();
         userTransaction = null;
         SingletonS2ContainerFactory.destroy();
         super.tearDown();
+        printBenchmark();
     }
 
     /**
