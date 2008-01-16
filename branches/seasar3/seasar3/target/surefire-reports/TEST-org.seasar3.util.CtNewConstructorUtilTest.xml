@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" skipped="0" tests="2" time="0.125" failures="0" name="org.seasar3.util.CtNewConstructorUtilTest">
+  <properties>
+    <property value="Java(TM) 2 Runtime Environment, Standard Edition" name="java.runtime.name"/>
+    <property value="C:\Program Files\Java\jdk1.5.0_07\jre\bin" name="sun.boot.library.path"/>
+    <property value="1.5.0_07-b03" name="java.vm.version"/>
+    <property value="Sun Microsystems Inc." name="java.vm.vendor"/>
+    <property value="http://java.sun.com/" name="java.vendor.url"/>
+    <property value=";" name="path.separator"/>
+    <property value="Java HotSpot(TM) Client VM" name="java.vm.name"/>
+    <property value="sun.io" name="file.encoding.pkg"/>
+    <property value="JP" name="user.country"/>
+    <property value="Service Pack 2" name="sun.os.patch.level"/>
+    <property value="Java Virtual Machine Specification" name="java.vm.specification.name"/>
+    <property value="D:\USER\WORKSP~2\seasar3\seasar3" name="user.dir"/>
+    <property value="1.5.0_07-b03" name="java.runtime.version"/>
+    <property value="sun.awt.Win32GraphicsEnvironment" name="java.awt.graphicsenv"/>
+    <property value="D:\USER\WORKSP~2\seasar3\seasar3" name="basedir"/>
+    <property value="C:\Program Files\Java\jdk1.5.0_07\jre\lib\endorsed" name="java.endorsed.dirs"/>
+    <property value="x86" name="os.arch"/>
+    <property value="D:\Temp\" name="java.io.tmpdir"/>
+    <property value="
+" name="line.separator"/>
+    <property value="Sun Microsystems Inc." name="java.vm.specification.vendor"/>
+    <property value="" name="user.variant"/>
+    <property value="Windows XP" name="os.name"/>
+    <property value="MS932" name="sun.jnu.encoding"/>
+    <property value="C:\Program Files\Java\jdk1.5.0_07\bin;.;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Java\jdk1.5.0_07\bin;&quot;C:\Program Files\Adobe\Flex Builder 2 Plug-in\Flex SDK 2\bin&quot;;C:\j2sdk1.4.2_11\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\iSiD_std\Bin;D:\USER\Program\Subversion\bin;D:\USER\Program\maven-2.0.4\bin" name="java.library.path"/>
+    <property value="Java Platform API Specification" name="java.specification.name"/>
+    <property value="49.0" name="java.class.version"/>
+    <property value="HotSpot Client Compiler" name="sun.management.compiler"/>
+    <property value="5.1" name="os.version"/>
+    <property value="C:\Documents and Settings\li0934" name="user.home"/>
+    <property value="" name="user.timezone"/>
+    <property value="sun.awt.windows.WPrinterJob" name="java.awt.printerjob"/>
+    <property value="MS932" name="file.encoding"/>
+    <property value="1.5" name="java.specification.version"/>
+    <property value="li0934" name="user.name"/>
+    <property value="C:\Documents and Settings\li0934\.m2\repository\org\apache\maven\surefire\surefire-api\2.0\surefire-api-2.0.jar;C:\Documents and Settings\li0934\.m2\repository\org\codehaus\plexus\plexus-utils\1.1\plexus-utils-1.1.jar;C:\Documents and Settings\li0934\.m2\repository\org\apache\maven\surefire\surefire-booter\2.0\surefire-booter-2.0.jar" name="java.class.path"/>
+    <property value="1.0" name="java.vm.specification.version"/>
+    <property value="32" name="sun.arch.data.model"/>
+    <property value="C:\Program Files\Java\jdk1.5.0_07\jre" name="java.home"/>
+    <property value="Sun Microsystems Inc." name="java.specification.vendor"/>
+    <property value="ja" name="user.language"/>
+    <property value="sun.awt.windows.WToolkit" name="awt.toolkit"/>
+    <property value="mixed mode, sharing" name="java.vm.info"/>
+    <property value="1.5.0_07" name="java.version"/>
+    <property value="C:\Program Files\Java\jdk1.5.0_07\jre\lib\ext" name="java.ext.dirs"/>
+    <property value="C:\Program Files\Java\jdk1.5.0_07\jre\lib\rt.jar;C:\Program Files\Java\jdk1.5.0_07\jre\lib\i18n.jar;C:\Program Files\Java\jdk1.5.0_07\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.5.0_07\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.5.0_07\jre\lib\jce.jar;C:\Program Files\Java\jdk1.5.0_07\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.5.0_07\jre\classes" name="sun.boot.class.path"/>
+    <property value="Sun Microsystems Inc." name="java.vendor"/>
+    <property value="C:\Documents and Settings\li0934\.m2\repository" name="localRepository"/>
+    <property value="\" name="file.separator"/>
+    <property value="http://java.sun.com/cgi-bin/bugreport.cgi" name="java.vendor.url.bug"/>
+    <property value="little" name="sun.cpu.endian"/>
+    <property value="UnicodeLittle" name="sun.io.unicode.encoding"/>
+    <property value="windows" name="sun.desktop"/>
+    <property value="pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86" name="sun.cpu.isalist"/>
+  </properties>
+  <testcase time="0" name="testSize"/>
+  <testcase time="0" name="testIsEmpty"/>
+  <testcase time="0" name="testContainsValue"/>
+  <testcase time="0" name="testContainsKey"/>
+  <testcase time="0" name="testIndexOf"/>
+  <testcase time="0" name="testGet"/>
+  <testcase time="0" name="testPut"/>
+  <testcase time="0" name="testRemove"/>
+  <testcase time="0" name="testRemove2"/>
+  <testcase time="0" name="testRemove3"/>
+  <testcase time="0" name="testRemove4"/>
+  <testcase time="0" name="testPutAll"/>
+  <testcase time="0" name="testEqaulas"/>
+  <testcase time="0" name="testToString"/>
+  <testcase time="0" name="testClear"/>
+  <testcase time="0" name="testEntrySet"/>
+  <testcase time="0" name="testInitializeForIllegalFilePath"/>
+  <testcase time="0" name="testInitializeAndGetStageForIllegalFilePath"/>
+  <testcase time="0" name="testGetStageForStageValueExist"/>
+  <testcase time="0" name="testGetStageForStageValueDoesNotExist"/>
+  <testcase time="0" name="testGetStringValueForKeyDoesNotExist"/>
+  <testcase time="0" name="testGetStringValueForIllegalFilePath"/>
+  <testcase time="0.016" name="testGetStringValueForKeyExists"/>
+  <testcase time="0" name="testGetStringValueForStage"/>
+  <testcase time="0" name="testGetStringValueForEmptyValue"/>
+  <testcase time="0" name="testGetStringValueForStageAndEmptyValue"/>
+  <testcase time="0" name="testGetByteValueForKeyExists"/>
+  <testcase time="0" name="testGetByteValueForKeyDoesNotExist"/>
+  <testcase time="0" name="testGetByteValueForKeyDoesNotExistAndDefaultValue"/>
+  <testcase time="0" name="testGetShortValueForKeyExists"/>
+  <testcase time="0" name="testGetShortValueForKeyDoesNotExist"/>
+  <testcase time="0" name="testGetShortValueForKeyDoesNotExistAndDefaultValue"/>
+  <testcase time="0" name="testGetIntegerValueForKeyExists"/>
+  <testcase time="0" name="testGetIntegerValueForKeyDoesNotExist"/>
+  <testcase time="0" name="testGetIntValueForKeyDoesNotExistAndDefaultValue"/>
+  <testcase time="0.016" name="testGetLongValueForKeyExists"/>
+  <testcase time="0" name="testGetLongValueForKeyDoesNotExist"/>
+  <testcase time="0" name="testGetLongValueForKeyDoesNotExistAndDefaultValue"/>
+  <testcase time="0" name="testGetFloatValueForKeyExists"/>
+  <testcase time="0" name="testGetFloatValueForKeyDoesNotExist"/>
+  <testcase time="0" name="testGetFloatValueForKeyDoesNotExistAndDefaultValue"/>
+  <testcase time="0" name="testGetDoubleValueForKeyExists"/>
+  <testcase time="0" name="testGetDoubleValueForKeyDoesNotExist"/>
+  <testcase time="0" name="testGetDoubleValueForKeyDoesNotExistAndDefaultValue"/>
+  <testcase time="0" name="testGetBooleanValueForKeyExists"/>
+  <testcase time="0" name="testGetBooleanValueForKeyDoesNotExist"/>
+  <testcase time="0" name="testGetBooleanValueForKeyDoesNotExistAndDefaultValue"/>
+  <testcase time="0" name="testGetCharacterValueForKeyExists"/>
+  <testcase time="0" name="testGetCharacterValueForKeyDoesNotExist"/>
+  <testcase time="0" name="testGetCharValueForKeyDoesNotExistAndDefaultValue"/>
+  <testcase time="0" name="testIsUtForUt"/>
+  <testcase time="0" name="testIsUtForNotUt"/>
+  <testcase time="0" name="testIsCtForCt"/>
+  <testcase time="0" name="testIsCtForNotCt"/>
+  <testcase time="0" name="testIsItForIt"/>
+  <testcase time="0" name="testIsItForNotIt"/>
+  <testcase time="0" name="testIsProductionForProduction"/>
+  <testcase time="0" name="testIsProductionForNotProduction"/>
+  <testcase time="0" name="testIsHotDeploymentForCt"/>
+  <testcase time="0" name="testIsHotDeploymentForNotCt"/>
+  <testcase time="0.016" name="testInstantiationRuntimeException"/>
+  <testcase time="0.094" name="testMake"/>
+  <testcase time="0.016" name="testDefaultConstructor"/>
+</testsuite>
