@@ -1,5 +1,5 @@
 /*
- * Copyright 2004-2007 the Seasar Foundation and the Others.
+ * Copyright 2004-2008 the Seasar Foundation and the Others.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,36 +19,41 @@ import java.text.MessageFormat;
 import java.util.Locale;
 
 /**
- * A class building for message.
+ * A class to build the message.
  * 
  * @author higa
  * @since 3.0
  */
-public abstract class MessageBuilder {
+public final class MessageBuilder {
 
     private static final String MESSAGES = "Messages";
 
-    protected MessageBuilder() {
+    private MessageBuilder() {
     }
 
     /**
-     * Returns message.
+     * Returns the message.
      * 
      * @param messageCode
+     *            the message code.
      * @param args
-     * @return
+     *            the arguments
+     * @return the message.
      */
     public static String getMessage(String messageCode, Object... args) {
         return getMessage(null, messageCode, args);
     }
 
     /**
-     * Returns message.
+     * Returns the message.
      * 
      * @param locale
+     *            the locale.
      * @param messageCode
+     *            the message code.
      * @param args
-     * @return
+     *            the arguments.
+     * @return the message.
      */
     public static String getMessage(Locale locale, String messageCode,
             Object... args) {
@@ -68,6 +73,13 @@ public abstract class MessageBuilder {
         return getMessageByArgs(args);
     }
 
+    /**
+     * Returns the message built by the arguments.
+     * 
+     * @param args
+     *            the arguments.
+     * @return the message.
+     */
     protected static String getMessageByArgs(Object... args) {
         if (args == null || args.length == 0) {
             return "";
@@ -80,6 +92,15 @@ public abstract class MessageBuilder {
         return builder.toString();
     }
 
+    /**
+     * Returns the pattern.
+     * 
+     * @param locale
+     *            the locale.
+     * @param messageCode
+     *            the message code.
+     * @return the pattern.
+     */
     protected static String getPattern(Locale locale, String messageCode) {
         String bundleName = getMessageBundleName(messageCode);
         if (bundleName == null) {
@@ -94,6 +115,13 @@ public abstract class MessageBuilder {
         return bundle.get(key);
     }
 
+    /**
+     * Returns the bundle name of message.
+     * 
+     * @param messageCode
+     *            the message code.
+     * @return the bundle name of message.
+     */
     protected static String getMessageBundleName(String messageCode) {
         if (messageCode.length() <= 5) {
             return null;
@@ -101,6 +129,13 @@ public abstract class MessageBuilder {
         return messageCode.substring(1, messageCode.length() - 4) + MESSAGES;
     }
 
+    /**
+     * Returns the key.
+     * 
+     * @param messageCode
+     *            the message code.
+     * @return the key.
+     */
     protected static String getKey(String messageCode) {
         if (messageCode.length() <= 5) {
             return null;

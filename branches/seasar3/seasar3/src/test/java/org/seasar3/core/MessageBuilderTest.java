@@ -26,8 +26,7 @@ import junit.framework.TestCase;
 public class MessageBuilderTest extends TestCase {
 
     /**
-     * Test method for
-     * {@link MessageBuilder#getMessage(Locale, String, Object[])}.
+     * 
      */
     public void testGetMessageForIllegalArgument() {
         assertEquals("1, 2", MessageBuilder.getMessage(Locale.getDefault(),
@@ -35,8 +34,7 @@ public class MessageBuilderTest extends TestCase {
     }
 
     /**
-     * Test method for
-     * {@link org.seasar3.core.MessageBuilder#getMessage(java.util.Locale, java.lang.String, java.lang.Object[])}.
+     * 
      */
     public void testGetMessage() {
         assertEquals("foo(1)", MessageBuilder.getMessage(Locale.getDefault(),
@@ -44,28 +42,28 @@ public class MessageBuilderTest extends TestCase {
     }
 
     /**
-     * Test method for {@link MessageBuilder#getMessageByArgs(Object[])}.
+     * 
      */
     public void testGetMessageByArgs() {
         assertEquals("1, 2", MessageBuilder.getMessageByArgs(1, 2));
     }
 
     /**
-     * Test method for {@link MessageBuilder#getMessageByArgs(Object[])}.
+     * 
      */
     public void testGetMessageByArgsForArgsIsNull() {
         assertEquals("", MessageBuilder.getMessageByArgs((Object[]) null));
     }
 
     /**
-     * Test method for {@link MessageBuilder#getMessageByArgs(Object[])}.
+     * 
      */
     public void testGetMessageByArgsForArgsIsEmpty() {
         assertEquals("", MessageBuilder.getMessageByArgs(new Object[0]));
     }
 
     /**
-     * Test method for {@link MessageBuilder#getPattern(Locale, String)}.
+     * 
      */
     public void testGetPattern() {
         assertEquals("hoge", MessageBuilder.getPattern(Locale.getDefault(),
@@ -73,14 +71,14 @@ public class MessageBuilderTest extends TestCase {
     }
 
     /**
-     * Test method for {@link MessageBuilder#getPattern(Locale, String)}.
+     * 
      */
     public void testGetPatternForIllegalMessageCode() {
         assertNull(MessageBuilder.getPattern(Locale.getDefault(), "E0001"));
     }
 
     /**
-     * Test method for {@link MessageBuilder#getMessageBundleName(String)}.
+     * 
      */
     public void testGetMessageBundleName() {
         assertEquals("S3Messages", MessageBuilder
@@ -88,24 +86,23 @@ public class MessageBuilderTest extends TestCase {
     }
 
     /**
-     * Test method for {@link MessageBuilder#getMessageBundleName(String)}.
+     * 
      */
     public void testGetMessageBundleNameForIllegalMessageCode() {
         assertNull(MessageBuilder.getMessageBundleName("E1"));
     }
 
     /**
-     * Test method for {@link MessageBuilder#getKey(String)}.
+     * 
      */
     public void testGetKey() {
         assertEquals("E0001", MessageBuilder.getKey("ES30001"));
     }
 
     /**
-     * Test method for {@link MessageBuilder#getKey(String)}.
+     * 
      */
     public void testGetKeyForIllegalMessageCode() {
         assertNull(MessageBuilder.getKey("E1"));
     }
-
 }

@@ -15,8 +15,16 @@
  */
 package org.seasar3.core;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLDecoder;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -25,26 +33,27 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author higa
  * @since 3.0
  */
-public abstract class MessageResourceBundleFactory {
+public final class MessageResourceBundleFactory {
 
-    private static MessageResourceBundleFactoryProvider defaultProvider = new DefaultMessageResourceBundleFactoryProvider();
+    private Map<String, MessageResourceBundleCache> bundleCaches = new ConcurrentHashMap<String, MessageResourceBundleCache>();
 
-    private static Map<String, MessageResourceBundleFactoryProvider> providers = new ConcurrentHashMap<String, MessageResourceBundleFactoryProvider>();
-
-    protected MessageResourceBundleFactory() {
+    private MessageResourceBundleFactory() {
     }
 
     /**
-     * Returns message bundle. If message bundle does not exist, returns null.
+     * Returns the message bundle. If message bundle does not exist, returns
+     * null.
      * 
      * @param locale
+     *            the locale.
      * @param messageBundleName
-     *            such as aaa.foo(WEB-INF/class/aaa/foo.properties)
-     * @return bundle message bundle
+     *            the message bundle name such as
+     *            aaa.foo(WEB-INF/classes/aaa/foo.properties).
+     * @return bundle the message bundle.
      * @throws NullPointerException
-     *             if locale is null and messageBundleName is null.
+     *             if the locale is null and the message bundle name is null.
      */
-    public static MessageResourceBundle getBundle(Locale locale,
+    public MessageResourceBundle getBundle(Locale locale,
             String messageBundleName) {
         if (locale == null) {
             throw new NullPointerException("locale");
@@ -52,32 +61,88 @@ public abstract class MessageResourceBundleFactory {
         if (messageBundleName == null) {
             throw new NullPointerException("messageBundleName");
         }
-        if (providers.size() == 0) {
-            return defaultProvider.getBundle(locale, messageBundleName);
+        MessageResourceBundle parentBundle = getBundle(messageBundleName);
+        MessageResourceBundle bundle = getBundle(messageBundleName + "_"
+                + locale.getLanguage());
+        if (bundle != null) {
+            bundle.setParent(parentBundle);
+            return bundle;
         }
-        MessageResourceBundleFactoryProvider provider = providers
-                .get(messageBundleName);
-        if (provider == null) {
-            provider = defaultProvider;
-        }
-        return provider.getBundle(locale, messageBundleName);
+        return parentBundle;
     }
 
     /**
-     * Adds provider for messageBundleName.
+     * Returns the message bundle.
      * 
      * @param messageBundleName
-     * @param provider
+     *            the message bundle name.
+     * @return the message bundle.
      */
-    public void addProvider(String messageBundleName,
-            MessageResourceBundleFactoryProvider provider) {
-        providers.put(messageBundleName, provider);
+    protected MessageResourceBundle getBundle(String messageBundleName) {
+        MessageResourceBundleCache cache = bundleCaches.get(messageBundleName);
+        if (cache != null) {
+            if (cache.isModified()) {
+                cache.setBundle(createBundle(messageBundleName));
+            }
+            return cache.getBundle();
+        }
+        String path = messageBundleName.replace('.', '/') + ".properties";
+        cache = new MessageResourceBundleCache(createBundle(path),
+                getFile(path));
+        bundleCaches.put(messageBundleName, cache);
+        return cache.getBundle();
     }
 
     /**
-     * Clears all providers.
+     * Returns the file.
+     * 
+     * @param path
+     *            the properties path.
+     * @return the file.
      */
-    public void clearProviders() {
-        providers.clear();
+    protected File getFile(String path) {
+        if (!Env.isHotDeployment()) {
+            return null;
+        }
+        ClassLoader loader = Thread.currentThread().getContextClassLoader();
+        URL url = loader.getResource(path);
+        if (url == null) {
+            return null;
+        }
+        try {
+            return new File(URLDecoder.decode(url.getPath(), "UTF-8"))
+                    .getAbsoluteFile();
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Creates the message resource bundle.
+     * 
+     * @param path
+     *            the properties path.
+     * @return the message resource bundle.
+     */
+    protected MessageResourceBundle createBundle(String path) {
+        try {
+            ClassLoader loader = Thread.currentThread().getContextClassLoader();
+            URL url = loader.getResource(path);
+            if (url == null) {
+                return null;
+            }
+            Properties p = new Properties();
+            URLConnection connection = url.openConnection();
+            connection.setUseCaches(false);
+            InputStream in = connection.getInputStream();
+            try {
+                p.load(in);
+            } finally {
+                in.close();
+            }
+            return new MessageResourceBundle(p);
+        } catch (IOException e) {
+            throw new IllegalArgumentException(path, e);
+        }
     }
 }

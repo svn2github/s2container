@@ -1,5 +1,5 @@
 /*
- * Copyright 2004-2007 the Seasar Foundation and the Others.
+ * Copyright 2004-2008 the Seasar Foundation and the Others.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,36 +15,84 @@
  */
 package org.seasar3.core;
 
+import java.util.Properties;
+
 /**
- * An interface represents message bundle.
+ * This class represents the message bundle.
  * 
- * @author shot
  * @author higa
  * @since 3.0
  */
-public interface MessageResourceBundle {
+public class MessageResourceBundle {
 
     /**
-     * Returns message pattern. If key does not exist, returns null. If parent
-     * has same key, returns self value. If parent has key which self do not
-     * have, returns prent value.
+     * The persistent set of properties.
+     */
+    protected Properties properties;
+
+    /**
+     * The parent.
+     */
+    protected MessageResourceBundle parent;
+
+    /**
+     * Constructor.
+     * 
+     * @param properties
+     */
+    public MessageResourceBundle(Properties properties) {
+        this(properties, null);
+    }
+
+    /**
+     * Constructor.
+     * 
+     * @param properties
+     *            the persistent set of properties.
+     * @param parent
+     *            the parent.
+     */
+    public MessageResourceBundle(Properties properties,
+            MessageResourceBundle parent) {
+        this.properties = properties;
+        setParent(parent);
+    }
+
+    /**
+     * Returns the message. If the key does not exist, returns null. If the
+     * parent has same key, returns self value. If the parent has key which self
+     * does not have, returns parent value.
      * 
      * @param key
-     * @return message pattern
+     *            the key.
+     * @return the message.
      */
-    String get(String key);
+    public String get(String key) {
+        if (key == null) {
+            return null;
+        }
+        if (properties.containsKey(key)) {
+            return properties.getProperty(key);
+        }
+        return (parent != null) ? parent.get(key) : null;
+    }
 
     /**
-     * Returns parent.
+     * Returns the parent.
      * 
-     * @return
+     * @return the parent.
      */
-    MessageResourceBundle getParent();
+    public MessageResourceBundle getParent() {
+        return parent;
+    }
 
     /**
-     * Sets parent.
+     * Sets the parent.
      * 
      * @param parent
+     *            the parent.
      */
-    void setParent(MessageResourceBundle parent);
+    public void setParent(MessageResourceBundle parent) {
+        this.parent = parent;
+    }
 }
