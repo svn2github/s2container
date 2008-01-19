@@ -13,12 +13,14 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar3.core;
+package org.seasar3.message;
 
 import java.io.File;
 import java.util.Locale;
 
 import junit.framework.TestCase;
+
+import org.seasar3.env.Env;
 
 /**
  * @author higa
@@ -26,9 +28,13 @@ import junit.framework.TestCase;
  */
 public class MessageResourceBundleFactoryTest extends TestCase {
 
-    private static final String PATH = "org/seasar3/core/foo.properties";
+    private static final String PATH = "org/seasar3/message/foo.properties";
 
-    private static final String BUNDLE_NAME = "org.seasar3.core.foo";
+    private static final String ENV_HOT_PATH = "org/seasar3/message/env_hot.properties";
+
+    private static final String ENV_COOL_PATH = "org/seasar3/message/env_cool.properties";
+
+    private static final String BUNDLE_NAME = "org.seasar3.message.foo";
 
     @Override
     protected void tearDown() throws Exception {
@@ -58,7 +64,7 @@ public class MessageResourceBundleFactoryTest extends TestCase {
      * 
      */
     public void testGetFile() {
-        Env.initialize(EnvTest.ENV_PATH);
+        Env.initialize(ENV_HOT_PATH);
         File file = MessageResourceBundleFactory.getFile(PATH);
         assertNotNull(file);
         assertTrue(file.exists());
@@ -68,7 +74,7 @@ public class MessageResourceBundleFactoryTest extends TestCase {
      * 
      */
     public void testGetFileForCoolDeployement() {
-        Env.initialize(EnvTest.ENV_COOL_PATH);
+        Env.initialize(ENV_COOL_PATH);
         File file = MessageResourceBundleFactory.getFile(PATH);
         assertNull(file);
     }

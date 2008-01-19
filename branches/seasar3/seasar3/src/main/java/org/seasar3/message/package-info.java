@@ -15,8 +15,6 @@
  */
 
 /**
- * The core functions of Seasar3. The functions are the environment information and the messages.
- * @see {@link Env}
- * @see {@link MessageBuilder}
+ * This package provides the message function.
  */
-package org.seasar3.core;
+package org.seasar3.message;

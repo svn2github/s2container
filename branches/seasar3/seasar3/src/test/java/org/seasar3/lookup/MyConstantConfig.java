@@ -15,7 +15,7 @@
  */
 package org.seasar3.lookup;
 
-import org.seasar3.core.Env;
+import org.seasar3.env.Env;
 
 /**
  * @author higa

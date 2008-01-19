@@ -13,7 +13,7 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar3.core;
+package org.seasar3.message;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,6 +26,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
+
+import org.seasar3.env.Env;
 
 /**
  * A factory class for {@link MessageResourceBundle}.

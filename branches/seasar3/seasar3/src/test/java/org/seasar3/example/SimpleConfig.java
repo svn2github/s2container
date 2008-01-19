@@ -15,7 +15,7 @@
  */
 package org.seasar3.example;
 
-import org.seasar3.core.Env;
+import org.seasar3.env.Env;
 import org.seasar3.lookup.Singleton;
 
 /**

@@ -13,7 +13,7 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar3.core;
+package org.seasar3.env;
 
 import junit.framework.TestCase;
 
@@ -23,15 +23,15 @@ import junit.framework.TestCase;
  */
 public class EnvTest extends TestCase {
 
-    static final String PACKAGE = "org/seasar3/core/";
+    private static final String PACKAGE = "org/seasar3/env/";
 
-    static final String ENV_PATH = PACKAGE + "env_test.properties";
+    private static final String ENV_PATH = PACKAGE + "env_test.properties";
 
-    static final String ENV_PATH2 = PACKAGE + "env_test2.properties";
+    private static final String ENV_PATH2 = PACKAGE + "env_test2.properties";
 
-    static final String ENV_COOL_PATH = PACKAGE + "env_cool.properties";
+    private static final String ENV_COOL_PATH = PACKAGE + "env_cool.properties";
 
-    static final String ENV_WARM_PATH = PACKAGE + "env_warm.properties";
+    private static final String ENV_WARM_PATH = PACKAGE + "env_warm.properties";
 
     @Override
     protected void tearDown() throws Exception {
