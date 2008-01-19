@@ -17,15 +17,12 @@ package org.seasar3.exception;
 
 import javassist.CannotCompileException;
 
-import org.seasar3.core.SRuntimeException;
 
 /**
  * Wrapper runtime exception for <code>javassist.CannotCompileException</code>.
  * 
  * @author higa
- * @since 3.0
- */
-public class CannotCompileRuntimeException extends SRuntimeException {
+ * @sinceorg.seasar3.util.public class CannotCompileRuntimeException extends SRuntimeException {
 
     static final long serialVersionUID = 1L;
 

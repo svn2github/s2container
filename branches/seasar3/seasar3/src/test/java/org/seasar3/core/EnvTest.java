@@ -1,5 +1,5 @@
 /*
- * Copyright 2004-2007 the Seasar Foundation and the Others.
+ * Copyright 2004-2008 the Seasar Foundation and the Others.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,8 +15,6 @@
  */
 package org.seasar3.core;
 
-import java.util.Properties;
-
 import junit.framework.TestCase;
 
 /**
@@ -27,387 +25,342 @@ public class EnvTest extends TestCase {
 
     static final String PACKAGE = "org/seasar3/core/";
 
-    static final String ENV_UT_PATH = PACKAGE + "env_ut.properties";
+    static final String ENV_PATH = PACKAGE + "env_test.properties";
 
-    static final String ENV_CT_PATH = PACKAGE + "env_ct.properties";
+    static final String ENV_PATH2 = PACKAGE + "env_test2.properties";
 
-    static final String ENV_IT_PATH = PACKAGE + "env_it.properties";
+    static final String ENV_COOL_PATH = PACKAGE + "env_cool.properties";
 
-    static final String ENV_IT2_PATH = PACKAGE + "env_it2.properties";
-
-    static final String ENV_PATH = PACKAGE + "env.properties";
-
-    private Properties envInfo;
-
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
-        envInfo = Env.getEnvInfo();
-    }
+    static final String ENV_WARM_PATH = PACKAGE + "env_warm.properties";
 
     @Override
     protected void tearDown() throws Exception {
-        Env.setEnvInfo(envInfo);
-        super.tearDown();
+        Env.initialize();
     }
 
     /**
-     * Test method for {@link Env#initialize(String)}.
+     * 
      */
     public void testInitializeForIllegalFilePath() {
         Env.initialize("illegal file path");
+        assertNull(Env.getEnvName());
     }
 
     /**
-     * Test method for {@link Env#initialize(String)} and {@link Env#getStage()}.
+     * 
      */
-    public void testInitializeAndGetStageForIllegalFilePath() {
-        Env.initialize("illegal file path");
-        assertEquals(Env.PRODUCTION, Env.getStage());
-    }
-
-    /**
-     * Test method for {@link Env#getStage()}.
-     */
-    public void testGetStageForStageValueExist() {
-        Env.initialize(ENV_IT_PATH);
-        assertEquals(Env.IT, Env.getStage());
-    }
-
-    /**
-     * Test method for {@link Env#getStage()}.
-     */
-    public void testGetStageForStageValueDoesNotExist() {
+    public void testGetEnvName() {
         Env.initialize(ENV_PATH);
-        assertEquals(Env.PRODUCTION, Env.getStage());
+        assertEquals("test", Env.getEnvName());
     }
 
     /**
-     * Test method for {@link Env#getStringValue(String)}.
+     * 
+     */
+    public void testGetEnvNameForKeyDoesNotExist() {
+        Env.initialize(ENV_PATH2);
+        assertNull(Env.getEnvName());
+    }
+
+    /**
+     * 
+     */
+    public void testGetDeployment() {
+        Env.initialize(ENV_PATH);
+        assertEquals("hot", Env.getDeployment());
+    }
+
+    /**
+     * 
+     */
+    public void testGetDeploymentForKeyDoesNotExist() {
+        Env.initialize(ENV_PATH2);
+        assertNull(Env.getDeployment());
+    }
+
+    /**
+     * 
+     */
+    public void testGetStringValue() {
+        Env.initialize(ENV_PATH);
+        assertEquals("1", Env.getStringValue("app.number"));
+    }
+
+    /**
+     * 
      */
     public void testGetStringValueForKeyDoesNotExist() {
-        Env.initialize(ENV_IT_PATH);
-        assertNull(Env.getStringValue("does not exist key"));
+        Env.initialize(ENV_PATH);
+        assertNull(Env.getStringValue("illegal key"));
     }
 
     /**
-     * Test method for {@link Env#getStringValue(String)}.
+     * 
      */
     public void testGetStringValueForIllegalFilePath() {
         Env.initialize("illegal file path");
-        assertNull(Env.getStringValue("does not exist key"));
+        assertNull(Env.getStringValue("illegal key"));
     }
 
     /**
-     * Test method for {@link Env#getStringValue(String)}.
+     * 
      */
-    public void testGetStringValueForKeyExists() {
-        Env.initialize(ENV_IT_PATH);
-        String value = Env.getStringValue("aaa");
-        assertEquals("111", value);
+    public void testGetStringValueForEnvName() {
+        Env.initialize(ENV_PATH);
+        assertEquals("aaa2", Env.getStringValue("app.hoge"));
     }
 
     /**
-     * Test method for {@link Env#getStringValue(String)}.
+     * 
      */
-    public void testGetStringValueForStage() {
-        Env.initialize(ENV_IT_PATH);
-        assertEquals("222it", Env.getStringValue("bbb"));
+    public void testGetStringValueForEnvName2() {
+        Env.initialize(ENV_PATH2);
+        assertEquals("aaa", Env.getStringValue("app.hoge"));
     }
 
     /**
-     * Test method for {@link Env#getStringValue(String)}.
+     * 
      */
-    public void testGetStringValueForEmptyValue() {
-        Env.initialize(ENV_IT_PATH);
-        assertNull(Env.getStringValue("ccc"));
+    public void testGetByteValue() {
+        Env.initialize(ENV_PATH);
+        assertEquals(Byte.valueOf("1"), Env.getByteValue("app.number"));
     }
 
     /**
-     * Test method for {@link Env#getStringValue(String)}.
-     */
-    public void testGetStringValueForStageAndEmptyValue() {
-        Env.initialize(ENV_IT_PATH);
-        assertEquals("444", Env.getStringValue("ddd"));
-    }
-
-    /**
-     * Test method for {@link Env#getByteValue(String)}.
-     */
-    public void testGetByteValueForKeyExists() {
-        Env.initialize(ENV_IT_PATH);
-        byte value = Env.getByteValue("eee");
-        assertEquals(1, value);
-    }
-
-    /**
-     * Test method for {@link Env#getByteValue(String)}.
+     * 
      */
     public void testGetByteValueForKeyDoesNotExist() {
         Env.initialize(ENV_PATH);
-        assertNull(Env.getByteValue("eee"));
+        assertNull(Env.getByteValue("illegal key"));
     }
 
     /**
-     * Test method for {@link Env#getByteValue(String, byte)}.
+     * 
      */
-    public void testGetByteValueForKeyDoesNotExistAndDefaultValue() {
+    public void testGetByteValueForIllegalValue() {
         Env.initialize(ENV_PATH);
-        assertEquals(2, Env.getByteValue("eee", (byte) 2));
+        try {
+            Env.getByteValue("app.hoge");
+            fail();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e);
+        }
     }
 
     /**
-     * Test method for {@link Env#getShortValue(String)}.
+     * 
      */
-    public void testGetShortValueForKeyExists() {
-        Env.initialize(ENV_IT_PATH);
-        short value = Env.getShortValue("eee");
-        assertEquals(1, value);
+    public void testGetShortValue() {
+        Env.initialize(ENV_PATH);
+        assertEquals(Short.valueOf("1"), Env.getShortValue("app.number"));
     }
 
     /**
-     * Test method for {@link Env#getShortValue(String)}.
+     * 
      */
     public void testGetShortValueForKeyDoesNotExist() {
         Env.initialize(ENV_PATH);
-        assertNull(Env.getShortValue("eee"));
+        assertNull(Env.getShortValue("illegal key"));
     }
 
     /**
-     * Test method for {@link Env#getShortValue(String, short)}.
+     * 
      */
-    public void testGetShortValueForKeyDoesNotExistAndDefaultValue() {
+    public void testGetShortValueForIllegalValue() {
         Env.initialize(ENV_PATH);
-        assertEquals(2, Env.getShortValue("eee", (short) 2));
+        try {
+            Env.getShortValue("app.hoge");
+            fail();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e);
+        }
     }
 
     /**
-     * Test method for {@link Env#getIntegerValue(String)}.
+     * 
      */
-    public void testGetIntegerValueForKeyExists() {
-        Env.initialize(ENV_IT_PATH);
-        int value = Env.getIntegerValue("eee");
-        assertEquals(1, value);
+    public void testGetIntegerValue() {
+        Env.initialize(ENV_PATH);
+        assertEquals(Integer.valueOf("1"), Env.getIntegerValue("app.number"));
     }
 
     /**
-     * Test method for {@link Env#getIntegerValue(String)}.
+     * 
      */
     public void testGetIntegerValueForKeyDoesNotExist() {
         Env.initialize(ENV_PATH);
-        assertNull(Env.getIntegerValue("eee"));
+        assertNull(Env.getIntegerValue("illegal key"));
     }
 
     /**
-     * Test method for {@link Env#getIntValue(String, int)}.
+     * 
      */
-    public void testGetIntValueForKeyDoesNotExistAndDefaultValue() {
+    public void testGetIntegerValueForIllegalValue() {
         Env.initialize(ENV_PATH);
-        assertEquals(2, Env.getIntValue("eee", 2));
+        try {
+            Env.getIntegerValue("app.hoge");
+            fail();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e);
+        }
     }
 
     /**
-     * Test method for {@link Env#getLongValue(String)}.
+     * 
      */
-    public void testGetLongValueForKeyExists() {
-        Env.initialize(ENV_IT_PATH);
-        long value = Env.getLongValue("eee");
-        assertEquals(1, value);
+    public void testGetLongValue() {
+        Env.initialize(ENV_PATH);
+        assertEquals(Long.valueOf("1"), Env.getLongValue("app.number"));
     }
 
     /**
-     * Test method for {@link Env#getLongValue(String)}.
+     * 
      */
     public void testGetLongValueForKeyDoesNotExist() {
         Env.initialize(ENV_PATH);
-        assertNull(Env.getLongValue("eee"));
+        assertNull(Env.getIntegerValue("illegal key"));
     }
 
     /**
-     * Test method for {@link Env#getLongValue(String, long)}.
+     * 
      */
-    public void testGetLongValueForKeyDoesNotExistAndDefaultValue() {
+    public void testGetLongValueForIllegalValue() {
         Env.initialize(ENV_PATH);
-        assertEquals(2, Env.getLongValue("eee", 2));
+        try {
+            Env.getLongValue("app.hoge");
+            fail();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e);
+        }
     }
 
     /**
-     * Test method for {@link Env#getFloatValue(String)}.
+     * 
      */
-    public void testGetFloatValueForKeyExists() {
-        Env.initialize(ENV_IT_PATH);
-        float value = Env.getFloatValue("eee");
-        assertEquals(1f, value);
+    public void testGetFloatValue() {
+        Env.initialize(ENV_PATH);
+        assertEquals(Float.valueOf("1"), Env.getFloatValue("app.number"));
     }
 
     /**
-     * Test method for {@link Env#getFloatValue(String)}.
+     * 
      */
     public void testGetFloatValueForKeyDoesNotExist() {
         Env.initialize(ENV_PATH);
-        assertNull(Env.getFloatValue("eee"));
+        assertNull(Env.getFloatValue("illegal key"));
     }
 
     /**
-     * Test method for {@link Env#getFloatValue(String, float)}.
+     * 
      */
-    public void testGetFloatValueForKeyDoesNotExistAndDefaultValue() {
+    public void testGetFloatValueForIllegalValue() {
         Env.initialize(ENV_PATH);
-        assertEquals(2f, Env.getFloatValue("eee", 2));
+        try {
+            Env.getFloatValue("app.hoge");
+            fail();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e);
+        }
     }
 
     /**
-     * Test method for {@link Env#getDoubleValue(String)}.
+     * 
      */
-    public void testGetDoubleValueForKeyExists() {
-        Env.initialize(ENV_IT_PATH);
-        double value = Env.getDoubleValue("eee");
-        assertEquals(1d, value);
+    public void testGetDoubleValue() {
+        Env.initialize(ENV_PATH);
+        assertEquals(Double.valueOf("1"), Env.getDoubleValue("app.number"));
     }
 
     /**
-     * Test method for {@link Env#getDoubleValue(String)}.
+     * 
      */
     public void testGetDoubleValueForKeyDoesNotExist() {
         Env.initialize(ENV_PATH);
-        assertNull(Env.getDoubleValue("eee"));
+        assertNull(Env.getDoubleValue("illegal key"));
     }
 
     /**
-     * Test method for {@link Env#getDoubleValue(String, double)}.
+     * 
      */
-    public void testGetDoubleValueForKeyDoesNotExistAndDefaultValue() {
+    public void testGetDoubleValueForIllegalValue() {
         Env.initialize(ENV_PATH);
-        assertEquals(2d, Env.getDoubleValue("eee", 2));
+        try {
+            Env.getDoubleValue("app.hoge");
+            fail();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e);
+        }
     }
 
     /**
-     * Test method for {@link Env#getBooleanValue(String)}.
+     * 
      */
-    public void testGetBooleanValueForKeyExists() {
-        Env.initialize(ENV_IT_PATH);
-        boolean value = Env.getBooleanValue("fff");
-        assertTrue(value);
+    public void testGetBooleanValue() {
+        Env.initialize(ENV_PATH);
+        assertTrue(Env.getBooleanValue("app.boolean"));
     }
 
     /**
-     * Test method for {@link Env#getBooleanValue(String)}.
+     * 
      */
     public void testGetBooleanValueForKeyDoesNotExist() {
         Env.initialize(ENV_PATH);
-        assertNull(Env.getBooleanValue("fff"));
+        assertNull(Env.getBooleanValue("illegal key"));
     }
 
     /**
-     * Test method for {@link Env#getBooleanValue(String, boolean)}.
+     * 
      */
-    public void testGetBooleanValueForKeyDoesNotExistAndDefaultValue() {
+    public void testGetBooleanValueForIllegalValue() {
         Env.initialize(ENV_PATH);
-        assertFalse(Env.getBooleanValue("fff", false));
+        assertFalse(Env.getBooleanValue("app.hoge"));
     }
 
     /**
-     * Test method for {@link Env#getCharacterValue(String)}.
+     * 
      */
-    public void testGetCharacterValueForKeyExists() {
-        Env.initialize(ENV_IT_PATH);
-        char value = Env.getCharacterValue("ggg");
-        assertEquals('a', value);
-    }
-
-    /**
-     * Test method for {@link Env#getCharacterValue(String)}.
-     */
-    public void testGetCharacterValueForKeyDoesNotExist() {
+    public void testIsHotDeployment() {
         Env.initialize(ENV_PATH);
-        assertNull(Env.getCharacterValue("ggg"));
-    }
-
-    /**
-     * Test method for {@link Env#getCharValue(String, char)}.
-     */
-    public void testGetCharValueForKeyDoesNotExistAndDefaultValue() {
-        Env.initialize(ENV_PATH);
-        assertEquals('b', Env.getCharValue("ggg", 'b'));
-    }
-
-    /**
-     * Test method for {@link Env#isUt()}.
-     */
-    public void testIsUtForUt() {
-        Env.initialize(ENV_UT_PATH);
-        assertTrue(Env.isUt());
-    }
-
-    /**
-     * Test method for {@link Env#isUt()}.
-     */
-    public void testIsUtForNotUt() {
-        Env.initialize(ENV_PATH);
-        assertFalse(Env.isUt());
-    }
-
-    /**
-     * Test method for {@link Env#isCt()}.
-     */
-    public void testIsCtForCt() {
-        Env.initialize(ENV_CT_PATH);
-        assertTrue(Env.isCt());
-    }
-
-    /**
-     * Test method for {@link Env#isCt()}.
-     */
-    public void testIsCtForNotCt() {
-        Env.initialize(ENV_PATH);
-        assertFalse(Env.isCt());
-    }
-
-    /**
-     * Test method for {@link Env#isIt()}.
-     */
-    public void testIsItForIt() {
-        Env.initialize(ENV_IT2_PATH);
-        assertTrue(Env.isIt());
-    }
-
-    /**
-     * Test method for {@link Env#isIt()}.
-     */
-    public void testIsItForNotIt() {
-        Env.initialize(ENV_PATH);
-        assertFalse(Env.isIt());
-    }
-
-    /**
-     * Test method for {@link Env#isProduction()}.
-     */
-    public void testIsProductionForProduction() {
-        Env.initialize(ENV_PATH);
-        assertTrue(Env.isProduction());
-    }
-
-    /**
-     * Test method for {@link Env#isProduction()}.
-     */
-    public void testIsProductionForNotProduction() {
-        Env.initialize(ENV_UT_PATH);
-        assertFalse(Env.isProduction());
-    }
-
-    /**
-     * Test method for {@link Env#isHotDeployment()}.
-     */
-    public void testIsHotDeploymentForCt() {
-        Env.initialize(ENV_CT_PATH);
         assertTrue(Env.isHotDeployment());
     }
 
     /**
-     * Test method for {@link Env#isHotDeployment()}.
+     * 
      */
-    public void testIsHotDeploymentForNotCt() {
-        Env.initialize(ENV_PATH);
+    public void testIsHotDeployment_cool() {
+        Env.initialize(ENV_COOL_PATH);
         assertFalse(Env.isHotDeployment());
+    }
+
+    /**
+     * 
+     */
+    public void testIsCoolDeployment() {
+        Env.initialize(ENV_COOL_PATH);
+        assertTrue(Env.isCoolDeployment());
+    }
+
+    /**
+     * 
+     */
+    public void testIsCoolDeployment_hot() {
+        Env.initialize(ENV_PATH);
+        assertFalse(Env.isCoolDeployment());
+    }
+
+    /**
+     * 
+     */
+    public void testIsWarmDeployment() {
+        Env.initialize(ENV_WARM_PATH);
+        assertTrue(Env.isWarmDeployment());
+    }
+
+    /**
+     * 
+     */
+    public void testIsWarmDeployment_hot() {
+        Env.initialize(ENV_PATH);
+        assertFalse(Env.isWarmDeployment());
     }
 }

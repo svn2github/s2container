@@ -1,5 +1,5 @@
 /*
- * Copyright 2004-2007 the Seasar Foundation and the Others.
+ * Copyright 2004-2008 the Seasar Foundation and the Others.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public final class MessageResourceBundleFactory {
 
-    private Map<String, MessageResourceBundleCache> bundleCaches = new ConcurrentHashMap<String, MessageResourceBundleCache>();
+    private static Map<String, MessageResourceBundleCache> bundleCaches = new ConcurrentHashMap<String, MessageResourceBundleCache>();
 
     private MessageResourceBundleFactory() {
     }
@@ -49,11 +49,11 @@ public final class MessageResourceBundleFactory {
      * @param messageBundleName
      *            the message bundle name such as
      *            aaa.foo(WEB-INF/classes/aaa/foo.properties).
-     * @return bundle the message bundle.
+     * @return the message bundle.
      * @throws NullPointerException
      *             if the locale is null and the message bundle name is null.
      */
-    public MessageResourceBundle getBundle(Locale locale,
+    public static MessageResourceBundle getBundle(Locale locale,
             String messageBundleName) {
         if (locale == null) {
             throw new NullPointerException("locale");
@@ -78,7 +78,7 @@ public final class MessageResourceBundleFactory {
      *            the message bundle name.
      * @return the message bundle.
      */
-    protected MessageResourceBundle getBundle(String messageBundleName) {
+    protected static MessageResourceBundle getBundle(String messageBundleName) {
         MessageResourceBundleCache cache = bundleCaches.get(messageBundleName);
         if (cache != null) {
             if (cache.isModified()) {
@@ -100,7 +100,7 @@ public final class MessageResourceBundleFactory {
      *            the properties path.
      * @return the file.
      */
-    protected File getFile(String path) {
+    protected static File getFile(String path) {
         if (!Env.isHotDeployment()) {
             return null;
         }
@@ -124,7 +124,7 @@ public final class MessageResourceBundleFactory {
      *            the properties path.
      * @return the message resource bundle.
      */
-    protected MessageResourceBundle createBundle(String path) {
+    protected static MessageResourceBundle createBundle(String path) {
         try {
             ClassLoader loader = Thread.currentThread().getContextClassLoader();
             URL url = loader.getResource(path);

@@ -1,5 +1,5 @@
 /*
- * Copyright 2004-2007 the Seasar Foundation and the Others.
+ * Copyright 2004-2008 the Seasar Foundation and the Others.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  */
 package org.seasar3.core;
 
+import java.io.File;
 import java.util.Locale;
 
 import junit.framework.TestCase;
@@ -25,18 +26,71 @@ import junit.framework.TestCase;
  */
 public class MessageResourceBundleFactoryTest extends TestCase {
 
+    private static final String PATH = "org/seasar3/core/foo.properties";
+
+    private static final String BUNDLE_NAME = "org.seasar3.core.foo";
+
+    @Override
+    protected void tearDown() throws Exception {
+        Env.initialize();
+    }
+
     /**
-     * Test method for
-     * {@link MessageResourceBundleFactory#getBundle(Locale, String)}.
+     * 
+     */
+    public void testCreateBundle() {
+        MessageResourceBundle bundle = MessageResourceBundleFactory
+                .createBundle(PATH);
+        assertNotNull(bundle);
+        assertEquals("111", bundle.get("aaa"));
+    }
+
+    /**
+     * 
+     */
+    public void testCreateBundleForIllegalPath() {
+        MessageResourceBundle bundle = MessageResourceBundleFactory
+                .createBundle("illegal path");
+        assertNull(bundle);
+    }
+
+    /**
+     * 
+     */
+    public void testGetFile() {
+        Env.initialize(EnvTest.ENV_PATH);
+        File file = MessageResourceBundleFactory.getFile(PATH);
+        assertNotNull(file);
+        assertTrue(file.exists());
+    }
+
+    /**
+     * 
+     */
+    public void testGetFileForCoolDeployement() {
+        Env.initialize(EnvTest.ENV_COOL_PATH);
+        File file = MessageResourceBundleFactory.getFile(PATH);
+        assertNull(file);
+    }
+
+    /**
+     * 
      */
     public void testGetBundle() {
         MessageResourceBundle bundle = MessageResourceBundleFactory
-                .getBundle(
-                        Locale.JAPAN,
-                        DefaultMessageResourceBundleFactoryProviderTest.MESSAGE_BUNDLE_NAME);
+                .getBundle(BUNDLE_NAME);
         assertNotNull(bundle);
-        assertEquals("222", bundle.get("bbb"));
-        assertEquals("111ja", bundle.get("aaa"));
+        assertEquals("111", bundle.get("aaa"));
     }
 
+    /**
+     * 
+     */
+    public void testGetBundleForLocale() {
+        MessageResourceBundle bundle = MessageResourceBundleFactory.getBundle(
+                Locale.JAPAN, BUNDLE_NAME);
+        assertNotNull(bundle);
+        assertEquals("111ja", bundle.get("aaa"));
+        assertEquals("222", bundle.get("bbb"));
+    }
 }

@@ -17,6 +17,7 @@ package org.seasar3.core;
 
 import java.util.Properties;
 
+
 import junit.framework.TestCase;
 
 /**

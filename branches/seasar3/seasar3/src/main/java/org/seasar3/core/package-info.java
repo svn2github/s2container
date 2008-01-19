@@ -1,5 +1,5 @@
 /*
- * Copyright 2004-2007 the Seasar Foundation and the Others.
+ * Copyright 2004-2008 the Seasar Foundation and the Others.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -15,10 +15,8 @@
  */
 
 /**
- * The core functions of Seasar3. The functions are environment information,
- * message and exception.
+ * The core functions of Seasar3. The functions are the environment information and the messages.
  * @see {@link Env}
  * @see {@link MessageBuilder}
- * @see {@link SRuntimeException}
  */
 package org.seasar3.core;

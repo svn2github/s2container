@@ -18,7 +18,6 @@ package org.seasar3.exception;
 import java.lang.annotation.Annotation;
 import java.util.List;
 
-import org.seasar3.core.SRuntimeException;
 
 /**
  * An NotAnnotatedException is thrown when a class is not annotated by an

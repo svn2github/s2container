@@ -17,7 +17,6 @@ package org.seasar3.exception;
 
 import javassist.NotFoundException;
 
-import org.seasar3.core.SRuntimeException;
 
 /**
  * Wrapper runtime exception for <code>javassist.NotFoundException</code>.

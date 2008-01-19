@@ -1,5 +1,5 @@
 /*
- * Copyright 2004-2007 the Seasar Foundation and the Others.
+ * Copyright 2004-2008 the Seasar Foundation and the Others.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,446 +15,304 @@
  */
 package org.seasar3.core;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.Properties;
 
 /**
- * A class having environment information.
- * <p>
- * The most important element is stage. It represents where we are running. Its
- * standard values are as follows.
- * </p>
- * <table border="1">
- * <tr>
- * <th>value</th>
- * <th>description</th>
- * </tr>
- * <tr>
- * <td><code>ut</code></td>
- * <td>Unit testing using JUnit.</td>
- * </tr>
- * <tr>
- * <td><code>ct</code></td>
- * <td>Combination test using an application server such as tomcat that runs in
- * your local PC.</td>
- * </tr>
- * <tr>
- * <td><code>it</code></td>
- * <td>Integration test using an application server that runs in remote server.
- * </td>
- * </tr>
- * <tr>
- * <td><code>production</code></td>
- * <td>Production.</td>
- * </tr>
- * </table>
- * <p>
- * When we choose CT stage, Seasar3 runs in HOT deployment mode. HOT deployment
- * means Seasar3 recognizes the source code changes without restarting
- * application server. CT stage means stage value starts with ct.
- * </p>
+ * A class to have environment information.
  * 
  * @author higa
  * @since 3.0
  */
 public final class Env {
 
-    /** stage key */
-    public static final String STAGE_KEY = "stage";
+    /**
+     * The deployment key.
+     */
+    public static final String DEPLOYMENT_KEY = "s3.deployment";
 
-    /** Unit tesing */
-    public static final String UT = "ut";
+    /**
+     * The environment name key.
+     */
+    public static final String ENV_NAME_KEY = "s3.env.name";
 
-    /** Combination testing */
-    public static final String CT = "ct";
+    /**
+     * HOT value.
+     */
+    public static final String HOT = "hot";
 
-    /** Integration testing */
-    public static final String IT = "it";
+    /**
+     * COOL value.
+     */
+    public static final String COOL = "cool";
 
-    /** Product */
-    public static final String PRODUCTION = "production";
+    /**
+     * WARM value.
+     */
+    public static final String WARM = "warm";
 
-    /** Default setting file path */
-    public static final String DEFAULT_FILE_PATH = "env.properties";
+    /**
+     * The default path.
+     */
+    public static final String DEFAULT_PATH = "env.properties";
 
-    private static final String STAGE_SEPARATOR = "_";
+    private static final String ENV_SEPARATOR = "_";
 
     private static Properties envInfo;
 
     static {
-        initialize(DEFAULT_FILE_PATH);
+        initialize();
     }
 
     private Env() {
     }
 
     /**
-     * Initializes environment information.
-     * 
-     * @param filePath
-     * 
-     * @see {@link PropertiesUtil#create(String)}
+     * Initializes the environment information.
      */
-    public static void initialize(String filePath) {
-        envInfo = PropertiesUtil.create(filePath);
+    public static void initialize() {
+        initialize(DEFAULT_PATH);
     }
 
     /**
-     * Returns stage value. If value does not exist, returns
-     * {@link #PRODUCTION production}.
+     * Initializes the environment information.
      * 
-     * @return stage value
+     * @param path
+     *            the path.
      */
-    public static String getStage() {
-        if (envInfo == null) {
-            return PRODUCTION;
+    public static void initialize(String path) {
+        if (path == null) {
+            throw new NullPointerException("path");
         }
-        String value = (String) envInfo.get(STAGE_KEY);
-        if (value == null || value.length() == 0) {
-            return PRODUCTION;
+        envInfo = new Properties();
+        try {
+            ClassLoader loader = Thread.currentThread().getContextClassLoader();
+            URL url = loader.getResource(path);
+            if (url == null) {
+                return;
+            }
+            URLConnection connection = url.openConnection();
+            connection.setUseCaches(false);
+            InputStream in = connection.getInputStream();
+            try {
+                envInfo.load(in);
+            } finally {
+                in.close();
+            }
+        } catch (IOException e) {
+            throw new IllegalArgumentException(path, e);
         }
-        return value;
     }
 
     /**
-     * Returns environment information.
+     * Returns the environment name.
      * 
-     * @return environment information
+     * @return the environment name.
      */
-    public static Properties getEnvInfo() {
-        return envInfo;
+    public static String getEnvName() {
+        return envInfo.getProperty(ENV_NAME_KEY);
     }
 
     /**
-     * Sets environment information
+     * Returns the deployment value.
      * 
-     * @param props
-     *            environment information
+     * @return the deployment value.
      */
-    public static void setEnvInfo(Properties props) {
-        Env.envInfo = props;
+    public static String getDeployment() {
+        return envInfo.getProperty(DEPLOYMENT_KEY);
     }
 
     /**
-     * Returns value for key. If key_stage such as aaa_it exists, returns the
-     * key's value. If value is empty string, returns null.
+     * Returns value for key. If key_ + "environment name" exists, returns the
+     * value.
      * 
      * @param key
-     * @return
+     *            the key.
+     * @return the value.
      */
     public static String getStringValue(String key) {
-        if (envInfo == null) {
-            return null;
-        }
         String value = null;
-        String stage = getStage();
-        if (!PRODUCTION.equals(stage)) {
-            value = envInfo.getProperty(key + STAGE_SEPARATOR + stage);
-            if (value != null && value.length() > 0) {
+        String envName = getEnvName();
+        if (envName != null && envName.length() > 0) {
+            value = envInfo.getProperty(key + ENV_SEPARATOR + envName);
+            if (value != null) {
                 return value;
             }
         }
-        value = envInfo.getProperty(key);
-        if ("".equals(value)) {
-            return null;
-        }
-        return value;
+        return envInfo.getProperty(key);
     }
 
     /**
-     * Returns byte value for key.
+     * Returns the byte value for key.
      * 
      * @param key
-     * @return
+     *            the key.
+     * @return the byte value.
      * @see {@link #getStringValue(String)}
      */
     public static Byte getByteValue(String key) {
         String value = getStringValue(key);
-        if (value == null) {
-            return null;
+        if (value != null && value.length() > 0) {
+            try {
+                return Byte.valueOf(value);
+            } catch (Throwable t) {
+                throw new IllegalArgumentException("'" + value + "'(" + key
+                        + ") can not be converted to byte.", t);
+            }
         }
-        return Byte.valueOf(value);
+        return null;
     }
 
     /**
-     * Returns byte value for key. If value is null, returns default value.
+     * Returns the short value for key.
      * 
      * @param key
-     * @param defaultValue
-     * @return
-     * @see {@link #getByteValue(String)}
-     */
-    public static byte getByteValue(String key, byte defaultValue) {
-        Byte value = getByteValue(key);
-        if (value == null) {
-            return defaultValue;
-        }
-        return value.byteValue();
-    }
-
-    /**
-     * Returns short value for key.
-     * 
-     * @param key
-     * @return
-     * @see {@link #getStringValue(String)}
+     *            the key.
+     * @return the short value.
      */
     public static Short getShortValue(String key) {
         String value = getStringValue(key);
-        if (value == null) {
-            return null;
+        if (value != null && value.length() > 0) {
+            try {
+                return Short.valueOf(value);
+            } catch (Throwable t) {
+                throw new IllegalArgumentException("'" + value + "'(" + key
+                        + ") can not be converted to short.", t);
+            }
         }
-        return Short.valueOf(value);
+        return null;
     }
 
     /**
-     * Returns short value for key. If value is null, returns default value.
+     * Returns the integer value for key.
      * 
      * @param key
-     * @param defaultValue
-     * @return
-     * @see {@link #getShortValue(String)}
-     */
-    public static short getShortValue(String key, short defaultValue) {
-        Short value = getShortValue(key);
-        if (value == null) {
-            return defaultValue;
-        }
-        return value.shortValue();
-    }
-
-    /**
-     * Returns integer value for key.
-     * 
-     * @param key
-     * @return
-     * @see {@link #getStringValue(String)}
+     *            the key.
+     * @return the integer value.
      */
     public static Integer getIntegerValue(String key) {
         String value = getStringValue(key);
-        if (value == null) {
-            return null;
+        if (value != null && value.length() > 0) {
+            try {
+                return Integer.valueOf(value);
+            } catch (Throwable t) {
+                throw new IllegalArgumentException("'" + value + "'(" + key
+                        + ") can not be converted to integer.", t);
+            }
         }
-        return Integer.valueOf(value);
+        return null;
     }
 
     /**
-     * Returns int value for key. If value is null, returns default value.
+     * Returns the long value for key.
      * 
      * @param key
-     * @param defaultValue
-     * @return
-     * @see {@link #getIntegerValue(String)}
-     */
-    public static int getIntValue(String key, int defaultValue) {
-        Integer value = getIntegerValue(key);
-        if (value == null) {
-            return defaultValue;
-        }
-        return value.intValue();
-    }
-
-    /**
-     * Returns long value for key.
-     * 
-     * @param key
-     * @return
-     * @see {@link #getStringValue(String)}
+     *            the key.
+     * @return the long value.
      */
     public static Long getLongValue(String key) {
         String value = getStringValue(key);
-        if (value == null) {
-            return null;
+        if (value != null && value.length() > 0) {
+            try {
+                return Long.valueOf(value);
+            } catch (Throwable t) {
+                throw new IllegalArgumentException("'" + value + "'(" + key
+                        + ") can not be converted to long.", t);
+            }
         }
-        return Long.valueOf(value);
+        return null;
     }
 
     /**
-     * Returns long value for key. If value is null, returns default value.
+     * Returns the float value for key.
      * 
      * @param key
-     * @param defaultValue
-     * @return
-     * @see {@link #getLongValue(String)}
-     */
-    public static long getLongValue(String key, long defaultValue) {
-        Long value = getLongValue(key);
-        if (value == null) {
-            return defaultValue;
-        }
-        return value.longValue();
-    }
-
-    /**
-     * Returns float value for key.
-     * 
-     * @param key
-     * @return
-     * @see {@link #getStringValue(String)}
+     *            the key.
+     * @return the float value.
      */
     public static Float getFloatValue(String key) {
         String value = getStringValue(key);
-        if (value == null) {
-            return null;
+        if (value != null && value.length() > 0) {
+            try {
+                return Float.valueOf(value);
+            } catch (Throwable t) {
+                throw new IllegalArgumentException("'" + value + "'(" + key
+                        + ") can not be converted to float.", t);
+            }
         }
-        return Float.valueOf(value);
+        return null;
     }
 
     /**
-     * Returns float value for key. If value is null, returns default value.
+     * Returns the double value for key.
      * 
      * @param key
-     * @param defaultValue
-     * @return
-     * @see {@link #getFloatValue(String)}
-     */
-    public static float getFloatValue(String key, float defaultValue) {
-        Float value = getFloatValue(key);
-        if (value == null) {
-            return defaultValue;
-        }
-        return value.floatValue();
-    }
-
-    /**
-     * Returns double value for key.
-     * 
-     * @param key
-     * @return
-     * @see {@link #getStringValue(String)}
+     *            the key.
+     * @return the float value.
      */
     public static Double getDoubleValue(String key) {
         String value = getStringValue(key);
-        if (value == null) {
-            return null;
+        if (value != null && value.length() > 0) {
+            try {
+                return Double.valueOf(value);
+            } catch (Throwable t) {
+                throw new IllegalArgumentException("'" + value + "'(" + key
+                        + ") can not be converted to double.", t);
+            }
         }
-        return Double.valueOf(value);
+        return null;
     }
 
     /**
-     * Returns double value for key. If value is null, returns default value.
+     * Returns the boolean value for key.
      * 
      * @param key
-     * @param defaultValue
-     * @return
-     * @see {@link #getDoubleValue(String)}
-     */
-    public static double getDoubleValue(String key, double defaultValue) {
-        Double value = getDoubleValue(key);
-        if (value == null) {
-            return defaultValue;
-        }
-        return value.doubleValue();
-    }
-
-    /**
-     * Returns boolean value for key.
-     * 
-     * @param key
-     * @return
-     * @see {@link #getStringValue(String)}
+     *            the key.
+     * @return the boolean value.
      */
     public static Boolean getBooleanValue(String key) {
         String value = getStringValue(key);
-        if (value == null) {
-            return null;
+        if (value != null && value.length() > 0) {
+            try {
+                return Boolean.valueOf(value);
+            } catch (Throwable t) {
+                throw new IllegalArgumentException("'" + value + "'(" + key
+                        + ") can not be converted to boolean.", t);
+            }
         }
-        return Boolean.valueOf(value);
+        return null;
     }
 
     /**
-     * Returns boolean value for key. If value is null, returns default value.
-     * 
-     * @param key
-     * @param defaultValue
-     * @return
-     * @see {@link #getBooleanValue(String)}
-     */
-    public static boolean getBooleanValue(String key, boolean defaultValue) {
-        Boolean value = getBooleanValue(key);
-        if (value == null) {
-            return defaultValue;
-        }
-        return value.booleanValue();
-    }
-
-    /**
-     * Returns character value for key.
-     * 
-     * @param key
-     * @return
-     * @see {@link #getStringValue(String)}
-     */
-    public static Character getCharacterValue(String key) {
-        String value = getStringValue(key);
-        if (value == null) {
-            return null;
-        }
-        return Character.valueOf(value.charAt(0));
-    }
-
-    /**
-     * Returns char value for key. If value is null, returns default value.
-     * 
-     * @param key
-     * @param defaultValue
-     * @return
-     * @see {@link #getCharacterValue(String)}
-     */
-    public static char getCharValue(String key, char defaultValue) {
-        Character value = getCharacterValue(key);
-        if (value == null) {
-            return defaultValue;
-        }
-        return value.charValue();
-    }
-
-    /**
-     * Determines if stage is {@link #UT}. Returns true if stage starts with
-     * ut.
-     * 
-     * @return
-     */
-    public static boolean isUt() {
-        return getStage().startsWith(UT);
-    }
-
-    /**
-     * Determines if stage is {@link #CT}. Returns true if stage starts with
-     * ct.
-     * 
-     * @return
-     */
-    public static boolean isCt() {
-        return getStage().startsWith(CT);
-    }
-
-    /**
-     * Determines if stage is {@link #IT}. Returns true if stage starts with
-     * it.
-     * 
-     * @return
-     */
-    public static boolean isIt() {
-        return getStage().startsWith(IT);
-    }
-
-    /**
-     * Determines if stage is {@link #PRODUCTION}. Returns true if stage starts
-     * with production.
-     * 
-     * @return
-     */
-    public static boolean isProduction() {
-        return getStage().startsWith(PRODUCTION);
-    }
-
-    /**
-     * Determines if stage is HOT deployment. Returns true if stage is
-     * {@link #CT}.
+     * Determines if the deployment is HOT. Returns true if the deployment is
+     * HOT.
      * 
      * @return
      */
     public static boolean isHotDeployment() {
-        return isCt();
+        return HOT.equals(getDeployment());
+    }
+
+    /**
+     * Determines if the deployment is COOL. Returns true if the deployment is
+     * COOL.
+     * 
+     * @return
+     */
+    public static boolean isCoolDeployment() {
+        return COOL.equals(getDeployment());
+    }
+
+    /**
+     * Determines if the deployment is WARM. Returns true if the deployment is
+     * WARM.
+     * 
+     * @return
+     */
+    public static boolean isWarmDeployment() {
+        return WARM.equals(getDeployment());
     }
 }

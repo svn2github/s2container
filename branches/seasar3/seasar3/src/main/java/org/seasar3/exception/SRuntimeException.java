@@ -13,7 +13,9 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar3.core;
+package org.seasar3.exception;
+
+import org.seasar3.core.MessageBuilder;
 
 /**
  * A base exception class of Seasar3.

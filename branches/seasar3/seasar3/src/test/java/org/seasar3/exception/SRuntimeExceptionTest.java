@@ -13,7 +13,9 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar3.core;
+package org.seasar3.exception;
+
+import org.seasar3.exception.SRuntimeException;
 
 import junit.framework.TestCase;
 
@@ -21,29 +23,15 @@ import junit.framework.TestCase;
  * @author higa
  * 
  */
-public class URLDecoderUtilTest extends TestCase {
+public class SRuntimeExceptionTest extends TestCase {
 
     /**
-     * Test method for {@link URLDecoderUtil#decode(String, String)}.
+     * Test method for
+     * {@link SRuntimeException#SRuntimeException(String, Object[])}.
      */
-    public void testDecodeForEncIsEmpty() {
-        try {
-            System.out.println(URLDecoderUtil.decode("aaa", ""));
-            fail();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e);
-        }
+    public void testSRuntimeException() {
+        SRuntimeException e = new SRuntimeException("ES3Test0002", 1);
+        assertEquals("foo(1)", e.getMessage());
     }
 
-    /**
-     * Test method for {@link URLDecoderUtil#decode(String, String)}.
-     */
-    public void testDecodeForEncIsNull() {
-        try {
-            System.out.println(URLDecoderUtil.decode("aaa", null));
-            fail();
-        } catch (NullPointerException e) {
-            System.out.println(e);
-        }
-    }
 }
