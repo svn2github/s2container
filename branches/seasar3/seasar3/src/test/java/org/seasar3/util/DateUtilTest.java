@@ -27,13 +27,13 @@ import org.seasar3.exception.ParseRuntimeException;
  * @author higa
  * 
  */
-public class DateConversionUtilTest extends TestCase {
+public class DateUtilTest extends TestCase {
 
     /**
      * @throws Exception
      */
     public void testToDateForNull() throws Exception {
-        assertNull(DateConversionUtil.toDate(null));
+        assertNull(DateUtil.toDate(null));
     }
 
     /**
@@ -41,7 +41,7 @@ public class DateConversionUtilTest extends TestCase {
      */
     public void testToDateForDate() throws Exception {
         Date date = new Date();
-        assertEquals(date, DateConversionUtil.toDate(date));
+        assertEquals(date, DateUtil.toDate(date));
     }
 
     /**
@@ -51,14 +51,14 @@ public class DateConversionUtilTest extends TestCase {
         Date date = new Date();
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
-        assertEquals(date, DateConversionUtil.toDate(cal));
+        assertEquals(date, DateUtil.toDate(cal));
     }
 
     /**
      * @throws Exception
      */
     public void testToDateForString() throws Exception {
-        assertNotNull(DateConversionUtil.toDate("01/17/2008", Locale.ENGLISH));
+        assertNotNull(DateUtil.toDate("01/17/2008", Locale.ENGLISH));
     }
 
     /**
@@ -66,7 +66,7 @@ public class DateConversionUtilTest extends TestCase {
      */
     public void testToDateForException() throws Exception {
         try {
-            DateConversionUtil.toDate("xx/17/2008", Locale.ENGLISH);
+            DateUtil.toDate("xx/17/2008", Locale.ENGLISH);
             fail();
         } catch (ParseRuntimeException e) {
             System.out.println(e);

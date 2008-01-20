@@ -23,9 +23,9 @@ import java.sql.Timestamp;
  * @author higa
  * 
  */
-public final class TimestampConversionUtil {
+public final class TimestampUtil {
 
-    private TimestampConversionUtil() {
+    private TimestampUtil() {
     }
 
     /**
@@ -39,7 +39,7 @@ public final class TimestampConversionUtil {
         if (o instanceof Timestamp) {
             return (Timestamp) o;
         }
-        java.util.Date date = DateConversionUtil.toDate(o);
+        java.util.Date date = DateUtil.toDate(o);
         if (date != null) {
             return new Timestamp(date.getTime());
         }

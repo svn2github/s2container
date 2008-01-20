@@ -16,51 +16,51 @@
 package org.seasar3.util;
 
 /**
- * A utility class for {@link Byte}.
+ * A utility class for {@link Double}.
  * 
  * @author higa
  * 
  */
-public final class ByteConversionUtil {
+public final class DoubleUtil {
 
-    private ByteConversionUtil() {
+    private DoubleUtil() {
     }
 
     /**
-     * Converts an object to the byte value.
+     * Converts an object to the double value.
      * 
      * @param o
      *            an object.
-     * @return the byte value.
+     * @return the double value.
      */
-    public static Byte toByte(Object o) {
+    public static Double toDouble(Object o) {
         if (o == null) {
             return null;
-        } else if (o instanceof Byte) {
-            return (Byte) o;
+        } else if (o instanceof Double) {
+            return (Double) o;
         } else if (o instanceof Number) {
-            return new Byte(((Number) o).byteValue());
+            return Double.valueOf(((Number) o).doubleValue());
         } else if (o instanceof String) {
-            return Byte.valueOf((String) o);
+            return Double.valueOf((String) o);
         } else if (o instanceof Boolean) {
-            return ((Boolean) o).booleanValue() ? new Byte((byte) 1)
-                    : new Byte((byte) 0);
+            return ((Boolean) o).booleanValue() ? Double.valueOf(1) : Double
+                    .valueOf(0);
         } else {
-            return Byte.valueOf(o.toString());
+            return Double.valueOf(o.toString());
         }
     }
 
     /**
-     * Converts an object to the primitive byte value.
+     * Converts an object to the primitive double value.
      * 
      * @param o
      *            an object.
-     * @return the primitive byte value.
+     * @return the primitive double value.
      */
-    public static byte toPrimitiveByte(Object o) {
+    public static double toPrimitiveDouble(Object o) {
         if (o == null) {
             return 0;
         }
-        return toByte(o).byteValue();
+        return toDouble(o).doubleValue();
     }
 }

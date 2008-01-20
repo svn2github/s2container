@@ -21,23 +21,23 @@ import junit.framework.TestCase;
  * @author higa
  * 
  */
-public class SqlDateConversionUtilTest extends TestCase {
+public class TimestampUtilTest extends TestCase {
 
     /**
      * @throws Exception
      */
-    public void testToDateForSqlDate() throws Exception {
+    public void testToTimestampForTimestamp() throws Exception {
         java.util.Date value = new java.util.Date();
-        java.sql.Date date = new java.sql.Date(value.getTime());
-        assertEquals(date, SqlDateConversionUtil.toDate(date));
+        java.sql.Timestamp timestamp = new java.sql.Timestamp(value.getTime());
+        assertEquals(timestamp, TimestampUtil.toTimestamp(timestamp));
     }
 
     /**
      * @throws Exception
      */
-    public void testToDateForDate() throws Exception {
+    public void testToTimestampForDate() throws Exception {
         java.util.Date value = new java.util.Date();
-        assertEquals(value.getTime(), SqlDateConversionUtil.toDate(value)
-                .getTime());
+        assertEquals(value.getTime(), TimestampUtil
+                .toTimestamp(value).getTime());
     }
 }

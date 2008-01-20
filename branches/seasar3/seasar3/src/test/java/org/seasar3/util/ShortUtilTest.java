@@ -21,13 +21,13 @@ import junit.framework.TestCase;
  * @author higa
  * 
  */
-public class ShortConversionUtilTest extends TestCase {
+public class ShortUtilTest extends TestCase {
 
     /**
      * @throws Exception
      */
     public void testToShortForNull() throws Exception {
-        assertNull(ShortConversionUtil.toShort(null));
+        assertNull(ShortUtil.toShort(null));
     }
 
     /**
@@ -35,7 +35,7 @@ public class ShortConversionUtilTest extends TestCase {
      */
     public void testToShortForShort() throws Exception {
         Short value = Short.valueOf("1");
-        assertEquals(value, ShortConversionUtil.toShort(value));
+        assertEquals(value, ShortUtil.toShort(value));
     }
 
     /**
@@ -43,21 +43,21 @@ public class ShortConversionUtilTest extends TestCase {
      */
     public void testToShortForNumber() throws Exception {
         Integer i = Integer.valueOf(1);
-        assertEquals((short) 1, ShortConversionUtil.toShort(i).shortValue());
+        assertEquals((short) 1, ShortUtil.toShort(i).shortValue());
     }
 
     /**
      * @throws Exception
      */
     public void testToShortForString() throws Exception {
-        assertEquals((short) 1, ShortConversionUtil.toShort("1").shortValue());
+        assertEquals((short) 1, ShortUtil.toShort("1").shortValue());
     }
 
     /**
      * @throws Exception
      */
     public void testToShortForTrue() throws Exception {
-        assertEquals((short) 1, ShortConversionUtil.toShort(Boolean.TRUE)
+        assertEquals((short) 1, ShortUtil.toShort(Boolean.TRUE)
                 .shortValue());
     }
 
@@ -65,7 +65,7 @@ public class ShortConversionUtilTest extends TestCase {
      * @throws Exception
      */
     public void testToShortForFalse() throws Exception {
-        assertEquals((short) 0, ShortConversionUtil.toShort(Boolean.FALSE)
+        assertEquals((short) 0, ShortUtil.toShort(Boolean.FALSE)
                 .shortValue());
     }
 
@@ -74,7 +74,7 @@ public class ShortConversionUtilTest extends TestCase {
      */
     public void testToShortForException() throws Exception {
         try {
-            ShortConversionUtil.toShort("xx");
+            ShortUtil.toShort("xx");
             fail();
         } catch (NumberFormatException e) {
             System.out.println(e);
@@ -85,7 +85,7 @@ public class ShortConversionUtilTest extends TestCase {
      * @throws Exception
      */
     public void testToPrimitiveShortForNull() throws Exception {
-        assertEquals(0, ShortConversionUtil.toPrimitiveShort(null));
+        assertEquals(0, ShortUtil.toPrimitiveShort(null));
     }
 
     /**
@@ -93,21 +93,21 @@ public class ShortConversionUtilTest extends TestCase {
      */
     public void testToPrimitiveShortForNumber() throws Exception {
         Integer i = Integer.valueOf(1);
-        assertEquals((short) 1, ShortConversionUtil.toPrimitiveShort(i));
+        assertEquals((short) 1, ShortUtil.toPrimitiveShort(i));
     }
 
     /**
      * @throws Exception
      */
     public void testToPrimitiveShortForString() throws Exception {
-        assertEquals((short) 1, ShortConversionUtil.toPrimitiveShort("1"));
+        assertEquals((short) 1, ShortUtil.toPrimitiveShort("1"));
     }
 
     /**
      * @throws Exception
      */
     public void testToPrimitiveShortForTrue() throws Exception {
-        assertEquals((short) 1, ShortConversionUtil
+        assertEquals((short) 1, ShortUtil
                 .toPrimitiveShort(Boolean.TRUE));
     }
 
@@ -115,7 +115,7 @@ public class ShortConversionUtilTest extends TestCase {
      * @throws Exception
      */
     public void testToPrimitiveShortForFalse() throws Exception {
-        assertEquals((short) 0, ShortConversionUtil
+        assertEquals((short) 0, ShortUtil
                 .toPrimitiveShort(Boolean.FALSE));
     }
 
@@ -124,7 +124,7 @@ public class ShortConversionUtilTest extends TestCase {
      */
     public void testToPrimitiveShortForException() throws Exception {
         try {
-            ShortConversionUtil.toPrimitiveShort("xx");
+            ShortUtil.toPrimitiveShort("xx");
             fail();
         } catch (NumberFormatException e) {
             System.out.println(e);

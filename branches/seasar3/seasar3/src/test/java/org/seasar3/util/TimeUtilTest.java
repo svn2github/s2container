@@ -15,34 +15,29 @@
  */
 package org.seasar3.util;
 
-import java.sql.Date;
+import junit.framework.TestCase;
 
 /**
- * A utility class for {@link Date}.
- * 
  * @author higa
  * 
  */
-public final class SqlDateConversionUtil {
+public class TimeUtilTest extends TestCase {
 
-    private SqlDateConversionUtil() {
+    /**
+     * @throws Exception
+     */
+    public void testToTimeForTime() throws Exception {
+        java.util.Date value = new java.util.Date();
+        java.sql.Time time = new java.sql.Time(value.getTime());
+        assertEquals(time, TimeUtil.toTime(time));
     }
 
     /**
-     * Converts an object to the sql date value.
-     * 
-     * @param o
-     *            an object.
-     * @return the sql date value.
+     * @throws Exception
      */
-    public static Date toDate(Object o) {
-        if (o instanceof Date) {
-            return (Date) o;
-        }
-        java.util.Date date = DateConversionUtil.toDate(o);
-        if (date != null) {
-            return new Date(date.getTime());
-        }
-        return null;
+    public void testToTimeForDate() throws Exception {
+        java.util.Date value = new java.util.Date();
+        assertEquals(value.getTime(), TimeUtil.toTime(value)
+                .getTime());
     }
 }

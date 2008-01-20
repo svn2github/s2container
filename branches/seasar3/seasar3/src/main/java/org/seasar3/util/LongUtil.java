@@ -16,51 +16,51 @@
 package org.seasar3.util;
 
 /**
- * A utility class for {@link Short}.
+ * A utility class for {@link Long}.
  * 
  * @author higa
  * 
  */
-public final class ShortConversionUtil {
+public final class LongUtil {
 
-    private ShortConversionUtil() {
+    private LongUtil() {
     }
 
     /**
-     * Converts an object to the short value.
+     * Converts an object to the long value.
      * 
      * @param o
      *            an object.
-     * @return the short value.
+     * @return the long value.
      */
-    public static Short toShort(Object o) {
+    public static Long toLong(Object o) {
         if (o == null) {
             return null;
-        } else if (o instanceof Short) {
-            return (Short) o;
+        } else if (o instanceof Long) {
+            return (Long) o;
         } else if (o instanceof Number) {
-            return new Short(((Number) o).shortValue());
+            return Long.valueOf(((Number) o).longValue());
         } else if (o instanceof String) {
-            return Short.valueOf((String) o);
+            return Long.valueOf((String) o);
         } else if (o instanceof Boolean) {
-            return ((Boolean) o).booleanValue() ? new Short((short) 1)
-                    : new Short((short) 0);
+            return ((Boolean) o).booleanValue() ? Long.valueOf(1) : Long
+                    .valueOf(0);
         } else {
-            return Short.valueOf(o.toString());
+            return Long.valueOf(o.toString());
         }
     }
 
     /**
-     * Converts an object to the primitive short value.
+     * Converts an object to the primitive long value.
      * 
      * @param o
      *            an object.
-     * @return the primitive short value.
+     * @return the primitive long value.
      */
-    public static short toPrimitiveShort(Object o) {
+    public static long toPrimitiveLong(Object o) {
         if (o == null) {
             return 0;
         }
-        return toShort(o).shortValue();
+        return toLong(o).longValue();
     }
 }

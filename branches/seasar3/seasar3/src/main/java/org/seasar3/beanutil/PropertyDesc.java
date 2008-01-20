@@ -274,13 +274,13 @@ public final class PropertyDesc {
 
     private Object convertDate(Object arg) {
         if (propertyType == java.util.Date.class) {
-            return DateConversionUtil.toDate(arg);
+            return DateUtil.toDate(arg);
         } else if (propertyType == Timestamp.class) {
-            return TimestampConversionUtil.toTimestamp(arg);
+            return TimestampUtil.toTimestamp(arg);
         } else if (propertyType == java.sql.Date.class) {
-            return SqlDateConversionUtil.toDate(arg);
+            return SqlDateUtil.toDate(arg);
         } else if (propertyType == Time.class) {
-            return TimeConversionUtil.toTime(arg);
+            return TimeUtil.toTime(arg);
         }
         return arg;
     }

@@ -15,29 +15,34 @@
  */
 package org.seasar3.util;
 
-import junit.framework.TestCase;
+import java.sql.Time;
 
 /**
+ * A utility class for {@link Time}.
+ * 
  * @author higa
  * 
  */
-public class TimestampConversionUtilTest extends TestCase {
+public final class TimeUtil {
 
-    /**
-     * @throws Exception
-     */
-    public void testToTimestampForTimestamp() throws Exception {
-        java.util.Date value = new java.util.Date();
-        java.sql.Timestamp timestamp = new java.sql.Timestamp(value.getTime());
-        assertEquals(timestamp, TimestampConversionUtil.toTimestamp(timestamp));
+    private TimeUtil() {
     }
 
     /**
-     * @throws Exception
+     * Converts an object to the time value.
+     * 
+     * @param o
+     *            an object.
+     * @return the time value.
      */
-    public void testToTimestampForDate() throws Exception {
-        java.util.Date value = new java.util.Date();
-        assertEquals(value.getTime(), TimestampConversionUtil
-                .toTimestamp(value).getTime());
+    public static Time toTime(Object o) {
+        if (o instanceof Time) {
+            return (Time) o;
+        }
+        java.util.Date date = DateUtil.toDate(o);
+        if (date != null) {
+            return new Time(date.getTime());
+        }
+        return null;
     }
 }

@@ -465,36 +465,36 @@ public final class BeanDesc {
 
         if (paramTypes[index].isPrimitive()) {
             if (paramTypes[index] == int.class) {
-                args[index] = IntegerConversionUtil.toInteger(args[index]);
+                args[index] = IntegerUtil.toInteger(args[index]);
                 return true;
             } else if (paramTypes[index] == double.class) {
-                args[index] = DoubleConversionUtil.toDouble(args[index]);
+                args[index] = DoubleUtil.toDouble(args[index]);
                 return true;
             } else if (paramTypes[index] == long.class) {
-                args[index] = LongConversionUtil.toLong(args[index]);
+                args[index] = LongUtil.toLong(args[index]);
                 return true;
             } else if (paramTypes[index] == short.class) {
-                args[index] = ShortConversionUtil.toShort(args[index]);
+                args[index] = ShortUtil.toShort(args[index]);
                 return true;
             } else if (paramTypes[index] == float.class) {
-                args[index] = FloatConversionUtil.toFloat(args[index]);
+                args[index] = FloatUtil.toFloat(args[index]);
                 return true;
             }
         } else {
             if (paramTypes[index] == Integer.class) {
-                args[index] = IntegerConversionUtil.toInteger(args[index]);
+                args[index] = IntegerUtil.toInteger(args[index]);
                 return true;
             } else if (paramTypes[index] == Double.class) {
-                args[index] = DoubleConversionUtil.toDouble(args[index]);
+                args[index] = DoubleUtil.toDouble(args[index]);
                 return true;
             } else if (paramTypes[index] == Long.class) {
-                args[index] = LongConversionUtil.toLong(args[index]);
+                args[index] = LongUtil.toLong(args[index]);
                 return true;
             } else if (paramTypes[index] == Short.class) {
-                args[index] = ShortConversionUtil.toShort(args[index]);
+                args[index] = ShortUtil.toShort(args[index]);
                 return true;
             } else if (paramTypes[index] == Float.class) {
-                args[index] = FloatConversionUtil.toFloat(args[index]);
+                args[index] = FloatUtil.toFloat(args[index]);
                 return true;
             }
         }

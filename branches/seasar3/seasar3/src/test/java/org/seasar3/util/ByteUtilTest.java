@@ -21,13 +21,13 @@ import junit.framework.TestCase;
  * @author higa
  * 
  */
-public class ByteConversionUtilTest extends TestCase {
+public class ByteUtilTest extends TestCase {
 
     /**
      * @throws Exception
      */
     public void testToByteForNull() throws Exception {
-        assertNull(ByteConversionUtil.toByte(null));
+        assertNull(ByteUtil.toByte(null));
     }
 
     /**
@@ -35,7 +35,7 @@ public class ByteConversionUtilTest extends TestCase {
      */
     public void testToByteForByte() throws Exception {
         Byte value = Byte.valueOf("1");
-        assertEquals(value, ByteConversionUtil.toByte(value));
+        assertEquals(value, ByteUtil.toByte(value));
     }
 
     /**
@@ -43,21 +43,21 @@ public class ByteConversionUtilTest extends TestCase {
      */
     public void testToByteForNumber() throws Exception {
         Integer i = Integer.valueOf(1);
-        assertEquals((byte) 1, ByteConversionUtil.toByte(i).byteValue());
+        assertEquals((byte) 1, ByteUtil.toByte(i).byteValue());
     }
 
     /**
      * @throws Exception
      */
     public void testToByteForString() throws Exception {
-        assertEquals((byte) 1, ByteConversionUtil.toByte("1").byteValue());
+        assertEquals((byte) 1, ByteUtil.toByte("1").byteValue());
     }
 
     /**
      * @throws Exception
      */
     public void testToByteForTrue() throws Exception {
-        assertEquals((byte) 1, ByteConversionUtil.toByte(Boolean.TRUE)
+        assertEquals((byte) 1, ByteUtil.toByte(Boolean.TRUE)
                 .byteValue());
     }
 
@@ -65,7 +65,7 @@ public class ByteConversionUtilTest extends TestCase {
      * @throws Exception
      */
     public void testToByteForFalse() throws Exception {
-        assertEquals((byte) 0, ByteConversionUtil.toByte(Boolean.FALSE)
+        assertEquals((byte) 0, ByteUtil.toByte(Boolean.FALSE)
                 .byteValue());
     }
 
@@ -74,7 +74,7 @@ public class ByteConversionUtilTest extends TestCase {
      */
     public void testToByteForException() throws Exception {
         try {
-            ByteConversionUtil.toByte("xx");
+            ByteUtil.toByte("xx");
             fail();
         } catch (NumberFormatException e) {
             System.out.println(e);
@@ -85,7 +85,7 @@ public class ByteConversionUtilTest extends TestCase {
      * @throws Exception
      */
     public void testToPrimitiveByteForNull() throws Exception {
-        assertEquals(0, ByteConversionUtil.toPrimitiveByte(null));
+        assertEquals(0, ByteUtil.toPrimitiveByte(null));
     }
 
     /**
@@ -93,28 +93,28 @@ public class ByteConversionUtilTest extends TestCase {
      */
     public void testToPrimitiveByteForNumber() throws Exception {
         Integer i = Integer.valueOf(1);
-        assertEquals((byte) 1, ByteConversionUtil.toPrimitiveByte(i));
+        assertEquals((byte) 1, ByteUtil.toPrimitiveByte(i));
     }
 
     /**
      * @throws Exception
      */
     public void testToPrimitiveByteForString() throws Exception {
-        assertEquals((byte) 1, ByteConversionUtil.toPrimitiveByte("1"));
+        assertEquals((byte) 1, ByteUtil.toPrimitiveByte("1"));
     }
 
     /**
      * @throws Exception
      */
     public void testToPrimitiveByteForTrue() throws Exception {
-        assertEquals((byte) 1, ByteConversionUtil.toPrimitiveByte(Boolean.TRUE));
+        assertEquals((byte) 1, ByteUtil.toPrimitiveByte(Boolean.TRUE));
     }
 
     /**
      * @throws Exception
      */
     public void testToPrimitiveByteForFalse() throws Exception {
-        assertEquals((byte) 0, ByteConversionUtil
+        assertEquals((byte) 0, ByteUtil
                 .toPrimitiveByte(Boolean.FALSE));
     }
 
@@ -123,7 +123,7 @@ public class ByteConversionUtilTest extends TestCase {
      */
     public void testToPrimitiveByteForException() throws Exception {
         try {
-            ByteConversionUtil.toPrimitiveByte("xx");
+            ByteUtil.toPrimitiveByte("xx");
             fail();
         } catch (NumberFormatException e) {
             System.out.println(e);

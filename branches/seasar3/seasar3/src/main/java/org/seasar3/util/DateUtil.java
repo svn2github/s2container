@@ -29,9 +29,9 @@ import org.seasar3.exception.ParseRuntimeException;
  * @author higa
  * 
  */
-public final class DateConversionUtil {
+public final class DateUtil {
 
-    private DateConversionUtil() {
+    private DateUtil() {
     }
 
     /**

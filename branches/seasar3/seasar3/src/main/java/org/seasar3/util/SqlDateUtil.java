@@ -15,33 +15,33 @@
  */
 package org.seasar3.util;
 
-import java.sql.Time;
+import java.sql.Date;
 
 /**
- * A utility class for {@link Time}.
+ * A utility class for {@link Date}.
  * 
  * @author higa
  * 
  */
-public final class TimeConversionUtil {
+public final class SqlDateUtil {
 
-    private TimeConversionUtil() {
+    private SqlDateUtil() {
     }
 
     /**
-     * Converts an object to the time value.
+     * Converts an object to the sql date value.
      * 
      * @param o
      *            an object.
-     * @return the time value.
+     * @return the sql date value.
      */
-    public static Time toTime(Object o) {
-        if (o instanceof Time) {
-            return (Time) o;
+    public static Date toDate(Object o) {
+        if (o instanceof Date) {
+            return (Date) o;
         }
-        java.util.Date date = DateConversionUtil.toDate(o);
+        java.util.Date date = DateUtil.toDate(o);
         if (date != null) {
-            return new Time(date.getTime());
+            return new Date(date.getTime());
         }
         return null;
     }
