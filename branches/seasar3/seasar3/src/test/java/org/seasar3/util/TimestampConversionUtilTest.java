@@ -13,7 +13,7 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar3.exception;
+package org.seasar3.util;
 
 import junit.framework.TestCase;
 
@@ -21,13 +21,23 @@ import junit.framework.TestCase;
  * @author higa
  * 
  */
-public class SRuntimeExceptionTest extends TestCase {
+public class TimestampConversionUtilTest extends TestCase {
 
     /**
-     * 
+     * @throws Exception
      */
-    public void test() {
-        SRuntimeException e = new SRuntimeException("ES3Test0002", 1);
-        assertEquals("foo(1)", e.getMessage());
+    public void testToTimestampForTimestamp() throws Exception {
+        java.util.Date value = new java.util.Date();
+        java.sql.Timestamp timestamp = new java.sql.Timestamp(value.getTime());
+        assertEquals(timestamp, TimestampConversionUtil.toTimestamp(timestamp));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public void testToTimestampForDate() throws Exception {
+        java.util.Date value = new java.util.Date();
+        assertEquals(value.getTime(), TimestampConversionUtil
+                .toTimestamp(value).getTime());
     }
 }

@@ -13,35 +13,26 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar3.example;
+package org.seasar3.exception;
 
-import org.seasar3.env.Env;
-import org.seasar3.lookup.Singleton;
+import java.text.ParseException;
+
+import junit.framework.TestCase;
 
 /**
  * @author higa
  * 
  */
-public class SimpleConfig {
-
-    protected String name() {
-        return Env.getStringValue("name");
-    }
+public class ParseRuntimeExceptionTest extends TestCase {
 
     /**
-     * @return <code>Greeting</code>
+     * 
+     * @throws Exception
      */
-    @Singleton
-    public Greeting greeting() {
-        GreetingImpl greeting = new GreetingImpl();
-        greeting.setName(name());
-        return greeting;
-    }
-
-    /**
-     * @return <code>Client</code>
-     */
-    public Client client() {
-        return new Client(greeting());
+    public void testAll() throws Exception {
+        ParseRuntimeException e = new ParseRuntimeException("aaa",
+                new ParseException("hoge", 0));
+        System.out.println(e);
+        assertEquals("aaa", e.getText());
     }
 }

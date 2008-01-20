@@ -290,7 +290,7 @@ public final class Env {
      * Determines if the deployment is HOT. Returns true if the deployment is
      * HOT.
      * 
-     * @return
+     * @return whether the deployment is HOT.
      */
     public static boolean isHotDeployment() {
         return HOT.equals(getDeployment());
@@ -300,7 +300,7 @@ public final class Env {
      * Determines if the deployment is COOL. Returns true if the deployment is
      * COOL.
      * 
-     * @return
+     * @return whether the deployment is COOL.
      */
     public static boolean isCoolDeployment() {
         return COOL.equals(getDeployment());
@@ -310,7 +310,7 @@ public final class Env {
      * Determines if the deployment is WARM. Returns true if the deployment is
      * WARM.
      * 
-     * @return
+     * @return whether the deployment is WARM.
      */
     public static boolean isWarmDeployment() {
         return WARM.equals(getDeployment());

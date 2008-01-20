@@ -1,5 +1,5 @@
 /*
- * Copyright 2004-2007 the Seasar Foundation and the Others.
+ * Copyright 2004-2008 the Seasar Foundation and the Others.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,33 +38,55 @@ import java.util.Set;
 public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
         Cloneable, Externalizable {
 
-    static final long serialVersionUID = 1L;
-
-    private static final int INITIAL_CAPACITY = 17;
-
-    private static final float LOAD_FACTOR = 0.75f;
-
-    private transient int threshold;
-
-    private transient Entry<K, V>[] mapTable;
-
-    private transient Entry<K, V>[] listTable;
-
-    private transient int size = 0;
-
-    private transient Set<Map.Entry<K, V>> entrySet = null;
+    private static final long serialVersionUID = 1L;
 
     /**
-     * Creates new {@link ArrayMap}.
+     * The default initial capacity.
+     */
+    protected static final int INITIAL_CAPACITY = 17;
+
+    /**
+     * The default load factor.
+     */
+    protected static final float LOAD_FACTOR = 0.75f;
+
+    /**
+     * The threshold to extend the capacity.
+     */
+    protected transient int threshold;
+
+    /**
+     * The table of map.
+     */
+    protected transient Entry<K, V>[] mapTable;
+
+    /**
+     * The table of list.
+     */
+    protected transient Entry<K, V>[] listTable;
+
+    /**
+     * The size of entries.
+     */
+    protected transient int size = 0;
+
+    /**
+     * The set of entries.
+     */
+    protected transient Set<Map.Entry<K, V>> entrySet = null;
+
+    /**
+     * Constructor.
      */
     public ArrayMap() {
         this(INITIAL_CAPACITY);
     }
 
     /**
-     * Creates new {@link ArrayMap}.
+     * Constructor.
      * 
      * @param initialCapacity
+     *            the initial capacity.
      */
     public ArrayMap(int initialCapacity) {
         if (initialCapacity <= 0) {
@@ -76,32 +98,37 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
     }
 
     /**
-     * Creates new {@link ArrayMap}.
+     * Constructor.
      * 
      * @param map
+     *            other map.
      */
     public ArrayMap(Map<? extends K, ? extends V> map) {
         this((int) (map.size() / LOAD_FACTOR) + 1);
         putAll(map);
     }
 
+    @Override
     public final int size() {
         return size;
     }
 
+    @Override
     public final boolean isEmpty() {
         return size == 0;
     }
 
+    @Override
     public final boolean containsValue(Object value) {
         return indexOf(value) >= 0;
     }
 
     /**
-     * Returns index in array.
+     * Returns the index of array.
      * 
      * @param value
-     * @return
+     *            the value.
+     * @return the index.
      */
     public final int indexOf(Object value) {
         if (value != null) {
@@ -120,7 +147,8 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
         return -1;
     }
 
-    public boolean containsKey(final Object key) {
+    @Override
+    public boolean containsKey(Object key) {
         Entry<K, V>[] tbl = mapTable;
         if (key != null) {
             int hashCode = key.hashCode();
@@ -140,7 +168,8 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
         return false;
     }
 
-    public V get(final Object key) {
+    @Override
+    public V get(Object key) {
         Entry<K, V>[] tbl = mapTable;
         if (key != null) {
             int hashCode = key.hashCode();
@@ -161,32 +190,35 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
     }
 
     /**
-     * Returns value for index.
+     * Returns the value for index.
      * 
      * @param index
-     * @return
+     *            the index.
+     * @return the value.
      */
-    public final V get(final int index) {
+    public final V get(int index) {
         return getEntry(index).value;
     }
 
     /**
-     * Returns key for index.
+     * Returns the key for index.
      * 
      * @param index
-     * @return
+     *            the index.
+     * @return the key.
      */
-    public final K getKey(final int index) {
+    public final K getKey(int index) {
         return getEntry(index).key;
     }
 
     /**
-     * Returns entry for index.
+     * Returns the entry for index.
      * 
      * @param index
-     * @return
+     *            the index.
+     * @return the entry.
      */
-    public final Entry<K, V> getEntry(final int index) {
+    public final Entry<K, V> getEntry(int index) {
         if (index >= size) {
             throw new IndexOutOfBoundsException("Index:" + index + ", Size:"
                     + size);
@@ -194,7 +226,8 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
         return listTable[index];
     }
 
-    public V put(final K key, final V value) {
+    @Override
+    public V put(K key, V value) {
         int hashCode = 0;
         int index = 0;
 
@@ -222,16 +255,19 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
     }
 
     /**
-     * Sets value for index such as array.
+     * Sets the value for index.
      * 
      * @param index
+     *            the index.
      * @param value
+     *            the value.
      */
-    public final void set(final int index, final V value) {
+    public final void set(int index, V value) {
         getEntry(index).setValue(value);
     }
 
-    public V remove(final Object key) {
+    @Override
+    public V remove(Object key) {
         Entry<K, V> e = removeMap(key);
         if (e != null) {
             V value = e.value;
@@ -243,10 +279,11 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
     }
 
     /**
-     * Removes entry for index.
+     * Removes the entry for index.
      * 
      * @param index
-     * @return
+     *            the index.
+     * @return the removed value.
      */
     public final V remove(int index) {
         Entry<K, V> e = removeList(index);
@@ -256,6 +293,7 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
         return value;
     }
 
+    @Override
     public void putAll(Map<? extends K, ? extends V> map) {
         for (Iterator<? extends Map.Entry<? extends K, ? extends V>> i = map
                 .entrySet().iterator(); i.hasNext();) {
@@ -264,6 +302,7 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
         }
     }
 
+    @Override
     public final void clear() {
         for (int i = 0; i < mapTable.length; i++) {
             mapTable[i] = null;
@@ -275,9 +314,9 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
     }
 
     /**
-     * Converts values to array.
+     * Converts the values to array.
      * 
-     * @return
+     * @return the array.
      */
     public final Object[] toArray() {
         Object[] array = new Object[size];
@@ -288,10 +327,11 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
     }
 
     /**
-     * Converts values to array.
+     * Converts the values to array.
      * 
      * @param proto
-     * @return
+     *            the prototype.
+     * @return the array.
      */
     public final Object[] toArray(final Object proto[]) {
         Object[] array = proto;
@@ -308,6 +348,7 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
         return array;
     }
 
+    @Override
     @SuppressWarnings("unchecked")
     public final boolean equals(Object o) {
         if (!getClass().isInstance(o)) {
@@ -325,13 +366,16 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
         return true;
     }
 
+    @Override
     public final Set<Map.Entry<K, V>> entrySet() {
         if (entrySet == null) {
             entrySet = new AbstractSet<Map.Entry<K, V>>() {
+                @Override
                 public Iterator<Map.Entry<K, V>> iterator() {
                     return new ArrayMapIterator();
                 }
 
+                @Override
                 @SuppressWarnings("unchecked")
                 public boolean contains(Object o) {
                     if (!(o instanceof Entry)) {
@@ -347,6 +391,7 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
                     return false;
                 }
 
+                @Override
                 @SuppressWarnings("unchecked")
                 public boolean remove(Object o) {
                     if (!(o instanceof Entry)) {
@@ -356,10 +401,12 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
                     return ArrayMap.this.remove(entry.key) != null;
                 }
 
+                @Override
                 public int size() {
                     return size;
                 }
 
+                @Override
                 public void clear() {
                     ArrayMap.this.clear();
                 }
@@ -393,6 +440,7 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
         }
     }
 
+    @Override
     public Object clone() {
         ArrayMap<K, V> copy = new ArrayMap<K, V>();
         copy.threshold = threshold;
@@ -569,6 +617,7 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
             next = null;
         }
 
+        @Override
         public boolean equals(final Object o) {
             if (this == o) {
                 return true;
@@ -578,10 +627,12 @@ public class ArrayMap<K, V> extends AbstractMap<K, V> implements Map<K, V>,
                     && (value != null ? value.equals(e.value) : e.value == null);
         }
 
+        @Override
         public int hashCode() {
             return hashCode;
         }
 
+        @Override
         public String toString() {
             return key + "=" + value;
         }

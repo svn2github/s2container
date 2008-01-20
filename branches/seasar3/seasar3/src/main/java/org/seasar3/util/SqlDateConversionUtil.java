@@ -13,21 +13,36 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar3.exception;
+package org.seasar3.util;
 
-import junit.framework.TestCase;
+import java.sql.Date;
 
 /**
+ * A utility class for {@link Date}.
+ * 
  * @author higa
  * 
  */
-public class SRuntimeExceptionTest extends TestCase {
+public final class SqlDateConversionUtil {
+
+    private SqlDateConversionUtil() {
+    }
 
     /**
+     * Converts an object to the sql date value.
      * 
+     * @param o
+     *            an object.
+     * @return the sql date value.
      */
-    public void test() {
-        SRuntimeException e = new SRuntimeException("ES3Test0002", 1);
-        assertEquals("foo(1)", e.getMessage());
+    public static Date toDate(Object o) {
+        if (o instanceof Date) {
+            return (Date) o;
+        }
+        java.util.Date date = DateConversionUtil.toDate(o);
+        if (date != null) {
+            return new Date(date.getTime());
+        }
+        return null;
     }
 }

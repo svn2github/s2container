@@ -1,5 +1,5 @@
 /*
- * Copyright 2004-2007 the Seasar Foundation and the Others.
+ * Copyright 2004-2008 the Seasar Foundation and the Others.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,27 +13,36 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar3.example;
+package org.seasar3.util;
+
+import java.sql.Time;
 
 /**
+ * A utility class for {@link Time}.
+ * 
  * @author higa
  * 
  */
-public class Client {
+public final class TimeConversionUtil {
 
-    private Greeting greeting;
-
-    /**
-     * @param greeting
-     */
-    public Client(Greeting greeting) {
-        this.greeting = greeting;
+    private TimeConversionUtil() {
     }
 
     /**
+     * Converts an object to the time value.
      * 
+     * @param o
+     *            an object.
+     * @return the time value.
      */
-    public void execute() {
-        System.out.println(greeting.greet());
+    public static Time toTime(Object o) {
+        if (o instanceof Time) {
+            return (Time) o;
+        }
+        java.util.Date date = DateConversionUtil.toDate(o);
+        if (date != null) {
+            return new Time(date.getTime());
+        }
+        return null;
     }
 }

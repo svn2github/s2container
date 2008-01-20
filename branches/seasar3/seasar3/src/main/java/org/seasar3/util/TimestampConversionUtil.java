@@ -13,21 +13,36 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar3.exception;
+package org.seasar3.util;
 
-import junit.framework.TestCase;
+import java.sql.Timestamp;
 
 /**
+ * A utility class for {@link Timestamp}.
+ * 
  * @author higa
  * 
  */
-public class SRuntimeExceptionTest extends TestCase {
+public final class TimestampConversionUtil {
+
+    private TimestampConversionUtil() {
+    }
 
     /**
+     * Converts an object to the timestamp value.
      * 
+     * @param o
+     *            an object.
+     * @return the timestamp value.
      */
-    public void test() {
-        SRuntimeException e = new SRuntimeException("ES3Test0002", 1);
-        assertEquals("foo(1)", e.getMessage());
+    public static Timestamp toTimestamp(Object o) {
+        if (o instanceof Timestamp) {
+            return (Timestamp) o;
+        }
+        java.util.Date date = DateConversionUtil.toDate(o);
+        if (date != null) {
+            return new Timestamp(date.getTime());
+        }
+        return null;
     }
 }

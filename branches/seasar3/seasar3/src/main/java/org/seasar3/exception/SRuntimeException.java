@@ -1,5 +1,5 @@
 /*
- * Copyright 2004-2007 the Seasar Foundation and the Others.
+ * Copyright 2004-2008 the Seasar Foundation and the Others.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 package org.seasar3.exception;
 
-import org.seasar3.core.MessageBuilder;
+import org.seasar3.message.MessageBuilder;
 
 /**
  * A base exception class of Seasar3.
@@ -32,30 +32,26 @@ public class SRuntimeException extends RuntimeException {
     private Object[] args;
 
     /**
-     * Creates {@link SRuntimeException}.
+     * Constructor.
      * 
      * @param messageCode
-     */
-    public SRuntimeException(String messageCode) {
-        this(null, messageCode, (Object[]) null);
-    }
-
-    /**
-     * Creates {@link SRuntimeException}.
-     * 
-     * @param messageCode
+     *            the message code.
      * @param args
+     *            the arguments.
      */
     public SRuntimeException(String messageCode, Object... args) {
         this(null, messageCode, args);
     }
 
     /**
-     * Creates {@link SRuntimeException}.
+     * Constructor.
      * 
      * @param cause
+     *            the cause.
      * @param messageCode
+     *            the message code.
      * @param args
+     *            the arguments.
      */
     public SRuntimeException(Throwable cause, String messageCode,
             Object... args) {
@@ -66,18 +62,18 @@ public class SRuntimeException extends RuntimeException {
     }
 
     /**
-     * Returns message code.
+     * Returns the message code.
      * 
-     * @return
+     * @return the message code.
      */
     public String getMessageCode() {
         return messageCode;
     }
 
     /**
-     * Returns arguments.
+     * Returns the arguments.
      * 
-     * @return
+     * @return the arguments.
      */
     public Object[] getArgs() {
         return args;

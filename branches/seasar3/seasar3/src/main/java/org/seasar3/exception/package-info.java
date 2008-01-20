@@ -15,6 +15,6 @@
  */
 
 /**
- * Exceptions.
+ * This package provides Seasar2 exceptions.
  */
 package org.seasar3.exception;

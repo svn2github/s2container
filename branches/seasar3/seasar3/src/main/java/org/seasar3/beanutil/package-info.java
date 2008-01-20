@@ -15,6 +15,6 @@
  */
 
 /**
- * This package provides the message feature.
+ * This package provides the utility for Java Bean.
  */
-package org.seasar3.message;
+package org.seasar3.beanutil;
