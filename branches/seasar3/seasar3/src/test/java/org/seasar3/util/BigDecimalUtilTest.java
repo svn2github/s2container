@@ -15,34 +15,36 @@
  */
 package org.seasar3.util;
 
-import java.sql.Time;
+import java.math.BigDecimal;
+
+import junit.framework.TestCase;
 
 /**
- * A utility class for {@link Time}.
- * 
  * @author higa
- * @version 3.0
+ * 
  */
-public final class TimeUtil {
+public class BigDecimalUtilTest extends TestCase {
 
-    private TimeUtil() {
+    /**
+     * @throws Exception
+     */
+    public void testToBigDecimalForNull() throws Exception {
+        assertNull(BigDecimalUtil.toBigDecimal(null));
     }
 
     /**
-     * Converts an object to the time value.
-     * 
-     * @param o
-     *            an object.
-     * @return the time value.
+     * @throws Exception
      */
-    public static Time toTime(Object o) {
-        if (o instanceof Time) {
-            return (Time) o;
-        }
-        java.util.Date date = DateUtil.toDate(o);
-        if (date != null) {
-            return new Time(date.getTime());
-        }
-        return null;
+    public void testToBigDecimalForBigDecimal() throws Exception {
+        BigDecimal value = new BigDecimal(1);
+        assertSame(value, BigDecimalUtil.toBigDecimal(value));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public void testToBigDecimalForString() throws Exception {
+        BigDecimal value = new BigDecimal("1");
+        assertEquals(value, BigDecimalUtil.toBigDecimal("1"));
     }
 }

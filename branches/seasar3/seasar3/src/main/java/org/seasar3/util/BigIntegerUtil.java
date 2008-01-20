@@ -15,34 +15,33 @@
  */
 package org.seasar3.util;
 
-import java.sql.Time;
+import java.math.BigInteger;
 
 /**
- * A utility class for {@link Time}.
+ * A utility class for {@link BigInteger}.
  * 
  * @author higa
  * @version 3.0
  */
-public final class TimeUtil {
+public final class BigIntegerUtil {
 
-    private TimeUtil() {
+    private BigIntegerUtil() {
     }
 
     /**
-     * Converts an object to the time value.
+     * Converts an object to the big integer value.
      * 
      * @param o
      *            an object.
-     * @return the time value.
+     * @return the big integer value.
      */
-    public static Time toTime(Object o) {
-        if (o instanceof Time) {
-            return (Time) o;
+    public static BigInteger toBigInteger(Object o) {
+        if (o == null) {
+            return null;
+        } else if (o instanceof BigInteger) {
+            return (BigInteger) o;
+        } else {
+            return new BigInteger(o.toString());
         }
-        java.util.Date date = DateUtil.toDate(o);
-        if (date != null) {
-            return new Time(date.getTime());
-        }
-        return null;
     }
 }

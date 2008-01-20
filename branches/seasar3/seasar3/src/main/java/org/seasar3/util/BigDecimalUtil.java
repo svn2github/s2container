@@ -15,34 +15,33 @@
  */
 package org.seasar3.util;
 
-import java.sql.Time;
+import java.math.BigDecimal;
 
 /**
- * A utility class for {@link Time}.
+ * A utility class for {@link BigDecimal}.
  * 
  * @author higa
  * @version 3.0
  */
-public final class TimeUtil {
+public final class BigDecimalUtil {
 
-    private TimeUtil() {
+    private BigDecimalUtil() {
     }
 
     /**
-     * Converts an object to the time value.
+     * Converts an object to the big decimal value.
      * 
      * @param o
      *            an object.
-     * @return the time value.
+     * @return the big decimal value.
      */
-    public static Time toTime(Object o) {
-        if (o instanceof Time) {
-            return (Time) o;
+    public static BigDecimal toBigDecimal(Object o) {
+        if (o == null) {
+            return null;
+        } else if (o instanceof BigDecimal) {
+            return (BigDecimal) o;
+        } else {
+            return new BigDecimal(o.toString());
         }
-        java.util.Date date = DateUtil.toDate(o);
-        if (date != null) {
-            return new Time(date.getTime());
-        }
-        return null;
     }
 }

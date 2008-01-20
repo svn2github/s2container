@@ -22,7 +22,7 @@ import java.util.Map;
  * This class is case insensitive to key.
  * 
  * @author higa
- * 
+ * @version 3.0
  */
 public final class CaseInsensitiveMap extends ArrayMap<String, Object> {
 

@@ -19,7 +19,7 @@ package org.seasar3.util;
  * A utility class for {@link Integer}.
  * 
  * @author higa
- * 
+ * @version 3.0
  */
 public final class IntegerUtil {
 

@@ -19,7 +19,7 @@ package org.seasar3.util;
  * A utility class for {@link Float}.
  * 
  * @author higa
- * 
+ * @version 3.0
  */
 public final class FloatUtil {
 

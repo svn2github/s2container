@@ -27,7 +27,7 @@ import org.seasar3.exception.ParseRuntimeException;
  * A utility class for {@link Date}.
  * 
  * @author higa
- * 
+ * @version 3.0
  */
 public final class DateUtil {
 
