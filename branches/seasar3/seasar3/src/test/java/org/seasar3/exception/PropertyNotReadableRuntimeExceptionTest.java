@@ -14,25 +14,24 @@
  * governing permissions and limitations under the License.
  */
 package org.seasar3.exception;
-import java.text.ParseException;
-
-import junit.framework.TestCase;
+import junit.framework.TestCase;
 
 
 /**
  * @author higa
  * 
  */
-public class ParseRuntimeExceptionTest extends TestCase {
+public class PropertyNotReadableRuntimeExceptionTest extends TestCase {
 
     /**
      * 
      * @throws Exception
      */
     public void testAll() throws Exception {
-        ParseRuntimeException e = new ParseRuntimeException("aaa",
-                new ParseException("hoge", 0));
+        PropertyNotReadableRuntimeException e = new PropertyNotReadableRuntimeException(
+                getClass(), "aaa");
         System.out.println(e);
-        assertEquals("aaa", e.getText());
+        assertEquals(getClass(), e.getBeanClass());
+        assertEquals("aaa", e.getPropertyName());
     }
 }

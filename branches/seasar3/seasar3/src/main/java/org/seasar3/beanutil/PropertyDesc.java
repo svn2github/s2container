@@ -18,13 +18,15 @@ package org.seasar3.beanutil;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.sql.Time;
-import java.sql.Timestamp;
+import java.lang.reflect.Modifier;
 import java.util.Collection;
 import java.util.Map;
 
-import sun.reflect.misc.ConstructorUtil;
-import sun.reflect.misc.FieldUtil;
+import org.seasar3.exception.PropertyCouldNotReadRuntimeException;
+import org.seasar3.exception.PropertyCouldNotWriteRuntimeException;
+import org.seasar3.exception.PropertyNotReadableRuntimeException;
+import org.seasar3.exception.PropertyNotWritableRuntimeException;
+
 import sun.reflect.misc.MethodUtil;
 
 /**
@@ -35,19 +37,17 @@ import sun.reflect.misc.MethodUtil;
  */
 public final class PropertyDesc {
 
-    private static final Object[] EMPTY_ARGS = new Object[0];
-
     private String propertyName;
 
-    private Class<?> propertyType;
+    private Class<?> propertyClass;
+
+    private Class<?> beanClass;
 
     private Method readMethod;
 
     private Method writeMethod;
 
     private Field field;
-
-    private BeanDesc beanDesc;
 
     private Constructor<?> stringConstructor;
 
@@ -60,19 +60,28 @@ public final class PropertyDesc {
     private ParameterizedClassDesc parameterizedClassDesc;
 
     /**
-     * {@link PropertyDesc}を作成します。
+     * Constructor.
      * 
      * @param propertyName
-     * @param propertyType
-     * @param readMethod
-     * @param writeMethod
-     * @param beanDesc
+     *            the property name.
+     * @param propertyClass
+     *            the property class.
+     * @param beanClass
+     *            the bean class.
      */
-    public PropertyDesc(String propertyName, Class propertyType,
-            Method readMethod, Method writeMethod, BeanDesc beanDesc) {
-
-        this(propertyName, propertyType, readMethod, writeMethod, null,
-                beanDesc);
+    PropertyDesc(String propertyName, Class<?> propertyClass, Class<?> beanClass) {
+        if (propertyName == null) {
+            throw new NullPointerException("propertyName");
+        }
+        if (propertyClass == null) {
+            throw new NullPointerException("propertyClass");
+        }
+        if (beanClass == null) {
+            throw new NullPointerException("beanClass");
+        }
+        this.propertyName = propertyName;
+        this.propertyClass = propertyClass;
+        this.beanClass = beanClass;
     }
 
     /**
@@ -136,164 +145,153 @@ public final class PropertyDesc {
         }
     }
 
-    public final String getPropertyName() {
+    /**
+     * Returns the property name.
+     * 
+     * @return the property name.
+     */
+    public String getPropertyName() {
         return propertyName;
     }
 
-    public final Class getPropertyType() {
-        return propertyType;
+    /**
+     * Returns the property class.
+     * 
+     * @return the property class.
+     */
+    public Class<?> getPropertyClass() {
+        return propertyClass;
     }
 
-    public final Method getReadMethod() {
+    /**
+     * Returns the bean class.
+     * 
+     * @return the bean class.
+     */
+    public Class<?> getBeanClass() {
+        return beanClass;
+    }
+
+    /**
+     * Returns the read method.
+     * 
+     * @return the read method.
+     */
+    public Method getReadMethod() {
         return readMethod;
     }
 
-    public final void setReadMethod(Method readMethod) {
+    /**
+     * Determines if this property is readable.
+     * 
+     * @return whether this property is readable.
+     */
+    public boolean isReadable() {
+        return readable;
+    }
+
+    void setReadMethod(Method readMethod) {
         this.readMethod = readMethod;
         if (readMethod != null) {
             readable = true;
         }
     }
 
-    public final boolean hasReadMethod() {
-        return readMethod != null;
-    }
-
-    public final Method getWriteMethod() {
+    /**
+     * Returns the write method.
+     * 
+     * @return the write method.
+     */
+    public Method getWriteMethod() {
         return writeMethod;
     }
 
-    public final void setWriteMethod(Method writeMethod) {
+    /**
+     * Determines if this property is writable.
+     * 
+     * @return whether this property is writable.
+     */
+    public boolean isWritable() {
+        return writable;
+    }
+
+    void setWriteMethod(Method writeMethod) {
         this.writeMethod = writeMethod;
         if (writeMethod != null) {
             writable = true;
         }
     }
 
-    public final boolean hasWriteMethod() {
-        return writeMethod != null;
-    }
-
+    /**
+     * Returns the field.
+     * 
+     * @return the field.
+     */
     public Field getField() {
         return field;
     }
 
-    public void setField(Field field) {
+    void setField(Field field) {
         this.field = field;
-        if (field != null && ModifierUtil.isPublic(field)) {
-            readable = true;
-            writable = true;
+        if (field != null) {
+            field.setAccessible(true);
+            if (Modifier.isPublic(field.getModifiers())) {
+                readable = true;
+                writable = true;
+            }
         }
     }
 
-    public boolean isReadable() {
-        return readable;
-    }
-
-    public boolean isWritable() {
-        return writable;
-    }
-
-    public final Object getValue(Object target) {
+    /**
+     * Returns the value.
+     * 
+     * @param target
+     *            the bean instance.
+     * @return the value.
+     */
+    public Object getValue(Object target) {
+        if (!readable) {
+            throw new PropertyNotReadableRuntimeException(beanClass,
+                    propertyName);
+        }
         try {
-            if (!readable) {
-                throw new IllegalStateException(propertyName
-                        + " is not readable.");
-            } else if (hasReadMethod()) {
-                return MethodUtil.invoke(readMethod, target, EMPTY_ARGS);
-            } else {
-                return FieldUtil.get(field, target);
+            if (readMethod != null) {
+                return readMethod.invoke(target);
             }
+            return field.get(target);
         } catch (Throwable t) {
-            throw new IllegalPropertyRuntimeException(beanDesc.getBeanClass(),
+            throw new PropertyCouldNotReadRuntimeException(beanClass,
                     propertyName, t);
         }
     }
 
-    public final void setValue(Object target, Object value) {
+    /**
+     * Sets the value.
+     * 
+     * @param target
+     *            the bean instance.
+     * @param value
+     *            the value.
+     */
+    public void setValue(Object target, Object value) {
+        if (!writable) {
+            throw new PropertyNotWritableRuntimeException(beanClass,
+                    propertyName);
+        }
         try {
-            value = convertIfNeed(value);
-            if (!writable) {
-                throw new IllegalStateException(propertyName
-                        + " is not writable.");
-            } else if (hasWriteMethod()) {
-                MethodUtil.invoke(writeMethod, target, new Object[] { value });
+            value = ConversionUtil.convert(value, propertyClass);
+            if (writeMethod != null) {
+                writeMethod.invoke(target, value);
             } else {
-                FieldUtil.set(field, target, value);
+                field.set(target, value);
             }
         } catch (Throwable t) {
-            throw new IllegalPropertyRuntimeException(beanDesc.getBeanClass(),
-                    propertyName, t);
+            if (t.getClass() == RuntimeException.class) {
+                t = t.getCause();
+            }
+            throw new PropertyCouldNotWriteRuntimeException(beanClass,
+                    propertyName, value, t);
         }
-    }
-
-    public BeanDesc getBeanDesc() {
-        return beanDesc;
-    }
-
-    public final String toString() {
-        StringBuffer buf = new StringBuffer();
-        buf.append("propertyName=");
-        buf.append(propertyName);
-        buf.append(",propertyType=");
-        buf.append(propertyType.getName());
-        buf.append(",readMethod=");
-        buf.append(readMethod != null ? readMethod.getName() : "null");
-        buf.append(",writeMethod=");
-        buf.append(writeMethod != null ? writeMethod.getName() : "null");
-        return buf.toString();
-    }
-
-    public Object convertIfNeed(Object arg) {
-        if (propertyType.isPrimitive()) {
-            return convertPrimitiveWrapper(arg);
-        } else if (Number.class.isAssignableFrom(propertyType)) {
-            return convertNumber(arg);
-        } else if (java.util.Date.class.isAssignableFrom(propertyType)) {
-            return convertDate(arg);
-        } else if (Boolean.class.isAssignableFrom(propertyType)) {
-            return BooleanUtil.toBoolean(arg);
-        } else if (arg != null && arg.getClass() != String.class
-                && String.class == propertyType) {
-            return arg.toString();
-        } else if (arg instanceof String && !String.class.equals(propertyType)) {
-            return convertWithString(arg);
-        } else if (java.util.Calendar.class.isAssignableFrom(propertyType)) {
-            return CalendarConversionUtil.toCalendar(arg);
-        }
-        return arg;
-    }
-
-    private Object convertPrimitiveWrapper(Object arg) {
-        return NumberConversionUtil.convertPrimitiveWrapper(propertyType, arg);
-    }
-
-    private Object convertNumber(Object arg) {
-        return NumberConversionUtil.convertNumber(propertyType, arg);
-    }
-
-    private Object convertDate(Object arg) {
-        if (propertyType == java.util.Date.class) {
-            return DateUtil.toDate(arg);
-        } else if (propertyType == Timestamp.class) {
-            return TimestampUtil.toTimestamp(arg);
-        } else if (propertyType == java.sql.Date.class) {
-            return SqlDateUtil.toDate(arg);
-        } else if (propertyType == Time.class) {
-            return TimeUtil.toTime(arg);
-        }
-        return arg;
-    }
-
-    private Object convertWithString(Object arg) {
-        if (stringConstructor != null) {
-            return ConstructorUtil.newInstance(stringConstructor,
-                    new Object[] { arg });
-        }
-        if (valueOfMethod != null) {
-            return MethodUtil.invoke(valueOfMethod, null, new Object[] { arg });
-        }
-        return arg;
     }
 
     public boolean isParameterized() {

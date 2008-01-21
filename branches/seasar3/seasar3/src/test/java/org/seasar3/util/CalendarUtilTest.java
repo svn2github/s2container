@@ -13,26 +13,38 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar3.exception;
-import java.text.ParseException;
+package org.seasar3.util;
+
+import java.util.Calendar;
 
 import junit.framework.TestCase;
-
 
 /**
  * @author higa
  * 
  */
-public class ParseRuntimeExceptionTest extends TestCase {
+public class CalendarUtilTest extends TestCase {
 
     /**
-     * 
      * @throws Exception
      */
-    public void testAll() throws Exception {
-        ParseRuntimeException e = new ParseRuntimeException("aaa",
-                new ParseException("hoge", 0));
-        System.out.println(e);
-        assertEquals("aaa", e.getText());
+    public void testToCalendarForNull() throws Exception {
+        assertNull(CalendarUtil.toCalendar(null));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public void testToCalendarForCalendar() throws Exception {
+        Calendar cal = Calendar.getInstance();
+        assertSame(cal, CalendarUtil.toCalendar(cal));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public void testToCalendarForDate() throws Exception {
+        java.util.Date value = new java.util.Date();
+        assertEquals(value, CalendarUtil.toCalendar(value).getTime());
     }
 }
