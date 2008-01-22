@@ -37,7 +37,13 @@ public class TimeUtilTest extends TestCase {
      */
     public void testToTimeForDate() throws Exception {
         java.util.Date value = new java.util.Date();
-        assertEquals(value.getTime(), TimeUtil.toTime(value)
-                .getTime());
+        assertEquals(value.getTime(), TimeUtil.toTime(value).getTime());
+    }
+
+    /**
+     * @throws Exception
+     */
+    public void testToTimeForEmptyString() throws Exception {
+        assertNull(TimeUtil.toTime(""));
     }
 }

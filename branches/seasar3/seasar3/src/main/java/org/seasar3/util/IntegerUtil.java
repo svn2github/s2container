@@ -41,7 +41,11 @@ public final class IntegerUtil {
         } else if (o instanceof Number) {
             return Integer.valueOf(((Number) o).intValue());
         } else if (o instanceof String) {
-            return Integer.valueOf((String) o);
+            String s = (String) o;
+            if (StringUtil.isEmpty(s)) {
+                return null;
+            }
+            return Integer.valueOf(s);
         } else if (o instanceof Boolean) {
             return ((Boolean) o).booleanValue() ? Integer.valueOf(1) : Integer
                     .valueOf(0);

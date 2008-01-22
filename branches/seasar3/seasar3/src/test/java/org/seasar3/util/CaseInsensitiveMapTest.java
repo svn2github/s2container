@@ -23,11 +23,11 @@ import junit.framework.TestCase;
  */
 public class CaseInsensitiveMapTest extends TestCase {
 
-    private CaseInsensitiveMap map;
+    private CaseInsensitiveMap<String> map;
 
     @Override
     protected void setUp() throws Exception {
-        map = new CaseInsensitiveMap();
+        map = new CaseInsensitiveMap<String>();
         map.put("one", "1");
         map.put("two", "2");
     }
@@ -76,7 +76,7 @@ public class CaseInsensitiveMapTest extends TestCase {
      * @throws Exception
      */
     public void testPutAll() throws Exception {
-        CaseInsensitiveMap m = new CaseInsensitiveMap();
+        CaseInsensitiveMap<String> m = new CaseInsensitiveMap<String>();
         m.put("three", "3");
         m.put("four", "4");
         map.putAll(m);

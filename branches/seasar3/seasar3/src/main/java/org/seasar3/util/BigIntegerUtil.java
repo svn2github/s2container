@@ -40,6 +40,12 @@ public final class BigIntegerUtil {
             return null;
         } else if (o instanceof BigInteger) {
             return (BigInteger) o;
+        } else if (o instanceof String) {
+            String s = (String) o;
+            if (StringUtil.isEmpty(s)) {
+                return null;
+            }
+            return new BigInteger(s);
         } else {
             return new BigInteger(o.toString());
         }

@@ -15,6 +15,12 @@
  */
 package org.seasar3.beanutil;
 
+import java.lang.reflect.Type;
+import java.util.Collection;
+import java.util.Map;
+
+import org.seasar3.util.GenericsUtil;
+
 /**
  * 
  * This class describes one parameterized class.
@@ -30,6 +36,29 @@ public final class ParameterizedClassDesc {
     private ParameterizedClassDesc[] arguments;
 
     /**
+     * Creates the parameterized class descriptor.
+     * 
+     * @param type
+     *            the type.
+     * @return the parameterized class descriptor.
+     */
+    public static ParameterizedClassDesc create(Type type) {
+        Class<?> rawClass = GenericsUtil.getRawClass(type);
+        if (rawClass == null) {
+            return null;
+        }
+        ParameterizedClassDesc[] arguments = null;
+        Type[] typeArguments = GenericsUtil.getTypeArguments(type);
+        if (typeArguments != null) {
+            arguments = new ParameterizedClassDesc[typeArguments.length];
+            for (int i = 0; i < arguments.length; ++i) {
+                arguments[i] = create(typeArguments[i]);
+            }
+        }
+        return new ParameterizedClassDesc(rawClass, arguments);
+    }
+
+    /**
      * Constructor.
      * 
      * @param rawClass
@@ -37,19 +66,18 @@ public final class ParameterizedClassDesc {
      * @param arguments
      *            the array of {@link ParameterizedClassDesc}.
      */
-    public ParameterizedClassDesc(Class<?> rawClass,
-            ParameterizedClassDesc[] arguments) {
+    ParameterizedClassDesc(Class<?> rawClass, ParameterizedClassDesc[] arguments) {
         this.rawClass = rawClass;
         this.arguments = arguments;
     }
 
     /**
-     * Determines if the property is a parameterized class. Returns true if the
-     * property is a parameterized class.
+     * Determines if the property is a parameterized. Returns true if the
+     * property is a parameterized.
      * 
-     * @return whether the property is a parameterized class.
+     * @return whether the property is a parameterized.
      */
-    public boolean isParameterizedClass() {
+    public boolean isParameterized() {
         return arguments != null;
     }
 
@@ -69,5 +97,41 @@ public final class ParameterizedClassDesc {
      */
     public ParameterizedClassDesc[] getArguments() {
         return arguments;
+    }
+
+    /**
+     * Returns the element class of collection.
+     * 
+     * @return the element class of collection.
+     */
+    public Class<?> getElementClassOfCollection() {
+        if (!Collection.class.isAssignableFrom(rawClass) || !isParameterized()) {
+            return null;
+        }
+        return arguments[0].getRawClass();
+    }
+
+    /**
+     * Returns the key class of map.
+     * 
+     * @return the key class of map.
+     */
+    public Class<?> getKeyClassOfMap() {
+        if (!Map.class.isAssignableFrom(rawClass) || !isParameterized()) {
+            return null;
+        }
+        return arguments[0].getRawClass();
+    }
+
+    /**
+     * Returns the value class of map.
+     * 
+     * @return the value class of map.
+     */
+    public Class<?> getValueClassOfMap() {
+        if (!Map.class.isAssignableFrom(rawClass) || !isParameterized()) {
+            return null;
+        }
+        return arguments[1].getRawClass();
     }
 }

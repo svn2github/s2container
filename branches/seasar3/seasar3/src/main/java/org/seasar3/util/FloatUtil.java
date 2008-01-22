@@ -41,7 +41,11 @@ public final class FloatUtil {
         } else if (o instanceof Number) {
             return Float.valueOf(((Number) o).floatValue());
         } else if (o instanceof String) {
-            return Float.valueOf((String) o);
+            String s = (String) o;
+            if (StringUtil.isEmpty(s)) {
+                return null;
+            }
+            return Float.valueOf(s);
         } else if (o instanceof Boolean) {
             return ((Boolean) o).booleanValue() ? Float.valueOf(1) : Float
                     .valueOf(0);

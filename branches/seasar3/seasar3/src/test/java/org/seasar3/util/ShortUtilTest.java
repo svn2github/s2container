@@ -57,16 +57,14 @@ public class ShortUtilTest extends TestCase {
      * @throws Exception
      */
     public void testToShortForTrue() throws Exception {
-        assertEquals((short) 1, ShortUtil.toShort(Boolean.TRUE)
-                .shortValue());
+        assertEquals((short) 1, ShortUtil.toShort(Boolean.TRUE).shortValue());
     }
 
     /**
      * @throws Exception
      */
     public void testToShortForFalse() throws Exception {
-        assertEquals((short) 0, ShortUtil.toShort(Boolean.FALSE)
-                .shortValue());
+        assertEquals((short) 0, ShortUtil.toShort(Boolean.FALSE).shortValue());
     }
 
     /**
@@ -107,16 +105,14 @@ public class ShortUtilTest extends TestCase {
      * @throws Exception
      */
     public void testToPrimitiveShortForTrue() throws Exception {
-        assertEquals((short) 1, ShortUtil
-                .toPrimitiveShort(Boolean.TRUE));
+        assertEquals((short) 1, ShortUtil.toPrimitiveShort(Boolean.TRUE));
     }
 
     /**
      * @throws Exception
      */
     public void testToPrimitiveShortForFalse() throws Exception {
-        assertEquals((short) 0, ShortUtil
-                .toPrimitiveShort(Boolean.FALSE));
+        assertEquals((short) 0, ShortUtil.toPrimitiveShort(Boolean.FALSE));
     }
 
     /**
@@ -129,5 +125,12 @@ public class ShortUtilTest extends TestCase {
         } catch (NumberFormatException e) {
             System.out.println(e);
         }
+    }
+
+    /**
+     * @throws Exception
+     */
+    public void testToShortForEmptyString() throws Exception {
+        assertNull(ShortUtil.toShort(""));
     }
 }

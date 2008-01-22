@@ -65,6 +65,9 @@ public final class DateUtil {
      * @return the date value.
      */
     protected static Date toDate(String text, Locale locale) {
+        if (StringUtil.isEmpty(text)) {
+            return null;
+        }
         try {
             DateFormat df = DateFormat
                     .getDateInstance(DateFormat.SHORT, locale);

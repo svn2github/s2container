@@ -15,22 +15,17 @@
  */
 package org.seasar3.beanutil;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.Collection;
-import java.util.Map;
 
 import org.seasar3.exception.PropertyCouldNotReadRuntimeException;
 import org.seasar3.exception.PropertyCouldNotWriteRuntimeException;
 import org.seasar3.exception.PropertyNotReadableRuntimeException;
 import org.seasar3.exception.PropertyNotWritableRuntimeException;
 
-import sun.reflect.misc.MethodUtil;
-
 /**
- * This class describes one property that a Java Bean has.
+ * This class describes one property which a Java Bean has.
  * 
  * @author higa
  * @since 3.0
@@ -48,10 +43,6 @@ public final class PropertyDesc {
     private Method writeMethod;
 
     private Field field;
-
-    private Constructor<?> stringConstructor;
-
-    private Method valueOfMethod;
 
     private boolean readable = false;
 
@@ -82,67 +73,6 @@ public final class PropertyDesc {
         this.propertyName = propertyName;
         this.propertyClass = propertyClass;
         this.beanClass = beanClass;
-    }
-
-    /**
-     * {@link PropertyDesc}を作成します。
-     * 
-     * @param propertyName
-     * @param propertyType
-     * @param readMethod
-     * @param writeMethod
-     * @param field
-     * @param beanDesc
-     */
-    public PropertyDesc(String propertyName, Class propertyType,
-            Method readMethod, Method writeMethod, Field field,
-            BeanDesc beanDesc) {
-
-        if (propertyName == null) {
-            throw new EmptyRuntimeException("propertyName");
-        }
-        if (propertyType == null) {
-            throw new EmptyRuntimeException("propertyType");
-        }
-        this.propertyName = propertyName;
-        this.propertyType = propertyType;
-        setReadMethod(readMethod);
-        setWriteMethod(writeMethod);
-        setField(field);
-        this.beanDesc = beanDesc;
-        setupStringConstructor();
-        setupValueOfMethod();
-        setUpParameterizedClassDesc();
-    }
-
-    private void setupStringConstructor() {
-        Constructor[] cons = propertyType.getConstructors();
-        for (int i = 0; i < cons.length; ++i) {
-            Constructor con = cons[i];
-            if (con.getParameterTypes().length == 1
-                    && con.getParameterTypes()[0].equals(String.class)) {
-                stringConstructor = con;
-                break;
-            }
-        }
-    }
-
-    private void setupValueOfMethod() {
-        Method[] methods = propertyType.getMethods();
-        for (int i = 0; i < methods.length; ++i) {
-            Method method = methods[i];
-            if (MethodUtil.isBridgeMethod(method)
-                    || MethodUtil.isSyntheticMethod(method)) {
-                continue;
-            }
-            if (ModifierUtil.isStatic(method.getModifiers())
-                    && method.getName().equals("valueOf")
-                    && method.getParameterTypes().length == 1
-                    && method.getParameterTypes()[0].equals(String.class)) {
-                valueOfMethod = method;
-                break;
-            }
-        }
     }
 
     /**
@@ -194,6 +124,10 @@ public final class PropertyDesc {
         this.readMethod = readMethod;
         if (readMethod != null) {
             readable = true;
+            if (parameterizedClassDesc == null) {
+                parameterizedClassDesc = ParameterizedClassDesc
+                        .create(readMethod.getGenericReturnType());
+            }
         }
     }
 
@@ -219,6 +153,10 @@ public final class PropertyDesc {
         this.writeMethod = writeMethod;
         if (writeMethod != null) {
             writable = true;
+            if (parameterizedClassDesc == null) {
+                parameterizedClassDesc = ParameterizedClassDesc
+                        .create(writeMethod.getGenericParameterTypes()[0]);
+            }
         }
     }
 
@@ -238,6 +176,10 @@ public final class PropertyDesc {
             if (Modifier.isPublic(field.getModifiers())) {
                 readable = true;
                 writable = true;
+                if (parameterizedClassDesc == null) {
+                    parameterizedClassDesc = ParameterizedClassDesc
+                            .create(field.getGenericType());
+                }
             }
         }
     }
@@ -294,35 +236,12 @@ public final class PropertyDesc {
         }
     }
 
-    public boolean isParameterized() {
-        return parameterizedClassDesc != null
-                && parameterizedClassDesc.isParameterizedClass();
-    }
-
+    /**
+     * Returns the parameterized class descriptor.
+     * 
+     * @return the parameterized class descriptor.
+     */
     public ParameterizedClassDesc getParameterizedClassDesc() {
         return parameterizedClassDesc;
     }
-
-    public Class getElementClassOfCollection() {
-        if (!Collection.class.isAssignableFrom(propertyType)
-                || !isParameterized()) {
-            return null;
-        }
-        return parameterizedClassDesc.getArguments()[0].getRawClass();
-    }
-
-    public Class getKeyClassOfMap() {
-        if (!Map.class.isAssignableFrom(propertyType) || !isParameterized()) {
-            return null;
-        }
-        return parameterizedClassDesc.getArguments()[0].getRawClass();
-    }
-
-    public Class getValueClassOfMap() {
-        if (!Map.class.isAssignableFrom(propertyType) || !isParameterized()) {
-            return null;
-        }
-        return parameterizedClassDesc.getArguments()[1].getRawClass();
-    }
-
 }

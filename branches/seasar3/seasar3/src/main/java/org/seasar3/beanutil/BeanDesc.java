@@ -37,8 +37,15 @@ import javassist.bytecode.annotation.Annotation;
 import javassist.bytecode.annotation.StringMemberValue;
 
 import org.seasar3.util.ArrayMap;
+import org.seasar3.util.CaseInsensitiveMap;
 import org.seasar3.util.ClassPoolUtil;
 import org.seasar3.util.ClassUtil;
+import org.seasar3.util.DoubleUtil;
+import org.seasar3.util.FloatUtil;
+import org.seasar3.util.IntegerUtil;
+import org.seasar3.util.LongUtil;
+import org.seasar3.util.ShortUtil;
+import org.seasar3.util.StringUtil;
 
 import sun.reflect.misc.ConstructorUtil;
 import sun.reflect.misc.FieldUtil;
@@ -52,45 +59,94 @@ import sun.reflect.misc.MethodUtil;
  */
 public final class BeanDesc {
 
-    private static final Object[] EMPTY_ARGS = new Object[0];
+    private Class<?> beanClass;
 
-    private static final Class[] EMPTY_PARAM_TYPES = new Class[0];
-
-    private static final String[] EMPTY_STRING_ARRAY = new String[0];
-
-    private static final String PARAMETER_NAME_ANNOTATION = "org.seasar.framework.beans.annotation.ParameterName";
-
-    private Class beanClass;
-
-    private Constructor[] constructors;
-
-    private CaseInsensitiveMap propertyDescCache = new CaseInsensitiveMap();
-
-    private Map methodsCache = new HashMap();
-
-    private ArrayMap fieldCache = new ArrayMap();
-
-    private transient Set invalidPropertyNames = new HashSet();
-
-    private Map constructorParameterNamesCache;
-
-    private Map methodParameterNamesCache;
+    private CaseInsensitiveMap<PropertyDesc> propertyDescCache = new CaseInsensitiveMap<PropertyDesc>();
 
     /**
-     * {@link BeanDesc}を作成します。
+     * Creates the bean descriptor.
      * 
      * @param beanClass
-     * @throws EmptyRuntimeException
+     *            the bean class.
+     * @return the bean descriptor.
+     * @throws NullPointerException
+     *             If the bean class is null.
      */
-    public BeanDesc(Class beanClass) throws EmptyRuntimeException {
+    public static BeanDesc create(Class<?> beanClass) {
         if (beanClass == null) {
-            throw new EmptyRuntimeException("beanClass");
+            throw new NullPointerException("beanClass");
         }
+        BeanDesc beanDesc = new BeanDesc(beanClass);
+        setupPropertyDesc(beanDesc);
+        return beanDesc;
+    }
+
+    private static void setupPropertyDesc(BeanDesc beanDesc) {
+        Set<String> illegalPropertyNames = new HashSet<String>();
+        Method[] methods = beanDesc.beanClass.getMethods();
+        for (int i = 0; i < methods.length; i++) {
+            Method m = methods[i];
+            if (m.isBridge() || m.isSynthetic()) {
+                continue;
+            }
+            String methodName = m.getName();
+            if (methodName.startsWith("get")) {
+                if (m.getParameterTypes().length != 0
+                        || methodName.equals("getClass")
+                        || m.getReturnType() == void.class) {
+                    continue;
+                }
+                String propertyName = StringUtil.decapitalize(methodName
+                        .substring(3));
+                setupReadMethod(beanDesc, m, propertyName, illegalPropertyNames);
+            } else if (methodName.startsWith("is")) {
+                if (m.getParameterTypes().length != 0
+                        || m.getReturnType() != boolean.class) {
+                    continue;
+                }
+                String propertyName = StringUtil.decapitalize(methodName
+                        .substring(2));
+                setupReadMethod(beanDesc, m, propertyName, illegalPropertyNames);
+            } else if (methodName.startsWith("set")) {
+                if (m.getParameterTypes().length != 1
+                        || methodName.equals("setClass")
+                        || m.getReturnType() != void.class) {
+                    continue;
+                }
+                String propertyName = StringUtil.decapitalize(methodName
+                        .substring(3));
+                setupWriteMethod(m, propertyName);
+            }
+        }
+        for (Iterator<String> i = illegalPropertyNames.iterator(); i.hasNext();) {
+            beanDesc.propertyDescCache.remove(i.next());
+        }
+    }
+
+    private static void setupReadMethod(BeanDesc beanDesc, Method readMethod,
+            String propertyName, Set<String> illegalPropertyNames) {
+        Class<?> propertyClass = readMethod.getReturnType();
+        PropertyDesc propDesc = beanDesc.propertyDescCache.get(propertyName);
+        if (propDesc != null) {
+            if (!propDesc.getPropertyClass().equals(propertyClass)) {
+                illegalPropertyNames.add(propertyName);
+            } else {
+                propDesc.setReadMethod(readMethod);
+            }
+        } else {
+            beanDesc.propertyDescCache.put(propertyName, new PropertyDesc(
+                    propertyName, propertyClass, beanDesc.beanClass));
+        }
+    }
+
+    /**
+     * Constructor.
+     * 
+     * @param beanClass
+     *            the bean class.
+     */
+    BeanDesc(Class<?> beanClass) {
         this.beanClass = beanClass;
-        constructors = beanClass.getConstructors();
-        setupPropertyDescs();
-        setupMethods();
-        setupFields();
     }
 
     /**
@@ -501,63 +557,6 @@ public final class BeanDesc {
         return false;
     }
 
-    private void setupPropertyDescs() {
-        Method[] methods = beanClass.getMethods();
-        for (int i = 0; i < methods.length; i++) {
-            Method m = methods[i];
-            if (MethodUtil.isBridgeMethod(m) || MethodUtil.isSyntheticMethod(m)) {
-                continue;
-            }
-            String methodName = m.getName();
-            if (methodName.startsWith("get")) {
-                if (m.getParameterTypes().length != 0
-                        || methodName.equals("getClass")
-                        || m.getReturnType() == void.class) {
-                    continue;
-                }
-                String propertyName = decapitalizePropertyName(methodName
-                        .substring(3));
-                setupReadMethod(m, propertyName);
-            } else if (methodName.startsWith("is")) {
-                if (m.getParameterTypes().length != 0
-                        || !m.getReturnType().equals(Boolean.TYPE)
-                        && !m.getReturnType().equals(Boolean.class)) {
-                    continue;
-                }
-                String propertyName = decapitalizePropertyName(methodName
-                        .substring(2));
-                setupReadMethod(m, propertyName);
-            } else if (methodName.startsWith("set")) {
-                if (m.getParameterTypes().length != 1
-                        || methodName.equals("setClass")
-                        || m.getReturnType() != void.class) {
-                    continue;
-                }
-                String propertyName = decapitalizePropertyName(methodName
-                        .substring(3));
-                setupWriteMethod(m, propertyName);
-            }
-        }
-        for (Iterator i = invalidPropertyNames.iterator(); i.hasNext();) {
-            propertyDescCache.remove(i.next());
-        }
-        invalidPropertyNames.clear();
-    }
-
-    private static String decapitalizePropertyName(String name) {
-        if (StringUtil.isEmpty(name)) {
-            return name;
-        }
-        if (name.length() > 1 && Character.isUpperCase(name.charAt(1))
-                && Character.isUpperCase(name.charAt(0))) {
-
-            return name;
-        }
-        char chars[] = name.toCharArray();
-        chars[0] = Character.toLowerCase(chars[0]);
-        return new String(chars);
-    }
-
     private void addPropertyDesc(PropertyDesc propertyDesc)
             throws EmptyRuntimeException {
 
@@ -565,22 +564,6 @@ public final class BeanDesc {
             throw new EmptyRuntimeException("propertyDesc");
         }
         propertyDescCache.put(propertyDesc.getPropertyName(), propertyDesc);
-    }
-
-    private void setupReadMethod(Method readMethod, String propertyName) {
-        Class propertyType = readMethod.getReturnType();
-        PropertyDesc propDesc = getPropertyDesc0(propertyName);
-        if (propDesc != null) {
-            if (!propDesc.getPropertyType().equals(propertyType)) {
-                invalidPropertyNames.add(propertyName);
-            } else {
-                propDesc.setReadMethod(readMethod);
-            }
-        } else {
-            propDesc = new PropertyDescImpl(propertyName, propertyType,
-                    readMethod, null, null, this);
-            addPropertyDesc(propDesc);
-        }
     }
 
     private void setupWriteMethod(Method writeMethod, String propertyName) {

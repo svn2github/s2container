@@ -41,7 +41,11 @@ public final class LongUtil {
         } else if (o instanceof Number) {
             return Long.valueOf(((Number) o).longValue());
         } else if (o instanceof String) {
-            return Long.valueOf((String) o);
+            String s = (String) o;
+            if (StringUtil.isEmpty(s)) {
+                return null;
+            }
+            return Long.valueOf(s);
         } else if (o instanceof Boolean) {
             return ((Boolean) o).booleanValue() ? Long.valueOf(1) : Long
                     .valueOf(0);

@@ -37,7 +37,14 @@ public class TimestampUtilTest extends TestCase {
      */
     public void testToTimestampForDate() throws Exception {
         java.util.Date value = new java.util.Date();
-        assertEquals(value.getTime(), TimestampUtil
-                .toTimestamp(value).getTime());
+        assertEquals(value.getTime(), TimestampUtil.toTimestamp(value)
+                .getTime());
+    }
+
+    /**
+     * @throws Exception
+     */
+    public void testToTimestampForEmptyString() throws Exception {
+        assertNull(TimestampUtil.toTimestamp(""));
     }
 }

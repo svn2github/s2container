@@ -47,4 +47,11 @@ public class CalendarUtilTest extends TestCase {
         java.util.Date value = new java.util.Date();
         assertEquals(value, CalendarUtil.toCalendar(value).getTime());
     }
+
+    /**
+     * @throws Exception
+     */
+    public void testToCalendarForEmptyString() throws Exception {
+        assertNull(CalendarUtil.toCalendar(""));
+    }
 }

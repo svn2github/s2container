@@ -41,7 +41,11 @@ public final class DoubleUtil {
         } else if (o instanceof Number) {
             return Double.valueOf(((Number) o).doubleValue());
         } else if (o instanceof String) {
-            return Double.valueOf((String) o);
+            String s = (String) o;
+            if (StringUtil.isEmpty(s)) {
+                return null;
+            }
+            return Double.valueOf(s);
         } else if (o instanceof Boolean) {
             return ((Boolean) o).booleanValue() ? Double.valueOf(1) : Double
                     .valueOf(0);

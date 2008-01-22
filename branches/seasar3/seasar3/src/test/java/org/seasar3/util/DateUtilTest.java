@@ -73,4 +73,11 @@ public class DateUtilTest extends TestCase {
             assertEquals("xx/17/2008", e.getText());
         }
     }
+
+    /**
+     * @throws Exception
+     */
+    public void testToDateForEmptyString() throws Exception {
+        assertNull(DateUtil.toDate(""));
+    }
 }

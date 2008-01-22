@@ -47,4 +47,11 @@ public class BigDecimalUtilTest extends TestCase {
         BigDecimal value = new BigDecimal("1");
         assertEquals(value, BigDecimalUtil.toBigDecimal("1"));
     }
+
+    /**
+     * @throws Exception
+     */
+    public void testToBigDecimalForEmptyString() throws Exception {
+        assertNull(BigDecimalUtil.toBigDecimal(""));
+    }
 }

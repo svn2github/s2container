@@ -40,6 +40,12 @@ public final class BigDecimalUtil {
             return null;
         } else if (o instanceof BigDecimal) {
             return (BigDecimal) o;
+        } else if (o instanceof String) {
+            String s = (String) o;
+            if (StringUtil.isEmpty(s)) {
+                return null;
+            }
+            return new BigDecimal(s);
         } else {
             return new BigDecimal(o.toString());
         }

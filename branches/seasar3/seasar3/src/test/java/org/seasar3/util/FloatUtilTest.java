@@ -64,8 +64,7 @@ public class FloatUtilTest extends TestCase {
      * @throws Exception
      */
     public void testToFloatForFalse() throws Exception {
-        assertEquals(0f, FloatUtil.toFloat(Boolean.FALSE)
-                .floatValue());
+        assertEquals(0f, FloatUtil.toFloat(Boolean.FALSE).floatValue());
     }
 
     /**
@@ -126,5 +125,12 @@ public class FloatUtilTest extends TestCase {
         } catch (NumberFormatException e) {
             System.out.println(e);
         }
+    }
+
+    /**
+     * @throws Exception
+     */
+    public void testToFloatForEmptyString() throws Exception {
+        assertNull(FloatUtil.toFloat(""));
     }
 }

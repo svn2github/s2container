@@ -23,8 +23,10 @@ import java.util.Map;
  * 
  * @author higa
  * @version 3.0
+ * @param <V>
+ *            the value class.
  */
-public final class CaseInsensitiveMap extends ArrayMap<String, Object> {
+public final class CaseInsensitiveMap<V> extends ArrayMap<String, V> {
 
     private static final long serialVersionUID = 1L;
 
@@ -45,27 +47,27 @@ public final class CaseInsensitiveMap extends ArrayMap<String, Object> {
     }
 
     @Override
-    public final Object get(Object key) {
+    public final V get(Object key) {
         return super.get(convertKey(key));
     }
 
     @Override
-    public final Object put(String key, Object value) {
+    public final V put(String key, V value) {
         return super.put(convertKey(key), value);
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public final void putAll(Map map) {
-        for (Iterator<Map.Entry<String, Object>> i = map.entrySet().iterator(); i
+        for (Iterator<Map.Entry<String, V>> i = map.entrySet().iterator(); i
                 .hasNext();) {
-            Map.Entry<String, Object> entry = i.next();
+            Map.Entry<String, V> entry = i.next();
             put(convertKey(entry.getKey()), entry.getValue());
         }
     }
 
     @Override
-    public final Object remove(Object key) {
+    public final V remove(Object key) {
         return super.remove(convertKey(key));
     }
 

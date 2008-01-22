@@ -57,16 +57,14 @@ public class DoubleUtilTest extends TestCase {
      * @throws Exception
      */
     public void testToDoubleForTrue() throws Exception {
-        assertEquals(1d, DoubleUtil.toDouble(Boolean.TRUE)
-                .doubleValue());
+        assertEquals(1d, DoubleUtil.toDouble(Boolean.TRUE).doubleValue());
     }
 
     /**
      * @throws Exception
      */
     public void testToDoubleForFalse() throws Exception {
-        assertEquals(0d, DoubleUtil.toDouble(Boolean.FALSE)
-                .doubleValue());
+        assertEquals(0d, DoubleUtil.toDouble(Boolean.FALSE).doubleValue());
     }
 
     /**
@@ -127,5 +125,12 @@ public class DoubleUtilTest extends TestCase {
         } catch (NumberFormatException e) {
             System.out.println(e);
         }
+    }
+
+    /**
+     * @throws Exception
+     */
+    public void testToDoubleForEmptyString() throws Exception {
+        assertNull(DoubleUtil.toDouble(""));
     }
 }

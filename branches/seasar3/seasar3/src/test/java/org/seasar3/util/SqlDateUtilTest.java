@@ -37,7 +37,13 @@ public class SqlDateUtilTest extends TestCase {
      */
     public void testToDateForDate() throws Exception {
         java.util.Date value = new java.util.Date();
-        assertEquals(value.getTime(), SqlDateUtil.toDate(value)
-                .getTime());
+        assertEquals(value.getTime(), SqlDateUtil.toDate(value).getTime());
+    }
+
+    /**
+     * @throws Exception
+     */
+    public void testToDateForEmptyString() throws Exception {
+        assertNull(SqlDateUtil.toDate(""));
     }
 }

@@ -57,16 +57,14 @@ public class IntegerUtilTest extends TestCase {
      * @throws Exception
      */
     public void testToIntegerForTrue() throws Exception {
-        assertEquals(1, IntegerUtil.toInteger(Boolean.TRUE)
-                .intValue());
+        assertEquals(1, IntegerUtil.toInteger(Boolean.TRUE).intValue());
     }
 
     /**
      * @throws Exception
      */
     public void testToIntegerForFalse() throws Exception {
-        assertEquals(0, IntegerUtil.toInteger(Boolean.FALSE)
-                .intValue());
+        assertEquals(0, IntegerUtil.toInteger(Boolean.FALSE).intValue());
     }
 
     /**
@@ -127,5 +125,12 @@ public class IntegerUtilTest extends TestCase {
         } catch (NumberFormatException e) {
             System.out.println(e);
         }
+    }
+
+    /**
+     * @throws Exception
+     */
+    public void testToIntegerForEmptyString() throws Exception {
+        assertNull(IntegerUtil.toInteger(""));
     }
 }

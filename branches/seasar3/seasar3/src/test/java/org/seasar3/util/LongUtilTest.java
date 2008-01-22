@@ -126,4 +126,11 @@ public class LongUtilTest extends TestCase {
             System.out.println(e);
         }
     }
+
+    /**
+     * @throws Exception
+     */
+    public void testToLongForEmptyString() throws Exception {
+        assertNull(LongUtil.toLong(""));
+    }
 }

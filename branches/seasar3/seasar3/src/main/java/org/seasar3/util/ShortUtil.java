@@ -41,7 +41,11 @@ public final class ShortUtil {
         } else if (o instanceof Number) {
             return Short.valueOf(((Number) o).shortValue());
         } else if (o instanceof String) {
-            return Short.valueOf((String) o);
+            String s = (String) o;
+            if (StringUtil.isEmpty(s)) {
+                return null;
+            }
+            return Short.valueOf(s);
         } else if (o instanceof Boolean) {
             return ((Boolean) o).booleanValue() ? Short.valueOf((short) 1)
                     : Short.valueOf((short) 0);

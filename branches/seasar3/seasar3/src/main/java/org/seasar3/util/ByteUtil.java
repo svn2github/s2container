@@ -41,7 +41,11 @@ public final class ByteUtil {
         } else if (o instanceof Number) {
             return Byte.valueOf(((Number) o).byteValue());
         } else if (o instanceof String) {
-            return Byte.valueOf((String) o);
+            String s = (String) o;
+            if (StringUtil.isEmpty(s)) {
+                return null;
+            }
+            return Byte.valueOf(s);
         } else if (o instanceof Boolean) {
             return ((Boolean) o).booleanValue() ? Byte.valueOf((byte) 1) : Byte
                     .valueOf((byte) 0);

@@ -43,8 +43,15 @@ public class BigIntegerUtilTest extends TestCase {
     /**
      * @throws Exception
      */
-    public void testToBigDecimalForString() throws Exception {
+    public void testToBigIntegerForString() throws Exception {
         BigInteger value = new BigInteger("1");
         assertEquals(value, BigIntegerUtil.toBigInteger("1"));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public void testToBigIntegerForEmptyString() throws Exception {
+        assertNull(BigIntegerUtil.toBigInteger(""));
     }
 }
