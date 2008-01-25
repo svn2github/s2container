@@ -33,9 +33,9 @@
 	<classpathentry kind="lib" path="lib/s2hibernate-jpa-1.0.1-rc1.jar"/>
 	<classpathentry kind="lib" path="lib/db2jcc_license_cu.jar"/>
 	<classpathentry kind="lib" path="lib/db2jcc.jar"/>
-	<classpathentry kind="lib" path="lib/s2-extension-2.4.21.jar" sourcepath="lib/source/s2-extension-2.4.21-sources.jar"/>
-	<classpathentry kind="lib" path="lib/s2-framework-2.4.21.jar" sourcepath="lib/source/s2-framework-2.4.21-sources.jar"/>
-	<classpathentry kind="lib" path="lib/s2-tiger-2.4.21.jar" sourcepath="lib/source/s2-tiger-2.4.21-sources.jar"/>
+	<classpathentry kind="lib" path="lib/s2-extension-2.4.22.jar" sourcepath="lib/source/s2-extension-2.4.22-sources.jar"/>
+	<classpathentry kind="lib" path="lib/s2-framework-2.4.22.jar" sourcepath="lib/source/s2-framework-2.4.22-sources.jar"/>
+	<classpathentry kind="lib" path="lib/s2-tiger-2.4.22.jar" sourcepath="lib/source/s2-tiger-2.4.22-sources.jar"/>
 	<classpathentry kind="lib" path="lib/h2-1.0.62.jar" sourcepath="lib/source/h2-1.0.62-source.jar"/>
 	<classpathentry kind="lib" path="lib/s2-dao-1.0.47.jar" sourcepath="lib/source/s2-dao-1.0.47-sources.jar"/>
 	<classpathentry kind="lib" path="lib/s2-dao-tiger-1.0.47.jar" sourcepath="lib/source/s2-dao-tiger-1.0.47-sources.jar"/>
