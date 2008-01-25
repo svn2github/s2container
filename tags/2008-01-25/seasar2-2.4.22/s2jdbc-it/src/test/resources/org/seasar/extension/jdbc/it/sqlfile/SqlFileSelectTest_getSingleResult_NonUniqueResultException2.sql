@@ -1,1 +1,0 @@
-select employee_id from Employee where department_id = 1

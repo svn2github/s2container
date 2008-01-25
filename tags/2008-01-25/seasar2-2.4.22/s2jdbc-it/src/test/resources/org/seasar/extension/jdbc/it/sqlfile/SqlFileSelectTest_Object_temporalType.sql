@@ -1,1 +1,0 @@
-select cal_timestamp from Tense where id = 1

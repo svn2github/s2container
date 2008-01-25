@@ -1,3 +1,0 @@
-package benchmark.wire;
-public interface Bean00972A {
-}
