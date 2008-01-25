@@ -1,0 +1,17 @@
+<project name="diigu-core" default="dist" basedir=".">
+	<property name="ver" value="1.0.0"/>
+
+	<target name="dist">
+		<zip zipfile="target/Diigu-Core-${ver}.zip">
+			<zipfileset prefix="diigu-core" dir=".">
+				<exclude name="**/build/**"/>
+				<exclude name="**/target/**"/>
+			</zipfileset>
+			<zipfileset prefix="diigu-core/lib" dir="target">
+				<include name="diigu-core-${ver}.jar"/>
+				<include name="diigu-core-${ver}-sources.jar"/>
+				<include name="diigu-core-${ver}-javadoc.jar"/>
+			</zipfileset>
+		</zip>
+	</target>
+</project>
