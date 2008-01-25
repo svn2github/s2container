@@ -1,0 +1,3005 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.3//EN" 
+	"http://www.seasar.org/dtd/components23.dtd">
+<components>
+	<component name="component00000A" class="benchmark.wire.Bean00000AImpl" />
+	<component name="component00000B" class="benchmark.wire.Bean00000BImpl" />
+
+	<component name="component00001A" class="benchmark.wire.Bean00001AImpl" />
+	<component name="component00001B" class="benchmark.wire.Bean00001BImpl" />
+
+	<component name="component00002A" class="benchmark.wire.Bean00002AImpl" />
+	<component name="component00002B" class="benchmark.wire.Bean00002BImpl" />
+
+	<component name="component00003A" class="benchmark.wire.Bean00003AImpl" />
+	<component name="component00003B" class="benchmark.wire.Bean00003BImpl" />
+
+	<component name="component00004A" class="benchmark.wire.Bean00004AImpl" />
+	<component name="component00004B" class="benchmark.wire.Bean00004BImpl" />
+
+	<component name="component00005A" class="benchmark.wire.Bean00005AImpl" />
+	<component name="component00005B" class="benchmark.wire.Bean00005BImpl" />
+
+	<component name="component00006A" class="benchmark.wire.Bean00006AImpl" />
+	<component name="component00006B" class="benchmark.wire.Bean00006BImpl" />
+
+	<component name="component00007A" class="benchmark.wire.Bean00007AImpl" />
+	<component name="component00007B" class="benchmark.wire.Bean00007BImpl" />
+
+	<component name="component00008A" class="benchmark.wire.Bean00008AImpl" />
+	<component name="component00008B" class="benchmark.wire.Bean00008BImpl" />
+
+	<component name="component00009A" class="benchmark.wire.Bean00009AImpl" />
+	<component name="component00009B" class="benchmark.wire.Bean00009BImpl" />
+
+	<component name="component00010A" class="benchmark.wire.Bean00010AImpl" />
+	<component name="component00010B" class="benchmark.wire.Bean00010BImpl" />
+
+	<component name="component00011A" class="benchmark.wire.Bean00011AImpl" />
+	<component name="component00011B" class="benchmark.wire.Bean00011BImpl" />
+
+	<component name="component00012A" class="benchmark.wire.Bean00012AImpl" />
+	<component name="component00012B" class="benchmark.wire.Bean00012BImpl" />
+
+	<component name="component00013A" class="benchmark.wire.Bean00013AImpl" />
+	<component name="component00013B" class="benchmark.wire.Bean00013BImpl" />
+
+	<component name="component00014A" class="benchmark.wire.Bean00014AImpl" />
+	<component name="component00014B" class="benchmark.wire.Bean00014BImpl" />
+
+	<component name="component00015A" class="benchmark.wire.Bean00015AImpl" />
+	<component name="component00015B" class="benchmark.wire.Bean00015BImpl" />
+
+	<component name="component00016A" class="benchmark.wire.Bean00016AImpl" />
+	<component name="component00016B" class="benchmark.wire.Bean00016BImpl" />
+
+	<component name="component00017A" class="benchmark.wire.Bean00017AImpl" />
+	<component name="component00017B" class="benchmark.wire.Bean00017BImpl" />
+
+	<component name="component00018A" class="benchmark.wire.Bean00018AImpl" />
+	<component name="component00018B" class="benchmark.wire.Bean00018BImpl" />
+
+	<component name="component00019A" class="benchmark.wire.Bean00019AImpl" />
+	<component name="component00019B" class="benchmark.wire.Bean00019BImpl" />
+
+	<component name="component00020A" class="benchmark.wire.Bean00020AImpl" />
+	<component name="component00020B" class="benchmark.wire.Bean00020BImpl" />
+
+	<component name="component00021A" class="benchmark.wire.Bean00021AImpl" />
+	<component name="component00021B" class="benchmark.wire.Bean00021BImpl" />
+
+	<component name="component00022A" class="benchmark.wire.Bean00022AImpl" />
+	<component name="component00022B" class="benchmark.wire.Bean00022BImpl" />
+
+	<component name="component00023A" class="benchmark.wire.Bean00023AImpl" />
+	<component name="component00023B" class="benchmark.wire.Bean00023BImpl" />
+
+	<component name="component00024A" class="benchmark.wire.Bean00024AImpl" />
+	<component name="component00024B" class="benchmark.wire.Bean00024BImpl" />
+
+	<component name="component00025A" class="benchmark.wire.Bean00025AImpl" />
+	<component name="component00025B" class="benchmark.wire.Bean00025BImpl" />
+
+	<component name="component00026A" class="benchmark.wire.Bean00026AImpl" />
+	<component name="component00026B" class="benchmark.wire.Bean00026BImpl" />
+
+	<component name="component00027A" class="benchmark.wire.Bean00027AImpl" />
+	<component name="component00027B" class="benchmark.wire.Bean00027BImpl" />
+
+	<component name="component00028A" class="benchmark.wire.Bean00028AImpl" />
+	<component name="component00028B" class="benchmark.wire.Bean00028BImpl" />
+
+	<component name="component00029A" class="benchmark.wire.Bean00029AImpl" />
+	<component name="component00029B" class="benchmark.wire.Bean00029BImpl" />
+
+	<component name="component00030A" class="benchmark.wire.Bean00030AImpl" />
+	<component name="component00030B" class="benchmark.wire.Bean00030BImpl" />
+
+	<component name="component00031A" class="benchmark.wire.Bean00031AImpl" />
+	<component name="component00031B" class="benchmark.wire.Bean00031BImpl" />
+
+	<component name="component00032A" class="benchmark.wire.Bean00032AImpl" />
+	<component name="component00032B" class="benchmark.wire.Bean00032BImpl" />
+
+	<component name="component00033A" class="benchmark.wire.Bean00033AImpl" />
+	<component name="component00033B" class="benchmark.wire.Bean00033BImpl" />
+
+	<component name="component00034A" class="benchmark.wire.Bean00034AImpl" />
+	<component name="component00034B" class="benchmark.wire.Bean00034BImpl" />
+
+	<component name="component00035A" class="benchmark.wire.Bean00035AImpl" />
+	<component name="component00035B" class="benchmark.wire.Bean00035BImpl" />
+
+	<component name="component00036A" class="benchmark.wire.Bean00036AImpl" />
+	<component name="component00036B" class="benchmark.wire.Bean00036BImpl" />
+
+	<component name="component00037A" class="benchmark.wire.Bean00037AImpl" />
+	<component name="component00037B" class="benchmark.wire.Bean00037BImpl" />
+
+	<component name="component00038A" class="benchmark.wire.Bean00038AImpl" />
+	<component name="component00038B" class="benchmark.wire.Bean00038BImpl" />
+
+	<component name="component00039A" class="benchmark.wire.Bean00039AImpl" />
+	<component name="component00039B" class="benchmark.wire.Bean00039BImpl" />
+
+	<component name="component00040A" class="benchmark.wire.Bean00040AImpl" />
+	<component name="component00040B" class="benchmark.wire.Bean00040BImpl" />
+
+	<component name="component00041A" class="benchmark.wire.Bean00041AImpl" />
+	<component name="component00041B" class="benchmark.wire.Bean00041BImpl" />
+
+	<component name="component00042A" class="benchmark.wire.Bean00042AImpl" />
+	<component name="component00042B" class="benchmark.wire.Bean00042BImpl" />
+
+	<component name="component00043A" class="benchmark.wire.Bean00043AImpl" />
+	<component name="component00043B" class="benchmark.wire.Bean00043BImpl" />
+
+	<component name="component00044A" class="benchmark.wire.Bean00044AImpl" />
+	<component name="component00044B" class="benchmark.wire.Bean00044BImpl" />
+
+	<component name="component00045A" class="benchmark.wire.Bean00045AImpl" />
+	<component name="component00045B" class="benchmark.wire.Bean00045BImpl" />
+
+	<component name="component00046A" class="benchmark.wire.Bean00046AImpl" />
+	<component name="component00046B" class="benchmark.wire.Bean00046BImpl" />
+
+	<component name="component00047A" class="benchmark.wire.Bean00047AImpl" />
+	<component name="component00047B" class="benchmark.wire.Bean00047BImpl" />
+
+	<component name="component00048A" class="benchmark.wire.Bean00048AImpl" />
+	<component name="component00048B" class="benchmark.wire.Bean00048BImpl" />
+
+	<component name="component00049A" class="benchmark.wire.Bean00049AImpl" />
+	<component name="component00049B" class="benchmark.wire.Bean00049BImpl" />
+
+	<component name="component00050A" class="benchmark.wire.Bean00050AImpl" />
+	<component name="component00050B" class="benchmark.wire.Bean00050BImpl" />
+
+	<component name="component00051A" class="benchmark.wire.Bean00051AImpl" />
+	<component name="component00051B" class="benchmark.wire.Bean00051BImpl" />
+
+	<component name="component00052A" class="benchmark.wire.Bean00052AImpl" />
+	<component name="component00052B" class="benchmark.wire.Bean00052BImpl" />
+
+	<component name="component00053A" class="benchmark.wire.Bean00053AImpl" />
+	<component name="component00053B" class="benchmark.wire.Bean00053BImpl" />
+
+	<component name="component00054A" class="benchmark.wire.Bean00054AImpl" />
+	<component name="component00054B" class="benchmark.wire.Bean00054BImpl" />
+
+	<component name="component00055A" class="benchmark.wire.Bean00055AImpl" />
+	<component name="component00055B" class="benchmark.wire.Bean00055BImpl" />
+
+	<component name="component00056A" class="benchmark.wire.Bean00056AImpl" />
+	<component name="component00056B" class="benchmark.wire.Bean00056BImpl" />
+
+	<component name="component00057A" class="benchmark.wire.Bean00057AImpl" />
+	<component name="component00057B" class="benchmark.wire.Bean00057BImpl" />
+
+	<component name="component00058A" class="benchmark.wire.Bean00058AImpl" />
+	<component name="component00058B" class="benchmark.wire.Bean00058BImpl" />
+
+	<component name="component00059A" class="benchmark.wire.Bean00059AImpl" />
+	<component name="component00059B" class="benchmark.wire.Bean00059BImpl" />
+
+	<component name="component00060A" class="benchmark.wire.Bean00060AImpl" />
+	<component name="component00060B" class="benchmark.wire.Bean00060BImpl" />
+
+	<component name="component00061A" class="benchmark.wire.Bean00061AImpl" />
+	<component name="component00061B" class="benchmark.wire.Bean00061BImpl" />
+
+	<component name="component00062A" class="benchmark.wire.Bean00062AImpl" />
+	<component name="component00062B" class="benchmark.wire.Bean00062BImpl" />
+
+	<component name="component00063A" class="benchmark.wire.Bean00063AImpl" />
+	<component name="component00063B" class="benchmark.wire.Bean00063BImpl" />
+
+	<component name="component00064A" class="benchmark.wire.Bean00064AImpl" />
+	<component name="component00064B" class="benchmark.wire.Bean00064BImpl" />
+
+	<component name="component00065A" class="benchmark.wire.Bean00065AImpl" />
+	<component name="component00065B" class="benchmark.wire.Bean00065BImpl" />
+
+	<component name="component00066A" class="benchmark.wire.Bean00066AImpl" />
+	<component name="component00066B" class="benchmark.wire.Bean00066BImpl" />
+
+	<component name="component00067A" class="benchmark.wire.Bean00067AImpl" />
+	<component name="component00067B" class="benchmark.wire.Bean00067BImpl" />
+
+	<component name="component00068A" class="benchmark.wire.Bean00068AImpl" />
+	<component name="component00068B" class="benchmark.wire.Bean00068BImpl" />
+
+	<component name="component00069A" class="benchmark.wire.Bean00069AImpl" />
+	<component name="component00069B" class="benchmark.wire.Bean00069BImpl" />
+
+	<component name="component00070A" class="benchmark.wire.Bean00070AImpl" />
+	<component name="component00070B" class="benchmark.wire.Bean00070BImpl" />
+
+	<component name="component00071A" class="benchmark.wire.Bean00071AImpl" />
+	<component name="component00071B" class="benchmark.wire.Bean00071BImpl" />
+
+	<component name="component00072A" class="benchmark.wire.Bean00072AImpl" />
+	<component name="component00072B" class="benchmark.wire.Bean00072BImpl" />
+
+	<component name="component00073A" class="benchmark.wire.Bean00073AImpl" />
+	<component name="component00073B" class="benchmark.wire.Bean00073BImpl" />
+
+	<component name="component00074A" class="benchmark.wire.Bean00074AImpl" />
+	<component name="component00074B" class="benchmark.wire.Bean00074BImpl" />
+
+	<component name="component00075A" class="benchmark.wire.Bean00075AImpl" />
+	<component name="component00075B" class="benchmark.wire.Bean00075BImpl" />
+
+	<component name="component00076A" class="benchmark.wire.Bean00076AImpl" />
+	<component name="component00076B" class="benchmark.wire.Bean00076BImpl" />
+
+	<component name="component00077A" class="benchmark.wire.Bean00077AImpl" />
+	<component name="component00077B" class="benchmark.wire.Bean00077BImpl" />
+
+	<component name="component00078A" class="benchmark.wire.Bean00078AImpl" />
+	<component name="component00078B" class="benchmark.wire.Bean00078BImpl" />
+
+	<component name="component00079A" class="benchmark.wire.Bean00079AImpl" />
+	<component name="component00079B" class="benchmark.wire.Bean00079BImpl" />
+
+	<component name="component00080A" class="benchmark.wire.Bean00080AImpl" />
+	<component name="component00080B" class="benchmark.wire.Bean00080BImpl" />
+
+	<component name="component00081A" class="benchmark.wire.Bean00081AImpl" />
+	<component name="component00081B" class="benchmark.wire.Bean00081BImpl" />
+
+	<component name="component00082A" class="benchmark.wire.Bean00082AImpl" />
+	<component name="component00082B" class="benchmark.wire.Bean00082BImpl" />
+
+	<component name="component00083A" class="benchmark.wire.Bean00083AImpl" />
+	<component name="component00083B" class="benchmark.wire.Bean00083BImpl" />
+
+	<component name="component00084A" class="benchmark.wire.Bean00084AImpl" />
+	<component name="component00084B" class="benchmark.wire.Bean00084BImpl" />
+
+	<component name="component00085A" class="benchmark.wire.Bean00085AImpl" />
+	<component name="component00085B" class="benchmark.wire.Bean00085BImpl" />
+
+	<component name="component00086A" class="benchmark.wire.Bean00086AImpl" />
+	<component name="component00086B" class="benchmark.wire.Bean00086BImpl" />
+
+	<component name="component00087A" class="benchmark.wire.Bean00087AImpl" />
+	<component name="component00087B" class="benchmark.wire.Bean00087BImpl" />
+
+	<component name="component00088A" class="benchmark.wire.Bean00088AImpl" />
+	<component name="component00088B" class="benchmark.wire.Bean00088BImpl" />
+
+	<component name="component00089A" class="benchmark.wire.Bean00089AImpl" />
+	<component name="component00089B" class="benchmark.wire.Bean00089BImpl" />
+
+	<component name="component00090A" class="benchmark.wire.Bean00090AImpl" />
+	<component name="component00090B" class="benchmark.wire.Bean00090BImpl" />
+
+	<component name="component00091A" class="benchmark.wire.Bean00091AImpl" />
+	<component name="component00091B" class="benchmark.wire.Bean00091BImpl" />
+
+	<component name="component00092A" class="benchmark.wire.Bean00092AImpl" />
+	<component name="component00092B" class="benchmark.wire.Bean00092BImpl" />
+
+	<component name="component00093A" class="benchmark.wire.Bean00093AImpl" />
+	<component name="component00093B" class="benchmark.wire.Bean00093BImpl" />
+
+	<component name="component00094A" class="benchmark.wire.Bean00094AImpl" />
+	<component name="component00094B" class="benchmark.wire.Bean00094BImpl" />
+
+	<component name="component00095A" class="benchmark.wire.Bean00095AImpl" />
+	<component name="component00095B" class="benchmark.wire.Bean00095BImpl" />
+
+	<component name="component00096A" class="benchmark.wire.Bean00096AImpl" />
+	<component name="component00096B" class="benchmark.wire.Bean00096BImpl" />
+
+	<component name="component00097A" class="benchmark.wire.Bean00097AImpl" />
+	<component name="component00097B" class="benchmark.wire.Bean00097BImpl" />
+
+	<component name="component00098A" class="benchmark.wire.Bean00098AImpl" />
+	<component name="component00098B" class="benchmark.wire.Bean00098BImpl" />
+
+	<component name="component00099A" class="benchmark.wire.Bean00099AImpl" />
+	<component name="component00099B" class="benchmark.wire.Bean00099BImpl" />
+
+	<component name="component00100A" class="benchmark.wire.Bean00100AImpl" />
+	<component name="component00100B" class="benchmark.wire.Bean00100BImpl" />
+
+	<component name="component00101A" class="benchmark.wire.Bean00101AImpl" />
+	<component name="component00101B" class="benchmark.wire.Bean00101BImpl" />
+
+	<component name="component00102A" class="benchmark.wire.Bean00102AImpl" />
+	<component name="component00102B" class="benchmark.wire.Bean00102BImpl" />
+
+	<component name="component00103A" class="benchmark.wire.Bean00103AImpl" />
+	<component name="component00103B" class="benchmark.wire.Bean00103BImpl" />
+
+	<component name="component00104A" class="benchmark.wire.Bean00104AImpl" />
+	<component name="component00104B" class="benchmark.wire.Bean00104BImpl" />
+
+	<component name="component00105A" class="benchmark.wire.Bean00105AImpl" />
+	<component name="component00105B" class="benchmark.wire.Bean00105BImpl" />
+
+	<component name="component00106A" class="benchmark.wire.Bean00106AImpl" />
+	<component name="component00106B" class="benchmark.wire.Bean00106BImpl" />
+
+	<component name="component00107A" class="benchmark.wire.Bean00107AImpl" />
+	<component name="component00107B" class="benchmark.wire.Bean00107BImpl" />
+
+	<component name="component00108A" class="benchmark.wire.Bean00108AImpl" />
+	<component name="component00108B" class="benchmark.wire.Bean00108BImpl" />
+
+	<component name="component00109A" class="benchmark.wire.Bean00109AImpl" />
+	<component name="component00109B" class="benchmark.wire.Bean00109BImpl" />
+
+	<component name="component00110A" class="benchmark.wire.Bean00110AImpl" />
+	<component name="component00110B" class="benchmark.wire.Bean00110BImpl" />
+
+	<component name="component00111A" class="benchmark.wire.Bean00111AImpl" />
+	<component name="component00111B" class="benchmark.wire.Bean00111BImpl" />
+
+	<component name="component00112A" class="benchmark.wire.Bean00112AImpl" />
+	<component name="component00112B" class="benchmark.wire.Bean00112BImpl" />
+
+	<component name="component00113A" class="benchmark.wire.Bean00113AImpl" />
+	<component name="component00113B" class="benchmark.wire.Bean00113BImpl" />
+
+	<component name="component00114A" class="benchmark.wire.Bean00114AImpl" />
+	<component name="component00114B" class="benchmark.wire.Bean00114BImpl" />
+
+	<component name="component00115A" class="benchmark.wire.Bean00115AImpl" />
+	<component name="component00115B" class="benchmark.wire.Bean00115BImpl" />
+
+	<component name="component00116A" class="benchmark.wire.Bean00116AImpl" />
+	<component name="component00116B" class="benchmark.wire.Bean00116BImpl" />
+
+	<component name="component00117A" class="benchmark.wire.Bean00117AImpl" />
+	<component name="component00117B" class="benchmark.wire.Bean00117BImpl" />
+
+	<component name="component00118A" class="benchmark.wire.Bean00118AImpl" />
+	<component name="component00118B" class="benchmark.wire.Bean00118BImpl" />
+
+	<component name="component00119A" class="benchmark.wire.Bean00119AImpl" />
+	<component name="component00119B" class="benchmark.wire.Bean00119BImpl" />
+
+	<component name="component00120A" class="benchmark.wire.Bean00120AImpl" />
+	<component name="component00120B" class="benchmark.wire.Bean00120BImpl" />
+
+	<component name="component00121A" class="benchmark.wire.Bean00121AImpl" />
+	<component name="component00121B" class="benchmark.wire.Bean00121BImpl" />
+
+	<component name="component00122A" class="benchmark.wire.Bean00122AImpl" />
+	<component name="component00122B" class="benchmark.wire.Bean00122BImpl" />
+
+	<component name="component00123A" class="benchmark.wire.Bean00123AImpl" />
+	<component name="component00123B" class="benchmark.wire.Bean00123BImpl" />
+
+	<component name="component00124A" class="benchmark.wire.Bean00124AImpl" />
+	<component name="component00124B" class="benchmark.wire.Bean00124BImpl" />
+
+	<component name="component00125A" class="benchmark.wire.Bean00125AImpl" />
+	<component name="component00125B" class="benchmark.wire.Bean00125BImpl" />
+
+	<component name="component00126A" class="benchmark.wire.Bean00126AImpl" />
+	<component name="component00126B" class="benchmark.wire.Bean00126BImpl" />
+
+	<component name="component00127A" class="benchmark.wire.Bean00127AImpl" />
+	<component name="component00127B" class="benchmark.wire.Bean00127BImpl" />
+
+	<component name="component00128A" class="benchmark.wire.Bean00128AImpl" />
+	<component name="component00128B" class="benchmark.wire.Bean00128BImpl" />
+
+	<component name="component00129A" class="benchmark.wire.Bean00129AImpl" />
+	<component name="component00129B" class="benchmark.wire.Bean00129BImpl" />
+
+	<component name="component00130A" class="benchmark.wire.Bean00130AImpl" />
+	<component name="component00130B" class="benchmark.wire.Bean00130BImpl" />
+
+	<component name="component00131A" class="benchmark.wire.Bean00131AImpl" />
+	<component name="component00131B" class="benchmark.wire.Bean00131BImpl" />
+
+	<component name="component00132A" class="benchmark.wire.Bean00132AImpl" />
+	<component name="component00132B" class="benchmark.wire.Bean00132BImpl" />
+
+	<component name="component00133A" class="benchmark.wire.Bean00133AImpl" />
+	<component name="component00133B" class="benchmark.wire.Bean00133BImpl" />
+
+	<component name="component00134A" class="benchmark.wire.Bean00134AImpl" />
+	<component name="component00134B" class="benchmark.wire.Bean00134BImpl" />
+
+	<component name="component00135A" class="benchmark.wire.Bean00135AImpl" />
+	<component name="component00135B" class="benchmark.wire.Bean00135BImpl" />
+
+	<component name="component00136A" class="benchmark.wire.Bean00136AImpl" />
+	<component name="component00136B" class="benchmark.wire.Bean00136BImpl" />
+
+	<component name="component00137A" class="benchmark.wire.Bean00137AImpl" />
+	<component name="component00137B" class="benchmark.wire.Bean00137BImpl" />
+
+	<component name="component00138A" class="benchmark.wire.Bean00138AImpl" />
+	<component name="component00138B" class="benchmark.wire.Bean00138BImpl" />
+
+	<component name="component00139A" class="benchmark.wire.Bean00139AImpl" />
+	<component name="component00139B" class="benchmark.wire.Bean00139BImpl" />
+
+	<component name="component00140A" class="benchmark.wire.Bean00140AImpl" />
+	<component name="component00140B" class="benchmark.wire.Bean00140BImpl" />
+
+	<component name="component00141A" class="benchmark.wire.Bean00141AImpl" />
+	<component name="component00141B" class="benchmark.wire.Bean00141BImpl" />
+
+	<component name="component00142A" class="benchmark.wire.Bean00142AImpl" />
+	<component name="component00142B" class="benchmark.wire.Bean00142BImpl" />
+
+	<component name="component00143A" class="benchmark.wire.Bean00143AImpl" />
+	<component name="component00143B" class="benchmark.wire.Bean00143BImpl" />
+
+	<component name="component00144A" class="benchmark.wire.Bean00144AImpl" />
+	<component name="component00144B" class="benchmark.wire.Bean00144BImpl" />
+
+	<component name="component00145A" class="benchmark.wire.Bean00145AImpl" />
+	<component name="component00145B" class="benchmark.wire.Bean00145BImpl" />
+
+	<component name="component00146A" class="benchmark.wire.Bean00146AImpl" />
+	<component name="component00146B" class="benchmark.wire.Bean00146BImpl" />
+
+	<component name="component00147A" class="benchmark.wire.Bean00147AImpl" />
+	<component name="component00147B" class="benchmark.wire.Bean00147BImpl" />
+
+	<component name="component00148A" class="benchmark.wire.Bean00148AImpl" />
+	<component name="component00148B" class="benchmark.wire.Bean00148BImpl" />
+
+	<component name="component00149A" class="benchmark.wire.Bean00149AImpl" />
+	<component name="component00149B" class="benchmark.wire.Bean00149BImpl" />
+
+	<component name="component00150A" class="benchmark.wire.Bean00150AImpl" />
+	<component name="component00150B" class="benchmark.wire.Bean00150BImpl" />
+
+	<component name="component00151A" class="benchmark.wire.Bean00151AImpl" />
+	<component name="component00151B" class="benchmark.wire.Bean00151BImpl" />
+
+	<component name="component00152A" class="benchmark.wire.Bean00152AImpl" />
+	<component name="component00152B" class="benchmark.wire.Bean00152BImpl" />
+
+	<component name="component00153A" class="benchmark.wire.Bean00153AImpl" />
+	<component name="component00153B" class="benchmark.wire.Bean00153BImpl" />
+
+	<component name="component00154A" class="benchmark.wire.Bean00154AImpl" />
+	<component name="component00154B" class="benchmark.wire.Bean00154BImpl" />
+
+	<component name="component00155A" class="benchmark.wire.Bean00155AImpl" />
+	<component name="component00155B" class="benchmark.wire.Bean00155BImpl" />
+
+	<component name="component00156A" class="benchmark.wire.Bean00156AImpl" />
+	<component name="component00156B" class="benchmark.wire.Bean00156BImpl" />
+
+	<component name="component00157A" class="benchmark.wire.Bean00157AImpl" />
+	<component name="component00157B" class="benchmark.wire.Bean00157BImpl" />
+
+	<component name="component00158A" class="benchmark.wire.Bean00158AImpl" />
+	<component name="component00158B" class="benchmark.wire.Bean00158BImpl" />
+
+	<component name="component00159A" class="benchmark.wire.Bean00159AImpl" />
+	<component name="component00159B" class="benchmark.wire.Bean00159BImpl" />
+
+	<component name="component00160A" class="benchmark.wire.Bean00160AImpl" />
+	<component name="component00160B" class="benchmark.wire.Bean00160BImpl" />
+
+	<component name="component00161A" class="benchmark.wire.Bean00161AImpl" />
+	<component name="component00161B" class="benchmark.wire.Bean00161BImpl" />
+
+	<component name="component00162A" class="benchmark.wire.Bean00162AImpl" />
+	<component name="component00162B" class="benchmark.wire.Bean00162BImpl" />
+
+	<component name="component00163A" class="benchmark.wire.Bean00163AImpl" />
+	<component name="component00163B" class="benchmark.wire.Bean00163BImpl" />
+
+	<component name="component00164A" class="benchmark.wire.Bean00164AImpl" />
+	<component name="component00164B" class="benchmark.wire.Bean00164BImpl" />
+
+	<component name="component00165A" class="benchmark.wire.Bean00165AImpl" />
+	<component name="component00165B" class="benchmark.wire.Bean00165BImpl" />
+
+	<component name="component00166A" class="benchmark.wire.Bean00166AImpl" />
+	<component name="component00166B" class="benchmark.wire.Bean00166BImpl" />
+
+	<component name="component00167A" class="benchmark.wire.Bean00167AImpl" />
+	<component name="component00167B" class="benchmark.wire.Bean00167BImpl" />
+
+	<component name="component00168A" class="benchmark.wire.Bean00168AImpl" />
+	<component name="component00168B" class="benchmark.wire.Bean00168BImpl" />
+
+	<component name="component00169A" class="benchmark.wire.Bean00169AImpl" />
+	<component name="component00169B" class="benchmark.wire.Bean00169BImpl" />
+
+	<component name="component00170A" class="benchmark.wire.Bean00170AImpl" />
+	<component name="component00170B" class="benchmark.wire.Bean00170BImpl" />
+
+	<component name="component00171A" class="benchmark.wire.Bean00171AImpl" />
+	<component name="component00171B" class="benchmark.wire.Bean00171BImpl" />
+
+	<component name="component00172A" class="benchmark.wire.Bean00172AImpl" />
+	<component name="component00172B" class="benchmark.wire.Bean00172BImpl" />
+
+	<component name="component00173A" class="benchmark.wire.Bean00173AImpl" />
+	<component name="component00173B" class="benchmark.wire.Bean00173BImpl" />
+
+	<component name="component00174A" class="benchmark.wire.Bean00174AImpl" />
+	<component name="component00174B" class="benchmark.wire.Bean00174BImpl" />
+
+	<component name="component00175A" class="benchmark.wire.Bean00175AImpl" />
+	<component name="component00175B" class="benchmark.wire.Bean00175BImpl" />
+
+	<component name="component00176A" class="benchmark.wire.Bean00176AImpl" />
+	<component name="component00176B" class="benchmark.wire.Bean00176BImpl" />
+
+	<component name="component00177A" class="benchmark.wire.Bean00177AImpl" />
+	<component name="component00177B" class="benchmark.wire.Bean00177BImpl" />
+
+	<component name="component00178A" class="benchmark.wire.Bean00178AImpl" />
+	<component name="component00178B" class="benchmark.wire.Bean00178BImpl" />
+
+	<component name="component00179A" class="benchmark.wire.Bean00179AImpl" />
+	<component name="component00179B" class="benchmark.wire.Bean00179BImpl" />
+
+	<component name="component00180A" class="benchmark.wire.Bean00180AImpl" />
+	<component name="component00180B" class="benchmark.wire.Bean00180BImpl" />
+
+	<component name="component00181A" class="benchmark.wire.Bean00181AImpl" />
+	<component name="component00181B" class="benchmark.wire.Bean00181BImpl" />
+
+	<component name="component00182A" class="benchmark.wire.Bean00182AImpl" />
+	<component name="component00182B" class="benchmark.wire.Bean00182BImpl" />
+
+	<component name="component00183A" class="benchmark.wire.Bean00183AImpl" />
+	<component name="component00183B" class="benchmark.wire.Bean00183BImpl" />
+
+	<component name="component00184A" class="benchmark.wire.Bean00184AImpl" />
+	<component name="component00184B" class="benchmark.wire.Bean00184BImpl" />
+
+	<component name="component00185A" class="benchmark.wire.Bean00185AImpl" />
+	<component name="component00185B" class="benchmark.wire.Bean00185BImpl" />
+
+	<component name="component00186A" class="benchmark.wire.Bean00186AImpl" />
+	<component name="component00186B" class="benchmark.wire.Bean00186BImpl" />
+
+	<component name="component00187A" class="benchmark.wire.Bean00187AImpl" />
+	<component name="component00187B" class="benchmark.wire.Bean00187BImpl" />
+
+	<component name="component00188A" class="benchmark.wire.Bean00188AImpl" />
+	<component name="component00188B" class="benchmark.wire.Bean00188BImpl" />
+
+	<component name="component00189A" class="benchmark.wire.Bean00189AImpl" />
+	<component name="component00189B" class="benchmark.wire.Bean00189BImpl" />
+
+	<component name="component00190A" class="benchmark.wire.Bean00190AImpl" />
+	<component name="component00190B" class="benchmark.wire.Bean00190BImpl" />
+
+	<component name="component00191A" class="benchmark.wire.Bean00191AImpl" />
+	<component name="component00191B" class="benchmark.wire.Bean00191BImpl" />
+
+	<component name="component00192A" class="benchmark.wire.Bean00192AImpl" />
+	<component name="component00192B" class="benchmark.wire.Bean00192BImpl" />
+
+	<component name="component00193A" class="benchmark.wire.Bean00193AImpl" />
+	<component name="component00193B" class="benchmark.wire.Bean00193BImpl" />
+
+	<component name="component00194A" class="benchmark.wire.Bean00194AImpl" />
+	<component name="component00194B" class="benchmark.wire.Bean00194BImpl" />
+
+	<component name="component00195A" class="benchmark.wire.Bean00195AImpl" />
+	<component name="component00195B" class="benchmark.wire.Bean00195BImpl" />
+
+	<component name="component00196A" class="benchmark.wire.Bean00196AImpl" />
+	<component name="component00196B" class="benchmark.wire.Bean00196BImpl" />
+
+	<component name="component00197A" class="benchmark.wire.Bean00197AImpl" />
+	<component name="component00197B" class="benchmark.wire.Bean00197BImpl" />
+
+	<component name="component00198A" class="benchmark.wire.Bean00198AImpl" />
+	<component name="component00198B" class="benchmark.wire.Bean00198BImpl" />
+
+	<component name="component00199A" class="benchmark.wire.Bean00199AImpl" />
+	<component name="component00199B" class="benchmark.wire.Bean00199BImpl" />
+
+	<component name="component00200A" class="benchmark.wire.Bean00200AImpl" />
+	<component name="component00200B" class="benchmark.wire.Bean00200BImpl" />
+
+	<component name="component00201A" class="benchmark.wire.Bean00201AImpl" />
+	<component name="component00201B" class="benchmark.wire.Bean00201BImpl" />
+
+	<component name="component00202A" class="benchmark.wire.Bean00202AImpl" />
+	<component name="component00202B" class="benchmark.wire.Bean00202BImpl" />
+
+	<component name="component00203A" class="benchmark.wire.Bean00203AImpl" />
+	<component name="component00203B" class="benchmark.wire.Bean00203BImpl" />
+
+	<component name="component00204A" class="benchmark.wire.Bean00204AImpl" />
+	<component name="component00204B" class="benchmark.wire.Bean00204BImpl" />
+
+	<component name="component00205A" class="benchmark.wire.Bean00205AImpl" />
+	<component name="component00205B" class="benchmark.wire.Bean00205BImpl" />
+
+	<component name="component00206A" class="benchmark.wire.Bean00206AImpl" />
+	<component name="component00206B" class="benchmark.wire.Bean00206BImpl" />
+
+	<component name="component00207A" class="benchmark.wire.Bean00207AImpl" />
+	<component name="component00207B" class="benchmark.wire.Bean00207BImpl" />
+
+	<component name="component00208A" class="benchmark.wire.Bean00208AImpl" />
+	<component name="component00208B" class="benchmark.wire.Bean00208BImpl" />
+
+	<component name="component00209A" class="benchmark.wire.Bean00209AImpl" />
+	<component name="component00209B" class="benchmark.wire.Bean00209BImpl" />
+
+	<component name="component00210A" class="benchmark.wire.Bean00210AImpl" />
+	<component name="component00210B" class="benchmark.wire.Bean00210BImpl" />
+
+	<component name="component00211A" class="benchmark.wire.Bean00211AImpl" />
+	<component name="component00211B" class="benchmark.wire.Bean00211BImpl" />
+
+	<component name="component00212A" class="benchmark.wire.Bean00212AImpl" />
+	<component name="component00212B" class="benchmark.wire.Bean00212BImpl" />
+
+	<component name="component00213A" class="benchmark.wire.Bean00213AImpl" />
+	<component name="component00213B" class="benchmark.wire.Bean00213BImpl" />
+
+	<component name="component00214A" class="benchmark.wire.Bean00214AImpl" />
+	<component name="component00214B" class="benchmark.wire.Bean00214BImpl" />
+
+	<component name="component00215A" class="benchmark.wire.Bean00215AImpl" />
+	<component name="component00215B" class="benchmark.wire.Bean00215BImpl" />
+
+	<component name="component00216A" class="benchmark.wire.Bean00216AImpl" />
+	<component name="component00216B" class="benchmark.wire.Bean00216BImpl" />
+
+	<component name="component00217A" class="benchmark.wire.Bean00217AImpl" />
+	<component name="component00217B" class="benchmark.wire.Bean00217BImpl" />
+
+	<component name="component00218A" class="benchmark.wire.Bean00218AImpl" />
+	<component name="component00218B" class="benchmark.wire.Bean00218BImpl" />
+
+	<component name="component00219A" class="benchmark.wire.Bean00219AImpl" />
+	<component name="component00219B" class="benchmark.wire.Bean00219BImpl" />
+
+	<component name="component00220A" class="benchmark.wire.Bean00220AImpl" />
+	<component name="component00220B" class="benchmark.wire.Bean00220BImpl" />
+
+	<component name="component00221A" class="benchmark.wire.Bean00221AImpl" />
+	<component name="component00221B" class="benchmark.wire.Bean00221BImpl" />
+
+	<component name="component00222A" class="benchmark.wire.Bean00222AImpl" />
+	<component name="component00222B" class="benchmark.wire.Bean00222BImpl" />
+
+	<component name="component00223A" class="benchmark.wire.Bean00223AImpl" />
+	<component name="component00223B" class="benchmark.wire.Bean00223BImpl" />
+
+	<component name="component00224A" class="benchmark.wire.Bean00224AImpl" />
+	<component name="component00224B" class="benchmark.wire.Bean00224BImpl" />
+
+	<component name="component00225A" class="benchmark.wire.Bean00225AImpl" />
+	<component name="component00225B" class="benchmark.wire.Bean00225BImpl" />
+
+	<component name="component00226A" class="benchmark.wire.Bean00226AImpl" />
+	<component name="component00226B" class="benchmark.wire.Bean00226BImpl" />
+
+	<component name="component00227A" class="benchmark.wire.Bean00227AImpl" />
+	<component name="component00227B" class="benchmark.wire.Bean00227BImpl" />
+
+	<component name="component00228A" class="benchmark.wire.Bean00228AImpl" />
+	<component name="component00228B" class="benchmark.wire.Bean00228BImpl" />
+
+	<component name="component00229A" class="benchmark.wire.Bean00229AImpl" />
+	<component name="component00229B" class="benchmark.wire.Bean00229BImpl" />
+
+	<component name="component00230A" class="benchmark.wire.Bean00230AImpl" />
+	<component name="component00230B" class="benchmark.wire.Bean00230BImpl" />
+
+	<component name="component00231A" class="benchmark.wire.Bean00231AImpl" />
+	<component name="component00231B" class="benchmark.wire.Bean00231BImpl" />
+
+	<component name="component00232A" class="benchmark.wire.Bean00232AImpl" />
+	<component name="component00232B" class="benchmark.wire.Bean00232BImpl" />
+
+	<component name="component00233A" class="benchmark.wire.Bean00233AImpl" />
+	<component name="component00233B" class="benchmark.wire.Bean00233BImpl" />
+
+	<component name="component00234A" class="benchmark.wire.Bean00234AImpl" />
+	<component name="component00234B" class="benchmark.wire.Bean00234BImpl" />
+
+	<component name="component00235A" class="benchmark.wire.Bean00235AImpl" />
+	<component name="component00235B" class="benchmark.wire.Bean00235BImpl" />
+
+	<component name="component00236A" class="benchmark.wire.Bean00236AImpl" />
+	<component name="component00236B" class="benchmark.wire.Bean00236BImpl" />
+
+	<component name="component00237A" class="benchmark.wire.Bean00237AImpl" />
+	<component name="component00237B" class="benchmark.wire.Bean00237BImpl" />
+
+	<component name="component00238A" class="benchmark.wire.Bean00238AImpl" />
+	<component name="component00238B" class="benchmark.wire.Bean00238BImpl" />
+
+	<component name="component00239A" class="benchmark.wire.Bean00239AImpl" />
+	<component name="component00239B" class="benchmark.wire.Bean00239BImpl" />
+
+	<component name="component00240A" class="benchmark.wire.Bean00240AImpl" />
+	<component name="component00240B" class="benchmark.wire.Bean00240BImpl" />
+
+	<component name="component00241A" class="benchmark.wire.Bean00241AImpl" />
+	<component name="component00241B" class="benchmark.wire.Bean00241BImpl" />
+
+	<component name="component00242A" class="benchmark.wire.Bean00242AImpl" />
+	<component name="component00242B" class="benchmark.wire.Bean00242BImpl" />
+
+	<component name="component00243A" class="benchmark.wire.Bean00243AImpl" />
+	<component name="component00243B" class="benchmark.wire.Bean00243BImpl" />
+
+	<component name="component00244A" class="benchmark.wire.Bean00244AImpl" />
+	<component name="component00244B" class="benchmark.wire.Bean00244BImpl" />
+
+	<component name="component00245A" class="benchmark.wire.Bean00245AImpl" />
+	<component name="component00245B" class="benchmark.wire.Bean00245BImpl" />
+
+	<component name="component00246A" class="benchmark.wire.Bean00246AImpl" />
+	<component name="component00246B" class="benchmark.wire.Bean00246BImpl" />
+
+	<component name="component00247A" class="benchmark.wire.Bean00247AImpl" />
+	<component name="component00247B" class="benchmark.wire.Bean00247BImpl" />
+
+	<component name="component00248A" class="benchmark.wire.Bean00248AImpl" />
+	<component name="component00248B" class="benchmark.wire.Bean00248BImpl" />
+
+	<component name="component00249A" class="benchmark.wire.Bean00249AImpl" />
+	<component name="component00249B" class="benchmark.wire.Bean00249BImpl" />
+
+	<component name="component00250A" class="benchmark.wire.Bean00250AImpl" />
+	<component name="component00250B" class="benchmark.wire.Bean00250BImpl" />
+
+	<component name="component00251A" class="benchmark.wire.Bean00251AImpl" />
+	<component name="component00251B" class="benchmark.wire.Bean00251BImpl" />
+
+	<component name="component00252A" class="benchmark.wire.Bean00252AImpl" />
+	<component name="component00252B" class="benchmark.wire.Bean00252BImpl" />
+
+	<component name="component00253A" class="benchmark.wire.Bean00253AImpl" />
+	<component name="component00253B" class="benchmark.wire.Bean00253BImpl" />
+
+	<component name="component00254A" class="benchmark.wire.Bean00254AImpl" />
+	<component name="component00254B" class="benchmark.wire.Bean00254BImpl" />
+
+	<component name="component00255A" class="benchmark.wire.Bean00255AImpl" />
+	<component name="component00255B" class="benchmark.wire.Bean00255BImpl" />
+
+	<component name="component00256A" class="benchmark.wire.Bean00256AImpl" />
+	<component name="component00256B" class="benchmark.wire.Bean00256BImpl" />
+
+	<component name="component00257A" class="benchmark.wire.Bean00257AImpl" />
+	<component name="component00257B" class="benchmark.wire.Bean00257BImpl" />
+
+	<component name="component00258A" class="benchmark.wire.Bean00258AImpl" />
+	<component name="component00258B" class="benchmark.wire.Bean00258BImpl" />
+
+	<component name="component00259A" class="benchmark.wire.Bean00259AImpl" />
+	<component name="component00259B" class="benchmark.wire.Bean00259BImpl" />
+
+	<component name="component00260A" class="benchmark.wire.Bean00260AImpl" />
+	<component name="component00260B" class="benchmark.wire.Bean00260BImpl" />
+
+	<component name="component00261A" class="benchmark.wire.Bean00261AImpl" />
+	<component name="component00261B" class="benchmark.wire.Bean00261BImpl" />
+
+	<component name="component00262A" class="benchmark.wire.Bean00262AImpl" />
+	<component name="component00262B" class="benchmark.wire.Bean00262BImpl" />
+
+	<component name="component00263A" class="benchmark.wire.Bean00263AImpl" />
+	<component name="component00263B" class="benchmark.wire.Bean00263BImpl" />
+
+	<component name="component00264A" class="benchmark.wire.Bean00264AImpl" />
+	<component name="component00264B" class="benchmark.wire.Bean00264BImpl" />
+
+	<component name="component00265A" class="benchmark.wire.Bean00265AImpl" />
+	<component name="component00265B" class="benchmark.wire.Bean00265BImpl" />
+
+	<component name="component00266A" class="benchmark.wire.Bean00266AImpl" />
+	<component name="component00266B" class="benchmark.wire.Bean00266BImpl" />
+
+	<component name="component00267A" class="benchmark.wire.Bean00267AImpl" />
+	<component name="component00267B" class="benchmark.wire.Bean00267BImpl" />
+
+	<component name="component00268A" class="benchmark.wire.Bean00268AImpl" />
+	<component name="component00268B" class="benchmark.wire.Bean00268BImpl" />
+
+	<component name="component00269A" class="benchmark.wire.Bean00269AImpl" />
+	<component name="component00269B" class="benchmark.wire.Bean00269BImpl" />
+
+	<component name="component00270A" class="benchmark.wire.Bean00270AImpl" />
+	<component name="component00270B" class="benchmark.wire.Bean00270BImpl" />
+
+	<component name="component00271A" class="benchmark.wire.Bean00271AImpl" />
+	<component name="component00271B" class="benchmark.wire.Bean00271BImpl" />
+
+	<component name="component00272A" class="benchmark.wire.Bean00272AImpl" />
+	<component name="component00272B" class="benchmark.wire.Bean00272BImpl" />
+
+	<component name="component00273A" class="benchmark.wire.Bean00273AImpl" />
+	<component name="component00273B" class="benchmark.wire.Bean00273BImpl" />
+
+	<component name="component00274A" class="benchmark.wire.Bean00274AImpl" />
+	<component name="component00274B" class="benchmark.wire.Bean00274BImpl" />
+
+	<component name="component00275A" class="benchmark.wire.Bean00275AImpl" />
+	<component name="component00275B" class="benchmark.wire.Bean00275BImpl" />
+
+	<component name="component00276A" class="benchmark.wire.Bean00276AImpl" />
+	<component name="component00276B" class="benchmark.wire.Bean00276BImpl" />
+
+	<component name="component00277A" class="benchmark.wire.Bean00277AImpl" />
+	<component name="component00277B" class="benchmark.wire.Bean00277BImpl" />
+
+	<component name="component00278A" class="benchmark.wire.Bean00278AImpl" />
+	<component name="component00278B" class="benchmark.wire.Bean00278BImpl" />
+
+	<component name="component00279A" class="benchmark.wire.Bean00279AImpl" />
+	<component name="component00279B" class="benchmark.wire.Bean00279BImpl" />
+
+	<component name="component00280A" class="benchmark.wire.Bean00280AImpl" />
+	<component name="component00280B" class="benchmark.wire.Bean00280BImpl" />
+
+	<component name="component00281A" class="benchmark.wire.Bean00281AImpl" />
+	<component name="component00281B" class="benchmark.wire.Bean00281BImpl" />
+
+	<component name="component00282A" class="benchmark.wire.Bean00282AImpl" />
+	<component name="component00282B" class="benchmark.wire.Bean00282BImpl" />
+
+	<component name="component00283A" class="benchmark.wire.Bean00283AImpl" />
+	<component name="component00283B" class="benchmark.wire.Bean00283BImpl" />
+
+	<component name="component00284A" class="benchmark.wire.Bean00284AImpl" />
+	<component name="component00284B" class="benchmark.wire.Bean00284BImpl" />
+
+	<component name="component00285A" class="benchmark.wire.Bean00285AImpl" />
+	<component name="component00285B" class="benchmark.wire.Bean00285BImpl" />
+
+	<component name="component00286A" class="benchmark.wire.Bean00286AImpl" />
+	<component name="component00286B" class="benchmark.wire.Bean00286BImpl" />
+
+	<component name="component00287A" class="benchmark.wire.Bean00287AImpl" />
+	<component name="component00287B" class="benchmark.wire.Bean00287BImpl" />
+
+	<component name="component00288A" class="benchmark.wire.Bean00288AImpl" />
+	<component name="component00288B" class="benchmark.wire.Bean00288BImpl" />
+
+	<component name="component00289A" class="benchmark.wire.Bean00289AImpl" />
+	<component name="component00289B" class="benchmark.wire.Bean00289BImpl" />
+
+	<component name="component00290A" class="benchmark.wire.Bean00290AImpl" />
+	<component name="component00290B" class="benchmark.wire.Bean00290BImpl" />
+
+	<component name="component00291A" class="benchmark.wire.Bean00291AImpl" />
+	<component name="component00291B" class="benchmark.wire.Bean00291BImpl" />
+
+	<component name="component00292A" class="benchmark.wire.Bean00292AImpl" />
+	<component name="component00292B" class="benchmark.wire.Bean00292BImpl" />
+
+	<component name="component00293A" class="benchmark.wire.Bean00293AImpl" />
+	<component name="component00293B" class="benchmark.wire.Bean00293BImpl" />
+
+	<component name="component00294A" class="benchmark.wire.Bean00294AImpl" />
+	<component name="component00294B" class="benchmark.wire.Bean00294BImpl" />
+
+	<component name="component00295A" class="benchmark.wire.Bean00295AImpl" />
+	<component name="component00295B" class="benchmark.wire.Bean00295BImpl" />
+
+	<component name="component00296A" class="benchmark.wire.Bean00296AImpl" />
+	<component name="component00296B" class="benchmark.wire.Bean00296BImpl" />
+
+	<component name="component00297A" class="benchmark.wire.Bean00297AImpl" />
+	<component name="component00297B" class="benchmark.wire.Bean00297BImpl" />
+
+	<component name="component00298A" class="benchmark.wire.Bean00298AImpl" />
+	<component name="component00298B" class="benchmark.wire.Bean00298BImpl" />
+
+	<component name="component00299A" class="benchmark.wire.Bean00299AImpl" />
+	<component name="component00299B" class="benchmark.wire.Bean00299BImpl" />
+
+	<component name="component00300A" class="benchmark.wire.Bean00300AImpl" />
+	<component name="component00300B" class="benchmark.wire.Bean00300BImpl" />
+
+	<component name="component00301A" class="benchmark.wire.Bean00301AImpl" />
+	<component name="component00301B" class="benchmark.wire.Bean00301BImpl" />
+
+	<component name="component00302A" class="benchmark.wire.Bean00302AImpl" />
+	<component name="component00302B" class="benchmark.wire.Bean00302BImpl" />
+
+	<component name="component00303A" class="benchmark.wire.Bean00303AImpl" />
+	<component name="component00303B" class="benchmark.wire.Bean00303BImpl" />
+
+	<component name="component00304A" class="benchmark.wire.Bean00304AImpl" />
+	<component name="component00304B" class="benchmark.wire.Bean00304BImpl" />
+
+	<component name="component00305A" class="benchmark.wire.Bean00305AImpl" />
+	<component name="component00305B" class="benchmark.wire.Bean00305BImpl" />
+
+	<component name="component00306A" class="benchmark.wire.Bean00306AImpl" />
+	<component name="component00306B" class="benchmark.wire.Bean00306BImpl" />
+
+	<component name="component00307A" class="benchmark.wire.Bean00307AImpl" />
+	<component name="component00307B" class="benchmark.wire.Bean00307BImpl" />
+
+	<component name="component00308A" class="benchmark.wire.Bean00308AImpl" />
+	<component name="component00308B" class="benchmark.wire.Bean00308BImpl" />
+
+	<component name="component00309A" class="benchmark.wire.Bean00309AImpl" />
+	<component name="component00309B" class="benchmark.wire.Bean00309BImpl" />
+
+	<component name="component00310A" class="benchmark.wire.Bean00310AImpl" />
+	<component name="component00310B" class="benchmark.wire.Bean00310BImpl" />
+
+	<component name="component00311A" class="benchmark.wire.Bean00311AImpl" />
+	<component name="component00311B" class="benchmark.wire.Bean00311BImpl" />
+
+	<component name="component00312A" class="benchmark.wire.Bean00312AImpl" />
+	<component name="component00312B" class="benchmark.wire.Bean00312BImpl" />
+
+	<component name="component00313A" class="benchmark.wire.Bean00313AImpl" />
+	<component name="component00313B" class="benchmark.wire.Bean00313BImpl" />
+
+	<component name="component00314A" class="benchmark.wire.Bean00314AImpl" />
+	<component name="component00314B" class="benchmark.wire.Bean00314BImpl" />
+
+	<component name="component00315A" class="benchmark.wire.Bean00315AImpl" />
+	<component name="component00315B" class="benchmark.wire.Bean00315BImpl" />
+
+	<component name="component00316A" class="benchmark.wire.Bean00316AImpl" />
+	<component name="component00316B" class="benchmark.wire.Bean00316BImpl" />
+
+	<component name="component00317A" class="benchmark.wire.Bean00317AImpl" />
+	<component name="component00317B" class="benchmark.wire.Bean00317BImpl" />
+
+	<component name="component00318A" class="benchmark.wire.Bean00318AImpl" />
+	<component name="component00318B" class="benchmark.wire.Bean00318BImpl" />
+
+	<component name="component00319A" class="benchmark.wire.Bean00319AImpl" />
+	<component name="component00319B" class="benchmark.wire.Bean00319BImpl" />
+
+	<component name="component00320A" class="benchmark.wire.Bean00320AImpl" />
+	<component name="component00320B" class="benchmark.wire.Bean00320BImpl" />
+
+	<component name="component00321A" class="benchmark.wire.Bean00321AImpl" />
+	<component name="component00321B" class="benchmark.wire.Bean00321BImpl" />
+
+	<component name="component00322A" class="benchmark.wire.Bean00322AImpl" />
+	<component name="component00322B" class="benchmark.wire.Bean00322BImpl" />
+
+	<component name="component00323A" class="benchmark.wire.Bean00323AImpl" />
+	<component name="component00323B" class="benchmark.wire.Bean00323BImpl" />
+
+	<component name="component00324A" class="benchmark.wire.Bean00324AImpl" />
+	<component name="component00324B" class="benchmark.wire.Bean00324BImpl" />
+
+	<component name="component00325A" class="benchmark.wire.Bean00325AImpl" />
+	<component name="component00325B" class="benchmark.wire.Bean00325BImpl" />
+
+	<component name="component00326A" class="benchmark.wire.Bean00326AImpl" />
+	<component name="component00326B" class="benchmark.wire.Bean00326BImpl" />
+
+	<component name="component00327A" class="benchmark.wire.Bean00327AImpl" />
+	<component name="component00327B" class="benchmark.wire.Bean00327BImpl" />
+
+	<component name="component00328A" class="benchmark.wire.Bean00328AImpl" />
+	<component name="component00328B" class="benchmark.wire.Bean00328BImpl" />
+
+	<component name="component00329A" class="benchmark.wire.Bean00329AImpl" />
+	<component name="component00329B" class="benchmark.wire.Bean00329BImpl" />
+
+	<component name="component00330A" class="benchmark.wire.Bean00330AImpl" />
+	<component name="component00330B" class="benchmark.wire.Bean00330BImpl" />
+
+	<component name="component00331A" class="benchmark.wire.Bean00331AImpl" />
+	<component name="component00331B" class="benchmark.wire.Bean00331BImpl" />
+
+	<component name="component00332A" class="benchmark.wire.Bean00332AImpl" />
+	<component name="component00332B" class="benchmark.wire.Bean00332BImpl" />
+
+	<component name="component00333A" class="benchmark.wire.Bean00333AImpl" />
+	<component name="component00333B" class="benchmark.wire.Bean00333BImpl" />
+
+	<component name="component00334A" class="benchmark.wire.Bean00334AImpl" />
+	<component name="component00334B" class="benchmark.wire.Bean00334BImpl" />
+
+	<component name="component00335A" class="benchmark.wire.Bean00335AImpl" />
+	<component name="component00335B" class="benchmark.wire.Bean00335BImpl" />
+
+	<component name="component00336A" class="benchmark.wire.Bean00336AImpl" />
+	<component name="component00336B" class="benchmark.wire.Bean00336BImpl" />
+
+	<component name="component00337A" class="benchmark.wire.Bean00337AImpl" />
+	<component name="component00337B" class="benchmark.wire.Bean00337BImpl" />
+
+	<component name="component00338A" class="benchmark.wire.Bean00338AImpl" />
+	<component name="component00338B" class="benchmark.wire.Bean00338BImpl" />
+
+	<component name="component00339A" class="benchmark.wire.Bean00339AImpl" />
+	<component name="component00339B" class="benchmark.wire.Bean00339BImpl" />
+
+	<component name="component00340A" class="benchmark.wire.Bean00340AImpl" />
+	<component name="component00340B" class="benchmark.wire.Bean00340BImpl" />
+
+	<component name="component00341A" class="benchmark.wire.Bean00341AImpl" />
+	<component name="component00341B" class="benchmark.wire.Bean00341BImpl" />
+
+	<component name="component00342A" class="benchmark.wire.Bean00342AImpl" />
+	<component name="component00342B" class="benchmark.wire.Bean00342BImpl" />
+
+	<component name="component00343A" class="benchmark.wire.Bean00343AImpl" />
+	<component name="component00343B" class="benchmark.wire.Bean00343BImpl" />
+
+	<component name="component00344A" class="benchmark.wire.Bean00344AImpl" />
+	<component name="component00344B" class="benchmark.wire.Bean00344BImpl" />
+
+	<component name="component00345A" class="benchmark.wire.Bean00345AImpl" />
+	<component name="component00345B" class="benchmark.wire.Bean00345BImpl" />
+
+	<component name="component00346A" class="benchmark.wire.Bean00346AImpl" />
+	<component name="component00346B" class="benchmark.wire.Bean00346BImpl" />
+
+	<component name="component00347A" class="benchmark.wire.Bean00347AImpl" />
+	<component name="component00347B" class="benchmark.wire.Bean00347BImpl" />
+
+	<component name="component00348A" class="benchmark.wire.Bean00348AImpl" />
+	<component name="component00348B" class="benchmark.wire.Bean00348BImpl" />
+
+	<component name="component00349A" class="benchmark.wire.Bean00349AImpl" />
+	<component name="component00349B" class="benchmark.wire.Bean00349BImpl" />
+
+	<component name="component00350A" class="benchmark.wire.Bean00350AImpl" />
+	<component name="component00350B" class="benchmark.wire.Bean00350BImpl" />
+
+	<component name="component00351A" class="benchmark.wire.Bean00351AImpl" />
+	<component name="component00351B" class="benchmark.wire.Bean00351BImpl" />
+
+	<component name="component00352A" class="benchmark.wire.Bean00352AImpl" />
+	<component name="component00352B" class="benchmark.wire.Bean00352BImpl" />
+
+	<component name="component00353A" class="benchmark.wire.Bean00353AImpl" />
+	<component name="component00353B" class="benchmark.wire.Bean00353BImpl" />
+
+	<component name="component00354A" class="benchmark.wire.Bean00354AImpl" />
+	<component name="component00354B" class="benchmark.wire.Bean00354BImpl" />
+
+	<component name="component00355A" class="benchmark.wire.Bean00355AImpl" />
+	<component name="component00355B" class="benchmark.wire.Bean00355BImpl" />
+
+	<component name="component00356A" class="benchmark.wire.Bean00356AImpl" />
+	<component name="component00356B" class="benchmark.wire.Bean00356BImpl" />
+
+	<component name="component00357A" class="benchmark.wire.Bean00357AImpl" />
+	<component name="component00357B" class="benchmark.wire.Bean00357BImpl" />
+
+	<component name="component00358A" class="benchmark.wire.Bean00358AImpl" />
+	<component name="component00358B" class="benchmark.wire.Bean00358BImpl" />
+
+	<component name="component00359A" class="benchmark.wire.Bean00359AImpl" />
+	<component name="component00359B" class="benchmark.wire.Bean00359BImpl" />
+
+	<component name="component00360A" class="benchmark.wire.Bean00360AImpl" />
+	<component name="component00360B" class="benchmark.wire.Bean00360BImpl" />
+
+	<component name="component00361A" class="benchmark.wire.Bean00361AImpl" />
+	<component name="component00361B" class="benchmark.wire.Bean00361BImpl" />
+
+	<component name="component00362A" class="benchmark.wire.Bean00362AImpl" />
+	<component name="component00362B" class="benchmark.wire.Bean00362BImpl" />
+
+	<component name="component00363A" class="benchmark.wire.Bean00363AImpl" />
+	<component name="component00363B" class="benchmark.wire.Bean00363BImpl" />
+
+	<component name="component00364A" class="benchmark.wire.Bean00364AImpl" />
+	<component name="component00364B" class="benchmark.wire.Bean00364BImpl" />
+
+	<component name="component00365A" class="benchmark.wire.Bean00365AImpl" />
+	<component name="component00365B" class="benchmark.wire.Bean00365BImpl" />
+
+	<component name="component00366A" class="benchmark.wire.Bean00366AImpl" />
+	<component name="component00366B" class="benchmark.wire.Bean00366BImpl" />
+
+	<component name="component00367A" class="benchmark.wire.Bean00367AImpl" />
+	<component name="component00367B" class="benchmark.wire.Bean00367BImpl" />
+
+	<component name="component00368A" class="benchmark.wire.Bean00368AImpl" />
+	<component name="component00368B" class="benchmark.wire.Bean00368BImpl" />
+
+	<component name="component00369A" class="benchmark.wire.Bean00369AImpl" />
+	<component name="component00369B" class="benchmark.wire.Bean00369BImpl" />
+
+	<component name="component00370A" class="benchmark.wire.Bean00370AImpl" />
+	<component name="component00370B" class="benchmark.wire.Bean00370BImpl" />
+
+	<component name="component00371A" class="benchmark.wire.Bean00371AImpl" />
+	<component name="component00371B" class="benchmark.wire.Bean00371BImpl" />
+
+	<component name="component00372A" class="benchmark.wire.Bean00372AImpl" />
+	<component name="component00372B" class="benchmark.wire.Bean00372BImpl" />
+
+	<component name="component00373A" class="benchmark.wire.Bean00373AImpl" />
+	<component name="component00373B" class="benchmark.wire.Bean00373BImpl" />
+
+	<component name="component00374A" class="benchmark.wire.Bean00374AImpl" />
+	<component name="component00374B" class="benchmark.wire.Bean00374BImpl" />
+
+	<component name="component00375A" class="benchmark.wire.Bean00375AImpl" />
+	<component name="component00375B" class="benchmark.wire.Bean00375BImpl" />
+
+	<component name="component00376A" class="benchmark.wire.Bean00376AImpl" />
+	<component name="component00376B" class="benchmark.wire.Bean00376BImpl" />
+
+	<component name="component00377A" class="benchmark.wire.Bean00377AImpl" />
+	<component name="component00377B" class="benchmark.wire.Bean00377BImpl" />
+
+	<component name="component00378A" class="benchmark.wire.Bean00378AImpl" />
+	<component name="component00378B" class="benchmark.wire.Bean00378BImpl" />
+
+	<component name="component00379A" class="benchmark.wire.Bean00379AImpl" />
+	<component name="component00379B" class="benchmark.wire.Bean00379BImpl" />
+
+	<component name="component00380A" class="benchmark.wire.Bean00380AImpl" />
+	<component name="component00380B" class="benchmark.wire.Bean00380BImpl" />
+
+	<component name="component00381A" class="benchmark.wire.Bean00381AImpl" />
+	<component name="component00381B" class="benchmark.wire.Bean00381BImpl" />
+
+	<component name="component00382A" class="benchmark.wire.Bean00382AImpl" />
+	<component name="component00382B" class="benchmark.wire.Bean00382BImpl" />
+
+	<component name="component00383A" class="benchmark.wire.Bean00383AImpl" />
+	<component name="component00383B" class="benchmark.wire.Bean00383BImpl" />
+
+	<component name="component00384A" class="benchmark.wire.Bean00384AImpl" />
+	<component name="component00384B" class="benchmark.wire.Bean00384BImpl" />
+
+	<component name="component00385A" class="benchmark.wire.Bean00385AImpl" />
+	<component name="component00385B" class="benchmark.wire.Bean00385BImpl" />
+
+	<component name="component00386A" class="benchmark.wire.Bean00386AImpl" />
+	<component name="component00386B" class="benchmark.wire.Bean00386BImpl" />
+
+	<component name="component00387A" class="benchmark.wire.Bean00387AImpl" />
+	<component name="component00387B" class="benchmark.wire.Bean00387BImpl" />
+
+	<component name="component00388A" class="benchmark.wire.Bean00388AImpl" />
+	<component name="component00388B" class="benchmark.wire.Bean00388BImpl" />
+
+	<component name="component00389A" class="benchmark.wire.Bean00389AImpl" />
+	<component name="component00389B" class="benchmark.wire.Bean00389BImpl" />
+
+	<component name="component00390A" class="benchmark.wire.Bean00390AImpl" />
+	<component name="component00390B" class="benchmark.wire.Bean00390BImpl" />
+
+	<component name="component00391A" class="benchmark.wire.Bean00391AImpl" />
+	<component name="component00391B" class="benchmark.wire.Bean00391BImpl" />
+
+	<component name="component00392A" class="benchmark.wire.Bean00392AImpl" />
+	<component name="component00392B" class="benchmark.wire.Bean00392BImpl" />
+
+	<component name="component00393A" class="benchmark.wire.Bean00393AImpl" />
+	<component name="component00393B" class="benchmark.wire.Bean00393BImpl" />
+
+	<component name="component00394A" class="benchmark.wire.Bean00394AImpl" />
+	<component name="component00394B" class="benchmark.wire.Bean00394BImpl" />
+
+	<component name="component00395A" class="benchmark.wire.Bean00395AImpl" />
+	<component name="component00395B" class="benchmark.wire.Bean00395BImpl" />
+
+	<component name="component00396A" class="benchmark.wire.Bean00396AImpl" />
+	<component name="component00396B" class="benchmark.wire.Bean00396BImpl" />
+
+	<component name="component00397A" class="benchmark.wire.Bean00397AImpl" />
+	<component name="component00397B" class="benchmark.wire.Bean00397BImpl" />
+
+	<component name="component00398A" class="benchmark.wire.Bean00398AImpl" />
+	<component name="component00398B" class="benchmark.wire.Bean00398BImpl" />
+
+	<component name="component00399A" class="benchmark.wire.Bean00399AImpl" />
+	<component name="component00399B" class="benchmark.wire.Bean00399BImpl" />
+
+	<component name="component00400A" class="benchmark.wire.Bean00400AImpl" />
+	<component name="component00400B" class="benchmark.wire.Bean00400BImpl" />
+
+	<component name="component00401A" class="benchmark.wire.Bean00401AImpl" />
+	<component name="component00401B" class="benchmark.wire.Bean00401BImpl" />
+
+	<component name="component00402A" class="benchmark.wire.Bean00402AImpl" />
+	<component name="component00402B" class="benchmark.wire.Bean00402BImpl" />
+
+	<component name="component00403A" class="benchmark.wire.Bean00403AImpl" />
+	<component name="component00403B" class="benchmark.wire.Bean00403BImpl" />
+
+	<component name="component00404A" class="benchmark.wire.Bean00404AImpl" />
+	<component name="component00404B" class="benchmark.wire.Bean00404BImpl" />
+
+	<component name="component00405A" class="benchmark.wire.Bean00405AImpl" />
+	<component name="component00405B" class="benchmark.wire.Bean00405BImpl" />
+
+	<component name="component00406A" class="benchmark.wire.Bean00406AImpl" />
+	<component name="component00406B" class="benchmark.wire.Bean00406BImpl" />
+
+	<component name="component00407A" class="benchmark.wire.Bean00407AImpl" />
+	<component name="component00407B" class="benchmark.wire.Bean00407BImpl" />
+
+	<component name="component00408A" class="benchmark.wire.Bean00408AImpl" />
+	<component name="component00408B" class="benchmark.wire.Bean00408BImpl" />
+
+	<component name="component00409A" class="benchmark.wire.Bean00409AImpl" />
+	<component name="component00409B" class="benchmark.wire.Bean00409BImpl" />
+
+	<component name="component00410A" class="benchmark.wire.Bean00410AImpl" />
+	<component name="component00410B" class="benchmark.wire.Bean00410BImpl" />
+
+	<component name="component00411A" class="benchmark.wire.Bean00411AImpl" />
+	<component name="component00411B" class="benchmark.wire.Bean00411BImpl" />
+
+	<component name="component00412A" class="benchmark.wire.Bean00412AImpl" />
+	<component name="component00412B" class="benchmark.wire.Bean00412BImpl" />
+
+	<component name="component00413A" class="benchmark.wire.Bean00413AImpl" />
+	<component name="component00413B" class="benchmark.wire.Bean00413BImpl" />
+
+	<component name="component00414A" class="benchmark.wire.Bean00414AImpl" />
+	<component name="component00414B" class="benchmark.wire.Bean00414BImpl" />
+
+	<component name="component00415A" class="benchmark.wire.Bean00415AImpl" />
+	<component name="component00415B" class="benchmark.wire.Bean00415BImpl" />
+
+	<component name="component00416A" class="benchmark.wire.Bean00416AImpl" />
+	<component name="component00416B" class="benchmark.wire.Bean00416BImpl" />
+
+	<component name="component00417A" class="benchmark.wire.Bean00417AImpl" />
+	<component name="component00417B" class="benchmark.wire.Bean00417BImpl" />
+
+	<component name="component00418A" class="benchmark.wire.Bean00418AImpl" />
+	<component name="component00418B" class="benchmark.wire.Bean00418BImpl" />
+
+	<component name="component00419A" class="benchmark.wire.Bean00419AImpl" />
+	<component name="component00419B" class="benchmark.wire.Bean00419BImpl" />
+
+	<component name="component00420A" class="benchmark.wire.Bean00420AImpl" />
+	<component name="component00420B" class="benchmark.wire.Bean00420BImpl" />
+
+	<component name="component00421A" class="benchmark.wire.Bean00421AImpl" />
+	<component name="component00421B" class="benchmark.wire.Bean00421BImpl" />
+
+	<component name="component00422A" class="benchmark.wire.Bean00422AImpl" />
+	<component name="component00422B" class="benchmark.wire.Bean00422BImpl" />
+
+	<component name="component00423A" class="benchmark.wire.Bean00423AImpl" />
+	<component name="component00423B" class="benchmark.wire.Bean00423BImpl" />
+
+	<component name="component00424A" class="benchmark.wire.Bean00424AImpl" />
+	<component name="component00424B" class="benchmark.wire.Bean00424BImpl" />
+
+	<component name="component00425A" class="benchmark.wire.Bean00425AImpl" />
+	<component name="component00425B" class="benchmark.wire.Bean00425BImpl" />
+
+	<component name="component00426A" class="benchmark.wire.Bean00426AImpl" />
+	<component name="component00426B" class="benchmark.wire.Bean00426BImpl" />
+
+	<component name="component00427A" class="benchmark.wire.Bean00427AImpl" />
+	<component name="component00427B" class="benchmark.wire.Bean00427BImpl" />
+
+	<component name="component00428A" class="benchmark.wire.Bean00428AImpl" />
+	<component name="component00428B" class="benchmark.wire.Bean00428BImpl" />
+
+	<component name="component00429A" class="benchmark.wire.Bean00429AImpl" />
+	<component name="component00429B" class="benchmark.wire.Bean00429BImpl" />
+
+	<component name="component00430A" class="benchmark.wire.Bean00430AImpl" />
+	<component name="component00430B" class="benchmark.wire.Bean00430BImpl" />
+
+	<component name="component00431A" class="benchmark.wire.Bean00431AImpl" />
+	<component name="component00431B" class="benchmark.wire.Bean00431BImpl" />
+
+	<component name="component00432A" class="benchmark.wire.Bean00432AImpl" />
+	<component name="component00432B" class="benchmark.wire.Bean00432BImpl" />
+
+	<component name="component00433A" class="benchmark.wire.Bean00433AImpl" />
+	<component name="component00433B" class="benchmark.wire.Bean00433BImpl" />
+
+	<component name="component00434A" class="benchmark.wire.Bean00434AImpl" />
+	<component name="component00434B" class="benchmark.wire.Bean00434BImpl" />
+
+	<component name="component00435A" class="benchmark.wire.Bean00435AImpl" />
+	<component name="component00435B" class="benchmark.wire.Bean00435BImpl" />
+
+	<component name="component00436A" class="benchmark.wire.Bean00436AImpl" />
+	<component name="component00436B" class="benchmark.wire.Bean00436BImpl" />
+
+	<component name="component00437A" class="benchmark.wire.Bean00437AImpl" />
+	<component name="component00437B" class="benchmark.wire.Bean00437BImpl" />
+
+	<component name="component00438A" class="benchmark.wire.Bean00438AImpl" />
+	<component name="component00438B" class="benchmark.wire.Bean00438BImpl" />
+
+	<component name="component00439A" class="benchmark.wire.Bean00439AImpl" />
+	<component name="component00439B" class="benchmark.wire.Bean00439BImpl" />
+
+	<component name="component00440A" class="benchmark.wire.Bean00440AImpl" />
+	<component name="component00440B" class="benchmark.wire.Bean00440BImpl" />
+
+	<component name="component00441A" class="benchmark.wire.Bean00441AImpl" />
+	<component name="component00441B" class="benchmark.wire.Bean00441BImpl" />
+
+	<component name="component00442A" class="benchmark.wire.Bean00442AImpl" />
+	<component name="component00442B" class="benchmark.wire.Bean00442BImpl" />
+
+	<component name="component00443A" class="benchmark.wire.Bean00443AImpl" />
+	<component name="component00443B" class="benchmark.wire.Bean00443BImpl" />
+
+	<component name="component00444A" class="benchmark.wire.Bean00444AImpl" />
+	<component name="component00444B" class="benchmark.wire.Bean00444BImpl" />
+
+	<component name="component00445A" class="benchmark.wire.Bean00445AImpl" />
+	<component name="component00445B" class="benchmark.wire.Bean00445BImpl" />
+
+	<component name="component00446A" class="benchmark.wire.Bean00446AImpl" />
+	<component name="component00446B" class="benchmark.wire.Bean00446BImpl" />
+
+	<component name="component00447A" class="benchmark.wire.Bean00447AImpl" />
+	<component name="component00447B" class="benchmark.wire.Bean00447BImpl" />
+
+	<component name="component00448A" class="benchmark.wire.Bean00448AImpl" />
+	<component name="component00448B" class="benchmark.wire.Bean00448BImpl" />
+
+	<component name="component00449A" class="benchmark.wire.Bean00449AImpl" />
+	<component name="component00449B" class="benchmark.wire.Bean00449BImpl" />
+
+	<component name="component00450A" class="benchmark.wire.Bean00450AImpl" />
+	<component name="component00450B" class="benchmark.wire.Bean00450BImpl" />
+
+	<component name="component00451A" class="benchmark.wire.Bean00451AImpl" />
+	<component name="component00451B" class="benchmark.wire.Bean00451BImpl" />
+
+	<component name="component00452A" class="benchmark.wire.Bean00452AImpl" />
+	<component name="component00452B" class="benchmark.wire.Bean00452BImpl" />
+
+	<component name="component00453A" class="benchmark.wire.Bean00453AImpl" />
+	<component name="component00453B" class="benchmark.wire.Bean00453BImpl" />
+
+	<component name="component00454A" class="benchmark.wire.Bean00454AImpl" />
+	<component name="component00454B" class="benchmark.wire.Bean00454BImpl" />
+
+	<component name="component00455A" class="benchmark.wire.Bean00455AImpl" />
+	<component name="component00455B" class="benchmark.wire.Bean00455BImpl" />
+
+	<component name="component00456A" class="benchmark.wire.Bean00456AImpl" />
+	<component name="component00456B" class="benchmark.wire.Bean00456BImpl" />
+
+	<component name="component00457A" class="benchmark.wire.Bean00457AImpl" />
+	<component name="component00457B" class="benchmark.wire.Bean00457BImpl" />
+
+	<component name="component00458A" class="benchmark.wire.Bean00458AImpl" />
+	<component name="component00458B" class="benchmark.wire.Bean00458BImpl" />
+
+	<component name="component00459A" class="benchmark.wire.Bean00459AImpl" />
+	<component name="component00459B" class="benchmark.wire.Bean00459BImpl" />
+
+	<component name="component00460A" class="benchmark.wire.Bean00460AImpl" />
+	<component name="component00460B" class="benchmark.wire.Bean00460BImpl" />
+
+	<component name="component00461A" class="benchmark.wire.Bean00461AImpl" />
+	<component name="component00461B" class="benchmark.wire.Bean00461BImpl" />
+
+	<component name="component00462A" class="benchmark.wire.Bean00462AImpl" />
+	<component name="component00462B" class="benchmark.wire.Bean00462BImpl" />
+
+	<component name="component00463A" class="benchmark.wire.Bean00463AImpl" />
+	<component name="component00463B" class="benchmark.wire.Bean00463BImpl" />
+
+	<component name="component00464A" class="benchmark.wire.Bean00464AImpl" />
+	<component name="component00464B" class="benchmark.wire.Bean00464BImpl" />
+
+	<component name="component00465A" class="benchmark.wire.Bean00465AImpl" />
+	<component name="component00465B" class="benchmark.wire.Bean00465BImpl" />
+
+	<component name="component00466A" class="benchmark.wire.Bean00466AImpl" />
+	<component name="component00466B" class="benchmark.wire.Bean00466BImpl" />
+
+	<component name="component00467A" class="benchmark.wire.Bean00467AImpl" />
+	<component name="component00467B" class="benchmark.wire.Bean00467BImpl" />
+
+	<component name="component00468A" class="benchmark.wire.Bean00468AImpl" />
+	<component name="component00468B" class="benchmark.wire.Bean00468BImpl" />
+
+	<component name="component00469A" class="benchmark.wire.Bean00469AImpl" />
+	<component name="component00469B" class="benchmark.wire.Bean00469BImpl" />
+
+	<component name="component00470A" class="benchmark.wire.Bean00470AImpl" />
+	<component name="component00470B" class="benchmark.wire.Bean00470BImpl" />
+
+	<component name="component00471A" class="benchmark.wire.Bean00471AImpl" />
+	<component name="component00471B" class="benchmark.wire.Bean00471BImpl" />
+
+	<component name="component00472A" class="benchmark.wire.Bean00472AImpl" />
+	<component name="component00472B" class="benchmark.wire.Bean00472BImpl" />
+
+	<component name="component00473A" class="benchmark.wire.Bean00473AImpl" />
+	<component name="component00473B" class="benchmark.wire.Bean00473BImpl" />
+
+	<component name="component00474A" class="benchmark.wire.Bean00474AImpl" />
+	<component name="component00474B" class="benchmark.wire.Bean00474BImpl" />
+
+	<component name="component00475A" class="benchmark.wire.Bean00475AImpl" />
+	<component name="component00475B" class="benchmark.wire.Bean00475BImpl" />
+
+	<component name="component00476A" class="benchmark.wire.Bean00476AImpl" />
+	<component name="component00476B" class="benchmark.wire.Bean00476BImpl" />
+
+	<component name="component00477A" class="benchmark.wire.Bean00477AImpl" />
+	<component name="component00477B" class="benchmark.wire.Bean00477BImpl" />
+
+	<component name="component00478A" class="benchmark.wire.Bean00478AImpl" />
+	<component name="component00478B" class="benchmark.wire.Bean00478BImpl" />
+
+	<component name="component00479A" class="benchmark.wire.Bean00479AImpl" />
+	<component name="component00479B" class="benchmark.wire.Bean00479BImpl" />
+
+	<component name="component00480A" class="benchmark.wire.Bean00480AImpl" />
+	<component name="component00480B" class="benchmark.wire.Bean00480BImpl" />
+
+	<component name="component00481A" class="benchmark.wire.Bean00481AImpl" />
+	<component name="component00481B" class="benchmark.wire.Bean00481BImpl" />
+
+	<component name="component00482A" class="benchmark.wire.Bean00482AImpl" />
+	<component name="component00482B" class="benchmark.wire.Bean00482BImpl" />
+
+	<component name="component00483A" class="benchmark.wire.Bean00483AImpl" />
+	<component name="component00483B" class="benchmark.wire.Bean00483BImpl" />
+
+	<component name="component00484A" class="benchmark.wire.Bean00484AImpl" />
+	<component name="component00484B" class="benchmark.wire.Bean00484BImpl" />
+
+	<component name="component00485A" class="benchmark.wire.Bean00485AImpl" />
+	<component name="component00485B" class="benchmark.wire.Bean00485BImpl" />
+
+	<component name="component00486A" class="benchmark.wire.Bean00486AImpl" />
+	<component name="component00486B" class="benchmark.wire.Bean00486BImpl" />
+
+	<component name="component00487A" class="benchmark.wire.Bean00487AImpl" />
+	<component name="component00487B" class="benchmark.wire.Bean00487BImpl" />
+
+	<component name="component00488A" class="benchmark.wire.Bean00488AImpl" />
+	<component name="component00488B" class="benchmark.wire.Bean00488BImpl" />
+
+	<component name="component00489A" class="benchmark.wire.Bean00489AImpl" />
+	<component name="component00489B" class="benchmark.wire.Bean00489BImpl" />
+
+	<component name="component00490A" class="benchmark.wire.Bean00490AImpl" />
+	<component name="component00490B" class="benchmark.wire.Bean00490BImpl" />
+
+	<component name="component00491A" class="benchmark.wire.Bean00491AImpl" />
+	<component name="component00491B" class="benchmark.wire.Bean00491BImpl" />
+
+	<component name="component00492A" class="benchmark.wire.Bean00492AImpl" />
+	<component name="component00492B" class="benchmark.wire.Bean00492BImpl" />
+
+	<component name="component00493A" class="benchmark.wire.Bean00493AImpl" />
+	<component name="component00493B" class="benchmark.wire.Bean00493BImpl" />
+
+	<component name="component00494A" class="benchmark.wire.Bean00494AImpl" />
+	<component name="component00494B" class="benchmark.wire.Bean00494BImpl" />
+
+	<component name="component00495A" class="benchmark.wire.Bean00495AImpl" />
+	<component name="component00495B" class="benchmark.wire.Bean00495BImpl" />
+
+	<component name="component00496A" class="benchmark.wire.Bean00496AImpl" />
+	<component name="component00496B" class="benchmark.wire.Bean00496BImpl" />
+
+	<component name="component00497A" class="benchmark.wire.Bean00497AImpl" />
+	<component name="component00497B" class="benchmark.wire.Bean00497BImpl" />
+
+	<component name="component00498A" class="benchmark.wire.Bean00498AImpl" />
+	<component name="component00498B" class="benchmark.wire.Bean00498BImpl" />
+
+	<component name="component00499A" class="benchmark.wire.Bean00499AImpl" />
+	<component name="component00499B" class="benchmark.wire.Bean00499BImpl" />
+
+	<component name="component00500A" class="benchmark.wire.Bean00500AImpl" />
+	<component name="component00500B" class="benchmark.wire.Bean00500BImpl" />
+
+	<component name="component00501A" class="benchmark.wire.Bean00501AImpl" />
+	<component name="component00501B" class="benchmark.wire.Bean00501BImpl" />
+
+	<component name="component00502A" class="benchmark.wire.Bean00502AImpl" />
+	<component name="component00502B" class="benchmark.wire.Bean00502BImpl" />
+
+	<component name="component00503A" class="benchmark.wire.Bean00503AImpl" />
+	<component name="component00503B" class="benchmark.wire.Bean00503BImpl" />
+
+	<component name="component00504A" class="benchmark.wire.Bean00504AImpl" />
+	<component name="component00504B" class="benchmark.wire.Bean00504BImpl" />
+
+	<component name="component00505A" class="benchmark.wire.Bean00505AImpl" />
+	<component name="component00505B" class="benchmark.wire.Bean00505BImpl" />
+
+	<component name="component00506A" class="benchmark.wire.Bean00506AImpl" />
+	<component name="component00506B" class="benchmark.wire.Bean00506BImpl" />
+
+	<component name="component00507A" class="benchmark.wire.Bean00507AImpl" />
+	<component name="component00507B" class="benchmark.wire.Bean00507BImpl" />
+
+	<component name="component00508A" class="benchmark.wire.Bean00508AImpl" />
+	<component name="component00508B" class="benchmark.wire.Bean00508BImpl" />
+
+	<component name="component00509A" class="benchmark.wire.Bean00509AImpl" />
+	<component name="component00509B" class="benchmark.wire.Bean00509BImpl" />
+
+	<component name="component00510A" class="benchmark.wire.Bean00510AImpl" />
+	<component name="component00510B" class="benchmark.wire.Bean00510BImpl" />
+
+	<component name="component00511A" class="benchmark.wire.Bean00511AImpl" />
+	<component name="component00511B" class="benchmark.wire.Bean00511BImpl" />
+
+	<component name="component00512A" class="benchmark.wire.Bean00512AImpl" />
+	<component name="component00512B" class="benchmark.wire.Bean00512BImpl" />
+
+	<component name="component00513A" class="benchmark.wire.Bean00513AImpl" />
+	<component name="component00513B" class="benchmark.wire.Bean00513BImpl" />
+
+	<component name="component00514A" class="benchmark.wire.Bean00514AImpl" />
+	<component name="component00514B" class="benchmark.wire.Bean00514BImpl" />
+
+	<component name="component00515A" class="benchmark.wire.Bean00515AImpl" />
+	<component name="component00515B" class="benchmark.wire.Bean00515BImpl" />
+
+	<component name="component00516A" class="benchmark.wire.Bean00516AImpl" />
+	<component name="component00516B" class="benchmark.wire.Bean00516BImpl" />
+
+	<component name="component00517A" class="benchmark.wire.Bean00517AImpl" />
+	<component name="component00517B" class="benchmark.wire.Bean00517BImpl" />
+
+	<component name="component00518A" class="benchmark.wire.Bean00518AImpl" />
+	<component name="component00518B" class="benchmark.wire.Bean00518BImpl" />
+
+	<component name="component00519A" class="benchmark.wire.Bean00519AImpl" />
+	<component name="component00519B" class="benchmark.wire.Bean00519BImpl" />
+
+	<component name="component00520A" class="benchmark.wire.Bean00520AImpl" />
+	<component name="component00520B" class="benchmark.wire.Bean00520BImpl" />
+
+	<component name="component00521A" class="benchmark.wire.Bean00521AImpl" />
+	<component name="component00521B" class="benchmark.wire.Bean00521BImpl" />
+
+	<component name="component00522A" class="benchmark.wire.Bean00522AImpl" />
+	<component name="component00522B" class="benchmark.wire.Bean00522BImpl" />
+
+	<component name="component00523A" class="benchmark.wire.Bean00523AImpl" />
+	<component name="component00523B" class="benchmark.wire.Bean00523BImpl" />
+
+	<component name="component00524A" class="benchmark.wire.Bean00524AImpl" />
+	<component name="component00524B" class="benchmark.wire.Bean00524BImpl" />
+
+	<component name="component00525A" class="benchmark.wire.Bean00525AImpl" />
+	<component name="component00525B" class="benchmark.wire.Bean00525BImpl" />
+
+	<component name="component00526A" class="benchmark.wire.Bean00526AImpl" />
+	<component name="component00526B" class="benchmark.wire.Bean00526BImpl" />
+
+	<component name="component00527A" class="benchmark.wire.Bean00527AImpl" />
+	<component name="component00527B" class="benchmark.wire.Bean00527BImpl" />
+
+	<component name="component00528A" class="benchmark.wire.Bean00528AImpl" />
+	<component name="component00528B" class="benchmark.wire.Bean00528BImpl" />
+
+	<component name="component00529A" class="benchmark.wire.Bean00529AImpl" />
+	<component name="component00529B" class="benchmark.wire.Bean00529BImpl" />
+
+	<component name="component00530A" class="benchmark.wire.Bean00530AImpl" />
+	<component name="component00530B" class="benchmark.wire.Bean00530BImpl" />
+
+	<component name="component00531A" class="benchmark.wire.Bean00531AImpl" />
+	<component name="component00531B" class="benchmark.wire.Bean00531BImpl" />
+
+	<component name="component00532A" class="benchmark.wire.Bean00532AImpl" />
+	<component name="component00532B" class="benchmark.wire.Bean00532BImpl" />
+
+	<component name="component00533A" class="benchmark.wire.Bean00533AImpl" />
+	<component name="component00533B" class="benchmark.wire.Bean00533BImpl" />
+
+	<component name="component00534A" class="benchmark.wire.Bean00534AImpl" />
+	<component name="component00534B" class="benchmark.wire.Bean00534BImpl" />
+
+	<component name="component00535A" class="benchmark.wire.Bean00535AImpl" />
+	<component name="component00535B" class="benchmark.wire.Bean00535BImpl" />
+
+	<component name="component00536A" class="benchmark.wire.Bean00536AImpl" />
+	<component name="component00536B" class="benchmark.wire.Bean00536BImpl" />
+
+	<component name="component00537A" class="benchmark.wire.Bean00537AImpl" />
+	<component name="component00537B" class="benchmark.wire.Bean00537BImpl" />
+
+	<component name="component00538A" class="benchmark.wire.Bean00538AImpl" />
+	<component name="component00538B" class="benchmark.wire.Bean00538BImpl" />
+
+	<component name="component00539A" class="benchmark.wire.Bean00539AImpl" />
+	<component name="component00539B" class="benchmark.wire.Bean00539BImpl" />
+
+	<component name="component00540A" class="benchmark.wire.Bean00540AImpl" />
+	<component name="component00540B" class="benchmark.wire.Bean00540BImpl" />
+
+	<component name="component00541A" class="benchmark.wire.Bean00541AImpl" />
+	<component name="component00541B" class="benchmark.wire.Bean00541BImpl" />
+
+	<component name="component00542A" class="benchmark.wire.Bean00542AImpl" />
+	<component name="component00542B" class="benchmark.wire.Bean00542BImpl" />
+
+	<component name="component00543A" class="benchmark.wire.Bean00543AImpl" />
+	<component name="component00543B" class="benchmark.wire.Bean00543BImpl" />
+
+	<component name="component00544A" class="benchmark.wire.Bean00544AImpl" />
+	<component name="component00544B" class="benchmark.wire.Bean00544BImpl" />
+
+	<component name="component00545A" class="benchmark.wire.Bean00545AImpl" />
+	<component name="component00545B" class="benchmark.wire.Bean00545BImpl" />
+
+	<component name="component00546A" class="benchmark.wire.Bean00546AImpl" />
+	<component name="component00546B" class="benchmark.wire.Bean00546BImpl" />
+
+	<component name="component00547A" class="benchmark.wire.Bean00547AImpl" />
+	<component name="component00547B" class="benchmark.wire.Bean00547BImpl" />
+
+	<component name="component00548A" class="benchmark.wire.Bean00548AImpl" />
+	<component name="component00548B" class="benchmark.wire.Bean00548BImpl" />
+
+	<component name="component00549A" class="benchmark.wire.Bean00549AImpl" />
+	<component name="component00549B" class="benchmark.wire.Bean00549BImpl" />
+
+	<component name="component00550A" class="benchmark.wire.Bean00550AImpl" />
+	<component name="component00550B" class="benchmark.wire.Bean00550BImpl" />
+
+	<component name="component00551A" class="benchmark.wire.Bean00551AImpl" />
+	<component name="component00551B" class="benchmark.wire.Bean00551BImpl" />
+
+	<component name="component00552A" class="benchmark.wire.Bean00552AImpl" />
+	<component name="component00552B" class="benchmark.wire.Bean00552BImpl" />
+
+	<component name="component00553A" class="benchmark.wire.Bean00553AImpl" />
+	<component name="component00553B" class="benchmark.wire.Bean00553BImpl" />
+
+	<component name="component00554A" class="benchmark.wire.Bean00554AImpl" />
+	<component name="component00554B" class="benchmark.wire.Bean00554BImpl" />
+
+	<component name="component00555A" class="benchmark.wire.Bean00555AImpl" />
+	<component name="component00555B" class="benchmark.wire.Bean00555BImpl" />
+
+	<component name="component00556A" class="benchmark.wire.Bean00556AImpl" />
+	<component name="component00556B" class="benchmark.wire.Bean00556BImpl" />
+
+	<component name="component00557A" class="benchmark.wire.Bean00557AImpl" />
+	<component name="component00557B" class="benchmark.wire.Bean00557BImpl" />
+
+	<component name="component00558A" class="benchmark.wire.Bean00558AImpl" />
+	<component name="component00558B" class="benchmark.wire.Bean00558BImpl" />
+
+	<component name="component00559A" class="benchmark.wire.Bean00559AImpl" />
+	<component name="component00559B" class="benchmark.wire.Bean00559BImpl" />
+
+	<component name="component00560A" class="benchmark.wire.Bean00560AImpl" />
+	<component name="component00560B" class="benchmark.wire.Bean00560BImpl" />
+
+	<component name="component00561A" class="benchmark.wire.Bean00561AImpl" />
+	<component name="component00561B" class="benchmark.wire.Bean00561BImpl" />
+
+	<component name="component00562A" class="benchmark.wire.Bean00562AImpl" />
+	<component name="component00562B" class="benchmark.wire.Bean00562BImpl" />
+
+	<component name="component00563A" class="benchmark.wire.Bean00563AImpl" />
+	<component name="component00563B" class="benchmark.wire.Bean00563BImpl" />
+
+	<component name="component00564A" class="benchmark.wire.Bean00564AImpl" />
+	<component name="component00564B" class="benchmark.wire.Bean00564BImpl" />
+
+	<component name="component00565A" class="benchmark.wire.Bean00565AImpl" />
+	<component name="component00565B" class="benchmark.wire.Bean00565BImpl" />
+
+	<component name="component00566A" class="benchmark.wire.Bean00566AImpl" />
+	<component name="component00566B" class="benchmark.wire.Bean00566BImpl" />
+
+	<component name="component00567A" class="benchmark.wire.Bean00567AImpl" />
+	<component name="component00567B" class="benchmark.wire.Bean00567BImpl" />
+
+	<component name="component00568A" class="benchmark.wire.Bean00568AImpl" />
+	<component name="component00568B" class="benchmark.wire.Bean00568BImpl" />
+
+	<component name="component00569A" class="benchmark.wire.Bean00569AImpl" />
+	<component name="component00569B" class="benchmark.wire.Bean00569BImpl" />
+
+	<component name="component00570A" class="benchmark.wire.Bean00570AImpl" />
+	<component name="component00570B" class="benchmark.wire.Bean00570BImpl" />
+
+	<component name="component00571A" class="benchmark.wire.Bean00571AImpl" />
+	<component name="component00571B" class="benchmark.wire.Bean00571BImpl" />
+
+	<component name="component00572A" class="benchmark.wire.Bean00572AImpl" />
+	<component name="component00572B" class="benchmark.wire.Bean00572BImpl" />
+
+	<component name="component00573A" class="benchmark.wire.Bean00573AImpl" />
+	<component name="component00573B" class="benchmark.wire.Bean00573BImpl" />
+
+	<component name="component00574A" class="benchmark.wire.Bean00574AImpl" />
+	<component name="component00574B" class="benchmark.wire.Bean00574BImpl" />
+
+	<component name="component00575A" class="benchmark.wire.Bean00575AImpl" />
+	<component name="component00575B" class="benchmark.wire.Bean00575BImpl" />
+
+	<component name="component00576A" class="benchmark.wire.Bean00576AImpl" />
+	<component name="component00576B" class="benchmark.wire.Bean00576BImpl" />
+
+	<component name="component00577A" class="benchmark.wire.Bean00577AImpl" />
+	<component name="component00577B" class="benchmark.wire.Bean00577BImpl" />
+
+	<component name="component00578A" class="benchmark.wire.Bean00578AImpl" />
+	<component name="component00578B" class="benchmark.wire.Bean00578BImpl" />
+
+	<component name="component00579A" class="benchmark.wire.Bean00579AImpl" />
+	<component name="component00579B" class="benchmark.wire.Bean00579BImpl" />
+
+	<component name="component00580A" class="benchmark.wire.Bean00580AImpl" />
+	<component name="component00580B" class="benchmark.wire.Bean00580BImpl" />
+
+	<component name="component00581A" class="benchmark.wire.Bean00581AImpl" />
+	<component name="component00581B" class="benchmark.wire.Bean00581BImpl" />
+
+	<component name="component00582A" class="benchmark.wire.Bean00582AImpl" />
+	<component name="component00582B" class="benchmark.wire.Bean00582BImpl" />
+
+	<component name="component00583A" class="benchmark.wire.Bean00583AImpl" />
+	<component name="component00583B" class="benchmark.wire.Bean00583BImpl" />
+
+	<component name="component00584A" class="benchmark.wire.Bean00584AImpl" />
+	<component name="component00584B" class="benchmark.wire.Bean00584BImpl" />
+
+	<component name="component00585A" class="benchmark.wire.Bean00585AImpl" />
+	<component name="component00585B" class="benchmark.wire.Bean00585BImpl" />
+
+	<component name="component00586A" class="benchmark.wire.Bean00586AImpl" />
+	<component name="component00586B" class="benchmark.wire.Bean00586BImpl" />
+
+	<component name="component00587A" class="benchmark.wire.Bean00587AImpl" />
+	<component name="component00587B" class="benchmark.wire.Bean00587BImpl" />
+
+	<component name="component00588A" class="benchmark.wire.Bean00588AImpl" />
+	<component name="component00588B" class="benchmark.wire.Bean00588BImpl" />
+
+	<component name="component00589A" class="benchmark.wire.Bean00589AImpl" />
+	<component name="component00589B" class="benchmark.wire.Bean00589BImpl" />
+
+	<component name="component00590A" class="benchmark.wire.Bean00590AImpl" />
+	<component name="component00590B" class="benchmark.wire.Bean00590BImpl" />
+
+	<component name="component00591A" class="benchmark.wire.Bean00591AImpl" />
+	<component name="component00591B" class="benchmark.wire.Bean00591BImpl" />
+
+	<component name="component00592A" class="benchmark.wire.Bean00592AImpl" />
+	<component name="component00592B" class="benchmark.wire.Bean00592BImpl" />
+
+	<component name="component00593A" class="benchmark.wire.Bean00593AImpl" />
+	<component name="component00593B" class="benchmark.wire.Bean00593BImpl" />
+
+	<component name="component00594A" class="benchmark.wire.Bean00594AImpl" />
+	<component name="component00594B" class="benchmark.wire.Bean00594BImpl" />
+
+	<component name="component00595A" class="benchmark.wire.Bean00595AImpl" />
+	<component name="component00595B" class="benchmark.wire.Bean00595BImpl" />
+
+	<component name="component00596A" class="benchmark.wire.Bean00596AImpl" />
+	<component name="component00596B" class="benchmark.wire.Bean00596BImpl" />
+
+	<component name="component00597A" class="benchmark.wire.Bean00597AImpl" />
+	<component name="component00597B" class="benchmark.wire.Bean00597BImpl" />
+
+	<component name="component00598A" class="benchmark.wire.Bean00598AImpl" />
+	<component name="component00598B" class="benchmark.wire.Bean00598BImpl" />
+
+	<component name="component00599A" class="benchmark.wire.Bean00599AImpl" />
+	<component name="component00599B" class="benchmark.wire.Bean00599BImpl" />
+
+	<component name="component00600A" class="benchmark.wire.Bean00600AImpl" />
+	<component name="component00600B" class="benchmark.wire.Bean00600BImpl" />
+
+	<component name="component00601A" class="benchmark.wire.Bean00601AImpl" />
+	<component name="component00601B" class="benchmark.wire.Bean00601BImpl" />
+
+	<component name="component00602A" class="benchmark.wire.Bean00602AImpl" />
+	<component name="component00602B" class="benchmark.wire.Bean00602BImpl" />
+
+	<component name="component00603A" class="benchmark.wire.Bean00603AImpl" />
+	<component name="component00603B" class="benchmark.wire.Bean00603BImpl" />
+
+	<component name="component00604A" class="benchmark.wire.Bean00604AImpl" />
+	<component name="component00604B" class="benchmark.wire.Bean00604BImpl" />
+
+	<component name="component00605A" class="benchmark.wire.Bean00605AImpl" />
+	<component name="component00605B" class="benchmark.wire.Bean00605BImpl" />
+
+	<component name="component00606A" class="benchmark.wire.Bean00606AImpl" />
+	<component name="component00606B" class="benchmark.wire.Bean00606BImpl" />
+
+	<component name="component00607A" class="benchmark.wire.Bean00607AImpl" />
+	<component name="component00607B" class="benchmark.wire.Bean00607BImpl" />
+
+	<component name="component00608A" class="benchmark.wire.Bean00608AImpl" />
+	<component name="component00608B" class="benchmark.wire.Bean00608BImpl" />
+
+	<component name="component00609A" class="benchmark.wire.Bean00609AImpl" />
+	<component name="component00609B" class="benchmark.wire.Bean00609BImpl" />
+
+	<component name="component00610A" class="benchmark.wire.Bean00610AImpl" />
+	<component name="component00610B" class="benchmark.wire.Bean00610BImpl" />
+
+	<component name="component00611A" class="benchmark.wire.Bean00611AImpl" />
+	<component name="component00611B" class="benchmark.wire.Bean00611BImpl" />
+
+	<component name="component00612A" class="benchmark.wire.Bean00612AImpl" />
+	<component name="component00612B" class="benchmark.wire.Bean00612BImpl" />
+
+	<component name="component00613A" class="benchmark.wire.Bean00613AImpl" />
+	<component name="component00613B" class="benchmark.wire.Bean00613BImpl" />
+
+	<component name="component00614A" class="benchmark.wire.Bean00614AImpl" />
+	<component name="component00614B" class="benchmark.wire.Bean00614BImpl" />
+
+	<component name="component00615A" class="benchmark.wire.Bean00615AImpl" />
+	<component name="component00615B" class="benchmark.wire.Bean00615BImpl" />
+
+	<component name="component00616A" class="benchmark.wire.Bean00616AImpl" />
+	<component name="component00616B" class="benchmark.wire.Bean00616BImpl" />
+
+	<component name="component00617A" class="benchmark.wire.Bean00617AImpl" />
+	<component name="component00617B" class="benchmark.wire.Bean00617BImpl" />
+
+	<component name="component00618A" class="benchmark.wire.Bean00618AImpl" />
+	<component name="component00618B" class="benchmark.wire.Bean00618BImpl" />
+
+	<component name="component00619A" class="benchmark.wire.Bean00619AImpl" />
+	<component name="component00619B" class="benchmark.wire.Bean00619BImpl" />
+
+	<component name="component00620A" class="benchmark.wire.Bean00620AImpl" />
+	<component name="component00620B" class="benchmark.wire.Bean00620BImpl" />
+
+	<component name="component00621A" class="benchmark.wire.Bean00621AImpl" />
+	<component name="component00621B" class="benchmark.wire.Bean00621BImpl" />
+
+	<component name="component00622A" class="benchmark.wire.Bean00622AImpl" />
+	<component name="component00622B" class="benchmark.wire.Bean00622BImpl" />
+
+	<component name="component00623A" class="benchmark.wire.Bean00623AImpl" />
+	<component name="component00623B" class="benchmark.wire.Bean00623BImpl" />
+
+	<component name="component00624A" class="benchmark.wire.Bean00624AImpl" />
+	<component name="component00624B" class="benchmark.wire.Bean00624BImpl" />
+
+	<component name="component00625A" class="benchmark.wire.Bean00625AImpl" />
+	<component name="component00625B" class="benchmark.wire.Bean00625BImpl" />
+
+	<component name="component00626A" class="benchmark.wire.Bean00626AImpl" />
+	<component name="component00626B" class="benchmark.wire.Bean00626BImpl" />
+
+	<component name="component00627A" class="benchmark.wire.Bean00627AImpl" />
+	<component name="component00627B" class="benchmark.wire.Bean00627BImpl" />
+
+	<component name="component00628A" class="benchmark.wire.Bean00628AImpl" />
+	<component name="component00628B" class="benchmark.wire.Bean00628BImpl" />
+
+	<component name="component00629A" class="benchmark.wire.Bean00629AImpl" />
+	<component name="component00629B" class="benchmark.wire.Bean00629BImpl" />
+
+	<component name="component00630A" class="benchmark.wire.Bean00630AImpl" />
+	<component name="component00630B" class="benchmark.wire.Bean00630BImpl" />
+
+	<component name="component00631A" class="benchmark.wire.Bean00631AImpl" />
+	<component name="component00631B" class="benchmark.wire.Bean00631BImpl" />
+
+	<component name="component00632A" class="benchmark.wire.Bean00632AImpl" />
+	<component name="component00632B" class="benchmark.wire.Bean00632BImpl" />
+
+	<component name="component00633A" class="benchmark.wire.Bean00633AImpl" />
+	<component name="component00633B" class="benchmark.wire.Bean00633BImpl" />
+
+	<component name="component00634A" class="benchmark.wire.Bean00634AImpl" />
+	<component name="component00634B" class="benchmark.wire.Bean00634BImpl" />
+
+	<component name="component00635A" class="benchmark.wire.Bean00635AImpl" />
+	<component name="component00635B" class="benchmark.wire.Bean00635BImpl" />
+
+	<component name="component00636A" class="benchmark.wire.Bean00636AImpl" />
+	<component name="component00636B" class="benchmark.wire.Bean00636BImpl" />
+
+	<component name="component00637A" class="benchmark.wire.Bean00637AImpl" />
+	<component name="component00637B" class="benchmark.wire.Bean00637BImpl" />
+
+	<component name="component00638A" class="benchmark.wire.Bean00638AImpl" />
+	<component name="component00638B" class="benchmark.wire.Bean00638BImpl" />
+
+	<component name="component00639A" class="benchmark.wire.Bean00639AImpl" />
+	<component name="component00639B" class="benchmark.wire.Bean00639BImpl" />
+
+	<component name="component00640A" class="benchmark.wire.Bean00640AImpl" />
+	<component name="component00640B" class="benchmark.wire.Bean00640BImpl" />
+
+	<component name="component00641A" class="benchmark.wire.Bean00641AImpl" />
+	<component name="component00641B" class="benchmark.wire.Bean00641BImpl" />
+
+	<component name="component00642A" class="benchmark.wire.Bean00642AImpl" />
+	<component name="component00642B" class="benchmark.wire.Bean00642BImpl" />
+
+	<component name="component00643A" class="benchmark.wire.Bean00643AImpl" />
+	<component name="component00643B" class="benchmark.wire.Bean00643BImpl" />
+
+	<component name="component00644A" class="benchmark.wire.Bean00644AImpl" />
+	<component name="component00644B" class="benchmark.wire.Bean00644BImpl" />
+
+	<component name="component00645A" class="benchmark.wire.Bean00645AImpl" />
+	<component name="component00645B" class="benchmark.wire.Bean00645BImpl" />
+
+	<component name="component00646A" class="benchmark.wire.Bean00646AImpl" />
+	<component name="component00646B" class="benchmark.wire.Bean00646BImpl" />
+
+	<component name="component00647A" class="benchmark.wire.Bean00647AImpl" />
+	<component name="component00647B" class="benchmark.wire.Bean00647BImpl" />
+
+	<component name="component00648A" class="benchmark.wire.Bean00648AImpl" />
+	<component name="component00648B" class="benchmark.wire.Bean00648BImpl" />
+
+	<component name="component00649A" class="benchmark.wire.Bean00649AImpl" />
+	<component name="component00649B" class="benchmark.wire.Bean00649BImpl" />
+
+	<component name="component00650A" class="benchmark.wire.Bean00650AImpl" />
+	<component name="component00650B" class="benchmark.wire.Bean00650BImpl" />
+
+	<component name="component00651A" class="benchmark.wire.Bean00651AImpl" />
+	<component name="component00651B" class="benchmark.wire.Bean00651BImpl" />
+
+	<component name="component00652A" class="benchmark.wire.Bean00652AImpl" />
+	<component name="component00652B" class="benchmark.wire.Bean00652BImpl" />
+
+	<component name="component00653A" class="benchmark.wire.Bean00653AImpl" />
+	<component name="component00653B" class="benchmark.wire.Bean00653BImpl" />
+
+	<component name="component00654A" class="benchmark.wire.Bean00654AImpl" />
+	<component name="component00654B" class="benchmark.wire.Bean00654BImpl" />
+
+	<component name="component00655A" class="benchmark.wire.Bean00655AImpl" />
+	<component name="component00655B" class="benchmark.wire.Bean00655BImpl" />
+
+	<component name="component00656A" class="benchmark.wire.Bean00656AImpl" />
+	<component name="component00656B" class="benchmark.wire.Bean00656BImpl" />
+
+	<component name="component00657A" class="benchmark.wire.Bean00657AImpl" />
+	<component name="component00657B" class="benchmark.wire.Bean00657BImpl" />
+
+	<component name="component00658A" class="benchmark.wire.Bean00658AImpl" />
+	<component name="component00658B" class="benchmark.wire.Bean00658BImpl" />
+
+	<component name="component00659A" class="benchmark.wire.Bean00659AImpl" />
+	<component name="component00659B" class="benchmark.wire.Bean00659BImpl" />
+
+	<component name="component00660A" class="benchmark.wire.Bean00660AImpl" />
+	<component name="component00660B" class="benchmark.wire.Bean00660BImpl" />
+
+	<component name="component00661A" class="benchmark.wire.Bean00661AImpl" />
+	<component name="component00661B" class="benchmark.wire.Bean00661BImpl" />
+
+	<component name="component00662A" class="benchmark.wire.Bean00662AImpl" />
+	<component name="component00662B" class="benchmark.wire.Bean00662BImpl" />
+
+	<component name="component00663A" class="benchmark.wire.Bean00663AImpl" />
+	<component name="component00663B" class="benchmark.wire.Bean00663BImpl" />
+
+	<component name="component00664A" class="benchmark.wire.Bean00664AImpl" />
+	<component name="component00664B" class="benchmark.wire.Bean00664BImpl" />
+
+	<component name="component00665A" class="benchmark.wire.Bean00665AImpl" />
+	<component name="component00665B" class="benchmark.wire.Bean00665BImpl" />
+
+	<component name="component00666A" class="benchmark.wire.Bean00666AImpl" />
+	<component name="component00666B" class="benchmark.wire.Bean00666BImpl" />
+
+	<component name="component00667A" class="benchmark.wire.Bean00667AImpl" />
+	<component name="component00667B" class="benchmark.wire.Bean00667BImpl" />
+
+	<component name="component00668A" class="benchmark.wire.Bean00668AImpl" />
+	<component name="component00668B" class="benchmark.wire.Bean00668BImpl" />
+
+	<component name="component00669A" class="benchmark.wire.Bean00669AImpl" />
+	<component name="component00669B" class="benchmark.wire.Bean00669BImpl" />
+
+	<component name="component00670A" class="benchmark.wire.Bean00670AImpl" />
+	<component name="component00670B" class="benchmark.wire.Bean00670BImpl" />
+
+	<component name="component00671A" class="benchmark.wire.Bean00671AImpl" />
+	<component name="component00671B" class="benchmark.wire.Bean00671BImpl" />
+
+	<component name="component00672A" class="benchmark.wire.Bean00672AImpl" />
+	<component name="component00672B" class="benchmark.wire.Bean00672BImpl" />
+
+	<component name="component00673A" class="benchmark.wire.Bean00673AImpl" />
+	<component name="component00673B" class="benchmark.wire.Bean00673BImpl" />
+
+	<component name="component00674A" class="benchmark.wire.Bean00674AImpl" />
+	<component name="component00674B" class="benchmark.wire.Bean00674BImpl" />
+
+	<component name="component00675A" class="benchmark.wire.Bean00675AImpl" />
+	<component name="component00675B" class="benchmark.wire.Bean00675BImpl" />
+
+	<component name="component00676A" class="benchmark.wire.Bean00676AImpl" />
+	<component name="component00676B" class="benchmark.wire.Bean00676BImpl" />
+
+	<component name="component00677A" class="benchmark.wire.Bean00677AImpl" />
+	<component name="component00677B" class="benchmark.wire.Bean00677BImpl" />
+
+	<component name="component00678A" class="benchmark.wire.Bean00678AImpl" />
+	<component name="component00678B" class="benchmark.wire.Bean00678BImpl" />
+
+	<component name="component00679A" class="benchmark.wire.Bean00679AImpl" />
+	<component name="component00679B" class="benchmark.wire.Bean00679BImpl" />
+
+	<component name="component00680A" class="benchmark.wire.Bean00680AImpl" />
+	<component name="component00680B" class="benchmark.wire.Bean00680BImpl" />
+
+	<component name="component00681A" class="benchmark.wire.Bean00681AImpl" />
+	<component name="component00681B" class="benchmark.wire.Bean00681BImpl" />
+
+	<component name="component00682A" class="benchmark.wire.Bean00682AImpl" />
+	<component name="component00682B" class="benchmark.wire.Bean00682BImpl" />
+
+	<component name="component00683A" class="benchmark.wire.Bean00683AImpl" />
+	<component name="component00683B" class="benchmark.wire.Bean00683BImpl" />
+
+	<component name="component00684A" class="benchmark.wire.Bean00684AImpl" />
+	<component name="component00684B" class="benchmark.wire.Bean00684BImpl" />
+
+	<component name="component00685A" class="benchmark.wire.Bean00685AImpl" />
+	<component name="component00685B" class="benchmark.wire.Bean00685BImpl" />
+
+	<component name="component00686A" class="benchmark.wire.Bean00686AImpl" />
+	<component name="component00686B" class="benchmark.wire.Bean00686BImpl" />
+
+	<component name="component00687A" class="benchmark.wire.Bean00687AImpl" />
+	<component name="component00687B" class="benchmark.wire.Bean00687BImpl" />
+
+	<component name="component00688A" class="benchmark.wire.Bean00688AImpl" />
+	<component name="component00688B" class="benchmark.wire.Bean00688BImpl" />
+
+	<component name="component00689A" class="benchmark.wire.Bean00689AImpl" />
+	<component name="component00689B" class="benchmark.wire.Bean00689BImpl" />
+
+	<component name="component00690A" class="benchmark.wire.Bean00690AImpl" />
+	<component name="component00690B" class="benchmark.wire.Bean00690BImpl" />
+
+	<component name="component00691A" class="benchmark.wire.Bean00691AImpl" />
+	<component name="component00691B" class="benchmark.wire.Bean00691BImpl" />
+
+	<component name="component00692A" class="benchmark.wire.Bean00692AImpl" />
+	<component name="component00692B" class="benchmark.wire.Bean00692BImpl" />
+
+	<component name="component00693A" class="benchmark.wire.Bean00693AImpl" />
+	<component name="component00693B" class="benchmark.wire.Bean00693BImpl" />
+
+	<component name="component00694A" class="benchmark.wire.Bean00694AImpl" />
+	<component name="component00694B" class="benchmark.wire.Bean00694BImpl" />
+
+	<component name="component00695A" class="benchmark.wire.Bean00695AImpl" />
+	<component name="component00695B" class="benchmark.wire.Bean00695BImpl" />
+
+	<component name="component00696A" class="benchmark.wire.Bean00696AImpl" />
+	<component name="component00696B" class="benchmark.wire.Bean00696BImpl" />
+
+	<component name="component00697A" class="benchmark.wire.Bean00697AImpl" />
+	<component name="component00697B" class="benchmark.wire.Bean00697BImpl" />
+
+	<component name="component00698A" class="benchmark.wire.Bean00698AImpl" />
+	<component name="component00698B" class="benchmark.wire.Bean00698BImpl" />
+
+	<component name="component00699A" class="benchmark.wire.Bean00699AImpl" />
+	<component name="component00699B" class="benchmark.wire.Bean00699BImpl" />
+
+	<component name="component00700A" class="benchmark.wire.Bean00700AImpl" />
+	<component name="component00700B" class="benchmark.wire.Bean00700BImpl" />
+
+	<component name="component00701A" class="benchmark.wire.Bean00701AImpl" />
+	<component name="component00701B" class="benchmark.wire.Bean00701BImpl" />
+
+	<component name="component00702A" class="benchmark.wire.Bean00702AImpl" />
+	<component name="component00702B" class="benchmark.wire.Bean00702BImpl" />
+
+	<component name="component00703A" class="benchmark.wire.Bean00703AImpl" />
+	<component name="component00703B" class="benchmark.wire.Bean00703BImpl" />
+
+	<component name="component00704A" class="benchmark.wire.Bean00704AImpl" />
+	<component name="component00704B" class="benchmark.wire.Bean00704BImpl" />
+
+	<component name="component00705A" class="benchmark.wire.Bean00705AImpl" />
+	<component name="component00705B" class="benchmark.wire.Bean00705BImpl" />
+
+	<component name="component00706A" class="benchmark.wire.Bean00706AImpl" />
+	<component name="component00706B" class="benchmark.wire.Bean00706BImpl" />
+
+	<component name="component00707A" class="benchmark.wire.Bean00707AImpl" />
+	<component name="component00707B" class="benchmark.wire.Bean00707BImpl" />
+
+	<component name="component00708A" class="benchmark.wire.Bean00708AImpl" />
+	<component name="component00708B" class="benchmark.wire.Bean00708BImpl" />
+
+	<component name="component00709A" class="benchmark.wire.Bean00709AImpl" />
+	<component name="component00709B" class="benchmark.wire.Bean00709BImpl" />
+
+	<component name="component00710A" class="benchmark.wire.Bean00710AImpl" />
+	<component name="component00710B" class="benchmark.wire.Bean00710BImpl" />
+
+	<component name="component00711A" class="benchmark.wire.Bean00711AImpl" />
+	<component name="component00711B" class="benchmark.wire.Bean00711BImpl" />
+
+	<component name="component00712A" class="benchmark.wire.Bean00712AImpl" />
+	<component name="component00712B" class="benchmark.wire.Bean00712BImpl" />
+
+	<component name="component00713A" class="benchmark.wire.Bean00713AImpl" />
+	<component name="component00713B" class="benchmark.wire.Bean00713BImpl" />
+
+	<component name="component00714A" class="benchmark.wire.Bean00714AImpl" />
+	<component name="component00714B" class="benchmark.wire.Bean00714BImpl" />
+
+	<component name="component00715A" class="benchmark.wire.Bean00715AImpl" />
+	<component name="component00715B" class="benchmark.wire.Bean00715BImpl" />
+
+	<component name="component00716A" class="benchmark.wire.Bean00716AImpl" />
+	<component name="component00716B" class="benchmark.wire.Bean00716BImpl" />
+
+	<component name="component00717A" class="benchmark.wire.Bean00717AImpl" />
+	<component name="component00717B" class="benchmark.wire.Bean00717BImpl" />
+
+	<component name="component00718A" class="benchmark.wire.Bean00718AImpl" />
+	<component name="component00718B" class="benchmark.wire.Bean00718BImpl" />
+
+	<component name="component00719A" class="benchmark.wire.Bean00719AImpl" />
+	<component name="component00719B" class="benchmark.wire.Bean00719BImpl" />
+
+	<component name="component00720A" class="benchmark.wire.Bean00720AImpl" />
+	<component name="component00720B" class="benchmark.wire.Bean00720BImpl" />
+
+	<component name="component00721A" class="benchmark.wire.Bean00721AImpl" />
+	<component name="component00721B" class="benchmark.wire.Bean00721BImpl" />
+
+	<component name="component00722A" class="benchmark.wire.Bean00722AImpl" />
+	<component name="component00722B" class="benchmark.wire.Bean00722BImpl" />
+
+	<component name="component00723A" class="benchmark.wire.Bean00723AImpl" />
+	<component name="component00723B" class="benchmark.wire.Bean00723BImpl" />
+
+	<component name="component00724A" class="benchmark.wire.Bean00724AImpl" />
+	<component name="component00724B" class="benchmark.wire.Bean00724BImpl" />
+
+	<component name="component00725A" class="benchmark.wire.Bean00725AImpl" />
+	<component name="component00725B" class="benchmark.wire.Bean00725BImpl" />
+
+	<component name="component00726A" class="benchmark.wire.Bean00726AImpl" />
+	<component name="component00726B" class="benchmark.wire.Bean00726BImpl" />
+
+	<component name="component00727A" class="benchmark.wire.Bean00727AImpl" />
+	<component name="component00727B" class="benchmark.wire.Bean00727BImpl" />
+
+	<component name="component00728A" class="benchmark.wire.Bean00728AImpl" />
+	<component name="component00728B" class="benchmark.wire.Bean00728BImpl" />
+
+	<component name="component00729A" class="benchmark.wire.Bean00729AImpl" />
+	<component name="component00729B" class="benchmark.wire.Bean00729BImpl" />
+
+	<component name="component00730A" class="benchmark.wire.Bean00730AImpl" />
+	<component name="component00730B" class="benchmark.wire.Bean00730BImpl" />
+
+	<component name="component00731A" class="benchmark.wire.Bean00731AImpl" />
+	<component name="component00731B" class="benchmark.wire.Bean00731BImpl" />
+
+	<component name="component00732A" class="benchmark.wire.Bean00732AImpl" />
+	<component name="component00732B" class="benchmark.wire.Bean00732BImpl" />
+
+	<component name="component00733A" class="benchmark.wire.Bean00733AImpl" />
+	<component name="component00733B" class="benchmark.wire.Bean00733BImpl" />
+
+	<component name="component00734A" class="benchmark.wire.Bean00734AImpl" />
+	<component name="component00734B" class="benchmark.wire.Bean00734BImpl" />
+
+	<component name="component00735A" class="benchmark.wire.Bean00735AImpl" />
+	<component name="component00735B" class="benchmark.wire.Bean00735BImpl" />
+
+	<component name="component00736A" class="benchmark.wire.Bean00736AImpl" />
+	<component name="component00736B" class="benchmark.wire.Bean00736BImpl" />
+
+	<component name="component00737A" class="benchmark.wire.Bean00737AImpl" />
+	<component name="component00737B" class="benchmark.wire.Bean00737BImpl" />
+
+	<component name="component00738A" class="benchmark.wire.Bean00738AImpl" />
+	<component name="component00738B" class="benchmark.wire.Bean00738BImpl" />
+
+	<component name="component00739A" class="benchmark.wire.Bean00739AImpl" />
+	<component name="component00739B" class="benchmark.wire.Bean00739BImpl" />
+
+	<component name="component00740A" class="benchmark.wire.Bean00740AImpl" />
+	<component name="component00740B" class="benchmark.wire.Bean00740BImpl" />
+
+	<component name="component00741A" class="benchmark.wire.Bean00741AImpl" />
+	<component name="component00741B" class="benchmark.wire.Bean00741BImpl" />
+
+	<component name="component00742A" class="benchmark.wire.Bean00742AImpl" />
+	<component name="component00742B" class="benchmark.wire.Bean00742BImpl" />
+
+	<component name="component00743A" class="benchmark.wire.Bean00743AImpl" />
+	<component name="component00743B" class="benchmark.wire.Bean00743BImpl" />
+
+	<component name="component00744A" class="benchmark.wire.Bean00744AImpl" />
+	<component name="component00744B" class="benchmark.wire.Bean00744BImpl" />
+
+	<component name="component00745A" class="benchmark.wire.Bean00745AImpl" />
+	<component name="component00745B" class="benchmark.wire.Bean00745BImpl" />
+
+	<component name="component00746A" class="benchmark.wire.Bean00746AImpl" />
+	<component name="component00746B" class="benchmark.wire.Bean00746BImpl" />
+
+	<component name="component00747A" class="benchmark.wire.Bean00747AImpl" />
+	<component name="component00747B" class="benchmark.wire.Bean00747BImpl" />
+
+	<component name="component00748A" class="benchmark.wire.Bean00748AImpl" />
+	<component name="component00748B" class="benchmark.wire.Bean00748BImpl" />
+
+	<component name="component00749A" class="benchmark.wire.Bean00749AImpl" />
+	<component name="component00749B" class="benchmark.wire.Bean00749BImpl" />
+
+	<component name="component00750A" class="benchmark.wire.Bean00750AImpl" />
+	<component name="component00750B" class="benchmark.wire.Bean00750BImpl" />
+
+	<component name="component00751A" class="benchmark.wire.Bean00751AImpl" />
+	<component name="component00751B" class="benchmark.wire.Bean00751BImpl" />
+
+	<component name="component00752A" class="benchmark.wire.Bean00752AImpl" />
+	<component name="component00752B" class="benchmark.wire.Bean00752BImpl" />
+
+	<component name="component00753A" class="benchmark.wire.Bean00753AImpl" />
+	<component name="component00753B" class="benchmark.wire.Bean00753BImpl" />
+
+	<component name="component00754A" class="benchmark.wire.Bean00754AImpl" />
+	<component name="component00754B" class="benchmark.wire.Bean00754BImpl" />
+
+	<component name="component00755A" class="benchmark.wire.Bean00755AImpl" />
+	<component name="component00755B" class="benchmark.wire.Bean00755BImpl" />
+
+	<component name="component00756A" class="benchmark.wire.Bean00756AImpl" />
+	<component name="component00756B" class="benchmark.wire.Bean00756BImpl" />
+
+	<component name="component00757A" class="benchmark.wire.Bean00757AImpl" />
+	<component name="component00757B" class="benchmark.wire.Bean00757BImpl" />
+
+	<component name="component00758A" class="benchmark.wire.Bean00758AImpl" />
+	<component name="component00758B" class="benchmark.wire.Bean00758BImpl" />
+
+	<component name="component00759A" class="benchmark.wire.Bean00759AImpl" />
+	<component name="component00759B" class="benchmark.wire.Bean00759BImpl" />
+
+	<component name="component00760A" class="benchmark.wire.Bean00760AImpl" />
+	<component name="component00760B" class="benchmark.wire.Bean00760BImpl" />
+
+	<component name="component00761A" class="benchmark.wire.Bean00761AImpl" />
+	<component name="component00761B" class="benchmark.wire.Bean00761BImpl" />
+
+	<component name="component00762A" class="benchmark.wire.Bean00762AImpl" />
+	<component name="component00762B" class="benchmark.wire.Bean00762BImpl" />
+
+	<component name="component00763A" class="benchmark.wire.Bean00763AImpl" />
+	<component name="component00763B" class="benchmark.wire.Bean00763BImpl" />
+
+	<component name="component00764A" class="benchmark.wire.Bean00764AImpl" />
+	<component name="component00764B" class="benchmark.wire.Bean00764BImpl" />
+
+	<component name="component00765A" class="benchmark.wire.Bean00765AImpl" />
+	<component name="component00765B" class="benchmark.wire.Bean00765BImpl" />
+
+	<component name="component00766A" class="benchmark.wire.Bean00766AImpl" />
+	<component name="component00766B" class="benchmark.wire.Bean00766BImpl" />
+
+	<component name="component00767A" class="benchmark.wire.Bean00767AImpl" />
+	<component name="component00767B" class="benchmark.wire.Bean00767BImpl" />
+
+	<component name="component00768A" class="benchmark.wire.Bean00768AImpl" />
+	<component name="component00768B" class="benchmark.wire.Bean00768BImpl" />
+
+	<component name="component00769A" class="benchmark.wire.Bean00769AImpl" />
+	<component name="component00769B" class="benchmark.wire.Bean00769BImpl" />
+
+	<component name="component00770A" class="benchmark.wire.Bean00770AImpl" />
+	<component name="component00770B" class="benchmark.wire.Bean00770BImpl" />
+
+	<component name="component00771A" class="benchmark.wire.Bean00771AImpl" />
+	<component name="component00771B" class="benchmark.wire.Bean00771BImpl" />
+
+	<component name="component00772A" class="benchmark.wire.Bean00772AImpl" />
+	<component name="component00772B" class="benchmark.wire.Bean00772BImpl" />
+
+	<component name="component00773A" class="benchmark.wire.Bean00773AImpl" />
+	<component name="component00773B" class="benchmark.wire.Bean00773BImpl" />
+
+	<component name="component00774A" class="benchmark.wire.Bean00774AImpl" />
+	<component name="component00774B" class="benchmark.wire.Bean00774BImpl" />
+
+	<component name="component00775A" class="benchmark.wire.Bean00775AImpl" />
+	<component name="component00775B" class="benchmark.wire.Bean00775BImpl" />
+
+	<component name="component00776A" class="benchmark.wire.Bean00776AImpl" />
+	<component name="component00776B" class="benchmark.wire.Bean00776BImpl" />
+
+	<component name="component00777A" class="benchmark.wire.Bean00777AImpl" />
+	<component name="component00777B" class="benchmark.wire.Bean00777BImpl" />
+
+	<component name="component00778A" class="benchmark.wire.Bean00778AImpl" />
+	<component name="component00778B" class="benchmark.wire.Bean00778BImpl" />
+
+	<component name="component00779A" class="benchmark.wire.Bean00779AImpl" />
+	<component name="component00779B" class="benchmark.wire.Bean00779BImpl" />
+
+	<component name="component00780A" class="benchmark.wire.Bean00780AImpl" />
+	<component name="component00780B" class="benchmark.wire.Bean00780BImpl" />
+
+	<component name="component00781A" class="benchmark.wire.Bean00781AImpl" />
+	<component name="component00781B" class="benchmark.wire.Bean00781BImpl" />
+
+	<component name="component00782A" class="benchmark.wire.Bean00782AImpl" />
+	<component name="component00782B" class="benchmark.wire.Bean00782BImpl" />
+
+	<component name="component00783A" class="benchmark.wire.Bean00783AImpl" />
+	<component name="component00783B" class="benchmark.wire.Bean00783BImpl" />
+
+	<component name="component00784A" class="benchmark.wire.Bean00784AImpl" />
+	<component name="component00784B" class="benchmark.wire.Bean00784BImpl" />
+
+	<component name="component00785A" class="benchmark.wire.Bean00785AImpl" />
+	<component name="component00785B" class="benchmark.wire.Bean00785BImpl" />
+
+	<component name="component00786A" class="benchmark.wire.Bean00786AImpl" />
+	<component name="component00786B" class="benchmark.wire.Bean00786BImpl" />
+
+	<component name="component00787A" class="benchmark.wire.Bean00787AImpl" />
+	<component name="component00787B" class="benchmark.wire.Bean00787BImpl" />
+
+	<component name="component00788A" class="benchmark.wire.Bean00788AImpl" />
+	<component name="component00788B" class="benchmark.wire.Bean00788BImpl" />
+
+	<component name="component00789A" class="benchmark.wire.Bean00789AImpl" />
+	<component name="component00789B" class="benchmark.wire.Bean00789BImpl" />
+
+	<component name="component00790A" class="benchmark.wire.Bean00790AImpl" />
+	<component name="component00790B" class="benchmark.wire.Bean00790BImpl" />
+
+	<component name="component00791A" class="benchmark.wire.Bean00791AImpl" />
+	<component name="component00791B" class="benchmark.wire.Bean00791BImpl" />
+
+	<component name="component00792A" class="benchmark.wire.Bean00792AImpl" />
+	<component name="component00792B" class="benchmark.wire.Bean00792BImpl" />
+
+	<component name="component00793A" class="benchmark.wire.Bean00793AImpl" />
+	<component name="component00793B" class="benchmark.wire.Bean00793BImpl" />
+
+	<component name="component00794A" class="benchmark.wire.Bean00794AImpl" />
+	<component name="component00794B" class="benchmark.wire.Bean00794BImpl" />
+
+	<component name="component00795A" class="benchmark.wire.Bean00795AImpl" />
+	<component name="component00795B" class="benchmark.wire.Bean00795BImpl" />
+
+	<component name="component00796A" class="benchmark.wire.Bean00796AImpl" />
+	<component name="component00796B" class="benchmark.wire.Bean00796BImpl" />
+
+	<component name="component00797A" class="benchmark.wire.Bean00797AImpl" />
+	<component name="component00797B" class="benchmark.wire.Bean00797BImpl" />
+
+	<component name="component00798A" class="benchmark.wire.Bean00798AImpl" />
+	<component name="component00798B" class="benchmark.wire.Bean00798BImpl" />
+
+	<component name="component00799A" class="benchmark.wire.Bean00799AImpl" />
+	<component name="component00799B" class="benchmark.wire.Bean00799BImpl" />
+
+	<component name="component00800A" class="benchmark.wire.Bean00800AImpl" />
+	<component name="component00800B" class="benchmark.wire.Bean00800BImpl" />
+
+	<component name="component00801A" class="benchmark.wire.Bean00801AImpl" />
+	<component name="component00801B" class="benchmark.wire.Bean00801BImpl" />
+
+	<component name="component00802A" class="benchmark.wire.Bean00802AImpl" />
+	<component name="component00802B" class="benchmark.wire.Bean00802BImpl" />
+
+	<component name="component00803A" class="benchmark.wire.Bean00803AImpl" />
+	<component name="component00803B" class="benchmark.wire.Bean00803BImpl" />
+
+	<component name="component00804A" class="benchmark.wire.Bean00804AImpl" />
+	<component name="component00804B" class="benchmark.wire.Bean00804BImpl" />
+
+	<component name="component00805A" class="benchmark.wire.Bean00805AImpl" />
+	<component name="component00805B" class="benchmark.wire.Bean00805BImpl" />
+
+	<component name="component00806A" class="benchmark.wire.Bean00806AImpl" />
+	<component name="component00806B" class="benchmark.wire.Bean00806BImpl" />
+
+	<component name="component00807A" class="benchmark.wire.Bean00807AImpl" />
+	<component name="component00807B" class="benchmark.wire.Bean00807BImpl" />
+
+	<component name="component00808A" class="benchmark.wire.Bean00808AImpl" />
+	<component name="component00808B" class="benchmark.wire.Bean00808BImpl" />
+
+	<component name="component00809A" class="benchmark.wire.Bean00809AImpl" />
+	<component name="component00809B" class="benchmark.wire.Bean00809BImpl" />
+
+	<component name="component00810A" class="benchmark.wire.Bean00810AImpl" />
+	<component name="component00810B" class="benchmark.wire.Bean00810BImpl" />
+
+	<component name="component00811A" class="benchmark.wire.Bean00811AImpl" />
+	<component name="component00811B" class="benchmark.wire.Bean00811BImpl" />
+
+	<component name="component00812A" class="benchmark.wire.Bean00812AImpl" />
+	<component name="component00812B" class="benchmark.wire.Bean00812BImpl" />
+
+	<component name="component00813A" class="benchmark.wire.Bean00813AImpl" />
+	<component name="component00813B" class="benchmark.wire.Bean00813BImpl" />
+
+	<component name="component00814A" class="benchmark.wire.Bean00814AImpl" />
+	<component name="component00814B" class="benchmark.wire.Bean00814BImpl" />
+
+	<component name="component00815A" class="benchmark.wire.Bean00815AImpl" />
+	<component name="component00815B" class="benchmark.wire.Bean00815BImpl" />
+
+	<component name="component00816A" class="benchmark.wire.Bean00816AImpl" />
+	<component name="component00816B" class="benchmark.wire.Bean00816BImpl" />
+
+	<component name="component00817A" class="benchmark.wire.Bean00817AImpl" />
+	<component name="component00817B" class="benchmark.wire.Bean00817BImpl" />
+
+	<component name="component00818A" class="benchmark.wire.Bean00818AImpl" />
+	<component name="component00818B" class="benchmark.wire.Bean00818BImpl" />
+
+	<component name="component00819A" class="benchmark.wire.Bean00819AImpl" />
+	<component name="component00819B" class="benchmark.wire.Bean00819BImpl" />
+
+	<component name="component00820A" class="benchmark.wire.Bean00820AImpl" />
+	<component name="component00820B" class="benchmark.wire.Bean00820BImpl" />
+
+	<component name="component00821A" class="benchmark.wire.Bean00821AImpl" />
+	<component name="component00821B" class="benchmark.wire.Bean00821BImpl" />
+
+	<component name="component00822A" class="benchmark.wire.Bean00822AImpl" />
+	<component name="component00822B" class="benchmark.wire.Bean00822BImpl" />
+
+	<component name="component00823A" class="benchmark.wire.Bean00823AImpl" />
+	<component name="component00823B" class="benchmark.wire.Bean00823BImpl" />
+
+	<component name="component00824A" class="benchmark.wire.Bean00824AImpl" />
+	<component name="component00824B" class="benchmark.wire.Bean00824BImpl" />
+
+	<component name="component00825A" class="benchmark.wire.Bean00825AImpl" />
+	<component name="component00825B" class="benchmark.wire.Bean00825BImpl" />
+
+	<component name="component00826A" class="benchmark.wire.Bean00826AImpl" />
+	<component name="component00826B" class="benchmark.wire.Bean00826BImpl" />
+
+	<component name="component00827A" class="benchmark.wire.Bean00827AImpl" />
+	<component name="component00827B" class="benchmark.wire.Bean00827BImpl" />
+
+	<component name="component00828A" class="benchmark.wire.Bean00828AImpl" />
+	<component name="component00828B" class="benchmark.wire.Bean00828BImpl" />
+
+	<component name="component00829A" class="benchmark.wire.Bean00829AImpl" />
+	<component name="component00829B" class="benchmark.wire.Bean00829BImpl" />
+
+	<component name="component00830A" class="benchmark.wire.Bean00830AImpl" />
+	<component name="component00830B" class="benchmark.wire.Bean00830BImpl" />
+
+	<component name="component00831A" class="benchmark.wire.Bean00831AImpl" />
+	<component name="component00831B" class="benchmark.wire.Bean00831BImpl" />
+
+	<component name="component00832A" class="benchmark.wire.Bean00832AImpl" />
+	<component name="component00832B" class="benchmark.wire.Bean00832BImpl" />
+
+	<component name="component00833A" class="benchmark.wire.Bean00833AImpl" />
+	<component name="component00833B" class="benchmark.wire.Bean00833BImpl" />
+
+	<component name="component00834A" class="benchmark.wire.Bean00834AImpl" />
+	<component name="component00834B" class="benchmark.wire.Bean00834BImpl" />
+
+	<component name="component00835A" class="benchmark.wire.Bean00835AImpl" />
+	<component name="component00835B" class="benchmark.wire.Bean00835BImpl" />
+
+	<component name="component00836A" class="benchmark.wire.Bean00836AImpl" />
+	<component name="component00836B" class="benchmark.wire.Bean00836BImpl" />
+
+	<component name="component00837A" class="benchmark.wire.Bean00837AImpl" />
+	<component name="component00837B" class="benchmark.wire.Bean00837BImpl" />
+
+	<component name="component00838A" class="benchmark.wire.Bean00838AImpl" />
+	<component name="component00838B" class="benchmark.wire.Bean00838BImpl" />
+
+	<component name="component00839A" class="benchmark.wire.Bean00839AImpl" />
+	<component name="component00839B" class="benchmark.wire.Bean00839BImpl" />
+
+	<component name="component00840A" class="benchmark.wire.Bean00840AImpl" />
+	<component name="component00840B" class="benchmark.wire.Bean00840BImpl" />
+
+	<component name="component00841A" class="benchmark.wire.Bean00841AImpl" />
+	<component name="component00841B" class="benchmark.wire.Bean00841BImpl" />
+
+	<component name="component00842A" class="benchmark.wire.Bean00842AImpl" />
+	<component name="component00842B" class="benchmark.wire.Bean00842BImpl" />
+
+	<component name="component00843A" class="benchmark.wire.Bean00843AImpl" />
+	<component name="component00843B" class="benchmark.wire.Bean00843BImpl" />
+
+	<component name="component00844A" class="benchmark.wire.Bean00844AImpl" />
+	<component name="component00844B" class="benchmark.wire.Bean00844BImpl" />
+
+	<component name="component00845A" class="benchmark.wire.Bean00845AImpl" />
+	<component name="component00845B" class="benchmark.wire.Bean00845BImpl" />
+
+	<component name="component00846A" class="benchmark.wire.Bean00846AImpl" />
+	<component name="component00846B" class="benchmark.wire.Bean00846BImpl" />
+
+	<component name="component00847A" class="benchmark.wire.Bean00847AImpl" />
+	<component name="component00847B" class="benchmark.wire.Bean00847BImpl" />
+
+	<component name="component00848A" class="benchmark.wire.Bean00848AImpl" />
+	<component name="component00848B" class="benchmark.wire.Bean00848BImpl" />
+
+	<component name="component00849A" class="benchmark.wire.Bean00849AImpl" />
+	<component name="component00849B" class="benchmark.wire.Bean00849BImpl" />
+
+	<component name="component00850A" class="benchmark.wire.Bean00850AImpl" />
+	<component name="component00850B" class="benchmark.wire.Bean00850BImpl" />
+
+	<component name="component00851A" class="benchmark.wire.Bean00851AImpl" />
+	<component name="component00851B" class="benchmark.wire.Bean00851BImpl" />
+
+	<component name="component00852A" class="benchmark.wire.Bean00852AImpl" />
+	<component name="component00852B" class="benchmark.wire.Bean00852BImpl" />
+
+	<component name="component00853A" class="benchmark.wire.Bean00853AImpl" />
+	<component name="component00853B" class="benchmark.wire.Bean00853BImpl" />
+
+	<component name="component00854A" class="benchmark.wire.Bean00854AImpl" />
+	<component name="component00854B" class="benchmark.wire.Bean00854BImpl" />
+
+	<component name="component00855A" class="benchmark.wire.Bean00855AImpl" />
+	<component name="component00855B" class="benchmark.wire.Bean00855BImpl" />
+
+	<component name="component00856A" class="benchmark.wire.Bean00856AImpl" />
+	<component name="component00856B" class="benchmark.wire.Bean00856BImpl" />
+
+	<component name="component00857A" class="benchmark.wire.Bean00857AImpl" />
+	<component name="component00857B" class="benchmark.wire.Bean00857BImpl" />
+
+	<component name="component00858A" class="benchmark.wire.Bean00858AImpl" />
+	<component name="component00858B" class="benchmark.wire.Bean00858BImpl" />
+
+	<component name="component00859A" class="benchmark.wire.Bean00859AImpl" />
+	<component name="component00859B" class="benchmark.wire.Bean00859BImpl" />
+
+	<component name="component00860A" class="benchmark.wire.Bean00860AImpl" />
+	<component name="component00860B" class="benchmark.wire.Bean00860BImpl" />
+
+	<component name="component00861A" class="benchmark.wire.Bean00861AImpl" />
+	<component name="component00861B" class="benchmark.wire.Bean00861BImpl" />
+
+	<component name="component00862A" class="benchmark.wire.Bean00862AImpl" />
+	<component name="component00862B" class="benchmark.wire.Bean00862BImpl" />
+
+	<component name="component00863A" class="benchmark.wire.Bean00863AImpl" />
+	<component name="component00863B" class="benchmark.wire.Bean00863BImpl" />
+
+	<component name="component00864A" class="benchmark.wire.Bean00864AImpl" />
+	<component name="component00864B" class="benchmark.wire.Bean00864BImpl" />
+
+	<component name="component00865A" class="benchmark.wire.Bean00865AImpl" />
+	<component name="component00865B" class="benchmark.wire.Bean00865BImpl" />
+
+	<component name="component00866A" class="benchmark.wire.Bean00866AImpl" />
+	<component name="component00866B" class="benchmark.wire.Bean00866BImpl" />
+
+	<component name="component00867A" class="benchmark.wire.Bean00867AImpl" />
+	<component name="component00867B" class="benchmark.wire.Bean00867BImpl" />
+
+	<component name="component00868A" class="benchmark.wire.Bean00868AImpl" />
+	<component name="component00868B" class="benchmark.wire.Bean00868BImpl" />
+
+	<component name="component00869A" class="benchmark.wire.Bean00869AImpl" />
+	<component name="component00869B" class="benchmark.wire.Bean00869BImpl" />
+
+	<component name="component00870A" class="benchmark.wire.Bean00870AImpl" />
+	<component name="component00870B" class="benchmark.wire.Bean00870BImpl" />
+
+	<component name="component00871A" class="benchmark.wire.Bean00871AImpl" />
+	<component name="component00871B" class="benchmark.wire.Bean00871BImpl" />
+
+	<component name="component00872A" class="benchmark.wire.Bean00872AImpl" />
+	<component name="component00872B" class="benchmark.wire.Bean00872BImpl" />
+
+	<component name="component00873A" class="benchmark.wire.Bean00873AImpl" />
+	<component name="component00873B" class="benchmark.wire.Bean00873BImpl" />
+
+	<component name="component00874A" class="benchmark.wire.Bean00874AImpl" />
+	<component name="component00874B" class="benchmark.wire.Bean00874BImpl" />
+
+	<component name="component00875A" class="benchmark.wire.Bean00875AImpl" />
+	<component name="component00875B" class="benchmark.wire.Bean00875BImpl" />
+
+	<component name="component00876A" class="benchmark.wire.Bean00876AImpl" />
+	<component name="component00876B" class="benchmark.wire.Bean00876BImpl" />
+
+	<component name="component00877A" class="benchmark.wire.Bean00877AImpl" />
+	<component name="component00877B" class="benchmark.wire.Bean00877BImpl" />
+
+	<component name="component00878A" class="benchmark.wire.Bean00878AImpl" />
+	<component name="component00878B" class="benchmark.wire.Bean00878BImpl" />
+
+	<component name="component00879A" class="benchmark.wire.Bean00879AImpl" />
+	<component name="component00879B" class="benchmark.wire.Bean00879BImpl" />
+
+	<component name="component00880A" class="benchmark.wire.Bean00880AImpl" />
+	<component name="component00880B" class="benchmark.wire.Bean00880BImpl" />
+
+	<component name="component00881A" class="benchmark.wire.Bean00881AImpl" />
+	<component name="component00881B" class="benchmark.wire.Bean00881BImpl" />
+
+	<component name="component00882A" class="benchmark.wire.Bean00882AImpl" />
+	<component name="component00882B" class="benchmark.wire.Bean00882BImpl" />
+
+	<component name="component00883A" class="benchmark.wire.Bean00883AImpl" />
+	<component name="component00883B" class="benchmark.wire.Bean00883BImpl" />
+
+	<component name="component00884A" class="benchmark.wire.Bean00884AImpl" />
+	<component name="component00884B" class="benchmark.wire.Bean00884BImpl" />
+
+	<component name="component00885A" class="benchmark.wire.Bean00885AImpl" />
+	<component name="component00885B" class="benchmark.wire.Bean00885BImpl" />
+
+	<component name="component00886A" class="benchmark.wire.Bean00886AImpl" />
+	<component name="component00886B" class="benchmark.wire.Bean00886BImpl" />
+
+	<component name="component00887A" class="benchmark.wire.Bean00887AImpl" />
+	<component name="component00887B" class="benchmark.wire.Bean00887BImpl" />
+
+	<component name="component00888A" class="benchmark.wire.Bean00888AImpl" />
+	<component name="component00888B" class="benchmark.wire.Bean00888BImpl" />
+
+	<component name="component00889A" class="benchmark.wire.Bean00889AImpl" />
+	<component name="component00889B" class="benchmark.wire.Bean00889BImpl" />
+
+	<component name="component00890A" class="benchmark.wire.Bean00890AImpl" />
+	<component name="component00890B" class="benchmark.wire.Bean00890BImpl" />
+
+	<component name="component00891A" class="benchmark.wire.Bean00891AImpl" />
+	<component name="component00891B" class="benchmark.wire.Bean00891BImpl" />
+
+	<component name="component00892A" class="benchmark.wire.Bean00892AImpl" />
+	<component name="component00892B" class="benchmark.wire.Bean00892BImpl" />
+
+	<component name="component00893A" class="benchmark.wire.Bean00893AImpl" />
+	<component name="component00893B" class="benchmark.wire.Bean00893BImpl" />
+
+	<component name="component00894A" class="benchmark.wire.Bean00894AImpl" />
+	<component name="component00894B" class="benchmark.wire.Bean00894BImpl" />
+
+	<component name="component00895A" class="benchmark.wire.Bean00895AImpl" />
+	<component name="component00895B" class="benchmark.wire.Bean00895BImpl" />
+
+	<component name="component00896A" class="benchmark.wire.Bean00896AImpl" />
+	<component name="component00896B" class="benchmark.wire.Bean00896BImpl" />
+
+	<component name="component00897A" class="benchmark.wire.Bean00897AImpl" />
+	<component name="component00897B" class="benchmark.wire.Bean00897BImpl" />
+
+	<component name="component00898A" class="benchmark.wire.Bean00898AImpl" />
+	<component name="component00898B" class="benchmark.wire.Bean00898BImpl" />
+
+	<component name="component00899A" class="benchmark.wire.Bean00899AImpl" />
+	<component name="component00899B" class="benchmark.wire.Bean00899BImpl" />
+
+	<component name="component00900A" class="benchmark.wire.Bean00900AImpl" />
+	<component name="component00900B" class="benchmark.wire.Bean00900BImpl" />
+
+	<component name="component00901A" class="benchmark.wire.Bean00901AImpl" />
+	<component name="component00901B" class="benchmark.wire.Bean00901BImpl" />
+
+	<component name="component00902A" class="benchmark.wire.Bean00902AImpl" />
+	<component name="component00902B" class="benchmark.wire.Bean00902BImpl" />
+
+	<component name="component00903A" class="benchmark.wire.Bean00903AImpl" />
+	<component name="component00903B" class="benchmark.wire.Bean00903BImpl" />
+
+	<component name="component00904A" class="benchmark.wire.Bean00904AImpl" />
+	<component name="component00904B" class="benchmark.wire.Bean00904BImpl" />
+
+	<component name="component00905A" class="benchmark.wire.Bean00905AImpl" />
+	<component name="component00905B" class="benchmark.wire.Bean00905BImpl" />
+
+	<component name="component00906A" class="benchmark.wire.Bean00906AImpl" />
+	<component name="component00906B" class="benchmark.wire.Bean00906BImpl" />
+
+	<component name="component00907A" class="benchmark.wire.Bean00907AImpl" />
+	<component name="component00907B" class="benchmark.wire.Bean00907BImpl" />
+
+	<component name="component00908A" class="benchmark.wire.Bean00908AImpl" />
+	<component name="component00908B" class="benchmark.wire.Bean00908BImpl" />
+
+	<component name="component00909A" class="benchmark.wire.Bean00909AImpl" />
+	<component name="component00909B" class="benchmark.wire.Bean00909BImpl" />
+
+	<component name="component00910A" class="benchmark.wire.Bean00910AImpl" />
+	<component name="component00910B" class="benchmark.wire.Bean00910BImpl" />
+
+	<component name="component00911A" class="benchmark.wire.Bean00911AImpl" />
+	<component name="component00911B" class="benchmark.wire.Bean00911BImpl" />
+
+	<component name="component00912A" class="benchmark.wire.Bean00912AImpl" />
+	<component name="component00912B" class="benchmark.wire.Bean00912BImpl" />
+
+	<component name="component00913A" class="benchmark.wire.Bean00913AImpl" />
+	<component name="component00913B" class="benchmark.wire.Bean00913BImpl" />
+
+	<component name="component00914A" class="benchmark.wire.Bean00914AImpl" />
+	<component name="component00914B" class="benchmark.wire.Bean00914BImpl" />
+
+	<component name="component00915A" class="benchmark.wire.Bean00915AImpl" />
+	<component name="component00915B" class="benchmark.wire.Bean00915BImpl" />
+
+	<component name="component00916A" class="benchmark.wire.Bean00916AImpl" />
+	<component name="component00916B" class="benchmark.wire.Bean00916BImpl" />
+
+	<component name="component00917A" class="benchmark.wire.Bean00917AImpl" />
+	<component name="component00917B" class="benchmark.wire.Bean00917BImpl" />
+
+	<component name="component00918A" class="benchmark.wire.Bean00918AImpl" />
+	<component name="component00918B" class="benchmark.wire.Bean00918BImpl" />
+
+	<component name="component00919A" class="benchmark.wire.Bean00919AImpl" />
+	<component name="component00919B" class="benchmark.wire.Bean00919BImpl" />
+
+	<component name="component00920A" class="benchmark.wire.Bean00920AImpl" />
+	<component name="component00920B" class="benchmark.wire.Bean00920BImpl" />
+
+	<component name="component00921A" class="benchmark.wire.Bean00921AImpl" />
+	<component name="component00921B" class="benchmark.wire.Bean00921BImpl" />
+
+	<component name="component00922A" class="benchmark.wire.Bean00922AImpl" />
+	<component name="component00922B" class="benchmark.wire.Bean00922BImpl" />
+
+	<component name="component00923A" class="benchmark.wire.Bean00923AImpl" />
+	<component name="component00923B" class="benchmark.wire.Bean00923BImpl" />
+
+	<component name="component00924A" class="benchmark.wire.Bean00924AImpl" />
+	<component name="component00924B" class="benchmark.wire.Bean00924BImpl" />
+
+	<component name="component00925A" class="benchmark.wire.Bean00925AImpl" />
+	<component name="component00925B" class="benchmark.wire.Bean00925BImpl" />
+
+	<component name="component00926A" class="benchmark.wire.Bean00926AImpl" />
+	<component name="component00926B" class="benchmark.wire.Bean00926BImpl" />
+
+	<component name="component00927A" class="benchmark.wire.Bean00927AImpl" />
+	<component name="component00927B" class="benchmark.wire.Bean00927BImpl" />
+
+	<component name="component00928A" class="benchmark.wire.Bean00928AImpl" />
+	<component name="component00928B" class="benchmark.wire.Bean00928BImpl" />
+
+	<component name="component00929A" class="benchmark.wire.Bean00929AImpl" />
+	<component name="component00929B" class="benchmark.wire.Bean00929BImpl" />
+
+	<component name="component00930A" class="benchmark.wire.Bean00930AImpl" />
+	<component name="component00930B" class="benchmark.wire.Bean00930BImpl" />
+
+	<component name="component00931A" class="benchmark.wire.Bean00931AImpl" />
+	<component name="component00931B" class="benchmark.wire.Bean00931BImpl" />
+
+	<component name="component00932A" class="benchmark.wire.Bean00932AImpl" />
+	<component name="component00932B" class="benchmark.wire.Bean00932BImpl" />
+
+	<component name="component00933A" class="benchmark.wire.Bean00933AImpl" />
+	<component name="component00933B" class="benchmark.wire.Bean00933BImpl" />
+
+	<component name="component00934A" class="benchmark.wire.Bean00934AImpl" />
+	<component name="component00934B" class="benchmark.wire.Bean00934BImpl" />
+
+	<component name="component00935A" class="benchmark.wire.Bean00935AImpl" />
+	<component name="component00935B" class="benchmark.wire.Bean00935BImpl" />
+
+	<component name="component00936A" class="benchmark.wire.Bean00936AImpl" />
+	<component name="component00936B" class="benchmark.wire.Bean00936BImpl" />
+
+	<component name="component00937A" class="benchmark.wire.Bean00937AImpl" />
+	<component name="component00937B" class="benchmark.wire.Bean00937BImpl" />
+
+	<component name="component00938A" class="benchmark.wire.Bean00938AImpl" />
+	<component name="component00938B" class="benchmark.wire.Bean00938BImpl" />
+
+	<component name="component00939A" class="benchmark.wire.Bean00939AImpl" />
+	<component name="component00939B" class="benchmark.wire.Bean00939BImpl" />
+
+	<component name="component00940A" class="benchmark.wire.Bean00940AImpl" />
+	<component name="component00940B" class="benchmark.wire.Bean00940BImpl" />
+
+	<component name="component00941A" class="benchmark.wire.Bean00941AImpl" />
+	<component name="component00941B" class="benchmark.wire.Bean00941BImpl" />
+
+	<component name="component00942A" class="benchmark.wire.Bean00942AImpl" />
+	<component name="component00942B" class="benchmark.wire.Bean00942BImpl" />
+
+	<component name="component00943A" class="benchmark.wire.Bean00943AImpl" />
+	<component name="component00943B" class="benchmark.wire.Bean00943BImpl" />
+
+	<component name="component00944A" class="benchmark.wire.Bean00944AImpl" />
+	<component name="component00944B" class="benchmark.wire.Bean00944BImpl" />
+
+	<component name="component00945A" class="benchmark.wire.Bean00945AImpl" />
+	<component name="component00945B" class="benchmark.wire.Bean00945BImpl" />
+
+	<component name="component00946A" class="benchmark.wire.Bean00946AImpl" />
+	<component name="component00946B" class="benchmark.wire.Bean00946BImpl" />
+
+	<component name="component00947A" class="benchmark.wire.Bean00947AImpl" />
+	<component name="component00947B" class="benchmark.wire.Bean00947BImpl" />
+
+	<component name="component00948A" class="benchmark.wire.Bean00948AImpl" />
+	<component name="component00948B" class="benchmark.wire.Bean00948BImpl" />
+
+	<component name="component00949A" class="benchmark.wire.Bean00949AImpl" />
+	<component name="component00949B" class="benchmark.wire.Bean00949BImpl" />
+
+	<component name="component00950A" class="benchmark.wire.Bean00950AImpl" />
+	<component name="component00950B" class="benchmark.wire.Bean00950BImpl" />
+
+	<component name="component00951A" class="benchmark.wire.Bean00951AImpl" />
+	<component name="component00951B" class="benchmark.wire.Bean00951BImpl" />
+
+	<component name="component00952A" class="benchmark.wire.Bean00952AImpl" />
+	<component name="component00952B" class="benchmark.wire.Bean00952BImpl" />
+
+	<component name="component00953A" class="benchmark.wire.Bean00953AImpl" />
+	<component name="component00953B" class="benchmark.wire.Bean00953BImpl" />
+
+	<component name="component00954A" class="benchmark.wire.Bean00954AImpl" />
+	<component name="component00954B" class="benchmark.wire.Bean00954BImpl" />
+
+	<component name="component00955A" class="benchmark.wire.Bean00955AImpl" />
+	<component name="component00955B" class="benchmark.wire.Bean00955BImpl" />
+
+	<component name="component00956A" class="benchmark.wire.Bean00956AImpl" />
+	<component name="component00956B" class="benchmark.wire.Bean00956BImpl" />
+
+	<component name="component00957A" class="benchmark.wire.Bean00957AImpl" />
+	<component name="component00957B" class="benchmark.wire.Bean00957BImpl" />
+
+	<component name="component00958A" class="benchmark.wire.Bean00958AImpl" />
+	<component name="component00958B" class="benchmark.wire.Bean00958BImpl" />
+
+	<component name="component00959A" class="benchmark.wire.Bean00959AImpl" />
+	<component name="component00959B" class="benchmark.wire.Bean00959BImpl" />
+
+	<component name="component00960A" class="benchmark.wire.Bean00960AImpl" />
+	<component name="component00960B" class="benchmark.wire.Bean00960BImpl" />
+
+	<component name="component00961A" class="benchmark.wire.Bean00961AImpl" />
+	<component name="component00961B" class="benchmark.wire.Bean00961BImpl" />
+
+	<component name="component00962A" class="benchmark.wire.Bean00962AImpl" />
+	<component name="component00962B" class="benchmark.wire.Bean00962BImpl" />
+
+	<component name="component00963A" class="benchmark.wire.Bean00963AImpl" />
+	<component name="component00963B" class="benchmark.wire.Bean00963BImpl" />
+
+	<component name="component00964A" class="benchmark.wire.Bean00964AImpl" />
+	<component name="component00964B" class="benchmark.wire.Bean00964BImpl" />
+
+	<component name="component00965A" class="benchmark.wire.Bean00965AImpl" />
+	<component name="component00965B" class="benchmark.wire.Bean00965BImpl" />
+
+	<component name="component00966A" class="benchmark.wire.Bean00966AImpl" />
+	<component name="component00966B" class="benchmark.wire.Bean00966BImpl" />
+
+	<component name="component00967A" class="benchmark.wire.Bean00967AImpl" />
+	<component name="component00967B" class="benchmark.wire.Bean00967BImpl" />
+
+	<component name="component00968A" class="benchmark.wire.Bean00968AImpl" />
+	<component name="component00968B" class="benchmark.wire.Bean00968BImpl" />
+
+	<component name="component00969A" class="benchmark.wire.Bean00969AImpl" />
+	<component name="component00969B" class="benchmark.wire.Bean00969BImpl" />
+
+	<component name="component00970A" class="benchmark.wire.Bean00970AImpl" />
+	<component name="component00970B" class="benchmark.wire.Bean00970BImpl" />
+
+	<component name="component00971A" class="benchmark.wire.Bean00971AImpl" />
+	<component name="component00971B" class="benchmark.wire.Bean00971BImpl" />
+
+	<component name="component00972A" class="benchmark.wire.Bean00972AImpl" />
+	<component name="component00972B" class="benchmark.wire.Bean00972BImpl" />
+
+	<component name="component00973A" class="benchmark.wire.Bean00973AImpl" />
+	<component name="component00973B" class="benchmark.wire.Bean00973BImpl" />
+
+	<component name="component00974A" class="benchmark.wire.Bean00974AImpl" />
+	<component name="component00974B" class="benchmark.wire.Bean00974BImpl" />
+
+	<component name="component00975A" class="benchmark.wire.Bean00975AImpl" />
+	<component name="component00975B" class="benchmark.wire.Bean00975BImpl" />
+
+	<component name="component00976A" class="benchmark.wire.Bean00976AImpl" />
+	<component name="component00976B" class="benchmark.wire.Bean00976BImpl" />
+
+	<component name="component00977A" class="benchmark.wire.Bean00977AImpl" />
+	<component name="component00977B" class="benchmark.wire.Bean00977BImpl" />
+
+	<component name="component00978A" class="benchmark.wire.Bean00978AImpl" />
+	<component name="component00978B" class="benchmark.wire.Bean00978BImpl" />
+
+	<component name="component00979A" class="benchmark.wire.Bean00979AImpl" />
+	<component name="component00979B" class="benchmark.wire.Bean00979BImpl" />
+
+	<component name="component00980A" class="benchmark.wire.Bean00980AImpl" />
+	<component name="component00980B" class="benchmark.wire.Bean00980BImpl" />
+
+	<component name="component00981A" class="benchmark.wire.Bean00981AImpl" />
+	<component name="component00981B" class="benchmark.wire.Bean00981BImpl" />
+
+	<component name="component00982A" class="benchmark.wire.Bean00982AImpl" />
+	<component name="component00982B" class="benchmark.wire.Bean00982BImpl" />
+
+	<component name="component00983A" class="benchmark.wire.Bean00983AImpl" />
+	<component name="component00983B" class="benchmark.wire.Bean00983BImpl" />
+
+	<component name="component00984A" class="benchmark.wire.Bean00984AImpl" />
+	<component name="component00984B" class="benchmark.wire.Bean00984BImpl" />
+
+	<component name="component00985A" class="benchmark.wire.Bean00985AImpl" />
+	<component name="component00985B" class="benchmark.wire.Bean00985BImpl" />
+
+	<component name="component00986A" class="benchmark.wire.Bean00986AImpl" />
+	<component name="component00986B" class="benchmark.wire.Bean00986BImpl" />
+
+	<component name="component00987A" class="benchmark.wire.Bean00987AImpl" />
+	<component name="component00987B" class="benchmark.wire.Bean00987BImpl" />
+
+	<component name="component00988A" class="benchmark.wire.Bean00988AImpl" />
+	<component name="component00988B" class="benchmark.wire.Bean00988BImpl" />
+
+	<component name="component00989A" class="benchmark.wire.Bean00989AImpl" />
+	<component name="component00989B" class="benchmark.wire.Bean00989BImpl" />
+
+	<component name="component00990A" class="benchmark.wire.Bean00990AImpl" />
+	<component name="component00990B" class="benchmark.wire.Bean00990BImpl" />
+
+	<component name="component00991A" class="benchmark.wire.Bean00991AImpl" />
+	<component name="component00991B" class="benchmark.wire.Bean00991BImpl" />
+
+	<component name="component00992A" class="benchmark.wire.Bean00992AImpl" />
+	<component name="component00992B" class="benchmark.wire.Bean00992BImpl" />
+
+	<component name="component00993A" class="benchmark.wire.Bean00993AImpl" />
+	<component name="component00993B" class="benchmark.wire.Bean00993BImpl" />
+
+	<component name="component00994A" class="benchmark.wire.Bean00994AImpl" />
+	<component name="component00994B" class="benchmark.wire.Bean00994BImpl" />
+
+	<component name="component00995A" class="benchmark.wire.Bean00995AImpl" />
+	<component name="component00995B" class="benchmark.wire.Bean00995BImpl" />
+
+	<component name="component00996A" class="benchmark.wire.Bean00996AImpl" />
+	<component name="component00996B" class="benchmark.wire.Bean00996BImpl" />
+
+	<component name="component00997A" class="benchmark.wire.Bean00997AImpl" />
+	<component name="component00997B" class="benchmark.wire.Bean00997BImpl" />
+
+	<component name="component00998A" class="benchmark.wire.Bean00998AImpl" />
+	<component name="component00998B" class="benchmark.wire.Bean00998BImpl" />
+
+	<component name="component00999A" class="benchmark.wire.Bean00999AImpl" />
+	<component name="component00999B" class="benchmark.wire.Bean00999BImpl" />
+
+</components>
