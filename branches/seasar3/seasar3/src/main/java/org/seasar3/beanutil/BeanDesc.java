@@ -39,6 +39,16 @@ public final class BeanDesc {
     private CaseInsensitiveMap<PropertyDesc> propertyDescCache = new CaseInsensitiveMap<PropertyDesc>();
 
     /**
+     * Constructor.
+     * 
+     * @param beanClass
+     *            the bean class.
+     */
+    BeanDesc(Class<?> beanClass) {
+        this.beanClass = beanClass;
+    }
+
+    /**
      * Creates the bean descriptor.
      * 
      * @param beanClass
@@ -159,16 +169,6 @@ public final class BeanDesc {
 
             }
         }
-    }
-
-    /**
-     * Constructor.
-     * 
-     * @param beanClass
-     *            the bean class.
-     */
-    BeanDesc(Class<?> beanClass) {
-        this.beanClass = beanClass;
     }
 
     /**

@@ -62,9 +62,10 @@ public final class ShortUtil {
      * @return the primitive short value.
      */
     public static short toPrimitiveShort(Object o) {
-        if (o == null) {
+        Short s = toShort(o);
+        if (s == null) {
             return 0;
         }
-        return toShort(o).shortValue();
+        return s.shortValue();
     }
 }

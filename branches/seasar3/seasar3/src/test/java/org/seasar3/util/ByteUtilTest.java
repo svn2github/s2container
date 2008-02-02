@@ -33,6 +33,13 @@ public class ByteUtilTest extends TestCase {
     /**
      * @throws Exception
      */
+    public void testToByteForEmptyString() throws Exception {
+        assertNull(ByteUtil.toByte(""));
+    }
+
+    /**
+     * @throws Exception
+     */
     public void testToByteForByte() throws Exception {
         Byte value = Byte.valueOf("1");
         assertEquals(value, ByteUtil.toByte(value));
@@ -89,6 +96,13 @@ public class ByteUtilTest extends TestCase {
     /**
      * @throws Exception
      */
+    public void testToPrimitiveByteForEmptyString() throws Exception {
+        assertEquals(0, ByteUtil.toPrimitiveByte(""));
+    }
+
+    /**
+     * @throws Exception
+     */
     public void testToPrimitiveByteForNumber() throws Exception {
         Integer i = Integer.valueOf(1);
         assertEquals((byte) 1, ByteUtil.toPrimitiveByte(i));
@@ -125,12 +139,5 @@ public class ByteUtilTest extends TestCase {
         } catch (NumberFormatException e) {
             System.out.println(e);
         }
-    }
-
-    /**
-     * @throws Exception
-     */
-    public void testToByteForEmptyString() throws Exception {
-        assertNull(ByteUtil.toByte(""));
     }
 }

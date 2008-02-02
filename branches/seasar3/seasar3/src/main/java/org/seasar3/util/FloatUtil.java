@@ -62,9 +62,10 @@ public final class FloatUtil {
      * @return the primitive float value.
      */
     public static float toPrimitiveFloat(Object o) {
-        if (o == null) {
+        Float f = toFloat(o);
+        if (f == null) {
             return 0;
         }
-        return toFloat(o).floatValue();
+        return f.floatValue();
     }
 }

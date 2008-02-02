@@ -33,6 +33,13 @@ public class LongUtilTest extends TestCase {
     /**
      * @throws Exception
      */
+    public void testToLongForEmptyString() throws Exception {
+        assertNull(LongUtil.toLong(""));
+    }
+
+    /**
+     * @throws Exception
+     */
     public void testToLongForLong() throws Exception {
         Long value = Long.valueOf(1);
         assertEquals(value, LongUtil.toLong(value));
@@ -89,6 +96,13 @@ public class LongUtilTest extends TestCase {
     /**
      * @throws Exception
      */
+    public void testToPrimitiveLongForEmptyString() throws Exception {
+        assertEquals(0, LongUtil.toPrimitiveLong(""));
+    }
+
+    /**
+     * @throws Exception
+     */
     public void testToPrimitiveLongForNumber() throws Exception {
         Integer i = Integer.valueOf(1);
         assertEquals(1, LongUtil.toPrimitiveLong(i));
@@ -125,12 +139,5 @@ public class LongUtilTest extends TestCase {
         } catch (NumberFormatException e) {
             System.out.println(e);
         }
-    }
-
-    /**
-     * @throws Exception
-     */
-    public void testToLongForEmptyString() throws Exception {
-        assertNull(LongUtil.toLong(""));
     }
 }

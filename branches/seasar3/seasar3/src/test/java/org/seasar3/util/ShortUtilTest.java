@@ -33,6 +33,13 @@ public class ShortUtilTest extends TestCase {
     /**
      * @throws Exception
      */
+    public void testToShortForEmptyString() throws Exception {
+        assertNull(ShortUtil.toShort(""));
+    }
+
+    /**
+     * @throws Exception
+     */
     public void testToShortForShort() throws Exception {
         Short value = Short.valueOf("1");
         assertEquals(value, ShortUtil.toShort(value));
@@ -89,6 +96,13 @@ public class ShortUtilTest extends TestCase {
     /**
      * @throws Exception
      */
+    public void testToPrimitiveShortForEmptyString() throws Exception {
+        assertEquals(0, ShortUtil.toPrimitiveShort(""));
+    }
+
+    /**
+     * @throws Exception
+     */
     public void testToPrimitiveShortForNumber() throws Exception {
         Integer i = Integer.valueOf(1);
         assertEquals((short) 1, ShortUtil.toPrimitiveShort(i));
@@ -125,12 +139,5 @@ public class ShortUtilTest extends TestCase {
         } catch (NumberFormatException e) {
             System.out.println(e);
         }
-    }
-
-    /**
-     * @throws Exception
-     */
-    public void testToShortForEmptyString() throws Exception {
-        assertNull(ShortUtil.toShort(""));
     }
 }

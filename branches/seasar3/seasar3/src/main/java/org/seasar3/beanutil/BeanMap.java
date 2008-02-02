@@ -15,20 +15,25 @@
  */
 package org.seasar3.beanutil;
 
-import junit.framework.TestCase;
+import java.util.HashMap;
 
 /**
+ * A map acts as Java Bean.
+ * 
  * @author higa
  * 
  */
-public class BeanUtilTest extends TestCase {
+public class BeanMap extends HashMap<String, Object> {
 
-    /**
-     * @throws Exception
-     */
-    public void testGetBeanDesc() throws Exception {
-        BeanDesc beanDesc = BeanUtil.getBeanDesc(getClass());
-        assertNotNull(beanDesc);
-        assertSame(beanDesc, BeanUtil.getBeanDesc(getClass()));
+    private static final long serialVersionUID = 1;
+
+    @Override
+    public Object get(Object key) {
+        if (!containsKey(key)) {
+            throw new IllegalArgumentException(key + " is not found in "
+                    + keySet());
+        }
+        return super.get(key);
     }
+
 }

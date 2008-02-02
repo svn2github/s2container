@@ -62,9 +62,10 @@ public final class IntegerUtil {
      * @return the primitive int value.
      */
     public static int toPrimitiveInt(Object o) {
-        if (o == null) {
+        Integer i = toInteger(o);
+        if (i == null) {
             return 0;
         }
-        return toInteger(o).intValue();
+        return i.intValue();
     }
 }

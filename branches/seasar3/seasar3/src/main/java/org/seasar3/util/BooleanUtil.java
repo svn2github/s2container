@@ -45,15 +45,13 @@ public final class BooleanUtil {
             String s = (String) o;
             if ("true".equalsIgnoreCase(s)) {
                 return Boolean.TRUE;
-            } else if ("false".equalsIgnoreCase(s)) {
-                return Boolean.FALSE;
-            } else if (s.equals("0")) {
-                return Boolean.FALSE;
-            } else {
+            } else if ("1".equalsIgnoreCase(s)) {
                 return Boolean.TRUE;
+            } else {
+                return Boolean.FALSE;
             }
         } else {
-            return Boolean.TRUE;
+            return Boolean.FALSE;
         }
     }
 

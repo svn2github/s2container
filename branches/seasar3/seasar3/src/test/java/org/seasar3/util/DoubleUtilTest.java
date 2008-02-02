@@ -33,6 +33,13 @@ public class DoubleUtilTest extends TestCase {
     /**
      * @throws Exception
      */
+    public void testToDoubleForEmptyString() throws Exception {
+        assertNull(DoubleUtil.toDouble(""));
+    }
+
+    /**
+     * @throws Exception
+     */
     public void testToDoubleForDouble() throws Exception {
         Double value = Double.valueOf(1);
         assertEquals(value, DoubleUtil.toDouble(value));
@@ -89,6 +96,13 @@ public class DoubleUtilTest extends TestCase {
     /**
      * @throws Exception
      */
+    public void testToPrimitiveDoubleForEmptyString() throws Exception {
+        assertEquals(0d, DoubleUtil.toPrimitiveDouble(""));
+    }
+
+    /**
+     * @throws Exception
+     */
     public void testToPrimitiveDoubleForNumber() throws Exception {
         Integer i = Integer.valueOf(1);
         assertEquals(1d, DoubleUtil.toPrimitiveDouble(i));
@@ -125,12 +139,5 @@ public class DoubleUtilTest extends TestCase {
         } catch (NumberFormatException e) {
             System.out.println(e);
         }
-    }
-
-    /**
-     * @throws Exception
-     */
-    public void testToDoubleForEmptyString() throws Exception {
-        assertNull(DoubleUtil.toDouble(""));
     }
 }

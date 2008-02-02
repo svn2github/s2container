@@ -33,6 +33,13 @@ public class FloatUtilTest extends TestCase {
     /**
      * @throws Exception
      */
+    public void testToFloatForEmptyString() throws Exception {
+        assertNull(FloatUtil.toFloat(""));
+    }
+
+    /**
+     * @throws Exception
+     */
     public void testToFloatForFloat() throws Exception {
         Float value = Float.valueOf(1);
         assertEquals(value, FloatUtil.toFloat(value));
@@ -89,6 +96,13 @@ public class FloatUtilTest extends TestCase {
     /**
      * @throws Exception
      */
+    public void testToPrimitiveFloatForEmptyString() throws Exception {
+        assertEquals(0f, FloatUtil.toPrimitiveFloat(""));
+    }
+
+    /**
+     * @throws Exception
+     */
     public void testToPrimitiveFloatForNumber() throws Exception {
         Integer i = Integer.valueOf(1);
         assertEquals(1f, FloatUtil.toPrimitiveFloat(i));
@@ -125,12 +139,5 @@ public class FloatUtilTest extends TestCase {
         } catch (NumberFormatException e) {
             System.out.println(e);
         }
-    }
-
-    /**
-     * @throws Exception
-     */
-    public void testToFloatForEmptyString() throws Exception {
-        assertNull(FloatUtil.toFloat(""));
     }
 }

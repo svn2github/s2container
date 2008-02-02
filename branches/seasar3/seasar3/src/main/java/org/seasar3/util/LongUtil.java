@@ -62,9 +62,10 @@ public final class LongUtil {
      * @return the primitive long value.
      */
     public static long toPrimitiveLong(Object o) {
-        if (o == null) {
+        Long l = toLong(o);
+        if (l == null) {
             return 0;
         }
-        return toLong(o).longValue();
+        return l.longValue();
     }
 }

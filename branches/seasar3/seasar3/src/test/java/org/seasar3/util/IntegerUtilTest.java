@@ -33,6 +33,13 @@ public class IntegerUtilTest extends TestCase {
     /**
      * @throws Exception
      */
+    public void testToIntegerForEmptyString() throws Exception {
+        assertNull(IntegerUtil.toInteger(""));
+    }
+
+    /**
+     * @throws Exception
+     */
     public void testToIntegerForInteger() throws Exception {
         Integer value = Integer.valueOf(1);
         assertEquals(value, IntegerUtil.toInteger(value));
@@ -89,6 +96,13 @@ public class IntegerUtilTest extends TestCase {
     /**
      * @throws Exception
      */
+    public void testToPrimitiveIntForEmptyString() throws Exception {
+        assertEquals(0, IntegerUtil.toPrimitiveInt(""));
+    }
+
+    /**
+     * @throws Exception
+     */
     public void testToPrimitiveIntForNumber() throws Exception {
         Integer i = Integer.valueOf(1);
         assertEquals(1, IntegerUtil.toPrimitiveInt(i));
@@ -125,12 +139,5 @@ public class IntegerUtilTest extends TestCase {
         } catch (NumberFormatException e) {
             System.out.println(e);
         }
-    }
-
-    /**
-     * @throws Exception
-     */
-    public void testToIntegerForEmptyString() throws Exception {
-        assertNull(IntegerUtil.toInteger(""));
     }
 }

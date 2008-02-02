@@ -1,0 +1,458 @@
+/*
+ * Copyright 2004-2008 the Seasar Foundation and the Others.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
+ */
+package org.seasar3.beanutil;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import org.seasar.framework.beans.BeanDesc;
+import org.seasar.framework.beans.Converter;
+import org.seasar.framework.beans.ConverterRuntimeException;
+import org.seasar.framework.beans.PropertyDesc;
+import org.seasar.framework.beans.converter.DateConverter;
+import org.seasar.framework.beans.converter.NumberConverter;
+import org.seasar.framework.beans.factory.BeanDescFactory;
+
+/**
+ * An abstract class to copy Java Bean and Map.
+ * 
+ * @author higa
+ * @param <S>
+ *            the sub type.
+ * 
+ */
+public abstract class AbstractCopy<S extends AbstractCopy<S>> {
+
+    /**
+     * The array of empty string.
+     */
+    protected static final String[] EMPTY_STRING_ARRAY = new String[0];
+
+    /**
+     * The array of property name that are included as target.
+     */
+    protected String[] includePropertyNames = EMPTY_STRING_ARRAY;
+
+    /**
+     * The array of property name that are excluded as target.
+     */
+    protected String[] excludePropertyNames = EMPTY_STRING_ARRAY;
+
+    /**
+     * Whether the property that has null value is excluded.
+     */
+    protected boolean excludesNull = false;
+
+    /**
+     * Whether the property that has white-space value is excluded.
+     */
+    protected boolean excludesWhitespace = false;
+
+    /**
+     * The prefix of property name.
+     */
+    protected String prefix;
+
+    /**
+     * The delimiter of Java Bean.
+     */
+    protected char beanDelimiter = '$';
+
+    /**
+     * The delimiter of Map.
+     */
+    protected char mapDelimiter = '.';
+
+    /**
+     * Some converters that are related to the specific property.
+     */
+    protected Map<String, Converter> converterMap = new HashMap<String, Converter>();
+
+    /**
+     * Some converters that are not related to the specific property.
+     */
+    protected List<Converter> converters = new ArrayList<Converter>();
+
+    /**
+     * Includes some properties as target.
+     * 
+     * @param propertyNames
+     *            the array of property name.
+     * @return this instance.
+     */
+    @SuppressWarnings("unchecked")
+    public S includes(String... propertyNames) {
+        this.includePropertyNames = propertyNames;
+        return (S) this;
+    }
+
+    /**
+     * Excludes some properties.
+     * 
+     * @param propertyNames
+     *            the array of property name.
+     * @return this instance.
+     */
+    @SuppressWarnings("unchecked")
+    public S excludes(String... propertyNames) {
+        this.excludePropertyNames = propertyNames;
+        return (S) this;
+    }
+
+    /**
+     * Excludes some properties that have null value.
+     * 
+     * @return this instance.
+     */
+    @SuppressWarnings("unchecked")
+    public S excludesNull() {
+        this.excludesNull = true;
+        return (S) this;
+    }
+
+    /**
+     * Excludes some properties that have white-space value.
+     * 
+     * @return this instance.
+     */
+    @SuppressWarnings("unchecked")
+    public S excludesWhitespace() {
+        this.excludesWhitespace = true;
+        return (S) this;
+    }
+
+    /**
+     * Specifies the prefix of property name that is included as target.
+     * 
+     * @param prefix
+     *            the prefix.
+     * @return this instance.
+     * 
+     */
+    @SuppressWarnings("unchecked")
+    public S prefix(String prefix) {
+        this.prefix = prefix;
+        return (S) this;
+    }
+
+    /**
+     * JavaBeansのデリミタを設定します。
+     * 
+     * @param beanDelimiter
+     *            JavaBeansのデリミタ
+     * @return このインスタンス自身
+     */
+    @SuppressWarnings("unchecked")
+    public S beanDelimiter(char beanDelimiter) {
+        this.beanDelimiter = beanDelimiter;
+        return (S) this;
+    }
+
+    /**
+     * Mapのデリミタを設定します。
+     * 
+     * @param mapDelimiter
+     *            Mapのデリミタ
+     * @return このインスタンス自身
+     */
+    @SuppressWarnings("unchecked")
+    public S mapDelimiter(char mapDelimiter) {
+        this.mapDelimiter = mapDelimiter;
+        return (S) this;
+    }
+
+    /**
+     * コンバータを設定します。
+     * 
+     * @param converter
+     * @param propertyNames
+     * @return このインスタンス自身
+     */
+    @SuppressWarnings("unchecked")
+    public S converter(Converter converter, String... propertyNames) {
+        if (propertyNames.length == 0) {
+            converters.add(converter);
+        } else {
+            for (String name : propertyNames) {
+                converterMap.put(name, converter);
+            }
+        }
+        return (S) this;
+    }
+
+    /**
+     * 日付のコンバータを設定します。
+     * 
+     * @param pattern
+     *            日付のパターン
+     * @param propertyNames
+     *            プロパティ名の配列
+     * @return このインスタンス自身
+     */
+    public S dateConverter(String pattern, String... propertyNames) {
+        return converter(new DateConverter(pattern), propertyNames);
+    }
+
+    /**
+     * 数値のコンバータを設定します。
+     * 
+     * @param pattern
+     *            数値のパターン
+     * @param propertyNames
+     *            プロパティ名の配列
+     * @return このインスタンス自身
+     */
+    public S numberConverter(String pattern, String... propertyNames) {
+        return converter(new NumberConverter(pattern), propertyNames);
+    }
+
+    /**
+     * 対象のプロパティかどうかを返します。
+     * 
+     * @param name
+     *            プロパティ名
+     * @return 対象のプロパティかどうか
+     */
+    protected boolean isTargetProperty(String name) {
+        if (includePropertyNames.length > 0) {
+            for (String s : includePropertyNames) {
+                if (s.equals(name)
+                        && (prefix == null || name.startsWith(prefix))) {
+                    for (String s2 : excludePropertyNames) {
+                        if (s2.equals(name)) {
+                            return false;
+                        }
+                    }
+                    return true;
+                }
+            }
+            return false;
+        }
+        if (excludePropertyNames.length > 0) {
+            for (String s : excludePropertyNames) {
+                if (s.equals(name)) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return prefix == null || name.startsWith(prefix);
+    }
+
+    /**
+     * BeanからBeanにコピーを行います。
+     * 
+     * @param src
+     *            コピー元
+     * @param dest
+     *            コピー先
+     */
+    protected void copyBeanToBean(Object src, Object dest) {
+        BeanDesc srcBeanDesc = BeanDescFactory.getBeanDesc(src.getClass());
+        BeanDesc destBeanDesc = BeanDescFactory.getBeanDesc(dest.getClass());
+        int size = srcBeanDesc.getPropertyDescSize();
+        for (int i = 0; i < size; i++) {
+            PropertyDesc srcPropertyDesc = srcBeanDesc.getPropertyDesc(i);
+            String srcPropertyName = srcPropertyDesc.getPropertyName();
+            if (!srcPropertyDesc.isReadable()
+                    || !isTargetProperty(srcPropertyName)) {
+                continue;
+            }
+            String destPropertyName = trimPrefix(srcPropertyName);
+            if (!destBeanDesc.hasPropertyDesc(destPropertyName)) {
+                continue;
+            }
+            PropertyDesc destPropertyDesc = destBeanDesc
+                    .getPropertyDesc(destPropertyName);
+            if (!destPropertyDesc.isWritable()) {
+                continue;
+            }
+            Object value = srcPropertyDesc.getValue(src);
+            if (value instanceof String && excludesWhitespace
+                    && ((String) value).trim().length() == 0) {
+                continue;
+            }
+            if (value == null && excludesNull) {
+                continue;
+            }
+            value = convertValue(value, destPropertyName, destPropertyDesc
+                    .getPropertyType());
+            destPropertyDesc.setValue(dest, value);
+        }
+    }
+
+    /**
+     * BeanからMapにコピーを行います。
+     * 
+     * @param src
+     *            コピー元
+     * @param dest
+     *            コピー先
+     */
+    @SuppressWarnings("unchecked")
+    protected void copyBeanToMap(Object src, Map dest) {
+        BeanDesc srcBeanDesc = BeanDescFactory.getBeanDesc(src.getClass());
+        int size = srcBeanDesc.getPropertyDescSize();
+        for (int i = 0; i < size; i++) {
+            PropertyDesc srcPropertyDesc = srcBeanDesc.getPropertyDesc(i);
+            String srcPropertyName = srcPropertyDesc.getPropertyName();
+            if (!srcPropertyDesc.isReadable()
+                    || !isTargetProperty(srcPropertyName)) {
+                continue;
+            }
+            Object value = srcPropertyDesc.getValue(src);
+            if (value instanceof String && excludesWhitespace
+                    && ((String) value).trim().length() == 0) {
+                continue;
+            }
+            if (value == null && excludesNull) {
+                continue;
+            }
+            String destPropertyName = trimPrefix(srcPropertyName.replace(
+                    beanDelimiter, mapDelimiter));
+            value = convertValue(value, destPropertyName, null);
+            dest.put(destPropertyName, value);
+        }
+    }
+
+    /**
+     * MapからBeanにコピーを行います。
+     * 
+     * @param src
+     *            コピー元
+     * @param dest
+     *            コピー先
+     */
+    protected void copyMapToBean(Map<String, Object> src, Object dest) {
+        BeanDesc destBeanDesc = BeanDescFactory.getBeanDesc(dest.getClass());
+        for (Iterator<String> i = src.keySet().iterator(); i.hasNext();) {
+            String srcPropertyName = i.next();
+            if (!isTargetProperty(srcPropertyName)) {
+                continue;
+            }
+            String destPropertyName = trimPrefix(srcPropertyName.replace(
+                    mapDelimiter, beanDelimiter));
+            if (!destBeanDesc.hasPropertyDesc(destPropertyName)) {
+                continue;
+            }
+            PropertyDesc destPropertyDesc = destBeanDesc
+                    .getPropertyDesc(destPropertyName);
+            if (!destPropertyDesc.isWritable()) {
+                continue;
+            }
+            Object value = src.get(srcPropertyName);
+            if (value instanceof String && excludesWhitespace
+                    && ((String) value).trim().length() == 0) {
+                continue;
+            }
+            if (value == null && excludesNull) {
+                continue;
+            }
+            value = convertValue(value, destPropertyName, destPropertyDesc
+                    .getPropertyType());
+            destPropertyDesc.setValue(dest, value);
+        }
+    }
+
+    /**
+     * MapからMapにコピーを行います。
+     * 
+     * @param src
+     *            コピー元
+     * @param dest
+     *            コピー先
+     */
+    protected void copyMapToMap(Map<String, Object> src,
+            Map<String, Object> dest) {
+        for (Iterator<String> i = src.keySet().iterator(); i.hasNext();) {
+            String srcPropertyName = i.next();
+            if (!isTargetProperty(srcPropertyName)) {
+                continue;
+            }
+            String destPropertyName = trimPrefix(srcPropertyName);
+            Object value = src.get(srcPropertyName);
+            if (value instanceof String && excludesWhitespace
+                    && ((String) value).trim().length() == 0) {
+                continue;
+            }
+            if (value == null && excludesNull) {
+                continue;
+            }
+            value = convertValue(value, destPropertyName, null);
+            dest.put(destPropertyName, value);
+        }
+    }
+
+    /**
+     * プレフィックスを削ります。
+     * 
+     * @param propertyName
+     *            プロパティ名
+     * @return 削った結果
+     */
+    protected String trimPrefix(String propertyName) {
+        if (prefix == null) {
+            return propertyName;
+        }
+        return propertyName.substring(prefix.length());
+    }
+
+    /**
+     * 値を変換します。
+     * 
+     * @param value
+     *            値
+     * @param destPropertyName
+     *            コピー先のプロパティ名
+     * @param destPropertyClass
+     *            コピー先のプロパティクラス
+     * @return 変換後の値
+     */
+    protected Object convertValue(Object value, String destPropertyName,
+            Class<?> destPropertyClass) {
+        if (value == null) {
+            return null;
+        }
+        Converter converter = converterMap.get(destPropertyName);
+        if (converter == null) {
+            Class<?> targetClass = value.getClass() != String.class ? value
+                    .getClass() : destPropertyClass;
+            if (targetClass == null) {
+                return value;
+            }
+            for (Converter c : converters) {
+                if (c.isTarget(targetClass)) {
+                    converter = c;
+                    break;
+                }
+            }
+            if (converter == null) {
+                return value;
+            }
+        }
+        try {
+            if (value.getClass() == String.class) {
+                return converter.getAsObject((String) value);
+            }
+            return converter.getAsString(value);
+        } catch (Throwable cause) {
+            throw new ConverterRuntimeException(destPropertyName, value, cause);
+        }
+    }
+}

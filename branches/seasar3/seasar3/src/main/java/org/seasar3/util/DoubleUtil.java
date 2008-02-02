@@ -62,9 +62,10 @@ public final class DoubleUtil {
      * @return the primitive double value.
      */
     public static double toPrimitiveDouble(Object o) {
-        if (o == null) {
+        Double d = toDouble(o);
+        if (d == null) {
             return 0;
         }
-        return toDouble(o).doubleValue();
+        return d.doubleValue();
     }
 }

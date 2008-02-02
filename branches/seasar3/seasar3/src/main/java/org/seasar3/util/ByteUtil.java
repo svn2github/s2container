@@ -62,9 +62,10 @@ public final class ByteUtil {
      * @return the primitive byte value.
      */
     public static byte toPrimitiveByte(Object o) {
-        if (o == null) {
+        Byte b = toByte(o);
+        if (b == null) {
             return 0;
         }
-        return toByte(o).byteValue();
+        return b.byteValue();
     }
 }

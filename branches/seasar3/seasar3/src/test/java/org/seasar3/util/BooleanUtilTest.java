@@ -33,6 +33,13 @@ public class BooleanUtilTest extends TestCase {
     /**
      * @throws Exception
      */
+    public void testToBooleanForEmptyString() throws Exception {
+        assertFalse(BooleanUtil.toBoolean(""));
+    }
+
+    /**
+     * @throws Exception
+     */
     public void testToBooleanForBoolean() throws Exception {
         assertSame(Boolean.TRUE, BooleanUtil.toBoolean(Boolean.TRUE));
     }
@@ -51,7 +58,7 @@ public class BooleanUtilTest extends TestCase {
      * @throws Exception
      */
     public void testToBooleanForObject() throws Exception {
-        assertEquals(Boolean.TRUE, BooleanUtil.toBoolean(new Object()));
+        assertEquals(Boolean.FALSE, BooleanUtil.toBoolean(new Object()));
     }
 
     /**
@@ -59,6 +66,13 @@ public class BooleanUtilTest extends TestCase {
      */
     public void testToPrimitiveBooleanForNull() throws Exception {
         assertFalse(BooleanUtil.toPrimitiveBoolean(null));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public void testToPrimitiveBooleanForEmptyString() throws Exception {
+        assertFalse(BooleanUtil.toPrimitiveBoolean(""));
     }
 
     /**
