@@ -46,6 +46,7 @@ import org.seasar3.util.TimestampUtil;
  * A utility class for conversion.
  * 
  * @author higa
+ * @since 3.0
  * 
  */
 public final class ConversionUtil {

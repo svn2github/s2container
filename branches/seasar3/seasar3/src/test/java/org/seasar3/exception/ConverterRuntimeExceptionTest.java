@@ -13,28 +13,25 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar3.beanutil;
+package org.seasar3.exception;
 
-import java.util.HashMap;
+import junit.framework.TestCase;
 
 /**
- * A map acts as Java Bean.
- * 
  * @author higa
- * @since 3.0
  * 
  */
-public class BeanMap extends HashMap<String, Object> {
+public class ConverterRuntimeExceptionTest extends TestCase {
 
-    private static final long serialVersionUID = 1;
-
-    @Override
-    public Object get(Object key) {
-        if (!containsKey(key)) {
-            throw new IllegalArgumentException(key + " is not found in "
-                    + keySet());
-        }
-        return super.get(key);
+    /**
+     * @throws Exception
+     */
+    public void test() throws Exception {
+        ConverterRuntimeException e = new ConverterRuntimeException("hoge",
+                "xxx", new RuntimeException("cause"));
+        System.out.println(e.getMessage());
+        assertEquals("hoge", e.getPropertyName());
+        assertEquals("xxx", e.getValue());
+        assertEquals("cause", e.getCause().getMessage());
     }
-
 }

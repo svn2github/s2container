@@ -24,6 +24,7 @@ import org.seasar3.util.DisposableUtil;
  * A utility class for Java Bean.
  * 
  * @author higa
+ * @since 3.0
  * 
  */
 public final class BeanUtil {
@@ -72,5 +73,35 @@ public final class BeanUtil {
         beanDesc = BeanDesc.create(beanClass);
         beanDescCache.put(beanClass.getName(), beanDesc);
         return beanDesc;
+    }
+
+    /**
+     * Creates copy object.
+     * 
+     * @param src
+     *            the source.
+     * @param dest
+     *            the destination.
+     * @return copy object.
+     */
+    public static Copy copy(Object src, Object dest) {
+        return new Copy(src, dest);
+    }
+
+    /**
+     * Creates create and copy object.
+     * 
+     * @param <T>
+     *            the destination type.
+     * 
+     * @param destClass
+     *            the destination class.
+     * @param src
+     *            the source.
+     * @return create and copy object.
+     */
+    public static <T> CreateAndCopy<T> createAndCopy(Class<T> destClass,
+            Object src) {
+        return new CreateAndCopy<T>(destClass, src);
     }
 }

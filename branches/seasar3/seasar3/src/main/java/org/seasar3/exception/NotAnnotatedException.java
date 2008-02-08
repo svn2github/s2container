@@ -17,9 +17,8 @@ package org.seasar3.exception;
 
 import java.lang.annotation.Annotation;
 
-
 /**
- * An NotAnnotatedException is thrown when a class is not annotated by an
+ * A NotAnnotatedException is thrown when a class is not annotated by an
  * annotation.
  * 
  * @author higa

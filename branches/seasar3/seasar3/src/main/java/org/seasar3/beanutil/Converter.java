@@ -16,36 +16,38 @@
 package org.seasar3.beanutil;
 
 /**
- * 文字列とオブジェクトの変換を行なうインターフェースです。
+ * An interface that converts string and object.
  * 
  * @author higa
+ * @since 3.0
  * 
  */
 public interface Converter {
 
     /**
-     * 値を文字列として返します。
+     * Returns the string value.
      * 
      * @param value
-     *            値
-     * @return 文字列としての値
+     *            the value.
+     * @return the string value.
      */
     String getAsString(Object value);
 
     /**
-     * 値をオブジェクトとして返します。
+     * Returns the object value.
      * 
      * @param value
-     *            値
-     * @return オブジェクトとしての値
+     *            the value.
+     * @return the object value.
      */
     Object getAsObject(String value);
 
     /**
-     * 対象の型かどうかを返します。 対象のプロパティを指定しない場合に呼び出されます。
+     * Determines if the class is target.
      * 
      * @param clazz
-     * @return
+     *            the class.
+     * @return whether the class is target.
      */
-    boolean isTarget(Class clazz);
+    boolean isTarget(Class<?> clazz);
 }

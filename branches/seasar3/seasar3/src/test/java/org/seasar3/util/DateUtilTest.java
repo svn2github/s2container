@@ -39,6 +39,25 @@ public class DateUtilTest extends TestCase {
     /**
      * @throws Exception
      */
+    public void testToDateForNull2() throws Exception {
+        assertNull(DateUtil.toDate(null, "yyyyMMdd"));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public void testToDateForPatternNull() throws Exception {
+        try {
+            DateUtil.toDate("20080201", (String) null);
+            fail();
+        } catch (NullPointerException e) {
+            System.out.println(e);
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
     public void testToDateForDate() throws Exception {
         Date date = new Date();
         assertEquals(date, DateUtil.toDate(date));
@@ -79,5 +98,56 @@ public class DateUtilTest extends TestCase {
      */
     public void testToDateForEmptyString() throws Exception {
         assertNull(DateUtil.toDate(""));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public void testToDateWithPattern() throws Exception {
+        assertNotNull(DateUtil.toDate("20080201", "yyyyMMdd"));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public void testToDateWithPatternForException() throws Exception {
+        try {
+            DateUtil.toDate("xx/17/2008", "yyyyMMdd");
+            fail();
+        } catch (ParseRuntimeException e) {
+            System.out.println(e);
+            assertEquals("xx/17/2008", e.getText());
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
+    public void testToString() throws Exception {
+        assertEquals("19700101", DateUtil.toString(new Date(0), "yyyyMMdd"));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public void testToStringForPattenNull() throws Exception {
+        try {
+            DateUtil.toString(new Date(0), null);
+            fail();
+        } catch (NullPointerException t) {
+            System.out.println(t);
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
+    public void testToStringForException() throws Exception {
+        try {
+            DateUtil.toString(new Date(0), "xxx");
+            fail();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e);
+        }
     }
 }

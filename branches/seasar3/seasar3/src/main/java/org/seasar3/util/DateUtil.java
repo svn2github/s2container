@@ -17,6 +17,7 @@ package org.seasar3.util;
 
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -53,6 +54,50 @@ public final class DateUtil {
         } else {
             return toDate(o.toString(), Locale.getDefault());
         }
+    }
+
+    /**
+     * Converts text to the date value.
+     * 
+     * @param text
+     *            the text
+     * @param pattern
+     *            the pattern.
+     * @return the date value.
+     */
+    public static Date toDate(String text, String pattern) {
+        if (StringUtil.isEmpty(text)) {
+            return null;
+        }
+        if (StringUtil.isEmpty(pattern)) {
+            throw new NullPointerException("pattern");
+        }
+        try {
+            SimpleDateFormat df = new SimpleDateFormat(pattern);
+            return df.parse(text);
+        } catch (ParseException e) {
+            throw new ParseRuntimeException(text, e);
+        }
+    }
+
+    /**
+     * Converts the date value to text.
+     * 
+     * @param date
+     *            the date value.
+     * @param pattern
+     *            the pattern.
+     * @return the text.
+     */
+    public static String toString(Date date, String pattern) {
+        if (date == null) {
+            return null;
+        }
+        if (StringUtil.isEmpty(pattern)) {
+            throw new NullPointerException("pattern");
+        }
+        SimpleDateFormat df = new SimpleDateFormat(pattern);
+        return df.format(date);
     }
 
     /**

@@ -15,26 +15,16 @@
  */
 package org.seasar3.beanutil;
 
-import java.util.HashMap;
+import java.util.Date;
 
 /**
- * A map acts as Java Bean.
- * 
  * @author higa
- * @since 3.0
  * 
  */
-public class BeanMap extends HashMap<String, Object> {
+public class MyBean2 {
 
-    private static final long serialVersionUID = 1;
-
-    @Override
-    public Object get(Object key) {
-        if (!containsKey(key)) {
-            throw new IllegalArgumentException(key + " is not found in "
-                    + keySet());
-        }
-        return super.get(key);
-    }
-
+    /**
+     * 
+     */
+    public Date aaa;
 }

@@ -30,6 +30,7 @@ import org.seasar3.util.StringUtil;
  * This class describes Java Bean information.
  * 
  * @author higa
+ * @since 3.0
  * 
  */
 public final class BeanDesc {

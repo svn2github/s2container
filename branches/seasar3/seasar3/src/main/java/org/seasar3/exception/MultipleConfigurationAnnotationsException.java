@@ -18,10 +18,9 @@ package org.seasar3.exception;
 import java.lang.annotation.Annotation;
 import java.util.List;
 
-
 /**
- * An NotAnnotatedException is thrown when a class is not annotated by an
- * annotation.
+ * A MultipleConfigurationAnnotationsException is thrown when a class is not
+ * annotated by an annotation.
  * 
  * @author higa
  * @since 3.0
