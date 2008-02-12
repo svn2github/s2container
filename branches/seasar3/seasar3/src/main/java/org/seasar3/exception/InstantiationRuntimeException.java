@@ -1,5 +1,5 @@
 /*
- * Copyright 2004-2007 the Seasar Foundation and the Others.
+ * Copyright 2004-2008 the Seasar Foundation and the Others.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
  */
 package org.seasar3.exception;
 
-
 /**
  * Wrapper runtime exception for {@link InstantiationException}.
  * 
@@ -26,26 +25,28 @@ public class InstantiationRuntimeException extends SRuntimeException {
 
     static final long serialVersionUID = 1L;
 
-    private Class targetClass;
+    private Class<?> targetClass;
 
     /**
-     * Creates new {@link InstantiationRuntimeException}.
+     * Constructor.
      * 
      * @param targetClass
+     *            the target class.
      * @param cause
+     *            the cause.
      */
-    public InstantiationRuntimeException(Class targetClass,
+    public InstantiationRuntimeException(Class<?> targetClass,
             InstantiationException cause) {
         super(cause, "ES30001", targetClass.getName());
         this.targetClass = targetClass;
     }
 
     /**
-     * Returns target class.
+     * Returns the target class.
      * 
-     * @return
+     * @return the target class.
      */
-    public Class getTargetClass() {
+    public Class<?> getTargetClass() {
         return targetClass;
     }
 }

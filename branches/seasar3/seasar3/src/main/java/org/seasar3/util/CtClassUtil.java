@@ -1,5 +1,5 @@
 /*
- * Copyright 2004-2007 the Seasar Foundation and the Others.
+ * Copyright 2004-2008 the Seasar Foundation and the Others.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ import org.seasar3.exception.CannotCompileRuntimeException;
 import org.seasar3.exception.NotFoundRuntimeException;
 
 /**
- * Utility for <code>CtClass</code>
+ * Utility for compile time class.
  * 
  * @author higa
  * @version 3.0
@@ -39,44 +39,50 @@ public final class CtClassUtil {
     }
 
     /**
-     * Creates <code>CtClass</code>.
+     * Creates the compile time class.
      * 
      * @param classPool
+     *            the class pool.
      * @param originalClassName
+     *            the original class name.
      * @param newClassName
-     * @return <code>CtClass</code>
+     *            the new class name.
+     * @return the compile time class.
      */
     public static CtClass create(ClassPool classPool, String originalClassName,
             String newClassName) {
         CtClass parentCtClass = ClassPoolUtil.get(classPool, originalClassName);
-        CtClass ctClass = classPool.makeClass(newClassName, parentCtClass);
-        return ctClass;
+        return classPool.makeClass(newClassName, parentCtClass);
     }
 
     /**
-     * Sets super class.
+     * Sets the super class.
      * 
      * @param classPool
+     *            the class pool.
      * @param ctClass
-     * @param originalClassName
+     *            the compile time class.
+     * @param superClassName
+     *            the super class name.
      * @throws CannotCompileRuntimeException
      *             if CannotCompileException occurred.
      */
     public static void setSuperclass(ClassPool classPool, CtClass ctClass,
-            String originalClassName) {
+            String superClassName) {
         try {
-            ctClass.setSuperclass(ClassPoolUtil.get(classPool,
-                    originalClassName));
+            ctClass.setSuperclass(ClassPoolUtil.get(classPool, superClassName));
         } catch (CannotCompileException e) {
             throw new CannotCompileRuntimeException(e);
         }
     }
 
     /**
-     * Adds constructor.
+     * Adds the compile time constructor.
      * 
      * @param ctClass
+     *            the compile time class.
      * @param ctConstructor
+     *            the compile time constructor.
      * @throws CannotCompileRuntimeException
      *             if CannotCompileException occurred.
      */
@@ -90,10 +96,12 @@ public final class CtClassUtil {
     }
 
     /**
-     * Adds method.
+     * Adds the compile time method.
      * 
      * @param ctClass
+     *            the compile time class.
      * @param ctMethod
+     *            the compile time method.
      * @throws CannotCompileRuntimeException
      *             if CannotCompileException occurred.
      */
@@ -106,10 +114,12 @@ public final class CtClassUtil {
     }
 
     /**
-     * Adds field.
+     * Adds the compile time field.
      * 
      * @param ctClass
+     *            the compile time class.
      * @param ctField
+     *            the compile time field.
      * @throws CannotCompileRuntimeException
      *             if CannotCompileException occurred.
      */
@@ -122,33 +132,37 @@ public final class CtClassUtil {
     }
 
     /**
-     * Gets declared method.
+     * Returns the declared compile time method.
      * 
      * @param ctClass
+     *            the compile time class.
      * @param methodName
-     * @param parameterTypes
-     * @return <code>CtMethod</code>
+     *            the method name.
+     * @param parameterClasses
+     *            the array of parameter classes.
+     * @return the declared compile time method.
      * @throws NotFoundRuntimeException
      *             if NotFoundException occurred.
      */
     public static CtMethod getDeclaredMethod(CtClass ctClass,
-            String methodName, CtClass[] parameterTypes) {
+            String methodName, CtClass[] parameterClasses) {
         try {
-            return ctClass.getDeclaredMethod(methodName, parameterTypes);
+            return ctClass.getDeclaredMethod(methodName, parameterClasses);
         } catch (NotFoundException e) {
             throw new NotFoundRuntimeException(methodName, e);
         }
     }
 
     /**
-     * Converts <code>CtClass</code> to {@link Class}.
+     * Converts the compile time class to the class.
      * 
      * @param ctClass
-     * @return {@link Class}
+     *            the compile time class.
+     * @return the class.
      * @throws CannotCompileRuntimeException
      *             if CannotCompileException occurred.
      */
-    public static Class toClass(CtClass ctClass) {
+    public static Class<?> toClass(CtClass ctClass) {
         try {
             return ctClass.toClass();
         } catch (CannotCompileException e) {

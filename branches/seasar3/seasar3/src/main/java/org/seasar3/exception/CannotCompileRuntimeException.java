@@ -1,5 +1,5 @@
 /*
- * Copyright 2004-2007 the Seasar Foundation and the Others.
+ * Copyright 2004-2008 the Seasar Foundation and the Others.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,19 +17,23 @@ package org.seasar3.exception;
 
 import javassist.CannotCompileException;
 
-
 /**
  * Wrapper runtime exception for <code>javassist.CannotCompileException</code>.
  * 
  * @author higa
- * @sinceorg.seasar3.util.public class CannotCompileRuntimeException extends SRuntimeException {
+ * @since 3.0
+ */
+
+public class CannotCompileRuntimeException extends SRuntimeException {
 
     static final long serialVersionUID = 1L;
 
     /**
-     * Creates new {@link CannotCompileRuntimeException}.
+     * Constructor.
      * 
      * @param cause
+     *            the cause.
+     * 
      */
     public CannotCompileRuntimeException(CannotCompileException cause) {
         super(cause, "ES30004", cause.getMessage());

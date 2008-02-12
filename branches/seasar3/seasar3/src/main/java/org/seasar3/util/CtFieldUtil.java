@@ -1,5 +1,5 @@
 /*
- * Copyright 2004-2007 the Seasar Foundation and the Others.
+ * Copyright 2004-2008 the Seasar Foundation and the Others.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ import javassist.CtField;
 import org.seasar3.exception.CannotCompileRuntimeException;
 
 /**
- * Utility for <code>CtField</code>
+ * Utility for compile time field.
  * 
  * @author higa
  * @version 3.0
@@ -34,12 +34,14 @@ public final class CtFieldUtil {
     }
 
     /**
-     * Creates new field.
+     * Creates new compile time field.
      * 
      * @param body
+     *            the body.
      * @param ctClass
+     *            the compile time class.
      * 
-     * @return <code>CtMethod</code>
+     * @return the compile time field.
      * @throws CannotCompileRuntimeException
      *             if CannotCompileException occurred.
      */

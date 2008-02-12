@@ -58,6 +58,10 @@ public final class ConversionUtil {
 
     private static volatile boolean initialized = false;
 
+    static {
+        initialize();
+    }
+
     private ConversionUtil() {
     }
 

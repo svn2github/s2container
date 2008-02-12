@@ -50,11 +50,6 @@ public final class Env {
     public static final String COOL = "cool";
 
     /**
-     * WARM value.
-     */
-    public static final String WARM = "warm";
-
-    /**
      * The default path.
      */
     public static final String DEFAULT_PATH = "env.properties";
@@ -293,26 +288,16 @@ public final class Env {
      * @return whether the deployment is HOT.
      */
     public static boolean isHotDeployment() {
-        return HOT.equals(getDeployment());
+        return HOT.equalsIgnoreCase(getDeployment());
     }
 
     /**
      * Determines if the deployment is COOL. Returns true if the deployment is
-     * COOL.
+     * not HOT.
      * 
      * @return whether the deployment is COOL.
      */
     public static boolean isCoolDeployment() {
-        return COOL.equals(getDeployment());
-    }
-
-    /**
-     * Determines if the deployment is WARM. Returns true if the deployment is
-     * WARM.
-     * 
-     * @return whether the deployment is WARM.
-     */
-    public static boolean isWarmDeployment() {
-        return WARM.equals(getDeployment());
+        return !isHotDeployment();
     }
 }

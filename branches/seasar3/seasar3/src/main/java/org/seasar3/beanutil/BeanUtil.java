@@ -34,6 +34,10 @@ public final class BeanUtil {
 
     private static volatile boolean initialized = false;
 
+    static {
+        initialize();
+    }
+
     private BeanUtil() {
     }
 

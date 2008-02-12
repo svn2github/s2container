@@ -19,7 +19,7 @@ import org.seasar3.exception.IllegalAccessRuntimeException;
 import org.seasar3.exception.InstantiationRuntimeException;
 
 /**
- * Utility for {@link Class}.
+ * Utility for class.
  * 
  * @author higa
  * @since 3.0
@@ -33,20 +33,22 @@ public final class ClassUtil {
      * Creates a new instance.
      * 
      * @param <T>
-     * @param type
-     * @return
+     *            the target type.
+     * @param clazz
+     *            the class.
+     * @return a new instance.
      * @throws InstantiationRuntimeException
      *             if InstantiationException occurred.
      * @throws IllegalAccessRuntimeException
      *             if IllegalAccessException occurred.
      */
-    public static <T> T newInstance(Class<? extends T> type) {
+    public static <T> T newInstance(Class<? extends T> clazz) {
         try {
-            return type.newInstance();
+            return clazz.newInstance();
         } catch (InstantiationException e) {
-            throw new InstantiationRuntimeException(type, e);
+            throw new InstantiationRuntimeException(clazz, e);
         } catch (IllegalAccessException e) {
-            throw new IllegalAccessRuntimeException(type, e);
+            throw new IllegalAccessRuntimeException(clazz, e);
         }
     }
 }

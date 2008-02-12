@@ -1,5 +1,5 @@
 /*
- * Copyright 2004-2007 the Seasar Foundation and the Others.
+ * Copyright 2004-2008 the Seasar Foundation and the Others.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,35 +43,35 @@ public class ClassGeneratorTest extends TestCase {
     }
 
     /**
-     * Test method for {@link ClassGenerator#toCtClassArray(Class)}.
+     * 
      */
     public void testToCtClassClass() {
         assertNotNull(generator.toCtClass(int.class));
     }
 
     /**
-     * Test method for {@link ClassGenerator#toCtClassArray(Class)}.
+     * 
      */
     public void testToCtClassClassArray() {
         assertNotNull(generator.toCtClassArray(new Class[] { int.class }));
     }
 
     /**
-     * Test method for {@link ClassGenerator#setInterface(Class)}.
+     * 
      */
     public void testSetInterface() {
         generator.setInterface(Serializable.class);
     }
 
     /**
-     * Test method for {@link ClassGenerator#setInterfaces(Class[])}.
+     * 
      */
     public void testSetInterfaces() {
         generator.setInterfaces(new Class[] { Serializable.class });
     }
 
     /**
-     * Test method for {@link ClassGenerator#createDefaultConstructor()}.
+     * 
      */
     public void testCreateDefaultConstructor() {
         ClassPool classPool = ClassPoolUtil.getClassPool();
@@ -82,7 +82,7 @@ public class ClassGeneratorTest extends TestCase {
     }
 
     /**
-     * Test method for {@link ClassGenerator#createConstructor()}.
+     * 
      */
     public void testCreateConstructor() {
         assertNotNull(generator.createConstructor(new Class[] { int.class },
@@ -90,8 +90,7 @@ public class ClassGeneratorTest extends TestCase {
     }
 
     /**
-     * Test method for
-     * {@link ClassGenerator#getDeclaredMethod(String, CtClass[])}.
+     * 
      */
     public void testGetDeclaredMethod() {
         generator.createMethod("public void foo(){}");
@@ -99,8 +98,6 @@ public class ClassGeneratorTest extends TestCase {
     }
 
     /**
-     * Test method for
-     * {@link ClassGenerator#getDeclaredMethod(java.lang.reflect.Method)}.
      * 
      * @throws Exception
      */
@@ -112,14 +109,13 @@ public class ClassGeneratorTest extends TestCase {
     }
 
     /**
-     * Test method for {@link ClassGenerator#createMethod(String)}.
+     * 
      */
     public void testCreateMethod() {
         assertNotNull(generator.createMethod("public void foo(){}"));
     }
 
     /**
-     * Test method for {@link ClassGenerator#createMethod(Method, String)}.
      * 
      * @throws Exception
      */
@@ -130,14 +126,14 @@ public class ClassGeneratorTest extends TestCase {
     }
 
     /**
-     * Test method for {@link ClassGenerator#createField(String)}.
+     * 
      */
     public void testCreateField() {
         assertNotNull(generator.createField("private int aaa;"));
     }
 
     /**
-     * Test method for {@link ClassGenerator#generate()}.
+     * 
      */
     public void testGenarate() {
         assertNotNull(generator.generate());

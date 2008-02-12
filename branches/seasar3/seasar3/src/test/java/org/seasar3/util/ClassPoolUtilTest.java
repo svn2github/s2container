@@ -15,18 +15,15 @@
  */
 package org.seasar3.util;
 
-import javassist.ClassPool;
 import javassist.CtClass;
-import javassist.NotFoundException;
 
 /**
  * @author higa
  * 
  */
-public class ClassPoolUtilTest extends JavassistTestCase {
+public class ClassPoolUtilTest extends AbstJavassistTestCase {
 
     /**
-     * Test method for {@link ClassPoolUtil#get(ClassPool, String)}.
      * 
      * @throws Exception
      */
@@ -35,7 +32,7 @@ public class ClassPoolUtilTest extends JavassistTestCase {
     }
 
     /**
-     * Test method for {@link ClassPoolUtil#get(ClassPool, String)}.
+     * 
      */
     public void testGetForIllegalClassName() {
         try {
@@ -47,7 +44,6 @@ public class ClassPoolUtilTest extends JavassistTestCase {
     }
 
     /**
-     * Test method for {@link ClassPoolUtil#get(ClassPool, String)}.
      * 
      */
     public void testGetForArray() {
@@ -56,7 +52,6 @@ public class ClassPoolUtilTest extends JavassistTestCase {
     }
 
     /**
-     * Test method for {@link ClassPoolUtil#getClassPool()}.
      * 
      */
     public void testGetClassPool() {
@@ -64,7 +59,6 @@ public class ClassPoolUtilTest extends JavassistTestCase {
     }
 
     /**
-     * Test method for {@link ClassPoolUtil#getClassPool()}.
      * 
      */
     public void testGetClassPoolForCache() {
@@ -72,7 +66,6 @@ public class ClassPoolUtilTest extends JavassistTestCase {
     }
 
     /**
-     * Test method for {@link ClassPoolUtil#toCtClass(ClassPool, Class)}.
      * 
      */
     public void testToCtClass() {
@@ -80,7 +73,6 @@ public class ClassPoolUtilTest extends JavassistTestCase {
     }
 
     /**
-     * Test method for {@link ClassPoolUtil#toCtClass(ClassPool, Class)}.
      * 
      */
     public void testToCtClassArray() {
@@ -89,13 +81,9 @@ public class ClassPoolUtilTest extends JavassistTestCase {
     }
 
     /**
-     * Test method for
-     * {@link ClassPoolUtil#getAndRename(ClassPool, String, String)}.
-     * 
-     * @throws NotFoundException
      * 
      */
-    public void testGetAndRename() throws NotFoundException {
+    public void testGetAndRename() {
         CtClass ctClass = ClassPoolUtil.getAndRename(classPool, getClass()
                 .getName(), "Hoge");
         assertNotNull(ctClass);

@@ -1,5 +1,5 @@
 /*
- * Copyright 2004-2007 the Seasar Foundation and the Others.
+ * Copyright 2004-2008 the Seasar Foundation and the Others.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ import javassist.CtNewConstructor;
 import org.seasar3.exception.CannotCompileRuntimeException;
 
 /**
- * Utility for <code>CtNewConstructor</code>
+ * Utility for compile time constructor.
  * 
  * @author higa
  * @version 3.0
@@ -38,7 +38,8 @@ public final class CtNewConstructorUtil {
      * Creates default constructor.
      * 
      * @param ctClass
-     * @return <code>CtConstructor</code>
+     *            the compile time class.
+     * @return the default compile time constructor.
      * @throws CannotCompileRuntimeException
      *             if CannotCompileException occurred.
      */
@@ -51,19 +52,22 @@ public final class CtNewConstructorUtil {
     }
 
     /**
-     * Creates new constructor.
+     * Creates new compile time constructor.
      * 
-     * @param parameterTypes
-     * @param exceptionTypes
+     * @param parameterClasses
+     *            the array of compile time parameter classes.
+     * @param exceptionClasses
+     *            the array of compile time exception classes.
      * @param ctClass
-     * @return <code>CtConstructor</code>
+     *            the compile time class.
+     * @return the compile time constructor.
      * @throws CannotCompileRuntimeException
      *             if CannotCompileException occurred.
      */
-    public static CtConstructor make(CtClass[] parameterTypes,
-            CtClass[] exceptionTypes, CtClass ctClass) {
+    public static CtConstructor make(CtClass[] parameterClasses,
+            CtClass[] exceptionClasses, CtClass ctClass) {
         try {
-            return CtNewConstructor.make(parameterTypes, exceptionTypes,
+            return CtNewConstructor.make(parameterClasses, exceptionClasses,
                     ctClass);
         } catch (CannotCompileException e) {
             throw new CannotCompileRuntimeException(e);

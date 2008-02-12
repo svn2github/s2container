@@ -15,7 +15,6 @@
  */
 package org.seasar3.util;
 
-import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtConstructor;
 import javassist.CtField;
@@ -27,10 +26,9 @@ import javassist.NotFoundException;
  * @author higa
  * 
  */
-public class CtClassUtilTest extends JavassistTestCase {
+public class CtClassUtilTest extends AbstJavassistTestCase {
 
     /**
-     * Test method for {@link CtClassUtil#create(ClassPool, String, String)}.
      * 
      * @throws NotFoundException
      * 
@@ -44,8 +42,6 @@ public class CtClassUtilTest extends JavassistTestCase {
     }
 
     /**
-     * Test method for
-     * {@link CtClassUtil#setSuperclass(ClassPool, CtClass, String)}.
      * 
      * @throws NotFoundException
      * 
@@ -57,8 +53,6 @@ public class CtClassUtilTest extends JavassistTestCase {
     }
 
     /**
-     * Test method for
-     * {@link CtClassUtil#addConstructor(CtClass, javassist.CtConstructor)}.
      * 
      * @throws Exception
      * 
@@ -71,8 +65,6 @@ public class CtClassUtilTest extends JavassistTestCase {
     }
 
     /**
-     * Test method for
-     * {@link CtClassUtil#getDeclaredMethod(CtClass, String, CtClass[])}.
      * 
      * @throws Exception
      * 
@@ -84,8 +76,6 @@ public class CtClassUtilTest extends JavassistTestCase {
     }
 
     /**
-     * Test method for
-     * {@link CtClassUtil#addMethod(CtClass, javassist.CtMethod)}.
      * 
      * @throws Exception
      * 
@@ -98,7 +88,6 @@ public class CtClassUtilTest extends JavassistTestCase {
     }
 
     /**
-     * Test method for {@link CtClassUtil#addField(CtClass, javassist.CtField)}.
      * 
      * @throws Exception
      * 
@@ -110,7 +99,6 @@ public class CtClassUtilTest extends JavassistTestCase {
     }
 
     /**
-     * Test method for {@link CtClassUtil#toClass(CtClass)}.
      * 
      * @throws Exception
      * 

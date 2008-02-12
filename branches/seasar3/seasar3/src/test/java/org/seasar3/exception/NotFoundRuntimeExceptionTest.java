@@ -26,8 +26,7 @@ import junit.framework.TestCase;
 public class NotFoundRuntimeExceptionTest extends TestCase {
 
     /**
-     * Test method for
-     * {@link NotFoundRuntimeException#NotFoundRuntimeException(String, javassist.NotFoundException)}.
+     * 
      */
     public void testNotFoundRuntimeException() {
         try {

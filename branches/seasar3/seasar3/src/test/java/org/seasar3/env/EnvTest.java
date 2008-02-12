@@ -31,8 +31,6 @@ public class EnvTest extends TestCase {
 
     private static final String ENV_COOL_PATH = PACKAGE + "env_cool.properties";
 
-    private static final String ENV_WARM_PATH = PACKAGE + "env_warm.properties";
-
     @Override
     protected void tearDown() throws Exception {
         Env.initialize();
@@ -346,21 +344,5 @@ public class EnvTest extends TestCase {
     public void testIsCoolDeployment_hot() {
         Env.initialize(ENV_PATH);
         assertFalse(Env.isCoolDeployment());
-    }
-
-    /**
-     * 
-     */
-    public void testIsWarmDeployment() {
-        Env.initialize(ENV_WARM_PATH);
-        assertTrue(Env.isWarmDeployment());
-    }
-
-    /**
-     * 
-     */
-    public void testIsWarmDeployment_hot() {
-        Env.initialize(ENV_PATH);
-        assertFalse(Env.isWarmDeployment());
     }
 }

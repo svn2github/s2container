@@ -24,8 +24,6 @@ import junit.framework.TestCase;
 public class IllegalAccessRuntimeExceptionTest extends TestCase {
 
     /**
-     * Test method for
-     * {@link IllegalAccessRuntimeException#IllegalAccessRuntimeException(Class, IllegalAccessException)}.
      * 
      * @throws InstantiationException
      */

@@ -1,5 +1,5 @@
 /*
- * Copyright 2004-2007 the Seasar Foundation and the Others.
+ * Copyright 2004-2008 the Seasar Foundation and the Others.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,19 +36,26 @@ import org.seasar3.util.CtNewMethodUtil;
  * 
  * @author koichik
  * @author higa
- * @param <T>
  */
 public class ClassGenerator {
 
+    /**
+     * The class pool.
+     */
     protected ClassPool classPool;
 
+    /**
+     * The compile time class.
+     */
     protected CtClass ctClass;
 
     /**
-     * Creates new {@link ClassGenerator}.
+     * Constructor.
      * 
      * @param classPool
+     *            the class pool.
      * @param ctClass
+     *            the compile time class.
      */
     public ClassGenerator(ClassPool classPool, CtClass ctClass) {
         if (classPool == null) {
@@ -62,67 +69,69 @@ public class ClassGenerator {
     }
 
     /**
-     * Gets <code>ClassPool</code>.
+     * Returns the class pool.
      * 
-     * @return
+     * @return the class pool.
      */
     public ClassPool getClassPool() {
         return classPool;
     }
 
     /**
-     * Gets <code>CtClass</code>.
+     * Returns the compile time class.
      * 
-     * @return
+     * @return the compile time class.
      */
     public CtClass getCtClass() {
         return ctClass;
     }
 
     /**
-     * Converts {@link Class} to <code>CtClass</code>
+     * Converts class to compile time class.
      * 
      * @param clazz
-     * @return <code>CtClass</code>
-     * @see ClassPoolUtil#toCtClass(ClassPool, Class)
+     *            the class
+     * @return the compile time class.
      */
     public CtClass toCtClass(Class<?> clazz) {
         return ClassPoolUtil.toCtClass(classPool, clazz);
     }
 
     /**
-     * Converts array of {@link Class} to array of <code>CtClass</code>
+     * Converts array of classes to array of compile time classes.
      * 
      * @param classes
-     * @return array of <code>CtClass</code>
-     * @see ClassPoolUtil#toCtClass(ClassPool, Class[])
+     *            array of classes.
+     * @return array of compile time classes.
      */
-    public CtClass[] toCtClassArray(Class[] classes) {
+    public CtClass[] toCtClassArray(Class<?>[] classes) {
         return ClassPoolUtil.toCtClassArray(classPool, classes);
     }
 
     /**
-     * Sets interface.
+     * Sets interface class.
      * 
      * @param interfaceClass
+     *            interface class.
      */
-    public void setInterface(Class interfaceClass) {
+    public void setInterface(Class<?> interfaceClass) {
         ctClass.setInterfaces(new CtClass[] { toCtClass(interfaceClass) });
     }
 
     /**
-     * Sets interfaces.
+     * Sets array of interface classes.
      * 
      * @param interfaces
+     *            array of interface classes.
      */
-    public void setInterfaces(Class[] interfaces) {
+    public void setInterfaces(Class<?>[] interfaces) {
         ctClass.setInterfaces(toCtClassArray(interfaces));
     }
 
     /**
      * Creates default constructor.
      * 
-     * @return <code>CtConstructor</code>
+     * @return default constructor.
      */
     public CtConstructor createDefaultConstructor() {
         CtConstructor ctConstructor = CtNewConstructorUtil
@@ -135,11 +144,13 @@ public class ClassGenerator {
      * Creates constructor.
      * 
      * @param parameterClasses
+     *            array of parameter classes.
      * @param exceptionClasses
-     * @return
+     *            array of exception classes.
+     * @return constructor.
      */
-    public CtConstructor createConstructor(Class[] parameterClasses,
-            Class[] exceptionClasses) {
+    public CtConstructor createConstructor(Class<?>[] parameterClasses,
+            Class<?>[] exceptionClasses) {
         CtConstructor ctConstructor = CtNewConstructorUtil.make(
                 toCtClassArray(parameterClasses),
                 toCtClassArray(exceptionClasses), ctClass);
@@ -148,11 +159,11 @@ public class ClassGenerator {
     }
 
     /**
-     * Gets declared method.
+     * Returns the declared method.
      * 
      * @param method
-     * @return
-     * @see {@link #getDeclaredMethod(String, CtClass[])}
+     *            the method.
+     * @return the declared method.
      */
     public CtMethod getDeclaredMethod(Method method) {
         return getDeclaredMethod(method.getName(), toCtClassArray(method
@@ -160,12 +171,13 @@ public class ClassGenerator {
     }
 
     /**
-     * Gets declared method.
+     * Returns the declared method.
      * 
      * @param methodName
+     *            the method name.
      * @param parameterClasses
-     * @return
-     * @see CtClassUtil#getDeclaredMethod(CtClass, String, CtClass[])
+     *            the parameter classes.
+     * @return the declared method.
      */
     public CtMethod getDeclaredMethod(String methodName,
             CtClass[] parameterClasses) {
@@ -174,10 +186,11 @@ public class ClassGenerator {
     }
 
     /**
-     * Creates <code>CtMethod</code>.
+     * Creates the compile time method.
      * 
      * @param src
-     * @return
+     *            the source.
+     * @return the compile time method.
      */
     public CtMethod createMethod(String src) {
         CtMethod ctMethod = CtNewMethodUtil.make(src, ctClass);
@@ -186,11 +199,13 @@ public class ClassGenerator {
     }
 
     /**
-     * Creates <code>CtMethod</code>.
+     * Creates the compile time method.
      * 
      * @param method
+     *            the method.
      * @param src
-     * @return
+     *            the source.
+     * @return the compile time method.
      */
     public CtMethod createMethod(Method method, String src) {
         CtMethod ctMethod = CtNewMethodUtil.make(method.getModifiers()
@@ -203,10 +218,11 @@ public class ClassGenerator {
     }
 
     /**
-     * Creates <code>CtField</code>.
+     * Creates the compile time field.
      * 
      * @param src
-     * @return
+     *            the source.
+     * @return the compile time field.
      */
     public CtField createField(String src) {
         CtField ctField = CtFieldUtil.make(src, ctClass);
@@ -215,22 +231,24 @@ public class ClassGenerator {
     }
 
     /**
-     * Sets method body.
+     * Sets the method body.
      * 
      * @param ctMethod
+     *            the compile time method.
      * @param body
+     *            the body.
      */
     public void setMethodBody(CtMethod ctMethod, String body) {
         CtMethodUtil.setBody(ctMethod, body);
     }
 
     /**
-     * Generates {@link Class}.
+     * Generates class.
      * 
      * @return generated class
      */
-    public Class generate() {
-        Class clazz = CtClassUtil.toClass(ctClass);
+    public Class<?> generate() {
+        Class<?> clazz = CtClassUtil.toClass(ctClass);
         ctClass.detach();
         return clazz;
     }

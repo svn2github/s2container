@@ -1,5 +1,5 @@
 /*
- * Copyright 2004-2007 the Seasar Foundation and the Others.
+ * Copyright 2004-2008 the Seasar Foundation and the Others.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ import javassist.CtNewMethod;
 import org.seasar3.exception.CannotCompileRuntimeException;
 
 /**
- * Utility for <code>CtNewMethod</code>
+ * Utility for compile time method.
  * 
  * @author higa
  * @version 3.0
@@ -37,12 +37,14 @@ public final class CtNewMethodUtil {
     }
 
     /**
-     * Creates new method.
+     * Creates new compile time method.
      * 
      * @param body
+     *            the body.
      * @param ctClass
+     *            the compile time class.
      * 
-     * @return <code>CtMethod</code>
+     * @return the compile time method.
      * @throws CannotCompileRuntimeException
      *             if CannotCompileException occurred.
      */
@@ -55,27 +57,35 @@ public final class CtNewMethodUtil {
     }
 
     /**
-     * Creates new method.
+     * Creates new compile time method.
      * 
      * @param modifier
-     * @param returnType
+     *            the modifier.
+     * @param returnClass
+     *            the returned class.
      * @param methodName
-     * @param parameterTypes
-     * @param exceptionTypes
+     *            the method name.
+     * @param parameterClasses
+     *            the array of compile time parameter classes.
+     * @param exceptionClasses
+     *            the array of compile time exception classes.
      * @param body
+     *            the body.
      * @param ctClass
+     *            the compile time class.
      * 
-     * @return <code>CtMethod</code>
+     * @return the compile time method.
      * @throws CannotCompileRuntimeException
      *             if CannotCompileException occurred.
      */
-    public static CtMethod make(int modifier, CtClass returnType,
-            String methodName, CtClass[] parameterTypes,
-            CtClass[] exceptionTypes, String body, CtClass ctClass) {
+    public static CtMethod make(int modifier, CtClass returnClass,
+            String methodName, CtClass[] parameterClasses,
+            CtClass[] exceptionClasses, String body, CtClass ctClass) {
         try {
             return CtNewMethod.make(modifier
-                    & ~(Modifier.ABSTRACT | Modifier.NATIVE), returnType,
-                    methodName, parameterTypes, exceptionTypes, body, ctClass);
+                    & ~(Modifier.ABSTRACT | Modifier.NATIVE), returnClass,
+                    methodName, parameterClasses, exceptionClasses, body,
+                    ctClass);
         } catch (CannotCompileException e) {
             throw new CannotCompileRuntimeException(e);
         }

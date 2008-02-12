@@ -23,8 +23,11 @@ import junit.framework.TestCase;
  * @author higa
  * 
  */
-public abstract class JavassistTestCase extends TestCase {
+public abstract class AbstJavassistTestCase extends TestCase {
 
+    /**
+     * The class pool.
+     */
     protected ClassPool classPool;
 
     @Override
@@ -32,5 +35,10 @@ public abstract class JavassistTestCase extends TestCase {
         classPool = new ClassPool();
         classPool.appendClassPath(new LoaderClassPath(Thread.currentThread()
                 .getContextClassLoader()));
+    }
+
+    @Override
+    protected void tearDown() throws Exception {
+        DisposableUtil.disposeAll();
     }
 }

@@ -15,9 +15,8 @@
  */
 package org.seasar3.util;
 
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.WeakHashMap;
 
 import javassist.ClassPool;
 import javassist.CtClass;
@@ -27,7 +26,7 @@ import javassist.NotFoundException;
 import org.seasar3.exception.NotFoundRuntimeException;
 
 /**
- * Utility for <code>ClassPool</code>
+ * Utility for class pool.
  * 
  * @author koichik
  * @author higa
@@ -36,16 +35,35 @@ import org.seasar3.exception.NotFoundRuntimeException;
 
 public final class ClassPoolUtil {
 
-    protected static final Map<ClassLoader, ClassPool> classPoolMap = Collections
-            .synchronizedMap(new WeakHashMap<ClassLoader, ClassPool>());
+    private static final Map<ClassLoader, ClassPool> classPoolCache = new HashMap<ClassLoader, ClassPool>();
+
+    private static volatile boolean initialized = false;
+
+    static {
+        initialize();
+    }
 
     private ClassPoolUtil() {
     }
 
+    private static void initialize() {
+        DisposableUtil.add(new Disposable() {
+            public void dispose() {
+                clear();
+            }
+        });
+        initialized = true;
+    }
+
+    private static void clear() {
+        classPoolCache.clear();
+        initialized = false;
+    }
+
     /**
-     * Returns class pool.
+     * Returns the class pool.
      * 
-     * @return
+     * @return the class pool.
      * @see #getClassPool(ClassLoader)
      */
     public static ClassPool getClassPool() {
@@ -53,56 +71,62 @@ public final class ClassPoolUtil {
     }
 
     /**
-     * Returns cached class pool by {@link ClassLoader}.
+     * Returns the class pool.
      * 
      * @param classLoader
-     * @return <code>ClassPool</code>
+     *            the class loader.
+     * @return the class pool.
      */
     public static ClassPool getClassPool(ClassLoader classLoader) {
         if (classLoader == null) {
             throw new NullPointerException("classLoader");
         }
-        ClassPool classPool = (ClassPool) classPoolMap.get(classLoader);
+        if (!initialized) {
+            initialize();
+        }
+        ClassPool classPool = classPoolCache.get(classLoader);
         if (classPool == null) {
             classPool = new ClassPool();
             classPool.appendClassPath(new LoaderClassPath(classLoader));
-            classPoolMap.put(classLoader, classPool);
+            classPoolCache.put(classLoader, classPool);
         }
         return classPool;
     }
 
     /**
-     * Converts {@link Class} to <code>CtClass</code>
+     * Converts the class to the compile time class.
      * 
      * @param classPool
-     * @param type
-     * @return <code>CtClass</code>
-     * @throws NullPointerException
-     *             if classPool is null.
-     * @see #get(ClassPool, String)
+     *            the class pool.
+     * @param clazz
+     *            the class.
+     * @return the compile time class.
      */
-    public static CtClass toCtClass(ClassPool classPool, Class type) {
+    public static CtClass toCtClass(ClassPool classPool, Class<?> clazz) {
         if (classPool == null) {
             throw new NullPointerException("classPool");
         }
-        if (type == null) {
+        if (clazz == null) {
             return null;
         }
-        return get(classPool, type.getName());
+        return get(classPool, clazz.getName());
     }
 
     /**
-     * Converts array of {@link Class} to array of <code>CtClass</code>
+     * Converts array of classes to array of compile time classes.
      * 
      * @param classPool
+     *            the class pool.
      * @param classes
-     * @return array of <code>CtClass</code>
+     *            the array of classes.
+     * @return the array of compile time classes.
      */
-    public static CtClass[] toCtClassArray(ClassPool classPool, Class[] classes) {
+    public static CtClass[] toCtClassArray(ClassPool classPool,
+            Class<?>[] classes) {
         if (classes == null) {
             return null;
         }
-        final CtClass[] result = new CtClass[classes.length];
+        CtClass[] result = new CtClass[classes.length];
         for (int i = 0; i < result.length; ++i) {
             result[i] = toCtClass(classPool, classes[i]);
         }
@@ -110,13 +134,13 @@ public final class ClassPoolUtil {
     }
 
     /**
-     * Returns <code>CtClass</code>.
+     * Returns the compile time class.
      * 
      * @param classPool
+     *            the class pool.
      * @param className
-     * @return
-     * @throws NullPointerException
-     *             if classPool is null and className is null.
+     *            the class name.
+     * @return the compile time class.
      * @throws NotFoundRuntimeException
      *             if NotFoundException occurred.
      */
@@ -129,22 +153,22 @@ public final class ClassPoolUtil {
         }
         try {
             return classPool.get(className);
-        } catch (final NotFoundException e) {
+        } catch (NotFoundException e) {
             throw new NotFoundRuntimeException(className, e);
         }
     }
 
     /**
-     * Returns and renames <code>CtClass</code>.
+     * Converts and renames the compile time class.
      * 
      * @param classPool
+     *            the class pool.
      * @param originalClassName
+     *            the original class name.
      * @param newClassName
+     *            the new class name.
      * 
-     * @return <code>CtClass</code>
-     * @throws NullPointerException
-     *             if classPool is null and originalClassName is null and
-     *             newClassName is null.
+     * @return the compile time class.
      * @throws NotFoundRuntimeException
      *             if NotFoundException occurred.
      */
@@ -161,7 +185,7 @@ public final class ClassPoolUtil {
         }
         try {
             return classPool.getAndRename(originalClassName, newClassName);
-        } catch (final NotFoundException e) {
+        } catch (NotFoundException e) {
             throw new NotFoundRuntimeException(e.getMessage(), e);
         }
     }
