@@ -56,7 +56,7 @@ public final class ConversionUtil {
     static Map<String, Object> constructorCache = new ConcurrentHashMap<String, Object>(
             200);
 
-    private static volatile boolean initialized = false;
+    private static boolean initialized = false;
 
     static {
         initialize();

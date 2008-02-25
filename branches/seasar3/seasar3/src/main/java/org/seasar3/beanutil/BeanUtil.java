@@ -32,7 +32,7 @@ public final class BeanUtil {
     private static ConcurrentHashMap<String, BeanDesc> beanDescCache = new ConcurrentHashMap<String, BeanDesc>(
             200);
 
-    private static volatile boolean initialized = false;
+    private static boolean initialized = false;
 
     static {
         initialize();

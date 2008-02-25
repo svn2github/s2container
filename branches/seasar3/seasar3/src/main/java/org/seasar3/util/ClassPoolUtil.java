@@ -37,7 +37,7 @@ public final class ClassPoolUtil {
 
     private static final Map<ClassLoader, ClassPool> classPoolCache = new HashMap<ClassLoader, ClassPool>();
 
-    private static volatile boolean initialized = false;
+    private static boolean initialized = false;
 
     static {
         initialize();
