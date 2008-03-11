@@ -15,6 +15,7 @@
  */
 package org.seasar3.util;
 
+import java.beans.Introspector;
 import java.util.LinkedList;
 
 import org.apache.commons.logging.LogFactory;
@@ -63,5 +64,6 @@ public final class DisposableUtil {
         }
         disposables.clear();
         LogFactory.releaseAll();
+        Introspector.flushCaches();
     }
 }
