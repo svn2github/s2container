@@ -1,1 +1,0 @@
-{call PROC_RESULTSETS_UPDATES_OUT(?, ?, ?, ?, ?)}

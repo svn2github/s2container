@@ -1,1 +1,0 @@
-{call PROC_RESULTSET_OUT(?, ?)}
