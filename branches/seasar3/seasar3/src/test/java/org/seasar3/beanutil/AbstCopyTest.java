@@ -104,6 +104,16 @@ public class AbstCopyTest extends TestCase {
     /**
      * @throws Exception
      */
+    public void testIsTargetProperty_excludes_prefix() throws Exception {
+        MyCopy copy = new MyCopy().prefix("abc_").excludes("abc_exclude");
+        assertTrue(copy.isTargetProperty("abc_value"));
+        assertFalse(copy.isTargetProperty("abc_exclude"));
+        assertFalse(copy.isTargetProperty("ab"));
+    }
+
+    /**
+     * @throws Exception
+     */
     public void testIsTargetProperty_includes_excludes() throws Exception {
         MyCopy copy = new MyCopy();
         copy.includes("hoge", "hoge2");

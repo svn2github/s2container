@@ -201,10 +201,12 @@ public abstract class AbstractCopy<S extends AbstractCopy<S>> {
      * @return Whether the property is target.
      */
     protected boolean isTargetProperty(String name) {
+        if (prefix != null && !name.startsWith(prefix)) {
+            return false;
+        }
         if (includePropertyNames.length > 0) {
             for (String s : includePropertyNames) {
-                if (s.equals(name)
-                        && (prefix == null || name.startsWith(prefix))) {
+                if (s.equals(name)) {
                     for (String s2 : excludePropertyNames) {
                         if (s2.equals(name)) {
                             return false;
@@ -223,7 +225,7 @@ public abstract class AbstractCopy<S extends AbstractCopy<S>> {
             }
             return true;
         }
-        return prefix == null || name.startsWith(prefix);
+        return true;
     }
 
     /**
