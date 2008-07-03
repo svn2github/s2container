@@ -1,0 +1,73 @@
+<project name="seasar-benchmark" default="usage" basedir=".">
+
+	<property name="maven.build.directory" value="target"/>
+	<property name="maven.build.output" value="${maven.build.directory}/classes"/>
+	
+	<path id="build.classpath">
+		<fileset dir="lib/seasar-2.4">
+			<include name="*.jar"/>
+		</fileset>
+		<fileset dir="lib/spring-framework-2.0">
+			<include name="*.jar"/>
+		</fileset>
+		<fileset dir="lib">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+	<path id="runtime.classpath">
+		<path refid="build.classpath"/>
+		<path location="${maven.build.output}"/>
+		<fileset dir="lib/groovy-1.0-jsr-05">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+
+	<target name="usage">
+		<echo message="TODO"/>
+	</target>
+
+	<target name="clean" description="Clean the output directory">
+		<delete dir="${maven.build.directory}"/>
+	</target>
+
+	<target name="compile" description="Compile the code">
+		<mkdir dir="${maven.build.output}"/>
+		<javac 
+			destdir="${maven.build.output}" 
+			excludes="**/package.html" 
+			debug="true" 
+			deprecation="true" 
+			optimize="false" 
+			fork="true" 
+			memoryMaximumSize="512M"
+		>
+			<src>
+				<pathelement location="src/main/java"/>
+			</src>
+			<classpath refid="build.classpath"/>
+		</javac>
+		<copy todir="${maven.build.output}">
+			<fileset dir="src/main/resources"/>
+		</copy>
+	</target>
+
+	<target name="benchmark" description="Execute the benchmark">
+		<java classname="groovy.lang.GroovyShell" fork="true">
+			<classpath refid="runtime.classpath"/>
+			<arg value="src/main/groovy/benchmark.groovy"/>
+		</java>
+	</target>
+
+	<target name="dist" description="Create zip file">
+		<tstamp>
+			<format property="timestamp" pattern="yyyyMMdd_HHmmss"/>
+		</tstamp>
+		<mkdir dir="target"/>
+		<zip destfile="target/${ant.project.name}-${timestamp}.zip">
+			<zipfileset prefix="${ant.project.name}-${timestamp}" dir=".">
+				<exclude name="**/target/**"/>
+			</zipfileset>
+		</zip>
+	</target>
+
+</project>
