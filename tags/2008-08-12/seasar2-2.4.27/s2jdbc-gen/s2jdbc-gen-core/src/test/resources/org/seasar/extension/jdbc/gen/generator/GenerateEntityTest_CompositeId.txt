@@ -1,0 +1,25 @@
+package hoge.entity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+/**
+ * 
+ * @author S2JDBC-Gen
+ */
+@Entity
+@Table(catalog = "AAA", schema = "BBB")
+public class Foo {
+
+    /** */
+    @Id
+    @Column(columnDefinition = "integer", nullable = false)
+    public int id1;
+
+    /** */
+    @Id
+    @Column(columnDefinition = "integer", nullable = false)
+    public int id2;
+}

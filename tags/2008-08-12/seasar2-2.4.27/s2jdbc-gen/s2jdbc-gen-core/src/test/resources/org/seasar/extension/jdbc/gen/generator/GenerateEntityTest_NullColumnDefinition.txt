@@ -1,0 +1,20 @@
+package hoge.entity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+/**
+ * 
+ * @author S2JDBC-Gen
+ */
+@Entity
+@Table(catalog = "AAA", schema = "BBB")
+public class Foo {
+
+    /**
+     * FIXME このプロパティに対応するカラムの型(hoge)はサポート対象外です。
+     */
+    @Column(columnDefinition = null, nullable = false)
+    public String name;
+}

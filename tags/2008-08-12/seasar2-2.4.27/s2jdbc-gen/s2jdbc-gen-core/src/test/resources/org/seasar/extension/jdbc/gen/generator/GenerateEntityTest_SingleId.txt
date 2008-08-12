@@ -1,0 +1,56 @@
+package hoge.entity;
+
+import java.math.BigDecimal;
+import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+import javax.persistence.Version;
+
+/**
+ * 
+ * @author S2JDBC-Gen
+ */
+@Entity
+@Table(catalog = "AAA", schema = "BBB")
+public class Foo {
+
+    /** */
+    @Id
+    @GeneratedValue
+    @Column(columnDefinition = "integer", nullable = false)
+    public int id;
+
+    /** */
+    @Column(columnDefinition = "varchar(10)", nullable = false)
+    public String name;
+
+    /** */
+    @Column(columnDefinition = "decimal(15,5)", nullable = false)
+    public BigDecimal sal;
+
+    /** */
+    @Lob
+    @Column(columnDefinition = "blob", nullable = true)
+    public byte[] lob;
+
+    /** */
+    @Temporal(TemporalType.DATE)
+    @Column(columnDefinition = "date", nullable = true)
+    public Date date;
+
+    /** */
+    @Transient
+    public String temp;
+
+    /** */
+    @Version
+    @Column(columnDefinition = "integer", nullable = false)
+    public Integer version;
+}
