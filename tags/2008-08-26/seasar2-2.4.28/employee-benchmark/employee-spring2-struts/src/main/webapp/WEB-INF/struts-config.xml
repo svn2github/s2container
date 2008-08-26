@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="Shift_JIS" ?>
+
+<!DOCTYPE struts-config PUBLIC
+					"-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+					"http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+
+	<!-- ================================================ Form Bean Definitions -->
+
+	<form-beans>
+		<form-bean name="EmpListForm"
+			type="org.seasar.employee.spring2.web.emp.EmpListForm" />
+		<form-bean name="EmpForm"
+			type="org.seasar.employee.spring2.web.emp.EmpForm" />
+	</form-beans>
+
+
+	<!-- ========================================= Global Exception Definitions -->
+
+	<global-exceptions></global-exceptions>
+
+	<!-- =========================================== Global Forward Definitions -->
+
+	<global-forwards>
+		<forward name="fail" path="/empList.do" />
+	</global-forwards>
+
+	<!-- =========================================== Action Mapping Definitions -->
+
+	<action-mappings>
+		<action path="/empList"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			name="EmpListForm" scope="request">
+			<forward name="success" path="/WEB-INF/jsp/empList.jsp" />
+		</action>
+		<action path="/empEdit"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			name="EmpForm" scope="request" input="/empList.do" validate="false">
+			<forward name="success" path="/WEB-INF/jsp/empEdit.jsp" />
+		</action>
+		<action path="/empEditBack"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			name="EmpForm" scope="request" input="/empList.do" validate="false">
+			<forward name="success" path="/WEB-INF/jsp/empEdit.jsp" />
+		</action>
+		<action path="/empInquire"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			name="EmpForm" scope="request" input="/empList.do" validate="false">
+			<forward name="success" path="/WEB-INF/jsp/empConfirm.jsp" />
+		</action>
+		<action path="/empConfirm"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			name="EmpForm" scope="request" input="/WEB-INF/jsp/empEdit.jsp" validate="false">
+			<forward name="toEdit" path="/WEB-INF/jsp/empEdit.jsp" />
+			<forward name="success" path="/WEB-INF/jsp/empConfirm.jsp" />
+		</action>
+		<action path="/empFinish"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			name="EmpForm" scope="request" input="/WEB-INF/jsp/empConfirm.jsp" validate="true">
+			<forward name="success" path="/empList.do" />
+		</action>
+	</action-mappings>
+
+
+	<!-- ============================================= Controller Configuration -->
+
+	<!-- ======================================== Message Resources Definitions -->
+
+	<message-resources parameter="messages" />
+
+
+	<!-- =============================================== Plug Ins Configuration -->
+
+	<!-- =================================================== Validator plugin -->
+	<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+		<set-property property="pathnames"
+			value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml" />
+	</plug-in>
+</struts-config>
+
