@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="Windows-31J" ?>
+
+<!DOCTYPE form-validation PUBLIC
+          "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1.3//EN"
+          "http://jakarta.apache.org/commons/dtds/validator_1_1_3.dtd">
+
+<form-validation>
+
+<!--
+     This is a minimal Validator form file with a couple of examples.
+-->
+
+    <global>
+
+        <!-- An example global constant
+        <constant>
+            <constant-name>postalCode</constant-name>
+            <constant-value>^\d{5}\d*$</constant-value>
+        </constant>
+        end example-->
+
+    </global>
+
+    <formset>
+
+        <!-- An example form -->
+        <form name="EmpForm">
+            <field
+                property="id"
+                depends="integer">
+                    <arg key="EmpForm.id"/>
+            </field>
+            <field
+                property="empNo"
+                depends="required">
+                    <arg key="EmpForm.empNo"/>
+            </field>
+            <field
+                property="empNo"
+                depends="integer">
+                    <arg key="EmpForm.empNo"/>
+            </field>
+            <field
+                property="mgrId"
+                depends="integer">
+                    <arg key="EmpForm.mgrId"/>
+            </field>
+            <field
+                property="hiredate"
+                depends="date">
+                    <arg key="EmpForm.hiredate"/>
+                    <var><var-name>datePattern</var-name><var-value>yyyy/MM/dd</var-value></var>
+            </field>
+            <field
+                property="sal"
+                depends="double">
+                    <arg key="EmpForm.sal"/>
+            </field>
+            <field
+                property="deptId"
+                depends="integer">
+                    <arg key="EmpForm.deptId"/>
+            </field>
+            <field
+                property="versionNo"
+                depends="integer">
+                    <arg key="EmpForm.versionNo"/>
+            </field>
+        </form>
+
+    </formset>
+
+
+</form-validation>

@@ -1,0 +1,12 @@
+package hoge.service;
+
+import hoge.entity.DddNames;
+import org.seasar.extension.jdbc.gen.internal.generator.Ddd;
+
+/**
+ * {@link Ddd}のサービスクラスです。
+ * 
+ * @author S2JDBC-Gen
+ */
+public class DddService extends AbstractService<Ddd> implements DddNames {
+}

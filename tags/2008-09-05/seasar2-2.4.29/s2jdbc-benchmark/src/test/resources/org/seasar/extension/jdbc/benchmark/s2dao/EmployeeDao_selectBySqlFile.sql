@@ -1,0 +1,1 @@
+select employee_id employeeId, employee_no employeeNo, employee_name employeeName, manager_id managerId, hiredate hiredate, salary salary, department_id departmentId, address_id addressId, version versionNo from Employee
