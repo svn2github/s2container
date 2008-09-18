@@ -119,6 +119,25 @@
     </component>
 	-->
 
+	<!-- for DB2 -->
+	<!--
+	<component name="xaDataSource"
+		class="org.seasar.extension.dbcp.impl.XADataSourceImpl">
+		<property name="driverClassName">
+			"com.ibm.db2.jcc.DB2Driver"
+		</property>
+		<property name="URL">
+			"jdbc:db2://foo.bar.com:50000/SAMPLE"
+		</property>
+		<property name="user">"db2user"</property>
+		<property name="password">"db2password"</property>
+		<initMethod name="addProperty">
+			<arg>"currentSchema"</arg>
+			<arg>"SCHEMA"</arg>
+		</initMethod>
+	</component>
+	-->
+	
 	<component name="connectionPool"
 		class="org.seasar.extension.dbcp.impl.ConnectionPoolImpl">
 		<property name="timeout">600</property>
