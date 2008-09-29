@@ -25,7 +25,7 @@ public class WhereMain {
         List<Employee> results = jdbcManager.from(Employee.class).where(
             "salary >= ? and salary <= ?",
             1200,
-            1800).getResultList();
+            1800).orderBy("salary").getResultList();
         for (Employee e : results) {
             System.out.println(e.name + ", " + e.salary);
         }

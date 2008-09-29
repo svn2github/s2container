@@ -31,6 +31,7 @@ public class WhereMapMain {
         List<Employee> results = jdbcManager
             .from(Employee.class)
             .where(map)
+            .orderBy("salary")
             .getResultList();
         for (Employee e : results) {
             System.out.println(e.name + ", " + e.salary);

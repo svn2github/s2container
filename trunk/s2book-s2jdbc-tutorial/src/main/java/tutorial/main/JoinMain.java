@@ -6,6 +6,7 @@ import org.seasar.extension.jdbc.JdbcManager;
 import org.seasar.framework.container.SingletonS2Container;
 import org.seasar.framework.container.factory.SingletonS2ContainerFactory;
 
+import tutorial.entity.Department;
 import tutorial.entity.Employee;
 
 public class JoinMain {
@@ -22,12 +23,16 @@ public class JoinMain {
     }
 
     public static void test(JdbcManager jdbcManager) {
-        List<Employee> results = jdbcManager
-            .from(Employee.class)
-            .leftOuterJoin("department")
+        List<Department> results = jdbcManager
+            .from(Department.class)
+            .leftOuterJoin("employeeList")
+            .innerJoin("employeeList.address")
             .getResultList();
-        for (Employee e : results) {
-            System.out.println(e.name + ", " + e.department.name);
+        for (Department d : results) {
+            System.out.println(d.name);
+            for (Employee e : d.employeeList) {
+                System.out.println("  " + e.name + ", " + e.address.name);
+            }
         }
     }
 }
