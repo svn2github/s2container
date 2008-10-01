@@ -1,4 +1,4 @@
-<project name="s2jdbc-tutorial" default="dist" basedir=".">
+<project name="s2book-s2jdbc-tutorial" default="dist" basedir=".">
 
 	<property name="zipDir" value="target"/>
 	
