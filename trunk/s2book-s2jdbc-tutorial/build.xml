@@ -1,8 +1,9 @@
 <project name="s2book-s2jdbc-tutorial" default="dist" basedir=".">
 
-	<property name="zipDir" value="target"/>
+	<property name="zipDir" value="target/site/download/s2book"/>
 	
 	<target name="dist">
+		<delete dir="target/site" />
 		<mkdir dir="${zipDir}"/>
 		<zip zipfile="${zipDir}/S2JDBC-Tutorial.zip">
 			<zipfileset prefix="s2jdbc-tutorial" dir=".">
