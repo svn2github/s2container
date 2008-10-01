@@ -10,7 +10,7 @@ import tutorial.dto.EmployeeDto;
 
 public class SqlMain {
 
-    private static final String SQL = "select name, salary from employee where salary > ?";
+    private static final String SQL = "select name, salary from employee where salary > ? order by salary";
 
     public static void main(String[] args) {
         SingletonS2ContainerFactory.init();

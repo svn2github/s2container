@@ -10,7 +10,7 @@ import tutorial.dto.EmployeeDto;
 
 public class SqlFileMain {
 
-    private static final String SQL_FILE = "tutorial/entity/employee/select.sql";
+    private static final String SQL_FILE = "META-INF/sql/tutorial/entity/Employee/select.sql";
 
     public static void main(String[] args) {
         SingletonS2ContainerFactory.init();
