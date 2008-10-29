@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="s2jdbc-gen-it" default="showRdbmsName" basedir=".">
+	
+	<property name="rdbms" value="hsql"/>
+	<property name="temp" value="${rdbms}/temp"/>
+	<property name="build" value="${temp}/build"/>
+	<property name="testresult" value="${temp}/testresult"/>
+	<property name="src" value="${temp}/src"/>
+	<property name="resources" value="${rdbms}/resources"/>
+	<property name="db" value="${temp}/db"/>
+	<property name="migrate" value="${db}/migrate"/>
+	<property name="dump" value="${db}/dump"/>	
+	<property name="ddl-info" value="${db}/ddl-info.txt"/>
+	<property name="sql" value="${rdbms}/sql"/>	
+	<property name="rootpackagename" value="example"/>
+	<property name="transactional" value="false"/>
+	
+	<path id="classpath">
+		<pathelement location="${build}"/>
+		<pathelement location="../../s2jdbc-gen/build/classes"/>
+		<pathelement location="../../seasar2/build/classes"/>
+		<pathelement location="../../s2-tiger/build/classes"/>
+		<fileset dir="../lib"/>
+		<fileset dir="../../s2jdbc-gen/lib"/>
+		<fileset dir="../../seasar2/lib" excludes="**/*-sources.jar"/>
+		<fileset dir="../../s2-tiger/lib" excludes="**/*-sources.jar"/>
+	</path>
+
+	<taskdef resource="s2jdbc-gen-task.properties" classpathref="classpath"/>
+	
+	<target name="showRdbmsName">
+		<echo>${rdbms}</echo>
+	</target>
+
+	<target name="testAll">
+		<antcall target="testFromDbToEntity"/>
+		<antcall target="testFromEntityToDb"/>
+		<antcall target="testGenerateDdl"/>
+		<antcall target="testGenerateTest"/>
+		<antcall target="testMigrate"/>
+		<antcall target="testDumpDbMeta"/>
+		<antcall target="testDumpData"/>
+		<antcall target="testLoadData"/>
+		<antcall target="testSequenceGenerator"/>
+	</target>
+
+	<target name="testFromDbToEntity" depends="showRdbmsName, clean">
+		<!-- setUp -->
+		<exec-sql 
+			classpathref="classpath">
+			<sqlFileList dir="${sql}/testFromDbToEntity">
+				<file name="create.sql"/>
+			</sqlFileList>
+		</exec-sql>
+		<javac 
+			destdir="${build}"
+			encoding="UTF-8"
+			fork="true"
+			debug="on"
+			classpathref="classpath">
+			<src path="../src/main/java"/>
+			<include name="example/entity/AbstractEntity.java"/>
+		</javac>
+		<!-- test -->
+		<gen-entity
+			rootpackagename="${rootpackagename}"
+			entitysuperclassname="example.entity.AbstractEntity"
+			javafiledestdir="${src}"
+			pluralformfile="plural.properties"
+			classpathref="classpath"
+		/>
+		<javac 
+			srcdir="${src}"
+			destdir="${build}"
+			encoding="UTF-8"
+			fork="true"
+			debug="on"
+			classpathref="classpath"
+		/>
+		<gen-ddl 
+			classpathDir="${build}"
+			rootpackagename="${rootpackagename}"
+			migratedir="${migrate}"
+			ddlInfofile="${ddl-info}"
+			classpathref="classpath"
+		/>
+		<!-- tearDown -->
+		<exec-sql 
+			classpathref="classpath">
+			<sqlFileList dir="${sql}/testFromDbToEntity">
+				<file name="drop.sql"/>
+			</sqlFileList>
+		</exec-sql>
+		<refresh projectname="s2jdbc-gen-it"/>
+	</target>
+	
+	<target name="testFromEntityToDb" depends="showRdbmsName, clean">
+		<!-- setUp -->
+		<javac 
+			srcdir="../src/main/java"
+			destdir="${build}"
+			encoding="UTF-8"
+			fork="true"
+			debug="on"
+			classpathref="classpath"
+		/>
+		<!-- test -->
+		<gen-test
+			classpathDir="${build}"
+			rootpackagename="${rootpackagename}"
+			javafiledestdir="${src}"
+			classpathref="classpath"
+		/>
+		<gen-condition
+			classpathDir="${build}"
+			rootpackagename="${rootpackagename}"
+			javafiledestdir="${src}"
+			classpathref="classpath"
+		/>
+		<gen-names
+			classpathDir="${build}"
+			rootpackagename="${rootpackagename}"
+			javafiledestdir="${src}"
+			classpathref="classpath"
+		/>
+		<gen-service
+			classpathDir="${build}"
+			rootpackagename="${rootpackagename}"
+			javafiledestdir="${src}"
+			classpathref="classpath"
+		/>
+		<javac 
+			srcdir="${src}"
+			destdir="${build}"
+			encoding="UTF-8"
+			fork="true"
+			debug="on"
+			classpathref="classpath"
+		/>
+		<gen-ddl 
+			classpathDir="${build}"
+			rootpackagename="${rootpackagename}"
+			migratedir="${migrate}"
+			ddlInfofile="${ddl-info}"
+			classpathref="classpath"
+		/>
+		<migrate 
+			classpathDir="${build}"
+			migratedir="${migrate}"
+			ddlInfofile="${ddl-info}"
+			rootpackagename="${rootpackagename}"
+			classpathref="classpath"
+		/>
+		<junit 
+			haltonfailure="no" 
+			printsummary="true">
+			<formatter type="xml"/>
+			<batchtest todir="${testresult}" fork="true">
+				<fileset dir="${src}">
+					<include name="**/AddressTest.java"/>
+				</fileset>
+			</batchtest>
+			<classpath refid="classpath"/>
+		</junit>
+		<!-- tearDown -->
+		<migrate 
+			classpathDir="${build}"
+			migratedir="${migrate}"
+			ddlInfofile="${ddl-info}"
+			version="0"
+			rootpackagename="${rootpackagename}"
+			classpathref="classpath"
+		/>
+		<refresh projectname="s2jdbc-gen-it"/>
+	</target>
+
+	<target name="testGenerateTest" depends="showRdbmsName, clean">
+		<!-- setUp -->
+		<javac 
+			srcdir="../src/main/java"
+			destdir="${build}"
+			encoding="UTF-8"
+			fork="true"
+			debug="on"
+			classpathref="classpath"
+		/>
+		<!-- test -->
+		<gen-test
+			classpathDir="${build}"
+			rootpackagename="${rootpackagename}"
+			javafiledestdir="${src}"
+			classpathref="classpath"
+		/>
+		<javac 
+			srcdir="${src}"
+			destdir="${build}"
+			encoding="UTF-8"
+			fork="true"
+			debug="on"
+			classpathref="classpath"
+		/>
+		<!-- tearDown -->
+		<refresh projectname="s2jdbc-gen-it"/>
+	</target>
+
+	<target name="testGenerateDdl" depends="showRdbmsName, clean">
+		<!-- setUp -->
+		<javac 
+			destdir="${build}"
+			encoding="UTF-8"
+			fork="true"
+			debug="on"
+			classpathref="classpath">
+			<src path="../src/main/java"/>
+		</javac>
+		<!-- test -->
+		<migrate 
+			classpathDir="${build}"
+			migratedir="${migrate}"
+			ddlInfofile="${ddl-info}"
+			rootpackagename="${rootpackagename}"
+			classpathref="classpath"
+		/>
+		<refresh projectname="s2jdbc-gen-it"/>
+	</target>
+
+	<target name="testSequenceGenerator" if="supportssequence" depends="showRdbmsName, clean, condition">
+		<!-- setUp -->
+		<javac 
+			destdir="${build}"
+			encoding="UTF-8"
+			fork="true"
+			debug="on"
+			classpathref="classpath">
+			<src path="../src/main/java3"/>
+			<src path="../src/test/java3"/>
+		</javac>
+		<!-- test -->
+		<gen-ddl 
+			classpathDir="${build}"
+			rootpackagename="${rootpackagename}"
+			migratedir="${migrate}"
+			ddlInfofile="${ddl-info}"
+			classpathref="classpath"
+		/>
+		<migrate 
+			classpathDir="${build}"
+			migratedir="${migrate}"
+			ddlInfofile="${ddl-info}"
+			rootpackagename="${rootpackagename}"
+			classpathref="classpath"
+		/>
+		<junit 
+			haltonfailure="no" 
+			printsummary="true">
+			<formatter type="xml"/>
+			<batchtest todir="${testresult}" fork="true">
+				<fileset dir="../src/test/java3">
+					<include name="**/SequenceGeneratorTest.java"/>
+				</fileset>
+			</batchtest>
+			<classpath>
+				<path refid="classpath"/>
+				<pathelement location="../src/main/java3"/>
+				<pathelement location="../src/test/java3"/>
+			</classpath>
+		</junit>
+		<gen-ddl 
+			classpathDir="${build}"
+			rootpackagename="${rootpackagename}"
+			migratedir="${migrate}"
+			ddlInfofile="${ddl-info}"
+			classpathref="classpath"
+		/>
+		<!-- tearDown -->
+		<migrate 
+			classpathDir="${build}"
+			migratedir="${migrate}"
+			ddlInfofile="${ddl-info}"
+			version="0"
+			rootpackagename="${rootpackagename}"
+			classpathref="classpath"
+		/>
+		<refresh projectname="s2jdbc-gen-it"/>
+	</target>
+
+	<target name="testMigrate" depends="showRdbmsName, clean">
+		<!-- setUp -->
+		<javac 
+			destdir="${build}"
+			encoding="UTF-8"
+			fork="true"
+			debug="on"
+			classpathref="classpath">
+			<src path="../src/main/java"/>
+			<include name="example/entity/Address.java"/>
+			<include name="example/entity/Department.java"/>
+			<include name="example/entity/Employee.java"/>
+			<include name="example/entity/Foo.java"/>
+		</javac>
+		<exec-sql 
+			classpathref="classpath">
+			<sqlFileList dir="${sql}/testMigrate">
+				<file name="create.sql"/>
+			</sqlFileList>
+		</exec-sql>
+		<!-- test -->
+		<gen-ddl 
+			classpathDir="${build}"
+			rootpackagename="${rootpackagename}"
+			migratedir="${migrate}"
+			ddlInfofile="${ddl-info}"
+			classpathref="classpath"
+		/>
+		<migrate 
+			classpathDir="${build}"
+			migratedir="${migrate}"
+			ddlInfofile="${ddl-info}"
+			rootpackagename="${rootpackagename}"
+			transactional="${transactional}"
+			classpathref="classpath"
+		/>
+		<exec-sql 
+			classpathref="classpath">
+			<sqlFileList dir="${sql}/testMigrate">
+				<file name="insert.sql"/>
+			</sqlFileList>
+		</exec-sql>
+		<delete dir="${build}/example"/>
+		<javac 
+			destdir="${build}"
+			encoding="UTF-8"
+			fork="true"
+			debug="on"
+			classpathref="classpath">
+			<src path="../src/main/java2"/>
+			<include name="example/entity/Address.java"/>
+			<include name="example/entity/Department.java"/>
+			<include name="example/entity/Employee.java"/>
+			<include name="example/entity/Foo.java"/>
+			<include name="example/entity/Hoge.java"/>
+		</javac>
+		<gen-ddl 
+			classpathDir="${build}"
+			rootpackagename="${rootpackagename}"
+			migratedir="${migrate}"
+			ddlInfofile="${ddl-info}"
+			classpathref="classpath"
+		/>
+		<migrate 
+			classpathDir="${build}"
+			migratedir="${migrate}"
+			ddlInfofile="${ddl-info}"
+			rootpackagename="${rootpackagename}"
+			transactional="${transactional}"
+			classpathref="classpath"
+		/>
+		<!-- tearDown -->
+		<migrate 
+			classpathDir="${build}"
+			migratedir="${migrate}"
+			ddlInfofile="${ddl-info}"
+			version="0"
+			rootpackagename="${rootpackagename}"
+			transactional="${transactional}"
+			classpathref="classpath"
+		/>
+		<refresh projectname="s2jdbc-gen-it"/>
+	</target>
+
+	<target name="testDumpDbMeta" depends="showRdbmsName, clean">
+		<!-- setUp -->
+		<exec-sql 
+			classpathref="classpath">
+			<sqlFileList dir="${sql}/testDumpDbMeta">
+				<file name="create.sql"/>
+			</sqlFileList>
+		</exec-sql>
+		<!-- test -->
+		<dump-db-meta 
+			classpathref="classpath"
+		/>
+		<!-- tearDown -->
+		<exec-sql 
+			classpathref="classpath">
+			<sqlFileList dir="${sql}/testDumpDbMeta">
+				<file name="drop.sql"/>
+			</sqlFileList>
+		</exec-sql>
+	</target>
+
+	<target name="testDumpData" depends="showRdbmsName, clean">
+		<!-- setUp -->
+		<javac 
+			srcdir="../src/main/java"
+			destdir="${build}"
+			encoding="UTF-8"
+			fork="true"
+			debug="on"
+			classpathref="classpath"
+		/>
+		<exec-sql 
+			classpathref="classpath">
+			<sqlFileList dir="${sql}/testDumpData">
+				<file name="create.sql"/>
+				<file name="insert.sql"/>
+			</sqlFileList>
+		</exec-sql>
+		<!-- test -->
+		<dump-data
+			classpathDir="${build}"
+			rootpackagename="${rootpackagename}"
+			migratedir="${migrate}"
+			ddlInfofile="${ddl-info}"
+			classpathref="classpath"
+		/>
+		<dump-data
+			classpathDir="${build}"
+			rootpackagename="${rootpackagename}"
+			migratedir="${migrate}"
+			ddlInfofile="${ddl-info}"
+			applyenvtoversion="true"
+			classpathref="classpath"
+		/>
+		<!-- tearDown -->
+		<exec-sql classpathref="classpath">
+			<sqlFileList dir="${sql}/testDumpData">
+				<file name="drop.sql"/>
+			</sqlFileList>
+		</exec-sql>
+		<refresh projectname="s2jdbc-gen-it"/>
+	</target>
+
+	<target name="testLoadData" depends="showRdbmsName, clean">
+		<!-- setUp -->
+		<javac 
+			srcdir="../src/main/java"
+			destdir="${build}"
+			encoding="UTF-8"
+			fork="true"
+			debug="on"
+			classpathref="classpath"
+		/>
+		<exec-sql 
+			classpathref="classpath">
+			<sqlFileList dir="${sql}/testDumpData">
+				<file name="create.sql"/>
+				<file name="insert.sql"/>
+			</sqlFileList>
+		</exec-sql>
+		<dump-data
+			classpathDir="${build}"
+			rootpackagename="${rootpackagename}"
+			migratedir="${migrate}"
+			ddlInfofile="${ddl-info}"
+			applyenvtoversion="true"
+			classpathref="classpath"
+		/>
+		<exec-sql 
+			classpathref="classpath">
+			<sqlFileList dir="${sql}/testDumpData">
+				<file name="drop.sql"/>
+				<file name="create.sql"/>
+			</sqlFileList>
+		</exec-sql>
+		<!-- test -->
+		<load-data
+			classpathDir="${build}"
+			rootpackagename="${rootpackagename}"
+			migratedir="${migrate}"
+			ddlInfofile="${ddl-info}"
+			applyenvtoversion="true"
+			classpathref="classpath"
+		/>
+		<!-- tearDown -->
+		<exec-sql
+			classpathref="classpath">
+			<sqlFileList dir="${sql}/testDumpData">
+				<file name="drop.sql"/>
+			</sqlFileList>
+		</exec-sql>
+		<refresh projectname="s2jdbc-gen-it"/>
+	</target>
+
+	<target name="condition">
+		<condition property="supportssequence">
+			<or>
+				<equals arg1="${rdbms}" arg2="db2"/>
+				<equals arg1="${rdbms}" arg2="h2"/>
+				<equals arg1="${rdbms}" arg2="hsql"/>
+				<equals arg1="${rdbms}" arg2="oracle"/>
+				<equals arg1="${rdbms}" arg2="postgre"/>
+			</or>
+		</condition>
+	</target>
+
+	<target name="clean">
+		<delete dir="${temp}"/>
+		<mkdir dir="${build}"/>
+		<mkdir dir="${testresult}"/>
+		<copy todir="${build}">
+			<fileset dir="${resources}">
+				<include name="**"/>
+			</fileset>
+		</copy>
+	</target>
+
+</project>
