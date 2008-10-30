@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<document>
+	<properties>
+		<title>S2JDBC-Gen - セットアップ</title>
+	</properties>
+	<body>
+		<section name="セットアップ">
+			<p></p>
+			<ul>
+				<li>
+					<p>
+						<a href="#概要">概要</a>
+					</p>
+				</li>
+				<li>
+					<p>
+						<a href="#ビルドファイルの準備">ビルドファイルの準備</a>
+						<ul>
+							<li>
+								<a href="#クラスパスの設定">クラスパスの設定</a>
+							</li>
+							<li>
+								<a href="#タスク定義の参照">タスク定義の参照</a>
+							</li>
+							<li>
+								<a href="#タスクの記述">タスクの記述</a>
+							</li>
+						</ul>
+					</p>
+				</li>
+				<li>
+					<p>
+						<a href="#Antタスクの実行">Antタスクの実行</a>
+						<ul>
+							<li>
+								<a href="#コマンドラインからの実行">コマンドラインからの実行</a>
+							</li>
+							<li>
+								<a href="#Eclipseからの実行">Eclipseからの実行</a>
+							</li>
+						</ul>
+					</p>
+				</li>
+				<li>
+					<p>
+						<a href="#Eclipse">Eclipse</a>
+						<ul>
+							<li>
+								<a href="#Organize_Importsの設定">Organize Importsの設定</a>
+							</li>
+							<li>
+								<a href="#Doltengの利用">Doltengの利用</a>
+							</li>
+							<li>
+								<a href="#ResourceSynchronizerの利用">ResourceSynchronizerの利用</a>
+							</li>
+						</ul>
+					</p>
+				</li>
+				<li>
+					<p>
+						<a href="#CSVエディタ">CSVエディタ</a>
+						<ul>
+							<li>
+								<a href="#Cassava_Editorの設定">Cassava Editorの設定</a>
+							</li>
+						</ul>
+					</p>
+				</li>
+			</ul>
+		</section>
+		<section name="概要">
+			<p>
+				S2JDBC-Genのセットアップの前に<a href="../s2jdbc_setup.html">S2JDBCのセットアップ</a>をしてください。
+			</p>
+			<p>
+				S2JDBC-Genの動作にはSeasar2、FreeMarkerが必要です。
+				S2JDBC-Gen-x.x.x.zipを解凍し、S2JDBC-Genのjarファイル（s2jdbc-gen-x.x.x.jar）とFreeMarkerのjarファイル（freemarker-2.3.x.jar）を任意の場所に配置してください。
+				S2JDBC-GenのAntタスクをコマンドラインから動作させる場合は、<a href="http://ant.apache.org/">Apache Ant</a>のインストールが別途必要です。
+			</p>
+		</section>
+		<section name="ビルドファイルの準備">
+			<p>
+				S2JDBC-GenのAntタスクを実行するにはAntのビルドファイルが必要です。
+				簡易的なビルドファイルを用いて説明します。
+				実践的なビルドファイルの例は<a href="task.html#タスクの使用例">タスクの使用例</a>を参照ください。
+				Doletengを使って最適なビルドファイルを自動生成させることもできます。
+				Doltengについては<a href="#Doltengの利用">Doltengの利用</a>を参照してください。
+			</p>
+<source><![CDATA[<project name="sample" default="gen-ddl" basedir=".">
+
+    <path id="classpath">
+        <pathelement location="build/classes"/>
+        <fileset dir="lib"/>
+    </path>
+
+    <taskdef resource="s2jdbc-gen-task.properties" classpathref="classpath"/>
+
+    <target name="gen-entity">
+        <gen-entity
+            rootpackagename="examples"
+            classpathref="classpath"
+        />
+    </target>
+
+    <target name="gen-ddl">
+        <gen-ddl
+            classpathdir="build/classes"
+            rootpackagename="examples"
+            classpathref="classpath"
+        />
+    </target>
+
+    <target name="migrate">
+        <migrate
+            classpathdir="build/classes"
+            rootpackagename="examples"
+            classpathref="classpath"
+        />
+    </target>
+
+</project>]]></source>
+			<subsection name="クラスパスの設定">
+				<p>
+					S2JDBC-GenのAntタスクの多くは、実行時にエンティティクラスを参照します。
+					また、S2JDBCの動作に必要なjarファイルに加え、s2jdbc-gen-x.x.x.jarとfreemarker-2.3.x.jarが必要です。
+					すべてのAntタスクからエンティティクラスやjarファイルを参照できるように、あらかじめクラスパスを設定しておきます。
+				</p>
+<source><![CDATA[<path id="classpath">
+    <pathelement location="build/classes"/>
+    <fileset dir="lib"/>
+</path>]]></source>
+				<p>
+					ここでは、"build/classes"がエンティティクラスを格納するディレクトリとします。
+					また、"lib"が必要なjarファイルを格納するディレクトリだとします。
+				</p>
+			</subsection>
+			<subsection name="タスク定義の参照">
+				<p>
+					S2JDBC-Genのタスク定義は、s2jdbc-gen-core-x.x.x.jar内のs2jdbc-gen-task.propertiesに含まれています。
+					これを参照するためのに&lt;taskdef&gt;の定義が必要です。
+				</p>
+<source><![CDATA[<taskdef resource="s2jdbc-gen-task.properties" classpathref="classpath"/>]]></source>
+				<p>
+					classpathref属性でs2jdbc-gen-core-x.x.x.jarを含めたクラスパスを参照するようにします。
+				</p>
+			</subsection>
+			<subsection name="タスクの記述">
+				<p>
+					S2JDBC-Genのタスクを&lt;target&gt;要素の内側に記述します。
+				</p>
+<source><![CDATA[<target name="gen-entity">
+    <gen-entity
+        rootpackagename="examples"
+        classpathref="classpath"
+    />
+</target>]]></source>
+				<p>
+					classpathref属性の指定を忘れないようにしてください。
+					S2JDBC-Genのタスク一覧や、タスクに記述できる属性については<a href="task.html#タスク">タスク</a>を参照ください。
+				</p>
+			</subsection>
+		</section>
+		<section name="Antタスクの実行">
+			<p>
+				Antタスクの実行方法として、コマンドラインから実行する場合とEclipseから実行する場合の2通りを説明します。
+				以下、ビルドファイルの名前をs2jdbc-gen-build.xmlだとします。
+			</p>
+			<subsection name="コマンドラインからの実行">
+				<p>
+					Antをコマンドラインから実行する場合は、ビルドファイルが存在する階層に移動し、次のコマンドを実行してください。
+			<source><![CDATA[
+ant -f s2jdbc-gen-build.xml ターゲット名
+]]></source>
+				</p>
+			</subsection>
+			<subsection name="Eclipseからの実行">
+				<p>
+					AntをEclipse上で起動する場合は、s2jdbc-gen-build.xmlをAntエディタで開き、実行してください。<br />
+					ただし、Windows上でEclipse 3.4を利用している場合は、Console EncodingにMS932を指定して実行する必要があります。
+					MS932を指定しない場合、ログがコンソールに正しく出力されません。
+					Console Encodingを指定して実行する手順は次のようになります。
+					<ol>
+						<li>s2jdbc-gen-build.xmlをAntエディタで開きます。</li>
+						<li>メニューから「Run」-「Extenal Tools」-「Extenal Tools Configurations...」を選択します。Extenal Tools Configurationsダイアログが開きます。</li>
+						<li>左側のメニューにある「Ant Build」という項目をダブルクリックし、s2jdbc-gen-build.xmlに対する設定を新規作成します。</li>
+						<li>ダイアログの「Common」タブの「Console Encoding」にMS932を指定します。MS932がコンボボックスに表示されていない場合は一旦ワークスペースやプロジェクトのエンコーディングをMS932に変更すると登場するようになります。</li>
+						<li>ダイアログの「Run」ボタンを押しAntを実行します。</li>
+					</ol>
+				</p>
+				<img src="../images/s2jdbc_gen_console_enc.png" />
+			</subsection>
+		</section>
+		<section name="Eclipse">
+			<p>
+				IDEとしてEclipseを使う場合に、参照してください。
+				便利な設定やプラグインについて説明します。
+			</p>
+			<subsection name="Organize Importsの設定">
+				<p>
+					static importを便利に扱うための設定方法を説明します。
+				</p>
+				<p>
+					S2JDBC-Genのいくつかのタスクは、次のような、「.*」を使った一括のstatic importを利用したクラスを生成します。
+				</p>
+			<source><![CDATA[
+import static example.entity.EmployeeNames.*;
+
+public class EmployeeService {
+  ...
+}]]></source>
+				<p>
+					しかし、EclipseのOrganize Imports機能は、この定義を、実際に使用されている個別のstaticメンバのインポート文へ変換してしまいます。
+				</p>
+			<source><![CDATA[
+import static example.entity.EmployeeNames.employeeId;
+import static example.entity.EmployeeNames.employeeName;
+import static example.entity.EmployeeNames.salary;
+
+public class EmployeeService {
+  ...
+}]]></source>
+				<p>
+					この変換により、EmployeeNamesの他のstaticメンバがコンテンツアシストの候補にならなくなります（「.*」を使った一括のstatic importのままであれば、候補に挙がります）。
+					これは不便であるため、Eclipseを利用する場合、「.*」を使った一括のインポート文が個別のstaticメンバのインポート文に変換されないように「Organize Imports」の設定を行います。
+				</p>
+				<p>
+					「Organize Imports」の設定画面へは、メニューの「Window」-「Preferences」からダイアログを開き、ツリーメニューで「Java」-「Code Style」-「Organize Imports」と辿ってください。
+					「Organize Imports」の設定画面を開いたら、「Number of static imports for .*」の項目に1を設定します。
+				</p>
+				<img src="../images/s2jdbc_gen_organize_imports.png"
+					width="546" height="649" alt="Organize Importsの設定" />
+			</subsection>
+			<subsection name="Doltengの利用">
+				<p>
+					Eclipseプラグイン<a href="http://dolteng.sandbox.seasar.org/">Dolteng</a>について説明します。
+					Doltengは次の更新サイトからインストールできます。
+					<ul>
+						<li>
+							<a href="http://eclipse.seasar.org/updates/3.3/">http://eclipse.seasar.org/updates/3.3/</a>
+						</li>
+					</ul>
+				</p>
+				<p>
+					Doltengを使うと、S2JDBCを利用するプロジェクトの雛形を自動生成できます。
+					Doltengはプロジェクトの生成時にS2JDBC-Gen用のビルドファイルも一緒に作成します。
+					ビルドファイルにはプロジェクトの構成が反映されているため、特別な修正を施すことなくそのまま使用できます。
+					EclipseからAntを実行する場合は<a href="#Eclipseからの実行">Eclipseからの実行</a>も参照してください。
+				</p>
+			</subsection>
+			<subsection name="ResourceSynchronizerの利用">
+				<p>
+					Eclipseプラグイン<a href="http://resourcesynchronizer.sandbox.seasar.org/ja/">ResourceSynchronizer</a>について説明します。
+					ResourceSynchronizerは次の更新サイトからインストールできます。
+					<ul>
+						<li>
+							<a href="http://eclipse.seasar.org/updates/3.3/">http://eclipse.seasar.org/updates/3.3/</a>
+						</li>
+					</ul>
+				</p>
+				<p>
+					ResourceSynchronizerを使うと、Eclipseとは独立したプロセス内で作成されたマテリアルを自動的にEclilpseのワークスペースに反映させられます。
+					つまり、ワークスペースのリフレッシュが自動化されます。
+				<p/>
+					S2JDBC-GenのAntタスクの多くはJavaファイルやDDLファイルを生成しますが、これらのファイルはワークスペースをリフレッシュしない限りEclipse上には表示されません。
+					そのため、Eclipse上で生成されたファイルを確認するには手動でのリフレッシュ操作が必要になります。
+					S2JDBC-Genでは、ResourceSynchronizerのプロセスにリクエストを投げる<a href="tasks/refresh.html">Refreshタスク</a>を提供します。
+					ResourceSynchronizerがインストールされた環境でこのタスクを使用すれば、S2JDBC-Genによって作成されたファイルが自動的にワークスペースに表示されるようになります。
+				</p>
+			</subsection>
+		</section>
+		<section name="CSVエディタ">
+			<p>
+				Windows環境では、CSVエディタとして<a href="http://www.asukaze.net/soft/cassava/">Cassava Editor</a>を利用することを推奨します。
+			</p>
+			<subsection name="Cassava Editorの設定">
+				<p>
+					S2JDBC-GenのいくつかのタスクはデータベースのダンプデータをCSV形式で出力します。
+					データを編集する際は、CSVエディタであるCassava Editorを利用するのが便利です。
+					以下に、推奨のCassava Editorの設定方法を示します。
+				</p>
+				<p>
+					<ul>
+						<li>
+							メニューから「表示」-「一行目を固定」を選びます。これによりヘッダー行が固定されます。
+						</li>
+						<li>
+							メニューから「オプション」-「オプション」を選びます。ダイアログが表示されたら「データ形式」を選択し、「必要なセルのみ""で囲む」にチェックします。これにより、nullのデータをnullのデータとして維持できます。
+						</li>
+						<li>
+							メニューから「オプション」-「セーブ時文字コード」でタスクが利用するエンコーディング（デフォルトではUTF-8）と同じものを指定します。これにより、エンコーディングの誤変換を防ぎます。
+						</li>
+					</ul>
+				</p>
+				S2JDBC-Genで扱うCSV形式の詳細については<a href="tasks/gen_ddl.html#ダンプファイル">ダンプファイル</a>を参照してください。
+			</subsection>
+		</section>
+	</body>
+</document>

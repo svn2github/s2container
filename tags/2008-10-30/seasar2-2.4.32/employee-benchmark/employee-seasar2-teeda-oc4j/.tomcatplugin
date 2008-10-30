@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tomcatProjectProperties>
+    <rootDir>src/main/webapp/</rootDir>
+    <exportSource>false</exportSource>
+    <reloadable>true</reloadable>
+    <redirectLogger>false</redirectLogger>
+    <updateXml>false</updateXml>
+    <warLocation>C:\employee-seasar2-teeda-oc4j.war</warLocation>
+    <extraInfo></extraInfo>
+    <webPath>/employee-seasar2-teeda-oc4j</webPath>
+</tomcatProjectProperties>
