@@ -16,6 +16,7 @@
 package org.seasar.framework.util;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 
 import junit.framework.TestCase;
@@ -66,13 +67,22 @@ public class ResourceUtilTest extends TestCase {
     }
 
     public void testToExternalForm() throws Exception {
-        URL url = new File("C:\\Program Files").toURL();
-        assertEquals("file:/C:/Program Files/", ResourceUtil
+        URL url = new File("/Program File").toURL();
+        assertEquals("file:" + getRoot() + "Program File", ResourceUtil
                 .toExternalForm(url));
     }
 
     public void testGetFileName() throws Exception {
-        URL url = new File("C:\\Program Files").toURL();
-        assertEquals("/C:/Program Files/", ResourceUtil.getFileName(url));
+        URL url = new File("/Program File").toURL();
+        assertEquals(getRoot() + "Program File", ResourceUtil.getFileName(url));
     }
+
+    private String getRoot() throws IOException {
+        String root = new File("/").getCanonicalPath().replace('\\', '/');
+        if (root.startsWith("/")) {
+            return root;
+        }
+        return "/" + root;
+    }
+
 }
