@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+	<properties>
+		<title>S2JDBC - その他の機能</title>
+	</properties>
+	<body>
+		<section name="その他の機能">
+			<p></p>
+			<ul>
+				<li>
+					<p>
+						<a href="#SQLのログ">SQLのログ</a>
+					</p>
+				</li>
+				<li>
+					<p>
+						<a href="#複数のデータソース">複数のデータソース</a>
+					</p>
+				</li>
+			</ul>
+		</section>
+
+		<section name="SQLのログ">
+			<p>
+				Seasar2で実行したSQLのログは、アプリケーションから参照することが可能です。 SQLのログは
+				<code>org.seasar.extension.jdbc.SqlRegistry</code>
+				のインスタンスから取得します。
+			</p>
+			<p>
+				<code>SqlRegistry</code>
+				のインスタンスはDIもしくはルックアップにより取得できます。
+			</p>
+			<p>DIのための設定は次のようになります。</p>
+			<source><![CDATA[
+<component name="sqlLogRegistry"
+  class="org.seasar.extension.jdbc.SqlLogRegistry">
+  @org.seasar.extension.jdbc.SqlLogRegistryLocator@getInstance()
+</component>
+]]></source>
+			<p>プログラムから直接ルックアップする場合は次のようなコードが必要です。</p>
+			<source><![CDATA[
+SqlLogRegistry sqlLogRegistry = SqlLogRegistryLocator.getInstance();
+]]></source>
+			<code>SqlRegistry</code>
+			のインスタンスは複数のログを保持しています（デフォルトでは最新3つのログを保持します）。
+			最新の（最後に実行された）SQLのログは次のようなコードで取得できます。
+			<source><![CDATA[
+SqlLog sqlLog = sqlLogRegistry.getLast();
+]]></source>
+			<code>org.seasar.extension.jdbc.SqlLog</code>
+			のインスタンスは次の情報を保持しています。
+			<ul>
+				<li>
+					<p>未加工のSQL</p>
+				</li>
+				<li>
+					<p>バインド変数を実際の値で置き換えた完全なSQL</p>
+				</li>
+				<li>
+					<p>SQLにバインドされる値の配列</p>
+				</li>
+				<li>
+					<p>SQLにバインドされる値の型の配列</p>
+				</li>
+			</ul>
+		</section>
+		
+		<section name="複数のデータソース">
+			<p>
+				複数のデータソースに接続する方法を説明します。
+				ここでは、OracleとDB2に接続する例を取り上げます。
+			</p>
+			<p>
+				jdbc.diconをコピーして、jdbc-oracle.dicon、
+				jdbc-db2.diconを作ります。
+				それぞれの設定ファイルの中身は、
+				<a href="jdbc.html">JDBCの設定</a>を参考にして
+				適切に設定してください。
+				データソースのコンポーネントには、
+				それぞれoracleDataSource、db2DataSourceと名前をつけます。
+				diconのファイル名やデータソース名は、
+				任意の名前にすることができます。
+			</p>
+			<p>
+				元のjdbc.diconは次のように、jdbc-oracle.dicon、
+				jdbc-db2.diconをincludeするだけにします。
+			</p>
+			<source><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN"
+    "http://www.seasar.org/dtd/components24.dtd">
+<components>
+    <include path="jdbc-oracle.dicon"/>
+    <include path="jdbc-db2.dicon"/>
+</components>
+]]></source>
+			<p>
+				s2jdbc.diconをコピーして、s2jdbc-oracle.dicon、
+				s2jdbc-db2.diconを作ります。
+				それぞれの設定ファイルの中身は、
+				<a href="s2jdbc_setup.html">S2JDBCセットアップ</a>を参考にして
+				適切に設定してください。
+				includeするのは、jdbc.diconではなく、
+				s2jdbc-oracle.diconではjdbc-oracle.dicon、
+				s2jdbc-db2.diconではjdbc-db2.diconになります。
+				また、JdbcManagerには、
+				それぞれoracleJdbcManager、db2JdbcManagerと名前をつけます。
+				JdbcManagerは、
+				任意の名前にすることができます。
+			</p>
+			<p>
+				元のs2jdbc.diconは次のように、s2jdbc-oracle.dicon、
+				s2jdbc-db2.diconをincludeするだけにします。
+			</p>
+			<source><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN"
+    "http://www.seasar.org/dtd/components24.dtd">
+<components>
+    <include path="s2jdbc-oracle.dicon"/>
+    <include path="s2jdbc-db2.dicon"/>
+</components>
+]]></source>
+			<p>
+				JdbcManagerを利用するクラスは、
+				@Bindingを使ってどのJdbcManagerを
+				利用するのかを指定します。
+			</p>
+			<source><![CDATA[
+@Binding("oracleJdbcManager")
+public JdbcManager jdbcManager;
+]]></source>
+		</section>
+	</body>
+</document>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN"
+	"http://www.seasar.org/dtd/components24.dtd">
+<components namespace="jta">
+	<description>
+		Seasar2 が提供する JTA 実装 (S2JTA) を使用するための設定ファイルです．
+
+		この設定ファイルでは，以下の全てのトランザクション属性がサポートされます．
+		・REQUIRED
+		・MANDATORY
+		・NEVER
+		・REQUIRES_NEW
+		・NOT_SUPPORTED
+	</description>
+
+	<component name="UserTransaction"
+		class="org.seasar.extension.jta.UserTransactionImpl"/>
+
+	<component name="TransactionManager"
+		class="org.seasar.extension.jta.TransactionManagerImpl"/>
+
+	<!-- TransactionManager を利用する TransactionSynchronizationRegistry -->
+	<component name="TransactionSynchronizationRegistry"
+		class="org.seasar.extension.jta.TransactionSynchronizationRegistryImpl"/>
+
+	<!-- JTA の TransactionManager を利用する TransactionManagerAdapter -->
+	<component
+		class="org.seasar.extension.tx.adapter.JTATransactionManagerAdapter"/>
+</components>

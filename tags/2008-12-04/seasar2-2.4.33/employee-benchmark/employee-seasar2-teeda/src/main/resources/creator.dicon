@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
+	"http://www.seasar.org/dtd/components21.dtd">
+<components>
+	<include path="convention.dicon"/>
+	<include path="customizer.dicon"/>
+	<component class="org.seasar.framework.container.creator.PageCreator"/>
+	<component class="org.seasar.framework.container.creator.ServiceCreator">
+		<property name="instanceDef">@org.seasar.framework.container.deployer.InstanceDefFactory@SINGLETON</property>
+	</component>
+	<component class="org.seasar.framework.container.creator.DaoCreator">
+		<property name="instanceDef">@org.seasar.framework.container.deployer.InstanceDefFactory@SINGLETON</property>
+	</component>
+	<component class="org.seasar.framework.container.creator.DxoCreator">
+		<property name="instanceDef">@org.seasar.framework.container.deployer.InstanceDefFactory@SINGLETON</property>
+	</component>
+	<component class="org.seasar.framework.container.creator.DtoCreator"/>
+	<component class="org.seasar.framework.container.creator.ActionCreator"/>
+	<component class="org.seasar.framework.container.creator.HelperCreator"/>
+	<component class="org.seasar.framework.container.creator.LogicCreator"/>
+	<component class="org.seasar.framework.container.creator.InterceptorCreator"/>
+	<component class="org.seasar.framework.container.creator.ValidatorCreator"/>
+	<component class="org.seasar.framework.container.creator.ConverterCreator"/>
+</components>

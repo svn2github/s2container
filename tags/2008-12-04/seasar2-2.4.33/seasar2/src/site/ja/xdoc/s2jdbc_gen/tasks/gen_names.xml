@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<document>
+	<properties>
+		<title>S2JDBC-Gen - Gen-Names</title>
+	</properties>
+	<body>
+		<section name="Gen-Names">
+			<ul>
+				<li>
+					<p>
+						<a href="#説明">説明</a>
+						<ul>
+							<li>
+								<p>
+									<a href="#概要">概要</a>
+								</p>
+							</li>
+						</ul>
+					</p>
+				</li>
+				<li>
+					<p>
+						<a href="#パラメータ">パラメータ</a>
+						<ul>
+							<li>
+								<p>
+									<a href="#トップレベルのパラメータ">トップレベルのパラメータ</a>
+								</p>
+							</li>
+							<li>
+								<p>
+									<a href="#ネストした要素として指定されるパラメータ">ネストした要素として指定されるパラメータ</a>
+								</p>
+							</li>
+						</ul>
+					</p>
+				</li>
+				<li>
+					<p>
+						<a href="#例">例</a>
+						<ul>
+							<li>
+								<p>
+									<a href="#名前クラスのパッケージを指定する">名前クラスのパッケージを指定する</a>
+								</p>
+							</li>
+							<li>
+								<p>
+									<a href="#独自のテンプレートファイルを使用する">独自のテンプレートファイルを使用する</a>
+								</p>
+							</li>
+							<li>
+								<p>
+									<a href="#生成するJavaファイルに共通のヘッダーとしてコピーライトを含める">生成するJavaファイルに共通のヘッダーとしてコピーライトを含める</a>
+								</p>
+							</li>
+						</ul>
+					</p>
+				</li>
+			</ul>
+		</section>
+		<section name="説明">
+			<subsection name="概要">
+				<p>
+					名前クラス（Namesクラス）を生成します。
+					名前クラスとは、エンティティのプロパティ名に対応するメソッドをもつクラスで、エンティティクラスにつき1つ生成されます。
+					名前クラスはタイプセーフな問い合わせを実現するために主にサービスクラス（Serviceクラス）から利用されます。
+					サービスクラスとは、<a href="gen_service.html">Gen-Service</a>タスクによって生成されるクラスです。
+					タイプセーフな問い合わせの詳細は<a href="../../s2jdbc_typesafe.html">タイプセーフAPI</a>を参照してください。
+				</p>
+				<p>
+					このタスクは、例えば、次のようなコードを生成できます。
+				</p>
+<source><![CDATA[/**
+ * {@link Address}のプロパティ名の集合です。
+ * 
+ * @author S2JDBC-Gen
+ */
+public class AddressNames {
+
+    /**
+     * idのプロパティ名を返します。
+     * 
+     * @return idのプロパティ名
+     */
+    public static PropertyName<Integer> id() {
+        return new PropertyName<Integer>("id");
+    }
+
+    /**
+     * cityのプロパティ名を返します。
+     * 
+     * @return cityのプロパティ名
+     */
+    public static PropertyName<String> city() {
+        return new PropertyName<String>("city");
+    }
+
+    /**
+     * employeeのプロパティ名を返します。
+     * 
+     * @return employeeのプロパティ名
+     */
+    public static _EmployeeNames employee() {
+        return new _EmployeeNames("employee");
+    }
+
+    /**
+     * @author S2JDBC-Gen
+     */
+    public static class _AddressNames extends PropertyName<Address> {
+
+        /**
+         * インスタンスを構築します。
+         */
+        public _AddressNames() {
+        }
+
+        /**
+         * インスタンスを構築します。
+         * 
+         * @param name
+         *            名前
+         */
+        public _AddressNames(final String name) {
+            super(name);
+        }
+
+        /**
+         * インスタンスを構築します。
+         * 
+         * @param parent
+         *            親
+         * @param name
+         *            名前
+         */
+        public _AddressNames(final PropertyName<?> parent, final String name) {
+            super(parent, name);
+        }
+
+        /**
+         * idのプロパティ名を返します。
+         *
+         * @return idのプロパティ名
+         */
+        public PropertyName<Integer> id() {
+            return new PropertyName<Integer>(this, "id");
+        }
+
+        /**
+         * cityのプロパティ名を返します。
+         *
+         * @return cityのプロパティ名
+         */
+        public PropertyName<String> city() {
+            return new PropertyName<String>(this, "city");
+        }
+
+        /**
+         * employeeのプロパティ名を返します。
+         * 
+         * @return employeeのプロパティ名
+         */
+        public _EmployeeNames employee() {
+            return new _EmployeeNames(this, "employee");
+        }
+    }
+}]]></source>
+				<p>
+					これはエンティティクラスAddressに対する名前クラスです。
+				</p>
+				<p>
+					名前クラスのメソッドは、static importの機能を使って呼び出されることを想定しています。
+					static importを利用した名前クラスの使用例は次のようになります。
+				</p>
+<source><![CDATA[List<Address> list = jdbcManager
+    .from(Address.class)
+    .innerJoin(employee())
+    .where(eq(city(), "TOKYO"))
+    .getResultList();
+]]></source>
+				<p>
+					employee()とcity()が名前クラスのメソッドです。
+				</p>
+				<p>
+					名前クラスは、エンティティクラスの修正のたびに自動生成するようにしてください。
+				</p>
+			</subsection>
+		</section>
+		<section name="パラメータ">
+			<p>
+				Antタスクへのパラメータを以下に示します。
+			</p>
+			<subsection name="トップレベルのパラメータ">
+				<table border="1" cellpadding="2" cellspacing="0">
+					<tr><th>属性</th><th>説明</th><th>デフォルト値</th><th>必須</th></tr>
+					<tr><td>classpathDir</td><td>エンティティクラスを含むクラスパスのディレクトリです。このディレクトリはタスクの実行時のクラスパスに含まれている必要があります。</td><td>-</td><td>YES</td></tr>
+					<tr><td>rootPackageName</td><td>ルートパッケージ名です。</td><td>""</td><td>NO</td></tr>
+					<tr><td>entityPackageName</td><td>エンティティクラスのパッケージ名です。エンティティクラスは、rootPackageNameとこの値をピリオドで連結したパッケージに配置されているとみなされます。</td><td>"entity"</td><td>NO</td></tr>
+					<tr><td>entityClassNamePattern</td><td>このタスクで対象とするエンティティクラス名の正規表現です。</td><td>".*"</td><td>NO</td></tr>
+					<tr><td>ignoreEntityClassNamePattern</td><td>このタスクで対象としないエンティティクラス名の正規表現です。</td><td>""</td><td>NO</td></tr>
+					<tr><td>namesPackageName</td><td>名前クラスのパッケージ名です。名前クラスは、rootPackageNameとこの値をピリオドで連結したパッケージに配置されます。</td><td>"entity"</td><td>NO</td></tr>
+					<tr><td>namesClassNameSuffix</td><td>名前クラス名のサフィックスです。</td><td>"Names"</td><td>NO</td></tr>
+					<tr><td>namesTemplateFileName</td><td>名前クラスのテンプレートファイル名です。</td><td>"java/names.ftl"</td><td>NO</td></tr>
+					<tr><td>templateFileEncoding</td><td>テンプレートファイルのエンコーディングです。</td><td>"UTF-8"</td><td>NO</td></tr>
+					<tr><td>templateFilePrimaryDir</td><td>テンプレートファイルを検索する際の優先ディレクトリです。</td><td>-</td><td>NO</td></tr>
+					<tr><td>javaFileDestDir</td><td>Javaファイルの出力先ディレクトリです。</td><td>"src/main/java"</td><td>NO</td></tr>
+					<tr><td>javaFileEncoding</td><td>Javaファイルのエンコーディングです。</td><td>"UTF-8"</td><td>NO</td></tr>
+					<tr><td>overwrite</td><td>"true"の場合、名前インタフェースのJavaファイルを上書きします。</td><td>"true"</td><td>NO</td></tr>
+					<tr><td>configPath</td><td>JdbcManagerのコンポーネント定義を含む設定ファイルです。このタスクの実行に使用されます。</td><td>"s2jdbc.dicon"</td><td>NO</td></tr>
+					<tr><td>env</td><td>環境名です。</td><td>"ut"</td><td>NO</td></tr>
+					<tr><td>jdbcManagerName</td><td>JdbcManagerのコンポーネント名です。接続先のデータベースはJdbcManagerのコンポーネント名によって決まります。</td><td>"jdbcManager"</td><td>NO</td></tr>
+					<tr><td>factoryClassName</td><td>S2JDBC-Genの公開されたインタフェースの実装を作成するファクトリのクラス名です。S2JDBC-Genをカスタマイズする場合に独自のファクトリクラスを指定できます。ここに指定するクラスはorg.seasar.extension.jdbc.gen.internal.factory.Factoryインタフェースを実装している必要があります。</td><td>"org.seasar.extension.jdbc.gen<br />.internal.factory.FactoryImpl"</td><td>NO</td></tr>
+					<tr><td>commandInvokerClassName</td><td>S2JDBC-Genのコマンドを呼び出すクラスの名前です。コマンドの呼び出し前後で任意の処理を実行したい場合に指定します。ここに指定するクラスはorg.seasar.extension.jdbc.gen.command.CommandInvokerインタフェースを実装している必要があります。</td><td>"org.seasar.extension.jdbc.gen<br />.internal.command.CommandInvokerImpl"</td><td>NO</td></tr>
+					<tr><td>classpath</td><td>このタスクを実行する際のクラスパスです。</td><td>-</td><td>classpathrefが指定されていない場合YES</td></tr>
+					<tr><td>classpathref</td><td>このタスクを実行する際のクラスパスの参照です。</td><td>-</td><td>classpathが指定されていない場合YES</td></tr>
+				</table>
+			</subsection>
+			<subsection name="ネストした要素として指定されるパラメータ">
+				<h4>
+					jvmArg
+				</h4>
+				<p>
+					このタスクの大部分の処理は別VMで行われます。VMに引数を渡す場合は&lt;jvmarg&gt;要素を使用します。
+					これはAntのJavaタスクで使用できる&lt;jvmarg&gt;と同じです。
+					使用可能な属性やネストした要素についてはAntのドキュメントを参照してください。
+				</p>
+			</subsection>
+		</section>
+		<section name="例">
+			<subsection name="名前クラスのパッケージを指定する">
+				<p>
+					名前クラスのデフォルトのパッケージ名は"entity"ですが、namesPackageName属性に任意のパッケージ名を指定できます。
+					次の例では"names"を指定しています。
+				</p>
+<source><![CDATA[<gen-names
+    rootPackageName="examples"
+    namesPackageName="names"
+    classpathRef="classpath"
+/>]]></source>
+			</subsection>
+			<subsection name="独自のテンプレートファイルを使用する">
+				<p>
+					任意のディレクトリに独自のテンプレートファイルを置き、templateFilePrimaryDir属性にそのディレクトリを指定することで、
+					独自のテンプレートファイルを使用できます。
+				</p>
+				<p>
+					S2JDBC-Genのテンプレートは、配布ファイルのresources/tempaltesディレクトリ以下にあります。
+					名前クラスのテンプレートはjava/names.ftlになります。
+					これをコピーして、修正を加えるのが良いでしょう。
+					テンプレートの記述方法については<a href="http://freemarker.sourceforge.net/">FreeMarker</a>のドキュメントを参照してください。
+				</p>
+				<p>
+					テンプレートファイルを格納するディレクトリをmytempletesとする場合、
+					修正した独自テンプレートを使用するにはテンプレートをmytempletes/java/names.ftlと配置し、templateFilePrimaryDir属性にmytempletesを指定します。
+				</p>
+<source><![CDATA[<gen-names
+    rootPackageName="examples"
+    templateFilePrimaryDir="mytempletes"
+    classpathRef="classpath"
+/>]]></source>
+				<p>
+					mytempletes/my-names.ftlのように、テンプレートファイルを任意の名前で配置したい場合は、
+					templateFilePrimaryDir属性に加え、namesTemplateFileName属性も指定します。
+				</p>
+<source><![CDATA[<gen-names
+    rootPackageName="examples"
+    templateFilePrimaryDir="mytempletes"
+    namesTemplateFileName="my-names.ftl"
+    classpathRef="classpath"
+/>]]></source>
+			</subsection>
+			<subsection name="生成するJavaファイルに共通のヘッダーとしてコピーライトを含める">
+				<p>
+					copyright.ftlというファイルにコピーライトを記述し、これをtemplateFilePrimaryDir属性に指定するディレクトリに配置すると、
+					生成されるJavaファイルのヘッダーにコピーライトの記述が含まれるようになります。
+					mytempletes/copyright.ftlと配置する場合、タスクの定義は次のようになります。
+				</p>
+<source><![CDATA[<gen-names
+    rootPackageName="examples"
+    templateFilePrimaryDir="mytempletes"
+    classpathRef="classpath"
+/>]]></source>
+			</subsection>
+		</section>
+	</body>
+</document>
