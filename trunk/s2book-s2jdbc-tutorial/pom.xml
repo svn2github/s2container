@@ -136,11 +136,31 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>com.google.code.maven-license-plugin</groupId>
+        <artifactId>maven-license-plugin</artifactId>
+        <version>1.4.0</version>
+        <configuration>
+          <header>http://www.seasar.org/license/header.txt</header>
+          <includes>
+            <include>src/**/*.java</include>
+          </includes>
+          <encoding>UTF-8</encoding>
+          <headerDefinitions>
+            <headerDefinition>http://www.seasar.org/license/header-definition.xml</headerDefinition>
+          </headerDefinitions>
+        </configuration>
+      </plugin>
     </plugins>
     <extensions>
       <extension>
         <groupId>org.apache.maven.wagon</groupId>
         <artifactId>wagon-webdav</artifactId>
+      </extension>
+      <extension>
+        <groupId>com.google.code.xmltool</groupId>
+        <artifactId>xmltool</artifactId>
+        <version>1.4</version>
       </extension>
     </extensions>
   </build>
