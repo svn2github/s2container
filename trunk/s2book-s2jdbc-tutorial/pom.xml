@@ -157,11 +157,6 @@
         <groupId>org.apache.maven.wagon</groupId>
         <artifactId>wagon-webdav</artifactId>
       </extension>
-      <extension>
-        <groupId>com.google.code.xmltool</groupId>
-        <artifactId>xmltool</artifactId>
-        <version>1.4</version>
-      </extension>
     </extensions>
   </build>
 </project>
