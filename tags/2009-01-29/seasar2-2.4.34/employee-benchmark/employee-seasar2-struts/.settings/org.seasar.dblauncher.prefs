@@ -1,0 +1,4 @@
+#Thu Mar 08 11:04:55 JST 2007
+baseDir=/employee-seasar2-struts/src/main/webapp/WEB-INF/classes/data
+eclipse.preferences.version=1
+initDB=/employee-seasar2-struts/src/main/resources/data

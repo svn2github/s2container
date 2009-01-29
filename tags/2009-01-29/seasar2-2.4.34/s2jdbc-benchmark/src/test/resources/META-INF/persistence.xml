@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+	http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+	version="1.0"
+>
+	<persistence-unit name="persistenceUnit" transaction-type="JTA">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<jta-data-source>jdbc/dataSource</jta-data-source>
+		<class>org.seasar.extension.jdbc.benchmark.jpa.Department</class>
+		<class>org.seasar.extension.jdbc.benchmark.jpa.Address</class>
+		<class>org.seasar.extension.jdbc.benchmark.jpa.Employee</class>
+		<class>org.seasar.extension.jdbc.benchmark.jpa.Department2</class>
+		<class>org.seasar.extension.jdbc.benchmark.jpa.Address2</class>
+		<class>org.seasar.extension.jdbc.benchmark.jpa.Employee2</class>
+		<class>org.seasar.extension.jdbc.benchmark.jpa.Department3</class>
+		<class>org.seasar.extension.jdbc.benchmark.jpa.Address3</class>
+		<class>org.seasar.extension.jdbc.benchmark.jpa.Employee3</class>
+		<properties>
+			<property name="hibernate.jndi.class" 
+				value="org.seasar.extension.j2ee.JndiContextFactory"/>
+			<property name="hibernate.transaction.manager_lookup_class" 
+				value="org.seasar.hibernate.jpa.transaction.SingletonTransactionManagerProxyLookup"/>
+			<property name="hibernate.show_sql" value="false"/>
+			<property name="hibernate.format_sql" value="false"/>
+			<property name="hibernate.use_sql_comments" value="false"/>
+			<property name="hibernate.archive.autodetection" value=""/>
+			<property name="hibernate.jdbc.fetch_size" value="100"/>
+		</properties>
+	</persistence-unit>
+</persistence>

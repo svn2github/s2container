@@ -1,0 +1,19 @@
+package hoge.entity;
+
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+/**
+ * Fooエンティティクラス
+ * 
+ * @author S2JDBC-Gen
+ */
+@Entity
+@Table(catalog = "AAA", schema = "BBB")
+public class Foo {
+
+    /** hoge関連プロパティ */
+    @ManyToOne
+    public Hoge hoge;
+}
