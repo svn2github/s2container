@@ -32,6 +32,7 @@ package org.ognl.test;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+
 import junit.framework.TestSuite;
 
 public class ArithmeticAndLogicalOperatorsTest extends OgnlTestCase
@@ -57,8 +58,8 @@ public class ArithmeticAndLogicalOperatorsTest extends OgnlTestCase
                                         { "5.0B/2", new BigDecimal(2.5) },
                                         { "5+2b", new BigDecimal(7) },
                                         { "5-2B", new BigDecimal(3) },
-                                        { "5.+2b*3", new BigDecimal(11) },
-                                        { "(5.+2b)*3", new BigDecimal(21) },
+                                        { "5.+2b*3", new BigDecimal("11.0") },
+                                        { "(5.+2b)*3", new BigDecimal("21.0") },
 
                                           // Integer-valued arithmetic expressions
                                         { "-1", new Integer(-1) },

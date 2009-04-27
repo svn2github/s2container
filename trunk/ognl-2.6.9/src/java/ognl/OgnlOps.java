@@ -305,7 +305,9 @@ public abstract class OgnlOps implements NumericTypes
         if ( c == BigInteger.class )
             return new BigDecimal( (BigInteger)value );
         if ( c.getSuperclass() == Number.class )
-            return new BigDecimal( ((Number)value).doubleValue() );
+            // return new BigDecimal( ((Number)value).doubleValue() );
+            // Fix BigDecimal conversion error
+            return new BigDecimal(value.toString());
         if ( c == Boolean.class )
             return BigDecimal.valueOf( ((Boolean)value).booleanValue()? 1 : 0 );
         if ( c == Character.class )
