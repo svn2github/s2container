@@ -1,0 +1,373 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<!-- don't edit start -->
+<head>
+<title>S2AOP</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link href="seasar_b.css" type="text/css" rel="stylesheet" media="screen" />
+<link href="seasar_p.css" type="text/css" rel="stylesheet" media="print" />
+<script src="seasar_b.js" type="text/JavaScript" language="JavaScript">
+</script>
+</head>
+<body onload="preload('ja')">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="left">
+<tr>
+<td align="left" valign="top" width="780">
+<table width="780" border="0" cellspacing="0" cellpadding="0" class="white">
+<tr>
+<td colspan="7"><img height="5" width="780" src="images/top01_b.gif" alt="" /></td>
+</tr>
+<tr>
+<td><img height="117" width="235" src="images/top02_b.gif" alt="Seasar" /></td>
+<td colspan="3"><img height="117" width="289" src="images/top03.gif" alt="DI Container with AOP" /></td>
+<td colspan="3"><img height="117" width="256" src="images/spacer.gif" alt="" /></td>
+</tr>
+<tr>
+<td rowspan="2"><img src="images/top04.gif" alt="" height="49" width="235" /></td>
+<td><a href="http://www.seasar.org/index.html"><img src="images/menu01_b_ja.gif" height="30" width="78" border="0" alt="" id="menu01" onmouseover="swap(1)" onmouseout="restore(1)" name="menu01" /></a></td>
+<td><a href="http://www.seasar.org/projects.html"><img src="images/menu02_b_ja.gif" height="30" width="101" border="0" alt="" id="menu02" onmouseover="swap(2)" onmouseout="restore(2)" name="menu02" /></a></td>
+<td><a href="http://www.seasar.org/products.html"><img src="images/menu03_b_ja.gif" height="30" width="110" border="0" alt="" id="menu03" onmouseover="swap(3)" onmouseout="restore(3)" name="menu03" /></a></td>
+<td><a href="http://www.seasar.org/resources.html"><img src="images/menu04_b_ja.gif" height="30" width="113" border="0" alt="" id="menu04" onmouseover="swap(4)" onmouseout="restore(4)" name="menu04" /></a></td>
+<td><img src="images/menu05_b_ja.gif" height="30" width="109" border="0" alt="" id="menu05" onmouseover="swap(5)" onmouseout="restore(5)" name="menu05" /></td>
+<td><img height="30" width="34" src="images/menu06.gif" alt="" /></td>
+</tr>
+<tr>
+<td colspan="6"><img height="19" width="545" src="images/spacer.gif" alt="" /></td>
+</tr>
+</table>
+<table width="780" border="0" cellspacing="0" cellpadding="0" class="white">
+<tr align="left" valign="top">
+<td width="14"><img height="14" width="14" src="images/spacer.gif" alt="" /></td>
+<td width="740" class="main"><!-- don't edit end -->
+<!-- document start -->
+<ul>
+<li><a href="#S2AOP">S2AOPの概要</a>
+<ul>
+<li><a href="#AOPKey">AOPを考える上でキーとなる概念</a></li>
+</ul>
+</li>
+<li><a href="#S2AOPReference">S2AOPリファレンス</a>
+<ul>
+<li><a href="#S2AOPInterceptors">S2AOPで用意している主なInterceptor</a>
+<ul>
+<li><a href="#TraceInterceptor">TraceInterceptor</a></li>
+<li><a href="#ThrowsInterceptor">ThrowsInterceptor</a></li>
+<li><a href="#ToStringInterceptor">ToStringInterceptor</a></li>
+<li><a href="#RemoveSessionInterceptor">RemoveSessionInterceptor</a></li>
+<li><a href="#InvalidateSessionInterceptor">InvalidateSessionInterceptor</a></li>
+<li><a href="#InterceptorChain">InterceptorChain</a></li>
+<li><a href="#InterceptorLifecycleAdapter">InterceptorLifecycleAdapter</a></li>
+</ul>
+</li>
+<li><a href="#OriginalInterceptor">独自実装によるInterceptor</a></li>
+<li><a href="#S2AOPInterTypes">S2AOPで用意している主なInterType</a>
+<ul>
+<li><a href="#PropertyInterType">PropertyInterType</a></li>
+<li><a href="#InterTypeChain">InterTypeChain</a></li>
+</ul>
+</li>
+<li><a href="#OriginalInterType">独自実装によるInterType</a></li>
+</ul>
+</li>
+</ul>
+<h2><a name="S2AOP">S2AOPの概要</a></h2>
+<p>AOPとはAspect Oriented Programmingの略で、
+複数のクラスに分散するロジックをモジュールとして抽出し、
+外側から織り込む手法です。</p>
+<p>例えば、ログ出力の機能を考えてみてください。
+ログ出力の処理を複数のクラスに同じように記述するのは、
+面倒なだけでなく、ログ出力の処理に仕様変更が入った場合に、
+複数のクラスを同じように修正しなければいけないという問題がおきます。
+つまり、仕様変更に弱いのです。</p>
+<p>このような場合に、ログ出力の処理をモジュールとして抽出し、
+個々のクラスからは削除します。
+そして、コンパイル時もしくは実行時に抽出したモジュールをバイトコードに埋め込むことで、
+あたかもソースコードに記述されているかのように実行することができます。</p>
+<p>ログ出力の処理に仕様変更が入った場合も抽出したモジュールを修正するだけですみます。
+メンテナンス性が向上することがわかっていただけるでしょう。
+</p>
+<h3><a name="AOPKey" id="AOPKey">AOPを考える上でキーとなる概念</a></h3>
+<h4><a name="Advice" id="Advice">Advice(MethodInterceptor)</a></h4>
+<p>プログラム中に挿入されるコードを表します。Interceptorと呼ばれることもあります。</p>
+<h4><a name="Joinpoint" id="Joinpoint">Joinpoint(MethodInvocation)</a></h4>
+<p>対象となるクラスと<a href="#Advice">Advice</a>を結合するポイントを表します。
+<a href="#Advice">Advice</a>はJoinpointから引数やメソッドの情報を取得することができます。</p>
+<h4><a name="Pointcut" id="Pointcut">Pointcut</a></h4>
+<p>どこに<a href="#Joinpoint">Joinpoint</a>を設定するのかを定義します。</p>
+<h4><a name="Aspect" id="Aspect">Aspect</a></h4>
+<p><a href="#Advice">Advice</a>と<a href="#Pointcut">Pointcut</a>を関連付けます。</p>
+<h4><a name="InterType" id="InterType">InterType</a></h4>
+<p>フィールドやメソッドの追加、実装するインタフェースの追加など，クラスの静的な構造を変更します。</p>
+<br />
+<h2><a name="S2AOPReference" id="S2AOPReference">S2AOPリファレンス</a></h2>
+<br />
+<h3><a name="S2AOPInterceptors" id="S2AOPInterceptors">S2AOPで用意している主なInterceptor</a></h3>
+<h4><a name="TraceInterceptor" id="TraceInterceptor">TraceInterceptor</a></h4>
+<h5>クラス名</h5>
+<p>org.seasar.framework.aop.interceptors.TraceInterceptor</p>
+<h5>説明</h5>
+<p>トレース処理を行なうためのInterceptorです。
+DateクラスのgetTime()メソッドにTraceInterceptorを適用するための設定ファイルは次のようになります。</p>
+<pre>
+&lt;component class="java.util.Date"&gt;
+    &lt;aspect pointcut="getTime"&gt;
+        &lt;component class="org.seasar.framework.aop.interceptors.TraceInterceptor"/&gt;
+    &lt;/aspect&gt;
+&lt;/component&gt;
+</pre>
+
+<h4><a name="ThrowsInterceptor" id="ThrowsInterceptor">ThrowsInterceptor</a></h4>
+<h5>クラス名</h5>
+<p>org.seasar.framework.aop.interceptors.ThrowsInterceptor</p>
+<h5>説明</h5>
+<p>例外を共通的に処理するためのInterceptorです。
+使用するにはThrowsInterceptorを継承し、Object handleThrowable(Throwable, MethodInvocation)を実装します。
+ThrowableにはThrowableの任意のサブクラスを指定することができます。
+handleThrowable()はいくつでも定義することができます。
+</p>
+<p>例えば、NullPointerExceptionをキャッチしてメッセージを出力するには、
+次のようなInterceptorを作成します。</p>
+<pre>
+package examples.aaa.interceptor;
+
+import org.aopalliance.intercept.MethodInvocation;
+import org.seasar.framework.aop.interceptors.ThrowsInterceptor;
+
+public class MyThrowableInterceptor extends ThrowsInterceptor {
+    public void handleThrowable(NullPointerException e, MethodInvocation invocation)
+        throws Throwable {
+        System.out.println("ぬるぽ");
+        throw e;
+    }
+}
+</pre>
+
+<h4><a name="ToStringInterceptor" id="ToStringInterceptor">ToStringInterceptor</a></h4>
+<h5>クラス名</h5>
+<p>org.seasar.framework.aop.interceptors.ToStringInterceptor</p>
+<h5>説明</h5>
+<p>toString()メソッドでフィールドの情報を出力するためのInterceptorです。</p>
+
+<h4><a name="RemoveSessionInterceptor" id="RemoveSessionInterceptor">RemoveSessionInterceptor</a></h4>
+<h5>クラス名</h5>
+<p>org.seasar.framework.aop.interceptors.RemoveSessionInterceptor</p>
+<h5>説明</h5>
+<p>セッションに格納されているオブジェクトを、メソッドが正常に終了した(例外が発生しなかった)場合に、 自動的に削除するためのInterceptorです。
+            メソッドにRemoveSessionアノテーションを指定して使います。</p>
+<p>次の例では、hoge()メソッドの呼び出しが正常終了した場合に、 セッションに格納されているfooオブジェクトを削除します。</p>
+<pre>@RemoveSession(&quot;foo&quot;)
+public void hoge() {
+    ...
+}</pre>
+            <h4><a name="InvalidateSessionInterceptor" id="InvalidateSessionInterceptor">InvalidateSessionInterceptor</a></h4>
+<h5>クラス名</h5>
+<p>org.seasar.framework.aop.interceptors.InvalidateSessionInterceptor</p>
+<h5>説明</h5>
+<p>セッションを、メソッドが正常に終了した(例外が発生しなかった)場合に、 自動的に破棄するためのInterceptorです。 メソッドにInvalidateSessionアノテーションを指定して使います。</p>
+<p>次の例では、hoge()メソッドの呼び出しが正常終了した場合に、 HTTPセッションを破棄します。実際には、セッションの破棄はS2Containerの提供するServlet
+            Filter (S2ContainerFilter) によって行われます。</p>
+<pre>@InvalidateSession
+public void hoge() {
+    ...
+}</pre>
+            <h4><a name="InterceptorChain" id="InterceptorChain">InterceptorChain</a></h4>
+<h5>クラス名</h5>
+<p>org.seasar.framework.aop.interceptors.InterceptorChain</p>
+<h5>説明</h5>
+<p>複数のInterceptorをグルーピング化し、再利用しやすくします。複数のInterceptorの組み合わせを複数コンポーネントに適用する場合は、InterceptorChainで複数のInterceptorを1つにまとめて、各コンポーネントにはInterceptorChainを指定するようにするといいでしょう。</p>
+<pre>
+&lt;component name="interceptor1" .../&gt;
+&lt;component name="interceptor2" .../&gt;
+&lt;component name="interceptor3" .../&gt;<br />&lt;component name="chain" class="org.seasar.framework.aop.interceptors.InterceptorChain"&gt;<br />    &lt;initMethod name="add"&gt;&lt;arg&gt;interceptor1&lt;/arg&gt;&lt;/initMethod&gt;<br />    &lt;initMethod name="add"&gt;&lt;arg&gt;interceptor2&lt;/arg&gt;&lt;/initMethod&gt;<br />    &lt;initMethod name="add"&gt;&lt;arg&gt;interceptor3&lt;/arg&gt;&lt;/initMethod&gt;<br />&lt;/component&gt;
+&lt;component ...&gt;
+    &lt;aspect&gt;chain&lt;/aspect&gt;
+&lt;/component&gt;
+&lt;component ...&gt;
+    &lt;aspect&gt;chain&lt;/aspect&gt;
+&lt;/component&gt;
+</pre>
+<h4><a name="InterceptorLifecycleAdapter" id="InterceptorLifecycleAdapter">InterceptorLifecycleAdapter</a></h4>
+<h5>クラス名</h5>
+<p>org.seasar.framework.aop.interceptors.InterceptorLifecycleAdapter</p>
+<h5>説明</h5>
+<p>Interceptorはアスペクトをクラスに組み込む際にインスタンス化されるため、singleton以外の場合は意図したとおりに動作しません。<br />
+このような場合は、InterceptorLifecycleAdapterをMethodInterceptorのinvoke()メソッドに適用します．</p>
+<pre>
+&lt;component name="myInterceptor" instance="prototype" .../&gt;
+    &lt;aspect pointcut="invoke"&gt;
+        &lt;component class="org.seasar.framework.aop.interceptors.InterceptorLifecycleAdapter"&gt;
+    &lt;/aspect&gt;
+&lt;/component&gt;
+&lt;component ...&gt;
+    &lt;aspect&gt;myInterceptor&lt;/aspect&gt;
+&lt;/component&gt;
+</pre>
+<h3><a name="OriginalInterceptor" id="OriginalInterceptor">独自実装によるInterceptor</a></h3>
+<h4>説明</h4>
+<p>独自にInterceptorを作成する場合は、次のインターフェースまたは、抽象クラスを実装します。</p>
+<dl>
+<dt style="text-indent:1em;">org.aopalliance.intercept.MethodInterceptor</dt>
+<dt style="text-indent:1em;">org.seasar.framework.aop.interceptors.AbstractInterceptor</dt>
+</dl>
+<p>どちらの場合も実装するメソッドは、以下のinvoke()メソッドの１つだけです。</p>
+<dl>
+<dt style="text-indent:1em;">public Object invoke(MethodInvocation invocation) throws Throwable</dt>
+</dl>
+<p>AbstractInterceptorは、MethodInterceptorをimplementsした抽象クラスです。
+AbstractInterceptor.getTargetClass()で、
+アスペクトを適用する前のクラスを知ることができます。
+<p>MethodInvocationのgetThis()、getMethod()、getArguments()で、
+対象となるオブジェクト、メソッド、引数を取得できます。
+getThis()でクラス名を取得するとバイトコードで組み込まれたクラス名が取得されます。
+proceed()を呼び出すと実際のメソッドが呼び出され実行結果を取得することができます。
+実際のメソッドを呼び出す前後にログを出力するInterceptorは次のようになります。
+</p>
+<pre>
+package examples.aaa.interceptor;
+
+import org.aopalliance.intercept.MethodInvocation;
+import org.seasar.framework.aop.interceptors.AbstractInterceptor;
+
+public class MyInterceptor extends AbstractInterceptor{
+    public Object invoke(MethodInvocation invocation) throws Throwable {
+        System.out.println("before");
+        Object ret = invocation.proceed();
+        System.out.println("after");
+        return ret;
+    }
+}
+</pre>
+
+<h3><a name="S2AOPInterTypes" id="S2AOPInterTypes">S2AOPで用意している主なInterType</a></h3>
+<h4><a name="PropertyInterType" id="PropertyInterType">PropertyInterType</a></h4>
+<h5>クラス名</h5>
+<p>org.seasar.framework.aop.intertype.PropertyInterType</p>
+<h5>説明</h5>
+<p>フィールドに対するgetter / setterメソッドを追加するInterTypeです。<br />
+PropertyInterTypeを使うには、S2Tigerが必要です。</p>
+<h5>注意点</h5>
+<p>privateのフィールドに対するgetter / setterは作成されません。<br />
+フィールドはprotectedにしてください(public でも可)。</p>
+<pre>
+&lt;component class="Hoge"&gt;
+    &lt;interType&gt;
+        &lt;component class="org.seasar.framework.aop.interType.PropertyInterType"/&gt;
+    &lt;/interType&gt;
+&lt;/component&gt;
+</pre>
+<p>PropertyInterTypeを適用するクラスには、getter / setterを追加したいフィールドにPropertyアノテーションを指定します。</p>
+<pre>
+import org.seasar.framework.container.annotation.tiger.Property;
+import org.seasar.framework.container.annotation.tiger.PropertyType;
+
+public class Hoge {
+    @Property
+    protected int foo;
+
+    @Property(PropertyType.READ)
+    protected long bar;
+
+    @Property(PropertyType.WRITE)
+    protected String baz;
+}
+</pre>
+<p>上の例では、フィールドfooにはgetterとsetterメソッドが、barにはgetterメソッドが、bazにはsetterメソッドが作成されます。</p>
+<p>クラスにPropertyアノテーションを指定することもできます。
+Propertyアノテーションの指定されていないフィールドへのデフォルトの指定になります。</p>
+<pre>
+import org.seasar.framework.container.annotation.tiger.Property;
+import org.seasar.framework.container.annotation.tiger.PropertyType;
+
+@Property
+public class Hoge {
+    protected int foo;
+
+    protected long bar;
+
+    @Property(PropertyType.NONE)
+    protected String baz;
+}
+</pre>
+<p>上の例では、フィールドfooとbarにはgetterとsetterメソッドが作成されますが、bazにはメソッドが作成されません。</p>
+
+<h4><a name="InterTypeChain" id="InterTypeChain">InterTypeChain</a></h4>
+<h5>クラス名</h5>
+<p>org.seasar.framework.aop.intertye.InterTypeChain</p>
+<h5>説明</h5>
+<p>複数のInterTypeをグルーピング化し、再利用しやすくします。複数のInterTypeの組み合わせを複数コンポーネントに適用する場合は、InterTGypeChainで複数のInterTypeを1つにまとめて、各コンポーネントにはInterTypeChainを指定するようにするといいでしょう。</p>
+<pre>
+&lt;component name="interType1" .../&gt;
+&lt;component name="interType2" .../&gt;
+&lt;component name="interType3" .../&gt;<br />&lt;component name="chain" class="org.seasar.framework.aop.interttype.InterTypeChain"&gt;<br />    &lt;initMethod name="add"&gt;&lt;arg&gt;interType1&lt;/arg&gt;&lt;/initMethod&gt;<br />    &lt;initMethod name="add"&gt;&lt;arg&gt;interType2&lt;/arg&gt;&lt;/initMethod&gt;<br />    &lt;initMethod name="add"&gt;&lt;arg&gt;interType3&lt;/arg&gt;&lt;/initMethod&gt;<br />&lt;/component&gt;
+&lt;component ...&gt;
+    &lt;interType&gt;chain&lt;/interType&gt;
+&lt;/component&gt;
+&lt;component ...&gt;
+    &lt;interType&gt;chain&lt;/interType&gt;
+&lt;/component&gt;
+</pre>
+<h3><a name="OriginalInterType" id="OriginalInterType">独自実装によるInterType</a></h3>
+<h4>説明</h4>
+<p>独自にInterTypeを作成する場合は、次のインターフェースまたは、抽象クラスを実装します。</p>
+<dl>
+<dt style="text-indent:1em;">org.seasar.framework.aop.InterType</dt>
+<dt style="text-indent:1em;">org.seasar.framework.aop.intertype.AbstractInterType</dt>
+</dl>
+<p>InterTypeを実装するクラスは、以下のメソッドを実装します。</p>
+<dl>
+<dt style="text-indent:1em;">public void introduce(Class targetClass, CtClass enhancedClass)</dt>
+</dl>
+<p>targetClassはInterTypeが適用されるクラスです。enhancedClassはInterTypeを組み込むクラスで、先に登録されているInterceptorやInterTypeが適用済みの場合もあります。<br />
+CtClassの詳細は<a href="http://jboss.com/products/javassist">Javassist</a>の<a href="http://www.smg.co.jp/seminar/techsquare/javassist01.html">チュートリアル</a>や<a href="http://www.csg.is.titech.ac.jp/~chiba/javassist/html/">JavaDoc</a>を参照してください。</p>
+<p>AbstractInterTypeは、InterTypeをimplementsした抽象クラスです。AbstractInterTyeのサブクラスは次のメソッドを実装します。</p>
+<dl>
+<dt style="text-indent:1em;">public void introduce() trhows CannotCompileException, NotFoundException</dt>
+</dl>
+<p>AbstractInterTypeのサブクラスは、次のメソッドで必要なオブジェクトを取得することができます。</p>
+<dl>
+<dt style="text-indent:1em;">protected Class getTargetClass()</dt>
+<dt style="text-indent:1em;">protected CtClass getEnhancedClass()</dt>
+<dt style="text-indent:1em;">protected ClassPool getClassPool()</dt>
+</dl>
+<p>AbstractInterTypeは、フィールドやメソッド，実装するインタフェースを追加するためのユーティリティメソッドを提供します。以下はその一部です。</p>
+<dl>
+<dt style="text-indent:1em;">protected void addField(Class type, String name)</dt>
+<dt style="text-indent:1em;">protected void addField(Class type, String name, String init)</dt>
+<dt style="text-indent:1em;">protected void addStaticField(Class type, String name)</dt>
+<dt style="text-indent:1em;">protected void addStaticField(Class type, String name, String init)</dt>
+<dt style="text-indent:1em;">protected void addMethod(String name, String src)</dt>
+<dt style="text-indent:1em;">protected void addMethod(Class returnType, String name, String src)</dt>
+<dt style="text-indent:1em;">protected void addMethod(String name, Class[] paramTypes, String src)</dt>
+<dt style="text-indent:1em;">protected void addMethod(Class returnType, String name, Class[] paramTypes, String src)</dt>
+<dt style="text-indent:1em;">protected void addStaticMethod(String name, String src)</dt>
+<dt style="text-indent:1em;">protected void addStaticMethod(Class returnType, String name, String src)</dt>
+<dt style="text-indent:1em;">protected void addStaticMethod(String name, Class[] paramTypes, String src)</dt>
+<dt style="text-indent:1em;">protected void addStaticMethod(Class returnType, String name, Class[] paramTypes, String src)</dt>
+</dl>
+
+
+<!-- document end -->
+<!-- don't edit start --></td>
+<td width="14"><img height="14" width="14" src="images/spacer.gif" alt="" /></td>
+</tr>
+<tr>
+<td width="14"><img height="30" width="14" src="images/spacer.gif" alt="" /></td>
+<td width="766"><img height="30" width="592" src="images/spacer.gif" alt="" /></td>
+</tr>
+<tr>
+<td width="14"><img height="14" width="14" src="images/spacer.gif" alt="" /></td>
+<td width="766" class="copyright">Copyright© 2004-2005, The Seasar Foundation and the others. All rights reserved.</td>
+</tr>
+</table>
+</td>
+<td class="backright" align="left" valign="top">&nbsp;</td>
+</tr>
+<tr>
+<td class="backunder" align="left" valign="top" width="780" height="16">&nbsp;</td>
+<td class="backcorner" align="left" valign="top" height="16">&nbsp;</td>
+</tr>
+</table>
+<!-- don't edit end -->
+</body>
+</html>
