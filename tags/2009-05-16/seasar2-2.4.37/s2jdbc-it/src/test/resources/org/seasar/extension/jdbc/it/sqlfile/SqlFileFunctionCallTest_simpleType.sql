@@ -1,1 +1,0 @@
-{? = call FUNC_SIMPLETYPE_PARAM(?)}

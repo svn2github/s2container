@@ -1,3 +1,0 @@
-/* 
- * copyright from copyright.ftl
- */

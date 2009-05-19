@@ -1,1 +1,0 @@
-{? = call FUNC_DTO_PARAM(?, ?)}

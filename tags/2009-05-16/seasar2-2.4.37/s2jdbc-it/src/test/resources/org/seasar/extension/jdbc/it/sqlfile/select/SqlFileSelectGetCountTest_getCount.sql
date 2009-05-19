@@ -1,1 +1,0 @@
-SELECT * FROM EMPLOYEE WHERE MANAGER_ID = /*manager_id*/99
