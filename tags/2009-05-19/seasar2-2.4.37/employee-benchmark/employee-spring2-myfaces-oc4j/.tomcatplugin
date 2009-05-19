@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tomcatProjectProperties>
+    <rootDir>src/main/webapp/</rootDir>
+    <exportSource>false</exportSource>
+    <reloadable>false</reloadable>
+    <redirectLogger>false</redirectLogger>
+    <updateXml>false</updateXml>
+    <warLocation>C:\employee-spring2-myfaces-oc4j.war</warLocation>
+    <extraInfo></extraInfo>
+    <webPath>/employee-spring2-myfaces-oc4j</webPath>
+</tomcatProjectProperties>

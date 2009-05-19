@@ -1,0 +1,1 @@
+UPDATE DEPARTMENT SET LOCATION = /*location*/'hoge' WHERE DEPARTMENT_ID = /*departmentId*/1
