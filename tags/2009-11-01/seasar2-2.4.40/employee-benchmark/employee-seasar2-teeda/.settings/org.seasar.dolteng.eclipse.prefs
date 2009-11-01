@@ -1,0 +1,10 @@
+#Thu Mar 08 14:59:05 JST 2007
+DefaultDaoPackage=org.seasar.employee.kuina.dao
+DefaultDtoPackage=org.seasar.employee.kuina.dto
+DefaultEntityPackage=org.seasar.employee.kuina.entity
+DefaultResourcePath=/employee-seasar2-teeda/src/main/resources
+DefaultSrcPath=/employee-seasar2-teeda/src/main/java
+DefaultWebPackage=org.seasar.employee.kuina.web
+ServletPath=/employee-seasar2-strtus
+WebContentsRoot=src/main/webapp/
+eclipse.preferences.version=1
