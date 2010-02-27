@@ -1,0 +1,23 @@
+moduleType=ear
+applicationID=employee-seasar2-teeda-oc4j
+bindWebApp=default-web-site
+webSiteBindings=
+parent=default
+moduleID=.
+doctype=orion-application
+<?xml version="1.0" encoding="UTF-8"?>
+<orion-application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://xmlns.oracle.com/oracleas/schema/orion-application-10_0.xsd">
+	<imported-shared-libraries>
+		<remove-inherited name="oracle.toplink">
+		</remove-inherited>
+	</imported-shared-libraries>
+</orion-application>
+moduleID=employee-seasar2-teeda-oc4j.war
+doctype=orion-web-app
+<?xml version="1.0" encoding="UTF-8"?>
+<orion-web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://xmlns.oracle.com/oracleas/schema/orion-web-10_0.xsd" context-root="employee-seasar2-teeda-oc4j">
+	<resource-ref-mapping name="jdbc/dataSource" location="jdbc/dataSource">
+	</resource-ref-mapping>
+	<web-app-class-loader>
+	</web-app-class-loader>
+</orion-web-app>
