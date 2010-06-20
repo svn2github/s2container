@@ -1,0 +1,3 @@
+package benchmark.wire;
+public interface Bean00366A {
+}

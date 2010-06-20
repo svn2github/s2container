@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="greetingTarget" class="benchmark.aop.GreetingImpl" singleton="false" />
+	<bean id="greeting2Target" class="benchmark.aop.GreetingImpl2" singleton="false" />
+	<bean name="greetInterceptor" class="benchmark.aop.GreetInterceptor" />
+	<bean
+		name="greeting"
+		class="org.springframework.aop.framework.ProxyFactoryBean"
+	>
+		<property name="proxyInterfaces"><value>benchmark.aop.Greeting</value></property>
+		<property name="target"><ref bean="greetingTarget" /></property>
+		<property name="interceptorNames"><value>greetInterceptor</value></property>
+	</bean>
+	<bean
+		name="greeting2"
+		class="org.springframework.aop.framework.ProxyFactoryBean"
+	>
+		<property name="target"><ref bean="greeting2Target" /></property>
+		<property name="interceptorNames"><value>greetInterceptor</value></property>
+	</bean>
+</beans>
