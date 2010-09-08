@@ -1,0 +1,478 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<document>
+	<properties>
+		<title>S2JDBC-Gen - Gen-Ddl</title>
+	</properties>
+	<body>
+		<section name="Gen-Ddl">
+			<ul>
+				<li>
+					<p>
+						<a href="#説明">説明</a>
+						<ul>
+							<li>
+								<p>
+									<a href="#概要">概要</a>
+								</p>
+							</li>
+							<li>
+								<p>
+									<a href="#ディレクトリ構成">ディレクトリ構成</a>
+								</p>
+							</li>
+							<li>
+								<p>
+									<a href="#バージョン番号">バージョン番号</a>
+								</p>
+							</li>
+							<li>
+								<p>
+									<a href="#DDLファイル">DDLファイル</a>
+								</p>
+							</li>
+							<li>
+								<p>
+									<a href="#ダンプファイル">ダンプファイル</a>
+								</p>
+							</li>
+							<li>
+								<p>
+									<a href="#タスク実行時のファイルのコピー">タスク実行時のファイルのコピー</a>
+								</p>
+							</li>
+						</ul>
+					</p>
+				</li>
+				<li>
+					<p>
+						<a href="#パラメータ">パラメータ</a>
+						<ul>
+							<li>
+								<p>
+									<a href="#トップレベルのパラメータ">トップレベルのパラメータ</a>
+								</p>
+							</li>
+							<li>
+								<p>
+									<a href="#ネストした要素として指定されるパラメータ">ネストした要素として指定されるパラメータ</a>
+								</p>
+							</li>
+						</ul>
+					</p>
+				</li>
+				<li>
+					<p>
+						<a href="#例">例</a>
+						<ul>
+							<li>
+								<p>
+									<a href="#SQLのキーワードと識別子の大文字小文字を指定する">SQLのキーワードと識別子の大文字小文字を指定する</a>
+								</p>
+							</li>
+							<li>
+								<p>
+									<a href="#独自のテンプレートファイルを使用する">独自のテンプレートファイルを使用する</a>
+								</p>
+							</li>
+							<li>
+								<p>
+									<a href="#MySQLでストレージエンジンを指定する">MySQLでストレージエンジンを指定する</a>
+								</p>
+							</li>
+							<li>
+								<p>
+									<a href="#バージョンディレクトリのパターンを指定する">バージョンディレクトリのパターンを指定する</a>
+								</p>
+							</li>
+							<li>
+								<p>
+									<a href="#DDLを生成する理由を記録する">DDLを生成する理由を記録する</a>
+								</p>
+							</li>
+							<li>
+								<p>
+									<a href="#エンティティのJavaDocコメントをテーブル作成用のDDLファイルに反映させる">エンティティのJavaDocコメントをテーブル作成用のDDLファイルに反映させる</a>
+								</p>
+							</li>
+							<li>
+								<p>
+									<a href="#外部キー制約の自動生成を無効化する">外部キー制約の自動生成を無効化する</a>
+								</p>
+							</li>
+						</ul>
+					</p>
+				</li>
+			</ul>
+		</section>
+		<section name="説明">
+			<subsection name="概要">
+				<p>
+					エンティティクラスのメタデータを読み取りDDLスクリプトを生成します。
+					このタスクでは、次のオブジェクトのcreate文とdrop文を生成します。
+					<ul>
+						<li>
+							テーブル
+						</li>
+						<li>
+							シーケンス
+						</li>
+						<li>
+							一意キー
+						</li>
+						<li>
+							外部キー
+						</li>
+						<li>
+							補助的オブジェクト（データベース固有のオブジェクト。主に微調整のために使用される。）
+						</li>
+					</ul>
+				</p>
+				<p>
+					また、dump属性が"true"の場合、DDLファイルの生成と同時にデータベースのデータをCSV形式でダンプ出力します。
+					DDLファイルとダンプファイルは、migrateDir属性に指定されたディレクトリ以下に出力されます。
+				</p>
+				<p>
+					このタスクは、DDLを生成しますが、生成したDDLをデータベースへ適用するわけではありません。
+					DDLのデータベースへの適用は<a href="migrate.html">Migrate</a>タスクが担います。
+				</p>
+			</subsection>
+			<subsection name="ディレクトリ構成">
+				<p>
+					デフォルトの属性値を利用する場合、Gen-Ddlタスクにより作成されるディレクトリの構成は次のようになります。
+				</p>
+<source><![CDATA[db
+└─migrate
+    ├─0000
+    │  ├─create
+    │  └─drop
+    │     ├─010-foreignkey
+    │     ├─020-sequence
+    │     ├─030-uniquekey
+    │     ├─040-table
+    │     └─050-auxiliary
+    ├─0001
+    │  ├─create
+    │  │  ├─010-table
+    │  │  ├─020-uniquekey
+    │  │  ├─030-sequence
+    │  │  ├─040-dump
+    │  │  ├─050-foreignkey
+    │  │  └─060-auxiliary
+    │  └─drop
+    │     ├─010-foreignkey
+    │     ├─020-sequence
+    │     ├─030-uniquekey
+    │     ├─040-table
+    │     └─050-auxiliary
+    └─0002
+        ├─create
+        │  ├─010-table
+        │  ├─020-uniquekey
+        │  ├─030-sequence
+        │  ├─040-dump
+        │  ├─050-foreignkey
+        │  └─060-auxiliary
+        └─drop
+           ├─010-foreignkey
+           ├─020-sequence
+           ├─030-uniquekey
+           ├─040-table
+           └─050-auxiliary]]></source>
+				<p>
+					db/migrateディレクトリ以下の、0000、0001、0002はDDLのバージョンを表すディレクトリです。
+					バージョンを表すディレクトリは、Gen-Ddlタスクを実行するごとに新しく作成されます。
+				</p>
+				<p>
+					バージョンを表すディレクトリの下にはcreateディレクトリとdropディレクトリがあります。
+					createディレクトリでは、データベースオブジェクトの作成用DDLとダンプデータを管理し、
+					dropディレクトリでは、データベースオブジェクトの削除用DDLを管理します。
+				</p>
+				<p>
+					createディレクトリとdropディレクトリの下には、各オブジェクト専用のDDLもしくはダンプデータを管理するためのディレクトリがあります。
+				</p>
+			</subsection>
+			<subsection name="バージョン番号">
+				<p>
+					DDLのバージョン番号は、ddlInfoFile属性に指定したテキストファイルで管理されます。
+					バージョン番号は0から始まり、上限の2147483647まで1ずつ増分します。
+					バージョン番号を管理するテキストファイルは、番号を振り直すなどの特別な理由がない限り編集しないでください。
+				</p>
+			</subsection>
+			<subsection name="DDLファイル">
+				<p>
+					エンティティクラスの定義からDDLファイルが出力されます。
+					どのようなエンティティ定義からどのようなDDLを生成できるかは、<a href="../entity_definition.html">DDL生成のためのエンティティ定義</a>を参照してください。
+				</p>
+				<p>
+					Gen-Ddlタスクでサポートしていないストアドプロシージャー、トリガー、ビューなどのDDLを扱うには、Migrateタスクの<a href="tasks/migrate.html#任意のSQLの実行">任意のSQLの実行</a>を参照してください。
+				</p>
+				<p>
+					出力先のディレクトリはパラメータにより変更できます。
+				</p>
+				<p>
+					生成されるファイルの形式は、<a href="../file_format.html#SQLファイル">SQLファイル</a>と同様です。
+				</p>
+			</subsection>
+			<subsection name="ダンプファイル">
+				<p>
+					dump属性が"true"の場合、データベースのデータがCSV形式でダンプ出力されます。
+				</p>
+				<p>
+					出力先のディレクトリはパラメータにより変更できます。
+				</p>
+				<p>
+					出力されるデータの形式は、<a href="../file_format.html#ダンプファイル">ダンプファイル</a>の説明を参照してください。
+				</p>
+			</subsection>
+			<subsection name="タスク実行時のファイルのコピー">
+				<p>
+					Gen-Ddlタスクは、DDLやダンプデータを生成後、生成対象外かつ前バージョンのディレクトリに含まれるファイルを新しいバージョンのディレクトリにコピーします。
+					この仕組みにより、Gen-Ddlで生成される以外のファイルをGen-Ddlで生成されるファイルと同様の方法で管理できます。
+				</p>
+				<p>
+					たとえば、バージョン0002のcreateディレクトリの下に061-procedureや062-view、dropディレクトリの下に001-viewや002-procedureといったディレクトリを作成し、そこにストアドプロシージャーやビューの作成用DDLと削除用DDLファイルを置くとします。
+				</p>
+<source><![CDATA[db
+└─migrate
+    └─0002
+        ├─create
+        │  ├─010-table
+        │  ├─020-uniquekey
+        │  ├─030-sequence
+        │  ├─040-dump
+        │  ├─050-foreignkey
+        │  ├─060-auxiliary
+        │  ├─061-procedure
+        │  └─062-view
+        └─drop
+           ├─001-view
+           ├─002-procedure
+           ├─010-foreignkey
+           ├─020-sequence
+           ├─030-uniquekey
+           ├─040-table
+           └─050-auxiliary]]></source>
+				<p>
+					Gen-Ddlタスクを実行すると、これらはバージョン0003のcreateディレクトリやdropディレクトリ以下にそのままコピーされます。
+				</p>
+			</subsection>
+		</section>
+		<section name="パラメータ">
+			<p>
+				Antタスクへのパラメータを以下に示します。
+			</p>
+			<subsection name="トップレベルのパラメータ">
+				<table border="1" cellpadding="2" cellspacing="0">
+					<tr><th>属性</th><th>説明</th><th>デフォルト値</th><th>必須</th></tr>
+					<tr><td>classpathDir</td><td>エンティティクラスを含むクラスパスのディレクトリです。このディレクトリはタスクの実行時のクラスパスに含まれている必要があります。</td><td>-</td><td>YES</td></tr>
+					<tr><td>rootPackageName</td><td>ルートパッケージ名です。</td><td>""</td><td>NO</td></tr>
+					<tr><td>entityPackageName</td><td>エンティティクラスのパッケージ名です。エンティティクラスは、rootPackageNameとこの値をピリオドで連結したパッケージに配置されているとみなされます。</td><td>"entity"</td><td>NO</td></tr>
+					<tr><td>entityClassNamePattern</td><td>このタスクで対象とするエンティティクラス名の正規表現です。</td><td>".*"</td><td>NO</td></tr>
+					<tr><td>ignoreEntityClassNamePattern</td><td>このタスクで対象としないエンティティクラス名の正規表現です。</td><td>""</td><td>NO</td></tr>
+					<tr><td>createTableDirName</td><td>テーブルを作成するDDLを格納するディレクトリ名です。</td><td>"010-table"</td><td>NO</td></tr>
+					<tr><td>createUniqueKeyDirName</td><td>一意キーを作成するDDLを格納するディレクトリ名です。</td><td>"020-uniquekey"</td><td>NO</td></tr>
+					<tr><td>createSequenceDirName</td><td>シーケンスを作成するDDLを格納するディレクトリ名です。</td><td>"030-sequence"</td><td>NO</td></tr>
+					<tr><td>createForeignKeyDirName</td><td>外部キーを作成するDDLを格納するディレクトリ名です。</td><td>"050-foreignkey"</td><td>NO</td></tr>
+					<tr><td>createAuxiliaryDirName</td><td>補助的オブジェクトを作成するDDLを格納するディレクトリ名です。</td><td>"060-auxiliary"</td><td>NO</td></tr>
+					<tr><td>dropTableDirName</td><td>テーブルを削除するDDLファイル名です。</td><td>"040-table"</td><td>NO</td></tr>
+					<tr><td>dropUniqueKeyDirName</td><td>一意キーを削除するDDLファイル名です。</td><td>"030-uniquekey"</td><td>NO</td></tr>
+					<tr><td>dropSequenceDirName</td><td>シーケンスを削除するDDLファイル名です。</td><td>"020-sequence"</td><td>NO</td></tr>
+					<tr><td>dropForeignKeyDirName</td><td>外部キーを削除するDDLファイル名です。</td><td>"010-foreignkey"</td><td>NO</td></tr>
+					<tr><td>dropForeignKeyDirName</td><td>補助的オブジェクトを削除するDDLファイル名です。</td><td>"050-auxiliary"</td><td>NO</td></tr>
+					<tr><td>ddlFileEncoding</td><td>DDLファイルのエンコーディングです。</td><td>"UTF-8"</td><td>NO</td></tr>
+					<tr><td>sqlKeywordCase</td><td>SQLのキーワードを大文字にするか小文字にするかを指定する列挙型の値です。大文字にするには"uppercase"、小文字にするには"lowercase"を指定します。テンプレートに記述された文字をそのまま使用する場合は"originalcase"を指定します。</td><td>"originalcase"</td><td>NO</td></tr>
+					<tr><td>sqlIdentifierCase</td><td>SQLの識別子を大文字にするか小文字にするかを指定する列挙型の値です。大文字にするには"uppercase"、小文字にするには"lowercase"を指定します。エンティティに記述した文字をそのまま使用する場合は"originalcase"を指定します。</td><td>"originalcase"</td><td>NO</td></tr>
+					<tr><td>dump</td><td>"true"の場合、データベースのデータのダンプ出力を行います。</td><td>"true"</td><td>NO</td></tr>
+					<tr><td>dumpDirName</td><td>ダンプファイルの出力先のディレクトリです。</td><td>"040-dump"</td><td>NO</td></tr>
+					<tr><td>dumpFileEncoding</td><td>ダンプファイルのエンコーディングです。</td><td>"UTF-8"</td><td>NO</td></tr>
+					<tr><td>applyJavaCommentToDdl</td><td>"true"の場合、エンティティのJavaDocコメントをテーブル作成用のDDLファイルに反映させます。クラスのJavaDocコメントはテーブルに反映され、プロパティのJavaDocコメントはカラムに反映されます。"true"を指定する場合、Docletを使用できるようにJDKのtools.jarをクラスパス（classpathもしくはclasspathref）に含める必要があります。対応しているRDBMSは、Oracle、DB2、PostgreSQL、MySQL、H2です。</td><td>"false"</td><td>NO</td></tr>
+					<tr><td>javaFileSrcDirs</td><td>Javaソースファイルのディレクトリです。カンマや空白区切りで複数指定できます。applyJavaCommentToDdlに"true"を指定した場合にのみ使用されます。</td><td>"src/main/java"</td><td>NO</td></tr>
+					<tr><td>javaFileEncoding</td><td>Javaファイルのエンコーディングです。applyJavaCommentToDdlに"true"を指定した場合にのみ使用されます。</td><td>"UTF-8"</td><td>NO</td></tr>
+					<tr><td>autoGenerateForeignKey</td><td>"true"の場合、関連の定義から外部キー制約を自動生成します。"false"の場合、関連の定義から外部キー制約を自動生成しません。</td><td>"true"</td><td>NO</td></tr>
+					<tr><td>createTableTemplateFileName</td><td>テーブルを作成するDDLのテンプレートファイル名です。</td><td>"sql/create-table.ftl"</td><td>NO</td></tr>
+					<tr><td>createUniqueKeyTemplateFileName</td><td>一意キーを作成するDDLのテンプレートファイル名です。</td><td>"sql/create-uniquekey.ftl"</td><td>NO</td></tr>
+					<tr><td>createSequenceTemplateFileName</td><td>シーケンスを作成するDDLのテンプレートファイル名です。</td><td>"sql/create-sequence.ftl"</td><td>NO</td></tr>
+					<tr><td>createForeignKeyTemplateFileName</td><td>外部キーを作成するDDLのテンプレートファイル名です。</td><td>"sql/create-foreignkey.ftl"</td><td>NO</td></tr>
+					<tr><td>createAuxiliaryTemplateFileName</td><td>補助的オブジェクトを作成するDDLのテンプレートファイル名です。</td><td>"sql/create-auxiliary.ftl"</td><td>NO</td></tr>
+					<tr><td>dropTableTemplateFileName</td><td>テーブルを削除するDDLのテンプレートファイル名です。</td><td>"sql/drop-table.ftl"</td><td>NO</td></tr>
+					<tr><td>dropUniqueKeyTemplateFileName</td><td>一意キーを削除するDDLのテンプレートファイル名です。</td><td>"sql/drop-uniquekey.ftl"</td><td>NO</td></tr>
+					<tr><td>dropSequenceTemplateFileName</td><td>シーケンスを削除するDDLのテンプレートファイル名です。</td><td>"sql/drop-sequence.ftl"</td><td>NO</td></tr>
+					<tr><td>dropForeignKeyTemplateFileName</td><td>外部キーを削除するDDLのテンプレートファイル名です。</td><td>"sql/drop-foreignkey.ftl"</td><td>NO</td></tr>
+					<tr><td>dropAuxiliaryTemplateFileName</td><td>補助的オブジェクトを削除するDDLのテンプレートファイル名です。</td><td>"sql/drop-auxiliary.ftl"</td><td>NO</td></tr>
+					<tr><td>templateFileEncoding</td><td>テンプレートファイルのエンコーディングです。</td><td>"UTF-8"</td><td>NO</td></tr>
+					<tr><td>templateFilePrimaryDir</td><td>テンプレートファイルを検索する際の優先ディレクトリです。</td><td>-</td><td>NO</td></tr>
+					<tr><td>migrateDir</td><td>マイグレーション用のファイルを管理するディレクトリです。</td><td>"db/migrate"</td><td>NO</td></tr>
+					<tr><td>ddlInfoFile</td><td>DDLのバージョン番号を管理するファイルです。</td><td>"db/ddl-info.txt"</td><td>NO</td></tr>
+					<tr><td>versionNoPattern</td><td>バージョン番号のパターンです。バージョン番号に対応するディレクトリ名に使用されます。java.text.DecimalFormatで使用可能なパターンを指定できます。</td><td>"0000"</td><td>NO</td></tr>
+					<tr><td>statementDelimiter</td><td>SQLステートメントの区切り文字です。</td><td>";"</td><td>NO</td></tr>
+					<tr><td>tableOption</td><td>CREATE TABLE文の最後に付与されるオプションです。MySQLで、データベースのエンジンを指定する場合、たとえば、"ENGINE = INNODB"というように指定できます。</td><td>-</td><td>NO</td></tr>
+					<tr><td>comment</td><td>DDLを生成する理由を示すコメントです。エンティティの変更内容を記述するのが適当です。ここに記述した文字列はddlInfoFile属性で指定されたファイルに記録されます。</td><td>""</td><td>NO</td></tr>
+					<tr><td>genDialectClassName</td><td>S2JDBC-Genのダイアレクトインタフェースの実装クラス名です。ここに指定するクラスはorg.seasar.extension.jdbc.gen.dialect.GenDialectインタフェースを実装している必要があります。指定しない場合は<a href="../s2jdbc_setup.html#ダイアレクト">S2JDBCのダイアレクト</a>に対応したデフォルトのクラスが使用されます。</td><td>-</td><td>NO</td></tr>
+					<tr><td>configPath</td><td>JdbcManagerのコンポーネント定義を含む設定ファイルです。このタスクの実行に使用されます。</td><td>"s2jdbc.dicon"</td><td>NO</td></tr>
+					<tr><td>env</td><td>環境名です。</td><td>"ut"</td><td>NO</td></tr>
+					<tr><td>jdbcManagerName</td><td>
+					                        JdbcManagerのコンポーネント名です。</td><td>"jdbcManager"</td><td>NO</td></tr>
+					<tr><td>factoryClassName</td><td>S2JDBC-Genの公開されたインタフェースの実装を作成するファクトリのクラス名です。S2JDBC-Genをカスタマイズする場合に独自のファクトリクラスを指定できます。ここに指定するクラスはorg.seasar.extension.jdbc.gen.internal.factory.Factoryインタフェースを実装している必要があります。</td><td>"org.seasar.extension.jdbc.gen<br />.internal.factory.FactoryImpl"</td><td>NO</td></tr>
+					<tr><td>commandInvokerClassName</td><td>S2JDBC-Genのコマンドを呼び出すクラスの名前です。コマンドの呼び出し前後で任意の処理を実行したい場合に指定します。ここに指定するクラスはorg.seasar.extension.jdbc.gen.command.CommandInvokerインタフェースを実装している必要があります。</td><td>"org.seasar.extension.jdbc.gen<br />.internal.command.CommandInvokerImpl"</td><td>NO</td></tr>
+					<tr><td>classpath</td><td>このタスクを実行する際のクラスパスです。</td><td>-</td><td>classpathrefが指定されていない場合YES</td></tr>
+					<tr><td>classpathref</td><td>このタスクを実行する際のクラスパスの参照です。</td><td>-</td><td>classpathが指定されていない場合YES</td></tr>
+				</table>
+			</subsection>
+			<subsection name="ネストした要素として指定されるパラメータ">
+				<h4>
+					jvmArg
+				</h4>
+				<p>
+					このタスクの大部分の処理は別VMで行われます。VMに引数を渡す場合は&lt;jvmarg&gt;要素を使用します。
+					これはAntのJavaタスクで使用できる&lt;jvmarg&gt;と同じです。
+					使用可能な属性やネストした要素についてはAntのドキュメントを参照してください。
+				</p>
+			</subsection>
+		</section>
+		<section name="例">
+			<subsection name="SQLのキーワードと識別子の大文字小文字を指定する">
+				<p>
+					sqlKeywordCase属性とsqlIdentifierCase属性に"uppercase"や"lowercase"といった値を指定することで、SQLのキーワード（CREATEやALTERなど）やSQLの識別子（テーブル名やカラム名）の大文字小文字を指定できます。
+					たとえば、次のように指定できます。
+				</p>
+<source><![CDATA[<gen-ddl
+    classpathDir="build/classes"
+    rootPackageName="examples"
+    sqlKeywordCase="lowercase"
+    sqlIdentifierCase="uppercase"
+    classpathRef="classpath"
+/>]]></source>
+				<p>
+					sqlKeywordCase属性に"lowercase"とsqlIdentifierCase属性に"uppercase"を指定した場合、生成されるSQLは次のようになります。
+				</p>
+<source><![CDATA[create table HOGE (AAA varchar(255));]]></source>
+				<p>
+					逆に、sqlKeywordCase属性に"uppercase"とsqlIdentifierCase属性に"lowercase"を指定した場合、生成されるSQLは次のようになります。
+				</p>
+<source><![CDATA[CREATE TABLE hoge (aaa VARCHAR(255));]]></source>
+			</subsection>
+			<subsection name="独自のテンプレートファイルを使用する">
+				<p>
+					任意のディレクトリに独自のテンプレートファイルを置き、templateFilePrimaryDir属性にそのディレクトリを指定することで、
+					独自のテンプレートファイルを使用できます。
+				</p>
+				<p>
+					S2JDBC-Genのテンプレートは、配布ファイルのresources/tempaltesディレクトリ以下にあります。
+					ここでは、テーブルのcreate文のテンプレートを置き換える例を示します。
+					テーブルのcreate文のテンプレートトはsql/create-table.ftlです。
+					修正は、これをコピーして行うと良いでしょう。
+				</p>
+				<p>
+					テンプレートファイルを格納するディレクトリをmytempletesとする場合、
+					修正した独自テンプレートを使用するにはテンプレートをmytempletes/sql/create-table.ftlと配置し、templateFilePrimaryDir属性にmytempletesを指定します。
+				</p>
+<source><![CDATA[<gen-ddl
+    classpathDir="build/classes"
+    rootPackageName="examples"
+    templateFilePrimaryDir="mytempletes"
+    classpathRef="classpath"
+/>]]></source>
+				<p>
+					mytempletes/my-create-table.ftlのように、テンプレートファイルを任意の名前で配置したい場合は、
+					templateFilePrimaryDir属性に加え、createTableTemplateFileName属性も指定します。
+				</p>
+<source><![CDATA[<gen-ddl
+    classpathDir="build/classes"
+    rootPackageName="examples"
+    templateFilePrimaryDir="mytempletes"
+    createTableTemplateFileName="my-create-table.ftl"
+    classpathRef="classpath"
+/>]]></source>
+			</subsection>
+			<subsection name="MySQLでストレージエンジンを指定する">
+				<p>
+					MySQLでストレージエンジンを指定するには、tableOption属性を使用します。
+					たとえば、ストレージエンジンにINNODBを使用するにはtableOption属性に次のように指定します。
+				</p>
+<source><![CDATA[<gen-ddl
+    classpathDir="build/classes"
+    rootPackageName="examples"
+    tableOption="ENGINE = INNODB"
+    classpathRef="classpath"
+/>]]></source>
+				<p>
+					上記の定義でGen-Ddlタスクを実行すると次のようなDDLが生成されます。
+				</p>
+<source><![CDATA[create table HOGE (AAA varchar(255)) ENGINE = INNODB;]]></source>
+			</subsection>
+			<subsection name="バージョンディレクトリのパターンを指定する">
+				<p>
+					デフォルトでは、バージョン番号に対応するディレクトリの名前はバージョン番号が大きくなるにつれ、0000、0001、0002となります。
+					バージョン番号の前に0をいくつ付与するかは、versionNoPattern属性で調整できます。
+				</p>
+<source><![CDATA[<gen-ddl
+    classpathDir="build/classes"
+    rootPackageName="examples"
+    versionNoPattern="00000000"
+    classpathRef="classpath"
+/>]]></source>
+				<p>
+					上記の定義でGen-Ddlタスクを実行すると、バージョン番号に対応するディレクトリの名前はバージョン番号が大きくなるにつれ、00000000、00000001、00000002となります。
+				</p>
+			</subsection>
+			<subsection name="DDLを生成する理由を記録する">
+				<p>
+					DDLを生成する理由（エンティティの変更内容）をcomment属性に記述しddlInfoFile属性で指定されたファイルに記録できます。
+					AntのInputタスクと組み合わせて使用すると良いでしょう。
+				</p>
+<source><![CDATA[<input
+    message="DDLを生成する理由（エンティティの変更内容）を入力してください。"
+    addproperty="gen-ddl.comment"
+/>
+<gen-ddl
+    classpathDir="build/classes"
+    rootPackageName="examples"
+    comment="${gen-ddl.comment}"
+    classpathRef="classpath"
+/>]]></source>
+				<p>
+					上記の定義を利用すると、コンソールからの入力をコメントとして使用できます。
+				</p>
+			</subsection>
+			<subsection name="エンティティのJavaDocコメントをテーブル作成用のDDLファイルに反映させる">
+				<p>
+					エンティティのJavaDocコメントをDDLに反映させるには、applyJavaCommentToDdl属性に"true"を指定します。
+					また、必要に応じてjavaFileSrcDirs属性とjavaFileEncoding属性を使用します。
+					javaFileSrcDirs属性については、カンマや空白区切りで複数の値を指定できることに注意してください。
+				</p>
+<source><![CDATA[<gen-ddl
+    classpathDir="build/classes"
+    rootPackageName="examples"
+    applyJavaCommentToDdl="true"
+    javaFileSrcDirs="src1, src2"
+    javaFileEncoding="MS932"
+    classpathRef="classpath"
+/>]]></source>
+				<p>
+					この機能では、Docletを使用してソースコード上のコメントを読み取るため、クラスパスにJDKのtools.jarが指定されている必要があります。
+					コメントに対応していないRDBMSでは、applyJavaCommentToDdl属性に"true"を指定しても、JavaDocコメントはDDLに反映されません。
+				</p>
+			</subsection>
+			<subsection name="外部キー制約の自動生成を無効化する">
+				<p>
+					デフォルトでは、関連プロパティに対応するカラムが外部キーとみなされDDLが自動生成されます。
+					これを無効にするには、autoGenerateForeignKey属性に"false"を設定します。
+				</p>
+<source><![CDATA[<gen-ddl
+    classpathDir="build/classes"
+    rootPackageName="examples"
+    autoGenerateForeignKey="false"
+    classpathRef="classpath"
+/>]]></source>
+				<p>
+					上の定義を利用すると、外部キー制約のDDLが自動生成されなくなります。
+				</p>
+				<p>
+					autoGenerateForeignKey属性は、全てのエンティティを対象とし、一括で自動生成の有効/無効を制御する場合に使用します。
+					関連プロパティごとに外部キー制約の生成を制御するには、
+					<a href="../entity_definition.html#外部キー定義">外部キー定義</a>を参照してください。
+				</p>
+			</subsection>
+		</section>
+	</body>
+</document>

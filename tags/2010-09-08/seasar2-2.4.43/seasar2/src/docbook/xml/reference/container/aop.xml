@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<chapter id="container-aop">
+  <title>Aspect-Oriented Programming</title>
+
+  <subtitle>－アスペクト指向プログラミング－</subtitle>
+
+  <section>
+    <title></title>
+
+    <para></para>
+  </section>
+
+  <section>
+    <title>インターセプタの作成</title>
+
+    <para></para>
+  </section>
+
+  <section>
+    <title>インタータイプの作成</title>
+
+    <para></para>
+  </section>
+
+  <section>
+    <title>標準インターセプタ</title>
+
+    <para></para>
+  </section>
+
+  <section>
+    <title>標準インタータイプ</title>
+
+    <para></para>
+  </section>
+</chapter>
