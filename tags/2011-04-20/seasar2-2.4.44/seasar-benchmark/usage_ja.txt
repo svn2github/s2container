@@ -1,0 +1,18 @@
+1. インストール
+
+- ant
+-- 環境変数ANT_HOME
+-- PATHへ$ANT_HOME/binを追加
+
+2. コンパイル
+
+ant compile
+
+3. 実行
+
+ant benchmark
+
+1時間くらいで終了します。
+
+実行回数や割り当てメモリを変更するには、src/main/groovy/benchmark.groovyへ
+手を入れてください。
