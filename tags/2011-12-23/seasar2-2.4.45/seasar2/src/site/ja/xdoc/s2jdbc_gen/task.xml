@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<document>
+	<properties>
+		<title>S2JDBC-Gen - タスク</title>
+	</properties>
+	<body>
+		<section name="タスク">
+			<p></p>
+			<ul>
+				<li>
+					<p>
+						<a href="#タスクの一覧">タスクの一覧</a>
+					</p>
+				</li>
+				<li>
+					<p>
+						<a href="#タスクの使用例">タスクの使用例</a>
+					</p>
+				</li>
+			</ul>
+		</section>
+		<section name="タスクの一覧">
+			<p>
+				S2JDBC-Genでは以下のタスクを提供します。
+			</p>
+			<subsection name="コアタスク">
+				<table border="1" cellpadding="2" cellspacing="0">
+					<tr><th>タスク名</th><th>説明</th></tr>
+					<tr><td><a href="tasks/gen_entity.html">Gen-Entity</a></td><td>データベースのテーブルからエンティティクラスのJavaコードを生成するタスクです。</td></tr>
+					<tr><td><a href="tasks/gen_ddl.html">Gen-Ddl</a></td><td>エンティティクラスからバージョン管理されたDDLを生成するタスクです。</td></tr>
+					<tr><td><a href="tasks/migrate.html">Migrate</a></td><td>バージョン管理されたDDLを使いデータベーススキーマのマイグレーションを実行するタスクです。</td></tr>
+				</table>
+			</subsection>
+			<subsection name="オプションタスク">
+				<table border="1" cellpadding="2" cellspacing="0">
+					<tr><th>タスク名</th><th>説明</th></tr>
+					<tr><td><a href="tasks/gen_names.html">Gen-Names</a></td><td>エンティティクラスから名前クラス（Namesクラス）のJavaコードを生成するクラスです。名前クラスはエンティティのプロパティ名に対応するメソッドをもつクラスです。JdbcManagerを使った問い合わせで名前クラスを使用することで、結合条件や検索条件をタイプセーフに指定できます。</td></tr>
+					<tr><td><a href="tasks/gen_service.html">Gen-Service</a></td><td>エンティティクラスからサービスクラス（Serviceクラス）のJavaコードを生成するクラスです。サービスクラスはエンティティの問い合わせを簡略化するメソッドを提供します。</td></tr>
+					<tr><td><a href="tasks/gen_condition.html">Gen-Condition</a></td><td>エンティティクラスから条件クラス（Conditionクラス）のJavaコードを生成するタスクです。条件クラスを使用すると、S2JDBCを使った検索条件をタイプセーフに指定できます。条件クラスよりも名前クラスを使用することを推奨します。</td></tr>
+					<tr><td><a href="tasks/gen_sqlfileconstants.html">Gen-SqlFileConstants</a></td><td>SQLファイルの定数クラスのJavaコードを生成するクラスです。定数クラスでは、SQLファイルのパスを定数フィールドとして持ちます。</td></tr>
+					<tr><td><a href="tasks/gen_entitytest.html">Gen-EntityTest</a></td><td>エンティティクラスのテスト用Javaコードを生成するタスクです。テストクラスではエンティティを使って実際にデータベースアクセスを行います。</td></tr>
+					<tr><td><a href="tasks/gen_servicetest.html">Gen-ServiceTest</a></td><td>サービスクラスのテスト用Javaコードを生成するクラスです。</td></tr>
+					<tr><td><a href="tasks/gen_sqlfiletest.html">Gen-SqlFileTest</a></td><td>SQLファイルのテスト用Javaコードを生成するクラスです。テストクラスではSQLファイルを使って実際にデータベースアクセスを行います。</td></tr>
+				</table>
+			</subsection>
+			<subsection name="ユーティリティタスク">
+				<table border="1" cellpadding="2" cellspacing="0">
+					<tr><th>タスク名</th><th>説明</th></tr>
+					<tr><td><a href="tasks/dump_dbmeta.html">Dump-DbMeta</a></td><td>テーブルやカラムのメタデータをダンプするタスクです。主にS2JDBC-Genの開発者が利用することを想定しています。</td></tr>
+					<tr><td><a href="tasks/dump_data.html">Dump-Data</a></td><td>データベースのデータをCSV形式でダンプするタスクです。ダンプの機能はGen-Ddlタスクに含まれていますが、Gen-Ddlタスクとは別にダンプを行いたい場合に使用できます。</td></tr>
+					<tr><td><a href="tasks/load_data.html">Load-Data</a></td><td>CSV形式のダンプファイルをロードするタスクです。ロードの機能はMigrateタスクに含まれていますが、Migrateタスクとは別にロードを行いたい場合に使用できます。</td></tr>
+					<tr><td><a href="tasks/exec_sql.html">Exec-Sql</a></td><td>SQLファイルに含まれた任意のSQLを実行するタスクです。</td></tr>
+					<tr><td><a href="tasks/refresh.html">Refresh</a></td><td><a href="http://resourcesynchronizer.sandbox.seasar.org/ja/">ResourceSynchronizer</a>にリクエストを投げるタスクです。</td></tr>
+				</table>
+			</subsection>
+		</section>
+		<section name="タスクの使用例">
+			<p>
+				タスクは組み合わせて使用します。
+			</p>
+			<p>
+				以下の定義は、S2JDBC-Genの配布ファイルで提供しているサンプル用ビルドファイル（resources/s2jdbc-gen-build.xml）の内容です。
+				タスクを組み合わせ5つのターゲットを定義しています。
+			</p>
+			<source><![CDATA[<project name="example-s2jdbc-gen" default="gen-ddl" basedir=".">
+
+  <property name="classpathdir" value="src/main/webapp/WEB-INF/classes"/>
+  <property name="rootpackagename" value="example"/>
+  <property name="entitypackagename" value="entity"/>
+  <property name="entityfilepattern" value="example/entity/**/*.java"/>
+  <property name="javafiledestdir" value="src/main/java"/>
+  <property name="testjavafiledestdir" value="src/test/java"/>
+  <property name="javafileencoding" value="UTF-8"/>
+  <property name="version" value="latest"/>
+  <property name="sqlfilepattern" value="META-INF/sql/**/*.sql"/>
+  <property name="applyenvtoversion" value="false"/>
+  <property name="uses2junit4" value="false"/>
+  <property name="env" value="ut"/>
+  <property name="jdbcmanagername" value="jdbcManager"/>
+  <condition property="vmarg.encoding" value="-Dfile.encoding=UTF-8" else="">
+    <isset property="eclipse.pdebuild.home"/>
+  </condition>
+
+  <path id="classpath">
+    <pathelement location="${classpathdir}"/>
+    <fileset dir="src/main/webapp/WEB-INF/lib">
+      <exclude name="src/main/webapp/WEB-INF/lib/sources/**"/>
+    </fileset>
+    <fileset dir="lib">
+      <exclude name="lib/sources/**"/>
+    </fileset>
+  </path>
+
+  <taskdef resource="s2jdbc-gen-task.properties" classpathref="classpath"/>
+
+  <target name="gen-entity">
+    <gen-entity
+      rootpackagename="${rootpackagename}"
+      entitypackagename="${entitypackagename}"
+      javafiledestdir="${javafiledestdir}"
+      javafileencoding="${javafileencoding}"
+      env="${env}"
+      jdbcmanagername="${jdbcmanagername}"
+      classpathref="classpath">
+        <jvmarg value="${vmarg.encoding}"/>
+    </gen-entity>
+    <javac 
+      srcdir="${javafiledestdir}"
+      destdir="${classpathdir}"
+      encoding="${javafileencoding}"
+      fork="true"
+      debug="on"
+      classpathref="classpath">
+        <include name="${entityfilepattern}"/>
+    </javac>
+    <gen-names
+      classpathdir="${classpathdir}"
+      rootpackagename="${rootpackagename}"
+      entitypackagename="${entitypackagename}"
+      javafiledestdir="${javafiledestdir}"
+      javafileencoding="${javafileencoding}"
+      env="${env}"
+      jdbcmanagername="${jdbcmanagername}"
+      classpathref="classpath">
+        <jvmarg value="${vmarg.encoding}"/>
+    </gen-names>
+    <gen-service
+      classpathdir="${classpathdir}"
+      rootpackagename="${rootpackagename}"
+      entitypackagename="${entitypackagename}"
+      javafiledestdir="${javafiledestdir}"
+      javafileencoding="${javafileencoding}"
+      env="${env}"
+      jdbcmanagername="${jdbcmanagername}"
+      classpathref="classpath">
+        <jvmarg value="${vmarg.encoding}"/>
+    </gen-service>
+    <gen-sqlfileconstants
+      classpathdir="${classpathdir}"
+      rootpackagename="${rootpackagename}"
+      javafiledestdir="${javafiledestdir}"
+      javafileencoding="${javafileencoding}"
+      env="${env}"
+      jdbcmanagername="${jdbcmanagername}"
+      classpathref="classpath">
+        <sqlfileset dir="${classpathdir}">
+          <include name="${sqlfilepattern}" />
+        </sqlfileset>
+        <jvmarg value="${vmarg.encoding}"/>
+    </gen-sqlfileconstants>
+    <gen-entitytest
+      classpathdir="${classpathdir}"
+      rootpackagename="${rootpackagename}"
+      entitypackagename="${entitypackagename}"
+      javafiledestdir="${testjavafiledestdir}"
+      javafileencoding="${javafileencoding}"
+      uses2junit4="${uses2junit4}"
+      env="${env}"
+      jdbcmanagername="${jdbcmanagername}"
+      classpathref="classpath">
+        <jvmarg value="${vmarg.encoding}"/>
+    </gen-entitytest>
+    <gen-servicetest
+      classpathdir="${classpathdir}"
+      rootpackagename="${rootpackagename}"
+      javafiledestdir="${testjavafiledestdir}"
+      javafileencoding="${javafileencoding}"
+      uses2junit4="${uses2junit4}"
+      env="${env}"
+      jdbcmanagername="${jdbcmanagername}"
+      classpathref="classpath">
+        <jvmarg value="${vmarg.encoding}"/>
+    </gen-servicetest>
+    <gen-sqlfiletest
+      classpathdir="${classpathdir}"
+      rootpackagename="${rootpackagename}"
+      javafiledestdir="${testjavafiledestdir}"
+      javafileencoding="${javafileencoding}"
+      uses2junit4="${uses2junit4}"
+      env="${env}"
+      jdbcmanagername="${jdbcmanagername}"
+      classpathref="classpath">
+        <sqlfileset dir="${classpathdir}">
+          <include name="${sqlfilepattern}" />
+        </sqlfileset>
+        <jvmarg value="${vmarg.encoding}"/>
+    </gen-sqlfiletest>
+  </target>
+
+  <target name="gen-ddl">
+    <gen-ddl
+      classpathdir="${classpathdir}"
+      rootpackagename="${rootpackagename}"
+      entitypackagename="${entitypackagename}"
+      env="${env}"
+      jdbcmanagername="${jdbcmanagername}"
+      classpathref="classpath">
+        <jvmarg value="${vmarg.encoding}"/>
+    </gen-ddl>
+    <gen-names
+      classpathdir="${classpathdir}"
+      rootpackagename="${rootpackagename}"
+      entitypackagename="${entitypackagename}"
+      javafiledestdir="${javafiledestdir}"
+      javafileencoding="${javafileencoding}"
+      env="${env}"
+      jdbcmanagername="${jdbcmanagername}"
+      classpathref="classpath">
+        <jvmarg value="${vmarg.encoding}"/>
+    </gen-names>
+    <gen-service
+      classpathdir="${classpathdir}"
+      rootpackagename="${rootpackagename}"
+      entitypackagename="${entitypackagename}"
+      javafiledestdir="${javafiledestdir}"
+      javafileencoding="${javafileencoding}"
+      env="${env}"
+      jdbcmanagername="${jdbcmanagername}"
+      classpathref="classpath">
+        <jvmarg value="${vmarg.encoding}"/>
+    </gen-service>
+    <gen-sqlfileconstants
+      classpathdir="${classpathdir}"
+      rootpackagename="${rootpackagename}"
+      javafiledestdir="${javafiledestdir}"
+      javafileencoding="${javafileencoding}"
+      env="${env}"
+      jdbcmanagername="${jdbcmanagername}"
+      classpathref="classpath">
+        <sqlfileset dir="${classpathdir}">
+          <include name="${sqlfilepattern}" />
+        </sqlfileset>
+        <jvmarg value="${vmarg.encoding}"/>
+    </gen-sqlfileconstants>
+    <gen-entitytest
+      classpathdir="${classpathdir}"
+      rootpackagename="${rootpackagename}"
+      entitypackagename="${entitypackagename}"
+      javafiledestdir="${testjavafiledestdir}"
+      javafileencoding="${javafileencoding}"
+      uses2junit4="${uses2junit4}"
+      env="${env}"
+      jdbcmanagername="${jdbcmanagername}"
+      classpathref="classpath">
+        <jvmarg value="${vmarg.encoding}"/>
+    </gen-entitytest>
+    <gen-servicetest
+      classpathdir="${classpathdir}"
+      rootpackagename="${rootpackagename}"
+      javafiledestdir="${testjavafiledestdir}"
+      javafileencoding="${javafileencoding}"
+      uses2junit4="${uses2junit4}"
+      env="${env}"
+      jdbcmanagername="${jdbcmanagername}"
+      classpathref="classpath">
+        <jvmarg value="${vmarg.encoding}"/>
+    </gen-servicetest>
+    <gen-sqlfiletest
+      classpathdir="${classpathdir}"
+      rootpackagename="${rootpackagename}"
+      javafiledestdir="${testjavafiledestdir}"
+      javafileencoding="${javafileencoding}"
+      uses2junit4="${uses2junit4}"
+      env="${env}"
+      jdbcmanagername="${jdbcmanagername}"
+      classpathref="classpath">
+        <sqlfileset dir="${classpathdir}">
+          <include name="${sqlfilepattern}" />
+        </sqlfileset>
+        <jvmarg value="${vmarg.encoding}"/>
+    </gen-sqlfiletest>
+  </target>
+
+  <target name="migrate">
+    <migrate
+      classpathdir="${classpathdir}"
+      rootpackagename="${rootpackagename}"
+      entitypackagename="${entitypackagename}"
+      applyenvtoversion="${applyenvtoversion}"
+      version="${version}"
+      env="${env}"
+      jdbcmanagername="${jdbcmanagername}"
+      classpathref="classpath">
+        <jvmarg value="${vmarg.encoding}"/>
+    </migrate>
+    <refresh projectName="${projectname}"/>
+  </target>
+
+  <target name="rollback">
+    <migrate
+      classpathdir="${classpathdir}"
+      rootpackagename="${rootpackagename}"
+      entitypackagename="${entitypackagename}"
+      applyenvtoversion="${applyenvtoversion}"
+      version="previous"
+      env="${env}"
+      jdbcmanagername="${jdbcmanagername}"
+      classpathref="classpath">
+        <jvmarg value="${vmarg.encoding}"/>
+    </migrate>
+  </target>
+
+  <target name="dump">
+    <dump-data
+      classpathdir="${classpathdir}"
+      rootpackagename="${rootpackagename}"
+      applyenvtoversion="${applyenvtoversion}"
+      entitypackagename="${entitypackagename}"
+      env="${env}"
+      jdbcmanagername="${jdbcmanagername}"
+      classpathref="classpath">
+        <jvmarg value="${vmarg.encoding}"/>
+    </dump-data>
+  </target>
+
+</project>]]></source>
+			<p>
+				各ターゲットの役割を説明します。
+			</p>
+			<table border="1" cellpadding="2" cellspacing="0">
+				<tr><th>ターゲット名</th><th>説明</th></tr>
+				<tr><td>gen-entity</td><td>データベースからエンティティクラスを生成し、エンティティクラスから名前クラス、サービスクラス、各種テストクラスのコードを生成します。このターゲットは、データベーススキーマがすでに存在する場合に、最初の一度だけ実行されることを想定しています。</td></tr>
+				<tr><td>gen-ddl</td><td>エンティティクラスからDDLを生成します。また、名前クラス、サービスクラス、各種テストクラスのコードを再生成します（既存のものを上書きする/しないは各タスクによって決まります）。このターゲットは、データベースリファクタリング（エンティティの修正）を行うたびに実行されることを想定しています。エンティティを新規に作成する場合も、このターゲットを使用します。</td></tr>
+				<tr><td>migrate</td><td>gen-ddlターゲットで生成したDDLを使用し、データベーススキーマのマイグレーションを実行します。デフォルトでは、最新のDDLを使ったマイグレーションを行います。</td></tr>
+				<tr><td>rollback</td><td>データベーススキーマのバージョンを1つ前に戻します。</td></tr>
+				<tr><td>dump</td><td>データベースのデータをCSV形式でダンプします。通常、ダンプはgen-ddlターゲットで行われますが、個別にダンプを実行したい場合にこのターゲットを使用します。デフォルトでは、ダンプファイルは最新バージョンのデータを管理するディレクトリに出力されます。migrateターゲットを実行することでロードできます。</td></tr>
+			</table>
+			<p>
+				このビルドファイルを使用するにあたっては、propertyやpathの値を環境に合わせてカスタマイズし利用してください。
+			</p>
+			<p>
+				gen-entityターゲットでは、エンティティクラスのJavaファイルのみをコンパイルしています。
+				生成されたJavaファイルすべてをコンパイルするには、EclipseのようなIDEで行うか、ビルドファイルをカスタマイズして別途Javacタスクで実行してください。
+			</p>
+			<p>
+				<a href="setup.html#Doltengの利用">Doltengを使用する</a>場合は、このビルドファイルと同等のビルドファイルを自動生成できるので、そちらを利用してください。
+				Doltengが環境に応じたビルドファイルを生成するため、propertyやpathの値を修正する必要がありません。
+			</p>
+		</section>
+	</body>
+</document>
